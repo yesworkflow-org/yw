@@ -40,7 +40,7 @@ uriTemplate     : ((scheme) ':')? PATH_TEMPLATE ;
 scheme          : 'file' | 'http' ; 
 
 // lexer rules
-ID              : [a-zA-Z0-9\_]+ ;
+ID              : [a-zA-Z0-9\\_]+ ;
 PATH_TEMPLATE   : ID ;
 EOL             : [\r\n] ;
 WS              : [ \t]+ -> skip ;
