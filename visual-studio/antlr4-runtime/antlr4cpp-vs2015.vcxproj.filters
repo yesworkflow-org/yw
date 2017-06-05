@@ -57,885 +57,885 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\ANTLRErrorListener.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\ANTLRErrorListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ANTLRErrorStrategy.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\ANTLRErrorStrategy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ANTLRFileStream.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\ANTLRFileStream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ANTLRInputStream.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\ANTLRInputStream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\BailErrorStrategy.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\BailErrorStrategy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\BaseErrorListener.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\BaseErrorListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\BufferedTokenStream.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\BufferedTokenStream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\CharStream.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\CharStream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\CommonToken.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\CommonToken.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\CommonTokenFactory.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\CommonTokenFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\CommonTokenStream.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\CommonTokenStream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ConsoleErrorListener.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\ConsoleErrorListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\DefaultErrorStrategy.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\DefaultErrorStrategy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\DiagnosticErrorListener.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\DiagnosticErrorListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Exceptions.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\Exceptions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\FailedPredicateException.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\FailedPredicateException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\InputMismatchException.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\InputMismatchException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\InterpreterRuleContext.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\InterpreterRuleContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\IntStream.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\IntStream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Lexer.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\Lexer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\LexerInterpreter.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\LexerInterpreter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\LexerNoViableAltException.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\LexerNoViableAltException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ListTokenSource.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\ListTokenSource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\NoViableAltException.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\NoViableAltException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Parser.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\Parser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ParserInterpreter.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\ParserInterpreter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ParserRuleContext.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\ParserRuleContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\ProxyErrorListener.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\ProxyErrorListener.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\RecognitionException.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\RecognitionException.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Recognizer.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\Recognizer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\RuleContext.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\RuleContext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Token.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\Token.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\TokenFactory.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\TokenFactory.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\TokenSource.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\TokenSource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\TokenStream.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\TokenStream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\TokenStreamRewriter.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\TokenStreamRewriter.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\UnbufferedCharStream.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\UnbufferedCharStream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\UnbufferedTokenStream.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\UnbufferedTokenStream.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\WritableToken.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\WritableToken.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\DecisionState.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\DecisionState.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\EmptyPredictionContext.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\EmptyPredictionContext.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\EpsilonTransition.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\EpsilonTransition.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\LexerATNConfig.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerATNConfig.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\LexerATNSimulator.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerATNSimulator.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\LL1Analyzer.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LL1Analyzer.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\LoopEndState.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LoopEndState.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\NotSetTransition.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\NotSetTransition.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\OrderedATNConfigSet.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\OrderedATNConfigSet.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\ParserATNSimulator.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ParserATNSimulator.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\PlusBlockStartState.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\PlusBlockStartState.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\PlusLoopbackState.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\PlusLoopbackState.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\PrecedencePredicateTransition.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\PrecedencePredicateTransition.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\PredicateTransition.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\PredicateTransition.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\PredictionContext.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\PredictionContext.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\PredictionMode.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\PredictionMode.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\RangeTransition.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\RangeTransition.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\RuleStartState.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\RuleStartState.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\RuleStopState.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\RuleStopState.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\RuleTransition.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\RuleTransition.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\SemanticContext.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\SemanticContext.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\SetTransition.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\SetTransition.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\SingletonPredictionContext.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\SingletonPredictionContext.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\StarBlockStartState.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\StarBlockStartState.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\StarLoopbackState.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\StarLoopbackState.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\StarLoopEntryState.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\StarLoopEntryState.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\TokensStartState.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\TokensStartState.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\Transition.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\Transition.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\WildcardTransition.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\WildcardTransition.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\AbstractPredicateTransition.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\AbstractPredicateTransition.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\ActionTransition.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ActionTransition.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\ArrayPredictionContext.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ArrayPredictionContext.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\ATN.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ATN.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\ATNConfig.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNConfig.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\ATNConfigSet.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNConfigSet.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\ATNDeserializationOptions.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNDeserializationOptions.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\ATNDeserializer.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNDeserializer.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\ATNSerializer.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNSerializer.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\ATNSimulator.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNSimulator.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\ATNState.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNState.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\ATNType.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNType.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\AtomTransition.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\AtomTransition.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\BasicBlockStartState.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\BasicBlockStartState.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\BasicState.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\BasicState.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\BlockEndState.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\BlockEndState.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\BlockStartState.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\BlockStartState.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\ConfigLookup.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ConfigLookup.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\dfa\LexerDFASerializer.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\dfa\LexerDFASerializer.h">
       <Filter>Header Files\dfa</Filter>
     </ClInclude>
-    <ClInclude Include="src\dfa\DFA.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\dfa\DFA.h">
       <Filter>Header Files\dfa</Filter>
     </ClInclude>
-    <ClInclude Include="src\dfa\DFASerializer.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\dfa\DFASerializer.h">
       <Filter>Header Files\dfa</Filter>
     </ClInclude>
-    <ClInclude Include="src\dfa\DFAState.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\dfa\DFAState.h">
       <Filter>Header Files\dfa</Filter>
     </ClInclude>
-    <ClInclude Include="src\misc\Interval.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\misc\Interval.h">
       <Filter>Header Files\misc</Filter>
     </ClInclude>
-    <ClInclude Include="src\misc\IntervalSet.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\misc\IntervalSet.h">
       <Filter>Header Files\misc</Filter>
     </ClInclude>
-    <ClInclude Include="src\misc\MurmurHash.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\misc\MurmurHash.h">
       <Filter>Header Files\misc</Filter>
     </ClInclude>
-    <ClInclude Include="src\misc\TestRig.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\misc\TestRig.h">
       <Filter>Header Files\misc</Filter>
     </ClInclude>
-    <ClInclude Include="src\support\Arrays.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\support\Arrays.h">
       <Filter>Header Files\support</Filter>
     </ClInclude>
-    <ClInclude Include="src\support\BitSet.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\support\BitSet.h">
       <Filter>Header Files\support</Filter>
     </ClInclude>
-    <ClInclude Include="src\support\CPPUtils.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\support\CPPUtils.h">
       <Filter>Header Files\support</Filter>
     </ClInclude>
-    <ClInclude Include="src\support\Declarations.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\support\Declarations.h">
       <Filter>Header Files\support</Filter>
     </ClInclude>
-    <ClInclude Include="src\support\guid.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\support\guid.h">
       <Filter>Header Files\support</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\AbstractParseTreeVisitor.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\AbstractParseTreeVisitor.h">
       <Filter>Header Files\tree</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\ErrorNode.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\ErrorNode.h">
       <Filter>Header Files\tree</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\ErrorNodeImpl.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\ErrorNodeImpl.h">
       <Filter>Header Files\tree</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\ParseTree.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\ParseTree.h">
       <Filter>Header Files\tree</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\ParseTreeListener.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\ParseTreeListener.h">
       <Filter>Header Files\tree</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\ParseTreeProperty.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\ParseTreeProperty.h">
       <Filter>Header Files\tree</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\ParseTreeVisitor.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\ParseTreeVisitor.h">
       <Filter>Header Files\tree</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\ParseTreeWalker.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\ParseTreeWalker.h">
       <Filter>Header Files\tree</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\RuleNode.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\RuleNode.h">
       <Filter>Header Files\tree</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\SyntaxTree.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\SyntaxTree.h">
       <Filter>Header Files\tree</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\TerminalNode.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\TerminalNode.h">
       <Filter>Header Files\tree</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\TerminalNodeImpl.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\TerminalNodeImpl.h">
       <Filter>Header Files\tree</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\Trees.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\Trees.h">
       <Filter>Header Files\tree</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\pattern\Chunk.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\Chunk.h">
       <Filter>Header Files\tree\pattern</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\pattern\ParseTreeMatch.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\ParseTreeMatch.h">
       <Filter>Header Files\tree\pattern</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\pattern\ParseTreePattern.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\ParseTreePattern.h">
       <Filter>Header Files\tree\pattern</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\pattern\ParseTreePatternMatcher.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\ParseTreePatternMatcher.h">
       <Filter>Header Files\tree\pattern</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\pattern\RuleTagToken.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\RuleTagToken.h">
       <Filter>Header Files\tree\pattern</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\pattern\TagChunk.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\TagChunk.h">
       <Filter>Header Files\tree\pattern</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\pattern\TextChunk.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\TextChunk.h">
       <Filter>Header Files\tree\pattern</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\pattern\TokenTagToken.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\TokenTagToken.h">
       <Filter>Header Files\tree\pattern</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\xpath\XPathLexer.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathLexer.h">
       <Filter>Header Files\tree\xpath</Filter>
     </ClInclude>
-    <ClInclude Include="src\Vocabulary.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\Vocabulary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\AmbiguityInfo.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\AmbiguityInfo.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\ContextSensitivityInfo.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ContextSensitivityInfo.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\DecisionEventInfo.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\DecisionEventInfo.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\DecisionInfo.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\DecisionInfo.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\ErrorInfo.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ErrorInfo.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\LexerAction.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerAction.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\LexerActionExecutor.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerActionExecutor.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\LexerActionType.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerActionType.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\LexerChannelAction.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerChannelAction.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\LexerCustomAction.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerCustomAction.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\LexerIndexedCustomAction.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerIndexedCustomAction.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\LexerModeAction.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerModeAction.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\LexerMoreAction.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerMoreAction.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\LexerPopModeAction.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerPopModeAction.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\LexerPushModeAction.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerPushModeAction.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\LexerSkipAction.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerSkipAction.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\LexerTypeAction.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerTypeAction.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\LookaheadEventInfo.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LookaheadEventInfo.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\ParseInfo.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ParseInfo.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\PredicateEvalInfo.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\PredicateEvalInfo.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\atn\ProfilingATNSimulator.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ProfilingATNSimulator.h">
       <Filter>Header Files\atn</Filter>
     </ClInclude>
-    <ClInclude Include="src\misc\Predicate.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\misc\Predicate.h">
       <Filter>Header Files\misc</Filter>
     </ClInclude>
-    <ClInclude Include="src\RuleContextWithAltNum.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\RuleContextWithAltNum.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\RuntimeMetaData.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\RuntimeMetaData.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\support\StringUtils.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\support\StringUtils.h">
       <Filter>Header Files\support</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\xpath\XPath.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPath.h">
       <Filter>Header Files\tree\xpath</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\xpath\XPathElement.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathElement.h">
       <Filter>Header Files\tree\xpath</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\xpath\XPathLexerErrorListener.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathLexerErrorListener.h">
       <Filter>Header Files\tree\xpath</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\xpath\XPathRuleAnywhereElement.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathRuleAnywhereElement.h">
       <Filter>Header Files\tree\xpath</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\xpath\XPathRuleElement.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathRuleElement.h">
       <Filter>Header Files\tree\xpath</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\xpath\XPathTokenAnywhereElement.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathTokenAnywhereElement.h">
       <Filter>Header Files\tree\xpath</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\xpath\XPathTokenElement.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathTokenElement.h">
       <Filter>Header Files\tree\xpath</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\xpath\XPathWildcardAnywhereElement.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathWildcardAnywhereElement.h">
       <Filter>Header Files\tree\xpath</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\xpath\XPathWildcardElement.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathWildcardElement.h">
       <Filter>Header Files\tree\xpath</Filter>
     </ClInclude>
-    <ClInclude Include="src\antlr4-common.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\antlr4-common.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\antlr4-runtime.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\antlr4-runtime.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\support\Any.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\support\Any.h">
       <Filter>Source Files\support</Filter>
     </ClInclude>
-    <ClInclude Include="src\tree\IterativeParseTreeWalker.h">
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\IterativeParseTreeWalker.h">
       <Filter>Header Files\tree</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\ANTLRFileStream.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\ANTLRFileStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ANTLRInputStream.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\ANTLRInputStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\BailErrorStrategy.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\BailErrorStrategy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\BaseErrorListener.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\BaseErrorListener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\BufferedTokenStream.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\BufferedTokenStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\CharStream.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\CharStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\CommonToken.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\CommonToken.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\CommonTokenFactory.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\CommonTokenFactory.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\CommonTokenStream.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\CommonTokenStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ConsoleErrorListener.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\ConsoleErrorListener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\DefaultErrorStrategy.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\DefaultErrorStrategy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\DiagnosticErrorListener.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\DiagnosticErrorListener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Exceptions.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\Exceptions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\FailedPredicateException.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\FailedPredicateException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\InputMismatchException.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\InputMismatchException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\InterpreterRuleContext.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\InterpreterRuleContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\IntStream.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\IntStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Lexer.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\Lexer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\LexerInterpreter.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\LexerInterpreter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\LexerNoViableAltException.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\LexerNoViableAltException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ListTokenSource.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\ListTokenSource.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\NoViableAltException.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\NoViableAltException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Parser.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\Parser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ParserInterpreter.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\ParserInterpreter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ParserRuleContext.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\ParserRuleContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\ProxyErrorListener.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\ProxyErrorListener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\RecognitionException.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\RecognitionException.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Recognizer.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\Recognizer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\RuleContext.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\RuleContext.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TokenStream.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\TokenStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\TokenStreamRewriter.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\TokenStreamRewriter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\UnbufferedCharStream.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\UnbufferedCharStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\UnbufferedTokenStream.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\UnbufferedTokenStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\AbstractPredicateTransition.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\AbstractPredicateTransition.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\ActionTransition.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ActionTransition.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\ArrayPredictionContext.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ArrayPredictionContext.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\ATN.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ATN.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\ATNConfig.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNConfig.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\ATNConfigSet.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNConfigSet.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\ATNDeserializationOptions.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNDeserializationOptions.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\ATNDeserializer.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNDeserializer.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\ATNSerializer.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNSerializer.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\ATNSimulator.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNSimulator.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\ATNState.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNState.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\AtomTransition.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\AtomTransition.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\BasicBlockStartState.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\BasicBlockStartState.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\BasicState.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\BasicState.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\BlockEndState.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\BlockEndState.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\DecisionState.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\DecisionState.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\EmptyPredictionContext.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\EmptyPredictionContext.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\EpsilonTransition.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\EpsilonTransition.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\LexerATNConfig.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerATNConfig.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\LexerATNSimulator.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerATNSimulator.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\LL1Analyzer.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LL1Analyzer.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\LoopEndState.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LoopEndState.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\NotSetTransition.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\NotSetTransition.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\OrderedATNConfigSet.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\OrderedATNConfigSet.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\ParserATNSimulator.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ParserATNSimulator.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\PlusBlockStartState.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\PlusBlockStartState.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\PlusLoopbackState.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\PlusLoopbackState.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\PrecedencePredicateTransition.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\PrecedencePredicateTransition.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\PredicateTransition.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\PredicateTransition.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\PredictionContext.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\PredictionContext.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\PredictionMode.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\PredictionMode.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\RangeTransition.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\RangeTransition.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\RuleStartState.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\RuleStartState.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\RuleStopState.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\RuleStopState.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\RuleTransition.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\RuleTransition.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\SemanticContext.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\SemanticContext.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\SetTransition.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\SetTransition.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\SingletonPredictionContext.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\SingletonPredictionContext.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\StarBlockStartState.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\StarBlockStartState.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\StarLoopbackState.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\StarLoopbackState.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\StarLoopEntryState.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\StarLoopEntryState.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\TokensStartState.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\TokensStartState.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\Transition.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\Transition.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\WildcardTransition.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\WildcardTransition.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\dfa\DFA.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\dfa\DFA.cpp">
       <Filter>Source Files\dfa</Filter>
     </ClCompile>
-    <ClCompile Include="src\dfa\DFASerializer.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\dfa\DFASerializer.cpp">
       <Filter>Source Files\dfa</Filter>
     </ClCompile>
-    <ClCompile Include="src\dfa\DFAState.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\dfa\DFAState.cpp">
       <Filter>Source Files\dfa</Filter>
     </ClCompile>
-    <ClCompile Include="src\dfa\LexerDFASerializer.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\dfa\LexerDFASerializer.cpp">
       <Filter>Source Files\dfa</Filter>
     </ClCompile>
-    <ClCompile Include="src\misc\Interval.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\misc\Interval.cpp">
       <Filter>Source Files\misc</Filter>
     </ClCompile>
-    <ClCompile Include="src\misc\IntervalSet.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\misc\IntervalSet.cpp">
       <Filter>Source Files\misc</Filter>
     </ClCompile>
-    <ClCompile Include="src\misc\MurmurHash.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\misc\MurmurHash.cpp">
       <Filter>Source Files\misc</Filter>
     </ClCompile>
-    <ClCompile Include="src\support\Arrays.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\support\Arrays.cpp">
       <Filter>Source Files\support</Filter>
     </ClCompile>
-    <ClCompile Include="src\support\CPPUtils.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\support\CPPUtils.cpp">
       <Filter>Source Files\support</Filter>
     </ClCompile>
-    <ClCompile Include="src\support\guid.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\support\guid.cpp">
       <Filter>Source Files\support</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\ErrorNodeImpl.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\ErrorNodeImpl.cpp">
       <Filter>Source Files\tree</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\ParseTreeWalker.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\ParseTreeWalker.cpp">
       <Filter>Source Files\tree</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\TerminalNodeImpl.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\TerminalNodeImpl.cpp">
       <Filter>Source Files\tree</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\Trees.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\Trees.cpp">
       <Filter>Source Files\tree</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\pattern\ParseTreeMatch.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\ParseTreeMatch.cpp">
       <Filter>Source Files\tree\pattern</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\pattern\ParseTreePattern.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\ParseTreePattern.cpp">
       <Filter>Source Files\tree\pattern</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\pattern\ParseTreePatternMatcher.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\ParseTreePatternMatcher.cpp">
       <Filter>Source Files\tree\pattern</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\pattern\RuleTagToken.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\RuleTagToken.cpp">
       <Filter>Source Files\tree\pattern</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\pattern\TagChunk.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\TagChunk.cpp">
       <Filter>Source Files\tree\pattern</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\pattern\TextChunk.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\TextChunk.cpp">
       <Filter>Source Files\tree\pattern</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\pattern\TokenTagToken.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\TokenTagToken.cpp">
       <Filter>Source Files\tree\pattern</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\AmbiguityInfo.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\AmbiguityInfo.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\ContextSensitivityInfo.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ContextSensitivityInfo.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\DecisionEventInfo.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\DecisionEventInfo.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\DecisionInfo.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\DecisionInfo.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\ErrorInfo.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ErrorInfo.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\LexerActionExecutor.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerActionExecutor.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\LexerChannelAction.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerChannelAction.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\LexerCustomAction.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerCustomAction.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\LexerIndexedCustomAction.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerIndexedCustomAction.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\LexerModeAction.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerModeAction.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\LexerMoreAction.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerMoreAction.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\LexerPopModeAction.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerPopModeAction.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\LexerPushModeAction.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerPushModeAction.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\LexerSkipAction.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerSkipAction.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\LexerTypeAction.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerTypeAction.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\LookaheadEventInfo.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LookaheadEventInfo.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\ParseInfo.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ParseInfo.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\PredicateEvalInfo.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\PredicateEvalInfo.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\atn\ProfilingATNSimulator.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ProfilingATNSimulator.cpp">
       <Filter>Source Files\atn</Filter>
     </ClCompile>
-    <ClCompile Include="src\RuleContextWithAltNum.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\RuleContextWithAltNum.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\RuntimeMetaData.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\RuntimeMetaData.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\support\StringUtils.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\support\StringUtils.cpp">
       <Filter>Source Files\support</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\xpath\XPath.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPath.cpp">
       <Filter>Source Files\tree\xpath</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\xpath\XPathElement.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathElement.cpp">
       <Filter>Source Files\tree\xpath</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\xpath\XPathLexer.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathLexer.cpp">
       <Filter>Source Files\tree\xpath</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\xpath\XPathLexerErrorListener.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathLexerErrorListener.cpp">
       <Filter>Source Files\tree\xpath</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\xpath\XPathRuleAnywhereElement.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathRuleAnywhereElement.cpp">
       <Filter>Source Files\tree\xpath</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\xpath\XPathRuleElement.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathRuleElement.cpp">
       <Filter>Source Files\tree\xpath</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\xpath\XPathTokenAnywhereElement.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathTokenAnywhereElement.cpp">
       <Filter>Source Files\tree\xpath</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\xpath\XPathTokenElement.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathTokenElement.cpp">
       <Filter>Source Files\tree\xpath</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\xpath\XPathWildcardAnywhereElement.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathWildcardAnywhereElement.cpp">
       <Filter>Source Files\tree\xpath</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\xpath\XPathWildcardElement.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathWildcardElement.cpp">
       <Filter>Source Files\tree\xpath</Filter>
     </ClCompile>
-    <ClCompile Include="src\Vocabulary.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\Vocabulary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\ParseTree.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\ParseTree.cpp">
       <Filter>Source Files\tree</Filter>
     </ClCompile>
-    <ClCompile Include="src\tree\IterativeParseTreeWalker.cpp">
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\IterativeParseTreeWalker.cpp">
       <Filter>Source Files\tree</Filter>
     </ClCompile>
   </ItemGroup>

@@ -38,7 +38,7 @@
     <ProjectGuid>{A9762991-1B57-4DCE-90C0-EE42B96947BE}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>antlr4cpp</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug DLL|Win32'" Label="Configuration">
@@ -174,7 +174,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>ANTLR4CPP_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <ForcedIncludeFiles>
@@ -193,7 +193,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>ANTLR4CPP_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <ForcedIncludeFiles>
@@ -212,7 +212,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>ANTLR4CPP_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <ForcedIncludeFiles>
@@ -231,7 +231,7 @@
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>ANTLR4CPP_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <ForcedIncludeFiles>
@@ -252,7 +252,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>ANTLR4CPP_DLL;ANTLR4CPP_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <ForcedIncludeFiles>
@@ -274,7 +274,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>ANTLR4CPP_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <ForcedIncludeFiles>
@@ -296,7 +296,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>ANTLR4CPP_DLL;ANTLR4CPP_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <ForcedIncludeFiles>
@@ -318,7 +318,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>ANTLR4CPP_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>
       </PrecompiledHeaderFile>
       <ForcedIncludeFiles>
@@ -334,301 +334,301 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\ANTLRFileStream.cpp" />
-    <ClCompile Include="src\ANTLRInputStream.cpp" />
-    <ClCompile Include="src\atn\AbstractPredicateTransition.cpp" />
-    <ClCompile Include="src\atn\ActionTransition.cpp" />
-    <ClCompile Include="src\atn\AmbiguityInfo.cpp" />
-    <ClCompile Include="src\atn\ArrayPredictionContext.cpp" />
-    <ClCompile Include="src\atn\ATN.cpp" />
-    <ClCompile Include="src\atn\ATNConfig.cpp" />
-    <ClCompile Include="src\atn\ATNConfigSet.cpp" />
-    <ClCompile Include="src\atn\ATNDeserializationOptions.cpp" />
-    <ClCompile Include="src\atn\ATNDeserializer.cpp" />
-    <ClCompile Include="src\atn\ATNSerializer.cpp" />
-    <ClCompile Include="src\atn\ATNSimulator.cpp" />
-    <ClCompile Include="src\atn\ATNState.cpp" />
-    <ClCompile Include="src\atn\AtomTransition.cpp" />
-    <ClCompile Include="src\atn\BasicBlockStartState.cpp" />
-    <ClCompile Include="src\atn\BasicState.cpp" />
-    <ClCompile Include="src\atn\BlockEndState.cpp" />
-    <ClCompile Include="src\atn\ContextSensitivityInfo.cpp" />
-    <ClCompile Include="src\atn\DecisionEventInfo.cpp" />
-    <ClCompile Include="src\atn\DecisionInfo.cpp" />
-    <ClCompile Include="src\atn\DecisionState.cpp" />
-    <ClCompile Include="src\atn\EmptyPredictionContext.cpp" />
-    <ClCompile Include="src\atn\EpsilonTransition.cpp" />
-    <ClCompile Include="src\atn\ErrorInfo.cpp" />
-    <ClCompile Include="src\atn\LexerActionExecutor.cpp" />
-    <ClCompile Include="src\atn\LexerATNConfig.cpp" />
-    <ClCompile Include="src\atn\LexerATNSimulator.cpp" />
-    <ClCompile Include="src\atn\LexerChannelAction.cpp" />
-    <ClCompile Include="src\atn\LexerCustomAction.cpp" />
-    <ClCompile Include="src\atn\LexerIndexedCustomAction.cpp" />
-    <ClCompile Include="src\atn\LexerModeAction.cpp" />
-    <ClCompile Include="src\atn\LexerMoreAction.cpp" />
-    <ClCompile Include="src\atn\LexerPopModeAction.cpp" />
-    <ClCompile Include="src\atn\LexerPushModeAction.cpp" />
-    <ClCompile Include="src\atn\LexerSkipAction.cpp" />
-    <ClCompile Include="src\atn\LexerTypeAction.cpp" />
-    <ClCompile Include="src\atn\LL1Analyzer.cpp" />
-    <ClCompile Include="src\atn\LookaheadEventInfo.cpp" />
-    <ClCompile Include="src\atn\LoopEndState.cpp" />
-    <ClCompile Include="src\atn\NotSetTransition.cpp" />
-    <ClCompile Include="src\atn\OrderedATNConfigSet.cpp" />
-    <ClCompile Include="src\atn\ParseInfo.cpp" />
-    <ClCompile Include="src\atn\ParserATNSimulator.cpp" />
-    <ClCompile Include="src\atn\PlusBlockStartState.cpp" />
-    <ClCompile Include="src\atn\PlusLoopbackState.cpp" />
-    <ClCompile Include="src\atn\PrecedencePredicateTransition.cpp" />
-    <ClCompile Include="src\atn\PredicateEvalInfo.cpp" />
-    <ClCompile Include="src\atn\PredicateTransition.cpp" />
-    <ClCompile Include="src\atn\PredictionContext.cpp" />
-    <ClCompile Include="src\atn\PredictionMode.cpp" />
-    <ClCompile Include="src\atn\ProfilingATNSimulator.cpp" />
-    <ClCompile Include="src\atn\RangeTransition.cpp" />
-    <ClCompile Include="src\atn\RuleStartState.cpp" />
-    <ClCompile Include="src\atn\RuleStopState.cpp" />
-    <ClCompile Include="src\atn\RuleTransition.cpp" />
-    <ClCompile Include="src\atn\SemanticContext.cpp" />
-    <ClCompile Include="src\atn\SetTransition.cpp" />
-    <ClCompile Include="src\atn\SingletonPredictionContext.cpp" />
-    <ClCompile Include="src\atn\StarBlockStartState.cpp" />
-    <ClCompile Include="src\atn\StarLoopbackState.cpp" />
-    <ClCompile Include="src\atn\StarLoopEntryState.cpp" />
-    <ClCompile Include="src\atn\TokensStartState.cpp" />
-    <ClCompile Include="src\atn\Transition.cpp" />
-    <ClCompile Include="src\atn\WildcardTransition.cpp" />
-    <ClCompile Include="src\BailErrorStrategy.cpp" />
-    <ClCompile Include="src\BaseErrorListener.cpp" />
-    <ClCompile Include="src\BufferedTokenStream.cpp" />
-    <ClCompile Include="src\CharStream.cpp" />
-    <ClCompile Include="src\CommonToken.cpp" />
-    <ClCompile Include="src\CommonTokenFactory.cpp" />
-    <ClCompile Include="src\CommonTokenStream.cpp" />
-    <ClCompile Include="src\ConsoleErrorListener.cpp" />
-    <ClCompile Include="src\DefaultErrorStrategy.cpp" />
-    <ClCompile Include="src\dfa\DFA.cpp" />
-    <ClCompile Include="src\dfa\DFASerializer.cpp" />
-    <ClCompile Include="src\dfa\DFAState.cpp" />
-    <ClCompile Include="src\dfa\LexerDFASerializer.cpp" />
-    <ClCompile Include="src\DiagnosticErrorListener.cpp" />
-    <ClCompile Include="src\Exceptions.cpp" />
-    <ClCompile Include="src\FailedPredicateException.cpp" />
-    <ClCompile Include="src\InputMismatchException.cpp" />
-    <ClCompile Include="src\InterpreterRuleContext.cpp" />
-    <ClCompile Include="src\IntStream.cpp" />
-    <ClCompile Include="src\Lexer.cpp" />
-    <ClCompile Include="src\LexerInterpreter.cpp" />
-    <ClCompile Include="src\LexerNoViableAltException.cpp" />
-    <ClCompile Include="src\ListTokenSource.cpp" />
-    <ClCompile Include="src\misc\Interval.cpp" />
-    <ClCompile Include="src\misc\IntervalSet.cpp" />
-    <ClCompile Include="src\misc\MurmurHash.cpp" />
-    <ClCompile Include="src\NoViableAltException.cpp" />
-    <ClCompile Include="src\Parser.cpp" />
-    <ClCompile Include="src\ParserInterpreter.cpp" />
-    <ClCompile Include="src\ParserRuleContext.cpp" />
-    <ClCompile Include="src\ProxyErrorListener.cpp" />
-    <ClCompile Include="src\RecognitionException.cpp" />
-    <ClCompile Include="src\Recognizer.cpp" />
-    <ClCompile Include="src\RuleContext.cpp" />
-    <ClCompile Include="src\RuleContextWithAltNum.cpp" />
-    <ClCompile Include="src\RuntimeMetaData.cpp" />
-    <ClCompile Include="src\support\Arrays.cpp" />
-    <ClCompile Include="src\support\CPPUtils.cpp" />
-    <ClCompile Include="src\support\guid.cpp" />
-    <ClCompile Include="src\support\StringUtils.cpp" />
-    <ClCompile Include="src\TokenStream.cpp" />
-    <ClCompile Include="src\TokenStreamRewriter.cpp" />
-    <ClCompile Include="src\tree\ErrorNodeImpl.cpp" />
-    <ClCompile Include="src\tree\IterativeParseTreeWalker.cpp" />
-    <ClCompile Include="src\tree\ParseTree.cpp" />
-    <ClCompile Include="src\tree\ParseTreeWalker.cpp" />
-    <ClCompile Include="src\tree\pattern\ParseTreeMatch.cpp" />
-    <ClCompile Include="src\tree\pattern\ParseTreePattern.cpp" />
-    <ClCompile Include="src\tree\pattern\ParseTreePatternMatcher.cpp" />
-    <ClCompile Include="src\tree\pattern\RuleTagToken.cpp" />
-    <ClCompile Include="src\tree\pattern\TagChunk.cpp" />
-    <ClCompile Include="src\tree\pattern\TextChunk.cpp" />
-    <ClCompile Include="src\tree\pattern\TokenTagToken.cpp" />
-    <ClCompile Include="src\tree\TerminalNodeImpl.cpp" />
-    <ClCompile Include="src\tree\Trees.cpp" />
-    <ClCompile Include="src\tree\xpath\XPath.cpp" />
-    <ClCompile Include="src\tree\xpath\XPathElement.cpp" />
-    <ClCompile Include="src\tree\xpath\XPathLexer.cpp" />
-    <ClCompile Include="src\tree\xpath\XPathLexerErrorListener.cpp" />
-    <ClCompile Include="src\tree\xpath\XPathRuleAnywhereElement.cpp" />
-    <ClCompile Include="src\tree\xpath\XPathRuleElement.cpp" />
-    <ClCompile Include="src\tree\xpath\XPathTokenAnywhereElement.cpp" />
-    <ClCompile Include="src\tree\xpath\XPathTokenElement.cpp" />
-    <ClCompile Include="src\tree\xpath\XPathWildcardAnywhereElement.cpp" />
-    <ClCompile Include="src\tree\xpath\XPathWildcardElement.cpp" />
-    <ClCompile Include="src\UnbufferedCharStream.cpp" />
-    <ClCompile Include="src\UnbufferedTokenStream.cpp" />
-    <ClCompile Include="src\Vocabulary.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\ANTLRFileStream.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\ANTLRInputStream.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\AbstractPredicateTransition.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ActionTransition.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\AmbiguityInfo.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ArrayPredictionContext.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ATN.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNConfig.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNConfigSet.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNDeserializationOptions.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNDeserializer.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNSerializer.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNSimulator.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNState.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\AtomTransition.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\BasicBlockStartState.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\BasicState.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\BlockEndState.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ContextSensitivityInfo.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\DecisionEventInfo.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\DecisionInfo.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\DecisionState.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\EmptyPredictionContext.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\EpsilonTransition.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ErrorInfo.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerActionExecutor.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerATNConfig.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerATNSimulator.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerChannelAction.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerCustomAction.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerIndexedCustomAction.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerModeAction.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerMoreAction.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerPopModeAction.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerPushModeAction.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerSkipAction.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerTypeAction.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LL1Analyzer.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LookaheadEventInfo.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\LoopEndState.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\NotSetTransition.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\OrderedATNConfigSet.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ParseInfo.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ParserATNSimulator.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\PlusBlockStartState.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\PlusLoopbackState.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\PrecedencePredicateTransition.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\PredicateEvalInfo.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\PredicateTransition.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\PredictionContext.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\PredictionMode.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\ProfilingATNSimulator.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\RangeTransition.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\RuleStartState.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\RuleStopState.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\RuleTransition.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\SemanticContext.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\SetTransition.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\SingletonPredictionContext.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\StarBlockStartState.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\StarLoopbackState.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\StarLoopEntryState.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\TokensStartState.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\Transition.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\atn\WildcardTransition.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\BailErrorStrategy.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\BaseErrorListener.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\BufferedTokenStream.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\CharStream.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\CommonToken.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\CommonTokenFactory.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\CommonTokenStream.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\ConsoleErrorListener.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\DefaultErrorStrategy.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\dfa\DFA.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\dfa\DFASerializer.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\dfa\DFAState.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\dfa\LexerDFASerializer.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\DiagnosticErrorListener.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\Exceptions.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\FailedPredicateException.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\InputMismatchException.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\InterpreterRuleContext.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\IntStream.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\Lexer.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\LexerInterpreter.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\LexerNoViableAltException.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\ListTokenSource.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\misc\Interval.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\misc\IntervalSet.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\misc\MurmurHash.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\NoViableAltException.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\Parser.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\ParserInterpreter.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\ParserRuleContext.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\ProxyErrorListener.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\RecognitionException.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\Recognizer.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\RuleContext.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\RuleContextWithAltNum.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\RuntimeMetaData.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\support\Arrays.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\support\CPPUtils.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\support\guid.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\support\StringUtils.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\TokenStream.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\TokenStreamRewriter.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\ErrorNodeImpl.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\IterativeParseTreeWalker.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\ParseTree.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\ParseTreeWalker.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\ParseTreeMatch.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\ParseTreePattern.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\ParseTreePatternMatcher.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\RuleTagToken.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\TagChunk.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\TextChunk.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\TokenTagToken.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\TerminalNodeImpl.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\Trees.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPath.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathElement.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathLexer.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathLexerErrorListener.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathRuleAnywhereElement.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathRuleElement.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathTokenAnywhereElement.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathTokenElement.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathWildcardAnywhereElement.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathWildcardElement.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\UnbufferedCharStream.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\UnbufferedTokenStream.cpp" />
+    <ClCompile Include="$(ANTLR4_RUNTIME_SRC)\Vocabulary.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\antlr4-common.h" />
-    <ClInclude Include="src\antlr4-runtime.h" />
-    <ClInclude Include="src\ANTLRErrorListener.h" />
-    <ClInclude Include="src\ANTLRErrorStrategy.h" />
-    <ClInclude Include="src\ANTLRFileStream.h" />
-    <ClInclude Include="src\ANTLRInputStream.h" />
-    <ClInclude Include="src\atn\AbstractPredicateTransition.h" />
-    <ClInclude Include="src\atn\ActionTransition.h" />
-    <ClInclude Include="src\atn\AmbiguityInfo.h" />
-    <ClInclude Include="src\atn\ArrayPredictionContext.h" />
-    <ClInclude Include="src\atn\ATN.h" />
-    <ClInclude Include="src\atn\ATNConfig.h" />
-    <ClInclude Include="src\atn\ATNConfigSet.h" />
-    <ClInclude Include="src\atn\ATNDeserializationOptions.h" />
-    <ClInclude Include="src\atn\ATNDeserializer.h" />
-    <ClInclude Include="src\atn\ATNSerializer.h" />
-    <ClInclude Include="src\atn\ATNSimulator.h" />
-    <ClInclude Include="src\atn\ATNState.h" />
-    <ClInclude Include="src\atn\ATNType.h" />
-    <ClInclude Include="src\atn\AtomTransition.h" />
-    <ClInclude Include="src\atn\BasicBlockStartState.h" />
-    <ClInclude Include="src\atn\BasicState.h" />
-    <ClInclude Include="src\atn\BlockEndState.h" />
-    <ClInclude Include="src\atn\BlockStartState.h" />
-    <ClInclude Include="src\atn\ConfigLookup.h" />
-    <ClInclude Include="src\atn\ContextSensitivityInfo.h" />
-    <ClInclude Include="src\atn\DecisionEventInfo.h" />
-    <ClInclude Include="src\atn\DecisionInfo.h" />
-    <ClInclude Include="src\atn\DecisionState.h" />
-    <ClInclude Include="src\atn\EmptyPredictionContext.h" />
-    <ClInclude Include="src\atn\EpsilonTransition.h" />
-    <ClInclude Include="src\atn\ErrorInfo.h" />
-    <ClInclude Include="src\atn\LexerAction.h" />
-    <ClInclude Include="src\atn\LexerActionExecutor.h" />
-    <ClInclude Include="src\atn\LexerActionType.h" />
-    <ClInclude Include="src\atn\LexerATNConfig.h" />
-    <ClInclude Include="src\atn\LexerATNSimulator.h" />
-    <ClInclude Include="src\atn\LexerChannelAction.h" />
-    <ClInclude Include="src\atn\LexerCustomAction.h" />
-    <ClInclude Include="src\atn\LexerIndexedCustomAction.h" />
-    <ClInclude Include="src\atn\LexerModeAction.h" />
-    <ClInclude Include="src\atn\LexerMoreAction.h" />
-    <ClInclude Include="src\atn\LexerPopModeAction.h" />
-    <ClInclude Include="src\atn\LexerPushModeAction.h" />
-    <ClInclude Include="src\atn\LexerSkipAction.h" />
-    <ClInclude Include="src\atn\LexerTypeAction.h" />
-    <ClInclude Include="src\atn\LL1Analyzer.h" />
-    <ClInclude Include="src\atn\LookaheadEventInfo.h" />
-    <ClInclude Include="src\atn\LoopEndState.h" />
-    <ClInclude Include="src\atn\NotSetTransition.h" />
-    <ClInclude Include="src\atn\OrderedATNConfigSet.h" />
-    <ClInclude Include="src\atn\ParseInfo.h" />
-    <ClInclude Include="src\atn\ParserATNSimulator.h" />
-    <ClInclude Include="src\atn\PlusBlockStartState.h" />
-    <ClInclude Include="src\atn\PlusLoopbackState.h" />
-    <ClInclude Include="src\atn\PrecedencePredicateTransition.h" />
-    <ClInclude Include="src\atn\PredicateEvalInfo.h" />
-    <ClInclude Include="src\atn\PredicateTransition.h" />
-    <ClInclude Include="src\atn\PredictionContext.h" />
-    <ClInclude Include="src\atn\PredictionMode.h" />
-    <ClInclude Include="src\atn\ProfilingATNSimulator.h" />
-    <ClInclude Include="src\atn\RangeTransition.h" />
-    <ClInclude Include="src\atn\RuleStartState.h" />
-    <ClInclude Include="src\atn\RuleStopState.h" />
-    <ClInclude Include="src\atn\RuleTransition.h" />
-    <ClInclude Include="src\atn\SemanticContext.h" />
-    <ClInclude Include="src\atn\SetTransition.h" />
-    <ClInclude Include="src\atn\SingletonPredictionContext.h" />
-    <ClInclude Include="src\atn\StarBlockStartState.h" />
-    <ClInclude Include="src\atn\StarLoopbackState.h" />
-    <ClInclude Include="src\atn\StarLoopEntryState.h" />
-    <ClInclude Include="src\atn\TokensStartState.h" />
-    <ClInclude Include="src\atn\Transition.h" />
-    <ClInclude Include="src\atn\WildcardTransition.h" />
-    <ClInclude Include="src\BailErrorStrategy.h" />
-    <ClInclude Include="src\BaseErrorListener.h" />
-    <ClInclude Include="src\BufferedTokenStream.h" />
-    <ClInclude Include="src\CharStream.h" />
-    <ClInclude Include="src\CommonToken.h" />
-    <ClInclude Include="src\CommonTokenFactory.h" />
-    <ClInclude Include="src\CommonTokenStream.h" />
-    <ClInclude Include="src\ConsoleErrorListener.h" />
-    <ClInclude Include="src\DefaultErrorStrategy.h" />
-    <ClInclude Include="src\dfa\DFA.h" />
-    <ClInclude Include="src\dfa\DFASerializer.h" />
-    <ClInclude Include="src\dfa\DFAState.h" />
-    <ClInclude Include="src\dfa\LexerDFASerializer.h" />
-    <ClInclude Include="src\DiagnosticErrorListener.h" />
-    <ClInclude Include="src\Exceptions.h" />
-    <ClInclude Include="src\FailedPredicateException.h" />
-    <ClInclude Include="src\InputMismatchException.h" />
-    <ClInclude Include="src\InterpreterRuleContext.h" />
-    <ClInclude Include="src\IntStream.h" />
-    <ClInclude Include="src\Lexer.h" />
-    <ClInclude Include="src\LexerInterpreter.h" />
-    <ClInclude Include="src\LexerNoViableAltException.h" />
-    <ClInclude Include="src\ListTokenSource.h" />
-    <ClInclude Include="src\misc\Interval.h" />
-    <ClInclude Include="src\misc\IntervalSet.h" />
-    <ClInclude Include="src\misc\MurmurHash.h" />
-    <ClInclude Include="src\misc\Predicate.h" />
-    <ClInclude Include="src\misc\TestRig.h" />
-    <ClInclude Include="src\NoViableAltException.h" />
-    <ClInclude Include="src\Parser.h" />
-    <ClInclude Include="src\ParserInterpreter.h" />
-    <ClInclude Include="src\ParserRuleContext.h" />
-    <ClInclude Include="src\ProxyErrorListener.h" />
-    <ClInclude Include="src\RecognitionException.h" />
-    <ClInclude Include="src\Recognizer.h" />
-    <ClInclude Include="src\RuleContext.h" />
-    <ClInclude Include="src\RuleContextWithAltNum.h" />
-    <ClInclude Include="src\RuntimeMetaData.h" />
-    <ClInclude Include="src\support\Any.h" />
-    <ClInclude Include="src\support\Arrays.h" />
-    <ClInclude Include="src\support\BitSet.h" />
-    <ClInclude Include="src\support\CPPUtils.h" />
-    <ClInclude Include="src\support\Declarations.h" />
-    <ClInclude Include="src\support\guid.h" />
-    <ClInclude Include="src\support\StringUtils.h" />
-    <ClInclude Include="src\Token.h" />
-    <ClInclude Include="src\TokenFactory.h" />
-    <ClInclude Include="src\TokenSource.h" />
-    <ClInclude Include="src\TokenStream.h" />
-    <ClInclude Include="src\TokenStreamRewriter.h" />
-    <ClInclude Include="src\tree\AbstractParseTreeVisitor.h" />
-    <ClInclude Include="src\tree\ErrorNode.h" />
-    <ClInclude Include="src\tree\ErrorNodeImpl.h" />
-    <ClInclude Include="src\tree\IterativeParseTreeWalker.h" />
-    <ClInclude Include="src\tree\ParseTree.h" />
-    <ClInclude Include="src\tree\ParseTreeListener.h" />
-    <ClInclude Include="src\tree\ParseTreeProperty.h" />
-    <ClInclude Include="src\tree\ParseTreeVisitor.h" />
-    <ClInclude Include="src\tree\ParseTreeWalker.h" />
-    <ClInclude Include="src\tree\pattern\Chunk.h" />
-    <ClInclude Include="src\tree\pattern\ParseTreeMatch.h" />
-    <ClInclude Include="src\tree\pattern\ParseTreePattern.h" />
-    <ClInclude Include="src\tree\pattern\ParseTreePatternMatcher.h" />
-    <ClInclude Include="src\tree\pattern\RuleTagToken.h" />
-    <ClInclude Include="src\tree\pattern\TagChunk.h" />
-    <ClInclude Include="src\tree\pattern\TextChunk.h" />
-    <ClInclude Include="src\tree\pattern\TokenTagToken.h" />
-    <ClInclude Include="src\tree\RuleNode.h" />
-    <ClInclude Include="src\tree\SyntaxTree.h" />
-    <ClInclude Include="src\tree\TerminalNode.h" />
-    <ClInclude Include="src\tree\TerminalNodeImpl.h" />
-    <ClInclude Include="src\tree\Trees.h" />
-    <ClInclude Include="src\tree\xpath\XPath.h" />
-    <ClInclude Include="src\tree\xpath\XPathElement.h" />
-    <ClInclude Include="src\tree\xpath\XPathLexer.h" />
-    <ClInclude Include="src\tree\xpath\XPathLexerErrorListener.h" />
-    <ClInclude Include="src\tree\xpath\XPathRuleAnywhereElement.h" />
-    <ClInclude Include="src\tree\xpath\XPathRuleElement.h" />
-    <ClInclude Include="src\tree\xpath\XPathTokenAnywhereElement.h" />
-    <ClInclude Include="src\tree\xpath\XPathTokenElement.h" />
-    <ClInclude Include="src\tree\xpath\XPathWildcardAnywhereElement.h" />
-    <ClInclude Include="src\tree\xpath\XPathWildcardElement.h" />
-    <ClInclude Include="src\UnbufferedCharStream.h" />
-    <ClInclude Include="src\UnbufferedTokenStream.h" />
-    <ClInclude Include="src\Vocabulary.h" />
-    <ClInclude Include="src\WritableToken.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\antlr4-common.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\antlr4-runtime.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\ANTLRErrorListener.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\ANTLRErrorStrategy.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\ANTLRFileStream.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\ANTLRInputStream.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\AbstractPredicateTransition.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ActionTransition.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\AmbiguityInfo.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ArrayPredictionContext.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ATN.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNConfig.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNConfigSet.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNDeserializationOptions.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNDeserializer.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNSerializer.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNSimulator.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNState.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ATNType.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\AtomTransition.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\BasicBlockStartState.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\BasicState.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\BlockEndState.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\BlockStartState.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ConfigLookup.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ContextSensitivityInfo.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\DecisionEventInfo.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\DecisionInfo.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\DecisionState.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\EmptyPredictionContext.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\EpsilonTransition.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ErrorInfo.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerAction.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerActionExecutor.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerActionType.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerATNConfig.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerATNSimulator.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerChannelAction.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerCustomAction.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerIndexedCustomAction.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerModeAction.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerMoreAction.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerPopModeAction.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerPushModeAction.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerSkipAction.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LexerTypeAction.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LL1Analyzer.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LookaheadEventInfo.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\LoopEndState.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\NotSetTransition.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\OrderedATNConfigSet.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ParseInfo.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ParserATNSimulator.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\PlusBlockStartState.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\PlusLoopbackState.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\PrecedencePredicateTransition.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\PredicateEvalInfo.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\PredicateTransition.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\PredictionContext.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\PredictionMode.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\ProfilingATNSimulator.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\RangeTransition.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\RuleStartState.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\RuleStopState.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\RuleTransition.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\SemanticContext.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\SetTransition.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\SingletonPredictionContext.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\StarBlockStartState.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\StarLoopbackState.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\StarLoopEntryState.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\TokensStartState.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\Transition.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\atn\WildcardTransition.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\BailErrorStrategy.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\BaseErrorListener.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\BufferedTokenStream.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\CharStream.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\CommonToken.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\CommonTokenFactory.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\CommonTokenStream.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\ConsoleErrorListener.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\DefaultErrorStrategy.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\dfa\DFA.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\dfa\DFASerializer.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\dfa\DFAState.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\dfa\LexerDFASerializer.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\DiagnosticErrorListener.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\Exceptions.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\FailedPredicateException.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\InputMismatchException.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\InterpreterRuleContext.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\IntStream.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\Lexer.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\LexerInterpreter.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\LexerNoViableAltException.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\ListTokenSource.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\misc\Interval.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\misc\IntervalSet.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\misc\MurmurHash.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\misc\Predicate.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\misc\TestRig.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\NoViableAltException.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\Parser.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\ParserInterpreter.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\ParserRuleContext.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\ProxyErrorListener.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\RecognitionException.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\Recognizer.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\RuleContext.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\RuleContextWithAltNum.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\RuntimeMetaData.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\support\Any.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\support\Arrays.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\support\BitSet.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\support\CPPUtils.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\support\Declarations.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\support\guid.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\support\StringUtils.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\Token.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\TokenFactory.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\TokenSource.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\TokenStream.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\TokenStreamRewriter.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\AbstractParseTreeVisitor.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\ErrorNode.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\ErrorNodeImpl.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\IterativeParseTreeWalker.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\ParseTree.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\ParseTreeListener.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\ParseTreeProperty.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\ParseTreeVisitor.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\ParseTreeWalker.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\Chunk.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\ParseTreeMatch.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\ParseTreePattern.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\ParseTreePatternMatcher.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\RuleTagToken.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\TagChunk.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\TextChunk.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\pattern\TokenTagToken.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\RuleNode.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\SyntaxTree.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\TerminalNode.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\TerminalNodeImpl.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\Trees.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPath.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathElement.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathLexer.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathLexerErrorListener.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathRuleAnywhereElement.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathRuleElement.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathTokenAnywhereElement.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathTokenElement.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathWildcardAnywhereElement.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\tree\xpath\XPathWildcardElement.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\UnbufferedCharStream.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\UnbufferedTokenStream.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\Vocabulary.h" />
+    <ClInclude Include="$(ANTLR4_RUNTIME_SRC)\WritableToken.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
