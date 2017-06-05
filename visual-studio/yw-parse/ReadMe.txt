@@ -1,19 +1,19 @@
 ========================================================================
-    STATIC LIBRARY : antlr_yw_parser Project Overview
+    STATIC LIBRARY : yw-parse Project Overview
 ========================================================================
 
-AppWizard has created this antlr_yw_parser library project for you.
+AppWizard has created this yw-parse library project for you.
 
 No source files were created as part of your project.
 
 
-antlr_yw_parser.vcxproj
+yw-parse.vcxproj
     This is the main project file for VC++ projects generated using an Application Wizard.
     It contains information about the version of Visual C++ that generated the file, and
     information about the platforms, configurations, and project features selected with the
     Application Wizard.
 
-antlr_yw_parser.vcxproj.filters
+yw-parse.vcxproj.filters
     This is the filters file for VC++ projects generated using an Application Wizard. 
     It contains information about the association between the files in your project 
     and the filters. This association is used in the IDE to show grouping of files with

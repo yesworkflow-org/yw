@@ -20,9 +20,9 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{13104009-955B-4F4A-B713-97315827072E}</ProjectGuid>
+    <ProjectGuid>{7579AE60-7552-4A34-95D3-B360323FDAC0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>antlr_yw_parser</RootNamespace>
+    <RootNamespace>ywparse</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -78,6 +78,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -90,6 +91,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -104,6 +106,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -120,6 +123,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -129,6 +133,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\yw-parse\YW.g4" />
+    <None Include="..\..\src\yw-parse\YW.tokens" />
+    <None Include="..\..\src\yw-parse\YWLexer.tokens" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\yw-parse\YWBaseListener.cpp" />
+    <ClCompile Include="..\..\src\yw-parse\YWLexer.cpp" />
+    <ClCompile Include="..\..\src\yw-parse\YWListener.cpp" />
+    <ClCompile Include="..\..\src\yw-parse\YWParser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\yw-parse\YWBaseListener.h" />
+    <ClInclude Include="..\..\src\yw-parse\YWLexer.h" />
+    <ClInclude Include="..\..\src\yw-parse\YWListener.h" />
+    <ClInclude Include="..\..\src\yw-parse\YWParser.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
