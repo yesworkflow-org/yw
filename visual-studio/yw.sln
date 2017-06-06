@@ -6,10 +6,20 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "antlr4-runtime", "antlr4-runtime\antlr4-runtime.vcxproj", "{A9762991-1B57-4DCE-90C0-EE42B96947BE}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-extract", "yw-extract\yw-extract.vcxproj", "{158B1288-0CC1-426B-8967-800EDBD8C278}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7579AE60-7552-4A34-95D3-B360323FDAC0} = {7579AE60-7552-4A34-95D3-B360323FDAC0}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-parse", "yw-parse\yw-parse.vcxproj", "{7579AE60-7552-4A34-95D3-B360323FDAC0}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A9762991-1B57-4DCE-90C0-EE42B96947BE} = {A9762991-1B57-4DCE-90C0-EE42B96947BE}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-parse-tests", "yw-parse-tests\yw-parse-tests.vcxproj", "{0270BA81-F73E-4AC9-B3C8-094F3F697BBD}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7579AE60-7552-4A34-95D3-B360323FDAC0} = {7579AE60-7552-4A34-95D3-B360323FDAC0}
+		{A9762991-1B57-4DCE-90C0-EE42B96947BE} = {A9762991-1B57-4DCE-90C0-EE42B96947BE}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
