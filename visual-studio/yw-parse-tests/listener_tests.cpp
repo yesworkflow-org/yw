@@ -21,26 +21,38 @@ namespace yw_parse_tests
 		void enterBegin(YWParser::BeginContext *context) override {
 			_log << "entered begin";
 		}
+		void reset() {
+			_log.clear();
+		}
 	};
 
 	TEST_CLASS(ListenerTests)
 	{
-	public:
+	private:
 		
-		TEST_METHOD(TestEnterBegin)
-		{
-			stringstream ss("@begin foo");
+		YWListenerForTests listener;
 
-			antlr4::ANTLRInputStream input(ss);
+		void parse(const char * text) {
+			stringstream textStream(text);
+			antlr4::ANTLRInputStream input(textStream);
 			YWLexer lexer(&input);
 			antlr4::CommonTokenStream tokens(&lexer);
 			YWParser parser(&tokens);
-
 			antlr4::tree::ParseTree *tree = parser.begin();
-			YWListenerForTests listener;
 			antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, tree);
+		}
 
+	public:
+		
+		TEST_METHOD_INITIALIZE(InitializeListenerTest) {
+			listener.reset();
+		}
+
+		TEST_METHOD(TestEnterBegin)
+		{
+			parse("@begin foo");
 			Assert::AreEqual(std::string("entered begin"), listener.log());
 		}
+
 	};
 }
