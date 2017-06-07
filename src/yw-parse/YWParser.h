@@ -92,10 +92,10 @@ public:
     EndContext *end();
     std::vector<antlr4::tree::TerminalNode *> EOL();
     antlr4::tree::TerminalNode* EOL(size_t i);
-    std::vector<BlockContext *> block();
-    BlockContext* block(size_t i);
     std::vector<BlockQualifierContext *> blockQualifier();
     BlockQualifierContext* blockQualifier(size_t i);
+    std::vector<BlockContext *> block();
+    BlockContext* block(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;

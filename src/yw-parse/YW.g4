@@ -2,7 +2,7 @@ grammar YW ;
 
 // YW annotation compositions
 script          : (block)+ ;
-block			: (EOL)* begin (EOL)* (block | blockQualifier)* end (EOL)* ;
+block			: (EOL)* begin (EOL)* (blockQualifier)* (block)* end (EOL)* ;
 blockQualifier  : (inputPort | outputPort | call) (EOL)* ;
 inputPort       : (in | param) (EOL)* (portQualifier)* ;
 outputPort      : (out | ret) (EOL)* (portQualifier)* ;
