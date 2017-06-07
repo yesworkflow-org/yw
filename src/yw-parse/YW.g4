@@ -1,8 +1,8 @@
 grammar YW ;
 
 // YW annotation compositions
-script          : (codeBlock)+ ;
-codeBlock       : (EOL)* begin (EOL)* (codeBlock | blockAnnotation)* end (EOL)* ;
+script          : (block)+ ;
+block			: (EOL)* begin (EOL)* (block | blockAnnotation)* end (EOL)* ;
 blockAnnotation : (inputPort | outputPort | call) (EOL)* ;
 inputPort       : (in | param) (EOL)* (portAnnotation)* ;
 outputPort      : (out | ret) (EOL)* (portAnnotation)* ;

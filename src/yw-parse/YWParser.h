@@ -18,7 +18,7 @@ public:
   };
 
   enum {
-    RuleScript = 0, RuleCodeBlock = 1, RuleBlockAnnotation = 2, RuleInputPort = 3, 
+    RuleScript = 0, RuleBlock = 1, RuleBlockAnnotation = 2, RuleInputPort = 3, 
     RuleOutputPort = 4, RulePortAnnotation = 5, RuleAs = 6, RuleBegin = 7, 
     RuleCall = 8, RuleEnd = 9, RuleFile = 10, RuleIn = 11, RuleOut = 12, 
     RuleParam = 13, RuleRet = 14, RuleUri = 15, RuleAsKeyword = 16, RuleBeginKeyword = 17, 
@@ -39,7 +39,7 @@ public:
 
 
   class ScriptContext;
-  class CodeBlockContext;
+  class BlockContext;
   class BlockAnnotationContext;
   class InputPortContext;
   class OutputPortContext;
@@ -74,8 +74,8 @@ public:
   public:
     ScriptContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<CodeBlockContext *> codeBlock();
-    CodeBlockContext* codeBlock(size_t i);
+    std::vector<BlockContext *> block();
+    BlockContext* block(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -84,16 +84,16 @@ public:
 
   ScriptContext* script();
 
-  class  CodeBlockContext : public antlr4::ParserRuleContext {
+  class  BlockContext : public antlr4::ParserRuleContext {
   public:
-    CodeBlockContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    BlockContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     BeginContext *begin();
     EndContext *end();
     std::vector<antlr4::tree::TerminalNode *> EOL();
     antlr4::tree::TerminalNode* EOL(size_t i);
-    std::vector<CodeBlockContext *> codeBlock();
-    CodeBlockContext* codeBlock(size_t i);
+    std::vector<BlockContext *> block();
+    BlockContext* block(size_t i);
     std::vector<BlockAnnotationContext *> blockAnnotation();
     BlockAnnotationContext* blockAnnotation(size_t i);
 
@@ -102,7 +102,7 @@ public:
    
   };
 
-  CodeBlockContext* codeBlock();
+  BlockContext* block();
 
   class  BlockAnnotationContext : public antlr4::ParserRuleContext {
   public:

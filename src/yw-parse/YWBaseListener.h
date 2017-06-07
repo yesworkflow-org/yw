@@ -19,8 +19,8 @@ public:
   virtual void enterScript(YWParser::ScriptContext * /*ctx*/) override { }
   virtual void exitScript(YWParser::ScriptContext * /*ctx*/) override { }
 
-  virtual void enterCodeBlock(YWParser::CodeBlockContext * /*ctx*/) override { }
-  virtual void exitCodeBlock(YWParser::CodeBlockContext * /*ctx*/) override { }
+  virtual void enterBlock(YWParser::BlockContext * /*ctx*/) override { }
+  virtual void exitBlock(YWParser::BlockContext * /*ctx*/) override { }
 
   virtual void enterBlockAnnotation(YWParser::BlockAnnotationContext * /*ctx*/) override { }
   virtual void exitBlockAnnotation(YWParser::BlockAnnotationContext * /*ctx*/) override { }

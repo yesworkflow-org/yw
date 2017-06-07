@@ -37,12 +37,12 @@ YWParser::ScriptContext::ScriptContext(ParserRuleContext *parent, size_t invokin
   : ParserRuleContext(parent, invokingState) {
 }
 
-std::vector<YWParser::CodeBlockContext *> YWParser::ScriptContext::codeBlock() {
-  return getRuleContexts<YWParser::CodeBlockContext>();
+std::vector<YWParser::BlockContext *> YWParser::ScriptContext::block() {
+  return getRuleContexts<YWParser::BlockContext>();
 }
 
-YWParser::CodeBlockContext* YWParser::ScriptContext::codeBlock(size_t i) {
-  return getRuleContext<YWParser::CodeBlockContext>(i);
+YWParser::BlockContext* YWParser::ScriptContext::block(size_t i) {
+  return getRuleContext<YWParser::BlockContext>(i);
 }
 
 
@@ -77,7 +77,7 @@ YWParser::ScriptContext* YWParser::script() {
     _la = _input->LA(1);
     do {
       setState(62);
-      codeBlock();
+      block();
       setState(65); 
       _errHandler->sync(this);
       _la = _input->LA(1);
@@ -95,64 +95,64 @@ YWParser::ScriptContext* YWParser::script() {
   return _localctx;
 }
 
-//----------------- CodeBlockContext ------------------------------------------------------------------
+//----------------- BlockContext ------------------------------------------------------------------
 
-YWParser::CodeBlockContext::CodeBlockContext(ParserRuleContext *parent, size_t invokingState)
+YWParser::BlockContext::BlockContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-YWParser::BeginContext* YWParser::CodeBlockContext::begin() {
+YWParser::BeginContext* YWParser::BlockContext::begin() {
   return getRuleContext<YWParser::BeginContext>(0);
 }
 
-YWParser::EndContext* YWParser::CodeBlockContext::end() {
+YWParser::EndContext* YWParser::BlockContext::end() {
   return getRuleContext<YWParser::EndContext>(0);
 }
 
-std::vector<tree::TerminalNode *> YWParser::CodeBlockContext::EOL() {
+std::vector<tree::TerminalNode *> YWParser::BlockContext::EOL() {
   return getTokens(YWParser::EOL);
 }
 
-tree::TerminalNode* YWParser::CodeBlockContext::EOL(size_t i) {
+tree::TerminalNode* YWParser::BlockContext::EOL(size_t i) {
   return getToken(YWParser::EOL, i);
 }
 
-std::vector<YWParser::CodeBlockContext *> YWParser::CodeBlockContext::codeBlock() {
-  return getRuleContexts<YWParser::CodeBlockContext>();
+std::vector<YWParser::BlockContext *> YWParser::BlockContext::block() {
+  return getRuleContexts<YWParser::BlockContext>();
 }
 
-YWParser::CodeBlockContext* YWParser::CodeBlockContext::codeBlock(size_t i) {
-  return getRuleContext<YWParser::CodeBlockContext>(i);
+YWParser::BlockContext* YWParser::BlockContext::block(size_t i) {
+  return getRuleContext<YWParser::BlockContext>(i);
 }
 
-std::vector<YWParser::BlockAnnotationContext *> YWParser::CodeBlockContext::blockAnnotation() {
+std::vector<YWParser::BlockAnnotationContext *> YWParser::BlockContext::blockAnnotation() {
   return getRuleContexts<YWParser::BlockAnnotationContext>();
 }
 
-YWParser::BlockAnnotationContext* YWParser::CodeBlockContext::blockAnnotation(size_t i) {
+YWParser::BlockAnnotationContext* YWParser::BlockContext::blockAnnotation(size_t i) {
   return getRuleContext<YWParser::BlockAnnotationContext>(i);
 }
 
 
-size_t YWParser::CodeBlockContext::getRuleIndex() const {
-  return YWParser::RuleCodeBlock;
+size_t YWParser::BlockContext::getRuleIndex() const {
+  return YWParser::RuleBlock;
 }
 
-void YWParser::CodeBlockContext::enterRule(tree::ParseTreeListener *listener) {
+void YWParser::BlockContext::enterRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->enterCodeBlock(this);
+    parserListener->enterBlock(this);
 }
 
-void YWParser::CodeBlockContext::exitRule(tree::ParseTreeListener *listener) {
+void YWParser::BlockContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->exitCodeBlock(this);
+    parserListener->exitBlock(this);
 }
 
-YWParser::CodeBlockContext* YWParser::codeBlock() {
-  CodeBlockContext *_localctx = _tracker.createInstance<CodeBlockContext>(_ctx, getState());
-  enterRule(_localctx, 2, YWParser::RuleCodeBlock);
+YWParser::BlockContext* YWParser::block() {
+  BlockContext *_localctx = _tracker.createInstance<BlockContext>(_ctx, getState());
+  enterRule(_localctx, 2, YWParser::RuleBlock);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -202,7 +202,7 @@ YWParser::CodeBlockContext* YWParser::codeBlock() {
         case YWParser::T__1:
         case YWParser::EOL: {
           setState(80);
-          codeBlock();
+          block();
           break;
         }
 
@@ -1939,7 +1939,7 @@ atn::ATN YWParser::_atn;
 std::vector<uint16_t> YWParser::_serializedATN;
 
 std::vector<std::string> YWParser::_ruleNames = {
-  "script", "codeBlock", "blockAnnotation", "inputPort", "outputPort", "portAnnotation", 
+  "script", "block", "blockAnnotation", "inputPort", "outputPort", "portAnnotation", 
   "as", "begin", "call", "end", "file", "in", "out", "param", "ret", "uri", 
   "asKeyword", "beginKeyword", "callKeyword", "endKeyword", "fileKeyword", 
   "inKeyword", "outKeyword", "paramKeyword", "returnKeyword", "uriKeyword", 

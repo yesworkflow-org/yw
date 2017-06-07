@@ -23,8 +23,8 @@ namespace yw_parse_tests
 
 		void enterScript(YWParser::ScriptContext *context) override { _log << "entered script" << endl;  }
 		void exitScript(YWParser::ScriptContext *context) override { _log << "exited script" << endl; }
-		void enterCodeBlock(YWParser::CodeBlockContext *context) override { _log << "entered block" << endl; }
-		void exitCodeBlock(YWParser::CodeBlockContext *context) override { _log << "exited block" << endl; }
+		void enterBlock(YWParser::BlockContext *context) override { _log << "entered block" << endl; }
+		void exitBlock(YWParser::BlockContext *context) override { _log << "exited block" << endl; }
 		void enterBegin(YWParser::BeginContext *context) override { _log << "entered begin" << endl; }
 		void exitBegin(YWParser::BeginContext *context) override { _log << "exited begin" << endl; }
 		void enterEnd(YWParser::EndContext *context) override { _log << "entered end" << endl; }

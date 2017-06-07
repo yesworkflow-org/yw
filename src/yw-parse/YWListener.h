@@ -17,8 +17,8 @@ public:
   virtual void enterScript(YWParser::ScriptContext *ctx) = 0;
   virtual void exitScript(YWParser::ScriptContext *ctx) = 0;
 
-  virtual void enterCodeBlock(YWParser::CodeBlockContext *ctx) = 0;
-  virtual void exitCodeBlock(YWParser::CodeBlockContext *ctx) = 0;
+  virtual void enterBlock(YWParser::BlockContext *ctx) = 0;
+  virtual void exitBlock(YWParser::BlockContext *ctx) = 0;
 
   virtual void enterBlockAnnotation(YWParser::BlockAnnotationContext *ctx) = 0;
   virtual void exitBlockAnnotation(YWParser::BlockAnnotationContext *ctx) = 0;
