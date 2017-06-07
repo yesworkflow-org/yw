@@ -125,12 +125,12 @@ YWParser::BlockContext* YWParser::BlockContext::block(size_t i) {
   return getRuleContext<YWParser::BlockContext>(i);
 }
 
-std::vector<YWParser::BlockAnnotationContext *> YWParser::BlockContext::blockAnnotation() {
-  return getRuleContexts<YWParser::BlockAnnotationContext>();
+std::vector<YWParser::BlockQualifierContext *> YWParser::BlockContext::blockQualifier() {
+  return getRuleContexts<YWParser::BlockQualifierContext>();
 }
 
-YWParser::BlockAnnotationContext* YWParser::BlockContext::blockAnnotation(size_t i) {
-  return getRuleContext<YWParser::BlockAnnotationContext>(i);
+YWParser::BlockQualifierContext* YWParser::BlockContext::blockQualifier(size_t i) {
+  return getRuleContext<YWParser::BlockQualifierContext>(i);
 }
 
 
@@ -212,7 +212,7 @@ YWParser::BlockContext* YWParser::block() {
         case YWParser::T__7:
         case YWParser::T__8: {
           setState(81);
-          blockAnnotation();
+          blockQualifier();
           break;
         }
 
@@ -248,52 +248,52 @@ YWParser::BlockContext* YWParser::block() {
   return _localctx;
 }
 
-//----------------- BlockAnnotationContext ------------------------------------------------------------------
+//----------------- BlockQualifierContext ------------------------------------------------------------------
 
-YWParser::BlockAnnotationContext::BlockAnnotationContext(ParserRuleContext *parent, size_t invokingState)
+YWParser::BlockQualifierContext::BlockQualifierContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-YWParser::InputPortContext* YWParser::BlockAnnotationContext::inputPort() {
+YWParser::InputPortContext* YWParser::BlockQualifierContext::inputPort() {
   return getRuleContext<YWParser::InputPortContext>(0);
 }
 
-YWParser::OutputPortContext* YWParser::BlockAnnotationContext::outputPort() {
+YWParser::OutputPortContext* YWParser::BlockQualifierContext::outputPort() {
   return getRuleContext<YWParser::OutputPortContext>(0);
 }
 
-YWParser::CallContext* YWParser::BlockAnnotationContext::call() {
+YWParser::CallContext* YWParser::BlockQualifierContext::call() {
   return getRuleContext<YWParser::CallContext>(0);
 }
 
-std::vector<tree::TerminalNode *> YWParser::BlockAnnotationContext::EOL() {
+std::vector<tree::TerminalNode *> YWParser::BlockQualifierContext::EOL() {
   return getTokens(YWParser::EOL);
 }
 
-tree::TerminalNode* YWParser::BlockAnnotationContext::EOL(size_t i) {
+tree::TerminalNode* YWParser::BlockQualifierContext::EOL(size_t i) {
   return getToken(YWParser::EOL, i);
 }
 
 
-size_t YWParser::BlockAnnotationContext::getRuleIndex() const {
-  return YWParser::RuleBlockAnnotation;
+size_t YWParser::BlockQualifierContext::getRuleIndex() const {
+  return YWParser::RuleBlockQualifier;
 }
 
-void YWParser::BlockAnnotationContext::enterRule(tree::ParseTreeListener *listener) {
+void YWParser::BlockQualifierContext::enterRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->enterBlockAnnotation(this);
+    parserListener->enterBlockQualifier(this);
 }
 
-void YWParser::BlockAnnotationContext::exitRule(tree::ParseTreeListener *listener) {
+void YWParser::BlockQualifierContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->exitBlockAnnotation(this);
+    parserListener->exitBlockQualifier(this);
 }
 
-YWParser::BlockAnnotationContext* YWParser::blockAnnotation() {
-  BlockAnnotationContext *_localctx = _tracker.createInstance<BlockAnnotationContext>(_ctx, getState());
-  enterRule(_localctx, 4, YWParser::RuleBlockAnnotation);
+YWParser::BlockQualifierContext* YWParser::blockQualifier() {
+  BlockQualifierContext *_localctx = _tracker.createInstance<BlockQualifierContext>(_ctx, getState());
+  enterRule(_localctx, 4, YWParser::RuleBlockQualifier);
 
   auto onExit = finally([=] {
     exitRule();
@@ -372,12 +372,12 @@ tree::TerminalNode* YWParser::InputPortContext::EOL(size_t i) {
   return getToken(YWParser::EOL, i);
 }
 
-std::vector<YWParser::PortAnnotationContext *> YWParser::InputPortContext::portAnnotation() {
-  return getRuleContexts<YWParser::PortAnnotationContext>();
+std::vector<YWParser::PortQualifierContext *> YWParser::InputPortContext::portQualifier() {
+  return getRuleContexts<YWParser::PortQualifierContext>();
 }
 
-YWParser::PortAnnotationContext* YWParser::InputPortContext::portAnnotation(size_t i) {
-  return getRuleContext<YWParser::PortAnnotationContext>(i);
+YWParser::PortQualifierContext* YWParser::InputPortContext::portQualifier(size_t i) {
+  return getRuleContext<YWParser::PortQualifierContext>(i);
 }
 
 
@@ -445,7 +445,7 @@ YWParser::InputPortContext* YWParser::inputPort() {
 
     || _la == YWParser::T__9) {
       setState(115);
-      portAnnotation();
+      portQualifier();
       setState(120);
       _errHandler->sync(this);
       _la = _input->LA(1);
@@ -483,12 +483,12 @@ tree::TerminalNode* YWParser::OutputPortContext::EOL(size_t i) {
   return getToken(YWParser::EOL, i);
 }
 
-std::vector<YWParser::PortAnnotationContext *> YWParser::OutputPortContext::portAnnotation() {
-  return getRuleContexts<YWParser::PortAnnotationContext>();
+std::vector<YWParser::PortQualifierContext *> YWParser::OutputPortContext::portQualifier() {
+  return getRuleContexts<YWParser::PortQualifierContext>();
 }
 
-YWParser::PortAnnotationContext* YWParser::OutputPortContext::portAnnotation(size_t i) {
-  return getRuleContext<YWParser::PortAnnotationContext>(i);
+YWParser::PortQualifierContext* YWParser::OutputPortContext::portQualifier(size_t i) {
+  return getRuleContext<YWParser::PortQualifierContext>(i);
 }
 
 
@@ -556,7 +556,7 @@ YWParser::OutputPortContext* YWParser::outputPort() {
 
     || _la == YWParser::T__9) {
       setState(131);
-      portAnnotation();
+      portQualifier();
       setState(136);
       _errHandler->sync(this);
       _la = _input->LA(1);
@@ -572,48 +572,48 @@ YWParser::OutputPortContext* YWParser::outputPort() {
   return _localctx;
 }
 
-//----------------- PortAnnotationContext ------------------------------------------------------------------
+//----------------- PortQualifierContext ------------------------------------------------------------------
 
-YWParser::PortAnnotationContext::PortAnnotationContext(ParserRuleContext *parent, size_t invokingState)
+YWParser::PortQualifierContext::PortQualifierContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-YWParser::AsContext* YWParser::PortAnnotationContext::as() {
+YWParser::AsContext* YWParser::PortQualifierContext::as() {
   return getRuleContext<YWParser::AsContext>(0);
 }
 
-YWParser::UriContext* YWParser::PortAnnotationContext::uri() {
+YWParser::UriContext* YWParser::PortQualifierContext::uri() {
   return getRuleContext<YWParser::UriContext>(0);
 }
 
-std::vector<tree::TerminalNode *> YWParser::PortAnnotationContext::EOL() {
+std::vector<tree::TerminalNode *> YWParser::PortQualifierContext::EOL() {
   return getTokens(YWParser::EOL);
 }
 
-tree::TerminalNode* YWParser::PortAnnotationContext::EOL(size_t i) {
+tree::TerminalNode* YWParser::PortQualifierContext::EOL(size_t i) {
   return getToken(YWParser::EOL, i);
 }
 
 
-size_t YWParser::PortAnnotationContext::getRuleIndex() const {
-  return YWParser::RulePortAnnotation;
+size_t YWParser::PortQualifierContext::getRuleIndex() const {
+  return YWParser::RulePortQualifier;
 }
 
-void YWParser::PortAnnotationContext::enterRule(tree::ParseTreeListener *listener) {
+void YWParser::PortQualifierContext::enterRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->enterPortAnnotation(this);
+    parserListener->enterPortQualifier(this);
 }
 
-void YWParser::PortAnnotationContext::exitRule(tree::ParseTreeListener *listener) {
+void YWParser::PortQualifierContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->exitPortAnnotation(this);
+    parserListener->exitPortQualifier(this);
 }
 
-YWParser::PortAnnotationContext* YWParser::portAnnotation() {
-  PortAnnotationContext *_localctx = _tracker.createInstance<PortAnnotationContext>(_ctx, getState());
-  enterRule(_localctx, 10, YWParser::RulePortAnnotation);
+YWParser::PortQualifierContext* YWParser::portQualifier() {
+  PortQualifierContext *_localctx = _tracker.createInstance<PortQualifierContext>(_ctx, getState());
+  enterRule(_localctx, 10, YWParser::RulePortQualifier);
 
   auto onExit = finally([=] {
     exitRule();
@@ -1939,7 +1939,7 @@ atn::ATN YWParser::_atn;
 std::vector<uint16_t> YWParser::_serializedATN;
 
 std::vector<std::string> YWParser::_ruleNames = {
-  "script", "block", "blockAnnotation", "inputPort", "outputPort", "portAnnotation", 
+  "script", "block", "blockQualifier", "inputPort", "outputPort", "portQualifier", 
   "as", "begin", "call", "end", "file", "in", "out", "param", "ret", "uri", 
   "asKeyword", "beginKeyword", "callKeyword", "endKeyword", "fileKeyword", 
   "inKeyword", "outKeyword", "paramKeyword", "returnKeyword", "uriKeyword", 

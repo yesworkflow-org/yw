@@ -35,6 +35,10 @@ namespace yw_parse_tests
 		void exitEnd(YWParser::EndContext *context) override { _log << "exited end" << endl; }
 		void enterEndKeyword(YWParser::EndKeywordContext *context) override { _log << "entered end keyword" << endl; }
 		void exitEndKeyword(YWParser::EndKeywordContext *context) override { _log << "exited end keyword" << endl; }
+		void enterBlockQualifier(YWParser::BlockQualifierContext *context) override { _log << "entered block qualifier" << endl; }
+		void exitBlockQualifier(YWParser::BlockQualifierContext *context) override { _log << "exited block qualifier" << endl; }
+		void enterIn(YWParser::InContext *context) override { _log << "entered in" << endl; }
+		void exitIn(YWParser::InContext *context) override { _log << "exited in" << endl; }
 	};
 
 	TEST_CLASS(ListenerTests)
@@ -55,27 +59,9 @@ namespace yw_parse_tests
 
 	public:
 
-		TEST_METHOD(TestEnterBegin)
+		TEST_METHOD(TestListenerEvents_Begin_End)
 		{
-			parse("@begin foo");
-			
-			Assert::AreEqual(std::string(
-				"entered script"		"\n"
-				"entered block"			"\n"
-				"entered begin"			"\n"
-				"entered begin keyword"	"\n"
-				"exited begin keyword"	"\n"
-				"entered block name"	"\n"
-				"exited block name"		"\n"		
-				"exited begin"			"\n"
-				"exited block"			"\n"
-				"exited script"			"\n"
-			), listener.log());
-		}
-
-		TEST_METHOD(TestEnterEnd)
-		{
-			parse("@begin foo @end foo");
+			parse("@begin b @end b");
 
 			Assert::AreEqual(std::string(
 				"entered script"		"\n"
@@ -96,5 +82,35 @@ namespace yw_parse_tests
 				"exited script"			"\n"
 			), listener.log());
 		}
+
+		TEST_METHOD(TestListenerEvents_Begin_In_End)
+		{
+			parse("@begin b @in p @end b");
+
+			Assert::AreEqual(std::string(
+				"entered script"			"\n"
+				"entered block"				"\n"
+				"entered begin"				"\n"
+				"entered begin keyword"		"\n"
+				"exited begin keyword"		"\n"
+				"entered block name"		"\n"
+				"exited block name"			"\n"
+				"exited begin"				"\n"
+				"entered block qualifier"	"\n"
+				"entered in"				"\n"
+				"exited in"					"\n"
+				"exited block qualifier"	"\n"
+				"entered end"				"\n"
+				"entered end keyword"		"\n"
+				"exited end keyword"		"\n"
+				"entered block name"		"\n"
+				"exited block name"			"\n"
+				"exited end"				"\n"
+				"exited block"				"\n"
+				"exited script"				"\n"
+			), listener.log());
+		}
+
+
 	};
 }

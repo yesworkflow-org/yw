@@ -20,8 +20,8 @@ public:
   virtual void enterBlock(YWParser::BlockContext *ctx) = 0;
   virtual void exitBlock(YWParser::BlockContext *ctx) = 0;
 
-  virtual void enterBlockAnnotation(YWParser::BlockAnnotationContext *ctx) = 0;
-  virtual void exitBlockAnnotation(YWParser::BlockAnnotationContext *ctx) = 0;
+  virtual void enterBlockQualifier(YWParser::BlockQualifierContext *ctx) = 0;
+  virtual void exitBlockQualifier(YWParser::BlockQualifierContext *ctx) = 0;
 
   virtual void enterInputPort(YWParser::InputPortContext *ctx) = 0;
   virtual void exitInputPort(YWParser::InputPortContext *ctx) = 0;
@@ -29,8 +29,8 @@ public:
   virtual void enterOutputPort(YWParser::OutputPortContext *ctx) = 0;
   virtual void exitOutputPort(YWParser::OutputPortContext *ctx) = 0;
 
-  virtual void enterPortAnnotation(YWParser::PortAnnotationContext *ctx) = 0;
-  virtual void exitPortAnnotation(YWParser::PortAnnotationContext *ctx) = 0;
+  virtual void enterPortQualifier(YWParser::PortQualifierContext *ctx) = 0;
+  virtual void exitPortQualifier(YWParser::PortQualifierContext *ctx) = 0;
 
   virtual void enterAs(YWParser::AsContext *ctx) = 0;
   virtual void exitAs(YWParser::AsContext *ctx) = 0;
