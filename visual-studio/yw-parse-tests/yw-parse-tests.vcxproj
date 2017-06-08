@@ -77,20 +77,20 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>$(OutDir);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)\antlr4-runtime\x64\Debug;$(OutDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>$(OutDir);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)\antlr4-runtime\x64\Debug;$(OutDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>$(OutDir);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)\antlr4-runtime\x64\Release;$(OutDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>$(OutDir);$(LibraryPath)</LibraryPath>
+    <LibraryPath>$(SolutionDir)\antlr4-runtime\x64\Release;$(OutDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
