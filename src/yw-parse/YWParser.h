@@ -24,7 +24,7 @@ public:
     RuleOut = 13, RuleParam = 14, RuleRet = 15, RuleUri = 16, RuleAsKeyword = 17, 
     RuleBeginKeyword = 18, RuleCallKeyword = 19, RuleEndKeyword = 20, RuleFileKeyword = 21, 
     RuleInKeyword = 22, RuleOutKeyword = 23, RuleParamKeyword = 24, RuleReturnKeyword = 25, 
-    RuleUriKeyword = 26, RuleBlockName = 27, RuleVariableName = 28, RuleAlias = 29, 
+    RuleUriKeyword = 26, RuleBlockName = 27, RulePortName = 28, RuleAlias = 29, 
     RuleUriTemplate = 30, RuleScheme = 31
   };
 
@@ -66,7 +66,7 @@ public:
   class ReturnKeywordContext;
   class UriKeywordContext;
   class BlockNameContext;
-  class VariableNameContext;
+  class PortNameContext;
   class AliasContext;
   class UriTemplateContext;
   class SchemeContext; 
@@ -260,7 +260,7 @@ public:
     InContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     InKeywordContext *inKeyword();
-    VariableNameContext *variableName();
+    PortNameContext *portName();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -274,7 +274,7 @@ public:
     OutContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     OutKeywordContext *outKeyword();
-    VariableNameContext *variableName();
+    PortNameContext *portName();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -288,7 +288,7 @@ public:
     ParamContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     ParamKeywordContext *paramKeyword();
-    VariableNameContext *variableName();
+    PortNameContext *portName();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -302,7 +302,7 @@ public:
     RetContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     ReturnKeywordContext *returnKeyword();
-    VariableNameContext *variableName();
+    PortNameContext *portName();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -458,9 +458,9 @@ public:
 
   BlockNameContext* blockName();
 
-  class  VariableNameContext : public antlr4::ParserRuleContext {
+  class  PortNameContext : public antlr4::ParserRuleContext {
   public:
-    VariableNameContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    PortNameContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *ID();
 
@@ -469,7 +469,7 @@ public:
    
   };
 
-  VariableNameContext* variableName();
+  PortNameContext* portName();
 
   class  AliasContext : public antlr4::ParserRuleContext {
   public:

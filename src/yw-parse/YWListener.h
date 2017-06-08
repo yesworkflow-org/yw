@@ -98,8 +98,8 @@ public:
   virtual void enterBlockName(YWParser::BlockNameContext *ctx) = 0;
   virtual void exitBlockName(YWParser::BlockNameContext *ctx) = 0;
 
-  virtual void enterVariableName(YWParser::VariableNameContext *ctx) = 0;
-  virtual void exitVariableName(YWParser::VariableNameContext *ctx) = 0;
+  virtual void enterPortName(YWParser::PortNameContext *ctx) = 0;
+  virtual void exitPortName(YWParser::PortNameContext *ctx) = 0;
 
   virtual void enterAlias(YWParser::AliasContext *ctx) = 0;
   virtual void exitAlias(YWParser::AliasContext *ctx) = 0;

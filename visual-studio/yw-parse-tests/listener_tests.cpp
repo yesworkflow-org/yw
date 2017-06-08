@@ -49,6 +49,8 @@ namespace yw_parse_tests
 		void exitOut(YWParser::OutContext *context) override { _log << "exited out" << endl; }
 		void enterRet(YWParser::RetContext *context) override { _log << "entered ret" << endl; }
 		void exitRet(YWParser::RetContext *context) override { _log << "exited ret" << endl; }
+		void enterPortName(YWParser::PortNameContext *context) override { _log << "entered port name" << endl; }
+		void exitPortName(YWParser::PortNameContext *context) override { _log << "entered port name" << endl; }
 	};
 
 	TEST_CLASS(ListenerTests)
@@ -98,7 +100,6 @@ namespace yw_parse_tests
 
 		TEST_METHOD(TestListenerEventSequence_Begin_In_End)
 		{
-			
 			YWParser* parser = parse("@begin b @in p @end b");
 			antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser->block());
 
@@ -114,6 +115,8 @@ namespace yw_parse_tests
 				"entered port"				"\n"
 				"entered input port"		"\n"
 				"entered in"				"\n"
+				"entered port name"			"\n"
+				"entered port name"			"\n"
 				"exited in"					"\n"
 				"exited input port"			"\n"
 				"exited port"				"\n"
@@ -145,6 +148,8 @@ namespace yw_parse_tests
 				"entered port"				"\n"
 				"entered output port"		"\n"
 				"entered out"				"\n"
+				"entered port name"			"\n"
+				"entered port name"			"\n"
 				"exited out"				"\n"
 				"exited output port"		"\n"
 				"exited port"				"\n"
@@ -169,6 +174,8 @@ namespace yw_parse_tests
 				"entered port"				"\n"
 				"entered input port"		"\n"
 				"entered in"				"\n"
+				"entered port name"			"\n"
+				"entered port name"			"\n"
 				"exited in"					"\n"
 				"exited input port"			"\n"
 				"exited port"				"\n"
@@ -186,6 +193,8 @@ namespace yw_parse_tests
 				"entered port"				"\n"
 				"entered input port"		"\n"
 				"entered param"				"\n"
+				"entered port name"			"\n"
+				"entered port name"			"\n"
 				"exited param"				"\n"
 				"exited input port"			"\n"
 				"exited port"				"\n"
@@ -203,6 +212,8 @@ namespace yw_parse_tests
 				"entered port"				"\n"
 				"entered output port"		"\n"
 				"entered out"				"\n"
+				"entered port name"			"\n"
+				"entered port name"			"\n"
 				"exited out"				"\n"
 				"exited output port"		"\n"
 				"exited port"				"\n"
@@ -220,6 +231,8 @@ namespace yw_parse_tests
 				"entered port"				"\n"
 				"entered output port"		"\n"
 				"entered ret"				"\n"
+				"entered port name"			"\n"
+				"entered port name"			"\n"
 				"exited ret"				"\n"
 				"exited output port"		"\n"
 				"exited port"				"\n"

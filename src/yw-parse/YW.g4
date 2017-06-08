@@ -15,10 +15,10 @@ begin           : beginKeyword blockName ;
 call            : callKeyword blockName ;
 end             : endKeyword blockName ;
 file            : fileKeyword PATH_TEMPLATE ;
-in              : inKeyword variableName ;
-out             : outKeyword variableName ;
-param           : paramKeyword variableName ;
-ret             : returnKeyword variableName ; 
+in              : inKeyword portName ;
+out             : outKeyword portName ;
+param           : paramKeyword portName ;
+ret             : returnKeyword portName ; 
 uri             : uriKeyword uriTemplate ;
 
 // YW keywords
@@ -35,7 +35,7 @@ uriKeyword      : '@uri' ;
 
 // YW keyword arguments
 blockName       : ID ;
-variableName    : ID ;
+portName		: ID ;
 alias           : ID ;
 uriTemplate     : ((scheme) ':')? PATH_TEMPLATE ;
 scheme          : 'file' | 'http' ; 

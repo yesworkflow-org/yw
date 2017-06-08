@@ -977,8 +977,8 @@ YWParser::InKeywordContext* YWParser::InContext::inKeyword() {
   return getRuleContext<YWParser::InKeywordContext>(0);
 }
 
-YWParser::VariableNameContext* YWParser::InContext::variableName() {
-  return getRuleContext<YWParser::VariableNameContext>(0);
+YWParser::PortNameContext* YWParser::InContext::portName() {
+  return getRuleContext<YWParser::PortNameContext>(0);
 }
 
 
@@ -1010,7 +1010,7 @@ YWParser::InContext* YWParser::in() {
     setState(166);
     inKeyword();
     setState(167);
-    variableName();
+    portName();
    
   }
   catch (RecognitionException &e) {
@@ -1032,8 +1032,8 @@ YWParser::OutKeywordContext* YWParser::OutContext::outKeyword() {
   return getRuleContext<YWParser::OutKeywordContext>(0);
 }
 
-YWParser::VariableNameContext* YWParser::OutContext::variableName() {
-  return getRuleContext<YWParser::VariableNameContext>(0);
+YWParser::PortNameContext* YWParser::OutContext::portName() {
+  return getRuleContext<YWParser::PortNameContext>(0);
 }
 
 
@@ -1065,7 +1065,7 @@ YWParser::OutContext* YWParser::out() {
     setState(169);
     outKeyword();
     setState(170);
-    variableName();
+    portName();
    
   }
   catch (RecognitionException &e) {
@@ -1087,8 +1087,8 @@ YWParser::ParamKeywordContext* YWParser::ParamContext::paramKeyword() {
   return getRuleContext<YWParser::ParamKeywordContext>(0);
 }
 
-YWParser::VariableNameContext* YWParser::ParamContext::variableName() {
-  return getRuleContext<YWParser::VariableNameContext>(0);
+YWParser::PortNameContext* YWParser::ParamContext::portName() {
+  return getRuleContext<YWParser::PortNameContext>(0);
 }
 
 
@@ -1120,7 +1120,7 @@ YWParser::ParamContext* YWParser::param() {
     setState(172);
     paramKeyword();
     setState(173);
-    variableName();
+    portName();
    
   }
   catch (RecognitionException &e) {
@@ -1142,8 +1142,8 @@ YWParser::ReturnKeywordContext* YWParser::RetContext::returnKeyword() {
   return getRuleContext<YWParser::ReturnKeywordContext>(0);
 }
 
-YWParser::VariableNameContext* YWParser::RetContext::variableName() {
-  return getRuleContext<YWParser::VariableNameContext>(0);
+YWParser::PortNameContext* YWParser::RetContext::portName() {
+  return getRuleContext<YWParser::PortNameContext>(0);
 }
 
 
@@ -1175,7 +1175,7 @@ YWParser::RetContext* YWParser::ret() {
     setState(175);
     returnKeyword();
     setState(176);
-    variableName();
+    portName();
    
   }
   catch (RecognitionException &e) {
@@ -1741,36 +1741,36 @@ YWParser::BlockNameContext* YWParser::blockName() {
   return _localctx;
 }
 
-//----------------- VariableNameContext ------------------------------------------------------------------
+//----------------- PortNameContext ------------------------------------------------------------------
 
-YWParser::VariableNameContext::VariableNameContext(ParserRuleContext *parent, size_t invokingState)
+YWParser::PortNameContext::PortNameContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* YWParser::VariableNameContext::ID() {
+tree::TerminalNode* YWParser::PortNameContext::ID() {
   return getToken(YWParser::ID, 0);
 }
 
 
-size_t YWParser::VariableNameContext::getRuleIndex() const {
-  return YWParser::RuleVariableName;
+size_t YWParser::PortNameContext::getRuleIndex() const {
+  return YWParser::RulePortName;
 }
 
-void YWParser::VariableNameContext::enterRule(tree::ParseTreeListener *listener) {
+void YWParser::PortNameContext::enterRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->enterVariableName(this);
+    parserListener->enterPortName(this);
 }
 
-void YWParser::VariableNameContext::exitRule(tree::ParseTreeListener *listener) {
+void YWParser::PortNameContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->exitVariableName(this);
+    parserListener->exitPortName(this);
 }
 
-YWParser::VariableNameContext* YWParser::variableName() {
-  VariableNameContext *_localctx = _tracker.createInstance<VariableNameContext>(_ctx, getState());
-  enterRule(_localctx, 56, YWParser::RuleVariableName);
+YWParser::PortNameContext* YWParser::portName() {
+  PortNameContext *_localctx = _tracker.createInstance<PortNameContext>(_ctx, getState());
+  enterRule(_localctx, 56, YWParser::RulePortName);
 
   auto onExit = finally([=] {
     exitRule();
@@ -1973,7 +1973,7 @@ std::vector<std::string> YWParser::_ruleNames = {
   "portAttribute", "as", "begin", "call", "end", "file", "in", "out", "param", 
   "ret", "uri", "asKeyword", "beginKeyword", "callKeyword", "endKeyword", 
   "fileKeyword", "inKeyword", "outKeyword", "paramKeyword", "returnKeyword", 
-  "uriKeyword", "blockName", "variableName", "alias", "uriTemplate", "scheme"
+  "uriKeyword", "blockName", "portName", "alias", "uriTemplate", "scheme"
 };
 
 std::vector<std::string> YWParser::_literalNames = {

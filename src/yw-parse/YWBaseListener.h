@@ -100,8 +100,8 @@ public:
   virtual void enterBlockName(YWParser::BlockNameContext * /*ctx*/) override { }
   virtual void exitBlockName(YWParser::BlockNameContext * /*ctx*/) override { }
 
-  virtual void enterVariableName(YWParser::VariableNameContext * /*ctx*/) override { }
-  virtual void exitVariableName(YWParser::VariableNameContext * /*ctx*/) override { }
+  virtual void enterPortName(YWParser::PortNameContext * /*ctx*/) override { }
+  virtual void exitPortName(YWParser::PortNameContext * /*ctx*/) override { }
 
   virtual void enterAlias(YWParser::AliasContext * /*ctx*/) override { }
   virtual void exitAlias(YWParser::AliasContext * /*ctx*/) override { }
