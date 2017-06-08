@@ -22,8 +22,11 @@ public:
   virtual void enterBlock(YWParser::BlockContext * /*ctx*/) override { }
   virtual void exitBlock(YWParser::BlockContext * /*ctx*/) override { }
 
-  virtual void enterBlockQualifier(YWParser::BlockQualifierContext * /*ctx*/) override { }
-  virtual void exitBlockQualifier(YWParser::BlockQualifierContext * /*ctx*/) override { }
+  virtual void enterBlockAttribute(YWParser::BlockAttributeContext * /*ctx*/) override { }
+  virtual void exitBlockAttribute(YWParser::BlockAttributeContext * /*ctx*/) override { }
+
+  virtual void enterPort(YWParser::PortContext * /*ctx*/) override { }
+  virtual void exitPort(YWParser::PortContext * /*ctx*/) override { }
 
   virtual void enterInputPort(YWParser::InputPortContext * /*ctx*/) override { }
   virtual void exitInputPort(YWParser::InputPortContext * /*ctx*/) override { }
@@ -31,8 +34,8 @@ public:
   virtual void enterOutputPort(YWParser::OutputPortContext * /*ctx*/) override { }
   virtual void exitOutputPort(YWParser::OutputPortContext * /*ctx*/) override { }
 
-  virtual void enterPortQualifier(YWParser::PortQualifierContext * /*ctx*/) override { }
-  virtual void exitPortQualifier(YWParser::PortQualifierContext * /*ctx*/) override { }
+  virtual void enterPortAttribute(YWParser::PortAttributeContext * /*ctx*/) override { }
+  virtual void exitPortAttribute(YWParser::PortAttributeContext * /*ctx*/) override { }
 
   virtual void enterAs(YWParser::AsContext * /*ctx*/) override { }
   virtual void exitAs(YWParser::AsContext * /*ctx*/) override { }

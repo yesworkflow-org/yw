@@ -2,11 +2,12 @@ grammar YW ;
 
 // YW annotation compositions
 script          : (block)+ ;
-block			: (EOL)* begin (EOL)* (blockQualifier)* (block)* end (EOL)* ;
-blockQualifier  : (inputPort | outputPort | call) (EOL)* ;
-inputPort       : (in | param) (EOL)* (portQualifier)* ;
-outputPort      : (out | ret) (EOL)* (portQualifier)* ;
-portQualifier   : (as | uri) (EOL)*;
+block			: (EOL)* begin (EOL)* (blockAttribute)* (block)* end (EOL)* ;
+blockAttribute  : (port | call) (EOL)* ;
+port			: (inputPort | outputPort) (portAttribute)* ;
+inputPort       : (in | param) (EOL)* ;
+outputPort      : (out | ret) (EOL)* ;
+portAttribute   : (as | uri) (EOL)*;
 
 // YW annotation primitives
 as              : asKeyword alias ;
