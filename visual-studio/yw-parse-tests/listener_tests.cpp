@@ -53,6 +53,10 @@ namespace yw_parse_tests
 		void exitReturnKeyword(YWParser::ReturnKeywordContext *context) override { _log << "exited return keyword" << endl; }
 		void enterPortName(YWParser::PortNameContext *context) override { _log << "entered port name" << endl; }
 		void exitPortName(YWParser::PortNameContext *context) override { _log << "exited port name" << endl; }
+		void enterAsKeyword(YWParser::AsKeywordContext *context) override { _log << "entered as keyword" << endl; }
+		void exitAsKeyword(YWParser::AsKeywordContext *context) override { _log << "exited as keyword" << endl; }
+		void enterDataName(YWParser::DataNameContext *context) override { _log << "entered data name" << endl; }
+		void exitDataName(YWParser::DataNameContext *context) override { _log << "exited data name" << endl; }
 	};
 
 	TEST_CLASS(ListenerTests)
@@ -238,6 +242,84 @@ namespace yw_parse_tests
 				"entered return keyword"		"\n"
 				"exited return keyword"			"\n"
 				"exited output port keyword"	"\n"
+				"entered port name"				"\n"
+				"exited port name"				"\n"
+				"exited port"					"\n"
+				"exited block attribute"		"\n"
+			), listener.log());
+		}
+
+
+		TEST_METHOD(TestListenerEventSequence_In_WithTwoPortsNamed)
+		{
+			YWParser* parser = parse("@in p q");
+			antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser->blockAttribute());
+
+			Assert::AreEqual(std::string(
+				"entered block attribute"		"\n"
+				"entered port"					"\n"
+				"entered input port keyword"	"\n"
+				"entered in keyword"			"\n"
+				"exited in keyword"				"\n"
+				"exited input port keyword"		"\n"
+				"entered port name"				"\n"
+				"exited port name"				"\n"
+				"entered port name"				"\n"
+				"exited port name"				"\n"
+				"exited port"					"\n"
+				"exited block attribute"		"\n"
+			), listener.log());
+		}
+
+		TEST_METHOD(TestListenerEventSequence_In_WithAlias)
+		{
+			YWParser* parser = parse("@in p @as d");
+			antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser->blockAttribute());
+
+			Assert::AreEqual(std::string(
+				"entered block attribute"		"\n"
+				"entered port"					"\n"
+				"entered input port keyword"	"\n"
+				"entered in keyword"			"\n"
+				"exited in keyword"				"\n"
+				"exited input port keyword"		"\n"
+				"entered port name"				"\n"
+				"exited port name"				"\n"
+				"entered port attribute"		"\n"
+				"entered port alias"			"\n"
+				"entered as keyword"			"\n"
+				"exited as keyword"				"\n"
+				"entered data name"				"\n"
+				"exited data name"				"\n"
+				"exited port alias"				"\n"	
+				"exited port attribute"			"\n"
+				"exited port"					"\n"
+				"exited block attribute"		"\n"
+			), listener.log());
+		}
+
+		TEST_METHOD(TestListenerEventSequence_In_WithTwoPortsNamed_OneWithAlias)
+		{
+			YWParser* parser = parse("@in p @as d q" );
+			antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser->blockAttribute());
+
+			Assert::AreEqual(std::string(
+				"entered block attribute"		"\n"
+				"entered port"					"\n"
+				"entered input port keyword"	"\n"
+				"entered in keyword"			"\n"
+				"exited in keyword"				"\n"
+				"exited input port keyword"		"\n"
+				"entered port name"				"\n"
+				"exited port name"				"\n"
+				"entered port attribute"		"\n"
+				"entered port alias"			"\n"
+				"entered as keyword"			"\n"
+				"exited as keyword"				"\n"
+				"entered data name"				"\n"
+				"exited data name"				"\n"
+				"exited port alias"				"\n"
+				"exited port attribute"			"\n"
 				"entered port name"				"\n"
 				"exited port name"				"\n"
 				"exited port"					"\n"
