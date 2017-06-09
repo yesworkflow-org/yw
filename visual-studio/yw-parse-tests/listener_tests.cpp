@@ -23,34 +23,36 @@ namespace yw_parse_tests
 		void exitScript(YWParser::ScriptContext *context) override { _log << "exited script" << endl; }
 		void enterBlock(YWParser::BlockContext *context) override { _log << "entered block" << endl; }
 		void exitBlock(YWParser::BlockContext *context) override { _log << "exited block" << endl; }
-		void enterBlockName(YWParser::BlockNameContext *context) override { _log << "entered block name" << endl; }
-		void exitBlockName(YWParser::BlockNameContext *context) override { _log << "exited block name" << endl; }
-		void enterBegin(YWParser::BeginContext *context) override { _log << "entered begin" << endl; }
-		void exitBegin(YWParser::BeginContext *context) override { _log << "exited begin" << endl; }
 		void enterBeginKeyword(YWParser::BeginKeywordContext *context) override { _log << "entered begin keyword" << endl; }
 		void exitBeginKeyword(YWParser::BeginKeywordContext *context) override { _log << "exited begin keyword" << endl; }
-		void enterEnd(YWParser::EndContext *context) override { _log << "entered end" << endl; }
-		void exitEnd(YWParser::EndContext *context) override { _log << "exited end" << endl; }
-		void enterEndKeyword(YWParser::EndKeywordContext *context) override { _log << "entered end keyword" << endl; }
-		void exitEndKeyword(YWParser::EndKeywordContext *context) override { _log << "exited end keyword" << endl; }
+		void enterBlockName(YWParser::BlockNameContext *context) override { _log << "entered block name" << endl; }
+		void exitBlockName(YWParser::BlockNameContext *context) override { _log << "exited block name" << endl; }
 		void enterBlockAttribute(YWParser::BlockAttributeContext *context) override { _log << "entered block attribute" << endl; }
 		void exitBlockAttribute(YWParser::BlockAttributeContext *context) override { _log << "exited block attribute" << endl; }
+		void enterEndKeyword(YWParser::EndKeywordContext *context) override { _log << "entered end keyword" << endl; }
+		void exitEndKeyword(YWParser::EndKeywordContext *context) override { _log << "exited end keyword" << endl; }
 		void enterPort(YWParser::PortContext *context) override { _log << "entered port" << endl; }
 		void exitPort(YWParser::PortContext *context) override { _log << "exited port" << endl; }
-		void enterInputPort(YWParser::InputPortContext *context) override { _log << "entered input port" << endl; }
-		void exitInputPort(YWParser::InputPortContext *context) override { _log << "exited input port" << endl; }
-		void enterOutputPort(YWParser::OutputPortContext *context) override { _log << "entered output port" << endl; }
-		void exitOutputPort(YWParser::OutputPortContext *context) override { _log << "exited output port" << endl; }
-		void enterIn(YWParser::InContext *context) override { _log << "entered in" << endl; }
-		void exitIn(YWParser::InContext *context) override { _log << "exited in" << endl; }
-		void enterParam(YWParser::ParamContext *context) override { _log << "entered param" << endl; }
-		void exitParam(YWParser::ParamContext *context) override { _log << "exited param" << endl; }
-		void enterOut(YWParser::OutContext *context) override { _log << "entered out" << endl; }
-		void exitOut(YWParser::OutContext *context) override { _log << "exited out" << endl; }
-		void enterRet(YWParser::RetContext *context) override { _log << "entered ret" << endl; }
-		void exitRet(YWParser::RetContext *context) override { _log << "exited ret" << endl; }
+		void enterCall(YWParser::CallContext *context) override { _log << "entered call" << endl; }
+		void exitCall(YWParser::CallContext *context) override { _log << "exited call" << endl; }
+		void enterInputPortKeyword(YWParser::InputPortKeywordContext *context) override { _log << "entered input port keyword" << endl; }
+		void exitInputPortKeyword(YWParser::InputPortKeywordContext *context) override { _log << "exited input port keyword" << endl; }
+		void enterOutputPortKeyword(YWParser::OutputPortKeywordContext *context) override { _log << "entered output port keyword" << endl; }
+		void exitOutputPortKeyword(YWParser::OutputPortKeywordContext *context) override { _log << "exited output port keyword" << endl; }
+		void enterPortAttribute(YWParser::PortAttributeContext *context) override { _log << "entered port attribute" << endl; }
+		void exitPortAttribute(YWParser::PortAttributeContext *context) override { _log << "exited port attribute" << endl; }
+		void enterPortAlias(YWParser::PortAliasContext *context) override { _log << "entered port alias" << endl; }
+		void exitPortAlias(YWParser::PortAliasContext *context) override { _log << "exited port alias" << endl; }
+		void enterInKeyword(YWParser::InKeywordContext *context) override { _log << "entered in keyword" << endl; }
+		void exitInKeyword(YWParser::InKeywordContext *context) override { _log << "exited in keyword" << endl; }
+		void enterParamKeyword(YWParser::ParamKeywordContext *context) override { _log << "entered param keyword" << endl; }
+		void exitParamKeyword(YWParser::ParamKeywordContext *context) override { _log << "exited param keyword" << endl; }
+		void enterOutKeyword(YWParser::OutKeywordContext *context) override { _log << "entered out keyword" << endl; }
+		void exitOutKeyword(YWParser::OutKeywordContext *context) override { _log << "exited out keyword" << endl; }
+		void enterReturnKeyword(YWParser::ReturnKeywordContext *context) override { _log << "entered return keyword" << endl; }
+		void exitReturnKeyword(YWParser::ReturnKeywordContext *context) override { _log << "exited return keyword" << endl; }
 		void enterPortName(YWParser::PortNameContext *context) override { _log << "entered port name" << endl; }
-		void exitPortName(YWParser::PortNameContext *context) override { _log << "entered port name" << endl; }
+		void exitPortName(YWParser::PortNameContext *context) override { _log << "exited port name" << endl; }
 	};
 
 	TEST_CLASS(ListenerTests)
@@ -73,7 +75,7 @@ namespace yw_parse_tests
 
 	public:
 
-		TEST_METHOD(TestListenerEventSequence_Begin_End)
+		TEST_METHOD(TestListenerEventSequence_Begin_End_WithFinalBlockName)
 		{
 			YWParser* parser = parse("@begin b @end b");
 			antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser->script());
@@ -81,18 +83,33 @@ namespace yw_parse_tests
 			Assert::AreEqual(std::string(
 				"entered script"		"\n"
 				"entered block"			"\n"
-				"entered begin"			"\n"
 				"entered begin keyword"	"\n"
 				"exited begin keyword"	"\n"
 				"entered block name"	"\n"
 				"exited block name"		"\n"
-				"exited begin"			"\n"
-				"entered end"			"\n"
 				"entered end keyword"	"\n"
 				"exited end keyword"	"\n"
 				"entered block name"	"\n"
 				"exited block name"		"\n"
-				"exited end"			"\n"
+				"exited block"			"\n"
+				"exited script"			"\n"
+			), listener.log());
+		}
+
+		TEST_METHOD(TestListenerEventSequence_Begin_End_NoFinalBlockName)
+		{
+			YWParser* parser = parse("@begin b @end");
+			antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser->script());
+
+			Assert::AreEqual(std::string(
+				"entered script"		"\n"
+				"entered block"			"\n"
+				"entered begin keyword"	"\n"
+				"exited begin keyword"	"\n"
+				"entered block name"	"\n"
+				"exited block name"		"\n"
+				"entered end keyword"	"\n"
+				"exited end keyword"	"\n"
 				"exited block"			"\n"
 				"exited script"			"\n"
 			), listener.log());
@@ -100,67 +117,55 @@ namespace yw_parse_tests
 
 		TEST_METHOD(TestListenerEventSequence_Begin_In_End)
 		{
-			YWParser* parser = parse("@begin b @in p @end b");
+			YWParser* parser = parse("@begin b @in p @end");
 			antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser->block());
 
 			Assert::AreEqual(std::string(
-				"entered block"				"\n"
-				"entered begin"				"\n"
-				"entered begin keyword"		"\n"
-				"exited begin keyword"		"\n"
-				"entered block name"		"\n"
-				"exited block name"			"\n"
-				"exited begin"				"\n"
-				"entered block attribute"	"\n"
-				"entered port"				"\n"
-				"entered input port"		"\n"
-				"entered in"				"\n"
-				"entered port name"			"\n"
-				"entered port name"			"\n"
-				"exited in"					"\n"
-				"exited input port"			"\n"
-				"exited port"				"\n"
-				"exited block attribute"	"\n"
-				"entered end"				"\n"
-				"entered end keyword"		"\n"
-				"exited end keyword"		"\n"
-				"entered block name"		"\n"
-				"exited block name"			"\n"
-				"exited end"				"\n"
-				"exited block"				"\n"
+				"entered block"					"\n"
+				"entered begin keyword"			"\n"
+				"exited begin keyword"			"\n"
+				"entered block name"			"\n"
+				"exited block name"				"\n"
+				"entered block attribute"		"\n"
+				"entered port"					"\n"
+				"entered input port keyword"	"\n"
+				"entered in keyword"			"\n"
+				"exited in keyword"				"\n"
+				"exited input port keyword"		"\n"
+				"entered port name"				"\n"
+				"exited port name"				"\n"
+				"exited port"					"\n"
+				"exited block attribute"		"\n"
+				"entered end keyword"			"\n"
+				"exited end keyword"			"\n"
+				"exited block"					"\n"
 			), listener.log());
 		}
 
 		TEST_METHOD(TestListenerEventSequence_Begin_Out_End)
 		{
-			YWParser* parser = parse("@begin b @out p @end b");
+			YWParser* parser = parse("@begin b @out p @end");
 			antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser->block());
 
 			Assert::AreEqual(std::string(
-				"entered block"				"\n"
-				"entered begin"				"\n"
-				"entered begin keyword"		"\n"
-				"exited begin keyword"		"\n"
-				"entered block name"		"\n"
-				"exited block name"			"\n"
-				"exited begin"				"\n"
-				"entered block attribute"	"\n"
-				"entered port"				"\n"
-				"entered output port"		"\n"
-				"entered out"				"\n"
-				"entered port name"			"\n"
-				"entered port name"			"\n"
-				"exited out"				"\n"
-				"exited output port"		"\n"
-				"exited port"				"\n"
-				"exited block attribute"	"\n"
-				"entered end"				"\n"
-				"entered end keyword"		"\n"
-				"exited end keyword"		"\n"
-				"entered block name"		"\n"
-				"exited block name"			"\n"
-				"exited end"				"\n"
-				"exited block"				"\n"
+				"entered block"					"\n"
+				"entered begin keyword"			"\n"
+				"exited begin keyword"			"\n"
+				"entered block name"			"\n"
+				"exited block name"				"\n"
+				"entered block attribute"		"\n"
+				"entered port"					"\n"
+				"entered output port keyword"	"\n"
+				"entered out keyword"			"\n"
+				"exited out keyword"			"\n"
+				"exited output port keyword"	"\n"
+				"entered port name"				"\n"
+				"exited port name"				"\n"
+				"exited port"					"\n"
+				"exited block attribute"		"\n"
+				"entered end keyword"			"\n"
+				"exited end keyword"			"\n"
+				"exited block"					"\n"
 			), listener.log());
 		}
 
@@ -170,16 +175,16 @@ namespace yw_parse_tests
 			antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser->blockAttribute());
 
 			Assert::AreEqual(std::string(
-				"entered block attribute"	"\n"
-				"entered port"				"\n"
-				"entered input port"		"\n"
-				"entered in"				"\n"
-				"entered port name"			"\n"
-				"entered port name"			"\n"
-				"exited in"					"\n"
-				"exited input port"			"\n"
-				"exited port"				"\n"
-				"exited block attribute"	"\n"
+				"entered block attribute"		"\n"
+				"entered port"					"\n"
+				"entered input port keyword"	"\n"
+				"entered in keyword"			"\n"
+				"exited in keyword"				"\n"
+				"exited input port keyword"		"\n"
+				"entered port name"				"\n"
+				"exited port name"				"\n"
+				"exited port"					"\n"
+				"exited block attribute"		"\n"
 			), listener.log());
 		}
 
@@ -189,16 +194,16 @@ namespace yw_parse_tests
 			antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser->blockAttribute());
 
 			Assert::AreEqual(std::string(
-				"entered block attribute"	"\n"
-				"entered port"				"\n"
-				"entered input port"		"\n"
-				"entered param"				"\n"
-				"entered port name"			"\n"
-				"entered port name"			"\n"
-				"exited param"				"\n"
-				"exited input port"			"\n"
-				"exited port"				"\n"
-				"exited block attribute"	"\n"
+				"entered block attribute"		"\n"
+				"entered port"					"\n"
+				"entered input port keyword"	"\n"
+				"entered param keyword"			"\n"
+				"exited param keyword"			"\n"
+				"exited input port keyword"		"\n"
+				"entered port name"				"\n"
+				"exited port name"				"\n"
+				"exited port"					"\n"
+				"exited block attribute"		"\n"
 			), listener.log());
 		}
 
@@ -208,16 +213,16 @@ namespace yw_parse_tests
 			antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser->blockAttribute());
 
 			Assert::AreEqual(std::string(				
-				"entered block attribute"	"\n"
-				"entered port"				"\n"
-				"entered output port"		"\n"
-				"entered out"				"\n"
-				"entered port name"			"\n"
-				"entered port name"			"\n"
-				"exited out"				"\n"
-				"exited output port"		"\n"
-				"exited port"				"\n"
-				"exited block attribute"	"\n"
+				"entered block attribute"		"\n"
+				"entered port"					"\n"
+				"entered output port keyword"	"\n"
+				"entered out keyword"			"\n"
+				"exited out keyword"			"\n"
+				"exited output port keyword"	"\n"
+				"entered port name"				"\n"
+				"exited port name"				"\n"
+				"exited port"					"\n"
+				"exited block attribute"		"\n"
 			), listener.log());
 		}
 
@@ -227,16 +232,16 @@ namespace yw_parse_tests
 			antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser->blockAttribute());
 
 			Assert::AreEqual(std::string(
-				"entered block attribute"	"\n"
-				"entered port"				"\n"
-				"entered output port"		"\n"
-				"entered ret"				"\n"
-				"entered port name"			"\n"
-				"entered port name"			"\n"
-				"exited ret"				"\n"
-				"exited output port"		"\n"
-				"exited port"				"\n"
-				"exited block attribute"	"\n"
+				"entered block attribute"		"\n"
+				"entered port"					"\n"
+				"entered output port keyword"	"\n"
+				"entered return keyword"		"\n"
+				"exited return keyword"			"\n"
+				"exited output port keyword"	"\n"
+				"entered port name"				"\n"
+				"exited port name"				"\n"
+				"exited port"					"\n"
+				"exited block attribute"		"\n"
 			), listener.log());
 		}
 	};

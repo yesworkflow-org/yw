@@ -14,7 +14,7 @@ public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
     T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, T__11 = 12, T__12 = 13, ID = 14, 
-    PATH_TEMPLATE = 15, EOL = 16, WS = 17
+    PATH_TEMPLATE = 15, WS = 16
   };
 
   YWLexer(antlr4::CharStream *input);

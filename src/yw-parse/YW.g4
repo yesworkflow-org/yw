@@ -1,25 +1,18 @@
 grammar YW ;
 
 // YW annotation compositions
-script          : (block)+ ;
-block			: (EOL)* begin (EOL)* (blockAttribute)* (block)* end (EOL)* ;
-blockAttribute  : (port | call) (EOL)* ;
-port			: (inputPort | outputPort) (portAttribute)* ;
-inputPort       : (in | param) (EOL)* ;
-outputPort      : (out | ret) (EOL)* ;
-portAttribute   : (as | uri) (EOL)*;
-
-// YW annotation primitives
-as              : asKeyword alias ;
-begin           : beginKeyword blockName ;
-call            : callKeyword blockName ;
-end             : endKeyword blockName ;
-file            : fileKeyword PATH_TEMPLATE ;
-in              : inKeyword portName ;
-out             : outKeyword portName ;
-param           : paramKeyword portName ;
-ret             : returnKeyword portName ; 
-uri             : uriKeyword uriTemplate ;
+script             : (block)* ;
+block			   : beginKeyword blockName (blockAttribute)* (block)* endKeyword (blockName)? ;
+blockAttribute     : port | call ;
+port			   : (inputPortKeyword | outputPortKeyword) (portName (portAttribute)*)+ ;
+call			   : callKeyword (blockName)+ ;
+inputPortKeyword   : inKeyword | paramKeyword ;
+outputPortKeyword  : outKeyword | returnKeyword ;
+portAttribute      : portAlias | resourceDecl ;
+portAlias          : asKeyword dataName ;
+resourceDecl       : uriDecl | fileDecl ;
+uriDecl            : uriKeyword uriTemplate;
+fileDecl	       : fileKeyword PATH_TEMPLATE ;
 
 // YW keywords
 asKeyword       : '@as' ;
@@ -36,12 +29,11 @@ uriKeyword      : '@uri' ;
 // YW keyword arguments
 blockName       : ID ;
 portName		: ID ;
-alias           : ID ;
+dataName		: ID ;
 uriTemplate     : ((scheme) ':')? PATH_TEMPLATE ;
 scheme          : 'file' | 'http' ; 
 
 // lexer rules
 ID              : [a-zA-Z0-9\\_]+ ;
 PATH_TEMPLATE   : ID ;
-EOL             : [\r\n] ;
 WS              : [ \t]+ -> skip ;
