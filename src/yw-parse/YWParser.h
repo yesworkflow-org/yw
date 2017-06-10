@@ -13,18 +13,19 @@ class  YWParser : public antlr4::Parser {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
-    T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, T__11 = 12, T__12 = 13, ID = 14, 
-    PATH_TEMPLATE = 15, WS = 16
+    T__7 = 8, T__8 = 9, T__9 = 10, T__10 = 11, T__11 = 12, T__12 = 13, T__13 = 14, 
+    ID = 15, PATH_TEMPLATE = 16
   };
 
   enum {
-    RuleScript = 0, RuleBlock = 1, RuleBlockAttribute = 2, RulePort = 3, 
-    RuleCall = 4, RuleInputPortKeyword = 5, RuleOutputPortKeyword = 6, RulePortAttribute = 7, 
-    RulePortAlias = 8, RuleResourceDecl = 9, RuleUriDecl = 10, RuleFileDecl = 11, 
-    RuleAsKeyword = 12, RuleBeginKeyword = 13, RuleCallKeyword = 14, RuleEndKeyword = 15, 
-    RuleFileKeyword = 16, RuleInKeyword = 17, RuleOutKeyword = 18, RuleParamKeyword = 19, 
-    RuleReturnKeyword = 20, RuleUriKeyword = 21, RuleBlockName = 22, RulePortName = 23, 
-    RuleDataName = 24, RuleUriTemplate = 25, RuleScheme = 26
+    RuleScript = 0, RuleBlock = 1, RuleBlockAttribute = 2, RuleDescription = 3, 
+    RulePort = 4, RuleCall = 5, RuleInputPortKeyword = 6, RuleOutputPortKeyword = 7, 
+    RulePortAttribute = 8, RulePortAlias = 9, RuleResourceDecl = 10, RuleUriDecl = 11, 
+    RuleFileDecl = 12, RuleAsKeyword = 13, RuleBeginKeyword = 14, RuleCallKeyword = 15, 
+    RuleEndKeyword = 16, RuleFileKeyword = 17, RuleInKeyword = 18, RuleOutKeyword = 19, 
+    RuleParamKeyword = 20, RuleReturnKeyword = 21, RuleUriKeyword = 22, 
+    RuleDescKeyword = 23, RuleBlockName = 24, RulePortName = 25, RuleDataName = 26, 
+    RuleUriTemplate = 27, RuleScheme = 28, RuleText = 29
   };
 
   YWParser(antlr4::TokenStream *input);
@@ -40,6 +41,7 @@ public:
   class ScriptContext;
   class BlockContext;
   class BlockAttributeContext;
+  class DescriptionContext;
   class PortContext;
   class CallContext;
   class InputPortKeywordContext;
@@ -59,11 +61,13 @@ public:
   class ParamKeywordContext;
   class ReturnKeywordContext;
   class UriKeywordContext;
+  class DescKeywordContext;
   class BlockNameContext;
   class PortNameContext;
   class DataNameContext;
   class UriTemplateContext;
-  class SchemeContext; 
+  class SchemeContext;
+  class TextContext; 
 
   class  ScriptContext : public antlr4::ParserRuleContext {
   public:
@@ -103,6 +107,7 @@ public:
   public:
     BlockAttributeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
+    DescriptionContext *description();
     PortContext *port();
     CallContext *call();
 
@@ -112,6 +117,20 @@ public:
   };
 
   BlockAttributeContext* blockAttribute();
+
+  class  DescriptionContext : public antlr4::ParserRuleContext {
+  public:
+    DescriptionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    DescKeywordContext *descKeyword();
+    TextContext *text();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  DescriptionContext* description();
 
   class  PortContext : public antlr4::ParserRuleContext {
   public:
@@ -178,6 +197,7 @@ public:
   public:
     PortAttributeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
+    DescriptionContext *description();
     PortAliasContext *portAlias();
     ResourceDeclContext *resourceDecl();
 
@@ -364,6 +384,18 @@ public:
 
   UriKeywordContext* uriKeyword();
 
+  class  DescKeywordContext : public antlr4::ParserRuleContext {
+  public:
+    DescKeywordContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  DescKeywordContext* descKeyword();
+
   class  BlockNameContext : public antlr4::ParserRuleContext {
   public:
     BlockNameContext(antlr4::ParserRuleContext *parent, size_t invokingState);
@@ -428,6 +460,19 @@ public:
   };
 
   SchemeContext* scheme();
+
+  class  TextContext : public antlr4::ParserRuleContext {
+  public:
+    TextContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *ID();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  TextContext* text();
 
 
 private:

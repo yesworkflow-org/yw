@@ -23,6 +23,9 @@ public:
   virtual void enterBlockAttribute(YWParser::BlockAttributeContext *ctx) = 0;
   virtual void exitBlockAttribute(YWParser::BlockAttributeContext *ctx) = 0;
 
+  virtual void enterDescription(YWParser::DescriptionContext *ctx) = 0;
+  virtual void exitDescription(YWParser::DescriptionContext *ctx) = 0;
+
   virtual void enterPort(YWParser::PortContext *ctx) = 0;
   virtual void exitPort(YWParser::PortContext *ctx) = 0;
 
@@ -80,6 +83,9 @@ public:
   virtual void enterUriKeyword(YWParser::UriKeywordContext *ctx) = 0;
   virtual void exitUriKeyword(YWParser::UriKeywordContext *ctx) = 0;
 
+  virtual void enterDescKeyword(YWParser::DescKeywordContext *ctx) = 0;
+  virtual void exitDescKeyword(YWParser::DescKeywordContext *ctx) = 0;
+
   virtual void enterBlockName(YWParser::BlockNameContext *ctx) = 0;
   virtual void exitBlockName(YWParser::BlockNameContext *ctx) = 0;
 
@@ -94,6 +100,9 @@ public:
 
   virtual void enterScheme(YWParser::SchemeContext *ctx) = 0;
   virtual void exitScheme(YWParser::SchemeContext *ctx) = 0;
+
+  virtual void enterText(YWParser::TextContext *ctx) = 0;
+  virtual void exitText(YWParser::TextContext *ctx) = 0;
 
 
 };

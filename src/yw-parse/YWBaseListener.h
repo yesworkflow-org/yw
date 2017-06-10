@@ -25,6 +25,9 @@ public:
   virtual void enterBlockAttribute(YWParser::BlockAttributeContext * /*ctx*/) override { }
   virtual void exitBlockAttribute(YWParser::BlockAttributeContext * /*ctx*/) override { }
 
+  virtual void enterDescription(YWParser::DescriptionContext * /*ctx*/) override { }
+  virtual void exitDescription(YWParser::DescriptionContext * /*ctx*/) override { }
+
   virtual void enterPort(YWParser::PortContext * /*ctx*/) override { }
   virtual void exitPort(YWParser::PortContext * /*ctx*/) override { }
 
@@ -82,6 +85,9 @@ public:
   virtual void enterUriKeyword(YWParser::UriKeywordContext * /*ctx*/) override { }
   virtual void exitUriKeyword(YWParser::UriKeywordContext * /*ctx*/) override { }
 
+  virtual void enterDescKeyword(YWParser::DescKeywordContext * /*ctx*/) override { }
+  virtual void exitDescKeyword(YWParser::DescKeywordContext * /*ctx*/) override { }
+
   virtual void enterBlockName(YWParser::BlockNameContext * /*ctx*/) override { }
   virtual void exitBlockName(YWParser::BlockNameContext * /*ctx*/) override { }
 
@@ -96,6 +102,9 @@ public:
 
   virtual void enterScheme(YWParser::SchemeContext * /*ctx*/) override { }
   virtual void exitScheme(YWParser::SchemeContext * /*ctx*/) override { }
+
+  virtual void enterText(YWParser::TextContext * /*ctx*/) override { }
+  virtual void exitText(YWParser::TextContext * /*ctx*/) override { }
 
 
   virtual void enterEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }
