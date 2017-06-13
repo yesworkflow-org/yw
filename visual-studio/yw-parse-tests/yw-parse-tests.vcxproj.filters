@@ -29,7 +29,10 @@
     <ClCompile Include="listener_sequence_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="parser_context_tests.cpp">
+    <ClCompile Include="begin_tag_context_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="block_context_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

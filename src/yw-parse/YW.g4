@@ -6,44 +6,46 @@ block               : beginTag (WS)* (blockAttribute)* (WS)* (block)* (WS)* endT
 blockAttribute      : descTag | portTag | callTag;
 portAttribute       : descTag | aliasTag | resourceTag ;
 
-beginTag            : beginKeyword (HS)+ blockName ;
-endTag              : endKeyword (HS)+ (blockName)? ;
-descTag             : descKeyword (HS)+ description ;
+beginTag            : BeginKeyword (HS)+ blockName ;
+endTag              : EndKeyword (HS)+ (blockName)? ;
+descTag             : DescKeyword (HS)+ description ;
 portTag             : (inputPortKeyword | outputPortKeyword) ((HS)+ portName ((HS)+ (portAttribute)*)?)+ ;
-aliasTag            : asKeyword (HS)+ dataName ;
-callTag             : callKeyword (HS)+ (blockName)+ ;
-uriTag              : uriKeyword (HS)+ uriTemplate;
-fileTag             : fileKeyword (HS)+ PATH_TEMPLATE ;
+aliasTag            : AsKeyword (HS)+ dataName ;
+callTag             : CallKeyword (HS)+ (blockName)+ ;
+uriTag              : UriKeyword (HS)+ uriTemplate;
+fileTag             : FileKeyword (HS)+ PathTemplate ;
 resourceTag         : uriTag | fileTag ;
 
-inputPortKeyword    : inKeyword | paramKeyword ;
-outputPortKeyword   : outKeyword | returnKeyword ;
-
-// YW keywords
-asKeyword       : '@as' ;
-beginKeyword    : '@begin' ;
-callKeyword     : '@call' ;
-descKeyword     : '@desc' ;
-endKeyword      : '@end' ; 
-fileKeyword     : '@file' ;
-inKeyword       : '@in' ;
-outKeyword      : '@out' ;
-paramKeyword    : '@param' ;
-returnKeyword   : '@return' ;
-uriKeyword      : '@uri' ;
+inputPortKeyword    : InKeyword | ParamKeyword ;
+outputPortKeyword   : OutKeyword | ReturnKeyword ;
 
 // YW keyword arguments
-blockName       : ID ;
+blockName       : phrase ;
 portName        : ID ;
 dataName        : ID ;
-uriTemplate     : ((scheme) ':')? PATH_TEMPLATE ;
+uriTemplate     : ((scheme) ':')? PathTemplate ;
 scheme          : 'file' | 'http' ; 
-description     : ID;
+description     : phrase;
+phrase          : ID (HS+ ID)* ;
 
-// lexer rules
-ID              : [a-zA-Z0-9\\_]+ ;
-PATH_TEMPLATE   : ID ;
+// YW keywords
+AsKeyword       : '@as' ;
+BeginKeyword    : '@begin' ;
+CallKeyword     : '@call' ;
+DescKeyword     : '@desc' ;
+EndKeyword      : '@end'; 
+FileKeyword     : '@file' ;
+InKeyword       : '@in' ;
+OutKeyword      : '@out' ;
+ParamKeyword    : '@param' ;
+ReturnKeyword   : '@return' ;
+UriKeyword      : '@uri' ;
+
+VS              : (HS)* NL (HS)* ;
 HS              : [ \t] ;
 NL              : '\r'? '\n' ;
+
+ID              : [a-zA-Z0-9\\_]+ ;
+PathTemplate    : ID ;
 WS              : [ \t\r\n] ;
 SP              : ' ' | '\t' ;

@@ -61,39 +61,6 @@ public:
   virtual void enterOutputPortKeyword(YWParser::OutputPortKeywordContext * /*ctx*/) override { }
   virtual void exitOutputPortKeyword(YWParser::OutputPortKeywordContext * /*ctx*/) override { }
 
-  virtual void enterAsKeyword(YWParser::AsKeywordContext * /*ctx*/) override { }
-  virtual void exitAsKeyword(YWParser::AsKeywordContext * /*ctx*/) override { }
-
-  virtual void enterBeginKeyword(YWParser::BeginKeywordContext * /*ctx*/) override { }
-  virtual void exitBeginKeyword(YWParser::BeginKeywordContext * /*ctx*/) override { }
-
-  virtual void enterCallKeyword(YWParser::CallKeywordContext * /*ctx*/) override { }
-  virtual void exitCallKeyword(YWParser::CallKeywordContext * /*ctx*/) override { }
-
-  virtual void enterDescKeyword(YWParser::DescKeywordContext * /*ctx*/) override { }
-  virtual void exitDescKeyword(YWParser::DescKeywordContext * /*ctx*/) override { }
-
-  virtual void enterEndKeyword(YWParser::EndKeywordContext * /*ctx*/) override { }
-  virtual void exitEndKeyword(YWParser::EndKeywordContext * /*ctx*/) override { }
-
-  virtual void enterFileKeyword(YWParser::FileKeywordContext * /*ctx*/) override { }
-  virtual void exitFileKeyword(YWParser::FileKeywordContext * /*ctx*/) override { }
-
-  virtual void enterInKeyword(YWParser::InKeywordContext * /*ctx*/) override { }
-  virtual void exitInKeyword(YWParser::InKeywordContext * /*ctx*/) override { }
-
-  virtual void enterOutKeyword(YWParser::OutKeywordContext * /*ctx*/) override { }
-  virtual void exitOutKeyword(YWParser::OutKeywordContext * /*ctx*/) override { }
-
-  virtual void enterParamKeyword(YWParser::ParamKeywordContext * /*ctx*/) override { }
-  virtual void exitParamKeyword(YWParser::ParamKeywordContext * /*ctx*/) override { }
-
-  virtual void enterReturnKeyword(YWParser::ReturnKeywordContext * /*ctx*/) override { }
-  virtual void exitReturnKeyword(YWParser::ReturnKeywordContext * /*ctx*/) override { }
-
-  virtual void enterUriKeyword(YWParser::UriKeywordContext * /*ctx*/) override { }
-  virtual void exitUriKeyword(YWParser::UriKeywordContext * /*ctx*/) override { }
-
   virtual void enterBlockName(YWParser::BlockNameContext * /*ctx*/) override { }
   virtual void exitBlockName(YWParser::BlockNameContext * /*ctx*/) override { }
 
@@ -111,6 +78,9 @@ public:
 
   virtual void enterDescription(YWParser::DescriptionContext * /*ctx*/) override { }
   virtual void exitDescription(YWParser::DescriptionContext * /*ctx*/) override { }
+
+  virtual void enterPhrase(YWParser::PhraseContext * /*ctx*/) override { }
+  virtual void exitPhrase(YWParser::PhraseContext * /*ctx*/) override { }
 
 
   virtual void enterEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }

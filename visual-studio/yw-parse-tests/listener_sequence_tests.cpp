@@ -52,29 +52,6 @@ namespace yw_parse_tests
         void enterOutputPortKeyword(YWParser::OutputPortKeywordContext *context) override { _log << "entered output port keyword" << endl; }
         void exitOutputPortKeyword(YWParser::OutputPortKeywordContext *context) override { _log << "exited output port keyword" << endl; }
 
-        void enterAsKeyword(YWParser::AsKeywordContext *context) override { _log << "entered as keyword" << endl; }
-        void exitAsKeyword(YWParser::AsKeywordContext *context) override { _log << "exited as keyword" << endl; }
-        void enterBeginKeyword(YWParser::BeginKeywordContext *context) override { _log << "entered begin keyword" << endl; }
-        void exitBeginKeyword(YWParser::BeginKeywordContext *context) override { _log << "exited begin keyword" << endl; }
-        void enterCallKeyword(YWParser::CallKeywordContext *context) override { _log << "entered call keyword" << endl; }
-        void exitCallKeyword(YWParser::CallKeywordContext *context) override { _log << "exited call keyword" << endl; }
-        void enterDescKeyword(YWParser::DescKeywordContext *context) override { _log << "entered desc keyword" << endl; }
-        void exitDescKeyword(YWParser::DescKeywordContext *context) override { _log << "exited desc keyword" << endl; }
-        void enterEndKeyword(YWParser::EndKeywordContext *context) override { _log << "entered end keyword" << endl; }
-        void exitEndKeyword(YWParser::EndKeywordContext *context) override { _log << "exited end keyword" << endl; }
-        void enterFileKeyword(YWParser::FileKeywordContext *context) override { _log << "entered file keyword" << endl; }
-        void exitFileKeyword(YWParser::FileKeywordContext *context) override { _log << "exited file keyword" << endl; }
-        void enterInKeyword(YWParser::InKeywordContext *context) override { _log << "entered in keyword" << endl; }
-        void exitInKeyword(YWParser::InKeywordContext *context) override { _log << "exited in keyword" << endl; }
-        void enterOutKeyword(YWParser::OutKeywordContext *context) override { _log << "entered out keyword" << endl; }
-        void exitOutKeyword(YWParser::OutKeywordContext *context) override { _log << "exited out keyword" << endl; }
-        void enterParamKeyword(YWParser::ParamKeywordContext *context) override { _log << "entered param keyword" << endl; }
-        void exitParamKeyword(YWParser::ParamKeywordContext *context) override { _log << "exited param keyword" << endl; }
-        void enterReturnKeyword(YWParser::ReturnKeywordContext *context) override { _log << "entered return keyword" << endl; }
-        void exitReturnKeyword(YWParser::ReturnKeywordContext *context) override { _log << "exited return keyword" << endl; }
-        void enterUriKeyword(YWParser::UriKeywordContext *context) override { _log << "entered uri keyword" << endl; }
-        void exitUriKeyword(YWParser::UriKeywordContext *context) override { _log << "exited uri keyword" << endl; }
-
         void enterBlockName(YWParser::BlockNameContext *context) override { _log << "entered block name" << endl; }
         void exitBlockName(YWParser::BlockNameContext *context) override { _log << "exited block name" << endl; }
         void enterPortName(YWParser::PortNameContext *context) override { _log << "entered port name" << endl; }
@@ -114,14 +91,10 @@ namespace yw_parse_tests
                 "entered script"        "\n"
                 "entered block"         "\n"
                 "entered begin tag"     "\n"
-                "entered begin keyword"  "\n"
-                "exited begin keyword"  "\n"
                 "entered block name"    "\n"
                 "exited block name"     "\n"
                 "exited begin tag"      "\n"
                 "entered end tag"       "\n"
-                "entered end keyword"   "\n"
-                "exited end keyword"    "\n"
                 "entered block name"    "\n"
                 "exited block name"     "\n"
                 "exited end tag"        "\n"
@@ -139,14 +112,10 @@ namespace yw_parse_tests
                 "entered script"        "\n"
                 "entered block"         "\n"
                 "entered begin tag"     "\n"
-                "entered begin keyword"  "\n"
-                "exited begin keyword"  "\n"
                 "entered block name"    "\n"
                 "exited block name"     "\n"
                 "exited begin tag"      "\n"
                 "entered end tag"       "\n"
-                "entered end keyword"   "\n"
-                "exited end keyword"    "\n"
                 "exited end tag"        "\n"
                 "exited block"          "\n"
                 "exited script"         "\n"
@@ -162,22 +131,16 @@ namespace yw_parse_tests
                 "entered script"            "\n"
                 "entered block"             "\n"
                 "entered begin tag"         "\n"
-                "entered begin keyword"     "\n"
-                "exited begin keyword"      "\n"
                 "entered block name"        "\n"
                 "exited block name"         "\n"
                 "exited begin tag"          "\n"
                 "entered block attribute"   "\n"
                 "entered desc tag"          "\n"
-                "entered desc keyword"      "\n"
-                "exited desc keyword"       "\n"
                 "entered description"       "\n"
                 "exited description"        "\n"
                 "exited desc tag"           "\n"
                 "exited block attribute"    "\n"
                 "entered end tag"           "\n"
-                "entered end keyword"       "\n"
-                "exited end keyword"        "\n"
                 "exited end tag"            "\n"
                 "exited block"              "\n"
                 "exited script"             "\n"
@@ -192,24 +155,18 @@ namespace yw_parse_tests
             Assert::AreEqual(std::string(
                 "entered block"                 "\n"
                 "entered begin tag"             "\n"
-                "entered begin keyword"         "\n"
-                "exited begin keyword"          "\n"
                 "entered block name"            "\n"
                 "exited block name"             "\n"
                 "exited begin tag"              "\n"
                 "entered block attribute"       "\n"
                 "entered port tag"              "\n"
                 "entered input port keyword"    "\n"
-                "entered in keyword"            "\n"
-                "exited in keyword"             "\n"
                 "exited input port keyword"     "\n"
                 "entered port name"             "\n"
                 "exited port name"              "\n"
                 "exited port tag"               "\n"
                 "exited block attribute"        "\n"
                 "entered end tag"               "\n"
-                "entered end keyword"           "\n"
-                "exited end keyword"            "\n"
                 "exited end tag"                "\n"
                 "exited block"                  "\n"
             ), listener.log());
@@ -223,24 +180,18 @@ namespace yw_parse_tests
             Assert::AreEqual(std::string(
                 "entered block"                 "\n"
                 "entered begin tag"             "\n"
-                "entered begin keyword"         "\n"
-                "exited begin keyword"          "\n"
                 "entered block name"            "\n"
                 "exited block name"             "\n"
                 "exited begin tag"              "\n"
                 "entered block attribute"       "\n"
                 "entered port tag"              "\n"
                 "entered output port keyword"   "\n"
-                "entered out keyword"           "\n"
-                "exited out keyword"            "\n"
                 "exited output port keyword"    "\n"
                 "entered port name"             "\n"
                 "exited port name"              "\n"
                 "exited port tag"               "\n"
                 "exited block attribute"        "\n"
                 "entered end tag"               "\n"
-                "entered end keyword"           "\n"
-                "exited end keyword"            "\n"
                 "exited end tag"                "\n"
                 "exited block"                  "\n"
             ), listener.log());
@@ -255,8 +206,6 @@ namespace yw_parse_tests
                 "entered block attribute"       "\n"
                 "entered port tag"              "\n"
                 "entered input port keyword"    "\n"
-                "entered in keyword"            "\n"
-                "exited in keyword"             "\n"
                 "exited input port keyword"     "\n"
                 "entered port name"             "\n"
                 "exited port name"              "\n"
@@ -275,15 +224,11 @@ namespace yw_parse_tests
                 "entered block attribute"       "\n"
                 "entered port tag"              "\n"
                 "entered input port keyword"    "\n"
-                "entered in keyword"            "\n"
-                "exited in keyword"             "\n"
                 "exited input port keyword"     "\n"
                 "entered port name"             "\n"
                 "exited port name"              "\n"
                 "entered port attribute"        "\n"
                 "entered desc tag"              "\n"
-                "entered desc keyword"          "\n"
-                "exited desc keyword"           "\n"
                 "entered description"           "\n"
                 "exited description"            "\n"
                 "exited desc tag"               "\n"
@@ -302,8 +247,6 @@ namespace yw_parse_tests
                 "entered block attribute"       "\n"
                 "entered port tag"              "\n"
                 "entered input port keyword"    "\n"
-                "entered param keyword"         "\n"
-                "exited param keyword"          "\n"
                 "exited input port keyword"     "\n"
                 "entered port name"             "\n"
                 "exited port name"              "\n"
@@ -321,8 +264,6 @@ namespace yw_parse_tests
                 "entered block attribute"       "\n"
                 "entered port tag"              "\n"
                 "entered output port keyword"   "\n"
-                "entered out keyword"           "\n"
-                "exited out keyword"            "\n"
                 "exited output port keyword"     "\n"
                 "entered port name"             "\n"
                 "exited port name"              "\n"
@@ -340,8 +281,6 @@ namespace yw_parse_tests
                 "entered block attribute"       "\n"
                 "entered port tag"              "\n"
                 "entered output port keyword"   "\n"
-                "entered return keyword"        "\n"
-                "exited return keyword"         "\n"
                 "exited output port keyword"    "\n"
                 "entered port name"             "\n"
                 "exited port name"              "\n"
@@ -360,8 +299,6 @@ namespace yw_parse_tests
                 "entered block attribute"       "\n"
                 "entered port tag"              "\n"
                 "entered input port keyword"    "\n"
-                "entered in keyword"            "\n"
-                "exited in keyword"             "\n"
                 "exited input port keyword"     "\n"
                 "entered port name"             "\n"
                 "exited port name"              "\n"
@@ -381,15 +318,11 @@ namespace yw_parse_tests
                 "entered block attribute"       "\n"
                 "entered port tag"              "\n"
                 "entered input port keyword"    "\n"
-                "entered in keyword"            "\n"
-                "exited in keyword"             "\n"
                 "exited input port keyword"     "\n"
                 "entered port name"             "\n"
                 "exited port name"              "\n"
                 "entered port attribute"        "\n"
                 "entered alias tag"             "\n"
-                "entered as keyword"            "\n"
-                "exited as keyword"             "\n"
                 "entered data name"             "\n"
                 "exited data name"              "\n"
                 "exited alias tag"              "\n"	
@@ -408,15 +341,11 @@ namespace yw_parse_tests
                 "entered block attribute"       "\n"
                 "entered port tag"              "\n"
                 "entered input port keyword"    "\n"
-                "entered in keyword"            "\n"
-                "exited in keyword"             "\n"
                 "exited input port keyword"     "\n"
                 "entered port name"             "\n"
                 "exited port name"              "\n"
                 "entered port attribute"        "\n"
                 "entered alias tag"             "\n"
-                "entered as keyword"            "\n"
-                "exited as keyword"             "\n"
                 "entered data name"             "\n"
                 "exited data name"              "\n"
                 "exited alias tag"              "\n"

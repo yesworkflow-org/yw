@@ -20,7 +20,7 @@ static void AreEqual(const char* expected, std::string actual, bool ignoreCase =
 
 namespace yw_parse_tests
 {
-    TEST_CLASS(ParserContextTests)
+    TEST_CLASS(BlockContextTests)
     {
         stringstream* textStream;
         antlr4::ANTLRInputStream* input;
@@ -37,20 +37,40 @@ namespace yw_parse_tests
 
     public:
 
-        TEST_METHOD(TestBlockContext_Begin_End_WithFinalBlockName)
+        TEST_METHOD(TestBlockContext_Begin_End)
         {
             YWParser* parser = parse("@begin b @end b");
             YWParser::BlockContext* context = parser->block();
 
             AreEqual("@begin b @end b", context->getText());
-            AreEqual("@begin",          context->beginTag()->beginKeyword()->getText());
-            AreEqual("b",               context->beginTag()->blockName()->getText());
-            AreEqual("@end",            context->endTag()->endKeyword()->getText());
-            AreEqual("b",               context->endTag()->blockName()->getText());
+            AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
+            AreEqual("@end", context->endTag()->EndKeyword()->getText());
+            AreEqual("b", context->endTag()->blockName()->getText());
+            AreEqual("b", context->beginTag()->blockName()->getText());
 
             Assert::AreEqual((size_t)0, context->blockAttribute().size());
             Assert::AreEqual((size_t)0, context->block().size());
+        }
 
+        TEST_METHOD(TestBlockContext_Begin_End_TagsOnDifferentLines)
+        {
+            YWParser* parser = parse(
+                "@begin b"  "\n"
+                "@end b"    "\n"
+            );
+            YWParser::BlockContext* context = parser->block();
+
+            AreEqual(
+                "@begin b"  "\n"
+                "@end b"
+                , context->getText());
+            AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
+            AreEqual("b", context->beginTag()->blockName()->getText());
+            AreEqual("@end", context->endTag()->EndKeyword()->getText());
+            AreEqual("b", context->endTag()->blockName()->getText());
+
+            Assert::AreEqual((size_t)0, context->blockAttribute().size());
+            Assert::AreEqual((size_t)0, context->block().size());
         }
 
         TEST_METHOD(TestBlockContext_Begin_End_WithNoFinalBlockName)
@@ -59,11 +79,11 @@ namespace yw_parse_tests
             YWParser::BlockContext* context = parser->block();
 
             AreEqual("@begin b @end", context->getText());
-            AreEqual("@begin", context->beginTag()->beginKeyword()->getText());
+            AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
             AreEqual("b", context->beginTag()->blockName()->getText());
             Assert::AreEqual((size_t)0, context->blockAttribute().size());
             Assert::AreEqual((size_t)0, context->block().size());
-            AreEqual("@end", context->endTag()->endKeyword()->getText());
+            AreEqual("@end", context->endTag()->EndKeyword()->getText());
             Assert::IsNull(context->endTag()->blockName());
         }
 
@@ -73,17 +93,14 @@ namespace yw_parse_tests
             YWParser::BlockContext* context = parser->block();
 
             AreEqual("@begin b @desc one_token_description @end", context->getText());
-            AreEqual("@begin", context->beginTag()->beginKeyword()->getText());
+            AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
             AreEqual("b", context->beginTag()->blockName()->getText());
             Assert::AreEqual((size_t)1, context->blockAttribute().size());
-            AreEqual("@desc", context->blockAttribute()[0]->descTag()->descKeyword()->getText());
+            AreEqual("@desc", context->blockAttribute()[0]->descTag()->DescKeyword()->getText());
             AreEqual("one_token_description", context->blockAttribute()[0]->descTag()->description()->getText());
-            AreEqual("@end", context->endTag()->endKeyword()->getText());
+            AreEqual("@end", context->endTag()->EndKeyword()->getText());
             Assert::AreEqual((size_t)0, context->block().size());
             Assert::IsNull(context->endTag()->blockName());
         }
-
-
-
     };
 }

@@ -59,39 +59,6 @@ public:
   virtual void enterOutputPortKeyword(YWParser::OutputPortKeywordContext *ctx) = 0;
   virtual void exitOutputPortKeyword(YWParser::OutputPortKeywordContext *ctx) = 0;
 
-  virtual void enterAsKeyword(YWParser::AsKeywordContext *ctx) = 0;
-  virtual void exitAsKeyword(YWParser::AsKeywordContext *ctx) = 0;
-
-  virtual void enterBeginKeyword(YWParser::BeginKeywordContext *ctx) = 0;
-  virtual void exitBeginKeyword(YWParser::BeginKeywordContext *ctx) = 0;
-
-  virtual void enterCallKeyword(YWParser::CallKeywordContext *ctx) = 0;
-  virtual void exitCallKeyword(YWParser::CallKeywordContext *ctx) = 0;
-
-  virtual void enterDescKeyword(YWParser::DescKeywordContext *ctx) = 0;
-  virtual void exitDescKeyword(YWParser::DescKeywordContext *ctx) = 0;
-
-  virtual void enterEndKeyword(YWParser::EndKeywordContext *ctx) = 0;
-  virtual void exitEndKeyword(YWParser::EndKeywordContext *ctx) = 0;
-
-  virtual void enterFileKeyword(YWParser::FileKeywordContext *ctx) = 0;
-  virtual void exitFileKeyword(YWParser::FileKeywordContext *ctx) = 0;
-
-  virtual void enterInKeyword(YWParser::InKeywordContext *ctx) = 0;
-  virtual void exitInKeyword(YWParser::InKeywordContext *ctx) = 0;
-
-  virtual void enterOutKeyword(YWParser::OutKeywordContext *ctx) = 0;
-  virtual void exitOutKeyword(YWParser::OutKeywordContext *ctx) = 0;
-
-  virtual void enterParamKeyword(YWParser::ParamKeywordContext *ctx) = 0;
-  virtual void exitParamKeyword(YWParser::ParamKeywordContext *ctx) = 0;
-
-  virtual void enterReturnKeyword(YWParser::ReturnKeywordContext *ctx) = 0;
-  virtual void exitReturnKeyword(YWParser::ReturnKeywordContext *ctx) = 0;
-
-  virtual void enterUriKeyword(YWParser::UriKeywordContext *ctx) = 0;
-  virtual void exitUriKeyword(YWParser::UriKeywordContext *ctx) = 0;
-
   virtual void enterBlockName(YWParser::BlockNameContext *ctx) = 0;
   virtual void exitBlockName(YWParser::BlockNameContext *ctx) = 0;
 
@@ -109,6 +76,9 @@ public:
 
   virtual void enterDescription(YWParser::DescriptionContext *ctx) = 0;
   virtual void exitDescription(YWParser::DescriptionContext *ctx) = 0;
+
+  virtual void enterPhrase(YWParser::PhraseContext *ctx) = 0;
+  virtual void exitPhrase(YWParser::PhraseContext *ctx) = 0;
 
 
 };
