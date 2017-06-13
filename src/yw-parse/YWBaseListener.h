@@ -25,35 +25,41 @@ public:
   virtual void enterBlockAttribute(YWParser::BlockAttributeContext * /*ctx*/) override { }
   virtual void exitBlockAttribute(YWParser::BlockAttributeContext * /*ctx*/) override { }
 
-  virtual void enterDescription(YWParser::DescriptionContext * /*ctx*/) override { }
-  virtual void exitDescription(YWParser::DescriptionContext * /*ctx*/) override { }
+  virtual void enterPortAttribute(YWParser::PortAttributeContext * /*ctx*/) override { }
+  virtual void exitPortAttribute(YWParser::PortAttributeContext * /*ctx*/) override { }
 
-  virtual void enterPort(YWParser::PortContext * /*ctx*/) override { }
-  virtual void exitPort(YWParser::PortContext * /*ctx*/) override { }
+  virtual void enterBeginTag(YWParser::BeginTagContext * /*ctx*/) override { }
+  virtual void exitBeginTag(YWParser::BeginTagContext * /*ctx*/) override { }
 
-  virtual void enterCall(YWParser::CallContext * /*ctx*/) override { }
-  virtual void exitCall(YWParser::CallContext * /*ctx*/) override { }
+  virtual void enterEndTag(YWParser::EndTagContext * /*ctx*/) override { }
+  virtual void exitEndTag(YWParser::EndTagContext * /*ctx*/) override { }
+
+  virtual void enterDescTag(YWParser::DescTagContext * /*ctx*/) override { }
+  virtual void exitDescTag(YWParser::DescTagContext * /*ctx*/) override { }
+
+  virtual void enterPortTag(YWParser::PortTagContext * /*ctx*/) override { }
+  virtual void exitPortTag(YWParser::PortTagContext * /*ctx*/) override { }
+
+  virtual void enterAliasTag(YWParser::AliasTagContext * /*ctx*/) override { }
+  virtual void exitAliasTag(YWParser::AliasTagContext * /*ctx*/) override { }
+
+  virtual void enterCallTag(YWParser::CallTagContext * /*ctx*/) override { }
+  virtual void exitCallTag(YWParser::CallTagContext * /*ctx*/) override { }
+
+  virtual void enterUriTag(YWParser::UriTagContext * /*ctx*/) override { }
+  virtual void exitUriTag(YWParser::UriTagContext * /*ctx*/) override { }
+
+  virtual void enterFileTag(YWParser::FileTagContext * /*ctx*/) override { }
+  virtual void exitFileTag(YWParser::FileTagContext * /*ctx*/) override { }
+
+  virtual void enterResourceTag(YWParser::ResourceTagContext * /*ctx*/) override { }
+  virtual void exitResourceTag(YWParser::ResourceTagContext * /*ctx*/) override { }
 
   virtual void enterInputPortKeyword(YWParser::InputPortKeywordContext * /*ctx*/) override { }
   virtual void exitInputPortKeyword(YWParser::InputPortKeywordContext * /*ctx*/) override { }
 
   virtual void enterOutputPortKeyword(YWParser::OutputPortKeywordContext * /*ctx*/) override { }
   virtual void exitOutputPortKeyword(YWParser::OutputPortKeywordContext * /*ctx*/) override { }
-
-  virtual void enterPortAttribute(YWParser::PortAttributeContext * /*ctx*/) override { }
-  virtual void exitPortAttribute(YWParser::PortAttributeContext * /*ctx*/) override { }
-
-  virtual void enterPortAlias(YWParser::PortAliasContext * /*ctx*/) override { }
-  virtual void exitPortAlias(YWParser::PortAliasContext * /*ctx*/) override { }
-
-  virtual void enterResourceDecl(YWParser::ResourceDeclContext * /*ctx*/) override { }
-  virtual void exitResourceDecl(YWParser::ResourceDeclContext * /*ctx*/) override { }
-
-  virtual void enterUriDecl(YWParser::UriDeclContext * /*ctx*/) override { }
-  virtual void exitUriDecl(YWParser::UriDeclContext * /*ctx*/) override { }
-
-  virtual void enterFileDecl(YWParser::FileDeclContext * /*ctx*/) override { }
-  virtual void exitFileDecl(YWParser::FileDeclContext * /*ctx*/) override { }
 
   virtual void enterAsKeyword(YWParser::AsKeywordContext * /*ctx*/) override { }
   virtual void exitAsKeyword(YWParser::AsKeywordContext * /*ctx*/) override { }
@@ -63,6 +69,9 @@ public:
 
   virtual void enterCallKeyword(YWParser::CallKeywordContext * /*ctx*/) override { }
   virtual void exitCallKeyword(YWParser::CallKeywordContext * /*ctx*/) override { }
+
+  virtual void enterDescKeyword(YWParser::DescKeywordContext * /*ctx*/) override { }
+  virtual void exitDescKeyword(YWParser::DescKeywordContext * /*ctx*/) override { }
 
   virtual void enterEndKeyword(YWParser::EndKeywordContext * /*ctx*/) override { }
   virtual void exitEndKeyword(YWParser::EndKeywordContext * /*ctx*/) override { }
@@ -85,9 +94,6 @@ public:
   virtual void enterUriKeyword(YWParser::UriKeywordContext * /*ctx*/) override { }
   virtual void exitUriKeyword(YWParser::UriKeywordContext * /*ctx*/) override { }
 
-  virtual void enterDescKeyword(YWParser::DescKeywordContext * /*ctx*/) override { }
-  virtual void exitDescKeyword(YWParser::DescKeywordContext * /*ctx*/) override { }
-
   virtual void enterBlockName(YWParser::BlockNameContext * /*ctx*/) override { }
   virtual void exitBlockName(YWParser::BlockNameContext * /*ctx*/) override { }
 
@@ -103,8 +109,8 @@ public:
   virtual void enterScheme(YWParser::SchemeContext * /*ctx*/) override { }
   virtual void exitScheme(YWParser::SchemeContext * /*ctx*/) override { }
 
-  virtual void enterText(YWParser::TextContext * /*ctx*/) override { }
-  virtual void exitText(YWParser::TextContext * /*ctx*/) override { }
+  virtual void enterDescription(YWParser::DescriptionContext * /*ctx*/) override { }
+  virtual void exitDescription(YWParser::DescriptionContext * /*ctx*/) override { }
 
 
   virtual void enterEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }
