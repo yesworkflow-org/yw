@@ -21,12 +21,12 @@ outputPortKeyword   : OutKeyword | ReturnKeyword ;
 
 // YW keyword arguments
 blockName       : phrase ;
-portName        : ID ;
-dataName        : ID ;
+portName        : Word ;
+dataName        : Word ;
 uriTemplate     : ((scheme) ':')? PathTemplate ;
 scheme          : 'file' | 'http' ; 
 description     : phrase;
-phrase          : ID (HS+ ID)* ;
+phrase          : Word (HS+ Word)* ;
 
 // YW keywords
 AsKeyword       : '@as' ;
@@ -45,7 +45,7 @@ VS              : (HS)* NL (HS)* ;
 HS              : [ \t] ;
 NL              : '\r'? '\n' ;
 
-ID              : [a-zA-Z0-9\\_]+ ;
-PathTemplate    : ID ;
+Word            : [a-zA-Z0-9\\_]+ ;
+PathTemplate    : Word ;
 WS              : [ \t\r\n] ;
 SP              : ' ' | '\t' ;

@@ -15,7 +15,7 @@ public:
     T__0 = 1, T__1 = 2, T__2 = 3, AsKeyword = 4, BeginKeyword = 5, CallKeyword = 6, 
     DescKeyword = 7, EndKeyword = 8, FileKeyword = 9, InKeyword = 10, OutKeyword = 11, 
     ParamKeyword = 12, ReturnKeyword = 13, UriKeyword = 14, VS = 15, HS = 16, 
-    NL = 17, ID = 18, PathTemplate = 19, WS = 20, SP = 21
+    NL = 17, Word = 18, PathTemplate = 19, WS = 20, SP = 21
   };
 
   enum {
@@ -316,7 +316,7 @@ public:
   public:
     PortNameContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *ID();
+    antlr4::tree::TerminalNode *Word();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -329,7 +329,7 @@ public:
   public:
     DataNameContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *ID();
+    antlr4::tree::TerminalNode *Word();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -381,8 +381,8 @@ public:
   public:
     PhraseContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<antlr4::tree::TerminalNode *> ID();
-    antlr4::tree::TerminalNode* ID(size_t i);
+    std::vector<antlr4::tree::TerminalNode *> Word();
+    antlr4::tree::TerminalNode* Word(size_t i);
     std::vector<antlr4::tree::TerminalNode *> HS();
     antlr4::tree::TerminalNode* HS(size_t i);
 

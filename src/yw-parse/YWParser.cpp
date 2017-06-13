@@ -539,7 +539,7 @@ YWParser::EndTagContext* YWParser::endTag() {
     _errHandler->sync(this);
 
     _la = _input->LA(1);
-    if (_la == YWParser::ID) {
+    if (_la == YWParser::Word) {
       setState(107);
       blockName();
     }
@@ -932,7 +932,7 @@ YWParser::CallTagContext* YWParser::callTag() {
       setState(162); 
       _errHandler->sync(this);
       _la = _input->LA(1);
-    } while (_la == YWParser::ID);
+    } while (_la == YWParser::Word);
    
   }
   catch (RecognitionException &e) {
@@ -1343,8 +1343,8 @@ YWParser::PortNameContext::PortNameContext(ParserRuleContext *parent, size_t inv
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* YWParser::PortNameContext::ID() {
-  return getToken(YWParser::ID, 0);
+tree::TerminalNode* YWParser::PortNameContext::Word() {
+  return getToken(YWParser::Word, 0);
 }
 
 
@@ -1374,7 +1374,7 @@ YWParser::PortNameContext* YWParser::portName() {
   try {
     enterOuterAlt(_localctx, 1);
     setState(190);
-    match(YWParser::ID);
+    match(YWParser::Word);
    
   }
   catch (RecognitionException &e) {
@@ -1392,8 +1392,8 @@ YWParser::DataNameContext::DataNameContext(ParserRuleContext *parent, size_t inv
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* YWParser::DataNameContext::ID() {
-  return getToken(YWParser::ID, 0);
+tree::TerminalNode* YWParser::DataNameContext::Word() {
+  return getToken(YWParser::Word, 0);
 }
 
 
@@ -1423,7 +1423,7 @@ YWParser::DataNameContext* YWParser::dataName() {
   try {
     enterOuterAlt(_localctx, 1);
     setState(192);
-    match(YWParser::ID);
+    match(YWParser::Word);
    
   }
   catch (RecognitionException &e) {
@@ -1611,12 +1611,12 @@ YWParser::PhraseContext::PhraseContext(ParserRuleContext *parent, size_t invokin
   : ParserRuleContext(parent, invokingState) {
 }
 
-std::vector<tree::TerminalNode *> YWParser::PhraseContext::ID() {
-  return getTokens(YWParser::ID);
+std::vector<tree::TerminalNode *> YWParser::PhraseContext::Word() {
+  return getTokens(YWParser::Word);
 }
 
-tree::TerminalNode* YWParser::PhraseContext::ID(size_t i) {
-  return getToken(YWParser::ID, i);
+tree::TerminalNode* YWParser::PhraseContext::Word(size_t i) {
+  return getToken(YWParser::Word, i);
 }
 
 std::vector<tree::TerminalNode *> YWParser::PhraseContext::HS() {
@@ -1656,7 +1656,7 @@ YWParser::PhraseContext* YWParser::phrase() {
     size_t alt;
     enterOuterAlt(_localctx, 1);
     setState(205);
-    match(YWParser::ID);
+    match(YWParser::Word);
     setState(214);
     _errHandler->sync(this);
     alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 26, _ctx);
@@ -1673,7 +1673,7 @@ YWParser::PhraseContext* YWParser::phrase() {
           _la = _input->LA(1);
         } while (_la == YWParser::HS);
         setState(211);
-        match(YWParser::ID); 
+        match(YWParser::Word); 
       }
       setState(216);
       _errHandler->sync(this);
@@ -1713,7 +1713,7 @@ std::vector<std::string> YWParser::_literalNames = {
 std::vector<std::string> YWParser::_symbolicNames = {
   "", "", "", "", "AsKeyword", "BeginKeyword", "CallKeyword", "DescKeyword", 
   "EndKeyword", "FileKeyword", "InKeyword", "OutKeyword", "ParamKeyword", 
-  "ReturnKeyword", "UriKeyword", "VS", "HS", "NL", "ID", "PathTemplate", 
+  "ReturnKeyword", "UriKeyword", "VS", "HS", "NL", "Word", "PathTemplate", 
   "WS", "SP"
 };
 
