@@ -27,6 +27,7 @@
     <None Include="..\..\src\yw-parse\YWLexer.tokens">
       <Filter>Source Files</Filter>
     </None>
+    <None Include="..\..\src\yw-parse\.gitignore" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\yw-parse\YWBaseListener.cpp">
