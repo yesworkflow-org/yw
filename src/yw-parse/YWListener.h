@@ -80,6 +80,12 @@ public:
   virtual void enterPhrase(YWParser::PhraseContext *ctx) = 0;
   virtual void exitPhrase(YWParser::PhraseContext *ctx) = 0;
 
+  virtual void enterPathTemplate(YWParser::PathTemplateContext *ctx) = 0;
+  virtual void exitPathTemplate(YWParser::PathTemplateContext *ctx) = 0;
+
+  virtual void enterWs(YWParser::WsContext *ctx) = 0;
+  virtual void exitWs(YWParser::WsContext *ctx) = 0;
+
 
 };
 

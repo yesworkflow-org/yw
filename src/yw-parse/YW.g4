@@ -2,7 +2,7 @@ grammar YW ;
 
 // YW annotation compositions
 script              : (block)* ;
-block               : beginTag (WS)* (blockAttribute)* (WS)* (block)* (WS)* endTag ;
+block               : (ws)* beginTag (ws)* (blockAttribute)* (ws)* (block)* (ws)* endTag (ws)*;
 blockAttribute      : descTag | portTag | callTag;
 portAttribute       : descTag | aliasTag | resourceTag ;
 
@@ -13,7 +13,7 @@ portTag             : (inputPortKeyword | outputPortKeyword) ((HS)+ portName ((H
 aliasTag            : AsKeyword (HS)+ dataName ;
 callTag             : CallKeyword (HS)+ (blockName)+ ;
 uriTag              : UriKeyword (HS)+ uriTemplate;
-fileTag             : FileKeyword (HS)+ PathTemplate ;
+fileTag             : FileKeyword (HS)+ pathTemplate ;
 resourceTag         : uriTag | fileTag ;
 
 inputPortKeyword    : InKeyword | ParamKeyword ;
@@ -23,10 +23,11 @@ outputPortKeyword   : OutKeyword | ReturnKeyword ;
 blockName       : phrase ;
 portName        : Word ;
 dataName        : Word ;
-uriTemplate     : ((scheme) ':')? PathTemplate ;
+uriTemplate     : ((scheme) ':')? pathTemplate ;
 scheme          : 'file' | 'http' ; 
 description     : phrase;
 phrase          : Word (HS+ Word)* ;
+pathTemplate    : Word ;
 
 // YW keywords
 AsKeyword       : '@as' ;
@@ -41,11 +42,10 @@ ParamKeyword    : '@param' ;
 ReturnKeyword   : '@return' ;
 UriKeyword      : '@uri' ;
 
+ws              : (HS)+ (NL)* (HS)* | (NL)+ (HS)* ;
+
 VS              : (HS)* NL (HS)* ;
 HS              : [ \t] ;
 NL              : '\r'? '\n' ;
-
 Word            : [a-zA-Z0-9\\_]+ ;
-PathTemplate    : Word ;
-WS              : [ \t\r\n] ;
-SP              : ' ' | '\t' ;
+

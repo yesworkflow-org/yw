@@ -13,7 +13,8 @@ using std::stringstream;
 using std::endl;
 
 
-static void AreEqual(const char* expected, std::string actual, bool ignoreCase = false, const wchar_t* message = NULL, const __LineInfo* pLineInfo = NULL)
+static void AreEqual(const char* expected, std::string actual, bool ignoreCase = false, 
+    const wchar_t* message = NULL, const __LineInfo* pLineInfo = NULL)
 {
     Assert::AreEqual(expected, actual.c_str(), ignoreCase, message, pLineInfo);
 }

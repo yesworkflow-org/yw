@@ -87,20 +87,37 @@ namespace yw_parse_tests
             Assert::IsNull(context->endTag()->blockName());
         }
 
-        TEST_METHOD(TestBlockContext_Begin_Desc_End)
+        TEST_METHOD(TestBlockContext_Begin_Desc_End_OneWordDescription)
         {
-            YWParser* parser = parse("@begin b @desc one_token_description @end");
+            YWParser* parser = parse("@begin b @desc word @end");
             YWParser::BlockContext* context = parser->block();
 
-            AreEqual("@begin b @desc one_token_description @end", context->getText());
+            AreEqual("@begin b @desc word @end", context->getText());
             AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
             AreEqual("b", context->beginTag()->blockName()->getText());
             Assert::AreEqual((size_t)1, context->blockAttribute().size());
             AreEqual("@desc", context->blockAttribute()[0]->descTag()->DescKeyword()->getText());
-            AreEqual("one_token_description", context->blockAttribute()[0]->descTag()->description()->getText());
+            AreEqual("word", context->blockAttribute()[0]->descTag()->description()->getText());
             AreEqual("@end", context->endTag()->EndKeyword()->getText());
             Assert::AreEqual((size_t)0, context->block().size());
             Assert::IsNull(context->endTag()->blockName());
         }
+
+        TEST_METHOD(TestBlockContext_Begin_Desc_End_MultipleWordDescription)
+        {
+            YWParser* parser = parse("@begin b\n@desc a multiple word description @end");
+            YWParser::BlockContext* context = parser->block();
+
+            AreEqual("@begin b\n@desc a multiple word description @end", context->getText());
+            AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
+            AreEqual("b", context->beginTag()->blockName()->getText());
+            Assert::AreEqual((size_t)1, context->blockAttribute().size());
+            AreEqual("@desc", context->blockAttribute()[0]->descTag()->DescKeyword()->getText());
+            AreEqual("a multiple word description", context->blockAttribute()[0]->descTag()->description()->getText());
+            AreEqual("@end", context->endTag()->EndKeyword()->getText());
+            Assert::AreEqual((size_t)0, context->block().size());
+            Assert::IsNull(context->endTag()->blockName());
+        }
+
     };
 }

@@ -82,6 +82,12 @@ public:
   virtual void enterPhrase(YWParser::PhraseContext * /*ctx*/) override { }
   virtual void exitPhrase(YWParser::PhraseContext * /*ctx*/) override { }
 
+  virtual void enterPathTemplate(YWParser::PathTemplateContext * /*ctx*/) override { }
+  virtual void exitPathTemplate(YWParser::PathTemplateContext * /*ctx*/) override { }
+
+  virtual void enterWs(YWParser::WsContext * /*ctx*/) override { }
+  virtual void exitWs(YWParser::WsContext * /*ctx*/) override { }
+
 
   virtual void enterEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }
   virtual void exitEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }
