@@ -6,7 +6,7 @@
 #include "YWParser.h"
 #include "YWBaseListener.h"
 #include "listener_for_tests.h"
-#include "ParserBuilder.h"
+#include "yw_parser_builder.h"
 #include "test_helpers.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -23,7 +23,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestListenerEventSequence_Begin_End_WithFinalBlockName)
         {
-            ParserBuilder parserBuilder("@begin b @end b");
+            YWParserBuilder parserBuilder("@begin b @end b");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parserBuilder.parser()->script());
 
             Assert::AreEqual(std::string(
@@ -44,7 +44,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestListenerEventSequence_Begin_End_NoFinalBlockName)
         {
-            ParserBuilder parserBuilder("@begin b @end");
+            YWParserBuilder parserBuilder("@begin b @end");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parserBuilder.parser()->script());
 
             Assert::AreEqual(std::string(
@@ -63,7 +63,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestListenerEventSequence_Begin_Desc_End)
         {
-            ParserBuilder parserBuilder("@begin b @desc a simple block @end");
+            YWParserBuilder parserBuilder("@begin b @desc a simple block @end");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parserBuilder.parser()->script());
 
             Assert::AreEqual(std::string(
@@ -88,7 +88,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestListenerEventSequence_Begin_In_End)
         {
-            ParserBuilder parserBuilder("@begin b @in p @end");
+            YWParserBuilder parserBuilder("@begin b @in p @end");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parserBuilder.parser()->block());
 
             Assert::AreEqual(std::string(
@@ -113,7 +113,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestListenerEventSequence_Begin_Out_End)
         {
-            ParserBuilder parserBuilder("@begin b @out p @end");
+            YWParserBuilder parserBuilder("@begin b @out p @end");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parserBuilder.parser()->block());
 
             Assert::AreEqual(std::string(
@@ -138,7 +138,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestListenerEventSequence_In)
         {
-            ParserBuilder parserBuilder("@in p");
+            YWParserBuilder parserBuilder("@in p");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parserBuilder.parser()->blockAttribute());
 
             Assert::AreEqual(std::string(
@@ -156,7 +156,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestListenerEventSequence_In_Desc)
         {
-            ParserBuilder parserBuilder("@in p @desc a single input port");
+            YWParserBuilder parserBuilder("@in p @desc a single input port");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parserBuilder.parser()->blockAttribute());
 
             Assert::AreEqual(std::string(
@@ -179,7 +179,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestListenerEventSequence_Param)
         {
-            ParserBuilder parserBuilder("@param p");
+            YWParserBuilder parserBuilder("@param p");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parserBuilder.parser()->blockAttribute());
 
             Assert::AreEqual(std::string(
@@ -196,7 +196,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestListenerEventSequence_Out)
         {
-            ParserBuilder parserBuilder("@out p");
+            YWParserBuilder parserBuilder("@out p");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parserBuilder.parser()->blockAttribute());
 
             Assert::AreEqual(std::string(
@@ -213,7 +213,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestListenerEventSequence_Return)
         {
-            ParserBuilder parserBuilder("@return p");
+            YWParserBuilder parserBuilder("@return p");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parserBuilder.parser()->blockAttribute());
 
             Assert::AreEqual(std::string(
@@ -231,7 +231,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestListenerEventSequence_In_WithTwoPortsNamed)
         {
-            ParserBuilder parserBuilder("@in p q");
+            YWParserBuilder parserBuilder("@in p q");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parserBuilder.parser()->blockAttribute());
 
             Assert::AreEqual(std::string(
@@ -250,7 +250,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestListenerEventSequence_In_WithAlias)
         {
-            ParserBuilder parserBuilder("@in p @as d");
+            YWParserBuilder parserBuilder("@in p @as d");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parserBuilder.parser()->blockAttribute());
 
             Assert::AreEqual(std::string(
@@ -273,7 +273,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestListenerEventSequence_In_WithTwoPortsNamed_OneWithAlias)
         {
-            ParserBuilder parserBuilder("@in p @as d q" );
+            YWParserBuilder parserBuilder("@in p @as d q" );
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parserBuilder.parser()->blockAttribute());
 
             Assert::AreEqual(std::string(

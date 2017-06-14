@@ -27,7 +27,7 @@
     <ClInclude Include="test_helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ParserBuilder.h">
+    <ClInclude Include="yw_parser_builder.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -47,7 +47,7 @@
     <ClCompile Include="desc_tag_context_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ParserBuilder.cpp">
+    <ClCompile Include="yw_parser_builder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -5,7 +5,7 @@
 
 namespace yw_parse_tests
 {
-    class ParserBuilder
+    class YWParserBuilder
     {
         std::stringstream* text_stream;
         antlr4::ANTLRInputStream* antlr_input_stream;
@@ -14,8 +14,8 @@ namespace yw_parse_tests
         YWParser* yw_parser;
 
     public:
-        ParserBuilder(const char * text);
-        ~ParserBuilder();
+        YWParserBuilder(const char * text);
+        ~YWParserBuilder();
         YWParser* parser() { return yw_parser; }
     };
 }

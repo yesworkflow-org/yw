@@ -5,7 +5,7 @@
 #include "YWListener.h"
 #include "YWParser.h"
 #include "YWBaseListener.h"
-#include "ParserBuilder.h"
+#include "yw_parser_builder.h"
 #include "test_helpers.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -20,7 +20,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockContext_Begin_End)
         {
-            ParserBuilder parserBuilder("@begin b @end b");
+            YWParserBuilder parserBuilder("@begin b @end b");
             YWParser::BlockContext* context = parserBuilder.parser()->block();
 
             YW::Assert::AreEqual("@begin b @end b", context->getText());
@@ -35,7 +35,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockContext_Begin_End_TagsOnDifferentLines)
         {
-            ParserBuilder parserBuilder(
+            YWParserBuilder parserBuilder(
                 "@begin b"  "\n"
                 "@end b"    "\n"
             );
@@ -56,7 +56,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockContext_Begin_End_WithNoFinalBlockName)
         {
-            ParserBuilder parserBuilder("@begin b @end");
+            YWParserBuilder parserBuilder("@begin b @end");
             YWParser::BlockContext* context = parserBuilder.parser()->block();
 
             YW::Assert::AreEqual("@begin b @end", context->getText());
@@ -70,7 +70,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockContext_Begin_Desc_End_OneWordDescription)
         {
-            ParserBuilder parserBuilder("@begin b @desc word @end");
+            YWParserBuilder parserBuilder("@begin b @desc word @end");
             YWParser::BlockContext* context = parserBuilder.parser()->block();
 
             YW::Assert::AreEqual("@begin b @desc word @end", context->getText());
@@ -86,7 +86,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockContext_Begin_Desc_End_MultipleWordDescriptionOnSameLine)
         {
-            ParserBuilder parserBuilder("@begin b @desc a multiple word description @end");
+            YWParserBuilder parserBuilder("@begin b @desc a multiple word description @end");
             YWParser::BlockContext* context = parserBuilder.parser()->block();
 
             YW::Assert::AreEqual("@begin b @desc a multiple word description @end", context->getText());
@@ -103,7 +103,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockContext_Begin_Desc_End_MultipleWordDescriptionOnNextLine)
         {
-            ParserBuilder parserBuilder("@begin b\n@desc a multiple word description @end");
+            YWParserBuilder parserBuilder("@begin b\n@desc a multiple word description @end");
             YWParser::BlockContext* context = parserBuilder.parser()->block();
 
             YW::Assert::AreEqual("@begin b\n@desc a multiple word description @end", context->getText());

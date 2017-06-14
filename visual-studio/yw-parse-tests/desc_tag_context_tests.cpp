@@ -5,7 +5,7 @@
 #include "YWListener.h"
 #include "YWParser.h"
 #include "YWBaseListener.h"
-#include "ParserBuilder.h"
+#include "yw_parser_builder.h"
 #include "test_helpers.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
@@ -20,28 +20,28 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestDescTagContext_NoDescription)
         {
-            ParserBuilder parserBuilder("@desc");
+            YWParserBuilder parserBuilder("@desc");
             YWParser::DescTagContext* context = parserBuilder.parser()->descTag();
             Assert::IsNull(context->description());
         }
 
         TEST_METHOD(TestDescTagContext_OneWordDescription)
         {
-            ParserBuilder parserBuilder("@desc word");
+            YWParserBuilder parserBuilder("@desc word");
             YWParser::DescTagContext* context = parserBuilder.parser()->descTag();
             YW::Assert::AreEqual("word", context->description()->getText());
         }
 
         TEST_METHOD(TestDescTagContext_MultiWordDescription)
         {
-            ParserBuilder parserBuilder("@desc a multiple word description");
+            YWParserBuilder parserBuilder("@desc a multiple word description");
             YWParser::DescTagContext* context = parserBuilder.parser()->descTag();
             YW::Assert::AreEqual("a multiple word description", context->description()->getText());
         }
 
         TEST_METHOD(TestDescTagContext_MultiWordDescription_IgnoresTextOnNextLine)
         {
-            ParserBuilder parserBuilder(
+            YWParserBuilder parserBuilder(
                 "@desc a multiple word description"  "\n"
                 "with more text on next line"        "\n" );
             YWParser::DescTagContext* context = parserBuilder.parser()->descTag();

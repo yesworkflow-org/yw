@@ -6,11 +6,11 @@
 #include "YWParser.h"
 #include "YWBaseListener.h"
 
-#include "ParserBuilder.h"
+#include "yw_parser_builder.h"
 
 namespace yw_parse_tests
 {
-    ParserBuilder::ParserBuilder(const char * text) {
+    YWParserBuilder::YWParserBuilder(const char * text) {
         text_stream = new std::stringstream(text);
         antlr_input_stream = new antlr4::ANTLRInputStream(*text_stream);
         yw_lexer = new YWLexer(antlr_input_stream);
@@ -18,7 +18,7 @@ namespace yw_parse_tests
         yw_parser = new YWParser(antlr_token_stream);
     }
 
-    ParserBuilder::~ParserBuilder() {
+    YWParserBuilder::~YWParserBuilder() {
         delete yw_parser;
         delete antlr_token_stream;
         delete yw_lexer;
