@@ -69,28 +69,27 @@ namespace yw_parse_tests
             ), listener.log());
         }
 
-        //TEST_METHOD(TestPortListener_In_As_MultiWordAlias)
-        //{
-        //    StubYWListener listener;
-        //    YWParserBuilder parser_builder("@in p @as first input port");
-        //    antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parser()->port());
+        TEST_METHOD(TestPortListener_In_As_MultiWordAlias)
+        {
+            StubYWListener listener;
+            YWParserBuilder parser_builder("@in p @as first input port");
+            antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parser()->port());
 
-        //    Assert::AreEqual(std::string(
-        //        "entered port"                  "\n"
-        //        "entered input port keyword"    "\n"
-        //        "exited input port keyword"     "\n"
-        //        "entered port name"             "\n"
-        //        "exited port name"              "\n"
-        //        "entered port attribute"        "\n"
-        //        "entered alias tag"             "\n"
-        //        "entered data name"             "\n"
-        //        "exited data name"              "\n"
-        //        "exited alias tag"              "\n"
-        //        "exited port attribute"         "\n"
-        //        "exited port"                   "\n"
-        //    ), listener.log());
-        //}
-
+            Assert::AreEqual(std::string(
+                "entered port"                  "\n"
+                "entered input port keyword"    "\n"
+                "exited input port keyword"     "\n"
+                "entered port name"             "\n"
+                "exited port name"              "\n"
+                "entered port attribute"        "\n"
+                "entered alias tag"             "\n"
+                "entered data name"             "\n"
+                "exited data name"              "\n"
+                "exited alias tag"              "\n"
+                "exited port attribute"         "\n"
+                "exited port"                   "\n"
+            ), listener.log());
+        }
 
         TEST_METHOD(TestPortListener_Param)
         {
@@ -162,7 +161,7 @@ namespace yw_parse_tests
         TEST_METHOD(TestPortListener_In_WithTwoPortsNamed_FirstWithOneWordAlias)
         {
             StubYWListener listener;
-            YWParserBuilder parser_builder("@in p @as d q");
+            YWParserBuilder parser_builder("@in p q @as d");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parser()->port());
 
             Assert::AreEqual(std::string(
@@ -171,14 +170,14 @@ namespace yw_parse_tests
                 "exited input port keyword"     "\n"
                 "entered port name"             "\n"
                 "exited port name"              "\n"
+                "entered port name"             "\n"
+                "exited port name"              "\n"
                 "entered port attribute"        "\n"
                 "entered alias tag"             "\n"
                 "entered data name"             "\n"
                 "exited data name"              "\n"
                 "exited alias tag"              "\n"
                 "exited port attribute"         "\n"
-                "entered port name"             "\n"
-                "exited port name"              "\n"
                 "exited port"                   "\n"
             ), listener.log());
         }

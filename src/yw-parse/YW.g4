@@ -4,7 +4,7 @@ grammar YW ;
 script              : (block)* ;
 block               : (ws)* beginTag (ws)* (blockAttribute)* (ws)* (block)* (ws)* endTag (ws)*;
 blockAttribute      : port | descTag | callTag;
-port                : (inputPortKeyword | outputPortKeyword) ((HS)+ portName ((HS)+ (portAttribute)*)?)+ ;
+port                : (inputPortKeyword | outputPortKeyword) ( ((HS)+ portName)+ | ( ((HS)+ portName)* (HS)+ portName (HS)+ (portAttribute)+ )) ;
 portAttribute       : descTag | aliasTag | resourceTag ;
 
 beginTag            : BeginKeyword (HS)+ blockName ;
@@ -22,7 +22,7 @@ outputPortKeyword   : OutKeyword | ReturnKeyword ;
 // YW keyword arguments
 blockName       : phrase ;
 portName        : Word ;
-dataName        : Word ;
+dataName        : phrase ;
 uriTemplate     : ((scheme) ':')? pathTemplate ;
 scheme          : 'file' | 'http' ; 
 description     : phrase;
