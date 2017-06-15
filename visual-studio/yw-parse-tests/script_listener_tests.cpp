@@ -1,17 +1,7 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
 
-#include "YWLexer.h"
-#include "YWListener.h"
-#include "YWParser.h"
-#include "YWBaseListener.h"
-#include "listener_for_tests.h"
-#include "yw_parser_builder.h"
-#include "test_helpers.h"
-
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-using std::stringstream;
-using std::endl;
 
 namespace yw_parse_tests
 {

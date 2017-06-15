@@ -1,12 +1,7 @@
 #include "stdafx.h"
-#include <sstream>
 
 #include "YWLexer.h"
-#include "YWListener.h"
 #include "YWParser.h"
-#include "YWBaseListener.h"
-
-#include "yw_parser_builder.h"
 
 namespace yw_parse_tests
 {

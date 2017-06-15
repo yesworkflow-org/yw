@@ -15,3 +15,6 @@
 #include <sstream>
 
 #include "antlr4-runtime.h"
+#include "yw_parser_builder.h"
+#include "listener_for_tests.h"
+#include "test_helpers.h"
