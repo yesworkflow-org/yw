@@ -7,12 +7,11 @@ namespace yw_parse_tests
 {
     TEST_CLASS(BlockAttributeListenerTests)
     {
-        YWListenerForTests listener;
-
     public:
 
         TEST_METHOD(TestBlockAttributeListener_In)
         {
+            YWListenerForTests listener;
             YWParserBuilder parser_builder("@in p");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parser()->blockAttribute());
 
@@ -30,6 +29,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockAttributeListener_In_Desc)
         {
+            YWListenerForTests listener;
             YWParserBuilder parser_builder("@in p @desc a single input port");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parser()->blockAttribute());
 
@@ -53,6 +53,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockAttributeListener_Param)
         {
+            YWListenerForTests listener;
             YWParserBuilder parser_builder("@param p");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parser()->blockAttribute());
 
@@ -70,6 +71,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockAttributeListener_Out)
         {
+            YWListenerForTests listener;
             YWParserBuilder parser_builder("@out p");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parser()->blockAttribute());
 
@@ -87,6 +89,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockAttributeListener_Return)
         {
+            YWListenerForTests listener;
             YWParserBuilder parser_builder("@return p");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parser()->blockAttribute());
 
@@ -105,6 +108,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockAttributeListener_In_WithTwoPortsNamed)
         {
+            YWListenerForTests listener;
             YWParserBuilder parser_builder("@in p q");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parser()->blockAttribute());
 
@@ -124,6 +128,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockAttributeListener_In_WithAlias)
         {
+            YWListenerForTests listener;
             YWParserBuilder parser_builder("@in p @as d");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parser()->blockAttribute());
 
@@ -147,6 +152,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockAttributeListener_In_WithTwoPortsNamed_OneWithAlias)
         {
+            YWListenerForTests listener;
             YWParserBuilder parser_builder("@in p @as d q");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parser()->blockAttribute());
 
