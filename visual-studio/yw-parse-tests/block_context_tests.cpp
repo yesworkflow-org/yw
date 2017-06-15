@@ -20,8 +20,8 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockContext_Begin_End)
         {
-            YWParserBuilder parserBuilder("@begin b @end b");
-            YWParser::BlockContext* context = parserBuilder.parser()->block();
+            YWParserBuilder parser_builder("@begin b @end b");
+            YWParser::BlockContext* context = parser_builder.parser()->block();
 
             YW::Assert::AreEqual("@begin b @end b", context->getText());
             YW::Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
@@ -35,11 +35,11 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockContext_Begin_End_TagsOnDifferentLines)
         {
-            YWParserBuilder parserBuilder(
+            YWParserBuilder parser_builder(
                 "@begin b"  "\n"
                 "@end b"    "\n"
             );
-            YWParser::BlockContext* context = parserBuilder.parser()->block();
+            YWParser::BlockContext* context = parser_builder.parser()->block();
 
             YW::Assert::AreEqual(
                 "@begin b"  "\n"
@@ -56,8 +56,8 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockContext_Begin_End_WithNoFinalBlockName)
         {
-            YWParserBuilder parserBuilder("@begin b @end");
-            YWParser::BlockContext* context = parserBuilder.parser()->block();
+            YWParserBuilder parser_builder("@begin b @end");
+            YWParser::BlockContext* context = parser_builder.parser()->block();
 
             YW::Assert::AreEqual("@begin b @end", context->getText());
             YW::Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
@@ -70,8 +70,8 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockContext_Begin_Desc_End_OneWordDescription)
         {
-            YWParserBuilder parserBuilder("@begin b @desc word @end");
-            YWParser::BlockContext* context = parserBuilder.parser()->block();
+            YWParserBuilder parser_builder("@begin b @desc word @end");
+            YWParser::BlockContext* context = parser_builder.parser()->block();
 
             YW::Assert::AreEqual("@begin b @desc word @end", context->getText());
             YW::Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
@@ -86,8 +86,8 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockContext_Begin_Desc_End_MultipleWordDescriptionOnSameLine)
         {
-            YWParserBuilder parserBuilder("@begin b @desc a multiple word description @end");
-            YWParser::BlockContext* context = parserBuilder.parser()->block();
+            YWParserBuilder parser_builder("@begin b @desc a multiple word description @end");
+            YWParser::BlockContext* context = parser_builder.parser()->block();
 
             YW::Assert::AreEqual("@begin b @desc a multiple word description @end", context->getText());
             YW::Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
@@ -103,8 +103,8 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockContext_Begin_Desc_End_MultipleWordDescriptionOnNextLine)
         {
-            YWParserBuilder parserBuilder("@begin b\n@desc a multiple word description @end");
-            YWParser::BlockContext* context = parserBuilder.parser()->block();
+            YWParserBuilder parser_builder("@begin b\n@desc a multiple word description @end");
+            YWParser::BlockContext* context = parser_builder.parser()->block();
 
             YW::Assert::AreEqual("@begin b\n@desc a multiple word description @end", context->getText());
             YW::Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());

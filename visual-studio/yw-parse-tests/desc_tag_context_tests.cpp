@@ -20,31 +20,31 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestDescTagContext_NoDescription)
         {
-            YWParserBuilder parserBuilder("@desc");
-            YWParser::DescTagContext* context = parserBuilder.parser()->descTag();
+            YWParserBuilder parser_builder("@desc");
+            YWParser::DescTagContext* context = parser_builder.parser()->descTag();
             Assert::IsNull(context->description());
         }
 
         TEST_METHOD(TestDescTagContext_OneWordDescription)
         {
-            YWParserBuilder parserBuilder("@desc word");
-            YWParser::DescTagContext* context = parserBuilder.parser()->descTag();
+            YWParserBuilder parser_builder("@desc word");
+            YWParser::DescTagContext* context = parser_builder.parser()->descTag();
             YW::Assert::AreEqual("word", context->description()->getText());
         }
 
         TEST_METHOD(TestDescTagContext_MultiWordDescription)
         {
-            YWParserBuilder parserBuilder("@desc a multiple word description");
-            YWParser::DescTagContext* context = parserBuilder.parser()->descTag();
+            YWParserBuilder parser_builder("@desc a multiple word description");
+            YWParser::DescTagContext* context = parser_builder.parser()->descTag();
             YW::Assert::AreEqual("a multiple word description", context->description()->getText());
         }
 
         TEST_METHOD(TestDescTagContext_MultiWordDescription_IgnoresTextOnNextLine)
         {
-            YWParserBuilder parserBuilder(
+            YWParserBuilder parser_builder(
                 "@desc a multiple word description"  "\n"
                 "with more text on next line"        "\n" );
-            YWParser::DescTagContext* context = parserBuilder.parser()->descTag();
+            YWParser::DescTagContext* context = parser_builder.parser()->descTag();
             YW::Assert::AreEqual("a multiple word description", context->description()->getText());
         }
 
