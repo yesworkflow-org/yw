@@ -11,7 +11,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestScriptListener_Begin_End_WithFinalBlockName)
         {
-            YWListenerForTests listener;
+            StubYWListener listener;
             YWParserBuilder parser_builder("@begin b @end b");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parser()->script());
 
@@ -33,7 +33,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestScriptListener_Begin_End_NoFinalBlockName)
         {
-            YWListenerForTests listener;
+            StubYWListener listener;
             YWParserBuilder parser_builder("@begin b @end");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parser()->script());
 
@@ -53,7 +53,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestScriptListener_Begin_Desc_End)
         {
-            YWListenerForTests listener;
+            StubYWListener listener;
             YWParserBuilder parser_builder("@begin b @desc a simple block @end");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parser()->script());
 

@@ -21,14 +21,14 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="listener_for_tests.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="test_helpers.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="stub_yw_listener.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
     <ClInclude Include="yw_parser_builder.h">
-      <Filter>Header Files</Filter>
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

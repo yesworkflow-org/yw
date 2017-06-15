@@ -11,7 +11,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockListener_Begin_In_End)
         {
-            YWListenerForTests listener;
+            StubYWListener listener;
             YWParserBuilder parser_builder("@begin b @in p @end");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parser()->block());
 
@@ -37,7 +37,7 @@ namespace yw_parse_tests
 
         TEST_METHOD(TestBlockListener_Begin_Out_End)
         {
-            YWListenerForTests listener;
+            StubYWListener listener;
             YWParserBuilder parser_builder("@begin b @out p @end");
             antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parser()->block());
 

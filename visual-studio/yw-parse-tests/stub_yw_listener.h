@@ -5,7 +5,7 @@
 
 namespace yw_parse_tests
 {
-    class YWListenerForTests : public YWBaseListener {
+    class StubYWListener : public YWBaseListener {
     private:
         std::stringstream _log;
     public:

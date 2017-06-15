@@ -16,5 +16,5 @@
 
 #include "antlr4-runtime.h"
 #include "yw_parser_builder.h"
-#include "listener_for_tests.h"
+#include "stub_yw_listener.h"
 #include "test_helpers.h"
