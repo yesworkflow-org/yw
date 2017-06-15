@@ -25,6 +25,9 @@ public:
   virtual void enterBlockAttribute(YWParser::BlockAttributeContext * /*ctx*/) override { }
   virtual void exitBlockAttribute(YWParser::BlockAttributeContext * /*ctx*/) override { }
 
+  virtual void enterPort(YWParser::PortContext * /*ctx*/) override { }
+  virtual void exitPort(YWParser::PortContext * /*ctx*/) override { }
+
   virtual void enterPortAttribute(YWParser::PortAttributeContext * /*ctx*/) override { }
   virtual void exitPortAttribute(YWParser::PortAttributeContext * /*ctx*/) override { }
 
@@ -36,9 +39,6 @@ public:
 
   virtual void enterDescTag(YWParser::DescTagContext * /*ctx*/) override { }
   virtual void exitDescTag(YWParser::DescTagContext * /*ctx*/) override { }
-
-  virtual void enterPortTag(YWParser::PortTagContext * /*ctx*/) override { }
-  virtual void exitPortTag(YWParser::PortTagContext * /*ctx*/) override { }
 
   virtual void enterAliasTag(YWParser::AliasTagContext * /*ctx*/) override { }
   virtual void exitAliasTag(YWParser::AliasTagContext * /*ctx*/) override { }

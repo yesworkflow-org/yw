@@ -23,6 +23,9 @@ public:
   virtual void enterBlockAttribute(YWParser::BlockAttributeContext *ctx) = 0;
   virtual void exitBlockAttribute(YWParser::BlockAttributeContext *ctx) = 0;
 
+  virtual void enterPort(YWParser::PortContext *ctx) = 0;
+  virtual void exitPort(YWParser::PortContext *ctx) = 0;
+
   virtual void enterPortAttribute(YWParser::PortAttributeContext *ctx) = 0;
   virtual void exitPortAttribute(YWParser::PortAttributeContext *ctx) = 0;
 
@@ -34,9 +37,6 @@ public:
 
   virtual void enterDescTag(YWParser::DescTagContext *ctx) = 0;
   virtual void exitDescTag(YWParser::DescTagContext *ctx) = 0;
-
-  virtual void enterPortTag(YWParser::PortTagContext *ctx) = 0;
-  virtual void exitPortTag(YWParser::PortTagContext *ctx) = 0;
 
   virtual void enterAliasTag(YWParser::AliasTagContext *ctx) = 0;
   virtual void exitAliasTag(YWParser::AliasTagContext *ctx) = 0;

@@ -25,8 +25,8 @@ namespace yw_parse_tests
         void exitEndTag(YWParser::EndTagContext *context) override { _log << "exited end tag" << std::endl; }
         void enterDescTag(YWParser::DescTagContext *context) override { _log << "entered desc tag" << std::endl; }
         void exitDescTag(YWParser::DescTagContext *context) override { _log << "exited desc tag" << std::endl; }
-        void enterPortTag(YWParser::PortTagContext *context) override { _log << "entered port tag" << std::endl; }
-        void exitPortTag(YWParser::PortTagContext *context) override { _log << "exited port tag" << std::endl; }
+        void enterPort(YWParser::PortContext *context) override { _log << "entered port" << std::endl; }
+        void exitPort(YWParser::PortContext *context) override { _log << "exited port" << std::endl; }
         void enterAliasTag(YWParser::AliasTagContext *context) override { _log << "entered alias tag" << std::endl; }
         void exitAliasTag(YWParser::AliasTagContext *context) override { _log << "exited alias tag" << std::endl; }
         void enterCallTag(YWParser::CallTagContext *context) override { _log << "entered call tag" << std::endl; }

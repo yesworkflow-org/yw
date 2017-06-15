@@ -3,13 +3,13 @@ grammar YW ;
 // YW annotation compositions
 script              : (block)* ;
 block               : (ws)* beginTag (ws)* (blockAttribute)* (ws)* (block)* (ws)* endTag (ws)*;
-blockAttribute      : descTag | portTag | callTag;
+blockAttribute      : port | descTag | callTag;
+port                : (inputPortKeyword | outputPortKeyword) ((HS)+ portName ((HS)+ (portAttribute)*)?)+ ;
 portAttribute       : descTag | aliasTag | resourceTag ;
 
 beginTag            : BeginKeyword (HS)+ blockName ;
 endTag              : EndKeyword (HS)+ (blockName)? ;
 descTag             : DescKeyword (HS)+ description ;
-portTag             : (inputPortKeyword | outputPortKeyword) ((HS)+ portName ((HS)+ (portAttribute)*)?)+ ;
 aliasTag            : AsKeyword (HS)+ dataName ;
 callTag             : CallKeyword (HS)+ (blockName)+ ;
 uriTag              : UriKeyword (HS)+ uriTemplate;
