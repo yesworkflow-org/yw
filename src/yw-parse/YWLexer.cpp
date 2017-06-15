@@ -62,8 +62,8 @@ std::vector<uint16_t> YWLexer::_serializedATN;
 std::vector<std::string> YWLexer::_ruleNames = {
   u8"T__0", u8"T__1", u8"T__2", u8"AsKeyword", u8"BeginKeyword", u8"CallKeyword", 
   u8"DescKeyword", u8"EndKeyword", u8"FileKeyword", u8"InKeyword", u8"OutKeyword", 
-  u8"ParamKeyword", u8"ReturnKeyword", u8"UriKeyword", u8"VS", u8"HS", u8"NL", 
-  u8"Word"
+  u8"ParamKeyword", u8"ReturnKeyword", u8"UriKeyword", u8"VS", u8"SPACE", 
+  u8"NEWLINE", u8"Word"
 };
 
 std::vector<std::string> YWLexer::_channelNames = {
@@ -83,7 +83,7 @@ std::vector<std::string> YWLexer::_literalNames = {
 std::vector<std::string> YWLexer::_symbolicNames = {
   "", "", "", "", u8"AsKeyword", u8"BeginKeyword", u8"CallKeyword", u8"DescKeyword", 
   u8"EndKeyword", u8"FileKeyword", u8"InKeyword", u8"OutKeyword", u8"ParamKeyword", 
-  u8"ReturnKeyword", u8"UriKeyword", u8"VS", u8"HS", u8"NL", u8"Word"
+  u8"ReturnKeyword", u8"UriKeyword", u8"VS", u8"SPACE", u8"NEWLINE", u8"Word"
 };
 
 dfa::Vocabulary YWLexer::_vocabulary(_literalNames, _symbolicNames);

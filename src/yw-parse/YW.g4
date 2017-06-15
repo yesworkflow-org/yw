@@ -4,16 +4,16 @@ grammar YW ;
 script              : (block)* ;
 block               : (ws)* beginTag (ws)* (blockAttribute)* (ws)* (block)* (ws)* endTag (ws)*;
 blockAttribute      : port | descTag | callTag;
-port                : (inputPortKeyword | outputPortKeyword) ( ((HS)+ portName)+ | ( ((HS)+ portName)* (HS)+ portName ((HS)+ portAttribute)+ )) ;
+port                : (inputPortKeyword | outputPortKeyword) (SPACE+ portName)+ (SPACE+ portAttribute)* ;
 portAttribute       : descTag | aliasTag | resourceTag ;
 
-beginTag            : BeginKeyword (HS)+ blockName ;
-endTag              : EndKeyword (HS)+ (blockName)? ;
-descTag             : DescKeyword (HS)+ description ;
-aliasTag            : AsKeyword (HS)+ dataName ;
-callTag             : CallKeyword (HS)+ (blockName)+ ;
-uriTag              : UriKeyword (HS)+ uriTemplate;
-fileTag             : FileKeyword (HS)+ pathTemplate ;
+beginTag            : BeginKeyword (SPACE)+ blockName ;
+endTag              : EndKeyword (SPACE)+ (blockName)? ;
+descTag             : DescKeyword (SPACE)+ description ;
+aliasTag            : AsKeyword (SPACE)+ dataName ;
+callTag             : CallKeyword (SPACE)+ (blockName)+ ;
+uriTag              : UriKeyword (SPACE)+ uriTemplate;
+fileTag             : FileKeyword (SPACE)+ pathTemplate ;
 resourceTag         : uriTag | fileTag ;
 
 inputPortKeyword    : InKeyword | ParamKeyword ;
@@ -26,7 +26,7 @@ dataName        : phrase ;
 uriTemplate     : ((scheme) ':')? pathTemplate ;
 scheme          : 'file' | 'http' ; 
 description     : phrase;
-phrase          : Word (HS+ Word)* ;
+phrase          : Word (SPACE+ Word)* ;
 pathTemplate    : Word ;
 
 // YW keywords
@@ -42,10 +42,10 @@ ParamKeyword    : '@param' ;
 ReturnKeyword   : '@return' ;
 UriKeyword      : '@uri' ;
 
-ws              : (HS)+ (NL)* (HS)* | (NL)+ (HS)* ;
+ws              : (SPACE | NEWLINE)+ ;
 
-VS              : (HS)* NL (HS)* ;
-HS              : [ \t] ;
-NL              : '\r'? '\n' ;
+VS              : (SPACE)* NEWLINE (SPACE)* ;
+SPACE           : [ \t] ;
+NEWLINE         : '\r'? '\n' ;
 Word            : [a-zA-Z0-9\\_]+ ;
 
