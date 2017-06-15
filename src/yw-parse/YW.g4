@@ -4,7 +4,7 @@ grammar YW ;
 script              : (block)* ;
 block               : (ws)* beginTag (ws)* (blockAttribute)* (ws)* (block)* (ws)* endTag (ws)*;
 blockAttribute      : port | descTag | callTag;
-port                : (inputPortKeyword | outputPortKeyword) ( ((HS)+ portName)+ | ( ((HS)+ portName)* (HS)+ portName (HS)+ (portAttribute)+ )) ;
+port                : (inputPortKeyword | outputPortKeyword) ( ((HS)+ portName)+ | ( ((HS)+ portName)* (HS)+ portName ((HS)+ portAttribute)+ )) ;
 portAttribute       : descTag | aliasTag | resourceTag ;
 
 beginTag            : BeginKeyword (HS)+ blockName ;
