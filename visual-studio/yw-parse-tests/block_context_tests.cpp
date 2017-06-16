@@ -45,6 +45,16 @@ namespace yw_parse_tests
             Assert::AreEqual((size_t)0, context->block().size());
         }
 
+        TEST_METHOD(TestBeginTagContext_NameOnNextLineNotFound)
+        {
+            YWParserBuilder parser_builder(
+                "@begin"    "\n"
+                "block"     "\n");
+            YWParser::BlockContext* blockContext = parser_builder.parser()->block();
+            YW::Assert::AreEqual("@begin", blockContext->beginTag()->BeginKeyword()->getText());
+            Assert::IsNull(blockContext->beginTag()->blockName());
+        }
+
         TEST_METHOD(TestBlockContext_Begin_End_WithNoFinalBlockName)
         {
             YWParserBuilder parser_builder("@begin b @end");

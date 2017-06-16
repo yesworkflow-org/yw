@@ -16,15 +16,6 @@ namespace yw_parse_tests
             Assert::IsNull(context->blockName());
         }
 
-        TEST_METHOD(TestBeginTagContext_NameOnNextLineNotFound)
-        {
-            YWParserBuilder parser_builder(
-                "@begin "   "\n"
-                "block"     "\n" );
-            YWParser::BeginTagContext* context = parser_builder.parser()->beginTag();
-            Assert::IsNull(context->blockName());
-        }
-
         TEST_METHOD(TestBeginTagContext_NameWithoutSpaces)
         {
             YWParserBuilder parser_builder("@begin block");

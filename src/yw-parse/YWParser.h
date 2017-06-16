@@ -14,8 +14,8 @@ public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, AsKeyword = 4, BeginKeyword = 5, CallKeyword = 6, 
     DescKeyword = 7, EndKeyword = 8, FileKeyword = 9, InKeyword = 10, OutKeyword = 11, 
-    ParamKeyword = 12, ReturnKeyword = 13, UriKeyword = 14, VS = 15, SPACE = 16, 
-    NEWLINE = 17, Word = 18
+    ParamKeyword = 12, ReturnKeyword = 13, UriKeyword = 14, SPACE = 15, 
+    NEWLINE = 16, Word = 17
   };
 
   enum {
@@ -69,6 +69,8 @@ public:
     virtual size_t getRuleIndex() const override;
     std::vector<BlockContext *> block();
     BlockContext* block(size_t i);
+    std::vector<WsContext *> ws();
+    WsContext* ws(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -82,9 +84,9 @@ public:
     BlockContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     BeginTagContext *beginTag();
-    EndTagContext *endTag();
     std::vector<WsContext *> ws();
     WsContext* ws(size_t i);
+    EndTagContext *endTag();
     std::vector<BlockAttributeContext *> blockAttribute();
     BlockAttributeContext* blockAttribute(size_t i);
     std::vector<BlockContext *> block();
@@ -120,6 +122,8 @@ public:
     OutputPortKeywordContext *outputPortKeyword();
     std::vector<PortNameContext *> portName();
     PortNameContext* portName(size_t i);
+    std::vector<WsContext *> ws();
+    WsContext* ws(size_t i);
     std::vector<PortAttributeContext *> portAttribute();
     PortAttributeContext* portAttribute(size_t i);
     std::vector<antlr4::tree::TerminalNode *> SPACE();

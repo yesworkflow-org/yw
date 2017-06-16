@@ -1,10 +1,10 @@
 grammar YW ;
 
 // YW annotation compositions
-script              : (block)* ;
-block               : (ws)* beginTag (ws)* (blockAttribute)* (ws)* (block)* (ws)* endTag (ws)*;
+script              : block (ws block)* ;
+block               : beginTag (ws blockAttribute)* (ws block)* ws endTag ;
 blockAttribute      : port | descTag | callTag;
-port                : (inputPortKeyword | outputPortKeyword) (SPACE+ portName)+ (SPACE+ portAttribute)* ;
+port                : (inputPortKeyword | outputPortKeyword) (SPACE+ portName)+ (ws portAttribute)* ;
 portAttribute       : descTag | aliasTag | resourceTag ;
 
 beginTag            : BeginKeyword (SPACE)+ blockName ;
@@ -44,7 +44,6 @@ UriKeyword      : '@uri' ;
 
 ws              : (SPACE | NEWLINE)+ ;
 
-VS              : (SPACE)* NEWLINE (SPACE)* ;
 SPACE           : [ \t] ;
 NEWLINE         : '\r'? '\n' ;
 Word            : [a-zA-Z0-9\\_]+ ;
