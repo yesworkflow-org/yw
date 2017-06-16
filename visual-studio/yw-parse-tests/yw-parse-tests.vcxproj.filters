@@ -53,10 +53,10 @@
     <ClCompile Include="block_listener_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="port_listener_tests.cpp">
+    <ClCompile Include="port_tag_listener_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="port_context_tests.cpp">
+    <ClCompile Include="port_tag_context_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

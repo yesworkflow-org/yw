@@ -19,7 +19,7 @@ public:
   };
 
   enum {
-    RuleScript = 0, RuleBlock = 1, RuleBlockAttribute = 2, RulePort = 3, 
+    RuleScript = 0, RuleBlock = 1, RuleBlockAttribute = 2, RulePortTag = 3, 
     RulePortAttribute = 4, RuleBeginTag = 5, RuleEndTag = 6, RuleDescTag = 7, 
     RuleAliasTag = 8, RuleCallTag = 9, RuleUriTag = 10, RuleFileTag = 11, 
     RuleResourceTag = 12, RuleInputPortKeyword = 13, RuleOutputPortKeyword = 14, 
@@ -41,7 +41,7 @@ public:
   class ScriptContext;
   class BlockContext;
   class BlockAttributeContext;
-  class PortContext;
+  class PortTagContext;
   class PortAttributeContext;
   class BeginTagContext;
   class EndTagContext;
@@ -103,7 +103,7 @@ public:
   public:
     BlockAttributeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    PortContext *port();
+    PortTagContext *portTag();
     DescTagContext *descTag();
     CallTagContext *callTag();
 
@@ -114,9 +114,9 @@ public:
 
   BlockAttributeContext* blockAttribute();
 
-  class  PortContext : public antlr4::ParserRuleContext {
+  class  PortTagContext : public antlr4::ParserRuleContext {
   public:
-    PortContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    PortTagContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     InputPortKeywordContext *inputPortKeyword();
     OutputPortKeywordContext *outputPortKeyword();
@@ -134,7 +134,7 @@ public:
    
   };
 
-  PortContext* port();
+  PortTagContext* portTag();
 
   class  PortAttributeContext : public antlr4::ParserRuleContext {
   public:

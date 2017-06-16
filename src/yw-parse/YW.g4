@@ -3,8 +3,8 @@ grammar YW ;
 // YW annotation compositions
 script              : block (ws block)* ;
 block               : beginTag (ws blockAttribute)* (ws block)* ws endTag ;
-blockAttribute      : port | descTag | callTag;
-port                : (inputPortKeyword | outputPortKeyword) (SPACE+ portName)+ (ws portAttribute)* ;
+blockAttribute      : portTag | descTag | callTag;
+portTag             : (inputPortKeyword | outputPortKeyword) (SPACE+ portName)+ (ws portAttribute)* ;
 portAttribute       : descTag | aliasTag | resourceTag ;
 
 beginTag            : BeginKeyword (SPACE)+ blockName ;
