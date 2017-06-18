@@ -5,17 +5,16 @@
 
 namespace yw_parse_tests
 {
+
     class YWParserBuilder
     {
-        std::stringstream* text_stream;
-        antlr4::ANTLRInputStream* antlr_input_stream;
-        YWLexer* yw_lexer;
-        antlr4::CommonTokenStream* antlr_token_stream;
-        YWParser* yw_parser;
-
+        std::unique_ptr<std::stringstream> text_stream;
+        std::unique_ptr<antlr4::ANTLRInputStream> antlr_input_stream;
+        std::unique_ptr<YWLexer> yw_lexer;
+        std::unique_ptr<antlr4::CommonTokenStream> antlr_token_stream;
+        std::shared_ptr<YWParser> yw_parser;
     public:
-        YWParserBuilder(const char * text);
-        ~YWParserBuilder();
-        YWParser* parser() { return yw_parser; }
+        YWParserBuilder(std::string text);
+        std::shared_ptr<YWParser> parser() { return yw_parser; }
     };
 }

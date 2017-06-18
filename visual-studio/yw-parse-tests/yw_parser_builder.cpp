@@ -5,19 +5,19 @@
 
 namespace yw_parse_tests
 {
-    YWParserBuilder::YWParserBuilder(const char * text) {
-        text_stream = new std::stringstream(text);
-        antlr_input_stream = new antlr4::ANTLRInputStream(*text_stream);
-        yw_lexer = new YWLexer(antlr_input_stream);
-        antlr_token_stream = new antlr4::CommonTokenStream(yw_lexer);
-        yw_parser = new YWParser(antlr_token_stream);
-    }
+    using std::make_unique;
+    using std::make_shared;
+    using std::string;
+    using std::stringstream;
 
-    YWParserBuilder::~YWParserBuilder() {
-        delete yw_parser;
-        delete antlr_token_stream;
-        delete yw_lexer;
-        delete antlr_input_stream;
-        delete text_stream;
+    using antlr4::ANTLRInputStream;
+    using antlr4::CommonTokenStream;
+
+    YWParserBuilder::YWParserBuilder(string text) {
+        text_stream = make_unique<stringstream>(text);
+        antlr_input_stream = make_unique<ANTLRInputStream>(*text_stream);
+        yw_lexer = make_unique<YWLexer>(antlr_input_stream.get());
+        antlr_token_stream = make_unique<CommonTokenStream>(yw_lexer.get());
+        yw_parser = make_shared<YWParser>(antlr_token_stream.get());
     }
 }
