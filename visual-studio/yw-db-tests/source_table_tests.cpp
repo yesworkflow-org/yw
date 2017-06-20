@@ -30,7 +30,8 @@ namespace yw_db_tests
             YesWorkflowDB ywdb;
             ywdb.insertSource("path to source");
             auto source = ywdb.selectSourceById(1L);
-            Assert::AreEqual(std::string("path to source"), source);
+            Assert::AreEqual(1L, source.id);
+            Assert::AreEqual(std::string("path to source"), source.path);
         }
 
         TEST_METHOD(TestSelectSourceById_RowDoesntExist) {

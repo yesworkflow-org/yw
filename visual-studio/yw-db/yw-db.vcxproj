@@ -24,6 +24,8 @@
     <ClCompile Include="..\..\src\yw-db\create_tables_sql.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\yw-db\source_table.h" />
+    <ClInclude Include="..\..\src\yw-db\sqlite.h" />
     <ClInclude Include="..\..\src\yw-db\yw_db.h" />
   </ItemGroup>
   <ItemGroup>

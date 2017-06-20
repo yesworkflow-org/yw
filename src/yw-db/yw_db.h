@@ -1,7 +1,7 @@
 #pragma once
-#include <memory>
-#include <string>
-#include "sqlite3.h"
+
+#include "sqlite.h"
+#include "source_table.h"
 
 namespace yw_db {
 
@@ -12,7 +12,7 @@ namespace yw_db {
         ~YesWorkflowDB();
 
         sqlite3_int64 insertSource(const std::string& path);
-        std::string selectSourceById(long id);
+        SourceRow selectSourceById(long id);
 
     private:
 
