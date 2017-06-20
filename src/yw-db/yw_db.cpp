@@ -1,5 +1,7 @@
 #include "yw_db.h"
 
+using std::string;
+
 namespace yw_db {
 
     YesWorkflowDB::YesWorkflowDB() {
@@ -14,7 +16,6 @@ namespace yw_db {
     void YesWorkflowDB::createInMemoryDatabase() {
         int rc = sqlite3_open(":memory:", &db);
     }
-
 
     void YesWorkflowDB::createTables() {
         char* err_msg = 0;

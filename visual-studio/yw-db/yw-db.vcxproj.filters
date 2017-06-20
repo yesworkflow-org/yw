@@ -18,7 +18,10 @@
     <ClCompile Include="..\..\src\yw-db\yw_db.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\yw-db\yw_db_create_tables_sql.cpp">
+    <ClCompile Include="..\..\src\yw-db\create_tables_sql.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\yw-db\source_table.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

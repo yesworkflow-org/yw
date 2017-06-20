@@ -14,7 +14,7 @@ namespace yw_parse_tests
         std::unique_ptr<antlr4::CommonTokenStream> antlr_token_stream;
         std::shared_ptr<YWParser> yw_parser;
     public:
-        YWParserBuilder(std::string text);
+        YWParserBuilder(const std::string& text);
         std::shared_ptr<YWParser> parser() { return yw_parser; }
     };
 }

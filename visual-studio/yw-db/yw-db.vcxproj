@@ -19,8 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\yw-db\source_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\yw_db.cpp" />
-    <ClCompile Include="..\..\src\yw-db\yw_db_create_tables_sql.cpp" />
+    <ClCompile Include="..\..\src\yw-db\create_tables_sql.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-db\yw_db.h" />

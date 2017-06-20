@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include <string>
 #include "sqlite3.h"
 
@@ -9,6 +10,9 @@ namespace yw_db {
 
         YesWorkflowDB();
         ~YesWorkflowDB();
+
+        sqlite3_int64 insertSource(const std::string& path);
+        std::string selectSourceById(long id);
 
     private:
 

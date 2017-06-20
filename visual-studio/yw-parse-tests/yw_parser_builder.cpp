@@ -13,7 +13,7 @@ namespace yw_parse_tests
     using antlr4::ANTLRInputStream;
     using antlr4::CommonTokenStream;
 
-    YWParserBuilder::YWParserBuilder(string text) {
+    YWParserBuilder::YWParserBuilder(const string& text) {
         text_stream = make_unique<stringstream>(text);
         antlr_input_stream = make_unique<ANTLRInputStream>(*text_stream);
         yw_lexer = make_unique<YWLexer>(antlr_input_stream.get());
