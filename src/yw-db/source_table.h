@@ -6,9 +6,9 @@ namespace yw_db {
 
     struct SourceRow {
 
-        SourceRow(sqlite3_int64 id, const unsigned char* path) :
-            id((long)id),
-            path(sqlite::textToString(path))
+        SourceRow(long id, const std::string& path) :
+            id(id),
+            path(path)
         {};
 
         const long id;

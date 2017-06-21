@@ -24,6 +24,9 @@
     <ClCompile Include="..\..\src\yw-db\source_table.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\yw-db\sqlite_statement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\yw-db\createtables.sql">
@@ -38,6 +41,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\yw-db\sqlite.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-db\sqlite_statement.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

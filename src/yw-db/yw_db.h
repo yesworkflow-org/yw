@@ -1,6 +1,7 @@
 #pragma once
 
 #include "sqlite.h"
+#include "sqlite_statement.h"
 #include "source_table.h"
 
 namespace yw_db {

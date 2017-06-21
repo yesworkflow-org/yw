@@ -10,6 +10,8 @@ namespace yw_db {
 
     public:
 
+        sqlite() = delete;
+        
         static std::string textToString(const unsigned char* text) {
             return std::string((const char*)text);
         }
