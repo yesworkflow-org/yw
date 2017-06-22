@@ -1,6 +1,6 @@
 #pragma once
 
-#include "sqlite.h"
+#include "sqlite_db.h"
 
 #include <memory>
 #include <string>
@@ -11,7 +11,7 @@ namespace yw_db {
     
     public:
 
-        SQLiteStatement(sqlite3* db, std::string sql);
+        SQLiteStatement(SQLiteDB& db, std::string sql);
         ~SQLiteStatement();
 
         void bindInt64(int column, long value);
@@ -20,12 +20,14 @@ namespace yw_db {
         long getInt64Field(int column);
         std::string getTextField(int column);
 
+        long getGeneratedId();
+
         int step();
 
     private:
         
+        SQLiteDB& db;
         sqlite3_stmt* sqlite3_statement;
-
     };
 
 }

@@ -4,8 +4,8 @@ using std::string;
 
 namespace yw_db {
 
-    SQLiteStatement::SQLiteStatement(sqlite3* db, string sql) {
-        sqlite3_prepare_v2(db, sql.c_str(), -1, &sqlite3_statement, 0);
+    SQLiteStatement::SQLiteStatement(SQLiteDB& db, string sql) : db(db) {
+        sqlite3_prepare_v2(db.db, sql.c_str(), -1, &sqlite3_statement, 0);
     }
 
     SQLiteStatement::~SQLiteStatement() {
@@ -31,6 +31,10 @@ namespace yw_db {
 
     std::string SQLiteStatement::getTextField(int column) {
         auto value = sqlite3_column_text(sqlite3_statement, 1);
-        return sqlite::textToString(value);
+        return SQLiteDB::textToString(value);
+    }
+
+    long SQLiteStatement::getGeneratedId() {
+        return static_cast<long>(sqlite3_last_insert_rowid(db.db));
     }
 }

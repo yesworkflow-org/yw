@@ -1,8 +1,9 @@
 #pragma once
 
-#include "sqlite.h"
+#include "sqlite_db.h"
 #include "sqlite_statement.h"
-#include "source_table.h"
+#include "source_row.h"
+#include "user_row.h"
 
 namespace yw_db {
 
@@ -10,17 +11,19 @@ namespace yw_db {
     public:
 
         YesWorkflowDB();
-        ~YesWorkflowDB();
 
-        sqlite3_int64 insertSource(const std::string& path);
+        long insertUser(const std::string& name);
+        //UserRow selectUserById(long id);
+
+        long insertSource(const std::string& path);
         SourceRow selectSourceById(long id);
 
     private:
 
         static const std::string create_tables_sql;
-        sqlite3* db;
 
-        void createInMemoryDatabase();
+        SQLiteDB db;
+
         void createTables();
     };
 }

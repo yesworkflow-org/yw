@@ -1,15 +1,15 @@
-#include "yw_db.h"
+#include "yesworkflow_db.h"
 
 using std::string;
 
 namespace yw_db {
     
-    sqlite3_int64 YesWorkflowDB::insertSource(const string& path) {
+    long YesWorkflowDB::insertSource(const string& path) {
         string sql = "INSERT INTO source(path) VALUES (?);";
         SQLiteStatement statement(db, sql);
         statement.bindText(1, path);
         statement.step();
-        return sqlite3_last_insert_rowid(db);
+        return statement.getGeneratedId();
     }
 
     SourceRow YesWorkflowDB::selectSourceById(long requested_id) {
