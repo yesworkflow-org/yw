@@ -6,12 +6,13 @@ namespace yw_db {
 
     struct SourceRow {
 
-        SourceRow(long id, const std::string& path) :
-            id(id),
-            path(path)
+        SourceRow(long id, long model, long language, long file) :
+            id(id), model(model), language(language), file(file)
         {};
 
         const long id;
-        const std::string path;
+        const long model;
+        const long language;
+        const long file;
     };
 }

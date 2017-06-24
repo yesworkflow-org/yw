@@ -1,20 +1,52 @@
-#include "yw_db.h"
+#include "yesworkflow_db.h"
 
 const std::string yw_db::YesWorkflowDB::create_tables_sql = R"(
 
     /******************************************* SQLite Notes *************************************************
 
     - Primary key columns are of type 'INTEGER' so that they are aliases for the builtin 64-bit 'rowid' column.
-    See http://www.sqlite.org/lang_createtable.html#rowid
+      See http://www.sqlite.org/lang_createtable.html#rowid
 
-    - TEXT columns that generally would be of type 'char' or 'varchar' are given the type 'TEXT' to reflect
-    the dynamic storage of data values in SQLite. See http://www.sqlite.org/datatype3.html
+    - Columns that generally would be of type 'char' or 'varchar' are given the type 'TEXT' to reflect
+      the dynamic storage of data values in SQLite. See http://www.sqlite.org/datatype3.html
 
     **************************************************************************************************/
 
+    CREATE TABLE user(
+        id                  INTEGER         NOT NULL        PRIMARY KEY,
+        name                TEXT            NULL
+    );
+
+    CREATE TABLE model(
+        id                  INTEGER         NOT NULL        PRIMARY KEY,
+        creator             INTEGER         NOT NULL        REFERENCES user(id),
+        create_date         TEXT            NOT NULL
+    );
+
+    CREATE TABLE language(
+        id                  INTEGER         NOT NULL        PRIMARY KEY,
+        name                TEXT            NOT NULL
+    );
+
+    CREATE TABLE file(
+        id                  INTEGER         NOT NULL        PRIMARY KEY,
+        name                TEXT            NOT NULL,
+        owner               INTEGER         NULL            REFERENCES user(id),
+        fs_file_id          INTEGER         NULL,
+        fs_device_id        INTEGER         NULL,
+        fs_path             TEXT            NULL,
+        fs_owner_id         INTEGER         NULL,
+        fs_create_date      TEXT            NULL,
+        fs_modify_date      TEXT            NULL,
+        size                INTEGER         NULL,       
+        hash                INTEGER         NULL
+    );
+
     CREATE TABLE source(
         id                  INTEGER         NOT NULL        PRIMARY KEY,
-        path                TEXT            NULL
+        model               INTEGER         NOT NULL        REFERENCES model(id),
+        file                INTEGER         NULL            REFERENCES file(id),
+        language            INTEGER         NOT NULL        REFERENCES language(id)
     );
 
     CREATE TABLE source_line(
@@ -24,19 +56,11 @@ const std::string yw_db::YesWorkflowDB::create_tables_sql = R"(
         line_text           TEXT            NOT NULL
     );
 
-    CREATE TABLE comment(
-        id                  INTEGER         NOT NULL        PRIMARY KEY,
-        source              INTEGER         NOT NULL        REFERENCES source(id),
-        line_number         INTEGER         NOT NULL,
-        rank_in_line        INTEGER         NOT NULL,
-        comment_text        VARCHAR         NOT NULL
-    );
-
     CREATE TABLE annotation(
         id                  INTEGER         NOT NULL        PRIMARY KEY,
         qualifies           INTEGER         NULL            REFERENCES annotation(id),
-        comment             INTEGER         NOT NULL        REFERENCES comment(id),
-        rank_in_comment     INTEGER         NOT NULL,
+        source_line         INTEGER         NOT NULL        REFERENCES source_line(id),
+        source_column       INTEGER         NOT NULL,
         tag                 TEXT            NOT NULL,
         keyword             TEXT            NOT NULL,
         value               TEXT            NOT NULL,

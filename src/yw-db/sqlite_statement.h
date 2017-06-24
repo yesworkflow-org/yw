@@ -11,7 +11,7 @@ namespace yw_db {
     
     public:
 
-        SQLiteStatement(SQLiteDB& db, std::string sql);
+        SQLiteStatement(SQLiteDB& connection, std::string sql);
         ~SQLiteStatement();
 
         void bindInt64(int column, long value);
@@ -27,7 +27,7 @@ namespace yw_db {
     private:
         
         SQLiteDB& db;
-        sqlite3_stmt* sqlite3_statement;
+        sqlite3_stmt* statement;
     };
 
 }

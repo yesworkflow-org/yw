@@ -5,36 +5,41 @@ using std::string;
 namespace yw_db {
 
     SQLiteStatement::SQLiteStatement(SQLiteDB& db, string sql) : db(db) {
-        sqlite3_prepare_v2(db.db, sql.c_str(), -1, &sqlite3_statement, 0);
+       int rc = sqlite3_prepare_v2(db.connection, sql.c_str(), -1, &statement, 0);
+       if (rc != SQLITE_OK) {
+           string message(db.getLastErrorMessage());
+           throw std::runtime_error("Error creating statement: " + message);
+       }
     }
 
     SQLiteStatement::~SQLiteStatement() {
-        sqlite3_finalize(sqlite3_statement);
+        sqlite3_finalize(statement);
     }
 
     void SQLiteStatement::bindInt64(int column, long value) {
-        sqlite3_bind_int64(sqlite3_statement, column, (sqlite3_int64)value);
+        sqlite3_bind_int64(statement, column, (sqlite3_int64)value);
     }
 
     void SQLiteStatement::bindText(int column, const string& text) {
-        sqlite3_bind_text(sqlite3_statement, column, text.c_str(), -1, 0);
+        sqlite3_bind_text(statement, column, text.c_str(), -1, 0);
     }
 
     int SQLiteStatement::step() {
-        return sqlite3_step(sqlite3_statement);
+        int rc = sqlite3_step(statement);
+        return rc;
     }
 
     long SQLiteStatement::getInt64Field(int column) {
-        auto value = sqlite3_column_int64(sqlite3_statement, 0);
+        auto value = sqlite3_column_int64(statement, column);
         return static_cast<long>(value);
     }
 
     std::string SQLiteStatement::getTextField(int column) {
-        auto value = sqlite3_column_text(sqlite3_statement, 1);
+        auto value = sqlite3_column_text(statement, column);
         return SQLiteDB::textToString(value);
     }
 
     long SQLiteStatement::getGeneratedId() {
-        return static_cast<long>(sqlite3_last_insert_rowid(db.db));
+        return static_cast<long>(sqlite3_last_insert_rowid(db.connection));
     }
 }

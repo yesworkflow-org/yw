@@ -15,7 +15,8 @@ namespace yw_db {
         SQLiteDB();
         ~SQLiteDB();
 
-        void SQLiteDB::execute(std::string sql);
+        void execute(std::string sql);
+        std::string getLastErrorMessage();
 
         static std::string textToString(const unsigned char* text) {
             return std::string((const char*)text);
@@ -23,6 +24,6 @@ namespace yw_db {
 
     private:
 
-        sqlite3* db;
+        sqlite3* connection;
     };
 }

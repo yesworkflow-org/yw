@@ -19,6 +19,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\yw-db\file_table.cpp" />
+    <ClCompile Include="..\..\src\yw-db\language_table.cpp" />
+    <ClCompile Include="..\..\src\yw-db\model_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\source_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\sqlite_db.cpp" />
     <ClCompile Include="..\..\src\yw-db\sqlite_statement.cpp" />
@@ -27,6 +30,9 @@
     <ClCompile Include="..\..\src\yw-db\create_tables_sql.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\yw-db\file_row.h" />
+    <ClInclude Include="..\..\src\yw-db\language_row.h" />
+    <ClInclude Include="..\..\src\yw-db\model_row.h" />
     <ClInclude Include="..\..\src\yw-db\source_row.h" />
     <ClInclude Include="..\..\src\yw-db\sqlite_db.h" />
     <ClInclude Include="..\..\src\yw-db\sqlite_statement.h" />
