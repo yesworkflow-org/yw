@@ -23,8 +23,6 @@
     <ClCompile Include="..\..\src\yw-db\language_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\model_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\source_table.cpp" />
-    <ClCompile Include="..\..\src\yw-db\sqlite_db.cpp" />
-    <ClCompile Include="..\..\src\yw-db\sqlite_statement.cpp" />
     <ClCompile Include="..\..\src\yw-db\user_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\yesworkflow_db.cpp" />
     <ClCompile Include="..\..\src\yw-db\create_tables_sql.cpp" />
@@ -34,8 +32,6 @@
     <ClInclude Include="..\..\src\yw-db\language_row.h" />
     <ClInclude Include="..\..\src\yw-db\model_row.h" />
     <ClInclude Include="..\..\src\yw-db\source_row.h" />
-    <ClInclude Include="..\..\src\yw-db\sqlite_db.h" />
-    <ClInclude Include="..\..\src\yw-db\sqlite_statement.h" />
     <ClInclude Include="..\..\src\yw-db\user_row.h" />
     <ClInclude Include="..\..\src\yw-db\yesworkflow_db.h" />
   </ItemGroup>
@@ -112,7 +108,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\sqlite-3.19.3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\sqlite-db;;$(SolutionDir)\..\src\sqlite-3.19.3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -124,7 +120,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\sqlite-3.19.3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\sqlite-db;;$(SolutionDir)\..\src\sqlite-3.19.3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -138,7 +134,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\sqlite-3.19.3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\sqlite-db;;$(SolutionDir)\..\src\sqlite-3.19.3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -154,7 +150,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\sqlite-3.19.3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\sqlite-db;;$(SolutionDir)\..\src\sqlite-3.19.3;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
