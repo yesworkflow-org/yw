@@ -35,9 +35,6 @@
     <ClInclude Include="..\..\src\yw-db\user_row.h" />
     <ClInclude Include="..\..\src\yw-db\yesworkflow_db.h" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="..\..\src\yw-db\createtables.sql" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{2C3F23FE-F54E-4B9D-85FE-44889E06073A}</ProjectGuid>
