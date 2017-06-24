@@ -4,26 +4,28 @@
 
 #include <string>
 
-namespace yw_db {
+namespace yw {
+    namespace sqlite {
 
-    class SQLiteDB {
+        class SQLiteDB {
 
-        friend class SQLiteStatement;
+            friend class SQLiteStatement;
 
-    public:
+        public:
 
-        SQLiteDB();
-        ~SQLiteDB();
+            SQLiteDB();
+            ~SQLiteDB();
 
-        void execute(std::string sql);
-        std::string getLastErrorMessage();
+            void execute(std::string sql);
+            std::string getLastErrorMessage();
 
-        static std::string textToString(const unsigned char* text) {
-            return std::string((const char*)text);
-        }
+            static std::string textToString(const unsigned char* text) {
+                return std::string((const char*)text);
+            }
 
-    private:
+        private:
 
-        sqlite3* connection;
-    };
+            sqlite3* connection;
+        };
+    }
 }

@@ -27,6 +27,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-db-tests", "yw-db-tests\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sqlite-db", "sqlite-db\sqlite-db.vcxproj", "{9CD083F8-A23A-4F54-B5F0-5840A92FB619}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sqlite-db-tests", "sqlite-db-tests\sqlite-db-tests.vcxproj", "{79981E0C-55C7-403D-93F3-F113C9DA9F98}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9CD083F8-A23A-4F54-B5F0-5840A92FB619} = {9CD083F8-A23A-4F54-B5F0-5840A92FB619}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +102,16 @@ Global
 		{9CD083F8-A23A-4F54-B5F0-5840A92FB619}.Release|x64.Build.0 = Release|x64
 		{9CD083F8-A23A-4F54-B5F0-5840A92FB619}.Release|x86.ActiveCfg = Release|Win32
 		{9CD083F8-A23A-4F54-B5F0-5840A92FB619}.Release|x86.Build.0 = Release|Win32
+		{79981E0C-55C7-403D-93F3-F113C9DA9F98}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{79981E0C-55C7-403D-93F3-F113C9DA9F98}.Debug|x64.ActiveCfg = Debug|x64
+		{79981E0C-55C7-403D-93F3-F113C9DA9F98}.Debug|x64.Build.0 = Debug|x64
+		{79981E0C-55C7-403D-93F3-F113C9DA9F98}.Debug|x86.ActiveCfg = Debug|Win32
+		{79981E0C-55C7-403D-93F3-F113C9DA9F98}.Debug|x86.Build.0 = Debug|Win32
+		{79981E0C-55C7-403D-93F3-F113C9DA9F98}.Release|Any CPU.ActiveCfg = Release|Win32
+		{79981E0C-55C7-403D-93F3-F113C9DA9F98}.Release|x64.ActiveCfg = Release|x64
+		{79981E0C-55C7-403D-93F3-F113C9DA9F98}.Release|x64.Build.0 = Release|x64
+		{79981E0C-55C7-403D-93F3-F113C9DA9F98}.Release|x86.ActiveCfg = Release|Win32
+		{79981E0C-55C7-403D-93F3-F113C9DA9F98}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

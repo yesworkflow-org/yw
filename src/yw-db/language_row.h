@@ -2,16 +2,18 @@
 
 #include "yesworkflow_db.h"
 
-namespace yw_db {
+namespace yw {
+    namespace db {
 
-    struct LanguageRow {
+        struct LanguageRow {
 
-        LanguageRow(long id, const std::string& name) :
-            id(id),
-            name(name)
-        {};
+            LanguageRow(long id, const std::string& name) :
+                id(id),
+                name(name)
+            {};
 
-        const long id;
-        const std::string name;
-    };
+            const long id;
+            const std::string name;
+        };
+    }
 }

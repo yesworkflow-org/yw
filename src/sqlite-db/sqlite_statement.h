@@ -5,29 +5,30 @@
 #include <memory>
 #include <string>
 
-namespace yw_db {
+namespace yw {
+    namespace sqlite {
 
-    class SQLiteStatement {
-    
-    public:
+        class SQLiteStatement {
 
-        SQLiteStatement(SQLiteDB& connection, std::string sql);
-        ~SQLiteStatement();
+        public:
 
-        void bindInt64(int column, long value);
-        void bindText(int column, const std::string& text);
+            SQLiteStatement(SQLiteDB& connection, std::string sql);
+            ~SQLiteStatement();
 
-        long getInt64Field(int column);
-        std::string getTextField(int column);
+            void bindInt64(int column, long value);
+            void bindText(int column, const std::string& text);
 
-        long getGeneratedId();
+            long getInt64Field(int column);
+            std::string getTextField(int column);
 
-        int step();
+            long getGeneratedId();
 
-    private:
-        
-        SQLiteDB& db;
-        sqlite3_stmt* statement;
-    };
+            int step();
 
+        private:
+
+            SQLiteDB& db;
+            sqlite3_stmt* statement;
+        };
+    }
 }

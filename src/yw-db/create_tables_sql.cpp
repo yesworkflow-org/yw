@@ -1,6 +1,6 @@
 #include "yesworkflow_db.h"
 
-const std::string yw_db::YesWorkflowDB::create_tables_sql = R"(
+const std::string yw::db::YesWorkflowDB::create_tables_sql = R"(
 
     /******************************************* SQLite Notes *************************************************
 

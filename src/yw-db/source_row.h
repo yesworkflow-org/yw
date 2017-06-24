@@ -2,17 +2,19 @@
 
 #include "yesworkflow_db.h"
 
-namespace yw_db {
+namespace yw {
+    namespace db {
 
-    struct SourceRow {
+        struct SourceRow {
 
-        SourceRow(long id, long model, long language, long file) :
-            id(id), model(model), language(language), file(file)
-        {};
+            SourceRow(long id, long model, long language, long file) :
+                id(id), model(model), language(language), file(file)
+            {};
 
-        const long id;
-        const long model;
-        const long language;
-        const long file;
-    };
+            const long id;
+            const long model;
+            const long language;
+            const long file;
+        };
+    }
 }

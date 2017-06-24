@@ -8,6 +8,8 @@
 #include "YWListener.h"
 
 
+namespace yw {
+
 /**
  * This class provides an empty implementation of YWListener,
  * which can be extended to create a listener which only needs to handle a subset
@@ -96,3 +98,4 @@ public:
 
 };
 
+}  // namespace yw

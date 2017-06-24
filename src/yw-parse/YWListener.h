@@ -8,6 +8,8 @@
 #include "YWParser.h"
 
 
+namespace yw {
+
 /**
  * This interface defines an abstract listener for a parse tree produced by YWParser.
  */
@@ -89,3 +91,4 @@ public:
 
 };
 
+}  // namespace yw

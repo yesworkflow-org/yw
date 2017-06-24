@@ -1,20 +1,21 @@
 #include "stdafx.h"
 #include "CppUnitTest.h"
+#include "sqlite_db.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
-using namespace yw::db;
 
 namespace yw {
-    namespace db {
+    namespace sqlite {
 
-        TEST_CLASS(CreateDatabaseTests)
+        TEST_CLASS(SQLiteDBTests)
         {
         public:
 
             TEST_METHOD(TestConstructor_InMemoryDatabase)
             {
-                YesWorkflowDB ywdb;
+                SQLiteDB db;
             }
+
         };
     }
 }

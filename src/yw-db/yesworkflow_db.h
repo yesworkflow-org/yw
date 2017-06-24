@@ -9,34 +9,36 @@
 #include "source_row.h"
 #include "user_row.h"
 
-namespace yw_db {
+namespace yw {
+    namespace db {
 
-    class YesWorkflowDB {
-    public:
+        class YesWorkflowDB {
+        public:
 
-        YesWorkflowDB();
+            YesWorkflowDB();
 
-        long insertFile(const std::string& name, long owner);
-        FileRow selectFileById(long requested_id);
+            long insertFile(const std::string& name, long owner);
+            FileRow selectFileById(long requested_id);
 
-        long insertLanguage(const std::string& name);
-        LanguageRow selectLanguageById(long requested_id);
+            long insertLanguage(const std::string& name);
+            LanguageRow selectLanguageById(long requested_id);
 
-        long insertModel(long creator, const std::string& create_date);
-        ModelRow selectModelById(long requested_id);
+            long insertModel(long creator, const std::string& create_date);
+            ModelRow selectModelById(long requested_id);
 
-        long insertSource(long model, long language, long file);
-        SourceRow selectSourceById(long id);
+            long insertSource(long model, long language, long file);
+            SourceRow selectSourceById(long id);
 
-        long insertUser(const std::string& name);
-        UserRow selectUserById(long requested_id);
+            long insertUser(const std::string& name);
+            UserRow selectUserById(long requested_id);
 
-    private:
+        private:
 
-        static const std::string create_tables_sql;
+            static const std::string create_tables_sql;
 
-        SQLiteDB db;
+            yw::sqlite::SQLiteDB db;
 
-        void createTables();
-    };
+            void createTables();
+        };
+    }
 }

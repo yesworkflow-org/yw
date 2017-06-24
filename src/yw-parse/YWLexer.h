@@ -7,6 +7,7 @@
 #include "antlr4-runtime.h"
 
 
+namespace yw {
 
 
 class  YWLexer : public antlr4::Lexer {
@@ -57,3 +58,4 @@ private:
   static Initializer _init;
 };
 
+}  // namespace yw
