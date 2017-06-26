@@ -9,8 +9,6 @@ namespace yw {
 
         class SQLiteDB {
 
-            friend class SQLiteStatement;
-
         public:
 
             SQLiteDB();
@@ -22,6 +20,8 @@ namespace yw {
             static std::string textToString(const unsigned char* text) {
                 return std::string((const char*)text);
             }
+
+            sqlite3* getConnection() { return connection; }
 
         private:
 

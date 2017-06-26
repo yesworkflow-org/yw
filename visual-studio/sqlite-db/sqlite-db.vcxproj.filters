@@ -13,7 +13,16 @@
     <ClCompile Include="..\..\src\sqlite-db\sqlite_db.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\sqlite-db\sqlite_statement.cpp">
+    <ClCompile Include="..\..\src\sqlite-db\statement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sqlite-db\insert_statement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sqlite-db\select_statement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sqlite-db\bindable_statement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -21,7 +30,16 @@
     <ClInclude Include="..\..\src\sqlite-db\sqlite_db.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\sqlite-db\sqlite_statement.h">
+    <ClInclude Include="..\..\src\sqlite-db\select_statement.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sqlite-db\statement.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sqlite-db\insert_statement.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sqlite-db\bindable_statement.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -146,12 +146,18 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\sqlite-db\bindable_statement.cpp" />
+    <ClCompile Include="..\..\src\sqlite-db\insert_statement.cpp" />
+    <ClCompile Include="..\..\src\sqlite-db\select_statement.cpp" />
     <ClCompile Include="..\..\src\sqlite-db\sqlite_db.cpp" />
-    <ClCompile Include="..\..\src\sqlite-db\sqlite_statement.cpp" />
+    <ClCompile Include="..\..\src\sqlite-db\statement.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\sqlite-db\bindable_statement.h" />
+    <ClInclude Include="..\..\src\sqlite-db\insert_statement.h" />
+    <ClInclude Include="..\..\src\sqlite-db\select_statement.h" />
     <ClInclude Include="..\..\src\sqlite-db\sqlite_db.h" />
-    <ClInclude Include="..\..\src\sqlite-db\sqlite_statement.h" />
+    <ClInclude Include="..\..\src\sqlite-db\statement.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
