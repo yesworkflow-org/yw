@@ -1,5 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="SQLite Statement Classes">
+    <Position X="5.229" Y="0.562" Height="0.375" Width="1.763" />
+  </Comment>
   <Class Name="yw::sqlite::SelectStatement">
     <Position X="1.5" Y="5.5" Width="1.75" />
     <TypeIdentifier>
@@ -8,21 +11,21 @@
     </TypeIdentifier>
   </Class>
   <Class Name="yw::sqlite::Statement">
-    <Position X="2.75" Y="0.5" Width="2" />
+    <Position X="2.5" Y="0.5" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAQAAAAAAIAAAACAAAAAAAEAAAAAAAAAAA=</HashCode>
       <FileName>C:\Users\tmcphill\GitRepos\yw\src\sqlite-db\statement.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="yw::sqlite::BindableStatement">
-    <Position X="2.5" Y="3.25" Width="2.5" />
+    <Position X="2.5" Y="3.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AQIAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAA=</HashCode>
       <FileName>C:\Users\tmcphill\GitRepos\yw\src\sqlite-db\bindable_statement.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="yw::sqlite::InsertStatement">
-    <Position X="4" Y="5.5" Width="2" />
+    <Position X="4" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAIEAAAAAAAACAAAAAAAAAAAAAA=</HashCode>
       <FileName>C:\Users\tmcphill\GitRepos\yw\src\sqlite-db\insert_statement.h</FileName>
