@@ -25,6 +25,18 @@
     <ClCompile Include="..\..\src\sqlite-db\bindable_statement.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\sqlite-db\create_statement.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sqlite-db\sqlite_exception.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sqlite-db\statement_exception.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\sqlite-db\preparation_exception.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\sqlite-db\sqlite_db.h">
@@ -42,5 +54,25 @@
     <ClInclude Include="..\..\src\sqlite-db\bindable_statement.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h" />
+    <ClInclude Include="..\..\src\sqlite-db\create_statement.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sqlite-db\sqlite_exception.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sqlite-db\statement_exception.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\sqlite-db\preparation_exception.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="sqlite-db.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SQLiteDB.cd" />
+    <None Include="SQLiteException.cd" />
   </ItemGroup>
 </Project>

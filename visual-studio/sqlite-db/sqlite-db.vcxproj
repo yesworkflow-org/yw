@@ -147,17 +147,33 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\sqlite-db\bindable_statement.cpp" />
+    <ClCompile Include="..\..\src\sqlite-db\create_statement.cpp" />
     <ClCompile Include="..\..\src\sqlite-db\insert_statement.cpp" />
+    <ClCompile Include="..\..\src\sqlite-db\preparation_exception.cpp" />
     <ClCompile Include="..\..\src\sqlite-db\select_statement.cpp" />
     <ClCompile Include="..\..\src\sqlite-db\sqlite_db.cpp" />
+    <ClCompile Include="..\..\src\sqlite-db\sqlite_exception.cpp" />
     <ClCompile Include="..\..\src\sqlite-db\statement.cpp" />
+    <ClCompile Include="..\..\src\sqlite-db\statement_exception.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\sqlite-db\bindable_statement.h" />
+    <ClInclude Include="..\..\src\sqlite-db\create_statement.h" />
     <ClInclude Include="..\..\src\sqlite-db\insert_statement.h" />
+    <ClInclude Include="..\..\src\sqlite-db\preparation_exception.h" />
     <ClInclude Include="..\..\src\sqlite-db\select_statement.h" />
     <ClInclude Include="..\..\src\sqlite-db\sqlite_db.h" />
+    <ClInclude Include="..\..\src\sqlite-db\sqlite_exception.h" />
     <ClInclude Include="..\..\src\sqlite-db\statement.h" />
+    <ClInclude Include="..\..\src\sqlite-db\statement_exception.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="sqlite-db.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="SQLiteDB.cd" />
+    <None Include="SQLiteException.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
