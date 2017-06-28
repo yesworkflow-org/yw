@@ -12,12 +12,13 @@ namespace yw {
 
         public:
 
-            Statement(SQLiteDB& connection, std::string sql);
+            Statement(SQLiteDB& connection, const std::string& sql);
             virtual ~Statement();
 
         protected:
 
             SQLiteDB& db;
+            std::string sql;
             sqlite3_stmt* statement;
         };
     }

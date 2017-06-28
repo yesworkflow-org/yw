@@ -2,7 +2,7 @@
 #include "CppUnitTest.h"
 #include "sqlite_db.h"
 #include "create_statement.h"
-#include "sqlite_exception.h"
+#include "preparation_exception.h"
 
 using namespace Microsoft::VisualStudio::CppUnitTestFramework;
 
@@ -37,7 +37,7 @@ namespace yw {
                     )");
                     Assert::Fail();
                 }
-                catch (SQLiteException& e) {
+                catch (PreparationException& e) {
                     Assert::AreEqual(R"<>(Error preparing statement: near ")": syntax error)<>", e.what().c_str());
                 }
             }
@@ -54,7 +54,7 @@ namespace yw {
                     )");
                     Assert::Fail();
                 }
-                catch (SQLiteException& e) {
+                catch (PreparationException& e) {
                     Assert::AreEqual(R"<>(Error preparing statement: near "name": syntax error)<>", e.what().c_str());
                 }
             }

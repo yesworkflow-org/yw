@@ -1,17 +1,20 @@
 #include "create_statement.h"
+#include "create_exception.h"
 
 using std::string;
 
 namespace yw {
     namespace sqlite {
 
-        CreateStatement::CreateStatement(SQLiteDB& connection, std::string sql) :
+        CreateStatement::CreateStatement(SQLiteDB& connection, const string& sql) :
             BindableStatement(connection, sql)
         {}
 
-        int CreateStatement::execute() {
+        void CreateStatement::execute() {
             int rc = sqlite3_step(statement);
-            return rc;
+            if (rc != SQLITE_DONE) {
+                throw CreateException(db.getLastErrorMessage(), sql);
+            }
         }
     }
 }

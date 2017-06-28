@@ -12,7 +12,7 @@ namespace yw {
 
         public:
 
-            SelectStatement(SQLiteDB& connection, std::string sql);
+            SelectStatement(SQLiteDB& connection, const std::string& sql);
 
             int step();
 

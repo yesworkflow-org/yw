@@ -5,7 +5,7 @@ using std::string;
 namespace yw {
     namespace sqlite {
 
-        InsertStatement::InsertStatement(SQLiteDB& connection, std::string sql) :
+        InsertStatement::InsertStatement(SQLiteDB& connection, const std::string& sql) :
             BindableStatement(connection, sql)
         {}
 

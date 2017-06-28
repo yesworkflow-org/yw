@@ -1,11 +1,13 @@
 #include "select_statement.h"
 
+#include <string>
+
 using std::string;
 
 namespace yw {
     namespace sqlite {
 
-        SelectStatement::SelectStatement(SQLiteDB& connection, std::string sql) :
+        SelectStatement::SelectStatement(SQLiteDB& connection, const string& sql) :
             BindableStatement(connection, sql)
         {}
 
