@@ -158,6 +158,7 @@
     <ClCompile Include="..\..\src\sqlite-db\select_statement.cpp" />
     <ClCompile Include="..\..\src\sqlite-db\sqlite_db.cpp" />
     <ClCompile Include="..\..\src\sqlite-db\sqlite_exception.cpp" />
+    <ClCompile Include="..\..\src\sqlite-db\sqlite_log.cpp" />
     <ClCompile Include="..\..\src\sqlite-db\statement.cpp" />
     <ClCompile Include="..\..\src\sqlite-db\statement_exception.cpp" />
   </ItemGroup>
@@ -170,6 +171,7 @@
     <ClInclude Include="..\..\src\sqlite-db\select_statement.h" />
     <ClInclude Include="..\..\src\sqlite-db\sqlite_db.h" />
     <ClInclude Include="..\..\src\sqlite-db\sqlite_exception.h" />
+    <ClInclude Include="..\..\src\sqlite-db\sqlite_log.h" />
     <ClInclude Include="..\..\src\sqlite-db\statement.h" />
     <ClInclude Include="..\..\src\sqlite-db\statement_exception.h" />
     <ClInclude Include="resource.h" />

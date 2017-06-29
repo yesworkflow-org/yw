@@ -1,6 +1,7 @@
 #pragma once
 
 #include "sqlite3.h"
+#include "sqlite_log.h"
 
 #include <string>
 
@@ -25,11 +26,9 @@ namespace yw {
 
         private:
 
+            SQLiteLog log;
             sqlite3* connection;
         };
-
-        void errorLogCallback(void *pArg, int iErrCode, const char *zMsg);
-        std::string getLastLogMessage();
     }
 }
 
