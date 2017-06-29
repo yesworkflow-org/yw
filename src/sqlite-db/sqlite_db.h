@@ -27,5 +27,9 @@ namespace yw {
 
             sqlite3* connection;
         };
+
+        void errorLogCallback(void *pArg, int iErrCode, const char *zMsg);
+        std::string getLastLogMessage();
     }
 }
+
