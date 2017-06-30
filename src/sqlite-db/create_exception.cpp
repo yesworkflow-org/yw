@@ -13,8 +13,8 @@ namespace yw {
         CreateException::CreateException(string message, string sql) :
             StatementException(message, sql) {}
 
-        string CreateException::what() { 
-            return "Error creating table: " + getMessage(); 
+        string CreateException::getMessage() const {
+            return "Error creating table: " + string(what());
         }
     }
 }

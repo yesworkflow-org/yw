@@ -153,6 +153,7 @@
     <ClCompile Include="..\..\src\sqlite-db\bindable_statement.cpp" />
     <ClCompile Include="..\..\src\sqlite-db\create_statement.cpp" />
     <ClCompile Include="..\..\src\sqlite-db\create_exception.cpp" />
+    <ClCompile Include="..\..\src\sqlite-db\insert_exception.cpp" />
     <ClCompile Include="..\..\src\sqlite-db\insert_statement.cpp" />
     <ClCompile Include="..\..\src\sqlite-db\preparation_exception.cpp" />
     <ClCompile Include="..\..\src\sqlite-db\select_statement.cpp" />
@@ -166,6 +167,7 @@
     <ClInclude Include="..\..\src\sqlite-db\bindable_statement.h" />
     <ClInclude Include="..\..\src\sqlite-db\create_statement.h" />
     <ClInclude Include="..\..\src\sqlite-db\create_exception.h" />
+    <ClInclude Include="..\..\src\sqlite-db\insert_exception.h" />
     <ClInclude Include="..\..\src\sqlite-db\insert_statement.h" />
     <ClInclude Include="..\..\src\sqlite-db\preparation_exception.h" />
     <ClInclude Include="..\..\src\sqlite-db\select_statement.h" />

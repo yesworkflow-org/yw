@@ -13,8 +13,8 @@ namespace yw {
         PreparationException::PreparationException(string message, string sql) :
             StatementException(message, sql) {}
 
-        string PreparationException::what() { 
-            return "Error preparing statement: " + getMessage(); 
+        string PreparationException::getMessage() const {
+            return "Error preparing statement: " + string(what());
         }
     }
 }

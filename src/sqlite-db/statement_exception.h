@@ -11,8 +11,8 @@ namespace yw {
         class StatementException : public SQLiteException {
         public:
             StatementException(const std::string& message, const std::string& sql);
-            virtual std::string getSql();
-            virtual std::string what();
+            virtual std::string getSql() const;
+            virtual std::string getMessage() const override;
         private:
             std::string sql;
         };

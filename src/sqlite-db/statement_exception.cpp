@@ -13,11 +13,11 @@ namespace yw {
         StatementException::StatementException(const string& message, const string& sql) :
             SQLiteException(message), sql(sql) {}
 
-        string StatementException::what() { 
-            return "SQLite statement exception: " + getMessage(); 
+        string StatementException::getMessage() const {
+            return "SQLite statement exception: " + string(what());
         }
         
-        string StatementException::getSql() { 
+        string StatementException::getSql() const { 
             return sql; 
         }
     }

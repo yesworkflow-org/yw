@@ -8,15 +8,15 @@
 namespace yw {
     namespace sqlite {
 
-        class SQLiteException {
+        class SQLiteException : public std::runtime_error {
+
         public:
             SQLiteException(const std::string& message);
-            virtual ~SQLiteException();
-            virtual std::string getMessage();
-            virtual std::string what();
+            virtual std::string getMessage() const;
+            virtual std::string getDetails() const;
+
         private:
-            std::string message;
+            std::string details;
         };
     }
 }
-

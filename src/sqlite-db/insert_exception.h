@@ -9,9 +9,9 @@
 namespace yw {
     namespace sqlite {
 
-        class PreparationException : public StatementException {
+        class InsertException : public StatementException {
         public:
-            PreparationException(std::string message, std::string sql);
+            InsertException(std::string message, std::string sql);
             virtual std::string getMessage() const override;
         };
     }

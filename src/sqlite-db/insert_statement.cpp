@@ -1,4 +1,5 @@
 #include "insert_statement.h"
+#include "insert_exception.h"
 
 using std::string;
 
@@ -9,9 +10,11 @@ namespace yw {
             BindableStatement(connection, sql)
         {}
 
-        int InsertStatement::execute() {
+        void InsertStatement::execute() {
             int rc = sqlite3_step(statement);
-            return rc;
+            if (rc != SQLITE_DONE) {
+                throw InsertException(db.getLastErrorMessage(), sql);
+            }
         }
 
         long InsertStatement::getGeneratedId() {

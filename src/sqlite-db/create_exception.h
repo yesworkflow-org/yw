@@ -12,7 +12,7 @@ namespace yw {
         class CreateException : public StatementException {
         public:
             CreateException(std::string message, std::string sql);
-            virtual std::string what();
+            virtual std::string getMessage() const override;
         };
     }
 }

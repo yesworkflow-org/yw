@@ -14,7 +14,7 @@ namespace yw {
             
             InsertStatement(SQLiteDB& connection, const std::string& sql);
 
-            int execute();
+            void execute();
             long getGeneratedId();
         };
     }

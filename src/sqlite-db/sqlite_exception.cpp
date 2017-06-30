@@ -11,16 +11,16 @@ namespace yw {
     namespace sqlite {
 
         SQLiteException::SQLiteException(const string& message) : 
-            message(message) {}
-        
-        SQLiteException::~SQLiteException() {}
-        
-        string SQLiteException::getMessage() { 
-            return message; 
+            std::runtime_error(message.c_str()),
+            details(yw::sqlite::getLastLogMessage().c_str())
+        {}
+
+        string SQLiteException::getMessage() const { 
+            return "SQLite error message: " + string(what());
         }
-        
-        string SQLiteException::what() { 
-            return "SQLite exception: " + getMessage(); 
+
+        string SQLiteException::getDetails() const {
+            return details;
         }
     }
 }
