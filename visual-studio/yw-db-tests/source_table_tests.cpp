@@ -1,7 +1,6 @@
 #include "stdafx.h"
-#include "CppUnitTest.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace yw::test;
 using namespace yw::db;
 using std::make_unique;
 
@@ -16,41 +15,41 @@ namespace yw {
             {
                 YesWorkflowDB ywdb;
                 long userId, modelId, languageId, fileId, sourceId;
-                Assert::AreEqual(1L, (userId = ywdb.insertUser("user1")));
-                Assert::AreEqual(1L, (modelId = ywdb.insertModel(userId, "2017-06-22 10:52:00.000")));
-                Assert::AreEqual(1L, (fileId = ywdb.insertFile("main.c", userId)));
-                Assert::AreEqual(1L, (languageId = ywdb.insertLanguage("C")));
-                Assert::AreEqual(1L, (sourceId = ywdb.insertSource(modelId, languageId, fileId)));
+                Assert::AreEqual(1, (userId = ywdb.insertUser("user1")));
+                Assert::AreEqual(1, (modelId = ywdb.insertModel(userId, "2017-06-22 10:52:00.000")));
+                Assert::AreEqual(1, (fileId = ywdb.insertFile("main.c", userId)));
+                Assert::AreEqual(1, (languageId = ywdb.insertLanguage("C")));
+                Assert::AreEqual(1, (sourceId = ywdb.insertSource(modelId, languageId, fileId)));
             }
 
             TEST_METHOD(TestInsertSource_TwoRows_SecondGeneratedIdIs_2)
             {
                 YesWorkflowDB ywdb;
                 long userId, modelId, language1, language2, file1, file2, source1, source2;
-                Assert::AreEqual(1L, (userId = ywdb.insertUser("user1")));
-                Assert::AreEqual(1L, (modelId = ywdb.insertModel(userId, "2017-06-22 10:52:00.000")));
-                Assert::AreEqual(1L, (file1 = ywdb.insertFile("main.c", userId)));
-                Assert::AreEqual(2L, (file2 = ywdb.insertFile("script.sh", userId)));
-                Assert::AreEqual(1L, (language1 = ywdb.insertLanguage("C")));
-                Assert::AreEqual(2L, (language2 = ywdb.insertLanguage("Bash")));
-                Assert::AreEqual(1L, (source1 = ywdb.insertSource(modelId, language1, file1)));
-                Assert::AreEqual(2L, (source2 = ywdb.insertSource(modelId, language2, file2)));
+                Assert::AreEqual(1, (userId = ywdb.insertUser("user1")));
+                Assert::AreEqual(1, (modelId = ywdb.insertModel(userId, "2017-06-22 10:52:00.000")));
+                Assert::AreEqual(1, (file1 = ywdb.insertFile("main.c", userId)));
+                Assert::AreEqual(2, (file2 = ywdb.insertFile("script.sh", userId)));
+                Assert::AreEqual(1, (language1 = ywdb.insertLanguage("C")));
+                Assert::AreEqual(2, (language2 = ywdb.insertLanguage("Bash")));
+                Assert::AreEqual(1, (source1 = ywdb.insertSource(modelId, language1, file1)));
+                Assert::AreEqual(2, (source2 = ywdb.insertSource(modelId, language2, file2)));
             }
 
             TEST_METHOD(TestSelectSourceById_RowExists) {
                 YesWorkflowDB ywdb;
                 long userId, modelId, languageId, fileId, sourceId;
-                Assert::AreEqual(1L, (userId = ywdb.insertUser("user1")));
-                Assert::AreEqual(1L, (modelId = ywdb.insertModel(userId, "2017-06-22 10:52:00.000")));
-                Assert::AreEqual(1L, (fileId = ywdb.insertFile("main.c", userId)));
-                Assert::AreEqual(1L, (languageId = ywdb.insertLanguage("C")));
-                Assert::AreEqual(1L, (sourceId = ywdb.insertSource(modelId, languageId, fileId)));
+                Assert::AreEqual(1, (userId = ywdb.insertUser("user1")));
+                Assert::AreEqual(1, (modelId = ywdb.insertModel(userId, "2017-06-22 10:52:00.000")));
+                Assert::AreEqual(1, (fileId = ywdb.insertFile("main.c", userId)));
+                Assert::AreEqual(1, (languageId = ywdb.insertLanguage("C")));
+                Assert::AreEqual(1, (sourceId = ywdb.insertSource(modelId, languageId, fileId)));
 
                 auto source = ywdb.selectSourceById(1L);
-                Assert::AreEqual(1L, source.id);
-                Assert::AreEqual(1L, source.model);
-                Assert::AreEqual(1L, source.file);
-                Assert::AreEqual(1L, source.language);
+                Assert::AreEqual(1, source.id);
+                Assert::AreEqual(1, source.model);
+                Assert::AreEqual(1, source.file);
+                Assert::AreEqual(1, source.language);
             }
 
             TEST_METHOD(TestSelectSourceById_RowDoesntExist) {

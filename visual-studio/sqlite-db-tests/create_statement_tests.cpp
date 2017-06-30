@@ -1,12 +1,6 @@
 #include "stdafx.h"
-#include "CppUnitTest.h"
-#include "sqlite_db.h"
-#include "create_statement.h"
-#include "insert_statement.h"
-#include "insert_exception.h"
-#include "preparation_exception.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace yw::test;
 
 namespace yw {
     namespace sqlite {
@@ -39,7 +33,7 @@ namespace yw {
                     Assert::Fail();
                 }
                 catch (PreparationException& e) {
-                    Assert::AreEqual(R"<>(Error preparing statement: near ")": syntax error)<>", e.getMessage().c_str());
+                    Assert::AreEqual(R"<>(Error preparing statement: near ")": syntax error)<>", e.getMessage());
                 }
             }
 
@@ -56,7 +50,7 @@ namespace yw {
                     Assert::Fail();
                 }
                 catch (PreparationException& e) {
-                    Assert::AreEqual(R"<>(Error preparing statement: near "name": syntax error)<>", e.getMessage().c_str());
+                    Assert::AreEqual(R"<>(Error preparing statement: near "name": syntax error)<>", e.getMessage());
                 }
             }
 
@@ -140,9 +134,9 @@ namespace yw {
                 }
                 catch (InsertException e) {
                     Assert::AreEqual("Error inserting row into table: FOREIGN KEY constraint failed", 
-                        e.getMessage().c_str());
+                        e.getMessage());
                     Assert::AreEqual("abort at 14 in [INSERT INTO file(filename, user) VALUES (?,?);]: FOREIGN KEY constraint failed",
-                        e.getDetails().c_str());
+                        e.getDetails());
                 }
             }
         };

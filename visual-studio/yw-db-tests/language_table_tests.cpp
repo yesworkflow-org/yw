@@ -1,8 +1,8 @@
 #include "stdafx.h"
-#include "CppUnitTest.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace yw::test;
 using namespace yw::db;
+
 using std::make_unique;
 
 namespace yw {
@@ -16,7 +16,7 @@ namespace yw {
             {
                 YesWorkflowDB ywdb;
                 auto rowId = ywdb.insertLanguage("C");
-                Assert::AreEqual(1L, (long)rowId);
+                Assert::AreEqual(1, rowId);
             }
 
             TEST_METHOD(TestInsertLanguage_TwoRows_SecondGeneratedIdIs_2)
@@ -24,14 +24,14 @@ namespace yw {
                 YesWorkflowDB ywdb;
                 ywdb.insertLanguage("C");
                 auto secondRowId = ywdb.insertLanguage("Java");
-                Assert::AreEqual(2L, (long)secondRowId);
+                Assert::AreEqual(2, secondRowId);
             }
 
             TEST_METHOD(TestSelectLanguageById_RowExists) {
                 YesWorkflowDB ywdb;
                 ywdb.insertLanguage("C");
                 auto language = ywdb.selectLanguageById(1L);
-                Assert::AreEqual(1L, language.id);
+                Assert::AreEqual(1, language.id);
                 Assert::AreEqual(std::string("C"), language.name);
             }
 

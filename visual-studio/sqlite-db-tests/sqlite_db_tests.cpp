@@ -1,8 +1,6 @@
 #include "stdafx.h"
-#include "CppUnitTest.h"
-#include "sqlite_db.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace yw::test;
 
 namespace yw {
     namespace sqlite {

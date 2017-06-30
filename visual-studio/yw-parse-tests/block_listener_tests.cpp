@@ -1,7 +1,6 @@
 #include "stdafx.h"
-#include "CppUnitTest.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace yw::test;
 
 namespace yw {
     namespace parse {
@@ -16,7 +15,7 @@ namespace yw {
                 YWParserBuilder parser_builder("@begin b @in p @end");
                 antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->block());
 
-                Assert::AreEqual(std::string(
+                Assert::AreEqual(
                     "entered block"                 "\n"
                     "entered begin tag"             "\n"
                     "entered block name"            "\n"
@@ -33,7 +32,7 @@ namespace yw {
                     "entered end tag"               "\n"
                     "exited end tag"                "\n"
                     "exited block"                  "\n"
-                ), listener.log());
+                , listener.log());
             }
 
             TEST_METHOD(TestBlockListener_Begin_Out_End)
@@ -42,7 +41,7 @@ namespace yw {
                 YWParserBuilder parser_builder("@begin b @out p @end");
                 antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->block());
 
-                Assert::AreEqual(std::string(
+                Assert::AreEqual(
                     "entered block"                 "\n"
                     "entered begin tag"             "\n"
                     "entered block name"            "\n"
@@ -59,7 +58,7 @@ namespace yw {
                     "entered end tag"               "\n"
                     "exited end tag"                "\n"
                     "exited block"                  "\n"
-                ), listener.log());
+                , listener.log());
             }
         };
     }

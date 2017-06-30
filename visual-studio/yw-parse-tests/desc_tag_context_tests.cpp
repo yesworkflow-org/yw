@@ -1,7 +1,6 @@
 #include "stdafx.h"
-#include "CppUnitTest.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace yw::test;
 
 namespace yw {
     namespace parse {
@@ -21,14 +20,14 @@ namespace yw {
             {
                 YWParserBuilder parser_builder("@desc word");
                 YWParser::DescTagContext* context = parser_builder.parse()->descTag();
-                YW::Assert::AreEqual("word", context->description()->getText());
+                Assert::AreEqual("word", context->description()->getText());
             }
 
             TEST_METHOD(TestDescTagContext_MultiWordDescription)
             {
                 YWParserBuilder parser_builder("@desc a multiple word description");
                 YWParser::DescTagContext* context = parser_builder.parse()->descTag();
-                YW::Assert::AreEqual("a multiple word description", context->description()->getText());
+                Assert::AreEqual("a multiple word description", context->description()->getText());
             }
 
             TEST_METHOD(TestDescTagContext_MultiWordDescription_IgnoresTextOnNextLine)
@@ -37,7 +36,7 @@ namespace yw {
                     "@desc a multiple word description"  "\n"
                     "with more text on next line"        "\n");
                 YWParser::DescTagContext* context = parser_builder.parse()->descTag();
-                YW::Assert::AreEqual("a multiple word description", context->description()->getText());
+                Assert::AreEqual("a multiple word description", context->description()->getText());
             }
 
         };

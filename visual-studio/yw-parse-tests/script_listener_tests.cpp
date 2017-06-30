@@ -1,7 +1,6 @@
 #include "stdafx.h"
-#include "CppUnitTest.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace yw::test;
 
 namespace yw {
     namespace parse {
@@ -16,7 +15,7 @@ namespace yw {
                 YWParserBuilder parser_builder("@begin b @end b");
                 antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->script());
 
-                Assert::AreEqual(std::string(
+                Assert::AreEqual(
                     "entered script"        "\n"
                     "entered block"         "\n"
                     "entered begin tag"     "\n"
@@ -29,7 +28,7 @@ namespace yw {
                     "exited end tag"        "\n"
                     "exited block"          "\n"
                     "exited script"         "\n"
-                ), listener.log());
+                , listener.log());
             }
 
             TEST_METHOD(TestScriptListener_Begin_End_NoFinalBlockName)
@@ -38,7 +37,7 @@ namespace yw {
                 YWParserBuilder parser_builder("@begin b @end");
                 antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->script());
 
-                Assert::AreEqual(std::string(
+                Assert::AreEqual(
                     "entered script"        "\n"
                     "entered block"         "\n"
                     "entered begin tag"     "\n"
@@ -49,7 +48,7 @@ namespace yw {
                     "exited end tag"        "\n"
                     "exited block"          "\n"
                     "exited script"         "\n"
-                ), listener.log());
+                , listener.log());
             }
 
             TEST_METHOD(TestScriptListener_Begin_Desc_End)
@@ -58,7 +57,7 @@ namespace yw {
                 YWParserBuilder parser_builder("@begin b @desc a simple block @end");
                 antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->script());
 
-                Assert::AreEqual(std::string(
+                Assert::AreEqual(
                     "entered script"            "\n"
                     "entered block"             "\n"
                     "entered begin tag"         "\n"
@@ -75,7 +74,7 @@ namespace yw {
                     "exited end tag"            "\n"
                     "exited block"              "\n"
                     "exited script"             "\n"
-                ), listener.log());
+                , listener.log());
             }
         };
     }

@@ -7,8 +7,10 @@
 
 #include "targetver.h"
 
-// Headers for CppUnitTest
-#include "CppUnitTest.h"
-
 // TODO: reference additional headers your program requires here
 #include "sqlite_db.h"
+#include "create_statement.h"
+#include "insert_statement.h"
+#include "insert_exception.h"
+#include "preparation_exception.h"
+#include "yw_test_assertions.h"

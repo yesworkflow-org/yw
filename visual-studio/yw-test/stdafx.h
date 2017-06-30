@@ -7,7 +7,7 @@
 
 #include "targetver.h"
 
+// Headers for CppUnitTest
+#include "CppUnitTest.h"
+
 // TODO: reference additional headers your program requires here
-#include <memory>
-#include "yesworkflow_db.h"
-#include "yw_test_assertions.h"

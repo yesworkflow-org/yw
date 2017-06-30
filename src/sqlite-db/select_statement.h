@@ -15,6 +15,7 @@ namespace yw {
             SelectStatement(SQLiteDB& connection, const std::string& sql);
 
             int step();
+            int getSingleRow();
 
             long getInt64Field(int column);
             std::string getTextField(int column);

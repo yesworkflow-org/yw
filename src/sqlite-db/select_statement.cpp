@@ -16,6 +16,13 @@ namespace yw {
             return rc;
         }
 
+        int SelectStatement::getSingleRow() {
+            int rc = sqlite3_step(statement); 
+            if (rc != SQLITE_ROW) throw std::runtime_error("No row with that id");
+            return rc;
+        }
+
+
         long SelectStatement::getInt64Field(int column) {
             auto value = sqlite3_column_int64(statement, column);
             return static_cast<long>(value);

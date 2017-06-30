@@ -1,7 +1,6 @@
 #include "stdafx.h"
-#include "CppUnitTest.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace yw::test;
 
 namespace yw {
     namespace parse {
@@ -21,14 +20,14 @@ namespace yw {
             {
                 YWParserBuilder parser_builder("@begin block");
                 YWParser::BeginTagContext* context = parser_builder.parse()->beginTag();
-                YW::Assert::AreEqual("block", context->blockName()->getText());
+                Assert::AreEqual("block", context->blockName()->getText());
             }
 
             TEST_METHOD(TestBeginTagContext_NameWithSpaces)
             {
                 YWParserBuilder parser_builder("@begin b l o c k");
                 YWParser::BeginTagContext* context = parser_builder.parse()->beginTag();
-                YW::Assert::AreEqual("b l o c k", context->blockName()->getText());
+                Assert::AreEqual("b l o c k", context->blockName()->getText());
             }
 
             TEST_METHOD(TestBeginTagContext_NameWithSpacesTerminatedByNewline)
@@ -37,7 +36,7 @@ namespace yw {
                     "@begin b l o "  "\n"
                     "c k"           "\n");
                 YWParser::BeginTagContext* context = parser_builder.parse()->beginTag();
-                YW::Assert::AreEqual("b l o", context->blockName()->getText());
+                Assert::AreEqual("b l o", context->blockName()->getText());
             }
 
             TEST_METHOD(TestBeginTagContext_BlockNameOnNextLineIsNotFound)
@@ -47,7 +46,7 @@ namespace yw {
                     "b"         "\n");
                 YWParser::BeginTagContext* context = parser_builder.parse()->beginTag();
 
-                YW::Assert::AreEqual("@begin", context->BeginKeyword()->getText());
+                Assert::AreEqual("@begin", context->BeginKeyword()->getText());
                 Assert::IsNull(context->blockName());
             }
         };

@@ -1,7 +1,6 @@
 #include "stdafx.h"
-#include "CppUnitTest.h"
 
-using namespace Microsoft::VisualStudio::CppUnitTestFramework;
+using namespace yw::test;
 using namespace yw::db;
 using std::make_unique;
 
@@ -16,7 +15,7 @@ namespace yw {
             {
                 YesWorkflowDB ywdb;
                 auto rowId = ywdb.insertUser("user1");
-                Assert::AreEqual(1L, (long)rowId);
+                Assert::AreEqual(1, (long)rowId);
             }
 
             TEST_METHOD(TestInsertUser_TwoRows_SecondGeneratedIdIs_2)
@@ -24,14 +23,14 @@ namespace yw {
                 YesWorkflowDB ywdb;
                 ywdb.insertUser("user1");
                 auto secondRowId = ywdb.insertUser("user2");
-                Assert::AreEqual(2L, (long)secondRowId);
+                Assert::AreEqual(2, (long)secondRowId);
             }
 
             TEST_METHOD(TestSelectUserById_RowExists) {
                 YesWorkflowDB ywdb;
                 ywdb.insertUser("user1");
                 auto user = ywdb.selectUserById(1L);
-                Assert::AreEqual(1L, user.id);
+                Assert::AreEqual(1, user.id);
                 Assert::AreEqual(std::string("user1"), user.name);
             }
 
