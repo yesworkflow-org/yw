@@ -10,7 +10,7 @@
     <ClInclude Include="targetver.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="common_includes.h">
+    <ClInclude Include="..\..\test\sqlite-db-tests\sqlite_db_tests.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -18,10 +18,10 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sqlite_db_tests.cpp">
+    <ClCompile Include="..\..\test\sqlite-db-tests\create_statement_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="create_statement_tests.cpp">
+    <ClCompile Include="..\..\test\sqlite-db-tests\sqlite_db_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

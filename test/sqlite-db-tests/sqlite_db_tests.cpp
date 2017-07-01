@@ -1,19 +1,19 @@
-#include "common_includes.h"
+#include "sqlite_db_tests.h"
 
 using namespace yw::test;
-using namespace yw::db;
 
 namespace yw {
-    namespace db {
+    namespace sqlite {
 
-        TEST_CLASS(CreateDatabaseTests)
+        TEST_CLASS(SQLiteDBTests)
         {
         public:
 
             TEST_METHOD(TestConstructor_InMemoryDatabase)
             {
-                YesWorkflowDB ywdb;
+                SQLiteDB db;
             }
+
         };
     }
 }

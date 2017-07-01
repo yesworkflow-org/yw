@@ -12,6 +12,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-parse", "yw-parse\yw-par
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-parse-tests", "yw-parse-tests\yw-parse-tests.vcxproj", "{0270BA81-F73E-4AC9-B3C8-094F3F697BBD}"
 	ProjectSection(ProjectDependencies) = postProject
+		{CE3C782F-29AF-4822-90F5-4D83FE7E4140} = {CE3C782F-29AF-4822-90F5-4D83FE7E4140}
 		{7579AE60-7552-4A34-95D3-B360323FDAC0} = {7579AE60-7552-4A34-95D3-B360323FDAC0}
 	EndProjectSection
 EndProject
@@ -22,6 +23,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-db", "yw-db\yw-db.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-db-tests", "yw-db-tests\yw-db-tests.vcxproj", "{A0DCDC47-DD79-4C67-B41D-DAAFE4328654}"
 	ProjectSection(ProjectDependencies) = postProject
+		{CE3C782F-29AF-4822-90F5-4D83FE7E4140} = {CE3C782F-29AF-4822-90F5-4D83FE7E4140}
 		{2C3F23FE-F54E-4B9D-85FE-44889E06073A} = {2C3F23FE-F54E-4B9D-85FE-44889E06073A}
 	EndProjectSection
 EndProject
@@ -29,6 +31,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sqlite-db", "sqlite-db\sqli
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sqlite-db-tests", "sqlite-db-tests\sqlite-db-tests.vcxproj", "{79981E0C-55C7-403D-93F3-F113C9DA9F98}"
 	ProjectSection(ProjectDependencies) = postProject
+		{CE3C782F-29AF-4822-90F5-4D83FE7E4140} = {CE3C782F-29AF-4822-90F5-4D83FE7E4140}
 		{9CD083F8-A23A-4F54-B5F0-5840A92FB619} = {9CD083F8-A23A-4F54-B5F0-5840A92FB619}
 	EndProjectSection
 EndProject

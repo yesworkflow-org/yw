@@ -1,5 +1,7 @@
 #pragma once
 
+#include "yw_test.h"
+
 #include "CppUnitTest.h"
 #include <string>
 

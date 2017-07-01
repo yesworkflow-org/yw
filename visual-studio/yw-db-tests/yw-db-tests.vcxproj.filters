@@ -10,7 +10,7 @@
     <ClInclude Include="targetver.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="common_includes.h">
+    <ClInclude Include="..\..\test\yw-db-tests\yw_db_tests.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -18,22 +18,22 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="create_database_tests.cpp">
+    <ClCompile Include="..\..\test\yw-db-tests\create_database_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="source_table_tests.cpp">
+    <ClCompile Include="..\..\test\yw-db-tests\file_table_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="user_table_tests.cpp">
+    <ClCompile Include="..\..\test\yw-db-tests\language_table_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="language_table_tests.cpp">
+    <ClCompile Include="..\..\test\yw-db-tests\model_table_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="model_table_tests.cpp">
+    <ClCompile Include="..\..\test\yw-db-tests\source_table_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="file_table_tests.cpp">
+    <ClCompile Include="..\..\test\yw-db-tests\user_table_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

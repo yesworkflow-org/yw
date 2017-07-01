@@ -78,22 +78,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(OutDir);$(SolutionDir)\sqlite3\x64\Debug;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-test;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)\..\test\yw-db-tests;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\test\yw-test;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(OutDir);$(SolutionDir)\sqlite3\x64\Debug;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-test;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)\..\test\yw-db-tests;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\test\yw-test;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(OutDir);$(SolutionDir)\sqlite3\x64\Debug;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-test;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)\..\test\yw-db-tests;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\test\yw-test;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(OutDir);$(SolutionDir)\sqlite3\x64\Debug;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-test;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)\..\test\yw-db-tests;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\test\yw-test;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -103,7 +103,7 @@
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeaderFile>common_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>yw_db_tests.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -118,7 +118,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeaderFile>common_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>yw_db_tests.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -135,7 +135,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeaderFile>common_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>yw_db_tests.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -154,7 +154,7 @@
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
-      <PrecompiledHeaderFile>common_includes.h</PrecompiledHeaderFile>
+      <PrecompiledHeaderFile>yw_db_tests.h</PrecompiledHeaderFile>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -164,22 +164,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="common_includes.h" />
+    <ClInclude Include="..\..\test\yw-db-tests\yw_db_tests.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="file_table_tests.cpp" />
-    <ClCompile Include="language_table_tests.cpp" />
-    <ClCompile Include="model_table_tests.cpp" />
-    <ClCompile Include="source_table_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-db-tests\create_database_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-db-tests\file_table_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-db-tests\language_table_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-db-tests\model_table_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-db-tests\source_table_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-db-tests\user_table_tests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="create_database_tests.cpp" />
-    <ClCompile Include="user_table_tests.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

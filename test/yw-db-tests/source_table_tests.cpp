@@ -1,7 +1,8 @@
-#include "common_includes.h"
+#include "yw_db_tests.h"
 
 using namespace yw::test;
 using namespace yw::db;
+
 using std::make_unique;
 
 namespace yw {
