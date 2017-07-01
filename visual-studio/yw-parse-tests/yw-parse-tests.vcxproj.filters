@@ -5,11 +5,11 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Precompiled Headers">
+      <UniqueIdentifier>{95c0f5c2-5d2b-4a16-a3b6-977a357523cc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="targetver.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\test\yw-parse-tests\stub_yw_listener.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -19,11 +19,11 @@
     <ClInclude Include="..\..\test\yw-parse-tests\yw_parser_builder.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Precompiled Headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="stdafx.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\test\yw-parse-tests\begin_tag_context_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -47,6 +47,9 @@
     </ClCompile>
     <ClCompile Include="..\..\test\yw-parse-tests\yw_parser_builder.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Precompiled Headers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

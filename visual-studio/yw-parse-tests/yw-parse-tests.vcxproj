@@ -78,21 +78,21 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(SolutionDir)\antlr4-runtime\x64\Debug;$(OutDir);$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)\..\test\yw-parse-tests;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\test\yw-test;$(ANTLR4_RUNTIME_SRC);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)\..\test\yw-parse-tests;$(SolutionDir)\yw-parse-tests;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\test\yw-test;$(ANTLR4_RUNTIME_SRC);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(SolutionDir)\antlr4-runtime\x64\Debug;$(OutDir);$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)\..\test\yw-parse-tests;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\test\yw-test;$(ANTLR4_RUNTIME_SRC);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)\..\test\yw-parse-tests;$(SolutionDir)\yw-parse-tests;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\test\yw-test;$(ANTLR4_RUNTIME_SRC);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
     <LibraryPath>$(SolutionDir)\antlr4-runtime\x64\Release;$(OutDir);$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)\..\test\yw-parse-tests;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\test\yw-test;$(ANTLR4_RUNTIME_SRC);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)\..\test\yw-parse-tests;$(SolutionDir)\yw-parse-tests;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\test\yw-test;$(ANTLR4_RUNTIME_SRC);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\..\test\yw-parse-tests;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\test\yw-test;$(ANTLR4_RUNTIME_SRC);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <IncludePath>$(SolutionDir)\..\test\yw-parse-tests;$(SolutionDir)\yw-parse-tests;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\test\yw-test;$(ANTLR4_RUNTIME_SRC);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
     <LibraryPath>$(SolutionDir)\antlr4-runtime\x64\Release;$(OutDir);$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
