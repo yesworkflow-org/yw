@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "common_includes.h"
 
 using namespace yw::test;
 using namespace yw::db;

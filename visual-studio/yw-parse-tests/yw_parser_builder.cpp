@@ -1,4 +1,4 @@
-#include "stdafx.h"
+#include "common_includes.h"
 
 #include "YWLexer.h"
 #include "YWParser.h"

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "stdafx.h"
+#include "common_includes.h"
 #include "YWBaseListener.h"
 
 namespace yw {

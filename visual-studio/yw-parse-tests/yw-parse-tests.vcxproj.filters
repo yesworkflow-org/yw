@@ -13,10 +13,10 @@
     <ClInclude Include="yw_parser_builder.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="stdafx.h">
+    <ClInclude Include="targetver.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="targetver.h">
+    <ClInclude Include="common_includes.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
