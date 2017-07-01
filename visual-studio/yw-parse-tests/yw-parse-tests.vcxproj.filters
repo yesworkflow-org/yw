@@ -13,13 +13,13 @@
     <ClInclude Include="..\..\test\yw-parse-tests\stub_yw_listener.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\test\yw-parse-tests\yw_parse_tests.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\test\yw-parse-tests\yw_parser_builder.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="targetver.h">
+      <Filter>Precompiled Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\test\yw-parse-tests\yw_parse_tests.h">
       <Filter>Precompiled Headers</Filter>
     </ClInclude>
   </ItemGroup>

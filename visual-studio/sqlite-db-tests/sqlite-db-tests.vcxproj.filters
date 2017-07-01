@@ -14,7 +14,7 @@
       <Filter>Precompiled Headers</Filter>
     </ClInclude>
     <ClInclude Include="..\..\test\sqlite-db-tests\sqlite_db_tests.h">
-      <Filter>Source Files</Filter>
+      <Filter>Precompiled Headers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
