@@ -1,5 +1,3 @@
-#pragma once
-
 #include "sqlite_exception.h"
 
 #include <memory>

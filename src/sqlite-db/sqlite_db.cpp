@@ -1,7 +1,5 @@
-#pragma once
-
 #include "sqlite_db.h"
-
+#include <stdexcept>
 #include <string>
 
 using std::string;

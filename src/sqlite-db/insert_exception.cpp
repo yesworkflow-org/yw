@@ -1,5 +1,3 @@
-#pragma once
-
 #include "insert_exception.h"
 
 #include <memory>

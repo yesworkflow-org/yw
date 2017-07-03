@@ -1,5 +1,3 @@
-#pragma once
-
 #include "preparation_exception.h"
 
 #include <memory>

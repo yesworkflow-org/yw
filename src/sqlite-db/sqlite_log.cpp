@@ -1,4 +1,3 @@
-
 #include "sqlite3.h"
 #include "sqlite_log.h"
 
