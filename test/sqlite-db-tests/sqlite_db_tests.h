@@ -11,4 +11,4 @@
 #include "insert_statement.h"
 #include "insert_exception.h"
 #include "preparation_exception.h"
-#include "yw_test_assertions.h"
+#include "yw_test.h"

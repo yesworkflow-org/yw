@@ -4,8 +4,6 @@
 
 #ifdef _MSC_VER 
 #include "targetver.h"
+#include "CppUnitTest.h"
 #endif
 
-#include <memory>
-#include "yesworkflow_db.h"
-#include "yw_test.h"

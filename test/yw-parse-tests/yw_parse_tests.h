@@ -12,4 +12,4 @@
 #include "antlr4-runtime.h"
 #include "yw_parser_builder.h"
 #include "stub_yw_listener.h"
-#include "yw_test_assertions.h"
+#include "yw_test.h"

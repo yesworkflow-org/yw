@@ -10,14 +10,14 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\test\yw-test\yw_test_assertions.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="targetver.h">
       <Filter>Precompiled Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\test\yw-test\yw_test.h">
+    <ClInclude Include="..\..\test\yw-test\yw_test_msvc.h">
       <Filter>Precompiled Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\test\yw-test\yw_test.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
