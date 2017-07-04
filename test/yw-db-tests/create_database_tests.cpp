@@ -3,17 +3,13 @@
 using namespace yw::test;
 using namespace yw::db;
 
-namespace yw {
-    namespace db {
+YW_TEST_FIXTURE(YesWorkflowDB)
 
-        TEST_CLASS(CreateDatabaseTests)
-        {
-        public:
+YW_TEST_SET
 
-            TEST_METHOD(TestConstructor_InMemoryDatabase)
-            {
-                YesWorkflowDB ywdb;
-            }
-        };
+    YW_TEST(YesWorkflowDB, CreatInMemoryDatabase)
+    {
+        YesWorkflowDB ywdb;
     }
-}
+
+YW_TEST_END

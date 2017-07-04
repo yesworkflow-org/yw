@@ -1,19 +1,15 @@
 #include "sqlite_db_tests.h"
 
 using namespace yw::test;
+using namespace yw::sqlite;
 
-namespace yw {
-    namespace sqlite {
+YW_TEST_FIXTURE(SQLiteDB)
 
-        TEST_CLASS(SQLiteDBTests)
-        {
-        public:
+YW_TEST_SET
 
-            TEST_METHOD(TestConstructor_InMemoryDatabase)
-            {
-                SQLiteDB db;
-            }
-
-        };
+    YW_TEST(SQLiteDB, InMemoryDatabase)
+    {
+        SQLiteDB db;
     }
-}
+
+YW_TEST_END

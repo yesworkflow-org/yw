@@ -1,7 +1,6 @@
+#include "extract.h"
 
 #include <iostream>
-
-#include "extract.h"
 
 using std::cout;
 using std::endl;
