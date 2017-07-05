@@ -19,6 +19,9 @@
     <ClInclude Include="..\..\test\yw-test\yw_test.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\test\yw-test\yw_test_cpputest.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
