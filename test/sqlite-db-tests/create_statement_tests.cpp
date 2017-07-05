@@ -5,13 +5,13 @@ using namespace yw::sqlite;
 
 YW_TEST_FIXTURE(CreateStatement)
 
-    SQLiteDB db;
+    std::shared_ptr<SQLiteDB> db = std::make_shared<SQLiteDB>();
 
 YW_TEST_SET
 
     YW_TEST(CreateStatement, ValidStatementConstructsSuccessfully)
     {
-        CreateStatement statement(db, R"(
+    Statement statement(db, R"(
             CREATE TABLE user(
                 id                  INTEGER         NOT NULL        PRIMARY KEY,
                 name                TEXT            NULL
@@ -51,7 +51,7 @@ YW_TEST_SET
         }
     }
 
-    YW_TEST(CreateStatement, TestCreateStatement_Execute_SingleTable)
+    YW_TEST(CreateStatement, Execute_SingleTable)
     {
         CreateStatement createUser(db, R"(
             CREATE TABLE user(
@@ -62,7 +62,7 @@ YW_TEST_SET
         createUser.execute();
     }
 
-    YW_TEST(CreateStatement, TestCreateStatement_Execute_TwoTables)
+    YW_TEST(CreateStatement, Execute_TwoTables)
     {
         CreateStatement createUser(db, R"(
             CREATE TABLE user(
@@ -80,7 +80,7 @@ YW_TEST_SET
         createFile.execute();
     }
 
-    YW_TEST(CreateStatement, TestCreateStatement_Execute_TwoTables_ValidReference)
+    YW_TEST(CreateStatement, Execute_TwoTables_ValidReference)
     {
         CreateStatement createUser(db, R"(
             CREATE TABLE user(
@@ -99,7 +99,7 @@ YW_TEST_SET
         createFile.execute();
     }
 
-    YW_TEST(CreateStatement, TestCreateStatement_Execute_TwoTables_InvalidReference)
+    YW_TEST(CreateStatement, Execute_TwoTables_InvalidReference)
     {
         CreateStatement createUser(db, R"(
             CREATE TABLE user(

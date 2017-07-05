@@ -6,14 +6,14 @@ using std::string;
 namespace yw {
     namespace sqlite {
 
-        CreateStatement::CreateStatement(SQLiteDB& connection, const string& sql) :
+        CreateStatement::CreateStatement(std::shared_ptr<SQLiteDB> connection, const string& sql) :
             BindableStatement(connection, sql)
         {}
 
         void CreateStatement::execute() {
             int rc = sqlite3_step(statement);
             if (rc != SQLITE_DONE) {
-                throw CreateException(db.getLastErrorMessage(), sql);
+                throw CreateException(db->getLastErrorMessage(), sql);
             }
         }
     }

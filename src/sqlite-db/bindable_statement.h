@@ -12,7 +12,7 @@ namespace yw {
 
         public:
 
-            BindableStatement(SQLiteDB& connection, const std::string& sql);
+            BindableStatement(std::shared_ptr<SQLiteDB> connection, const std::string& sql);
 
             void bindInt64(int column, long value);
             void bindText(int column, const std::string& text);

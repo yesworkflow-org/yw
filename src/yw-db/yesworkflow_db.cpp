@@ -6,12 +6,13 @@ using namespace yw::sqlite;
 namespace yw {
     namespace db {
 
-        YesWorkflowDB::YesWorkflowDB() : db(SQLiteDB()) {
+        YesWorkflowDB::YesWorkflowDB() {
+            db = std::make_shared<SQLiteDB>();
             createTables();
         }
 
         void YesWorkflowDB::createTables() {
-            db.execute(create_tables_sql);
+            db->execute(create_tables_sql);
         }
     }
 }

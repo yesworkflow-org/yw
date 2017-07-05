@@ -1,7 +1,7 @@
 #pragma once
 
+#include <memory>
 #include "sqlite_db.h"
-
 
 #include "file_row.h"
 #include "language_row.h"
@@ -36,7 +36,7 @@ namespace yw {
 
             static const std::string create_tables_sql;
 
-            yw::sqlite::SQLiteDB db;
+            std::shared_ptr<yw::sqlite::SQLiteDB> db;
 
             void createTables();
         };

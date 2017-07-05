@@ -12,7 +12,7 @@ namespace yw {
 
         public:
             
-            CreateStatement(SQLiteDB& connection, const std::string& sql);
+            CreateStatement(std::shared_ptr<SQLiteDB> connection, const std::string& sql);
 
             void execute();
         };
