@@ -4,6 +4,8 @@
 #include "yw_test_cpputest.h"
 
 #include <string>
+#include <iostream>
+
 
 namespace yw {
     namespace test {
@@ -15,6 +17,16 @@ namespace yw {
             wcstombs_s(nullptr, c_message, newsize, w_message, _TRUNCATE);
             return c_message;
         }
+
+        class StderrRecorder {
+            std::stringstream recording;
+            std::streambuf * previousBuffer;
+        public:
+            StderrRecorder()  { previousBuffer = std::cerr.rdbuf(recording.rdbuf()); }
+            ~StderrRecorder() { std::cerr.rdbuf(previousBuffer); }
+            std::string str() { return recording.str(); }
+        };
+
 
         class Assert {
         
@@ -29,6 +41,18 @@ namespace yw {
 
                 #ifdef CPPUTEST
                     STRCMP_EQUAL(expected, actual.c_str());
+                #endif
+            }
+
+            static void EmptyString(std::string actual) {
+
+                #ifdef MSTEST
+                Microsoft::VisualStudio::CppUnitTestFramework::
+                    Assert::AreEqual("", actual.c_str());
+                #endif
+
+                #ifdef CPPUTEST
+                    STRCMP_EQUAL("", actual.c_str());
                 #endif
             }
 

@@ -6,12 +6,15 @@ using namespace yw::test;
 
 YW_TEST_FIXTURE(BlockContext)
 
+    StderrRecorder stderrRecorder;
+
 YW_TEST_SET
 
     YW_TEST(BlockContext, Begin_End)
     {
         YWParserBuilder parser_builder("@begin b @end b");
         YWParser::BlockContext* context = parser_builder.parse()->block();
+        Assert::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual("@begin b @end b", context->getText());
         Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
@@ -30,6 +33,7 @@ YW_TEST_SET
             "@end b"    "\n"
         );
         YWParser::BlockContext* context = parser_builder.parse()->block();
+        Assert::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "@begin b"  "\n"
@@ -50,6 +54,8 @@ YW_TEST_SET
             "@begin"    "\n"
             "block"     "\n");
         YWParser::BlockContext* blockContext = parser_builder.parse()->block();
+        Assert::AreEqual("line 1:6 mismatched input '\\n' expecting SPACE" "\n", stderrRecorder.str());
+
         Assert::AreEqual("@begin", blockContext->beginTag()->BeginKeyword()->getText());
         Assert::IsNull(blockContext->beginTag()->blockName());
     }
@@ -58,6 +64,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@begin b @end");
         YWParser::BlockContext* context = parser_builder.parse()->block();
+        //Assert::AreEqual("line 1:13 mismatched input '<EOF>' expecting SPACE" "\n", stderrRecorder.str());
 
         Assert::AreEqual("@begin b @end", context->getText());
         Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
@@ -72,6 +79,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@begin b @desc word @end");
         YWParser::BlockContext* context = parser_builder.parse()->block();
+        //Assert::AreEqual("line 1:24 mismatched input '<EOF>' expecting SPACE" "\n", stderrRecorder.str());
 
         Assert::AreEqual("@begin b @desc word @end", context->getText());
         Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
@@ -88,6 +96,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@begin b @desc a multiple word description @end");
         YWParser::BlockContext* context = parser_builder.parse()->block();
+        //Assert::AreEqual("line 1:47 mismatched input '<EOF>' expecting SPACE" "\n", stderrRecorder.str());
 
         Assert::AreEqual("@begin b @desc a multiple word description @end", context->getText());
         Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
@@ -104,7 +113,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@begin b\n@desc a multiple word description @end");
         YWParser::BlockContext* context = parser_builder.parse()->block();
-
+//        Assert::AreEqual("line 2:38 mismatched input '<EOF>' expecting SPACE'" "\n", stderrRecorder.str());
         Assert::AreEqual("@begin b\n@desc a multiple word description @end", context->getText());
         Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
         Assert::AreEqual("b", context->beginTag()->blockName()->getText());

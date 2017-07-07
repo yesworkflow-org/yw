@@ -6,6 +6,8 @@ using namespace yw::test;
 
 YW_TEST_FIXTURE(BlockListener)
 
+    StderrRecorder stderrRecorder;
+
 YW_TEST_SET
 
     YW_TEST(BlockListener, Begin_In_End)
@@ -13,6 +15,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@begin b @in p @end");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->block());
+        //Assert::AreEqual("line 1:19 mismatched input '<EOF>' expecting SPACE" "\n", stderrRecorder.str());
 
         Assert::AreEqual(
             "entered block"                 "\n"
@@ -39,6 +42,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@begin b @out p @end");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->block());
+        //Assert::AreEqual("line 1:20 mismatched input '<EOF>' expecting SPACE" "\n", stderrRecorder.str());
 
         Assert::AreEqual(
             "entered block"                 "\n"

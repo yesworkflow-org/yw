@@ -22,6 +22,7 @@ GCC_LIBS   = -lm -lpthread -lstdc++
 UTEST_LIBS = -lCppUTestExt -lCppUTest -L$(CPPUTEST_LIB_DIR)       
 YW_LIBS    = -lywparse                -L$(YW_GCC_DIRS)/yw-parse
 ANTLRLIB   = -lantlr4                 -L$(YW_GCC_DIRS)/antlr4-runtime
+
 test: $(TEST_RUNNER)
 	./$(TEST_RUNNER) -v
 

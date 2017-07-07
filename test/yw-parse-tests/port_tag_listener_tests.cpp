@@ -6,6 +6,8 @@ using namespace yw::test;
 
 YW_TEST_FIXTURE(PortTagListener)
 
+    StderrRecorder stderrRecorder;
+
 YW_TEST_SET
 
     YW_TEST(PortTagListener, In)
@@ -13,6 +15,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@in p");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->portTag());
+        Assert::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "entered port tag"              "\n"
@@ -29,6 +32,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@in p @desc a single input port");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->portTag());
+        Assert::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "entered port tag"              "\n"
@@ -51,6 +55,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@in p @as d");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->portTag());
+        Assert::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "entered port tag"              "\n"
@@ -73,6 +78,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@in p @as first input port");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->portTag());
+        Assert::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "entered port tag"              "\n"
@@ -95,6 +101,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@param p");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->portTag());
+        Assert::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "entered port tag"              "\n"
@@ -111,6 +118,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@out p");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->portTag());
+        Assert::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "entered port tag"              "\n"
@@ -127,6 +135,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@return p");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->portTag());
+        Assert::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "entered port tag"              "\n"
@@ -143,6 +152,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@in p q");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->portTag());
+        Assert::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "entered port tag"              "\n"
@@ -161,6 +171,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@in p q @as d");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->portTag());
+        Assert::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "entered port tag"              "\n"
