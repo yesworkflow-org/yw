@@ -54,7 +54,7 @@ YW_TEST_SET
         Assert::IsNull(blockContext->beginTag()->blockName());
     }
 
-    TEST_METHOD(TestBlockContext_Begin_End_WithNoFinalBlockName)
+    YW_TEST(BlockContext, Begin_End_WithNoFinalBlockName)
     {
         YWParserBuilder parser_builder("@begin b @end");
         YWParser::BlockContext* context = parser_builder.parse()->block();

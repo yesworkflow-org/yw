@@ -13,7 +13,7 @@ ANTLR4_SRCS = \
 	$(wildcard $(SRC)/tree/xpath/*.cpp)
 
 CPPFLAGS =  -std=c++14 -g3 -W -Wall -pedantic
-CPPFLAGS += -I$(ANTLR4_RUNTIME_SRC) -DANTLR4CPP_EXPORTS -Wno-attributes
+CPPFLAGS += -I$(ANTLR4_RUNTIME_SRC) -DANTLR4CPP_STATIC -Wno-attributes
 
 all: $(ANTLR4_LIB)
 
