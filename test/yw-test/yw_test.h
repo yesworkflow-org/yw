@@ -10,13 +10,18 @@
 namespace yw {
     namespace test {
 
-        inline const char * get_c_message(const wchar_t * w_message) {
-            if (w_message == nullptr) w_message = L"";
-            size_t newsize = (wcslen(w_message) + 1) * 2;
-            char *c_message = new char[newsize];
-            wcstombs_s(nullptr, c_message, newsize, w_message, _TRUNCATE);
-            return c_message;
-        }
+        class ErrorMessage {
+            char* c_message;
+        public:
+            ErrorMessage(const wchar_t * w_message) {
+                if (w_message == nullptr) w_message = L"";
+                size_t newsize = (wcslen(w_message) + 1) * 2;
+                c_message = new char[newsize];
+                wcstombs_s(nullptr, c_message, newsize, w_message, _TRUNCATE);
+            }
+            ~ErrorMessage() { delete[] c_message; }
+            const char* c_str() const { return c_message; }
+        };
 
         class StderrRecorder {
             std::stringstream recording;
@@ -114,9 +119,7 @@ namespace yw {
                 #endif      
                 
                 #ifdef CPPUTEST
-                        auto c_message = get_c_message(w_message);
-                    FAIL(c_message);
-                    delete[] c_message;
+                    FAIL((ErrorMessage(w_message)).c_str());
                 #endif
             }
         };
