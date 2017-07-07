@@ -20,49 +20,77 @@ namespace yw {
         
         public:
 
-            static void AreEqual(const char* expected, std::string actual, bool ignoreCase = false, const wchar_t* message = NULL) {
-                #if defined(MSTEST)
+            static void AreEqual(const char* expected, std::string actual, bool ignoreCase = false, const wchar_t* w_message = NULL) {
+                
+                #ifdef MSTEST
                     Microsoft::VisualStudio::CppUnitTestFramework::
-                    Assert::AreEqual(expected, actual.c_str(), ignoreCase, message);
+                    Assert::AreEqual(expected, actual.c_str(), ignoreCase, w_message);
+                #endif
+
+                #ifdef CPPUTEST
+                    STRCMP_EQUAL(expected, actual.c_str());
                 #endif
             }
 
             template<typename T> 
             static void IsNull(const T* actual, const wchar_t* message = NULL) {
-                #if defined(MSTEST)
+            
+                #ifdef MSTEST
                     Microsoft::VisualStudio::CppUnitTestFramework::
                     Assert::IsNull(actual, message);
+                #endif
+
+                #ifdef CPPUTEST
+                    POINTERS_EQUAL(nullptr, actual);
                 #endif
             }
 
             template<typename T>
             static void AreEqual(const T& expected, const T& actual, const wchar_t* message = NULL) {
-                #if defined(MSTEST)
+
+                #ifdef MSTEST
                     Microsoft::VisualStudio::CppUnitTestFramework::
                     Assert::AreEqual(expected, actual, message);
+                #endif
+
+                #ifdef CPPUTEST
+                    CHECK_EQUAL(expected, actual);
                 #endif
             }
 
             static void AreEqual(const int& expected, const long& actual, const wchar_t* message = NULL) {
-                #if defined(MSTEST)
+                
+                #ifdef MSTEST
                     Microsoft::VisualStudio::CppUnitTestFramework::
                     Assert::AreEqual((long)expected, actual, message);
+                #endif
+
+                #ifdef CPPUTEST
+                    LONGS_EQUAL(expected, actual);
                 #endif
             }
 
             static void AreEqual(const int& expected, const size_t& actual, const wchar_t* message = NULL) {
-                #if defined(MSTEST)
+                
+                #ifdef MSTEST
                     Microsoft::VisualStudio::CppUnitTestFramework::
                     Assert::AreEqual((size_t)expected, actual, message);
+                #endif
+
+                #ifdef CPPUTEST
+                    UNSIGNED_LONGS_EQUAL(expected, actual);
                 #endif
             }
 
             static void Fail(const wchar_t* w_message = NULL) {
-                #if defined(MSTEST)
+
+                #ifdef MSTEST
                     Microsoft::VisualStudio::CppUnitTestFramework::
                     Assert::Fail(w_message);
-                #elif defined(CPPUTEST)
-                    auto c_message = get_c_message(w_message);
+                #endif      
+                
+                #ifdef CPPUTEST
+                        auto c_message = get_c_message(w_message);
                     FAIL(c_message);
                     delete[] c_message;
                 #endif
