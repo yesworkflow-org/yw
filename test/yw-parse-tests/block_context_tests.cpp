@@ -64,7 +64,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@begin b @end");
         YWParser::BlockContext* context = parser_builder.parse()->block();
-        //Assert::AreEqual("line 1:13 mismatched input '<EOF>' expecting SPACE" "\n", stderrRecorder.str());
+        Assert::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual("@begin b @end", context->getText());
         Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
@@ -79,7 +79,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@begin b @desc word @end");
         YWParser::BlockContext* context = parser_builder.parse()->block();
-        //Assert::AreEqual("line 1:24 mismatched input '<EOF>' expecting SPACE" "\n", stderrRecorder.str());
+        Assert::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual("@begin b @desc word @end", context->getText());
         Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
@@ -96,7 +96,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@begin b @desc a multiple word description @end");
         YWParser::BlockContext* context = parser_builder.parse()->block();
-        //Assert::AreEqual("line 1:47 mismatched input '<EOF>' expecting SPACE" "\n", stderrRecorder.str());
+        Assert::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual("@begin b @desc a multiple word description @end", context->getText());
         Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
@@ -113,7 +113,8 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@begin b\n@desc a multiple word description @end");
         YWParser::BlockContext* context = parser_builder.parse()->block();
-//        Assert::AreEqual("line 2:38 mismatched input '<EOF>' expecting SPACE'" "\n", stderrRecorder.str());
+        Assert::EmptyString(stderrRecorder.str());
+
         Assert::AreEqual("@begin b\n@desc a multiple word description @end", context->getText());
         Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
         Assert::AreEqual("b", context->beginTag()->blockName()->getText());

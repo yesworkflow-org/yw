@@ -10,7 +10,7 @@ YW_TEST_FIXTURE(BeginTagContext)
 
 YW_TEST_SET
 
-    YW_TEST(BeginTagContext, NoName)
+    YW_TEST(BeginTagContext, BeginTagWithNoArgumentYieldsNullBlockName)
     {
         YWParserBuilder parser_builder("@begin");
         YWParser::BeginTagContext* context = parser_builder.parse()->beginTag();
@@ -18,7 +18,7 @@ YW_TEST_SET
         Assert::IsNull(context->blockName());
     }
 
-    YW_TEST(BeginTagContext, NameWithoutSpaces)
+    YW_TEST(BeginTagContext, BeginTagWithSingleArgumentOnSameLineYieldsArgumentAsBlockName)
     {
         YWParserBuilder parser_builder("@begin block");
         YWParser::BeginTagContext* context = parser_builder.parse()->beginTag();
@@ -26,7 +26,7 @@ YW_TEST_SET
         Assert::AreEqual("block", context->blockName()->getText());
     }
 
-    YW_TEST(BeginTagContext, NameWithSpaces)
+    YW_TEST(BeginTagContext, BeginTagWithMultipleArgumentsOnSameLineYieldsArgumentsAsBlockName)
     {
         YWParserBuilder parser_builder("@begin b l o c k");
         YWParser::BeginTagContext* context = parser_builder.parse()->beginTag();
@@ -34,7 +34,7 @@ YW_TEST_SET
         Assert::AreEqual("b l o c k", context->blockName()->getText());
     }
 
-    YW_TEST(BeginTagContext, NameWithSpacesTerminatedByNewline)
+    YW_TEST(BeginTagContext, BeginTagWithMultipleArgumentsOnTwoLinesYieldsArgumentsOnFirstLineAsBlockName)
     {
         YWParserBuilder parser_builder(
             "@begin b l o "  "\n"
@@ -44,7 +44,7 @@ YW_TEST_SET
         Assert::AreEqual("b l o", context->blockName()->getText());
     }
 
-    YW_TEST(BeginTagContext, BlockNameOnNextLineIsNotFound)
+    YW_TEST(BeginTagContext, BeginTagWithArgumentOnNextLineYieldsNullBlockName)
     {
         YWParserBuilder parser_builder(
             "@begin"    "\n"

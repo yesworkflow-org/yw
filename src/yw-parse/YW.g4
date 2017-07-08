@@ -8,7 +8,7 @@ portTag             : (inputPortKeyword | outputPortKeyword) (SPACE+ portName)+ 
 portAttribute       : descTag | aliasTag | resourceTag ;
 
 beginTag            : BeginKeyword (SPACE)+ blockName ;
-endTag              : EndKeyword (SPACE)+ (blockName)? ;
+endTag              : EndKeyword ((SPACE)+ (blockName))? ;
 descTag             : DescKeyword (SPACE)+ description ;
 aliasTag            : AsKeyword (SPACE)+ dataName ;
 callTag             : CallKeyword (SPACE)+ (blockName)+ ;

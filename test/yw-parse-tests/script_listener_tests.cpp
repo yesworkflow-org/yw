@@ -38,7 +38,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@begin b @end");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->script());
-        //Assert::AreEqual("line 1:13 mismatched input '<EOF>' expecting SPACE" "\n", stderrRecorder.str());
+        Assert::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "entered script"        "\n"
@@ -59,7 +59,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@begin b @desc a simple block @end");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->script());
-        //Assert::AreEqual("line 1:34 mismatched input '<EOF>' expecting SPACE" "\n", stderrRecorder.str());
+        Assert::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "entered script"            "\n"
