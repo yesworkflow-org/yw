@@ -12,43 +12,6 @@ const std::string yw::db::YesWorkflowDB::create_tables_sql = R"(
 
     **************************************************************************************************/
 
-    CREATE TABLE user(
-        id                  INTEGER         NOT NULL        PRIMARY KEY,
-        name                TEXT            NULL
-    );
-
-    CREATE TABLE model(
-        id                  INTEGER         NOT NULL        PRIMARY KEY,
-        creator             INTEGER         NOT NULL        REFERENCES user(id),
-        create_date         TEXT            NOT NULL
-    );
-
-    CREATE TABLE language(
-        id                  INTEGER         NOT NULL        PRIMARY KEY,
-        name                TEXT            NOT NULL
-    );
-
-    CREATE TABLE file(
-        id                  INTEGER         NOT NULL        PRIMARY KEY,
-        name                TEXT            NOT NULL,
-        owner               INTEGER         NULL            REFERENCES user(id),
-        fs_file_id          INTEGER         NULL,
-        fs_device_id        INTEGER         NULL,
-        fs_path             TEXT            NULL,
-        fs_owner_id         INTEGER         NULL,
-        fs_create_date      TEXT            NULL,
-        fs_modify_date      TEXT            NULL,
-        size                INTEGER         NULL,       
-        hash                INTEGER         NULL
-    );
-
-    CREATE TABLE source(
-        id                  INTEGER         NOT NULL        PRIMARY KEY,
-        model               INTEGER         NOT NULL        REFERENCES model(id),
-        file                INTEGER         NULL            REFERENCES file(id),
-        language            INTEGER         NOT NULL        REFERENCES language(id)
-    );
-
     CREATE TABLE source_line(
         id                  INTEGER         NOT NULL        PRIMARY KEY,
         source              INTEGER         NOT NULL        REFERENCES source(id),

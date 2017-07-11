@@ -1,6 +1,7 @@
 #include "sqlite_db.h"
 #include <stdexcept>
 #include <string>
+#include "create_statement.h"
 
 using std::string;
 
@@ -25,6 +26,12 @@ namespace yw {
             char* err_msg = 0;
             int rc = sqlite3_exec(connection, sql.c_str(), 0, 0, &err_msg);
         }
-    }
+
+		void SQLiteDB::createTable(std::shared_ptr<SQLiteDB> connection, const string& sql) {
+			CreateStatement statement(connection, sql);
+			statement.execute();
+		}
+	}
+
 }
 

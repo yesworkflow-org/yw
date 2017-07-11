@@ -8,6 +8,18 @@ using namespace yw::sqlite;
 namespace yw {
     namespace db {
 
+		void YesWorkflowDB::createModelTable() {
+			SQLiteDB::createTable(db, std::string(R"(
+
+				CREATE TABLE model(
+					id                  INTEGER         NOT NULL        PRIMARY KEY,
+					creator             INTEGER         NOT NULL        REFERENCES user(id),
+					create_date         TEXT            NOT NULL
+				);
+
+			)"));
+		}
+
         long YesWorkflowDB::insertModel(long creator, const std::string& create_date) {
             string sql = "INSERT INTO model(creator, create_date) VALUES (?,?);";
             InsertStatement statement(db, sql);

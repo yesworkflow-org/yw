@@ -3,6 +3,7 @@
 #include "sqlite3.h"
 #include "sqlite_log.h"
 
+#include <memory>
 #include <string>
 
 namespace yw {
@@ -16,6 +17,7 @@ namespace yw {
             ~SQLiteDB();
 
             void execute(std::string sql);
+
             std::string getLastErrorMessage();
 
             static std::string textToString(const unsigned char* text) {
@@ -24,11 +26,14 @@ namespace yw {
 
             sqlite3* getConnection() { return connection; }
 
+			static void createTable(std::shared_ptr<SQLiteDB> connection, const std::string& sql);
+
         private:
 
             SQLiteLog log;
             sqlite3* connection;
         };
+
     }
 }
 

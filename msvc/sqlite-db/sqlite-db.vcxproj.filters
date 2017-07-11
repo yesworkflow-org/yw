@@ -5,9 +5,9 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <Filter Include="Documentation">
+      <UniqueIdentifier>{b0c4a554-1e10-4111-a5fe-2f6dfe0e70fb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\sqlite-db\sqlite_db.cpp">
@@ -63,7 +63,6 @@
     <ClInclude Include="..\..\src\sqlite-db\bindable_statement.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h" />
     <ClInclude Include="..\..\src\sqlite-db\create_statement.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -85,12 +84,26 @@
     <ClInclude Include="..\..\src\sqlite-db\insert_exception.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="resource.h">
+      <Filter>Documentation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="sqlite-db.rc" />
+    <None Include="SQLiteException.cd">
+      <Filter>Documentation</Filter>
+    </None>
+    <None Include="SQLiteDB.cd">
+      <Filter>Documentation</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="SQLiteDB.cd" />
-    <None Include="SQLiteException.cd" />
+    <ResourceCompile Include="sqlite-db.rc">
+      <Filter>Documentation</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt">
+      <Filter>Documentation</Filter>
+    </Text>
   </ItemGroup>
 </Project>

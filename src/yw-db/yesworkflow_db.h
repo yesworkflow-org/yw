@@ -15,7 +15,7 @@ namespace yw {
         class YesWorkflowDB {
         public:
 
-            YesWorkflowDB();
+            YesWorkflowDB(bool createTables = true);
 
             long insertFile(const std::string& name, long owner);
             FileRow selectFileById(long requested_id);
@@ -29,7 +29,14 @@ namespace yw {
             long insertSource(long model, long language, long file);
             SourceRow selectSourceById(long id);
 
-            long insertUser(const std::string& name);
+			void createAllTables();
+			void createUserTable();
+			void createLanguageTable();
+			void createFileTable();
+			void createModelTable();
+			void createSourceTable();
+
+			long insertUser(const std::string& name);
             UserRow selectUserById(long requested_id);
 
         private:
@@ -38,7 +45,6 @@ namespace yw {
 
             std::shared_ptr<yw::sqlite::SQLiteDB> db;
 
-            void createTables();
         };
     }
 }

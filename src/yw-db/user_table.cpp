@@ -6,7 +6,18 @@ using std::string;
 using namespace yw::sqlite;
 
 namespace yw {
-    namespace db {
+	namespace db {
+
+		void YesWorkflowDB::createUserTable() {
+			SQLiteDB::createTable(db, std::string(R"(
+
+				CREATE TABLE user(
+					id                  INTEGER         NOT NULL        PRIMARY KEY,
+					name                TEXT            NULL
+				);
+
+			)"));
+		}
 
         long YesWorkflowDB::insertUser(const string& name) {
             string sql = "INSERT INTO user(name) VALUES (?);";

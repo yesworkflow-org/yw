@@ -8,6 +8,19 @@ using namespace yw::sqlite;
 namespace yw {
     namespace db {
 
+		void YesWorkflowDB::createSourceTable() {
+			SQLiteDB::createTable(db, std::string(R"(
+
+				CREATE TABLE source(
+					id                  INTEGER         NOT NULL        PRIMARY KEY,
+					model               INTEGER         NOT NULL        REFERENCES model(id),
+					file                INTEGER         NULL            REFERENCES file(id),
+					language            INTEGER         NOT NULL        REFERENCES language(id)
+				);
+
+			)"));
+		}
+
         long YesWorkflowDB::insertSource(long model, long language, long file) {
             string sql = "INSERT INTO source(model, language, file) VALUES (?,?,?);";
             InsertStatement statement(db, sql);
