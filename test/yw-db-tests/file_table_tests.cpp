@@ -8,7 +8,13 @@ using std::string;
 
 YW_TEST_FIXTURE(FileTable)
 
-    YesWorkflowDB ywdb;
+	YesWorkflowDB ywdb { false };
+
+	YW_TEST_SETUP(FileTable)
+	{
+		ywdb.createUserTable();
+		ywdb.createFileTable();
+	}
 
 YW_TEST_SET
 

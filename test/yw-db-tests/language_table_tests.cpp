@@ -7,7 +7,12 @@ using std::make_unique;
 
 YW_TEST_FIXTURE(LanguageTable)
 
-    YesWorkflowDB ywdb;
+	YesWorkflowDB ywdb { false };
+
+	YW_TEST_SETUP(LanguageTable)
+	{
+		ywdb.createLanguageTable();
+	}
 
 YW_TEST_SET
 

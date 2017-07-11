@@ -7,7 +7,12 @@ using std::make_unique;
 
 YW_TEST_FIXTURE(UserTable)
 
-    YesWorkflowDB ywdb;
+	YesWorkflowDB ywdb { false };
+
+	YW_TEST_SETUP(UserTable) 
+	{
+		ywdb.createUserTable();
+	}
 
 YW_TEST_SET
 
