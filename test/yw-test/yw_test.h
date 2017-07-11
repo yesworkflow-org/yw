@@ -4,8 +4,8 @@
 #include "yw_test_cpputest.h"
 
 #include <string>
+#include <sstream>
 #include <iostream>
-
 
 namespace yw {
     namespace test {
