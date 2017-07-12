@@ -3,8 +3,10 @@
 #include <memory>
 #include "sqlite_db.h"
 
+#include "annotation_row.h"
 #include "file_row.h"
 #include "language_row.h"
+#include "line_row.h"
 #include "model_row.h"
 #include "source_row.h"
 #include "user_row.h"
@@ -17,26 +19,34 @@ namespace yw {
 
             YesWorkflowDB(bool createTables = true);
 
-            long insertFile(const std::string& name, long owner);
+			void createAnnotationTable();
+			long insert(const AnnotationRow& row);
+			AnnotationRow selectAnnotationById(long requested_id);
+			
+			void createFileTable();
+			long insert(const FileRow& file);
             FileRow selectFileById(long requested_id);
 
-            long insertLanguage(const std::string& name);
+			void createLanguageTable();
+			long insert(const LanguageRow& language);
             LanguageRow selectLanguageById(long requested_id);
 
-            long insertModel(long creator, const std::string& create_date);
+			void createLineTable();
+			long insert(const LineRow& line);
+			LineRow selectLineById(long requested_id);
+
+			void createModelTable();
+			long insert(const ModelRow& model);
             ModelRow selectModelById(long requested_id);
 
-            long insertSource(long model, long language, long file);
+			void createSourceTable();
+			long insert(const SourceRow& source);
             SourceRow selectSourceById(long id);
 
 			void createAllTables();
-			void createUserTable();
-			void createLanguageTable();
-			void createFileTable();
-			void createModelTable();
-			void createSourceTable();
 
-			long insertUser(const std::string& name);
+			void createUserTable();
+			long insert(const UserRow& user);
             UserRow selectUserById(long requested_id);
 
         private:

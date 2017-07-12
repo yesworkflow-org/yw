@@ -18,19 +18,18 @@ YW_TEST_SET
 
     YW_TEST(LanguageTable, InserOneRow_GeneratedIdIs_1)
     {
-        auto rowId = ywdb.insertLanguage("C");
+	auto rowId = ywdb.insert(LanguageRow{ "C" });
         Assert::AreEqual(1, rowId);
     }
 
     YW_TEST(LanguageTable, InsertTwoRows_SecondGeneratedIdIs_2) 
     {
-        ywdb.insertLanguage("C");
-        auto secondRowId = ywdb.insertLanguage("Java");
-        Assert::AreEqual(2, secondRowId);
+		ywdb.insert(LanguageRow{ "C" });
+        Assert::AreEqual(2, ywdb.insert(LanguageRow{ "Java" }));
     }
 
     YW_TEST(LanguageTable, SelectLanguageById_RowExists) {
-        ywdb.insertLanguage("C");
+		ywdb.insert(LanguageRow{ "C" });
         auto language = ywdb.selectLanguageById(1L);
         Assert::AreEqual(1, language.id);
         Assert::AreEqual(std::string("C"), language.name);

@@ -21,12 +21,12 @@ namespace yw {
 			)"));
 		}
 
-        long YesWorkflowDB::insertSource(long model, long language, long file) {
+        long YesWorkflowDB::insert(const SourceRow& source) {
             string sql = "INSERT INTO source(model, language, file) VALUES (?,?,?);";
             InsertStatement statement(db, sql);
-            statement.bindInt64(1, model);
-            statement.bindInt64(2, language);
-            statement.bindInt64(3, file);
+            statement.bindInt64(1, source.model);
+            statement.bindInt64(2, source.language);
+            statement.bindInt64(3, source.file);
             statement.execute();
             return statement.getGeneratedId();
         }

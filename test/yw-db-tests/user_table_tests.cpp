@@ -18,19 +18,17 @@ YW_TEST_SET
 
     YW_TEST(UserTable, InsertUser_OneRow_GeneratedIdIs_1)
     {
-        auto rowId = ywdb.insertUser("user1");
-        Assert::AreEqual(1, (long)rowId);
+		Assert::AreEqual(1, ywdb.insert(UserRow{ "user1" }));
     }
 
     YW_TEST(UserTable, InsertUser_TwoRows_SecondGeneratedIdIs_2)
     {
-        ywdb.insertUser("user1");
-        auto secondRowId = ywdb.insertUser("user2");
-        Assert::AreEqual(2, (long)secondRowId);
+		ywdb.insert(UserRow{ "user1" });
+		Assert::AreEqual(2, ywdb.insert(UserRow{ "user2" }));
     }
 
     YW_TEST(UserTable, SelectUserById_RowExists) {
-        ywdb.insertUser("user1");
+		ywdb.insert(UserRow{ "user1" });
         auto user = ywdb.selectUserById(1L);
         Assert::AreEqual(1, user.id);
         Assert::AreEqual(std::string("user1"), user.name);

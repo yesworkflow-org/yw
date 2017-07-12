@@ -8,8 +8,10 @@ namespace yw {
         struct SourceRow {
 
             SourceRow(long id, long model, long language, long file) :
-                id(id), model(model), language(language), file(file)
-            {};
+                id(id), model(model), language(language), file(file) {};
+
+			SourceRow(long model, long language, long file) :
+				SourceRow(yw::sqlite::NULL_ROW_ID, model, language, file) {};
 
             const long id;
             const long model;

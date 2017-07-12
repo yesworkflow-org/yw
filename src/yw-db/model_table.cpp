@@ -20,11 +20,11 @@ namespace yw {
 			)"));
 		}
 
-        long YesWorkflowDB::insertModel(long creator, const std::string& create_date) {
+        long YesWorkflowDB::insert(const ModelRow& model) {
             string sql = "INSERT INTO model(creator, create_date) VALUES (?,?);";
             InsertStatement statement(db, sql);
-            statement.bindInt64(1, creator);
-            statement.bindText(2, create_date);
+            statement.bindInt64(1, model.creator);
+            statement.bindText(2, model.create_date);
             statement.execute();
             return statement.getGeneratedId();
         }

@@ -19,10 +19,10 @@ namespace yw {
 			)"));
 		}
 
-        long YesWorkflowDB::insertUser(const string& name) {
+        long YesWorkflowDB::insert(const UserRow& user) {
             string sql = "INSERT INTO user(name) VALUES (?);";
             InsertStatement statement(db, sql);
-            statement.bindText(1, name);
+            statement.bindText(1, user.name);
             statement.execute();
             return statement.getGeneratedId();
         }

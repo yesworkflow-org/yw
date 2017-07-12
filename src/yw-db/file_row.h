@@ -11,12 +11,12 @@ namespace yw {
             const long id;
             const std::string name;
             const long owner;
+			
+			FileRow(long rowId, const std::string& name, long owner) :
+                id(rowId), name(name), owner(owner) {};
 
-            FileRow(long id, const std::string& name, long owner) :
-                id(id),
-                name(name),
-                owner(owner)
-            {};
+			FileRow(const std::string& name, long owner) : 
+				FileRow(yw::sqlite::NULL_ROW_ID, name, owner) {}
 
             std::string str() const { 
                 std::stringstream s;

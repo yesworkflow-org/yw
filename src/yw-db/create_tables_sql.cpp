@@ -19,17 +19,6 @@ const std::string yw::db::YesWorkflowDB::create_tables_sql = R"(
         line_text           TEXT            NOT NULL
     );
 
-    CREATE TABLE annotation(
-        id                  INTEGER         NOT NULL        PRIMARY KEY,
-        qualifies           INTEGER         NULL            REFERENCES annotation(id),
-        source_line         INTEGER         NOT NULL        REFERENCES source_line(id),
-        source_column       INTEGER         NOT NULL,
-        tag                 TEXT            NOT NULL,
-        keyword             TEXT            NOT NULL,
-        value               TEXT            NOT NULL,
-        description         TEXT            NULL
-    );
-
     CREATE TABLE program_block(
         id                  INTEGER         NOT NULL        PRIMARY KEY,
         in_program_block    INTEGER         NULL            REFERENCES program_block(id),

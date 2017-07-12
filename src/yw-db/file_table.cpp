@@ -28,11 +28,11 @@ namespace yw {
 			)"));
 		}
 
-        long YesWorkflowDB::insertFile(const string& name, long owner) {
+		long YesWorkflowDB::insert(const FileRow& file) {
             string sql = "INSERT INTO file(name, owner) VALUES (?,?);";
             InsertStatement statement(db, sql);
-            statement.bindText(1, name);
-            statement.bindInt64(2, owner);
+            statement.bindText(1, file.name);
+            statement.bindInt64(2, file.owner);
             statement.execute();
             return statement.getGeneratedId();
         }
@@ -45,7 +45,7 @@ namespace yw {
             auto id = statement.getInt64Field(0);
             auto name = statement.getTextField(1);
             auto owner = statement.getInt64Field(2);
-            return FileRow(id, name, owner);
+			return FileRow{ id, name, owner };
         }
     }
 }

@@ -8,7 +8,6 @@ using namespace yw::sqlite;
 namespace yw {
     namespace db {
 
-
 		void YesWorkflowDB::createLanguageTable() {
 			SQLiteDB::createTable(db, std::string(R"(
 
@@ -20,10 +19,10 @@ namespace yw {
 			)"));
 		}
 
-        long YesWorkflowDB::insertLanguage(const string& name) {
+        long YesWorkflowDB::insert(const LanguageRow& language) {
             string sql = "INSERT INTO language(name) VALUES (?);";
             InsertStatement statement(db, sql);
-            statement.bindText(1, name);
+            statement.bindText(1, language.name);
             statement.execute();
             return statement.getGeneratedId();
         }

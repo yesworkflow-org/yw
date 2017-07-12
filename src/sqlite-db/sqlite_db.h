@@ -9,6 +9,9 @@
 namespace yw {
     namespace sqlite {
 
+		static const long NULL_ROW_ID = 0L;
+		static const std::string NULL_STRING = "<<NULL STRING>>";
+
         class SQLiteDB {
 
         public:
