@@ -11,7 +11,7 @@ namespace yw {
 		void YesWorkflowDB::createLineTable() {
 			SQLiteDB::createTable(db, std::string(R"(
 
-				CREATE TABLE file(
+				CREATE TABLE line(
 					id                  INTEGER         NOT NULL        PRIMARY KEY,
 					file                FILE            NOT NULL		REFERENCES file(id),
 					number				INTEGER			NOT NULL,
@@ -22,7 +22,7 @@ namespace yw {
 		}
 
 		long YesWorkflowDB::insert(const LineRow& line) {
-            string sql = "INSERT INTO file(file, number, text) VALUES (?,?,?);";
+            string sql = "INSERT INTO line(file, number, text) VALUES (?,?,?);";
             InsertStatement statement(db, sql);
 			statement.bindInt64(1, line.file);
 			statement.bindInt64(2, line.number);
@@ -32,7 +32,7 @@ namespace yw {
         }
 
         LineRow YesWorkflowDB::selectLineById(long requested_id) {
-            string sql = "SELECT id, file, number, text WHERE id = ?";
+            string sql = "SELECT id, file, number, text FROM line WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindInt64(1, requested_id);
             if (statement.step() != SQLITE_ROW) throw std::runtime_error("No row with that id");

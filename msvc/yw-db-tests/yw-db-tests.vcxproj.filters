@@ -39,5 +39,8 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Precompiled Headers</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\test\yw-db-tests\line_table_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

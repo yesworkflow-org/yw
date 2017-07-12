@@ -18,6 +18,14 @@ namespace yw {
 			const long file;
 			const long number;
 			const std::string text;
+
+			std::string str() const {
+				std::stringstream s;
+				s << "|" << id << "|" << file << "|" << number << "|" << text << "|";
+				return s.str();
+			}
+
+			operator std::string() { return str(); }
 		};
     }
 }
