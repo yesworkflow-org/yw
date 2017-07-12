@@ -15,7 +15,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@begin b @end b");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->script());
-        Assert::EmptyString(stderrRecorder.str());
+		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "entered script"        "\n"
@@ -38,7 +38,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@begin b @end");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->script());
-        Assert::EmptyString(stderrRecorder.str());
+		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "entered script"        "\n"
@@ -59,7 +59,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@begin b @desc a simple block @end");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->script());
-        Assert::EmptyString(stderrRecorder.str());
+		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "entered script"            "\n"

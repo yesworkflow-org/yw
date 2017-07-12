@@ -14,7 +14,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@in");
         YWParser::PortTagContext* context = parser_builder.parse()->portTag();
-        Assert::AreEqual("line 1:3 mismatched input '<EOF>' expecting SPACE" "\n", stderrRecorder.str());
+        Expect::AreEqual("line 1:3 mismatched input '<EOF>' expecting SPACE" "\n", stderrRecorder.str());
         Assert::AreEqual("@in", context->inputPortKeyword()->getText());
         Assert::IsNull(context->outputPortKeyword());
         Assert::AreEqual(0, context->portName().size());
@@ -24,7 +24,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@in p q @as data_name");
         YWParser::PortTagContext* context = parser_builder.parse()->portTag();
-        Assert::EmptyString(stderrRecorder.str());
+		Expect::EmptyString(stderrRecorder.str());
         Assert::AreEqual("@in", context->inputPortKeyword()->getText());
         Assert::IsNull(context->outputPortKeyword());
         Assert::AreEqual(2, context->portName().size());
@@ -38,7 +38,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@in p @as data name");
         YWParser::PortTagContext* context = parser_builder.parse()->portTag();
-        Assert::EmptyString(stderrRecorder.str());
+		Expect::EmptyString(stderrRecorder.str());
         Assert::AreEqual("@in", context->inputPortKeyword()->getText());
         Assert::IsNull(context->outputPortKeyword());
         Assert::AreEqual(1, context->portName().size());
@@ -53,7 +53,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@in p @desc with this description");
         YWParser::PortTagContext* context = parser_builder.parse()->portTag();
-        Assert::EmptyString(stderrRecorder.str());
+		Expect::EmptyString(stderrRecorder.str());
         Assert::AreEqual("@in", context->inputPortKeyword()->getText());
         Assert::IsNull(context->outputPortKeyword());
         Assert::AreEqual(1, context->portName().size());
@@ -66,7 +66,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@in p @desc with this description @as data name");
         YWParser::PortTagContext* context = parser_builder.parse()->portTag();
-        Assert::EmptyString(stderrRecorder.str());
+		Expect::EmptyString(stderrRecorder.str());
         Assert::AreEqual("@in", context->inputPortKeyword()->getText());
         Assert::IsNull(context->outputPortKeyword());
         Assert::AreEqual(1, context->portName().size());
@@ -80,7 +80,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@in p q r @as data name @desc with this description");
         YWParser::PortTagContext* context = parser_builder.parse()->portTag();
-        Assert::EmptyString(stderrRecorder.str());
+		Expect::EmptyString(stderrRecorder.str());
         Assert::AreEqual("@in", context->inputPortKeyword()->getText());
         Assert::IsNull(context->outputPortKeyword());
         Assert::AreEqual(3, context->portName().size());
@@ -98,7 +98,7 @@ YW_TEST_SET
             "@in p q r @as data name"               "\n"
             "          @desc with this description" "\n");
         YWParser::PortTagContext* context = parser_builder.parse()->portTag();
-        Assert::EmptyString(stderrRecorder.str());
+		Expect::EmptyString(stderrRecorder.str());
         Assert::AreEqual("@in", context->inputPortKeyword()->getText());
         Assert::IsNull(context->outputPortKeyword());
         Assert::AreEqual(3, context->portName().size());
@@ -117,7 +117,7 @@ YW_TEST_SET
             "    @as data name"               "\n"
             "    @desc with this description" "\n");
         YWParser::PortTagContext* context = parser_builder.parse()->portTag();
-        Assert::EmptyString(stderrRecorder.str());
+		Expect::EmptyString(stderrRecorder.str());
         Assert::AreEqual("@in", context->inputPortKeyword()->getText());
         Assert::IsNull(context->outputPortKeyword());
         Assert::AreEqual(3, context->portName().size());

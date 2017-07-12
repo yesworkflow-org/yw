@@ -123,5 +123,8 @@ namespace yw {
                 #endif
             }
         };
+
+		class Expect : public Assert {
+		};
     }
 }
