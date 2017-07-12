@@ -8,20 +8,20 @@ namespace yw {
 
 		struct LineRow {
 
-			LineRow(long id, long fileId, long number, const std::string& text) :
-				id(id), fileId(fileId), number(number), text(text) {};
+			LineRow(long id, long sourceId, long number, const std::string& text) :
+				id(id), sourceId(sourceId), number(number), text(text) {};
 
-			LineRow(long fileId, long number, const std::string& text) :
-				LineRow(yw::sqlite::NULL_ROW_ID, fileId, number, text) {};
+			LineRow(long sourceId, long number, const std::string& text) :
+				LineRow(yw::sqlite::NULL_ROW_ID, sourceId, number, text) {};
 
 			const long id;
-			const long fileId;
+			const long sourceId;
 			const long number;
 			const std::string text;
 
 			std::string str() const {
 				std::stringstream s;
-				s << "|" << id << "|" << fileId << "|" << number << "|" << text << "|";
+				s << "|" << id << "|" << sourceId << "|" << number << "|" << text << "|";
 				return s.str();
 			}
 

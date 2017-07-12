@@ -8,43 +8,39 @@ using std::string;
 
 YW_TEST_FIXTURE(ModelTable)
 
-    YesWorkflowDB ywdb{ false };
+   YesWorkflowDB ywdb{ false };
+	long user1, user2, user3;
 
 	YW_TEST_SETUP(ModelTable)
 	{
 		ywdb.createUserTable();
+		Expect::AreEqual(1, (user1 = ywdb.insert(UserRow{ "user1" })));
+		Expect::AreEqual(2, (user2 = ywdb.insert(UserRow{ "user2" })));
+		Expect::AreEqual(3, (user3 = ywdb.insert(UserRow{ "user3" })));
+
 		ywdb.createModelTable();
 	}
 
 YW_TEST_SET
 
     YW_TEST(ModelTable, InsertOneRow_GeneratedIdIs_1)
-    {
-        long userId;
-		Expect::AreEqual(1, (userId = ywdb.insert(UserRow{ "user1" })));
-		
-		Assert::AreEqual(1, ywdb.insert(ModelRow{ userId, "2017-06-22 10:52:00.000" }));
+    {		
+		Assert::AreEqual(1, ywdb.insert(ModelRow{ user1, "2017-06-22 10:52:00.000" }));
     }
 
     YW_TEST(ModelTable, InsertTwoRows_SecondGeneratedIdIs_2)
     {
-        long user1;
-		Expect::AreEqual(1, user1 = ywdb.insert(UserRow{ "user1" }));
 		Expect::AreEqual(1, ywdb.insert(ModelRow{ user1, "2017-06-22 10:52:00.000" }));
-
-		Assert::AreEqual(2, ywdb.insert(ModelRow{ user1, "2017-06-22 10:52:01.000" }));
+		
+		Assert::AreEqual(2, ywdb.insert(ModelRow{ user2, "2017-06-22 10:52:01.000" }));
     }
 
     YW_TEST(ModelTable, SelectModelById_RowExists) {
         
-		long user1, user2, user3;
-		Expect::AreEqual(1, (user1 = ywdb.insert(UserRow{ "user1" })));
-		Expect::AreEqual(2, (user2 = ywdb.insert(UserRow{ "user2" })));
-		Expect::AreEqual(3, (user3 = ywdb.insert(UserRow{ "user3" })));
 		Expect::AreEqual(1, ywdb.insert(ModelRow{ user2, "2017-06-22 10:52:00.000" }));
 		Expect::AreEqual(2, ywdb.insert(ModelRow{ user3, "2017-06-22 10:52:01.000" }));
-        auto model = ywdb.selectModelById(2L);
 
+		auto model = ywdb.selectModelById(2L);
         Assert::AreEqual(2, model.id);
         Assert::AreEqual(3, model.userId);
         Assert::AreEqual(std::string("2017-06-22 10:52:01.000"), model.creationDate);
