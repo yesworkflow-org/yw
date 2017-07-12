@@ -10,17 +10,16 @@ namespace yw {
 
             const long id;
             const std::string name;
-            const long owner;
 			
-			FileRow(long rowId, const std::string& name, long owner) :
-                id(rowId), name(name), owner(owner) {};
+			FileRow(long rowId, const std::string& name) :
+                id(rowId), name(name) {};
 
-			FileRow(const std::string& name, long owner) : 
-				FileRow(yw::sqlite::NULL_ROW_ID, name, owner) {}
+			FileRow(const std::string& name) : 
+				FileRow(yw::sqlite::NULL_ROW_ID, name) {}
 
             std::string str() const { 
                 std::stringstream s;
-                s << "|" << id << "|" << name << "|" << "owner" << "|";
+                s << "|" << id << "|" << name << "|";
                 return s.str();
             }
 

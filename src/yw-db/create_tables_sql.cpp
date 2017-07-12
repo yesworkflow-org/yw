@@ -11,14 +11,6 @@ const std::string yw::db::YesWorkflowDB::create_tables_sql = R"(
       the dynamic storage of data values in SQLite. See http://www.sqlite.org/datatype3.html
 
     **************************************************************************************************/
-
-    CREATE TABLE source_line(
-        id                  INTEGER         NOT NULL        PRIMARY KEY,
-        source              INTEGER         NOT NULL        REFERENCES source(id),
-        line_number         INTEGER         NOT NULL,
-        line_text           TEXT            NOT NULL
-    );
-
     CREATE TABLE program_block(
         id                  INTEGER         NOT NULL        PRIMARY KEY,
         in_program_block    INTEGER         NULL            REFERENCES program_block(id),

@@ -27,8 +27,8 @@ namespace yw {
         long YesWorkflowDB::insert(const AnnotationRow& annotation) {
             string sql = "INSERT INTO annotation(qualifies, line, start, end, tag, value) VALUES (?,?,?,?,?,?);";
             InsertStatement statement(db, sql);
-            statement.bindInt64(1, annotation.qualifies);
-            statement.bindInt64(2, annotation.line);
+            statement.bindInt64(1, annotation.qualifiesId);
+            statement.bindInt64(2, annotation.lineId);
             statement.bindInt64(3, annotation.start);
 			statement.bindInt64(4, annotation.end);
 			statement.bindText(5, annotation.tag);
@@ -44,12 +44,12 @@ namespace yw {
             if (statement.step() != SQLITE_ROW) throw std::runtime_error("No row with that id");
 			auto id = statement.getInt64Field(0);
 			auto qualifies = statement.getInt64Field(1);
-			auto line = statement.getInt64Field(2);
+			auto lineId = statement.getInt64Field(2);
             auto start = statement.getInt64Field(3);
             auto end = statement.getInt64Field(4);
 			auto tag = statement.getTextField(5);
 			auto value = statement.getTextField(6);
-			return AnnotationRow(id, qualifies, line, start, end, tag, value);
+			return AnnotationRow(id, qualifies, lineId, start, end, tag, value);
         }
     }
 }

@@ -13,8 +13,9 @@ namespace yw {
 
 				CREATE TABLE file(
 					id                  INTEGER         NOT NULL        PRIMARY KEY,
-					name                TEXT            NOT NULL,
-					owner               INTEGER         NULL            REFERENCES user(id),
+					name                TEXT            NOT NULL
+
+					/*
 					fs_file_id          INTEGER         NULL,
 					fs_device_id        INTEGER         NULL,
 					fs_path             TEXT            NULL,
@@ -23,29 +24,29 @@ namespace yw {
 					fs_modify_date      TEXT            NULL,
 					size                INTEGER         NULL,       
 					hash                INTEGER         NULL
+					*/
+
 				);
 
 			)"));
 		}
 
 		long YesWorkflowDB::insert(const FileRow& file) {
-            string sql = "INSERT INTO file(name, owner) VALUES (?,?);";
+            string sql = "INSERT INTO file(name) VALUES (?);";
             InsertStatement statement(db, sql);
             statement.bindText(1, file.name);
-            statement.bindInt64(2, file.owner);
             statement.execute();
             return statement.getGeneratedId();
         }
 
         FileRow YesWorkflowDB::selectFileById(long requested_id) {
-            string sql = "SELECT id, name, owner FROM file WHERE id = ?";
+            string sql = "SELECT id, name FROM file WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindInt64(1, requested_id);
             if (statement.step() != SQLITE_ROW) throw std::runtime_error("No row with that id");
             auto id = statement.getInt64Field(0);
             auto name = statement.getTextField(1);
-            auto owner = statement.getInt64Field(2);
-			return FileRow{ id, name, owner };
+			return FileRow{ id, name };
         }
     }
 }

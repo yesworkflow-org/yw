@@ -14,8 +14,8 @@ namespace yw {
 				CREATE TABLE source(
 					id                  INTEGER         NOT NULL        PRIMARY KEY,
 					model               INTEGER         NOT NULL        REFERENCES model(id),
-					file                INTEGER         NULL            REFERENCES file(id),
-					language            INTEGER         NOT NULL        REFERENCES language(id)
+					language            INTEGER         NOT NULL        REFERENCES language(id),
+					file                INTEGER         NULL            REFERENCES file(id)
 				);
 
 			)"));
@@ -24,9 +24,9 @@ namespace yw {
         long YesWorkflowDB::insert(const SourceRow& source) {
             string sql = "INSERT INTO source(model, language, file) VALUES (?,?,?);";
             InsertStatement statement(db, sql);
-            statement.bindInt64(1, source.model);
-            statement.bindInt64(2, source.language);
-            statement.bindInt64(3, source.file);
+            statement.bindInt64(1, source.modelId);
+            statement.bindInt64(2, source.languageId);
+            statement.bindInt64(3, source.fileId);
             statement.execute();
             return statement.getGeneratedId();
         }
@@ -37,10 +37,10 @@ namespace yw {
             statement.bindInt64(1, requested_id);
             if (statement.step() != SQLITE_ROW) throw std::runtime_error("No row with that id");
             auto id = statement.getInt64Field(0);
-            auto model = statement.getInt64Field(1);
-            auto file = statement.getInt64Field(2);
-            auto language = statement.getInt64Field(3);
-            return SourceRow(id, model, language, file);
+            auto modelId = statement.getInt64Field(1);
+            auto fileId = statement.getInt64Field(2);
+            auto languageId = statement.getInt64Field(3);
+            return SourceRow(id, modelId, languageId, fileId);
         }
     }
 }

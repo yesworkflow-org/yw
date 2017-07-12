@@ -46,8 +46,8 @@ YW_TEST_SET
         auto model = ywdb.selectModelById(2L);
 
         Assert::AreEqual(2, model.id);
-        Assert::AreEqual(3, model.creator);
-        Assert::AreEqual(std::string("2017-06-22 10:52:01.000"), model.create_date);
+        Assert::AreEqual(3, model.userId);
+        Assert::AreEqual(std::string("2017-06-22 10:52:01.000"), model.creationDate);
     }
 
     YW_TEST(ModelTable, SelectModelById_RowDoesntExist) {

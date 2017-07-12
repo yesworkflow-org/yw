@@ -13,7 +13,7 @@ namespace yw {
 
 				CREATE TABLE model(
 					id                  INTEGER         NOT NULL        PRIMARY KEY,
-					creator             INTEGER         NOT NULL        REFERENCES user(id),
+					user				INTEGER         NOT NULL        REFERENCES user(id),
 					create_date         TEXT            NOT NULL
 				);
 
@@ -21,23 +21,23 @@ namespace yw {
 		}
 
         long YesWorkflowDB::insert(const ModelRow& model) {
-            string sql = "INSERT INTO model(creator, create_date) VALUES (?,?);";
+            string sql = "INSERT INTO model(user, create_date) VALUES (?,?);";
             InsertStatement statement(db, sql);
-            statement.bindInt64(1, model.creator);
-            statement.bindText(2, model.create_date);
+            statement.bindInt64(1, model.userId);
+            statement.bindText(2, model.creationDate);
             statement.execute();
             return statement.getGeneratedId();
         }
 
         ModelRow YesWorkflowDB::selectModelById(long requested_id) {
-            string sql = "SELECT id, creator, create_date FROM model WHERE id = ?";
+            string sql = "SELECT id, user, create_date FROM model WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindInt64(1, requested_id);
             if (statement.step() != SQLITE_ROW) throw std::runtime_error("No row with that id");
             auto id = statement.getInt64Field(0);
-            auto creator = statement.getInt64Field(1);
-            auto create_date = statement.getTextField(2);
-            return ModelRow(id, creator, create_date);
+            auto userId = statement.getInt64Field(1);
+            auto creationDate = statement.getTextField(2);
+            return ModelRow(id, userId, creationDate);
         }
     }
 }

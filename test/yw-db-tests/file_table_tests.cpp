@@ -12,7 +12,6 @@ YW_TEST_FIXTURE(FileTable)
 
 	YW_TEST_SETUP(FileTable)
 	{
-		ywdb.createUserTable();
 		ywdb.createFileTable();
 	}
 
@@ -20,29 +19,24 @@ YW_TEST_SET
 
     YW_TEST(FileTable, InsertFile_OneRow_GeneratedIdIs_1)
     {
-        long userId;
-		Expect::AreEqual(1, (userId = ywdb.insert(UserRow{ "user1" })));
-		Assert::AreEqual(1, ywdb.insert(FileRow{"main.c", userId}));
+		Assert::AreEqual(1, ywdb.insert(FileRow{ "main.c" }));
     }
 
     YW_TEST(FileTable, InsertFile_TwoRows_SecondGeneratedIdIs_2)
     {
-        long user1;
-		Expect::AreEqual(1, user1 = ywdb.insert(UserRow{ "user1" }));
-		Expect::AreEqual(1, ywdb.insert(FileRow{"main.c", user1}));
-		Assert::AreEqual(2, ywdb.insert(FileRow{"script.sh", user1}));
+		Expect::AreEqual(1, ywdb.insert(FileRow{ "main.c" }));
+		Assert::AreEqual(2, ywdb.insert(FileRow{ "script.sh" }));
     }
 
     YW_TEST(FileTable, SelectFileById_RowExists) {
-        long user1, user2, user3;
-		Expect::AreEqual(1, (user1 = ywdb.insert(UserRow{ "user1" })));
-		Expect::AreEqual(2, (user2 = ywdb.insert(UserRow{ "user2" })));
-		Expect::AreEqual(3, (user3 = ywdb.insert(UserRow{ "user3" })));
-		Expect::AreEqual(1, ywdb.insert(FileRow{"main.c", user2}));
-		Expect::AreEqual(2, ywdb.insert(FileRow{"script.sh", user3}));
+		Expect::AreEqual(1, ywdb.insert(FileRow{ "main.c" }));
+		Expect::AreEqual(2, ywdb.insert(FileRow{ "script.sh" }));
 
-        auto fileRow = ywdb.selectFileById(2L);
-        Assert::AreEqual("|2|script.sh|owner|", fileRow.str());
+        auto file = ywdb.selectFileById(2L);
+		Assert::AreEqual(2L, file.id);
+		Assert::AreEqual("script.sh", file.name);
+
+        Assert::AreEqual("|2|script.sh|", file.str());
     }
 
     YW_TEST(FileTable, SelectFileById_RowDoesntExist) {
