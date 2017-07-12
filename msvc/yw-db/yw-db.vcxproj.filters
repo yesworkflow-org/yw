@@ -28,12 +28,15 @@
     <ClCompile Include="..\..\src\yw-db\model_table.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\yw-db\annotation_table.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\yw-db\line_table.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-db\source_row.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\yw-db\user_row.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\yw-db\yesworkflow_db.h">
@@ -46,6 +49,15 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\yw-db\model_row.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-db\annotation_row.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-db\user_row.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-db\line_row.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
