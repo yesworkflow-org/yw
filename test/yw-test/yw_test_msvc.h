@@ -5,7 +5,7 @@
 #include "targetver.h"
 #include "CppUnitTest.h"
 
-#define MSTEST
+#define MSTEST Microsoft::VisualStudio::CppUnitTestFramework::Assert
 
 #define YW_TEST_FIXTURE(fixture_name)    TEST_CLASS(fixture_name ## _Tests) {
 #define YW_TEST_SETUP(fixture_name)		 public: fixture_name ## _Tests()

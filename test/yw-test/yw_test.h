@@ -40,8 +40,7 @@ namespace yw {
             static void AreEqual(const char* expected, std::string actual, bool ignoreCase = false, const wchar_t* w_message = NULL) {
                 
                 #ifdef MSTEST
-                    Microsoft::VisualStudio::CppUnitTestFramework::
-                    Assert::AreEqual(expected, actual.c_str(), ignoreCase, w_message);
+					MSTEST::AreEqual(expected, actual.c_str(), ignoreCase, w_message);
                 #endif
 
                 #ifdef CPPUTEST
@@ -52,8 +51,7 @@ namespace yw {
             static void EmptyString(std::string actual) {
 
                 #ifdef MSTEST
-                Microsoft::VisualStudio::CppUnitTestFramework::
-                    Assert::AreEqual("", actual.c_str());
+					MSTEST::AreEqual("", actual.c_str());
                 #endif
 
                 #ifdef CPPUTEST
@@ -65,8 +63,7 @@ namespace yw {
             static void IsNull(const T* actual, const wchar_t* message = NULL) {
             
                 #ifdef MSTEST
-                    Microsoft::VisualStudio::CppUnitTestFramework::
-                    Assert::IsNull(actual, message);
+					MSTEST::IsNull(actual, message);
                 #endif
 
                 #ifdef CPPUTEST
@@ -78,8 +75,7 @@ namespace yw {
             static void AreEqual(const T& expected, const T& actual, const wchar_t* message = NULL) {
 
                 #ifdef MSTEST
-                    Microsoft::VisualStudio::CppUnitTestFramework::
-                    Assert::AreEqual(expected, actual, message);
+					MSTEST::AreEqual(expected, actual, message);
                 #endif
 
                 #ifdef CPPUTEST
@@ -90,8 +86,7 @@ namespace yw {
             static void AreEqual(const int& expected, const long& actual, const wchar_t* message = NULL) {
                 
                 #ifdef MSTEST
-                    Microsoft::VisualStudio::CppUnitTestFramework::
-                    Assert::AreEqual((long)expected, actual, message);
+					MSTEST::AreEqual((long)expected, actual, message);
                 #endif
 
                 #ifdef CPPUTEST
@@ -102,8 +97,7 @@ namespace yw {
             static void AreEqual(const int& expected, const size_t& actual, const wchar_t* message = NULL) {
                 
                 #ifdef MSTEST
-                    Microsoft::VisualStudio::CppUnitTestFramework::
-                    Assert::AreEqual((size_t)expected, actual, message);
+					MSTEST::AreEqual((size_t)expected, actual, message);
                 #endif
 
                 #ifdef CPPUTEST
@@ -114,15 +108,25 @@ namespace yw {
             static void Fail(const wchar_t* w_message = NULL) {
 
                 #ifdef MSTEST
-                    Microsoft::VisualStudio::CppUnitTestFramework::
-                    Assert::Fail(w_message);
+					MSTEST::Fail(w_message);
                 #endif      
                 
                 #ifdef CPPUTEST
                     FAIL((ErrorMessage(w_message)).c_str());
                 #endif
             }
-        };
+
+			static void IsTrue(const bool& condition, const wchar_t* message = NULL) {
+
+				#ifdef MSTEST
+					MSTEST::IsTrue(condition);
+				#endif
+
+				#ifdef CPPUTEST
+					CHECK(condition);
+				#endif
+			}
+		};
 
 		class Expect : public Assert {
 		};
