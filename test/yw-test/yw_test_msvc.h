@@ -4,6 +4,8 @@
 
 #include "targetver.h"
 #include "CppUnitTest.h"
+#include "assert_message.h"
+#include "stdio_recorders.h"
 
 #define MSTEST Microsoft::VisualStudio::CppUnitTestFramework::Assert
 

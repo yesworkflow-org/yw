@@ -13,13 +13,19 @@
     <ClInclude Include="targetver.h">
       <Filter>Precompiled Headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\test\yw-test\yw_test_msvc.h">
-      <Filter>Precompiled Headers</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\test\yw-test\yw_test.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\test\yw-test\yw_test_cpputest.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\test\yw-test\assert_message.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\test\yw-test\yw_test_msvc.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\test\yw-test\stdio_recorders.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

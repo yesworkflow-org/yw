@@ -3,41 +3,14 @@
 #include "yw_test_msvc.h"
 #include "yw_test_cpputest.h"
 
-#include <string>
-#include <sstream>
-#include <iostream>
-
 namespace yw {
     namespace test {
-
-        class ErrorMessage {
-            char* c_message;
-        public:
-            ErrorMessage(const wchar_t * w_message) {
-                if (w_message == nullptr) w_message = L"";
-                size_t newsize = (wcslen(w_message) + 1) * 2;
-                c_message = new char[newsize];
-                wcstombs_s(nullptr, c_message, newsize, w_message, _TRUNCATE);
-            }
-            ~ErrorMessage() { delete[] c_message; }
-            const char* c_str() const { return c_message; }
-        };
-
-        class StderrRecorder {
-            std::stringstream recording;
-            std::streambuf * previousBuffer;
-        public:
-            StderrRecorder()  { previousBuffer = std::cerr.rdbuf(recording.rdbuf()); }
-            ~StderrRecorder() { std::cerr.rdbuf(previousBuffer); }
-            std::string str() { return recording.str(); }
-        };
-
 
         class Assert {
         
         public:
 
-            static void AreEqual(const char* expected, std::string actual, bool ignoreCase = false, const wchar_t* w_message = NULL) {
+            static void AreEqual(const char* expected, std::string actual, bool ignoreCase = false, const wchar_t* w_message = nullptr) {
                 
                 #ifdef MSTEST
 					MSTEST::AreEqual(expected, actual.c_str(), ignoreCase, w_message);
@@ -60,7 +33,7 @@ namespace yw {
             }
 
             template<typename T> 
-            static void IsNull(const T* actual, const wchar_t* message = NULL) {
+            static void IsNull(const T* actual, const wchar_t* message = nullptr) {
             
                 #ifdef MSTEST
 					MSTEST::IsNull(actual, message);
@@ -72,7 +45,7 @@ namespace yw {
             }
 
             template<typename T>
-            static void AreEqual(const T& expected, const T& actual, const wchar_t* message = NULL) {
+            static void AreEqual(const T& expected, const T& actual, const wchar_t* message = nullptr) {
 
                 #ifdef MSTEST
 					MSTEST::AreEqual(expected, actual, message);
@@ -83,7 +56,7 @@ namespace yw {
                 #endif
             }
 
-            static void AreEqual(const int& expected, const long& actual, const wchar_t* message = NULL) {
+            static void AreEqual(const int& expected, const long& actual, const wchar_t* message = nullptr) {
                 
                 #ifdef MSTEST
 					MSTEST::AreEqual((long)expected, actual, message);
@@ -94,7 +67,7 @@ namespace yw {
                 #endif
             }
 
-            static void AreEqual(const int& expected, const size_t& actual, const wchar_t* message = NULL) {
+            static void AreEqual(const int& expected, const size_t& actual, const wchar_t* message = nullptr) {
                 
                 #ifdef MSTEST
 					MSTEST::AreEqual((size_t)expected, actual, message);
@@ -105,18 +78,18 @@ namespace yw {
                 #endif
             }
 
-            static void Fail(const wchar_t* w_message = NULL) {
+            static void Fail(const wchar_t* w_message = nullptr) {
 
                 #ifdef MSTEST
 					MSTEST::Fail(w_message);
                 #endif      
                 
                 #ifdef CPPUTEST
-                    FAIL((ErrorMessage(w_message)).c_str());
+                    FAIL((AssertMessage(w_message)).c_str());
                 #endif
             }
 
-			static void IsTrue(const bool& condition, const wchar_t* message = NULL) {
+			static void IsTrue(const bool& condition, const wchar_t* message = nullptr) {
 
 				#ifdef MSTEST
 					MSTEST::IsTrue(condition);
