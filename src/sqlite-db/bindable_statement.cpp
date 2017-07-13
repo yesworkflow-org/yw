@@ -14,7 +14,19 @@ namespace yw {
         }
 
         void BindableStatement::bindText(int column, const string& text) {
-            sqlite3_bind_text(statement, column, text.c_str(), -1, 0);
+            sqlite3_bind_text(statement, column, cache(text)->c_str(), -1, 0);
         }
-    }
+
+		void BindableStatement::bindNullableText(int column, const NullableString& text) {
+			if (!text.null()) {
+				bindText(column, text.value());
+			}
+		}
+
+		std::shared_ptr<std::string> BindableStatement::cache(const string& original) {
+			auto copy = std::make_shared<string>(original);
+			stringCache.push_back(copy);
+			return copy;
+		}
+	}
 }

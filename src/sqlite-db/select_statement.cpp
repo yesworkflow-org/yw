@@ -22,7 +22,6 @@ namespace yw {
             return rc;
         }
 
-
         long SelectStatement::getInt64Field(int column) {
             auto value = sqlite3_column_int64(statement, column);
             return static_cast<long>(value);
@@ -32,5 +31,10 @@ namespace yw {
             auto value = sqlite3_column_text(statement, column);
             return SQLiteDB::textToString(value);
         }
-    }
+
+		NullableString SelectStatement::getNullableTextField(int column) {
+			auto value = sqlite3_column_text(statement, column);
+			return NullableString{ reinterpret_cast<const char *>(value) };
+		}
+	}
 }
