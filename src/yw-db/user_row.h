@@ -8,14 +8,14 @@ namespace yw {
 
 		struct UserRow {
 
-			UserRow(long id, const std::string& name) : 
+			UserRow(long id, const yw::sqlite::NullableString& name) :
 				id(id), name(name) {};
 
-			UserRow(const std::string& name) : 
+			UserRow(const yw::sqlite::NullableString& name) :
 				UserRow(yw::sqlite::NULL_ROW_ID, name) {};
 
 			const long id;
-			const std::string name;
+			const yw::sqlite::NullableString name;
 		};
     }
 }

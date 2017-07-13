@@ -1,7 +1,9 @@
 #include "yw_db_tests.h"
+#include "sqlite_db.h"
 
 using namespace yw::test;
 using namespace yw::db;
+using namespace yw::sqlite;
 
 using std::make_unique;
 
@@ -16,25 +18,40 @@ YW_TEST_FIXTURE(UserTable)
 
 YW_TEST_SET
 
-    YW_TEST(UserTable, InsertUser_OneRow_GeneratedIdIs_1)
+    YW_TEST(UserTable, InsertingFirstUserWithNameYieldsGeneratedId1)
     {
 		Assert::AreEqual(1, ywdb.insert(UserRow{ "user1" }));
     }
 
-    YW_TEST(UserTable, InsertUser_TwoRows_SecondGeneratedIdIs_2)
+	YW_TEST(UserTable, InsertingFirstUserWithNoNameYieldsGeneratedId1)
+	{
+		Assert::AreEqual(1, ywdb.insert(UserRow{ NullableString{} }));
+	}
+
+    YW_TEST(UserTable, InsertingSecondUserWithNameYieldsGeneratedId2)
     {
-		ywdb.insert(UserRow{ "user1" });
+		Expect::AreEqual(1, ywdb.insert(UserRow{ "user1" }));
+
 		Assert::AreEqual(2, ywdb.insert(UserRow{ "user2" }));
     }
 
-    YW_TEST(UserTable, SelectUserById_RowExists) {
-		ywdb.insert(UserRow{ "user1" });
+    YW_TEST(UserTable, SelectingExistingUserWithNameByIdYieldsAssignedName) {
+		Expect::AreEqual(1, ywdb.insert(UserRow{ "user1" }));
+
         auto user = ywdb.selectUserById(1L);
-        Assert::AreEqual(1, user.id);
-        Assert::AreEqual(std::string("user1"), user.name);
+        Expect::AreEqual(1, user.id);
+        Assert::AreEqual("user1", user.name.value());
     }
 
-    YW_TEST(UserTable, SelectUserById_RowDoesntExist) {
+	YW_TEST(UserTable, SelectingExistingUserNoNameByIdYieldsNullName) {
+		Assert::AreEqual(1, ywdb.insert(UserRow{ NullableString{} }));
+
+		auto user = ywdb.selectUserById(1L);
+		Expect::AreEqual(1, user.id);
+		Assert::IsTrue(user.name.null());
+	}
+
+    YW_TEST(UserTable, SelectingNonexistentUserByIdThrowsException) {
         try {
             auto user = ywdb.selectUserById(1L);
             Assert::Fail();

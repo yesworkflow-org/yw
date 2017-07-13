@@ -22,7 +22,7 @@ namespace yw {
         long YesWorkflowDB::insert(const UserRow& user) {
             string sql = "INSERT INTO user(name) VALUES (?);";
             InsertStatement statement(db, sql);
-            statement.bindText(1, user.name);
+            statement.bindNullableText(1, user.name);
             statement.execute();
             return statement.getGeneratedId();
         }
@@ -33,7 +33,7 @@ namespace yw {
             statement.bindInt64(1, requested_id);
             if (statement.step() != SQLITE_ROW) throw std::runtime_error("No row with that id");
             auto id = statement.getInt64Field(0);
-            auto name = statement.getTextField(1);
+            auto name = statement.getNullableTextField(1);
             return UserRow(id, name);
         }
     }
