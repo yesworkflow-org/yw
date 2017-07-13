@@ -25,7 +25,7 @@ YW_TEST_SET
 
 	YW_TEST(UserTable, InsertingFirstUserWithNoNameYieldsGeneratedId1)
 	{
-		Assert::AreEqual(1, ywdb.insert(UserRow{ NullableString{} }));
+		Assert::AreEqual(1, ywdb.insert(UserRow{ nullable_string{} }));
 	}
 
     YW_TEST(UserTable, InsertingSecondUserWithNameYieldsGeneratedId2)
@@ -44,7 +44,7 @@ YW_TEST_SET
     }
 
 	YW_TEST(UserTable, SelectingExistingUserNoNameByIdYieldsNullName) {
-		Assert::AreEqual(1, ywdb.insert(UserRow{ NullableString{} }));
+		Assert::AreEqual(1, ywdb.insert(UserRow{ nullable_string{} }));
 
 		auto user = ywdb.selectUserById(1L);
 		Expect::AreEqual(1, user.id);

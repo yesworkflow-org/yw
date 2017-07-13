@@ -19,7 +19,7 @@ namespace yw {
 
             long getInt64Field(int column);
             std::string getTextField(int column);
-			NullableString getNullableTextField(int column);
+			nullable_string getNullableTextField(int column);
 		};
     }
 }

@@ -169,6 +169,7 @@
     <ClInclude Include="..\..\src\sqlite-db\create_exception.h" />
     <ClInclude Include="..\..\src\sqlite-db\insert_exception.h" />
     <ClInclude Include="..\..\src\sqlite-db\insert_statement.h" />
+    <ClInclude Include="..\..\src\sqlite-db\nullable.h" />
     <ClInclude Include="..\..\src\sqlite-db\preparation_exception.h" />
     <ClInclude Include="..\..\src\sqlite-db\select_statement.h" />
     <ClInclude Include="..\..\src\sqlite-db\sqlite_db.h" />

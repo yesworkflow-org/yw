@@ -17,7 +17,7 @@ namespace yw {
             sqlite3_bind_text(statement, column, cache(text)->c_str(), -1, 0);
         }
 
-		void BindableStatement::bindNullableText(int column, const NullableString& text) {
+		void BindableStatement::bindNullableText(int column, const nullable_string& text) {
 			if (!text.null()) {
 				bindText(column, text.value());
 			}

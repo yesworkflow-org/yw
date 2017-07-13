@@ -32,9 +32,9 @@ namespace yw {
             return SQLiteDB::textToString(value);
         }
 
-		NullableString SelectStatement::getNullableTextField(int column) {
+		nullable_string SelectStatement::getNullableTextField(int column) {
 			auto value = sqlite3_column_text(statement, column);
-			return NullableString{ reinterpret_cast<const char *>(value) };
+			return nullable_string{ reinterpret_cast<const char *>(value) };
 		}
 	}
 }

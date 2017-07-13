@@ -19,7 +19,7 @@ namespace yw {
 
             void bindInt64(int column, long value);
             void bindText(int column, const std::string& text);
-			void bindNullableText(int column, const NullableString& text);
+			void bindNullableText(int column, const nullable_string& text);
 
 		private:
 
