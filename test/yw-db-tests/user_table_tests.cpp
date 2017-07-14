@@ -48,7 +48,7 @@ YW_TEST_SET
 
 		auto user = ywdb.selectUserById(1L);
 		Expect::AreEqual(1, user.id);
-		Assert::IsTrue(user.name.null());
+		Assert::IsNull(user.name);
 	}
 
     YW_TEST(UserTable, SelectingNonexistentUserByIdThrowsException) {

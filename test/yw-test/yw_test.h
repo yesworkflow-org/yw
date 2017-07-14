@@ -2,6 +2,7 @@
 
 #include "yw_test_msvc.h"
 #include "yw_test_cpputest.h"
+#include "nullable.h"
 
 namespace yw {
     namespace test {
@@ -43,6 +44,19 @@ namespace yw {
                     POINTERS_EQUAL(nullptr, actual);
                 #endif
             }
+
+			template<typename T, typename U>
+			static void IsNull(yw::sqlite::nullable<T,U> actual, const wchar_t* message = nullptr) {
+
+				#ifdef MSTEST
+					MSTEST::IsTrue(actual.isNull(), message);
+				#endif
+
+				#ifdef CPPUTEST
+					CHECK(actual.isNull());
+				#endif
+			}
+
 
             template<typename T>
             static void AreEqual(const T& expected, const T& actual, const wchar_t* message = nullptr) {

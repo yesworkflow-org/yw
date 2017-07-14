@@ -9,8 +9,14 @@ namespace yw {
             Statement(connection, sql)
         {}
 
-        void BindableStatement::bindInt64(int column, long value) {
-            sqlite3_bind_int64(statement, column, (sqlite3_int64)value);
+		void BindableStatement::bindInt64(int column, long value) {
+			sqlite3_bind_int64(statement, column, (sqlite3_int64)value);
+		}
+		
+		void BindableStatement::bindNullableInt64(int column, nullable_long value) {
+			if (value.hasValue()) {
+				sqlite3_bind_int64(statement, column, (sqlite3_int64)value.value());
+			}
         }
 
         void BindableStatement::bindText(int column, const string& text) {
@@ -18,7 +24,7 @@ namespace yw {
         }
 
 		void BindableStatement::bindNullableText(int column, const nullable_string& text) {
-			if (!text.null()) {
+			if (text.hasValue()) {
 				bindText(column, text.value());
 			}
 		}

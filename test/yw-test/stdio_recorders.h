@@ -1,6 +1,6 @@
 #pragma once
 
-#include "yw_test_msvc.h"
+#include <sstream>
 
 namespace yw {
 	namespace test {
