@@ -45,11 +45,11 @@ namespace yw {
                 #endif
             }
 
-			template<typename T, typename U>
-			static void IsNull(yw::sqlite::nullable<T,U> actual, const wchar_t* message = nullptr) {
+			template<typename T>
+			static void IsNull(yw::sqlite::nullable<T> actual, const wchar_t* message = nullptr) {
 
 				#ifdef MSTEST
-					MSTEST::IsTrue(actual.isNull(), message);
+					MSTEST::IsTrue(!actual.hasValue(), message);
 				#endif
 
 				#ifdef CPPUTEST

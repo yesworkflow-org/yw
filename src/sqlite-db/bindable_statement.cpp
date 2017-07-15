@@ -14,7 +14,7 @@ namespace yw {
 		}
 		
 		void BindableStatement::bindNullableInt64(int column, nullable_long number) {
-			if (number.hasValue) {
+			if (number.hasValue()) {
 				sqlite3_bind_int64(statement, column, (sqlite3_int64)number.getValue());
 			}
         }
@@ -24,8 +24,8 @@ namespace yw {
         }
 
 		void BindableStatement::bindNullableText(int column, const nullable_string& text) {
-			if (text.hasValue) {
-				bindText(column, text.value);
+			if (text.hasValue()) {
+				bindText(column, text.getValue());
 			}
 		}
 
