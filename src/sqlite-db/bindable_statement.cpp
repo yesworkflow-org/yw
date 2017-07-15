@@ -13,9 +13,9 @@ namespace yw {
 			sqlite3_bind_int64(statement, column, (sqlite3_int64)value);
 		}
 		
-		void BindableStatement::bindNullableInt64(int column, nullable_long value) {
-			if (value.hasValue()) {
-				sqlite3_bind_int64(statement, column, (sqlite3_int64)value.value());
+		void BindableStatement::bindNullableInt64(int column, nullable_long number) {
+			if (number.hasValue) {
+				sqlite3_bind_int64(statement, column, (sqlite3_int64)number.getValue());
 			}
         }
 
@@ -24,8 +24,8 @@ namespace yw {
         }
 
 		void BindableStatement::bindNullableText(int column, const nullable_string& text) {
-			if (text.hasValue()) {
-				bindText(column, text.value());
+			if (text.hasValue) {
+				bindText(column, text.value);
 			}
 		}
 

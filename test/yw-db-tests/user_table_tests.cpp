@@ -35,15 +35,17 @@ YW_TEST_SET
 		Assert::AreEqual(2, ywdb.insert(UserRow{ "user2" }));
     }
 
-    YW_TEST(UserTable, SelectingExistingUserWithNameByIdYieldsAssignedName) {
+    YW_TEST(UserTable, SelectingExistingUserWithNameByIdYieldsAssignedName) 
+	{
 		Expect::AreEqual(1, ywdb.insert(UserRow{ "user1" }));
 
         auto user = ywdb.selectUserById(1L);
         Expect::AreEqual(1, user.id);
-        Assert::AreEqual("user1", user.name.value());
+        Assert::AreEqual("user1", user.name.getValue());
     }
 
-	YW_TEST(UserTable, SelectingExistingUserNoNameByIdYieldsNullName) {
+	YW_TEST(UserTable, SelectingExistingUserNoNameByIdYieldsNullName) 
+	{
 		Assert::AreEqual(1, ywdb.insert(UserRow{ nullable_string{} }));
 
 		auto user = ywdb.selectUserById(1L);
@@ -51,7 +53,8 @@ YW_TEST_SET
 		Assert::IsNull(user.name);
 	}
 
-    YW_TEST(UserTable, SelectingNonexistentUserByIdThrowsException) {
+    YW_TEST(UserTable, SelectingNonexistentUserByIdThrowsException)
+	{
         try {
             auto user = ywdb.selectUserById(1L);
             Assert::Fail();
