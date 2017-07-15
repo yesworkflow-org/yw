@@ -32,10 +32,19 @@ namespace yw {
 				c_ptr == nullptr ? nullable{} : nullable{ std::string(c_ptr) }) {}
 		};
 
+
+		class nullable_id : public nullable<long> {
+		public:
+			enum class generation { not_requested, requested }  request;
+			nullable_id() : nullable() {}
+			nullable_id(const long& value) : nullable(value) {}
+			nullable_id(generation request) : nullable{}, request(request) {}
+		};
+
 		using nullable_long = nullable<long>;
-		using nullable_id = nullable<long>;
 		
-		static const auto null_id = nullable_long{};
+		static const auto null_id = nullable_id{ nullable_id::generation::not_requested };
+		static const auto auto_id = nullable_id{ nullable_id::generation::requested };
 		static const auto null_long = nullable_long{};
 		static const auto null_string = nullable_string{};
 	}

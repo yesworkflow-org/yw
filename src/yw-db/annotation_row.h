@@ -14,7 +14,7 @@ namespace yw {
 
 			AnnotationRow(yw::sqlite::nullable_id qualifiesId, long lineId, long start, long end,
 				const std::string& tag, const std::string& value) : 
-				AnnotationRow(yw::sqlite::nullable<long>{}, qualifiesId, lineId, start, end, tag, value) {};
+				AnnotationRow(yw::sqlite::nullable_id{}, qualifiesId, lineId, start, end, tag, value) {};
 
 			const yw::sqlite::nullable_id id;
 			const yw::sqlite::nullable_id qualifiesId;

@@ -42,8 +42,8 @@ namespace yw {
             SelectStatement statement(db, sql);
             statement.bindInt64(1, requested_id);
             if (statement.step() != SQLITE_ROW) throw std::runtime_error("No row with that id");
-			auto id = statement.getInt64Field(0);
-			auto qualifies = statement.getNullableInt64Field(1);
+			auto id = statement.getIdField(0);
+			auto qualifies = statement.getNullableIdField(1);
 			auto lineId = statement.getInt64Field(2);
             auto start = statement.getInt64Field(3);
             auto end = statement.getInt64Field(4);

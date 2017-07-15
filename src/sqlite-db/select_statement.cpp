@@ -33,7 +33,17 @@ namespace yw {
 			return nullable_long(static_cast<long>(value));
 		}
 
-        std::string SelectStatement::getTextField(int column) {
+		long SelectStatement::getIdField(int column) {
+			return getInt64Field(column);
+		}
+
+		nullable_id SelectStatement::getNullableIdField(int column) {
+			if (sqlite3_column_type(statement, column) == SQLITE_NULL) return nullable_id{};
+			sqlite3_int64 value = sqlite3_column_int64(statement, column);
+			return nullable_id(static_cast<long>(value));
+		}
+
+		std::string SelectStatement::getTextField(int column) {
 			const unsigned char* value = sqlite3_column_text(statement, column);
             return SQLiteDB::textToString(value);
         }
