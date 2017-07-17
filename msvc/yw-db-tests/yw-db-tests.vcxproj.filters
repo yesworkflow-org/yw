@@ -18,9 +18,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\test\yw-db-tests\create_database_tests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\test\yw-db-tests\file_table_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

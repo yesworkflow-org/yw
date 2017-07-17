@@ -19,7 +19,7 @@ YW_TEST_SET
 
     YW_TEST(LanguageTable, InserOneRow_GeneratedIdIs_1)
     {
-	auto rowId = ywdb.insert(LanguageRow{ auto_id, "C" });
+		auto rowId = ywdb.insert(LanguageRow{ auto_id, "C" });
         Assert::AreEqual(1, rowId);
     }
 
