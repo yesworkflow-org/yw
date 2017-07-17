@@ -24,22 +24,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\test\yw-parse-tests\begin_tag_context_tests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\test\yw-parse-tests\block_context_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\test\yw-parse-tests\block_listener_tests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\test\yw-parse-tests\desc_tag_context_tests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\test\yw-parse-tests\port_tag_context_tests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\test\yw-parse-tests\port_tag_listener_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\test\yw-parse-tests\script_listener_tests.cpp">
@@ -50,6 +38,18 @@
     </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Precompiled Headers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\yw-parse-tests\begin_context_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\yw-parse-tests\desc_context_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\yw-parse-tests\port_context_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\yw-parse-tests\port_listener_tests.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

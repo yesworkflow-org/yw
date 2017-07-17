@@ -1,23 +1,24 @@
 grammar YW ;
 
 // YW annotation compositions
-script              : block (ws block)* ;
-block               : beginTag (ws blockAttribute)* (ws block)* ws endTag ;
-blockAttribute      : portTag | descTag | callTag;
-portTag             : (inputPortKeyword | outputPortKeyword) (SPACE+ portName)+ (ws portAttribute)* ;
-portAttribute       : descTag | aliasTag | resourceTag ;
+script          : block (ws block)* ;
+block           : begin (ws blockAttribute)* (ws block)* ws end ;
+blockAttribute  : port | desc | call;
+port            : (inputKeyword | outputKeyword) (SPACE+ portName)+ (ws portAttribute)* ;
+portAttribute   : desc | alias | resource ;
 
-beginTag            : BeginKeyword (SPACE)+ blockName ;
-endTag              : EndKeyword ((SPACE)+ (blockName))? ;
-descTag             : DescKeyword (SPACE)+ description ;
-aliasTag            : AsKeyword (SPACE)+ dataName ;
-callTag             : CallKeyword (SPACE)+ (blockName)+ ;
-uriTag              : UriKeyword (SPACE)+ uriTemplate;
-fileTag             : FileKeyword (SPACE)+ pathTemplate ;
-resourceTag         : uriTag | fileTag ;
+// YW annotations
+begin			: BeginKeyword (SPACE)+ blockName ;
+end				: EndKeyword ((SPACE)+ (blockName))? ;
+desc            : DescKeyword (SPACE)+ description ;
+alias			: AsKeyword (SPACE)+ dataName ;
+call			: CallKeyword (SPACE)+ (blockName)+ ;
+uri             : UriKeyword (SPACE)+ uriTemplate;
+file            : FileKeyword (SPACE)+ pathTemplate ;
+resource        : uri | file ;
 
-inputPortKeyword    : InKeyword | ParamKeyword ;
-outputPortKeyword   : OutKeyword | ReturnKeyword ;
+inputKeyword    : InKeyword | ParamKeyword ;
+outputKeyword   : OutKeyword | ReturnKeyword ;
 
 // YW keyword arguments
 blockName       : phrase ;

@@ -174,12 +174,12 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\test\yw-parse-tests\begin_tag_context_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-parse-tests\begin_context_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\block_context_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\block_listener_tests.cpp" />
-    <ClCompile Include="..\..\test\yw-parse-tests\desc_tag_context_tests.cpp" />
-    <ClCompile Include="..\..\test\yw-parse-tests\port_tag_context_tests.cpp" />
-    <ClCompile Include="..\..\test\yw-parse-tests\port_tag_listener_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-parse-tests\desc_context_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-parse-tests\port_context_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-parse-tests\port_listener_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\script_listener_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\yw_parser_builder.cpp" />
     <ClCompile Include="stdafx.cpp">

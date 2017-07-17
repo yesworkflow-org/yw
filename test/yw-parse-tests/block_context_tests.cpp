@@ -17,16 +17,16 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual("@begin b @end b", context->getText());
-        Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
-        Assert::AreEqual("@end", context->endTag()->EndKeyword()->getText());
-        Assert::AreEqual("b", context->endTag()->blockName()->getText());
-        Assert::AreEqual("b", context->beginTag()->blockName()->getText());
+        Assert::AreEqual("@begin", context->begin()->BeginKeyword()->getText());
+        Assert::AreEqual("@end", context->end()->EndKeyword()->getText());
+        Assert::AreEqual("b", context->end()->blockName()->getText());
+        Assert::AreEqual("b", context->begin()->blockName()->getText());
 
         Assert::AreEqual(0, context->blockAttribute().size());
         Assert::AreEqual(0, context->block().size());
     }
 
-    YW_TEST(BlockContext, Begin_End_TagsOnDifferentLines)
+    YW_TEST(BlockContext, Begin_End_sOnDifferentLines)
     {
         YWParserBuilder parser_builder(
             "@begin b"  "\n"
@@ -39,10 +39,10 @@ YW_TEST_SET
             "@begin b"  "\n"
             "@end b"
             , context->getText());
-        Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
-        Assert::AreEqual("b", context->beginTag()->blockName()->getText());
-        Assert::AreEqual("@end", context->endTag()->EndKeyword()->getText());
-        Assert::AreEqual("b", context->endTag()->blockName()->getText());
+        Assert::AreEqual("@begin", context->begin()->BeginKeyword()->getText());
+        Assert::AreEqual("b", context->begin()->blockName()->getText());
+        Assert::AreEqual("@end", context->end()->EndKeyword()->getText());
+        Assert::AreEqual("b", context->end()->blockName()->getText());
 
         Assert::AreEqual(0, context->blockAttribute().size());
         Assert::AreEqual(0, context->block().size());
@@ -56,8 +56,8 @@ YW_TEST_SET
         YWParser::BlockContext* blockContext = parser_builder.parse()->block();
 		Expect::AreEqual("line 1:6 mismatched input '\\n' expecting SPACE" "\n", stderrRecorder.str());
 
-        Assert::AreEqual("@begin", blockContext->beginTag()->BeginKeyword()->getText());
-        Assert::IsNull(blockContext->beginTag()->blockName());
+        Assert::AreEqual("@begin", blockContext->begin()->BeginKeyword()->getText());
+        Assert::IsNull(blockContext->begin()->blockName());
     }
 
     YW_TEST(BlockContext, Begin_End_WithNoFinalBlockName)
@@ -67,12 +67,12 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual("@begin b @end", context->getText());
-        Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
-        Assert::AreEqual("b", context->beginTag()->blockName()->getText());
+        Assert::AreEqual("@begin", context->begin()->BeginKeyword()->getText());
+        Assert::AreEqual("b", context->begin()->blockName()->getText());
         Assert::AreEqual(0, context->blockAttribute().size());
         Assert::AreEqual(0, context->block().size());
-        Assert::AreEqual("@end", context->endTag()->EndKeyword()->getText());
-        Assert::IsNull(context->endTag()->blockName());
+        Assert::AreEqual("@end", context->end()->EndKeyword()->getText());
+        Assert::IsNull(context->end()->blockName());
     }
 
     YW_TEST(BlockContext, Begin_Desc_End_OneWordDescription)
@@ -82,14 +82,14 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual("@begin b @desc word @end", context->getText());
-        Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
-        Assert::AreEqual("b", context->beginTag()->blockName()->getText());
+        Assert::AreEqual("@begin", context->begin()->BeginKeyword()->getText());
+        Assert::AreEqual("b", context->begin()->blockName()->getText());
         Assert::AreEqual(1, context->blockAttribute().size());
-        Assert::AreEqual("@desc", context->blockAttribute()[0]->descTag()->DescKeyword()->getText());
-        Assert::AreEqual("word", context->blockAttribute()[0]->descTag()->description()->getText());
-        Assert::AreEqual("@end", context->endTag()->EndKeyword()->getText());
+        Assert::AreEqual("@desc", context->blockAttribute()[0]->desc()->DescKeyword()->getText());
+        Assert::AreEqual("word", context->blockAttribute()[0]->desc()->description()->getText());
+        Assert::AreEqual("@end", context->end()->EndKeyword()->getText());
         Assert::AreEqual(0, context->block().size());
-        Assert::IsNull(context->endTag()->blockName());
+        Assert::IsNull(context->end()->blockName());
     }
 
     YW_TEST(BlockContext, Begin_Desc_End_MultipleWordDescriptionOnSameLine)
@@ -99,14 +99,14 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual("@begin b @desc a multiple word description @end", context->getText());
-        Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
-        Assert::AreEqual("b", context->beginTag()->blockName()->getText());
+        Assert::AreEqual("@begin", context->begin()->BeginKeyword()->getText());
+        Assert::AreEqual("b", context->begin()->blockName()->getText());
         Assert::AreEqual(1, context->blockAttribute().size());
-        Assert::AreEqual("@desc", context->blockAttribute()[0]->descTag()->DescKeyword()->getText());
-        Assert::AreEqual("a multiple word description", context->blockAttribute()[0]->descTag()->description()->getText());
-        Assert::AreEqual("@end", context->endTag()->EndKeyword()->getText());
+        Assert::AreEqual("@desc", context->blockAttribute()[0]->desc()->DescKeyword()->getText());
+        Assert::AreEqual("a multiple word description", context->blockAttribute()[0]->desc()->description()->getText());
+        Assert::AreEqual("@end", context->end()->EndKeyword()->getText());
         Assert::AreEqual(0, context->block().size());
-        Assert::IsNull(context->endTag()->blockName());
+        Assert::IsNull(context->end()->blockName());
     }
 
     YW_TEST(BlockContext, Begin_Desc_End_MultipleWordDescriptionOnNextLine)
@@ -116,14 +116,14 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual("@begin b\n@desc a multiple word description @end", context->getText());
-        Assert::AreEqual("@begin", context->beginTag()->BeginKeyword()->getText());
-        Assert::AreEqual("b", context->beginTag()->blockName()->getText());
+        Assert::AreEqual("@begin", context->begin()->BeginKeyword()->getText());
+        Assert::AreEqual("b", context->begin()->blockName()->getText());
         Assert::AreEqual(1, context->blockAttribute().size());
-        Assert::AreEqual("@desc", context->blockAttribute()[0]->descTag()->DescKeyword()->getText());
-        Assert::AreEqual("a multiple word description", context->blockAttribute()[0]->descTag()->description()->getText());
-        Assert::AreEqual("@end", context->endTag()->EndKeyword()->getText());
+        Assert::AreEqual("@desc", context->blockAttribute()[0]->desc()->DescKeyword()->getText());
+        Assert::AreEqual("a multiple word description", context->blockAttribute()[0]->desc()->description()->getText());
+        Assert::AreEqual("@end", context->end()->EndKeyword()->getText());
         Assert::AreEqual(0, context->block().size());
-        Assert::IsNull(context->endTag()->blockName());
+        Assert::IsNull(context->end()->blockName());
     }
 
 YW_TEST_END

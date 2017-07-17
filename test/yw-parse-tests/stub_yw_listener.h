@@ -20,29 +20,29 @@ namespace yw {
             void enterPortAttribute(YWParser::PortAttributeContext *context) override { _log << "entered port attribute" << std::endl; }
             void exitPortAttribute(YWParser::PortAttributeContext *context) override { _log << "exited port attribute" << std::endl; }
 
-            void enterBeginTag(YWParser::BeginTagContext *context) override { _log << "entered begin tag" << std::endl; }
-            void exitBeginTag(YWParser::BeginTagContext *context) override { _log << "exited begin tag" << std::endl; }
-            void enterEndTag(YWParser::EndTagContext *context) override { _log << "entered end tag" << std::endl; }
-            void exitEndTag(YWParser::EndTagContext *context) override { _log << "exited end tag" << std::endl; }
-            void enterDescTag(YWParser::DescTagContext *context) override { _log << "entered desc tag" << std::endl; }
-            void exitDescTag(YWParser::DescTagContext *context) override { _log << "exited desc tag" << std::endl; }
-            void enterPortTag(YWParser::PortTagContext *context) override { _log << "entered port tag" << std::endl; }
-            void exitPortTag(YWParser::PortTagContext *context) override { _log << "exited port tag" << std::endl; }
-            void enterAliasTag(YWParser::AliasTagContext *context) override { _log << "entered alias tag" << std::endl; }
-            void exitAliasTag(YWParser::AliasTagContext *context) override { _log << "exited alias tag" << std::endl; }
-            void enterCallTag(YWParser::CallTagContext *context) override { _log << "entered call tag" << std::endl; }
-            void exitCallTag(YWParser::CallTagContext *context) override { _log << "exited call tag" << std::endl; }
-            void enterUriTag(YWParser::UriTagContext *context) override { _log << "entered uri tag" << std::endl; }
-            void exitUriTag(YWParser::UriTagContext *context) override { _log << "exited uri tag" << std::endl; }
-            void enterFileTag(YWParser::FileTagContext *context) override { _log << "entered file tag" << std::endl; }
-            void exitFileTag(YWParser::FileTagContext *context) override { _log << "exited file tag" << std::endl; }
-            void enterResourceTag(YWParser::ResourceTagContext *context) override { _log << "entered resource tag" << std::endl; }
-            void exitResourceTag(YWParser::ResourceTagContext *context) override { _log << "exited resource tag" << std::endl; }
+            void enterBegin(YWParser::BeginContext *context) override { _log << "entered begin tag" << std::endl; }
+            void exitBegin(YWParser::BeginContext *context) override { _log << "exited begin tag" << std::endl; }
+            void enterEnd(YWParser::EndContext *context) override { _log << "entered end tag" << std::endl; }
+            void exitEnd(YWParser::EndContext *context) override { _log << "exited end tag" << std::endl; }
+            void enterDesc(YWParser::DescContext *context) override { _log << "entered desc tag" << std::endl; }
+            void exitDesc(YWParser::DescContext *context) override { _log << "exited desc tag" << std::endl; }
+            void enterPort(YWParser::PortContext *context) override { _log << "entered port tag" << std::endl; }
+            void exitPort(YWParser::PortContext *context) override { _log << "exited port tag" << std::endl; }
+            void enterAlias(YWParser::AliasContext *context) override { _log << "entered alias tag" << std::endl; }
+            void exitAlias(YWParser::AliasContext *context) override { _log << "exited alias tag" << std::endl; }
+            void enterCall(YWParser::CallContext *context) override { _log << "entered call tag" << std::endl; }
+            void exitCall(YWParser::CallContext *context) override { _log << "exited call tag" << std::endl; }
+            void enterUri(YWParser::UriContext *context) override { _log << "entered uri tag" << std::endl; }
+            void exitUri(YWParser::UriContext *context) override { _log << "exited uri tag" << std::endl; }
+            void enterFile(YWParser::FileContext *context) override { _log << "entered file tag" << std::endl; }
+            void exitFile(YWParser::FileContext *context) override { _log << "exited file tag" << std::endl; }
+            void enterResource(YWParser::ResourceContext *context) override { _log << "entered resource tag" << std::endl; }
+            void exitResource(YWParser::ResourceContext *context) override { _log << "exited resource tag" << std::endl; }
 
-            void enterInputPortKeyword(YWParser::InputPortKeywordContext *context) override { _log << "entered input port keyword" << std::endl; }
-            void exitInputPortKeyword(YWParser::InputPortKeywordContext *context) override { _log << "exited input port keyword" << std::endl; }
-            void enterOutputPortKeyword(YWParser::OutputPortKeywordContext *context) override { _log << "entered output port keyword" << std::endl; }
-            void exitOutputPortKeyword(YWParser::OutputPortKeywordContext *context) override { _log << "exited output port keyword" << std::endl; }
+            void enterInputKeyword(YWParser::InputKeywordContext *context) override { _log << "entered input port keyword" << std::endl; }
+            void exitInputKeyword(YWParser::InputKeywordContext *context) override { _log << "exited input port keyword" << std::endl; }
+            void enterOutputKeyword(YWParser::OutputKeywordContext *context) override { _log << "entered output port keyword" << std::endl; }
+            void exitOutputKeyword(YWParser::OutputKeywordContext *context) override { _log << "exited output port keyword" << std::endl; }
 
             void enterBlockName(YWParser::BlockNameContext *context) override { _log << "entered block name" << std::endl; }
             void exitBlockName(YWParser::BlockNameContext *context) override { _log << "exited block name" << std::endl; }

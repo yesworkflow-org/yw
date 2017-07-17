@@ -4,42 +4,42 @@ using namespace yw;
 using namespace yw::parse;
 using namespace yw::test;
 
-YW_TEST_FIXTURE(DescTagContext)
+YW_TEST_FIXTURE(DescContext)
 
     StderrRecorder stderrRecorder;
 
 YW_TEST_SET
 
-    YW_TEST(DescTagContext, NoDescription)
+    YW_TEST(DescContext, NoDescription)
     {
         YWParserBuilder parser_builder("@desc");
-        YWParser::DescTagContext* context = parser_builder.parse()->descTag();
+        YWParser::DescContext* context = parser_builder.parse()->desc();
 		Expect::AreEqual("line 1:5 mismatched input '<EOF>' expecting SPACE" "\n", stderrRecorder.str());
         Assert::IsNull(context->description());
     }
 
-    YW_TEST(DescTagContext, OneWordDescription)
+    YW_TEST(DescContext, OneWordDescription)
     {
         YWParserBuilder parser_builder("@desc word");
-        YWParser::DescTagContext* context = parser_builder.parse()->descTag();
+        YWParser::DescContext* context = parser_builder.parse()->desc();
 		Expect::EmptyString(stderrRecorder.str());
         Assert::AreEqual("word", context->description()->getText());
     }
 
-    YW_TEST(DescTagContext, MultiWordDescription)
+    YW_TEST(DescContext, MultiWordDescription)
     {
         YWParserBuilder parser_builder("@desc a multiple word description");
-        YWParser::DescTagContext* context = parser_builder.parse()->descTag();
+        YWParser::DescContext* context = parser_builder.parse()->desc();
 		Expect::EmptyString(stderrRecorder.str());
         Assert::AreEqual("a multiple word description", context->description()->getText());
     }
 
-    YW_TEST(DescTagContext, MultiWordDescription_IgnoresTextOnNextLine)
+    YW_TEST(DescContext, MultiWordDescription_IgnoresTextOnNextLine)
     {
         YWParserBuilder parser_builder(
             "@desc a multiple word description"  "\n"
             "with more text on next line"        "\n");
-        YWParser::DescTagContext* context = parser_builder.parse()->descTag();
+        YWParser::DescContext* context = parser_builder.parse()->desc();
 		Expect::EmptyString(stderrRecorder.str());
         Assert::AreEqual("a multiple word description", context->description()->getText());
     }

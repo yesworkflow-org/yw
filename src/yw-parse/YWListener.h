@@ -25,41 +25,41 @@ public:
   virtual void enterBlockAttribute(YWParser::BlockAttributeContext *ctx) = 0;
   virtual void exitBlockAttribute(YWParser::BlockAttributeContext *ctx) = 0;
 
-  virtual void enterPortTag(YWParser::PortTagContext *ctx) = 0;
-  virtual void exitPortTag(YWParser::PortTagContext *ctx) = 0;
+  virtual void enterPort(YWParser::PortContext *ctx) = 0;
+  virtual void exitPort(YWParser::PortContext *ctx) = 0;
 
   virtual void enterPortAttribute(YWParser::PortAttributeContext *ctx) = 0;
   virtual void exitPortAttribute(YWParser::PortAttributeContext *ctx) = 0;
 
-  virtual void enterBeginTag(YWParser::BeginTagContext *ctx) = 0;
-  virtual void exitBeginTag(YWParser::BeginTagContext *ctx) = 0;
+  virtual void enterBegin(YWParser::BeginContext *ctx) = 0;
+  virtual void exitBegin(YWParser::BeginContext *ctx) = 0;
 
-  virtual void enterEndTag(YWParser::EndTagContext *ctx) = 0;
-  virtual void exitEndTag(YWParser::EndTagContext *ctx) = 0;
+  virtual void enterEnd(YWParser::EndContext *ctx) = 0;
+  virtual void exitEnd(YWParser::EndContext *ctx) = 0;
 
-  virtual void enterDescTag(YWParser::DescTagContext *ctx) = 0;
-  virtual void exitDescTag(YWParser::DescTagContext *ctx) = 0;
+  virtual void enterDesc(YWParser::DescContext *ctx) = 0;
+  virtual void exitDesc(YWParser::DescContext *ctx) = 0;
 
-  virtual void enterAliasTag(YWParser::AliasTagContext *ctx) = 0;
-  virtual void exitAliasTag(YWParser::AliasTagContext *ctx) = 0;
+  virtual void enterAlias(YWParser::AliasContext *ctx) = 0;
+  virtual void exitAlias(YWParser::AliasContext *ctx) = 0;
 
-  virtual void enterCallTag(YWParser::CallTagContext *ctx) = 0;
-  virtual void exitCallTag(YWParser::CallTagContext *ctx) = 0;
+  virtual void enterCall(YWParser::CallContext *ctx) = 0;
+  virtual void exitCall(YWParser::CallContext *ctx) = 0;
 
-  virtual void enterUriTag(YWParser::UriTagContext *ctx) = 0;
-  virtual void exitUriTag(YWParser::UriTagContext *ctx) = 0;
+  virtual void enterUri(YWParser::UriContext *ctx) = 0;
+  virtual void exitUri(YWParser::UriContext *ctx) = 0;
 
-  virtual void enterFileTag(YWParser::FileTagContext *ctx) = 0;
-  virtual void exitFileTag(YWParser::FileTagContext *ctx) = 0;
+  virtual void enterFile(YWParser::FileContext *ctx) = 0;
+  virtual void exitFile(YWParser::FileContext *ctx) = 0;
 
-  virtual void enterResourceTag(YWParser::ResourceTagContext *ctx) = 0;
-  virtual void exitResourceTag(YWParser::ResourceTagContext *ctx) = 0;
+  virtual void enterResource(YWParser::ResourceContext *ctx) = 0;
+  virtual void exitResource(YWParser::ResourceContext *ctx) = 0;
 
-  virtual void enterInputPortKeyword(YWParser::InputPortKeywordContext *ctx) = 0;
-  virtual void exitInputPortKeyword(YWParser::InputPortKeywordContext *ctx) = 0;
+  virtual void enterInputKeyword(YWParser::InputKeywordContext *ctx) = 0;
+  virtual void exitInputKeyword(YWParser::InputKeywordContext *ctx) = 0;
 
-  virtual void enterOutputPortKeyword(YWParser::OutputPortKeywordContext *ctx) = 0;
-  virtual void exitOutputPortKeyword(YWParser::OutputPortKeywordContext *ctx) = 0;
+  virtual void enterOutputKeyword(YWParser::OutputKeywordContext *ctx) = 0;
+  virtual void exitOutputKeyword(YWParser::OutputKeywordContext *ctx) = 0;
 
   virtual void enterBlockName(YWParser::BlockNameContext *ctx) = 0;
   virtual void exitBlockName(YWParser::BlockNameContext *ctx) = 0;

@@ -114,8 +114,8 @@ YWParser::BlockContext::BlockContext(ParserRuleContext *parent, size_t invokingS
   : ParserRuleContext(parent, invokingState) {
 }
 
-YWParser::BeginTagContext* YWParser::BlockContext::beginTag() {
-  return getRuleContext<YWParser::BeginTagContext>(0);
+YWParser::BeginContext* YWParser::BlockContext::begin() {
+  return getRuleContext<YWParser::BeginContext>(0);
 }
 
 std::vector<YWParser::WsContext *> YWParser::BlockContext::ws() {
@@ -126,8 +126,8 @@ YWParser::WsContext* YWParser::BlockContext::ws(size_t i) {
   return getRuleContext<YWParser::WsContext>(i);
 }
 
-YWParser::EndTagContext* YWParser::BlockContext::endTag() {
-  return getRuleContext<YWParser::EndTagContext>(0);
+YWParser::EndContext* YWParser::BlockContext::end() {
+  return getRuleContext<YWParser::EndContext>(0);
 }
 
 std::vector<YWParser::BlockAttributeContext *> YWParser::BlockContext::blockAttribute() {
@@ -174,7 +174,7 @@ YWParser::BlockContext* YWParser::block() {
     size_t alt;
     enterOuterAlt(_localctx, 1);
     setState(57);
-    beginTag();
+    begin();
     setState(63);
     _errHandler->sync(this);
     alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 1, _ctx);
@@ -206,7 +206,7 @@ YWParser::BlockContext* YWParser::block() {
     setState(74);
     ws();
     setState(75);
-    endTag();
+    end();
    
   }
   catch (RecognitionException &e) {
@@ -224,16 +224,16 @@ YWParser::BlockAttributeContext::BlockAttributeContext(ParserRuleContext *parent
   : ParserRuleContext(parent, invokingState) {
 }
 
-YWParser::PortTagContext* YWParser::BlockAttributeContext::portTag() {
-  return getRuleContext<YWParser::PortTagContext>(0);
+YWParser::PortContext* YWParser::BlockAttributeContext::port() {
+  return getRuleContext<YWParser::PortContext>(0);
 }
 
-YWParser::DescTagContext* YWParser::BlockAttributeContext::descTag() {
-  return getRuleContext<YWParser::DescTagContext>(0);
+YWParser::DescContext* YWParser::BlockAttributeContext::desc() {
+  return getRuleContext<YWParser::DescContext>(0);
 }
 
-YWParser::CallTagContext* YWParser::BlockAttributeContext::callTag() {
-  return getRuleContext<YWParser::CallTagContext>(0);
+YWParser::CallContext* YWParser::BlockAttributeContext::call() {
+  return getRuleContext<YWParser::CallContext>(0);
 }
 
 
@@ -270,21 +270,21 @@ YWParser::BlockAttributeContext* YWParser::blockAttribute() {
       case YWParser::ReturnKeyword: {
         enterOuterAlt(_localctx, 1);
         setState(77);
-        portTag();
+        port();
         break;
       }
 
       case YWParser::DescKeyword: {
         enterOuterAlt(_localctx, 2);
         setState(78);
-        descTag();
+        desc();
         break;
       }
 
       case YWParser::CallKeyword: {
         enterOuterAlt(_localctx, 3);
         setState(79);
-        callTag();
+        call();
         break;
       }
 
@@ -302,72 +302,72 @@ YWParser::BlockAttributeContext* YWParser::blockAttribute() {
   return _localctx;
 }
 
-//----------------- PortTagContext ------------------------------------------------------------------
+//----------------- PortContext ------------------------------------------------------------------
 
-YWParser::PortTagContext::PortTagContext(ParserRuleContext *parent, size_t invokingState)
+YWParser::PortContext::PortContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-YWParser::InputPortKeywordContext* YWParser::PortTagContext::inputPortKeyword() {
-  return getRuleContext<YWParser::InputPortKeywordContext>(0);
+YWParser::InputKeywordContext* YWParser::PortContext::inputKeyword() {
+  return getRuleContext<YWParser::InputKeywordContext>(0);
 }
 
-YWParser::OutputPortKeywordContext* YWParser::PortTagContext::outputPortKeyword() {
-  return getRuleContext<YWParser::OutputPortKeywordContext>(0);
+YWParser::OutputKeywordContext* YWParser::PortContext::outputKeyword() {
+  return getRuleContext<YWParser::OutputKeywordContext>(0);
 }
 
-std::vector<YWParser::PortNameContext *> YWParser::PortTagContext::portName() {
+std::vector<YWParser::PortNameContext *> YWParser::PortContext::portName() {
   return getRuleContexts<YWParser::PortNameContext>();
 }
 
-YWParser::PortNameContext* YWParser::PortTagContext::portName(size_t i) {
+YWParser::PortNameContext* YWParser::PortContext::portName(size_t i) {
   return getRuleContext<YWParser::PortNameContext>(i);
 }
 
-std::vector<YWParser::WsContext *> YWParser::PortTagContext::ws() {
+std::vector<YWParser::WsContext *> YWParser::PortContext::ws() {
   return getRuleContexts<YWParser::WsContext>();
 }
 
-YWParser::WsContext* YWParser::PortTagContext::ws(size_t i) {
+YWParser::WsContext* YWParser::PortContext::ws(size_t i) {
   return getRuleContext<YWParser::WsContext>(i);
 }
 
-std::vector<YWParser::PortAttributeContext *> YWParser::PortTagContext::portAttribute() {
+std::vector<YWParser::PortAttributeContext *> YWParser::PortContext::portAttribute() {
   return getRuleContexts<YWParser::PortAttributeContext>();
 }
 
-YWParser::PortAttributeContext* YWParser::PortTagContext::portAttribute(size_t i) {
+YWParser::PortAttributeContext* YWParser::PortContext::portAttribute(size_t i) {
   return getRuleContext<YWParser::PortAttributeContext>(i);
 }
 
-std::vector<tree::TerminalNode *> YWParser::PortTagContext::SPACE() {
+std::vector<tree::TerminalNode *> YWParser::PortContext::SPACE() {
   return getTokens(YWParser::SPACE);
 }
 
-tree::TerminalNode* YWParser::PortTagContext::SPACE(size_t i) {
+tree::TerminalNode* YWParser::PortContext::SPACE(size_t i) {
   return getToken(YWParser::SPACE, i);
 }
 
 
-size_t YWParser::PortTagContext::getRuleIndex() const {
-  return YWParser::RulePortTag;
+size_t YWParser::PortContext::getRuleIndex() const {
+  return YWParser::RulePort;
 }
 
-void YWParser::PortTagContext::enterRule(tree::ParseTreeListener *listener) {
+void YWParser::PortContext::enterRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->enterPortTag(this);
+    parserListener->enterPort(this);
 }
 
-void YWParser::PortTagContext::exitRule(tree::ParseTreeListener *listener) {
+void YWParser::PortContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->exitPortTag(this);
+    parserListener->exitPort(this);
 }
 
-YWParser::PortTagContext* YWParser::portTag() {
-  PortTagContext *_localctx = _tracker.createInstance<PortTagContext>(_ctx, getState());
-  enterRule(_localctx, 6, YWParser::RulePortTag);
+YWParser::PortContext* YWParser::port() {
+  PortContext *_localctx = _tracker.createInstance<PortContext>(_ctx, getState());
+  enterRule(_localctx, 6, YWParser::RulePort);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -382,14 +382,14 @@ YWParser::PortTagContext* YWParser::portTag() {
       case YWParser::InKeyword:
       case YWParser::ParamKeyword: {
         setState(82);
-        inputPortKeyword();
+        inputKeyword();
         break;
       }
 
       case YWParser::OutKeyword:
       case YWParser::ReturnKeyword: {
         setState(83);
-        outputPortKeyword();
+        outputKeyword();
         break;
       }
 
@@ -455,16 +455,16 @@ YWParser::PortAttributeContext::PortAttributeContext(ParserRuleContext *parent, 
   : ParserRuleContext(parent, invokingState) {
 }
 
-YWParser::DescTagContext* YWParser::PortAttributeContext::descTag() {
-  return getRuleContext<YWParser::DescTagContext>(0);
+YWParser::DescContext* YWParser::PortAttributeContext::desc() {
+  return getRuleContext<YWParser::DescContext>(0);
 }
 
-YWParser::AliasTagContext* YWParser::PortAttributeContext::aliasTag() {
-  return getRuleContext<YWParser::AliasTagContext>(0);
+YWParser::AliasContext* YWParser::PortAttributeContext::alias() {
+  return getRuleContext<YWParser::AliasContext>(0);
 }
 
-YWParser::ResourceTagContext* YWParser::PortAttributeContext::resourceTag() {
-  return getRuleContext<YWParser::ResourceTagContext>(0);
+YWParser::ResourceContext* YWParser::PortAttributeContext::resource() {
+  return getRuleContext<YWParser::ResourceContext>(0);
 }
 
 
@@ -498,14 +498,14 @@ YWParser::PortAttributeContext* YWParser::portAttribute() {
       case YWParser::DescKeyword: {
         enterOuterAlt(_localctx, 1);
         setState(104);
-        descTag();
+        desc();
         break;
       }
 
       case YWParser::AsKeyword: {
         enterOuterAlt(_localctx, 2);
         setState(105);
-        aliasTag();
+        alias();
         break;
       }
 
@@ -513,7 +513,7 @@ YWParser::PortAttributeContext* YWParser::portAttribute() {
       case YWParser::UriKeyword: {
         enterOuterAlt(_localctx, 3);
         setState(106);
-        resourceTag();
+        resource();
         break;
       }
 
@@ -531,48 +531,48 @@ YWParser::PortAttributeContext* YWParser::portAttribute() {
   return _localctx;
 }
 
-//----------------- BeginTagContext ------------------------------------------------------------------
+//----------------- BeginContext ------------------------------------------------------------------
 
-YWParser::BeginTagContext::BeginTagContext(ParserRuleContext *parent, size_t invokingState)
+YWParser::BeginContext::BeginContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* YWParser::BeginTagContext::BeginKeyword() {
+tree::TerminalNode* YWParser::BeginContext::BeginKeyword() {
   return getToken(YWParser::BeginKeyword, 0);
 }
 
-YWParser::BlockNameContext* YWParser::BeginTagContext::blockName() {
+YWParser::BlockNameContext* YWParser::BeginContext::blockName() {
   return getRuleContext<YWParser::BlockNameContext>(0);
 }
 
-std::vector<tree::TerminalNode *> YWParser::BeginTagContext::SPACE() {
+std::vector<tree::TerminalNode *> YWParser::BeginContext::SPACE() {
   return getTokens(YWParser::SPACE);
 }
 
-tree::TerminalNode* YWParser::BeginTagContext::SPACE(size_t i) {
+tree::TerminalNode* YWParser::BeginContext::SPACE(size_t i) {
   return getToken(YWParser::SPACE, i);
 }
 
 
-size_t YWParser::BeginTagContext::getRuleIndex() const {
-  return YWParser::RuleBeginTag;
+size_t YWParser::BeginContext::getRuleIndex() const {
+  return YWParser::RuleBegin;
 }
 
-void YWParser::BeginTagContext::enterRule(tree::ParseTreeListener *listener) {
+void YWParser::BeginContext::enterRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->enterBeginTag(this);
+    parserListener->enterBegin(this);
 }
 
-void YWParser::BeginTagContext::exitRule(tree::ParseTreeListener *listener) {
+void YWParser::BeginContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->exitBeginTag(this);
+    parserListener->exitBegin(this);
 }
 
-YWParser::BeginTagContext* YWParser::beginTag() {
-  BeginTagContext *_localctx = _tracker.createInstance<BeginTagContext>(_ctx, getState());
-  enterRule(_localctx, 10, YWParser::RuleBeginTag);
+YWParser::BeginContext* YWParser::begin() {
+  BeginContext *_localctx = _tracker.createInstance<BeginContext>(_ctx, getState());
+  enterRule(_localctx, 10, YWParser::RuleBegin);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -605,48 +605,48 @@ YWParser::BeginTagContext* YWParser::beginTag() {
   return _localctx;
 }
 
-//----------------- EndTagContext ------------------------------------------------------------------
+//----------------- EndContext ------------------------------------------------------------------
 
-YWParser::EndTagContext::EndTagContext(ParserRuleContext *parent, size_t invokingState)
+YWParser::EndContext::EndContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* YWParser::EndTagContext::EndKeyword() {
+tree::TerminalNode* YWParser::EndContext::EndKeyword() {
   return getToken(YWParser::EndKeyword, 0);
 }
 
-YWParser::BlockNameContext* YWParser::EndTagContext::blockName() {
+YWParser::BlockNameContext* YWParser::EndContext::blockName() {
   return getRuleContext<YWParser::BlockNameContext>(0);
 }
 
-std::vector<tree::TerminalNode *> YWParser::EndTagContext::SPACE() {
+std::vector<tree::TerminalNode *> YWParser::EndContext::SPACE() {
   return getTokens(YWParser::SPACE);
 }
 
-tree::TerminalNode* YWParser::EndTagContext::SPACE(size_t i) {
+tree::TerminalNode* YWParser::EndContext::SPACE(size_t i) {
   return getToken(YWParser::SPACE, i);
 }
 
 
-size_t YWParser::EndTagContext::getRuleIndex() const {
-  return YWParser::RuleEndTag;
+size_t YWParser::EndContext::getRuleIndex() const {
+  return YWParser::RuleEnd;
 }
 
-void YWParser::EndTagContext::enterRule(tree::ParseTreeListener *listener) {
+void YWParser::EndContext::enterRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->enterEndTag(this);
+    parserListener->enterEnd(this);
 }
 
-void YWParser::EndTagContext::exitRule(tree::ParseTreeListener *listener) {
+void YWParser::EndContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->exitEndTag(this);
+    parserListener->exitEnd(this);
 }
 
-YWParser::EndTagContext* YWParser::endTag() {
-  EndTagContext *_localctx = _tracker.createInstance<EndTagContext>(_ctx, getState());
-  enterRule(_localctx, 12, YWParser::RuleEndTag);
+YWParser::EndContext* YWParser::end() {
+  EndContext *_localctx = _tracker.createInstance<EndContext>(_ctx, getState());
+  enterRule(_localctx, 12, YWParser::RuleEnd);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -689,48 +689,48 @@ YWParser::EndTagContext* YWParser::endTag() {
   return _localctx;
 }
 
-//----------------- DescTagContext ------------------------------------------------------------------
+//----------------- DescContext ------------------------------------------------------------------
 
-YWParser::DescTagContext::DescTagContext(ParserRuleContext *parent, size_t invokingState)
+YWParser::DescContext::DescContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* YWParser::DescTagContext::DescKeyword() {
+tree::TerminalNode* YWParser::DescContext::DescKeyword() {
   return getToken(YWParser::DescKeyword, 0);
 }
 
-YWParser::DescriptionContext* YWParser::DescTagContext::description() {
+YWParser::DescriptionContext* YWParser::DescContext::description() {
   return getRuleContext<YWParser::DescriptionContext>(0);
 }
 
-std::vector<tree::TerminalNode *> YWParser::DescTagContext::SPACE() {
+std::vector<tree::TerminalNode *> YWParser::DescContext::SPACE() {
   return getTokens(YWParser::SPACE);
 }
 
-tree::TerminalNode* YWParser::DescTagContext::SPACE(size_t i) {
+tree::TerminalNode* YWParser::DescContext::SPACE(size_t i) {
   return getToken(YWParser::SPACE, i);
 }
 
 
-size_t YWParser::DescTagContext::getRuleIndex() const {
-  return YWParser::RuleDescTag;
+size_t YWParser::DescContext::getRuleIndex() const {
+  return YWParser::RuleDesc;
 }
 
-void YWParser::DescTagContext::enterRule(tree::ParseTreeListener *listener) {
+void YWParser::DescContext::enterRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->enterDescTag(this);
+    parserListener->enterDesc(this);
 }
 
-void YWParser::DescTagContext::exitRule(tree::ParseTreeListener *listener) {
+void YWParser::DescContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->exitDescTag(this);
+    parserListener->exitDesc(this);
 }
 
-YWParser::DescTagContext* YWParser::descTag() {
-  DescTagContext *_localctx = _tracker.createInstance<DescTagContext>(_ctx, getState());
-  enterRule(_localctx, 14, YWParser::RuleDescTag);
+YWParser::DescContext* YWParser::desc() {
+  DescContext *_localctx = _tracker.createInstance<DescContext>(_ctx, getState());
+  enterRule(_localctx, 14, YWParser::RuleDesc);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -763,48 +763,48 @@ YWParser::DescTagContext* YWParser::descTag() {
   return _localctx;
 }
 
-//----------------- AliasTagContext ------------------------------------------------------------------
+//----------------- AliasContext ------------------------------------------------------------------
 
-YWParser::AliasTagContext::AliasTagContext(ParserRuleContext *parent, size_t invokingState)
+YWParser::AliasContext::AliasContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* YWParser::AliasTagContext::AsKeyword() {
+tree::TerminalNode* YWParser::AliasContext::AsKeyword() {
   return getToken(YWParser::AsKeyword, 0);
 }
 
-YWParser::DataNameContext* YWParser::AliasTagContext::dataName() {
+YWParser::DataNameContext* YWParser::AliasContext::dataName() {
   return getRuleContext<YWParser::DataNameContext>(0);
 }
 
-std::vector<tree::TerminalNode *> YWParser::AliasTagContext::SPACE() {
+std::vector<tree::TerminalNode *> YWParser::AliasContext::SPACE() {
   return getTokens(YWParser::SPACE);
 }
 
-tree::TerminalNode* YWParser::AliasTagContext::SPACE(size_t i) {
+tree::TerminalNode* YWParser::AliasContext::SPACE(size_t i) {
   return getToken(YWParser::SPACE, i);
 }
 
 
-size_t YWParser::AliasTagContext::getRuleIndex() const {
-  return YWParser::RuleAliasTag;
+size_t YWParser::AliasContext::getRuleIndex() const {
+  return YWParser::RuleAlias;
 }
 
-void YWParser::AliasTagContext::enterRule(tree::ParseTreeListener *listener) {
+void YWParser::AliasContext::enterRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->enterAliasTag(this);
+    parserListener->enterAlias(this);
 }
 
-void YWParser::AliasTagContext::exitRule(tree::ParseTreeListener *listener) {
+void YWParser::AliasContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->exitAliasTag(this);
+    parserListener->exitAlias(this);
 }
 
-YWParser::AliasTagContext* YWParser::aliasTag() {
-  AliasTagContext *_localctx = _tracker.createInstance<AliasTagContext>(_ctx, getState());
-  enterRule(_localctx, 16, YWParser::RuleAliasTag);
+YWParser::AliasContext* YWParser::alias() {
+  AliasContext *_localctx = _tracker.createInstance<AliasContext>(_ctx, getState());
+  enterRule(_localctx, 16, YWParser::RuleAlias);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -837,52 +837,52 @@ YWParser::AliasTagContext* YWParser::aliasTag() {
   return _localctx;
 }
 
-//----------------- CallTagContext ------------------------------------------------------------------
+//----------------- CallContext ------------------------------------------------------------------
 
-YWParser::CallTagContext::CallTagContext(ParserRuleContext *parent, size_t invokingState)
+YWParser::CallContext::CallContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* YWParser::CallTagContext::CallKeyword() {
+tree::TerminalNode* YWParser::CallContext::CallKeyword() {
   return getToken(YWParser::CallKeyword, 0);
 }
 
-std::vector<tree::TerminalNode *> YWParser::CallTagContext::SPACE() {
+std::vector<tree::TerminalNode *> YWParser::CallContext::SPACE() {
   return getTokens(YWParser::SPACE);
 }
 
-tree::TerminalNode* YWParser::CallTagContext::SPACE(size_t i) {
+tree::TerminalNode* YWParser::CallContext::SPACE(size_t i) {
   return getToken(YWParser::SPACE, i);
 }
 
-std::vector<YWParser::BlockNameContext *> YWParser::CallTagContext::blockName() {
+std::vector<YWParser::BlockNameContext *> YWParser::CallContext::blockName() {
   return getRuleContexts<YWParser::BlockNameContext>();
 }
 
-YWParser::BlockNameContext* YWParser::CallTagContext::blockName(size_t i) {
+YWParser::BlockNameContext* YWParser::CallContext::blockName(size_t i) {
   return getRuleContext<YWParser::BlockNameContext>(i);
 }
 
 
-size_t YWParser::CallTagContext::getRuleIndex() const {
-  return YWParser::RuleCallTag;
+size_t YWParser::CallContext::getRuleIndex() const {
+  return YWParser::RuleCall;
 }
 
-void YWParser::CallTagContext::enterRule(tree::ParseTreeListener *listener) {
+void YWParser::CallContext::enterRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->enterCallTag(this);
+    parserListener->enterCall(this);
 }
 
-void YWParser::CallTagContext::exitRule(tree::ParseTreeListener *listener) {
+void YWParser::CallContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->exitCallTag(this);
+    parserListener->exitCall(this);
 }
 
-YWParser::CallTagContext* YWParser::callTag() {
-  CallTagContext *_localctx = _tracker.createInstance<CallTagContext>(_ctx, getState());
-  enterRule(_localctx, 18, YWParser::RuleCallTag);
+YWParser::CallContext* YWParser::call() {
+  CallContext *_localctx = _tracker.createInstance<CallContext>(_ctx, getState());
+  enterRule(_localctx, 18, YWParser::RuleCall);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -923,48 +923,48 @@ YWParser::CallTagContext* YWParser::callTag() {
   return _localctx;
 }
 
-//----------------- UriTagContext ------------------------------------------------------------------
+//----------------- UriContext ------------------------------------------------------------------
 
-YWParser::UriTagContext::UriTagContext(ParserRuleContext *parent, size_t invokingState)
+YWParser::UriContext::UriContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* YWParser::UriTagContext::UriKeyword() {
+tree::TerminalNode* YWParser::UriContext::UriKeyword() {
   return getToken(YWParser::UriKeyword, 0);
 }
 
-YWParser::UriTemplateContext* YWParser::UriTagContext::uriTemplate() {
+YWParser::UriTemplateContext* YWParser::UriContext::uriTemplate() {
   return getRuleContext<YWParser::UriTemplateContext>(0);
 }
 
-std::vector<tree::TerminalNode *> YWParser::UriTagContext::SPACE() {
+std::vector<tree::TerminalNode *> YWParser::UriContext::SPACE() {
   return getTokens(YWParser::SPACE);
 }
 
-tree::TerminalNode* YWParser::UriTagContext::SPACE(size_t i) {
+tree::TerminalNode* YWParser::UriContext::SPACE(size_t i) {
   return getToken(YWParser::SPACE, i);
 }
 
 
-size_t YWParser::UriTagContext::getRuleIndex() const {
-  return YWParser::RuleUriTag;
+size_t YWParser::UriContext::getRuleIndex() const {
+  return YWParser::RuleUri;
 }
 
-void YWParser::UriTagContext::enterRule(tree::ParseTreeListener *listener) {
+void YWParser::UriContext::enterRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->enterUriTag(this);
+    parserListener->enterUri(this);
 }
 
-void YWParser::UriTagContext::exitRule(tree::ParseTreeListener *listener) {
+void YWParser::UriContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->exitUriTag(this);
+    parserListener->exitUri(this);
 }
 
-YWParser::UriTagContext* YWParser::uriTag() {
-  UriTagContext *_localctx = _tracker.createInstance<UriTagContext>(_ctx, getState());
-  enterRule(_localctx, 20, YWParser::RuleUriTag);
+YWParser::UriContext* YWParser::uri() {
+  UriContext *_localctx = _tracker.createInstance<UriContext>(_ctx, getState());
+  enterRule(_localctx, 20, YWParser::RuleUri);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -997,48 +997,48 @@ YWParser::UriTagContext* YWParser::uriTag() {
   return _localctx;
 }
 
-//----------------- FileTagContext ------------------------------------------------------------------
+//----------------- FileContext ------------------------------------------------------------------
 
-YWParser::FileTagContext::FileTagContext(ParserRuleContext *parent, size_t invokingState)
+YWParser::FileContext::FileContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* YWParser::FileTagContext::FileKeyword() {
+tree::TerminalNode* YWParser::FileContext::FileKeyword() {
   return getToken(YWParser::FileKeyword, 0);
 }
 
-YWParser::PathTemplateContext* YWParser::FileTagContext::pathTemplate() {
+YWParser::PathTemplateContext* YWParser::FileContext::pathTemplate() {
   return getRuleContext<YWParser::PathTemplateContext>(0);
 }
 
-std::vector<tree::TerminalNode *> YWParser::FileTagContext::SPACE() {
+std::vector<tree::TerminalNode *> YWParser::FileContext::SPACE() {
   return getTokens(YWParser::SPACE);
 }
 
-tree::TerminalNode* YWParser::FileTagContext::SPACE(size_t i) {
+tree::TerminalNode* YWParser::FileContext::SPACE(size_t i) {
   return getToken(YWParser::SPACE, i);
 }
 
 
-size_t YWParser::FileTagContext::getRuleIndex() const {
-  return YWParser::RuleFileTag;
+size_t YWParser::FileContext::getRuleIndex() const {
+  return YWParser::RuleFile;
 }
 
-void YWParser::FileTagContext::enterRule(tree::ParseTreeListener *listener) {
+void YWParser::FileContext::enterRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->enterFileTag(this);
+    parserListener->enterFile(this);
 }
 
-void YWParser::FileTagContext::exitRule(tree::ParseTreeListener *listener) {
+void YWParser::FileContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->exitFileTag(this);
+    parserListener->exitFile(this);
 }
 
-YWParser::FileTagContext* YWParser::fileTag() {
-  FileTagContext *_localctx = _tracker.createInstance<FileTagContext>(_ctx, getState());
-  enterRule(_localctx, 22, YWParser::RuleFileTag);
+YWParser::FileContext* YWParser::file() {
+  FileContext *_localctx = _tracker.createInstance<FileContext>(_ctx, getState());
+  enterRule(_localctx, 22, YWParser::RuleFile);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -1071,40 +1071,40 @@ YWParser::FileTagContext* YWParser::fileTag() {
   return _localctx;
 }
 
-//----------------- ResourceTagContext ------------------------------------------------------------------
+//----------------- ResourceContext ------------------------------------------------------------------
 
-YWParser::ResourceTagContext::ResourceTagContext(ParserRuleContext *parent, size_t invokingState)
+YWParser::ResourceContext::ResourceContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-YWParser::UriTagContext* YWParser::ResourceTagContext::uriTag() {
-  return getRuleContext<YWParser::UriTagContext>(0);
+YWParser::UriContext* YWParser::ResourceContext::uri() {
+  return getRuleContext<YWParser::UriContext>(0);
 }
 
-YWParser::FileTagContext* YWParser::ResourceTagContext::fileTag() {
-  return getRuleContext<YWParser::FileTagContext>(0);
+YWParser::FileContext* YWParser::ResourceContext::file() {
+  return getRuleContext<YWParser::FileContext>(0);
 }
 
 
-size_t YWParser::ResourceTagContext::getRuleIndex() const {
-  return YWParser::RuleResourceTag;
+size_t YWParser::ResourceContext::getRuleIndex() const {
+  return YWParser::RuleResource;
 }
 
-void YWParser::ResourceTagContext::enterRule(tree::ParseTreeListener *listener) {
+void YWParser::ResourceContext::enterRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->enterResourceTag(this);
+    parserListener->enterResource(this);
 }
 
-void YWParser::ResourceTagContext::exitRule(tree::ParseTreeListener *listener) {
+void YWParser::ResourceContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->exitResourceTag(this);
+    parserListener->exitResource(this);
 }
 
-YWParser::ResourceTagContext* YWParser::resourceTag() {
-  ResourceTagContext *_localctx = _tracker.createInstance<ResourceTagContext>(_ctx, getState());
-  enterRule(_localctx, 24, YWParser::RuleResourceTag);
+YWParser::ResourceContext* YWParser::resource() {
+  ResourceContext *_localctx = _tracker.createInstance<ResourceContext>(_ctx, getState());
+  enterRule(_localctx, 24, YWParser::RuleResource);
 
   auto onExit = finally([=] {
     exitRule();
@@ -1116,14 +1116,14 @@ YWParser::ResourceTagContext* YWParser::resourceTag() {
       case YWParser::UriKeyword: {
         enterOuterAlt(_localctx, 1);
         setState(169);
-        uriTag();
+        uri();
         break;
       }
 
       case YWParser::FileKeyword: {
         enterOuterAlt(_localctx, 2);
         setState(170);
-        fileTag();
+        file();
         break;
       }
 
@@ -1141,40 +1141,40 @@ YWParser::ResourceTagContext* YWParser::resourceTag() {
   return _localctx;
 }
 
-//----------------- InputPortKeywordContext ------------------------------------------------------------------
+//----------------- InputKeywordContext ------------------------------------------------------------------
 
-YWParser::InputPortKeywordContext::InputPortKeywordContext(ParserRuleContext *parent, size_t invokingState)
+YWParser::InputKeywordContext::InputKeywordContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* YWParser::InputPortKeywordContext::InKeyword() {
+tree::TerminalNode* YWParser::InputKeywordContext::InKeyword() {
   return getToken(YWParser::InKeyword, 0);
 }
 
-tree::TerminalNode* YWParser::InputPortKeywordContext::ParamKeyword() {
+tree::TerminalNode* YWParser::InputKeywordContext::ParamKeyword() {
   return getToken(YWParser::ParamKeyword, 0);
 }
 
 
-size_t YWParser::InputPortKeywordContext::getRuleIndex() const {
-  return YWParser::RuleInputPortKeyword;
+size_t YWParser::InputKeywordContext::getRuleIndex() const {
+  return YWParser::RuleInputKeyword;
 }
 
-void YWParser::InputPortKeywordContext::enterRule(tree::ParseTreeListener *listener) {
+void YWParser::InputKeywordContext::enterRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->enterInputPortKeyword(this);
+    parserListener->enterInputKeyword(this);
 }
 
-void YWParser::InputPortKeywordContext::exitRule(tree::ParseTreeListener *listener) {
+void YWParser::InputKeywordContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->exitInputPortKeyword(this);
+    parserListener->exitInputKeyword(this);
 }
 
-YWParser::InputPortKeywordContext* YWParser::inputPortKeyword() {
-  InputPortKeywordContext *_localctx = _tracker.createInstance<InputPortKeywordContext>(_ctx, getState());
-  enterRule(_localctx, 26, YWParser::RuleInputPortKeyword);
+YWParser::InputKeywordContext* YWParser::inputKeyword() {
+  InputKeywordContext *_localctx = _tracker.createInstance<InputKeywordContext>(_ctx, getState());
+  enterRule(_localctx, 26, YWParser::RuleInputKeyword);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -1204,40 +1204,40 @@ YWParser::InputPortKeywordContext* YWParser::inputPortKeyword() {
   return _localctx;
 }
 
-//----------------- OutputPortKeywordContext ------------------------------------------------------------------
+//----------------- OutputKeywordContext ------------------------------------------------------------------
 
-YWParser::OutputPortKeywordContext::OutputPortKeywordContext(ParserRuleContext *parent, size_t invokingState)
+YWParser::OutputKeywordContext::OutputKeywordContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* YWParser::OutputPortKeywordContext::OutKeyword() {
+tree::TerminalNode* YWParser::OutputKeywordContext::OutKeyword() {
   return getToken(YWParser::OutKeyword, 0);
 }
 
-tree::TerminalNode* YWParser::OutputPortKeywordContext::ReturnKeyword() {
+tree::TerminalNode* YWParser::OutputKeywordContext::ReturnKeyword() {
   return getToken(YWParser::ReturnKeyword, 0);
 }
 
 
-size_t YWParser::OutputPortKeywordContext::getRuleIndex() const {
-  return YWParser::RuleOutputPortKeyword;
+size_t YWParser::OutputKeywordContext::getRuleIndex() const {
+  return YWParser::RuleOutputKeyword;
 }
 
-void YWParser::OutputPortKeywordContext::enterRule(tree::ParseTreeListener *listener) {
+void YWParser::OutputKeywordContext::enterRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->enterOutputPortKeyword(this);
+    parserListener->enterOutputKeyword(this);
 }
 
-void YWParser::OutputPortKeywordContext::exitRule(tree::ParseTreeListener *listener) {
+void YWParser::OutputKeywordContext::exitRule(tree::ParseTreeListener *listener) {
   auto parserListener = dynamic_cast<YWListener *>(listener);
   if (parserListener != nullptr)
-    parserListener->exitOutputPortKeyword(this);
+    parserListener->exitOutputKeyword(this);
 }
 
-YWParser::OutputPortKeywordContext* YWParser::outputPortKeyword() {
-  OutputPortKeywordContext *_localctx = _tracker.createInstance<OutputPortKeywordContext>(_ctx, getState());
-  enterRule(_localctx, 28, YWParser::RuleOutputPortKeyword);
+YWParser::OutputKeywordContext* YWParser::outputKeyword() {
+  OutputKeywordContext *_localctx = _tracker.createInstance<OutputKeywordContext>(_ctx, getState());
+  enterRule(_localctx, 28, YWParser::RuleOutputKeyword);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -1808,10 +1808,10 @@ atn::ATN YWParser::_atn;
 std::vector<uint16_t> YWParser::_serializedATN;
 
 std::vector<std::string> YWParser::_ruleNames = {
-  "script", "block", "blockAttribute", "portTag", "portAttribute", "beginTag", 
-  "endTag", "descTag", "aliasTag", "callTag", "uriTag", "fileTag", "resourceTag", 
-  "inputPortKeyword", "outputPortKeyword", "blockName", "portName", "dataName", 
-  "uriTemplate", "scheme", "description", "phrase", "pathTemplate", "ws"
+  "script", "block", "blockAttribute", "port", "portAttribute", "begin", 
+  "end", "desc", "alias", "call", "uri", "file", "resource", "inputKeyword", 
+  "outputKeyword", "blockName", "portName", "dataName", "uriTemplate", "scheme", 
+  "description", "phrase", "pathTemplate", "ws"
 };
 
 std::vector<std::string> YWParser::_literalNames = {
