@@ -22,11 +22,12 @@ namespace yw {
 		}
 
         long YesWorkflowDB::insert(const SourceRow& source) {
-            string sql = "INSERT INTO source(model, language, file) VALUES (?,?,?);";
+            string sql = "INSERT INTO source(id, model, language, file) VALUES (?,?,?,?);";
             InsertStatement statement(db, sql);
-            statement.bindInt64(1, source.modelId);
-            statement.bindInt64(2, source.languageId);
-            statement.bindInt64(3, source.fileId);
+			statement.bindNullableId(1, source.id);
+			statement.bindId(2, source.modelId);
+            statement.bindId(3, source.languageId);
+            statement.bindNullableId(4, source.fileId);
             statement.execute();
             return statement.getGeneratedId();
         }
@@ -34,7 +35,7 @@ namespace yw {
         SourceRow YesWorkflowDB::selectSourceById(long requested_id) {
             string sql = "SELECT id, model, language, file FROM source WHERE id = ?";
             SelectStatement statement(db, sql);
-            statement.bindInt64(1, requested_id);
+            statement.bindId(1, requested_id);
             if (statement.step() != SQLITE_ROW) throw std::runtime_error("No row with that id");
             auto id = statement.getInt64Field(0);
             auto modelId = statement.getInt64Field(1);

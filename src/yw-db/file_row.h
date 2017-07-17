@@ -8,22 +8,11 @@ namespace yw {
 
         struct FileRow {
 
-            const long id;
+            const yw::sqlite::nullable_row_id id;
             const std::string name;
 			
-			FileRow(long rowId, const std::string& name) :
+			FileRow(yw::sqlite::nullable_row_id rowId, const std::string& name) :
                 id(rowId), name(name) {};
-
-			FileRow(const std::string& name) : 
-				FileRow(yw::sqlite::NULL_ROW_ID, name) {}
-
-            std::string str() const { 
-                std::stringstream s;
-                s << "|" << id << "|" << name << "|";
-                return s.str();
-            }
-
-            operator std::string() { return str(); }
         };
     }
 }

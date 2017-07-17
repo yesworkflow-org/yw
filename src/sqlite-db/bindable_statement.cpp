@@ -1,4 +1,4 @@
-#include "select_statement.h"
+#include "bindable_statement.h"
 
 using std::string;
 
@@ -9,10 +9,19 @@ namespace yw {
             Statement(connection, sql)
         {}
 
+		void BindableStatement::bindId(int column, long id) {
+			sqlite3_bind_int64(statement, column, (sqlite3_int64)id);
+		}
+
 		void BindableStatement::bindInt64(int column, long value) {
 			sqlite3_bind_int64(statement, column, (sqlite3_int64)value);
 		}
-		
+
+		void BindableStatement::bindNullableId(int column, nullable_row_id id) {
+			if (id.hasValue()) {
+				sqlite3_bind_int64(statement, column, (sqlite3_int64)id.getValue());
+			}
+		}
 		void BindableStatement::bindNullableInt64(int column, nullable_long number) {
 			if (number.hasValue()) {
 				sqlite3_bind_int64(statement, column, (sqlite3_int64)number.getValue());

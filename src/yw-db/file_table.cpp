@@ -32,9 +32,10 @@ namespace yw {
 		}
 
 		long YesWorkflowDB::insert(const FileRow& file) {
-            string sql = "INSERT INTO file(name) VALUES (?);";
+            string sql = "INSERT INTO file(id, name) VALUES (?,?);";
             InsertStatement statement(db, sql);
-            statement.bindText(1, file.name);
+			statement.bindNullableId(1, file.id);
+			statement.bindText(2, file.name);
             statement.execute();
             return statement.getGeneratedId();
         }

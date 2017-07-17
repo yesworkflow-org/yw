@@ -2,6 +2,7 @@
 
 using namespace yw::test;
 using namespace yw::db;
+using namespace yw::sqlite;
 
 using std::make_unique;
 
@@ -18,20 +19,20 @@ YW_TEST_SET
 
     YW_TEST(LanguageTable, InserOneRow_GeneratedIdIs_1)
     {
-	auto rowId = ywdb.insert(LanguageRow{ "C" });
+	auto rowId = ywdb.insert(LanguageRow{ auto_id, "C" });
         Assert::AreEqual(1, rowId);
     }
 
     YW_TEST(LanguageTable, InsertTwoRows_SecondGeneratedIdIs_2) 
     {
-		ywdb.insert(LanguageRow{ "C" });
-        Assert::AreEqual(2, ywdb.insert(LanguageRow{ "Java" }));
+		ywdb.insert(LanguageRow{ auto_id, "C" });
+        Assert::AreEqual(2, ywdb.insert(LanguageRow{ auto_id, "Java" }));
     }
 
     YW_TEST(LanguageTable, SelectLanguageById_RowExists) {
-		ywdb.insert(LanguageRow{ "C" });
+		ywdb.insert(LanguageRow{ auto_id, "C" });
         auto language = ywdb.selectLanguageById(1L);
-        Assert::AreEqual(1, language.id);
+        Assert::AreEqual(1, language.id.getValue());
         Assert::AreEqual(std::string("C"), language.name);
     }
 

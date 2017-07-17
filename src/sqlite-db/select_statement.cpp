@@ -37,10 +37,10 @@ namespace yw {
 			return getInt64Field(column);
 		}
 
-		nullable_id SelectStatement::getNullableIdField(int column) {
-			if (sqlite3_column_type(statement, column) == SQLITE_NULL) return nullable_id{};
+		nullable_row_id SelectStatement::getNullableIdField(int column) {
+			if (sqlite3_column_type(statement, column) == SQLITE_NULL) return nullable_row_id{};
 			sqlite3_int64 value = sqlite3_column_int64(statement, column);
-			return nullable_id(static_cast<long>(value));
+			return nullable_row_id(static_cast<long>(value));
 		}
 
 		std::string SelectStatement::getTextField(int column) {

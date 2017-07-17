@@ -21,10 +21,11 @@ namespace yw {
 		}
 
         long YesWorkflowDB::insert(const ModelRow& model) {
-            string sql = "INSERT INTO model(user, create_date) VALUES (?,?);";
+            string sql = "INSERT INTO model(id, user, create_date) VALUES (?,?,?);";
             InsertStatement statement(db, sql);
-            statement.bindInt64(1, model.userId);
-            statement.bindText(2, model.creationDate);
+			statement.bindNullableId(1, model.id);
+			statement.bindId(2, model.userId);
+            statement.bindText(3, model.creationDate);
             statement.execute();
             return statement.getGeneratedId();
         }
@@ -32,7 +33,7 @@ namespace yw {
         ModelRow YesWorkflowDB::selectModelById(long requested_id) {
             string sql = "SELECT id, user, create_date FROM model WHERE id = ?";
             SelectStatement statement(db, sql);
-            statement.bindInt64(1, requested_id);
+            statement.bindId(1, requested_id);
             if (statement.step() != SQLITE_ROW) throw std::runtime_error("No row with that id");
             auto id = statement.getInt64Field(0);
             auto userId = statement.getInt64Field(1);

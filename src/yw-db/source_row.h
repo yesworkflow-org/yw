@@ -7,16 +7,14 @@ namespace yw {
 
         struct SourceRow {
 
-            SourceRow(long id, long modelId, long languageId, long fileId) :
+            SourceRow(yw::sqlite::nullable_row_id id, yw::sqlite::row_id modelId, 
+					  yw::sqlite::row_id languageId, yw::sqlite::nullable_row_id fileId) :
                 id(id), modelId(modelId), languageId(languageId), fileId(fileId) {};
 
-			SourceRow(long modelId, long languageId, long fileId) :
-				SourceRow(yw::sqlite::NULL_ROW_ID, modelId, languageId, fileId) {};
-
-            const long id;
-            const long modelId;
-            const long languageId;
-            const long fileId;
+			const yw::sqlite::nullable_row_id id;
+			const yw::sqlite::row_id modelId;
+			const yw::sqlite::row_id languageId;
+			const yw::sqlite::nullable_row_id  fileId;
         };
     }
 }

@@ -10,8 +10,6 @@
 namespace yw {
     namespace sqlite {
 
-		static const long NULL_ROW_ID = 0L;
-
         class SQLiteDB {
 
         public:

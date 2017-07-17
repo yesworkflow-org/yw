@@ -70,6 +70,18 @@ namespace yw {
                 #endif
             }
 
+			template<typename T>
+			static void AreEqual(const T& expected, const yw::sqlite::nullable<T>& actual, const wchar_t* message = nullptr) {
+
+				#ifdef MSTEST
+					MSTEST::AreEqual(expected, actual.getValue(), message);
+				#endif
+
+				#ifdef CPPUTEST
+					CHECK_EQUAL(expected, actual.getValue());
+				#endif
+			}
+
             static void AreEqual(const int& expected, const long& actual, const wchar_t* message = nullptr) {
                 
                 #ifdef MSTEST

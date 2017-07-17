@@ -121,7 +121,7 @@ YW_TEST_SET
         try {
             InsertStatement statement(db, "INSERT INTO file(filename, user) VALUES (?,?);");
 			statement.bindNullableText(1, "script.sh" );
-            statement.bindInt64(2, 1);
+            statement.bindId(2, 1);
             statement.execute();
             Assert::Fail();
         }

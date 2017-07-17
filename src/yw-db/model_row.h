@@ -7,14 +7,11 @@ namespace yw {
 
         struct ModelRow {
 
-            ModelRow(long id, long userId, std::string creationDate) :
+            ModelRow(yw::sqlite::nullable_row_id id, yw::sqlite::row_id userId, std::string creationDate) :
                 id(id), userId(userId), creationDate(creationDate) {};
 
-			ModelRow(long userId, std::string creationDate) :
-				ModelRow(yw::sqlite::NULL_ROW_ID, userId, creationDate) {};
-			
-			const long id;
-            const long userId;
+			const yw::sqlite::nullable_row_id id;
+			const yw::sqlite::row_id userId;
             std::string creationDate;
         };
     }
