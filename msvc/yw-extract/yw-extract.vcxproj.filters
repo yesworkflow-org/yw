@@ -7,12 +7,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\yw-extract\extract.cpp">
+    <ClCompile Include="..\..\src\yw-extract\annotation_listener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\yw-extract\extract.h">
+    <ClInclude Include="..\..\src\yw-extract\annotation_listener.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
