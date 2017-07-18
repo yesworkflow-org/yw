@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.26430.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-extract", "yw-extract\yw-extract.vcxproj", "{158B1288-0CC1-426B-8967-800EDBD8C278}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -36,6 +36,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sqlite-db-tests", "sqlite-d
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-test", "yw-test\yw-test.vcxproj", "{CE3C782F-29AF-4822-90F5-4D83FE7E4140}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-extract-tests", "yw-extract-tests\yw-extract-tests.vcxproj", "{A6E1D227-30CF-40E3-A9E7-AE1DC0387AF6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -127,6 +129,16 @@ Global
 		{CE3C782F-29AF-4822-90F5-4D83FE7E4140}.Release|x64.Build.0 = Release|x64
 		{CE3C782F-29AF-4822-90F5-4D83FE7E4140}.Release|x86.ActiveCfg = Release|Win32
 		{CE3C782F-29AF-4822-90F5-4D83FE7E4140}.Release|x86.Build.0 = Release|Win32
+		{A6E1D227-30CF-40E3-A9E7-AE1DC0387AF6}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{A6E1D227-30CF-40E3-A9E7-AE1DC0387AF6}.Debug|x64.ActiveCfg = Debug|x64
+		{A6E1D227-30CF-40E3-A9E7-AE1DC0387AF6}.Debug|x64.Build.0 = Debug|x64
+		{A6E1D227-30CF-40E3-A9E7-AE1DC0387AF6}.Debug|x86.ActiveCfg = Debug|Win32
+		{A6E1D227-30CF-40E3-A9E7-AE1DC0387AF6}.Debug|x86.Build.0 = Debug|Win32
+		{A6E1D227-30CF-40E3-A9E7-AE1DC0387AF6}.Release|Any CPU.ActiveCfg = Release|Win32
+		{A6E1D227-30CF-40E3-A9E7-AE1DC0387AF6}.Release|x64.ActiveCfg = Release|x64
+		{A6E1D227-30CF-40E3-A9E7-AE1DC0387AF6}.Release|x64.Build.0 = Release|x64
+		{A6E1D227-30CF-40E3-A9E7-AE1DC0387AF6}.Release|x86.ActiveCfg = Release|Win32
+		{A6E1D227-30CF-40E3-A9E7-AE1DC0387AF6}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

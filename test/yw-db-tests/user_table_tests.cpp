@@ -1,5 +1,4 @@
 #include "yw_db_tests.h"
-#include "sqlite_db.h"
 
 using namespace yw::test;
 using namespace yw::db;
@@ -25,7 +24,7 @@ YW_TEST_SET
 
 	YW_TEST(UserTable, InsertingFirstUserWithNoNameYieldsGeneratedId1)
 	{
-		Assert::AreEqual(1, ywdb.insert(UserRow{ auto_id,nullable_string{} }));
+		Assert::AreEqual(1, ywdb.insert(UserRow{ auto_id, nullable_string{} }));
 	}
 
     YW_TEST(UserTable, InsertingSecondUserWithNameYieldsGeneratedId2)
