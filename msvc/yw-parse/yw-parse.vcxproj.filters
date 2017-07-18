@@ -5,50 +5,62 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Generated Source Files">
+      <UniqueIdentifier>{66b0a6f5-90a6-422b-9643-98d1f76b19a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Grammar Definitions">
+      <UniqueIdentifier>{faaba7c8-6949-43b9-810b-338df86f31dd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\src\yw-parse\YW.g4">
-      <Filter>Source Files</Filter>
-    </None>
+    <None Include="..\..\src\yw-parse\.gitignore" />
     <None Include="..\..\src\yw-parse\YW.tokens">
-      <Filter>Source Files</Filter>
+      <Filter>Generated Source Files</Filter>
     </None>
     <None Include="..\..\src\yw-parse\YWLexer.tokens">
-      <Filter>Source Files</Filter>
+      <Filter>Generated Source Files</Filter>
     </None>
-    <None Include="..\..\src\yw-parse\.gitignore" />
+    <None Include="..\..\src\yw-parse\YW.g4">
+      <Filter>Grammar Definitions</Filter>
+    </None>
     <None Include="..\..\src\yw-parse\build.bat">
-      <Filter>Source Files</Filter>
+      <Filter>Grammar Definitions</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\yw-parse\YWBaseListener.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Generated Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\yw-parse\YWLexer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Generated Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\yw-parse\YWListener.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Generated Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\yw-parse\YWParser.cpp">
+      <Filter>Generated Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\yw-parse\yw_parser_builder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-parse\YWBaseListener.h">
-      <Filter>Source Files</Filter>
+      <Filter>Generated Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\yw-parse\YWLexer.h">
-      <Filter>Source Files</Filter>
+      <Filter>Generated Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\yw-parse\YWListener.h">
-      <Filter>Source Files</Filter>
+      <Filter>Generated Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\yw-parse\YWParser.h">
+      <Filter>Generated Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-parse\yw_parser_builder.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

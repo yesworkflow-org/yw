@@ -6,13 +6,13 @@ using namespace yw::test;
 
 YW_TEST_FIXTURE(BlockListener)
 
-    StderrRecorder stderrRecorder;
+	StubYWListener listener;
+	StderrRecorder stderrRecorder;
 
 YW_TEST_SET
 
     YW_TEST(BlockListener, Begin_In_End)
     {
-        StubYWListener listener;
         YWParserBuilder parser_builder("@begin b @in p @end");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->block());
 		Expect::EmptyString(stderrRecorder.str());
@@ -39,7 +39,6 @@ YW_TEST_SET
 
     YW_TEST(BlockListener, Begin_Out_End)
     {
-        StubYWListener listener;
         YWParserBuilder parser_builder("@begin b @out p @end");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->block());
 		Expect::EmptyString(stderrRecorder.str());

@@ -1,7 +1,4 @@
-#include "yw_parse_tests.h"
-
-#include "YWLexer.h"
-#include "YWParser.h"
+#include "yw_parser_builder.h"
 
 namespace yw {
     namespace parse {
