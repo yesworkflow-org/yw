@@ -9,7 +9,8 @@ namespace yw {
         Statement::Statement(std::shared_ptr<SQLiteDB> db, const string& sql) : db(db), sql(sql) {
             int rc = sqlite3_prepare_v2(db->getConnection(), sql.c_str(), -1, &statement, 0);
             if (rc != SQLITE_OK) {
-                throw(PreparationException(db->getLastErrorMessage(), sql));
+				string lastErrorMessage = db->getLastErrorMessage();
+                throw(PreparationException(lastErrorMessage, sql));
             }
         }
 

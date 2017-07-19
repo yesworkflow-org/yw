@@ -18,7 +18,7 @@ namespace yw {
 					start				INTEGER         NOT NULL,
 					end					INTEGER         NOT NULL,
 					tag					TEXT			NOT NULL,
-					value               TEXT            NOT NULL
+					value               TEXT            NULL
 				);
 
 			)"));
@@ -33,7 +33,7 @@ namespace yw {
             statement.bindInt64(4, annotation.start);
 			statement.bindInt64(5, annotation.end);
 			statement.bindText(6, annotation.tag);
-			statement.bindText(7, annotation.value);
+			statement.bindNullableText(7, annotation.value);
 			statement.execute();
             return statement.getGeneratedId();
         }
@@ -43,13 +43,13 @@ namespace yw {
             SelectStatement statement(db, sql);
             statement.bindId(1, requested_id);
             if (statement.step() != SQLITE_ROW) throw std::runtime_error("No row with that id");
-			auto id = statement.getIdField(0);
+			auto id = statement.getNullableIdField(0);
 			auto qualifies = statement.getNullableIdField(1);
 			auto lineId = statement.getInt64Field(2);
             auto start = statement.getInt64Field(3);
             auto end = statement.getInt64Field(4);
 			auto tag = statement.getTextField(5);
-			auto value = statement.getTextField(6);
+			auto value = statement.getNullableTextField(6);
 			return AnnotationRow(id, qualifies, lineId, start, end, tag, value);
         }
     }

@@ -15,10 +15,12 @@ namespace yw {
 
         void YesWorkflowDB::createAllTables() {
 			createUserTable();
-			createLanguageTable();
-			createFileTable();
 			createModelTable();
+			createFileTable();
+			createLanguageTable();
 			createSourceTable();
+			createLineTable();
+			createAnnotationTable();
         }
     }
 }

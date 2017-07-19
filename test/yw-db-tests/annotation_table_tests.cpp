@@ -62,7 +62,7 @@ YW_TEST_SET
 		Assert::AreEqual(0, annotation.start);
 		Assert::AreEqual(11, annotation.end);
 		Assert::AreEqual("@begin", annotation.tag);
-		Assert::AreEqual("block", annotation.value);
+		Assert::AreEqual("block", annotation.value.getValue());
 	}
 
     YW_TEST(AnnotationTable, SelectingQualifyingAnnotationByIdYieldsAssignedFieldValues) {
@@ -78,7 +78,7 @@ YW_TEST_SET
 		Assert::AreEqual(0, annotation.start);
 		Assert::AreEqual(7, annotation.end);
 		Assert::AreEqual("@in", annotation.tag);
-		Assert::AreEqual("port", annotation.value);
+		Assert::AreEqual("port", annotation.value.getValue());
 	}
 
     YW_TEST(AnnotationTable, SelectingNonexistent) {

@@ -1,13 +1,19 @@
 #pragma once
 
+#include "yesworkflow_db.h"
 #include "YWBaseListener.h"
-
-using namespace yw;
 
 namespace yw {
 	namespace extract {
 
 		class AnnotationListener : public YWBaseListener {
+
+			const yw::sqlite::row_id sourceId;
+			yw::db::YesWorkflowDB& ywdb;
+
+		public:
+
+			AnnotationListener(yw::db::YesWorkflowDB& ywdb, yw::sqlite::row_id sourceId);
 
 			void enterBegin(YWParser::BeginContext *context) override;
 			void enterEnd(YWParser::EndContext *context) override;
