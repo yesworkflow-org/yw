@@ -90,6 +90,9 @@
     <ClInclude Include="..\..\src\sqlite-db\nullable.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\sqlite-db\table_row.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="SQLiteException.cd">

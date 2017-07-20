@@ -6,6 +6,14 @@ using namespace yw::test;
 using namespace yw::db;
 using namespace yw::sqlite;
 
+namespace Microsoft {
+	namespace VisualStudio {
+		namespace CppUnitTestFramework {
+			template <> static std::wstring ToString(const AnnotationRow& row) { RETURN_WIDE_STRING(row); }
+		}
+	}
+}
+
 YW_TEST_FIXTURE(AnnotationListener)
 
 	YesWorkflowDB ywdb;
@@ -31,14 +39,7 @@ YW_TEST_SET
 		YWParserBuilder parser_builder("@begin b");
 		antlr4::tree::ParseTreeWalker::DEFAULT.walk(listener, parser_builder.parse()->begin());
 		Expect::EmptyString(stderrRecorder.str());
-
-		auto beginAnnotation = ywdb.selectAnnotationById(1L);
-		Assert::IsNull(beginAnnotation.qualifiesId);
-		Assert::AreEqual(1, beginAnnotation.lineId);
-		Assert::AreEqual(0, beginAnnotation.start);
-		Assert::AreEqual(7, beginAnnotation.end);
-		Assert::AreEqual("@begin", beginAnnotation.tag);
-		Assert::AreEqual("b", beginAnnotation.value.getValue());
+		Assert::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
 	}
 
 	YW_TEST(AnnotationListener, WhenEndAnnotationHasArgumentEnterEndHandlerInsertsEndAnnotationWithBlockName)
@@ -46,14 +47,7 @@ YW_TEST_SET
 		YWParserBuilder parser_builder("@end b");
 		antlr4::tree::ParseTreeWalker::DEFAULT.walk(listener, parser_builder.parse()->end());
 		Expect::EmptyString(stderrRecorder.str());
-
-		auto beginAnnotation = ywdb.selectAnnotationById(1L);
-		Assert::IsNull(beginAnnotation.qualifiesId);
-		Assert::AreEqual(1, beginAnnotation.lineId);
-		Assert::AreEqual(0, beginAnnotation.start);
-		Assert::AreEqual(5, beginAnnotation.end);
-		Assert::AreEqual("@end", beginAnnotation.tag);
-		Assert::AreEqual("b", beginAnnotation.value.getValue());
+		Assert::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 5, "@end", "b" }, ywdb.selectAnnotationById(1));
 	}
 
 	YW_TEST(AnnotationListener, WhenEndAnnotationHasNoArgumentEnterEndHandlerInsertsEndAnnotationWithoutBlockName)
@@ -61,14 +55,7 @@ YW_TEST_SET
 		YWParserBuilder parser_builder("@end");
 		antlr4::tree::ParseTreeWalker::DEFAULT.walk(listener, parser_builder.parse()->end());
 		Expect::EmptyString(stderrRecorder.str());
-
-		auto beginAnnotation = ywdb.selectAnnotationById(1L);
-		Assert::IsNull(beginAnnotation.qualifiesId);
-		Assert::AreEqual(1, beginAnnotation.lineId);
-		Assert::AreEqual(0, beginAnnotation.start);
-		Assert::AreEqual(3, beginAnnotation.end);
-		Assert::AreEqual("@end", beginAnnotation.tag);
-		Assert::IsNull(beginAnnotation.value);
+		Assert::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 3, "@end", null_string }, ywdb.selectAnnotationById(1));
 	}
 
 YW_TEST_END

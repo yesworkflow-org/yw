@@ -1,5 +1,6 @@
 #pragma once
 
+#include <sstream>
 #include <stdexcept>
 
 namespace yw {
@@ -16,6 +17,11 @@ namespace yw {
 			const T& getValue() const {
 				if (!isSet) { throw std::runtime_error("No value assigned"); }
 				return value;
+			}
+			std::string str() const {
+				std::stringstream ss;
+				if (isSet) ss << value; else ss << "NULL";
+				return ss.str();
 			}
 		};
 

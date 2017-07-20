@@ -3,9 +3,11 @@
 #include "sqlite3.h"
 #include "sqlite_log.h"
 #include "nullable.h"
+#include "table_row.h"
 
 #include <memory>
 #include <string>
+#include <sstream>
 
 namespace yw {
     namespace sqlite {
