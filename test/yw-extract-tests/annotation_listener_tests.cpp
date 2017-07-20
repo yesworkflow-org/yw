@@ -6,14 +6,6 @@ using namespace yw::test;
 using namespace yw::db;
 using namespace yw::sqlite;
 
-namespace Microsoft {
-	namespace VisualStudio {
-		namespace CppUnitTestFramework {
-			template <> static std::wstring ToString(const AnnotationRow& row) { RETURN_WIDE_STRING(row); }
-		}
-	}
-}
-
 YW_TEST_FIXTURE(AnnotationListener)
 
 	YesWorkflowDB ywdb;

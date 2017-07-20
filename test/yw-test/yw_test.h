@@ -53,10 +53,9 @@ namespace yw {
 				#endif
 
 				#ifdef CPPUTEST
-					CHECK(actual.isNull());
+					CHECK(!actual.hasValue());
 				#endif
 			}
-
 
             template<typename T>
             static void AreEqual(const T& expected, const T& actual, const wchar_t* message = nullptr) {

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <sstream>
+#include <typeinfo>
 
 namespace yw {
 	namespace sqlite {
@@ -22,7 +23,11 @@ namespace yw {
 
 		inline bool operator==(const yw::sqlite::TableRow& lhs, const yw::sqlite::TableRow& rhs) {
 			return lhs.str() == rhs.str();
-		};
+		}
+
+		inline bool operator!=(const yw::sqlite::TableRow& lhs, const yw::sqlite::TableRow& rhs) {
+			return lhs.str() != rhs.str();
+		}
 	}
 }
 
