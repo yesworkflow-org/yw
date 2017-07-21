@@ -1,7 +1,8 @@
 #include "yesworkflow_db.h"
 
-using std::string;
 using namespace yw::sqlite;
+
+using std::string;
 
 namespace yw {
     namespace db {
@@ -22,5 +23,10 @@ namespace yw {
 			createLineTable();
 			createAnnotationTable();
         }
+
+		size_t YesWorkflowDB::getRowCount(const std::string& tableName) {
+			return SQLiteDB::getRowCount(db, tableName);
+		}
+
     }
 }

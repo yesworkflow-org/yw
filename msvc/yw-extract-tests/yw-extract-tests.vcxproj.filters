@@ -29,5 +29,8 @@
     <ClCompile Include="..\..\test\yw-extract-tests\annotation_listener_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\test\yw-extract-tests\source_loader_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

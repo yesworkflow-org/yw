@@ -49,6 +49,8 @@ namespace yw {
 			long insert(const UserRow& user);
             UserRow selectUserById(long requested_id);
 
+			size_t getRowCount(const std::string& tableName);
+
         private:
 
             static const std::string create_tables_sql;

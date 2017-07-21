@@ -30,6 +30,7 @@ namespace yw {
             sqlite3* getConnection() { return connection; }
 
 			static void createTable(std::shared_ptr<SQLiteDB> connection, const std::string& sql);
+			static size_t getRowCount(std::shared_ptr<SQLiteDB> connection, const std::string& tableName);
 
         private:
 
