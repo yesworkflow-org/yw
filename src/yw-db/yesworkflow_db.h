@@ -34,6 +34,7 @@ namespace yw {
 			void createLineTable();
 			long insert(const LineRow& line);
 			LineRow selectLineById(long requested_id);
+			yw::sqlite::row_id selectLineIdBySourceAndLineNumber(yw::sqlite::row_id sourceId, long number);
 
 			void createModelTable();
 			long insert(const ModelRow& model);

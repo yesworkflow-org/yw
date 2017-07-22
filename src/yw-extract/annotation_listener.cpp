@@ -7,33 +7,51 @@ using namespace yw::db;
 namespace yw {
 	namespace extract {
 
+
 		AnnotationListener::AnnotationListener(YesWorkflowDB& ywdb, yw::sqlite::row_id sourceId) :
 			ywdb(ywdb), sourceId(sourceId) {}
 
+		struct CharacterRange { long start; long end; };
+
+		auto getCharacterRangeOnLine(antlr4::ParserRuleContext* context) {
+			auto startInSource = static_cast<long>(context->getStart()->getStartIndex());
+			auto endInSource = static_cast<long>(context->getStop()->getStopIndex());
+			auto startInLine = static_cast<long>(context->getStart()->getCharPositionInLine());
+			auto endInLine = startInLine + endInSource - startInSource;
+			return CharacterRange{ startInLine, endInLine };
+		}
+
+		row_id AnnotationListener::getLineId(antlr4::ParserRuleContext* context) {
+			auto lineNumber = static_cast<long>(context->getStart()->getLine());
+			return ywdb.selectLineIdBySourceAndLineNumber(sourceId, lineNumber);
+		}
+
+		nullable_string AnnotationListener::getNullableArgument(antlr4::ParserRuleContext* context) {
+			if (context == NULL) {
+				return null_string;
+			}
+			else {
+				return nullable_string(context->getText());
+			}
+		}
+
 		void AnnotationListener::enterBegin(YWParser::BeginContext *context) 
 		{
-			auto lineNumber = context->getStart()->getLine();
-			auto annotationText = context->getText();
-			auto line_id = ywdb.insert(LineRow{ auto_id, sourceId, long(lineNumber), annotationText });
-			auto tokens = context->getTokens(10);
-			auto startIndex = context->getStart()->getStartIndex();
-			auto endIndex = context->getStop()->getStopIndex();
-			auto beginKeyword = context->BeginKeyword()->getText();
-			auto blockName = nullable_string(context->blockName()->getText());
-			ywdb.insert(AnnotationRow{ auto_id, null_id, line_id, long(startIndex), long(endIndex), beginKeyword, blockName });
+			auto rangeInLine = getCharacterRangeOnLine(context);
+			ywdb.insert(AnnotationRow{ auto_id, null_id, getLineId(context), 
+									   rangeInLine.start, rangeInLine.end,
+									   context->BeginKeyword()->getText(),
+									   nullable_string(context->blockName()->getText()) });
 		}
 
 		void AnnotationListener::enterEnd(YWParser::EndContext *context) 
 		{
-			auto lineNumber = context->getStart()->getLine();
-			auto annotationText = context->getText();
-			auto line_id = ywdb.insert(LineRow{ auto_id, sourceId, long(lineNumber), annotationText });
-			auto startIndex = context->getStart()->getStartIndex();
-			auto endIndex = context->getStop()->getStopIndex();
-			auto endKeyword = context->EndKeyword()->getText();
-			nullable_string blockName = (context->blockName() == NULL) ? null_string : nullable_string(context->blockName()->getText());
-			ywdb.insert(AnnotationRow{ auto_id, null_id, line_id, long(startIndex), long(endIndex), endKeyword, blockName });
-		};
+			auto rangeInLine = getCharacterRangeOnLine(context);
+			ywdb.insert(AnnotationRow{ auto_id, null_id, getLineId(context), 
+									   rangeInLine.start, rangeInLine.end, 
+									   context->EndKeyword()->getText(), 
+									   getNullableArgument(context->blockName()) });
+		}
 
 		void AnnotationListener::enterDesc(YWParser::DescContext *context) {};
 		void AnnotationListener::enterPort(YWParser::PortContext *context) {};

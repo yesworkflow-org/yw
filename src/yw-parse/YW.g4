@@ -1,7 +1,7 @@
 grammar YW ;
 
 // YW annotation compositions
-script          : block (ws block)* ;
+script          : ws? block (ws block)* ws?;
 block           : begin (ws blockAttribute)* (ws block)* ws end ;
 blockAttribute  : port | desc | call;
 port            : (inputKeyword | outputKeyword) (SPACE+ portName)+ (ws portAttribute)* ;

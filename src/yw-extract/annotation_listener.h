@@ -25,6 +25,10 @@ namespace yw {
 			void enterFile(YWParser::FileContext *context) override;
 			void enterResource(YWParser::ResourceContext *context) override;
 
+		private:
+
+			yw::sqlite::row_id getLineId(antlr4::ParserRuleContext* context);
+			yw::sqlite::nullable_string getNullableArgument(antlr4::ParserRuleContext* context);
 		};
 	}
 }

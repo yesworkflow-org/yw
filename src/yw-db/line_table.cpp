@@ -43,5 +43,14 @@ namespace yw {
 			auto text = statement.getTextField(3);
 			return LineRow(id, sourceId, number, text);
         }
+
+		row_id YesWorkflowDB::selectLineIdBySourceAndLineNumber(row_id sourceId, long number) {
+			string sql = "SELECT id FROM line WHERE source = ? AND number=?";
+			SelectStatement statement(db, sql);
+			statement.bindId(1, sourceId);
+			statement.bindInt64(2, number);
+			if (statement.step() != SQLITE_ROW) throw std::runtime_error("No row with that source id and line number");
+			return statement.getNullableIdField(0).getValue();
+		}
     }
 }
