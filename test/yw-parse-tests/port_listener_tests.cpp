@@ -18,12 +18,12 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
-            "entered port tag"              "\n"
-            "entered input port keyword"    "\n"
-            "exited input port keyword"     "\n"
-            "entered port name"             "\n"
-            "exited port name"              "\n"
-            "exited port tag"               "\n"
+            "entered port tag"              EOL
+            "entered input port keyword"    EOL
+            "exited input port keyword"     EOL
+            "entered port name"             EOL
+            "exited port name"              EOL
+            "exited port tag"               EOL
         , listener.log());
     }
 
@@ -34,18 +34,18 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
-            "entered port tag"              "\n"
-            "entered input port keyword"    "\n"
-            "exited input port keyword"     "\n"
-            "entered port name"             "\n"
-            "exited port name"              "\n"
-            "entered port attribute"        "\n"
-            "entered desc tag"              "\n"
-            "entered description"           "\n"
-            "exited description"            "\n"
-            "exited desc tag"               "\n"
-            "exited port attribute"         "\n"
-            "exited port tag"               "\n"
+            "entered port tag"              EOL
+            "entered input port keyword"    EOL
+            "exited input port keyword"     EOL
+            "entered port name"             EOL
+            "exited port name"              EOL
+            "entered port attribute"        EOL
+            "entered desc tag"              EOL
+            "entered description"           EOL
+            "exited description"            EOL
+            "exited desc tag"               EOL
+            "exited port attribute"         EOL
+            "exited port tag"               EOL
         , listener.log());
     }
 
@@ -56,18 +56,18 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
-            "entered port tag"              "\n"
-            "entered input port keyword"    "\n"
-            "exited input port keyword"     "\n"
-            "entered port name"             "\n"
-            "exited port name"              "\n"
-            "entered port attribute"        "\n"
-            "entered alias tag"             "\n"
-            "entered data name"             "\n"
-            "exited data name"              "\n"
-            "exited alias tag"              "\n"
-            "exited port attribute"         "\n"
-            "exited port tag"               "\n"
+            "entered port tag"              EOL
+            "entered input port keyword"    EOL
+            "exited input port keyword"     EOL
+            "entered port name"             EOL
+            "exited port name"              EOL
+            "entered port attribute"        EOL
+            "entered alias tag"             EOL
+            "entered data name"             EOL
+            "exited data name"              EOL
+            "exited alias tag"              EOL
+            "exited port attribute"         EOL
+            "exited port tag"               EOL
         , listener.log());
     }
 
@@ -78,18 +78,18 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
-            "entered port tag"              "\n"
-            "entered input port keyword"    "\n"
-            "exited input port keyword"     "\n"
-            "entered port name"             "\n"
-            "exited port name"              "\n"
-            "entered port attribute"        "\n"
-            "entered alias tag"             "\n"
-            "entered data name"             "\n"
-            "exited data name"              "\n"
-            "exited alias tag"              "\n"
-            "exited port attribute"         "\n"
-            "exited port tag"               "\n"
+            "entered port tag"              EOL
+            "entered input port keyword"    EOL
+            "exited input port keyword"     EOL
+            "entered port name"             EOL
+            "exited port name"              EOL
+            "entered port attribute"        EOL
+            "entered alias tag"             EOL
+            "entered data name"             EOL
+            "exited data name"              EOL
+            "exited alias tag"              EOL
+            "exited port attribute"         EOL
+            "exited port tag"               EOL
         , listener.log());
     }
 
@@ -100,12 +100,12 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
-            "entered port tag"              "\n"
-            "entered input port keyword"    "\n"
-            "exited input port keyword"     "\n"
-            "entered port name"             "\n"
-            "exited port name"              "\n"
-            "exited port tag"               "\n"
+            "entered port tag"              EOL
+            "entered input port keyword"    EOL
+            "exited input port keyword"     EOL
+            "entered port name"             EOL
+            "exited port name"              EOL
+            "exited port tag"               EOL
         , listener.log());
     }
 
@@ -116,12 +116,12 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
-            "entered port tag"              "\n"
-            "entered output port keyword"   "\n"
-            "exited output port keyword"     "\n"
-            "entered port name"             "\n"
-            "exited port name"              "\n"
-            "exited port tag"               "\n"
+            "entered port tag"              EOL
+            "entered output port keyword"   EOL
+            "exited output port keyword"     EOL
+            "entered port name"             EOL
+            "exited port name"              EOL
+            "exited port tag"               EOL
         , listener.log());
     }
 
@@ -132,12 +132,12 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
-            "entered port tag"              "\n"
-            "entered output port keyword"   "\n"
-            "exited output port keyword"    "\n"
-            "entered port name"             "\n"
-            "exited port name"              "\n"
-            "exited port tag"               "\n"
+            "entered port tag"              EOL
+            "entered output port keyword"   EOL
+            "exited output port keyword"    EOL
+            "entered port name"             EOL
+            "exited port name"              EOL
+            "exited port tag"               EOL
         , listener.log());
     }
 
@@ -148,14 +148,14 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
-            "entered port tag"              "\n"
-            "entered input port keyword"    "\n"
-            "exited input port keyword"     "\n"
-            "entered port name"             "\n"
-            "exited port name"              "\n"
-            "entered port name"             "\n"
-            "exited port name"              "\n"
-            "exited port tag"               "\n"
+            "entered port tag"              EOL
+            "entered input port keyword"    EOL
+            "exited input port keyword"     EOL
+            "entered port name"             EOL
+            "exited port name"              EOL
+            "entered port name"             EOL
+            "exited port name"              EOL
+            "exited port tag"               EOL
         , listener.log());
     }
 
@@ -166,20 +166,20 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
-            "entered port tag"              "\n"
-            "entered input port keyword"    "\n"
-            "exited input port keyword"     "\n"
-            "entered port name"             "\n"
-            "exited port name"              "\n"
-            "entered port name"             "\n"
-            "exited port name"              "\n"
-            "entered port attribute"        "\n"
-            "entered alias tag"             "\n"
-            "entered data name"             "\n"
-            "exited data name"              "\n"
-            "exited alias tag"              "\n"
-            "exited port attribute"         "\n"
-            "exited port tag"               "\n"
+            "entered port tag"              EOL
+            "entered input port keyword"    EOL
+            "exited input port keyword"     EOL
+            "entered port name"             EOL
+            "exited port name"              EOL
+            "entered port name"             EOL
+            "exited port name"              EOL
+            "entered port attribute"        EOL
+            "entered alias tag"             EOL
+            "entered data name"             EOL
+            "exited data name"              EOL
+            "exited alias tag"              EOL
+            "exited port attribute"         EOL
+            "exited port tag"               EOL
         , listener.log());
     }
 

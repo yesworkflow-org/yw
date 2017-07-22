@@ -14,7 +14,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@desc");
         YWParser::DescContext* context = parser_builder.parse()->desc();
-		Expect::AreEqual("line 1:5 mismatched input '<EOF>' expecting SPACE" "\n", stderrRecorder.str());
+		Expect::AreEqual("line 1:5 mismatched input '<EOF>' expecting SPACE" EOL, stderrRecorder.str());
         Assert::IsNull(context->description());
     }
 
@@ -37,8 +37,8 @@ YW_TEST_SET
     YW_TEST(DescContext, MultiWordDescription_IgnoresTextOnNextLine)
     {
         YWParserBuilder parser_builder(
-            "@desc a multiple word description"  "\n"
-            "with more text on next line"        "\n");
+            "@desc a multiple word description"  EOL
+            "with more text on next line"        EOL);
         YWParser::DescContext* context = parser_builder.parse()->desc();
 		Expect::EmptyString(stderrRecorder.str());
         Assert::AreEqual("a multiple word description", context->description()->getText());

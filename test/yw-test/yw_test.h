@@ -4,6 +4,8 @@
 #include "yw_test_cpputest.h"
 #include "nullable.h"
 
+#define EOL "\n"
+
 namespace yw {
     namespace test {
 

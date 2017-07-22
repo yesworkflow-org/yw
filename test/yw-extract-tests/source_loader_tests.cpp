@@ -36,8 +36,8 @@ YW_TEST_SET
 	YW_TEST(SourceLoader, LoadingTwoLinesFromStringInsertsOneTwoRowsIntoLineTable)
 	{
 		sourceLoader->loadFromString(
-			"@begin b"	"\n"
-			"@end b"	"\n");
+			"@begin b"	EOL
+			"@end b"	EOL);
 		Assert::AreEqual(2, ywdb.getRowCount("line"));
 		Assert::AreEqual(LineRow{ 1, 1, 1, "@begin b" }, ywdb.selectLineById(1));
 		Assert::AreEqual(LineRow{ 2, 1, 2, "@end b" }, ywdb.selectLineById(2));

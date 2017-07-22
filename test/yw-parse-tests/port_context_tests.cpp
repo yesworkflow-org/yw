@@ -14,7 +14,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@in");
         YWParser::PortContext* context = parser_builder.parse()->port();
-        Expect::AreEqual("line 1:3 mismatched input '<EOF>' expecting SPACE" "\n", stderrRecorder.str());
+        Expect::AreEqual("line 1:3 mismatched input '<EOF>' expecting SPACE" EOL, stderrRecorder.str());
         Assert::AreEqual("@in", context->inputKeyword()->getText());
         Assert::IsNull(context->outputKeyword());
         Assert::AreEqual(0, context->portName().size());
@@ -95,8 +95,8 @@ YW_TEST_SET
     YW_TEST(PortContext, In_ThreePortsWithAliasThenDescriptionOnNextLine)
     {
         YWParserBuilder parser_builder(
-            "@in p q r @as data name"               "\n"
-            "          @desc with this description" "\n");
+            "@in p q r @as data name"               EOL
+            "          @desc with this description" EOL);
         YWParser::PortContext* context = parser_builder.parse()->port();
 		Expect::EmptyString(stderrRecorder.str());
         Assert::AreEqual("@in", context->inputKeyword()->getText());
@@ -113,9 +113,9 @@ YW_TEST_SET
     YW_TEST(PortContext, In_ThreePortsWithAliasThenDescriptionOnNextTwoLines)
     {
         YWParserBuilder parser_builder(
-            "@in p q r"                       "\n"
-            "    @as data name"               "\n"
-            "    @desc with this description" "\n");
+            "@in p q r"                       EOL
+            "    @as data name"               EOL
+            "    @desc with this description" EOL);
         YWParser::PortContext* context = parser_builder.parse()->port();
 		Expect::EmptyString(stderrRecorder.str());
         Assert::AreEqual("@in", context->inputKeyword()->getText());

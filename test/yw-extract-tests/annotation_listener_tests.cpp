@@ -59,9 +59,9 @@ YW_TEST_SET
 	YW_TEST(AnnotationListener, BeginAnnotationOnSecondOfThreeLinesInsertsThreeLinesAndOneAnnotation)
 	{
 		this->storeAndParse(
-			"\n"
-			"@begin b" "\n"
-			"\n"
+			EOL
+			"@begin b" EOL
+			EOL
 		);
 
 		Assert::AreEqual(3, ywdb.getRowCount("line"));
@@ -82,11 +82,11 @@ YW_TEST_SET
 	YW_TEST(AnnotationListener, BeginAndEndOnFiveLinesInsertsFiveLineAndTwoAnnotations)
 	{
 		this->storeAndParse(
-			"\n"
-			"@begin b" "\n"
-			"\n"
-			"@end b" "\n"
-			"\n"
+			EOL
+			"@begin b" EOL
+			EOL
+			"@end b" EOL
+			EOL
 		);
 
 		Assert::AreEqual(5, ywdb.getRowCount("line"));

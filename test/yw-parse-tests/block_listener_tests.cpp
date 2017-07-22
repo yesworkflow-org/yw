@@ -18,22 +18,22 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
-            "entered block"                 "\n"
-            "entered begin tag"             "\n"
-            "entered block name"            "\n"
-            "exited block name"             "\n"
-            "exited begin tag"              "\n"
-            "entered block attribute"       "\n"
-            "entered port tag"              "\n"
-            "entered input port keyword"    "\n"
-            "exited input port keyword"     "\n"
-            "entered port name"             "\n"
-            "exited port name"              "\n"
-            "exited port tag"               "\n"
-            "exited block attribute"        "\n"
-            "entered end tag"               "\n"
-            "exited end tag"                "\n"
-            "exited block"                  "\n"
+            "entered block"                 EOL
+            "entered begin tag"             EOL
+            "entered block name"            EOL
+            "exited block name"             EOL
+            "exited begin tag"              EOL
+            "entered block attribute"       EOL
+            "entered port tag"              EOL
+            "entered input port keyword"    EOL
+            "exited input port keyword"     EOL
+            "entered port name"             EOL
+            "exited port name"              EOL
+            "exited port tag"               EOL
+            "exited block attribute"        EOL
+            "entered end tag"               EOL
+            "exited end tag"                EOL
+            "exited block"                  EOL
         , listener.log());
     }
 
@@ -44,22 +44,22 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
-            "entered block"                 "\n"
-            "entered begin tag"             "\n"
-            "entered block name"            "\n"
-            "exited block name"             "\n"
-            "exited begin tag"              "\n"
-            "entered block attribute"       "\n"
-            "entered port tag"              "\n"
-            "entered output port keyword"   "\n"
-            "exited output port keyword"    "\n"
-            "entered port name"             "\n"
-            "exited port name"              "\n"
-            "exited port tag"               "\n"
-            "exited block attribute"        "\n"
-            "entered end tag"               "\n"
-            "exited end tag"                "\n"
-            "exited block"                  "\n"
+            "entered block"                 EOL
+            "entered begin tag"             EOL
+            "entered block name"            EOL
+            "exited block name"             EOL
+            "exited begin tag"              EOL
+            "entered block attribute"       EOL
+            "entered port tag"              EOL
+            "entered output port keyword"   EOL
+            "exited output port keyword"    EOL
+            "entered port name"             EOL
+            "exited port name"              EOL
+            "exited port tag"               EOL
+            "exited block attribute"        EOL
+            "entered end tag"               EOL
+            "exited end tag"                EOL
+            "exited block"                  EOL
         , listener.log());
     }
 

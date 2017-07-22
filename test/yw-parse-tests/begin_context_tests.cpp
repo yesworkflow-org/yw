@@ -37,8 +37,9 @@ YW_TEST_SET
     YW_TEST(BeginContext, BeginWithMultipleArgumentsOnTwoLinesYieldsArgumentsOnFirstLineAsBlockName)
     {
         YWParserBuilder parser_builder(
-            "@begin b l o "  "\n"
-            "c k"           "\n");
+            "@begin b l o "	EOL
+            "c k"           EOL
+		);
         YWParser::BeginContext* context = parser_builder.parse()->begin();
 		Expect::EmptyString(stderrRecorder.str());
         Assert::AreEqual("b l o", context->blockName()->getText());
@@ -47,8 +48,9 @@ YW_TEST_SET
     YW_TEST(BeginContext, BeginWithArgumentOnNextLineYieldsNullBlockName)
     {
         YWParserBuilder parser_builder(
-            "@begin"    "\n"
-            "b"         "\n");
+            "@begin"    EOL
+            "b"         EOL
+		);
         YWParser::BeginContext* context = parser_builder.parse()->begin();
 		Expect::AreEqual("line 1:6 mismatched input '\\n' expecting SPACE" "\n", stderrRecorder.str());
         Assert::AreEqual("@begin", context->BeginKeyword()->getText());

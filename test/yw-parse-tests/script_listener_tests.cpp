@@ -18,18 +18,18 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
-            "entered script"        "\n"
-            "entered block"         "\n"
-            "entered begin tag"     "\n"
-            "entered block name"    "\n"
-            "exited block name"     "\n"
-            "exited begin tag"      "\n"
-            "entered end tag"       "\n"
-            "entered block name"    "\n"
-            "exited block name"     "\n"
-            "exited end tag"        "\n"
-            "exited block"          "\n"
-            "exited script"         "\n"
+            "entered script"        EOL
+            "entered block"         EOL
+            "entered begin tag"     EOL
+            "entered block name"    EOL
+            "exited block name"     EOL
+            "exited begin tag"      EOL
+            "entered end tag"       EOL
+            "entered block name"    EOL
+            "exited block name"     EOL
+            "exited end tag"        EOL
+            "exited block"          EOL
+            "exited script"         EOL
         , listener.log());
     }
 
@@ -41,16 +41,16 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
-            "entered script"        "\n"
-            "entered block"         "\n"
-            "entered begin tag"     "\n"
-            "entered block name"    "\n"
-            "exited block name"     "\n"
-            "exited begin tag"      "\n"
-            "entered end tag"       "\n"
-            "exited end tag"        "\n"
-            "exited block"          "\n"
-            "exited script"         "\n"
+            "entered script"        EOL
+            "entered block"         EOL
+            "entered begin tag"     EOL
+            "entered block name"    EOL
+            "exited block name"     EOL
+            "exited begin tag"      EOL
+            "entered end tag"       EOL
+            "exited end tag"        EOL
+            "exited block"          EOL
+            "exited script"         EOL
         , listener.log());
     }
 
@@ -62,22 +62,22 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
-            "entered script"            "\n"
-            "entered block"             "\n"
-            "entered begin tag"         "\n"
-            "entered block name"        "\n"
-            "exited block name"         "\n"
-            "exited begin tag"          "\n"
-            "entered block attribute"   "\n"
-            "entered desc tag"          "\n"
-            "entered description"       "\n"
-            "exited description"        "\n"
-            "exited desc tag"           "\n"
-            "exited block attribute"    "\n"
-            "entered end tag"           "\n"
-            "exited end tag"            "\n"
-            "exited block"              "\n"
-            "exited script"             "\n"
+            "entered script"            EOL
+            "entered block"             EOL
+            "entered begin tag"         EOL
+            "entered block name"        EOL
+            "exited block name"         EOL
+            "exited begin tag"          EOL
+            "entered block attribute"   EOL
+            "entered desc tag"          EOL
+            "entered description"       EOL
+            "exited description"        EOL
+            "exited desc tag"           EOL
+            "exited block attribute"    EOL
+            "entered end tag"           EOL
+            "exited end tag"            EOL
+            "exited block"              EOL
+            "exited script"             EOL
         , listener.log());
     }
 
