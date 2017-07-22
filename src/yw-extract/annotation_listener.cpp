@@ -37,7 +37,7 @@ namespace yw {
 		void AnnotationListener::enterBegin(YWParser::BeginContext *context) 
 		{
 			auto rangeInLine = getCharacterRangeOnLine(context);
-			primaryAnnotationId = ywdb.insert(
+			lastBeginId = ywdb.insert(
 				AnnotationRow{ auto_id, null_id, getLineId(context),
 							   rangeInLine.start, rangeInLine.end,
 							   context->BeginKeyword()->getText(),
@@ -51,19 +51,30 @@ namespace yw {
 									   rangeInLine.start, rangeInLine.end, 
 									   context->EndKeyword()->getText(), 
 									   getNullableArgument(context->blockName()) });
-			primaryAnnotationId = null_id;
+			lastBeginId = null_id;
 		}
 
 		void AnnotationListener::enterDesc(YWParser::DescContext *context) 
 		{
 			auto rangeInLine = getCharacterRangeOnLine(context);
-			ywdb.insert(AnnotationRow{ auto_id, primaryAnnotationId, getLineId(context),
+			ywdb.insert(AnnotationRow{ auto_id, lastBeginId, getLineId(context),
 				                       rangeInLine.start, rangeInLine.end,
 				                       context->DescKeyword()->getText(),
 				                       nullable_string(context->description()->getText()) });
-		};
+		}
 		
-		void AnnotationListener::enterPort(YWParser::PortContext *context) {};
+		void AnnotationListener::enterPort(YWParser::PortContext *context) {
+			auto rangeInLine = getCharacterRangeOnLine(context);
+			if (context->inputKeyword() != NULL) {
+				for (auto portName : context->portName()) {
+					ywdb.insert(AnnotationRow{ auto_id, lastBeginId, getLineId(context),
+						rangeInLine.start, rangeInLine.end,
+						context->inputKeyword()->getText(),
+						nullable_string(portName->getText()) });
+				}
+			}
+		}
+
 		void AnnotationListener::enterAlias(YWParser::AliasContext *context) {};
 		void AnnotationListener::enterCall(YWParser::CallContext *context) {};
 		void AnnotationListener::enterUri(YWParser::UriContext *context) {};

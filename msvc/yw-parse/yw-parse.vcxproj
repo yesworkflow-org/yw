@@ -159,9 +159,6 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="..\..\src\yw-parse\.gitignore" />
     <None Include="..\..\src\yw-parse\build.bat" />
     <None Include="..\..\src\yw-parse\YW.g4" />
