@@ -10,6 +10,7 @@ namespace yw {
 
 			const yw::sqlite::row_id sourceId;
 			yw::db::YesWorkflowDB& ywdb;
+			yw::sqlite::nullable_row_id primaryAnnotationId = yw::sqlite::null_id;
 
 		public:
 

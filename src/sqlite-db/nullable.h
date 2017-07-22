@@ -8,8 +8,9 @@ namespace yw {
 
 		template<typename T>
 		class nullable {
-			const bool isSet;
-			const T value;
+		protected:
+			bool isSet;
+			T value;
 		public:
 			nullable() : isSet(false), value() {}
 			explicit nullable(const T& value) : isSet(true), value(value) {}
@@ -22,6 +23,11 @@ namespace yw {
 				std::stringstream ss;
 				if (isSet) ss << value; else ss << "NULL";
 				return ss.str();
+			}
+			nullable<T> operator=(const nullable<T>& rhs) {
+				isSet = rhs.isSet;
+				value = rhs.value;
+				return *this;
 			}
 		};
 
@@ -41,6 +47,12 @@ namespace yw {
 			nullable_row_id() : nullable() {}
 			nullable_row_id(const long& value) : nullable(value) {}
 			nullable_row_id(generation request) : nullable{}, request(request) {}
+			nullable_row_id operator=(const nullable_row_id& rhs) {
+				isSet = rhs.isSet;
+				value = rhs.value;
+				request = rhs.request;
+				return *this;
+			}
 		};
 
 		using nullable_long = nullable<long>;

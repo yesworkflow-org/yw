@@ -7,7 +7,6 @@ using namespace yw::db;
 namespace yw {
 	namespace extract {
 
-
 		AnnotationListener::AnnotationListener(YesWorkflowDB& ywdb, yw::sqlite::row_id sourceId) :
 			ywdb(ywdb), sourceId(sourceId) {}
 
@@ -38,10 +37,11 @@ namespace yw {
 		void AnnotationListener::enterBegin(YWParser::BeginContext *context) 
 		{
 			auto rangeInLine = getCharacterRangeOnLine(context);
-			ywdb.insert(AnnotationRow{ auto_id, null_id, getLineId(context), 
-									   rangeInLine.start, rangeInLine.end,
-									   context->BeginKeyword()->getText(),
-									   nullable_string(context->blockName()->getText()) });
+			primaryAnnotationId = ywdb.insert(
+				AnnotationRow{ auto_id, null_id, getLineId(context),
+							   rangeInLine.start, rangeInLine.end,
+							   context->BeginKeyword()->getText(),
+							   nullable_string(context->blockName()->getText()) });
 		}
 
 		void AnnotationListener::enterEnd(YWParser::EndContext *context) 
@@ -51,9 +51,18 @@ namespace yw {
 									   rangeInLine.start, rangeInLine.end, 
 									   context->EndKeyword()->getText(), 
 									   getNullableArgument(context->blockName()) });
+			primaryAnnotationId = null_id;
 		}
 
-		void AnnotationListener::enterDesc(YWParser::DescContext *context) {};
+		void AnnotationListener::enterDesc(YWParser::DescContext *context) 
+		{
+			auto rangeInLine = getCharacterRangeOnLine(context);
+			ywdb.insert(AnnotationRow{ auto_id, primaryAnnotationId, getLineId(context),
+				                       rangeInLine.start, rangeInLine.end,
+				                       context->DescKeyword()->getText(),
+				                       nullable_string(context->description()->getText()) });
+		};
+		
 		void AnnotationListener::enterPort(YWParser::PortContext *context) {};
 		void AnnotationListener::enterAlias(YWParser::AliasContext *context) {};
 		void AnnotationListener::enterCall(YWParser::CallContext *context) {};
