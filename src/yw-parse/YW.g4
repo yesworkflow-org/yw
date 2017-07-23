@@ -3,8 +3,9 @@ grammar YW ;
 // YW annotation compositions
 script          : ws? block (ws block)* ws?;
 block           : begin (ws blockAttribute)* (ws block)* ws end ;
-blockAttribute  : port | desc | call;
-port            : (inputKeyword | outputKeyword) (SPACE+ portName)+ (ws portAttribute)* ;
+blockAttribute  : io | desc | call;
+io				: port (ws portAttribute)* ;
+port  		    : (inputKeyword | outputKeyword) (SPACE+ portName)+ ;
 portAttribute   : desc | alias | resource ;
 
 // YW annotations

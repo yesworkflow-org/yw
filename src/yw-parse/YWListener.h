@@ -25,6 +25,9 @@ public:
   virtual void enterBlockAttribute(YWParser::BlockAttributeContext *ctx) = 0;
   virtual void exitBlockAttribute(YWParser::BlockAttributeContext *ctx) = 0;
 
+  virtual void enterIo(YWParser::IoContext *ctx) = 0;
+  virtual void exitIo(YWParser::IoContext *ctx) = 0;
+
   virtual void enterPort(YWParser::PortContext *ctx) = 0;
   virtual void exitPort(YWParser::PortContext *ctx) = 0;
 

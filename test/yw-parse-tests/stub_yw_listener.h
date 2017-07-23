@@ -25,7 +25,9 @@ namespace yw {
             void exitEnd(YWParser::EndContext *context) override { _log << "exited end tag" << std::endl; }
             void enterDesc(YWParser::DescContext *context) override { _log << "entered desc tag" << std::endl; }
             void exitDesc(YWParser::DescContext *context) override { _log << "exited desc tag" << std::endl; }
-            void enterPort(YWParser::PortContext *context) override { _log << "entered port tag" << std::endl; }
+			void enterIo(YWParser::IoContext *context) override { _log << "entered io" << std::endl; }
+			void exitIo(YWParser::IoContext *context) override { _log << "exited io" << std::endl; }
+			void enterPort(YWParser::PortContext *context) override { _log << "entered port tag" << std::endl; }
             void exitPort(YWParser::PortContext *context) override { _log << "exited port tag" << std::endl; }
             void enterAlias(YWParser::AliasContext *context) override { _log << "entered alias tag" << std::endl; }
             void exitAlias(YWParser::AliasContext *context) override { _log << "exited alias tag" << std::endl; }

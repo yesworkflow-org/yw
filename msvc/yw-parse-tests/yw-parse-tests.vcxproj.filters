@@ -39,10 +39,10 @@
     <ClCompile Include="..\..\test\yw-parse-tests\desc_context_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\yw-parse-tests\port_context_tests.cpp">
+    <ClCompile Include="..\..\test\yw-parse-tests\io_listener_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\yw-parse-tests\port_listener_tests.cpp">
+    <ClCompile Include="..\..\test\yw-parse-tests\io_context_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

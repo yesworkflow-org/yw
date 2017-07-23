@@ -20,12 +20,12 @@ public:
   };
 
   enum {
-    RuleScript = 0, RuleBlock = 1, RuleBlockAttribute = 2, RulePort = 3, 
-    RulePortAttribute = 4, RuleBegin = 5, RuleEnd = 6, RuleDesc = 7, RuleAlias = 8, 
-    RuleCall = 9, RuleUri = 10, RuleFile = 11, RuleResource = 12, RuleInputKeyword = 13, 
-    RuleOutputKeyword = 14, RuleBlockName = 15, RulePortName = 16, RuleDataName = 17, 
-    RuleUriTemplate = 18, RuleScheme = 19, RuleDescription = 20, RulePhrase = 21, 
-    RulePathTemplate = 22, RuleWs = 23
+    RuleScript = 0, RuleBlock = 1, RuleBlockAttribute = 2, RuleIo = 3, RulePort = 4, 
+    RulePortAttribute = 5, RuleBegin = 6, RuleEnd = 7, RuleDesc = 8, RuleAlias = 9, 
+    RuleCall = 10, RuleUri = 11, RuleFile = 12, RuleResource = 13, RuleInputKeyword = 14, 
+    RuleOutputKeyword = 15, RuleBlockName = 16, RulePortName = 17, RuleDataName = 18, 
+    RuleUriTemplate = 19, RuleScheme = 20, RuleDescription = 21, RulePhrase = 22, 
+    RulePathTemplate = 23, RuleWs = 24
   };
 
   YWParser(antlr4::TokenStream *input);
@@ -41,6 +41,7 @@ public:
   class ScriptContext;
   class BlockContext;
   class BlockAttributeContext;
+  class IoContext;
   class PortContext;
   class PortAttributeContext;
   class BeginContext;
@@ -103,7 +104,7 @@ public:
   public:
     BlockAttributeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    PortContext *port();
+    IoContext *io();
     DescContext *desc();
     CallContext *call();
 
@@ -114,6 +115,23 @@ public:
 
   BlockAttributeContext* blockAttribute();
 
+  class  IoContext : public antlr4::ParserRuleContext {
+  public:
+    IoContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    PortContext *port();
+    std::vector<WsContext *> ws();
+    WsContext* ws(size_t i);
+    std::vector<PortAttributeContext *> portAttribute();
+    PortAttributeContext* portAttribute(size_t i);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  IoContext* io();
+
   class  PortContext : public antlr4::ParserRuleContext {
   public:
     PortContext(antlr4::ParserRuleContext *parent, size_t invokingState);
@@ -122,10 +140,6 @@ public:
     OutputKeywordContext *outputKeyword();
     std::vector<PortNameContext *> portName();
     PortNameContext* portName(size_t i);
-    std::vector<WsContext *> ws();
-    WsContext* ws(size_t i);
-    std::vector<PortAttributeContext *> portAttribute();
-    PortAttributeContext* portAttribute(size_t i);
     std::vector<antlr4::tree::TerminalNode *> SPACE();
     antlr4::tree::TerminalNode* SPACE(size_t i);
 

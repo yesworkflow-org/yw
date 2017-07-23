@@ -177,8 +177,8 @@
     <ClCompile Include="..\..\test\yw-parse-tests\block_context_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\block_listener_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\desc_context_tests.cpp" />
-    <ClCompile Include="..\..\test\yw-parse-tests\port_context_tests.cpp" />
-    <ClCompile Include="..\..\test\yw-parse-tests\port_listener_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-parse-tests\io_context_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-parse-tests\io_listener_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\script_listener_tests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>

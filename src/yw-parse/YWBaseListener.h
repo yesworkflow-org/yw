@@ -27,6 +27,9 @@ public:
   virtual void enterBlockAttribute(YWParser::BlockAttributeContext * /*ctx*/) override { }
   virtual void exitBlockAttribute(YWParser::BlockAttributeContext * /*ctx*/) override { }
 
+  virtual void enterIo(YWParser::IoContext * /*ctx*/) override { }
+  virtual void exitIo(YWParser::IoContext * /*ctx*/) override { }
+
   virtual void enterPort(YWParser::PortContext * /*ctx*/) override { }
   virtual void exitPort(YWParser::PortContext * /*ctx*/) override { }
 
