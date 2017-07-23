@@ -19,13 +19,13 @@ YW_TEST_SET
 
         Assert::AreEqual(
 			"entered io"					EOL
-			"entered port tag"              EOL
+			"entered port"                  EOL
             "entered input port keyword"    EOL
             "exited input port keyword"     EOL
             "entered port name"             EOL
             "exited port name"              EOL
-            "exited port tag"               EOL
-			"exited io"					EOL
+            "exited port"                   EOL
+			"exited io"						EOL
 			, listener.log());
     }
 
@@ -37,19 +37,19 @@ YW_TEST_SET
 
         Assert::AreEqual(
 			"entered io"					EOL
-			"entered port tag"              EOL
+			"entered port"                  EOL
             "entered input port keyword"    EOL
             "exited input port keyword"     EOL
             "entered port name"             EOL
             "exited port name"              EOL
-			"exited port tag"               EOL
+			"exited port"                   EOL
 			"entered port attribute"        EOL
-            "entered desc tag"              EOL
+            "entered desc"                  EOL
             "entered description"           EOL
             "exited description"            EOL
-            "exited desc tag"               EOL
+            "exited desc"                   EOL
             "exited port attribute"         EOL
-			"exited io"					EOL
+			"exited io"						EOL
 			, listener.log());
     }
 
@@ -61,19 +61,19 @@ YW_TEST_SET
 
         Assert::AreEqual(
 			"entered io"					EOL
-			"entered port tag"              EOL
+			"entered port"                  EOL
             "entered input port keyword"    EOL
             "exited input port keyword"     EOL
             "entered port name"             EOL
             "exited port name"              EOL
-			"exited port tag"               EOL
+			"exited port"                   EOL
 			"entered port attribute"        EOL
-            "entered alias tag"             EOL
+            "entered alias"                 EOL
             "entered data name"             EOL
             "exited data name"              EOL
-            "exited alias tag"              EOL
+            "exited alias"                  EOL
             "exited port attribute"         EOL
-			"exited io"					EOL
+			"exited io"						EOL
 			, listener.log());
     }
 
@@ -85,17 +85,17 @@ YW_TEST_SET
 
         Assert::AreEqual(
 			"entered io"					EOL
-			"entered port tag"              EOL
+			"entered port"                  EOL
             "entered input port keyword"    EOL
             "exited input port keyword"     EOL
             "entered port name"             EOL
             "exited port name"              EOL
-			"exited port tag"               EOL
+			"exited port"                   EOL
 			"entered port attribute"        EOL
-            "entered alias tag"             EOL
+            "entered alias"                 EOL
             "entered data name"             EOL
             "exited data name"              EOL
-            "exited alias tag"              EOL
+            "exited alias"                  EOL
             "exited port attribute"         EOL
 			"exited io"						EOL
 			, listener.log());
@@ -109,12 +109,12 @@ YW_TEST_SET
 
         Assert::AreEqual(
 			"entered io"					EOL
-			"entered port tag"              EOL
+			"entered port"                  EOL
             "entered input port keyword"    EOL
             "exited input port keyword"     EOL
             "entered port name"             EOL
             "exited port name"              EOL
-            "exited port tag"               EOL
+            "exited port"                   EOL
 			"exited io"						EOL
 			, listener.log());
     }
@@ -127,12 +127,12 @@ YW_TEST_SET
 
         Assert::AreEqual(
 			"entered io"					EOL
-			"entered port tag"              EOL
+			"entered port"                  EOL
             "entered output port keyword"   EOL
             "exited output port keyword"    EOL
             "entered port name"             EOL
             "exited port name"              EOL
-            "exited port tag"               EOL
+            "exited port"                   EOL
 			"exited io"						EOL
 			, listener.log());
     }
@@ -145,13 +145,13 @@ YW_TEST_SET
 
         Assert::AreEqual(
 			"entered io"					EOL
-			"entered port tag"              EOL
+			"entered port"                  EOL
             "entered output port keyword"   EOL
             "exited output port keyword"    EOL
             "entered port name"             EOL
             "exited port name"              EOL
-            "exited port tag"               EOL
-			"exited io"					EOL
+            "exited port"                   EOL
+			"exited io"						EOL
 			, listener.log());
     }
 
@@ -163,15 +163,15 @@ YW_TEST_SET
 
         Assert::AreEqual(
 			"entered io"					EOL
-			"entered port tag"              EOL
+			"entered port"                  EOL
             "entered input port keyword"    EOL
             "exited input port keyword"     EOL
             "entered port name"             EOL
             "exited port name"              EOL
             "entered port name"             EOL
             "exited port name"              EOL
-            "exited port tag"               EOL
-			"exited io"					EOL
+            "exited port"                   EOL
+			"exited io"						EOL
 			, listener.log());
     }
 
@@ -183,19 +183,19 @@ YW_TEST_SET
 
         Assert::AreEqual(
 			"entered io"					EOL
-			"entered port tag"              EOL
+			"entered port"                  EOL
             "entered input port keyword"    EOL
             "exited input port keyword"     EOL
             "entered port name"             EOL
             "exited port name"              EOL
             "entered port name"             EOL
             "exited port name"              EOL
-			"exited port tag"               EOL
+			"exited port"                   EOL
 			"entered port attribute"        EOL
-            "entered alias tag"             EOL
+            "entered alias"                 EOL
             "entered data name"             EOL
             "exited data name"              EOL
-            "exited alias tag"              EOL
+            "exited alias"                  EOL
             "exited port attribute"         EOL
 			"exited io"					EOL
 			, listener.log());

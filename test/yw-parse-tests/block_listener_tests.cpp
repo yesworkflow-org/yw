@@ -19,22 +19,22 @@ YW_TEST_SET
 
         Assert::AreEqual(
             "entered block"                 EOL
-            "entered begin tag"             EOL
+            "entered begin"					EOL
             "entered block name"            EOL
             "exited block name"             EOL
-            "exited begin tag"              EOL
+            "exited begin"					EOL
             "entered block attribute"       EOL
 			"entered io"					EOL
-			"entered port tag"              EOL
+			"entered port"					EOL
             "entered input port keyword"    EOL
             "exited input port keyword"     EOL
             "entered port name"             EOL
             "exited port name"              EOL
-            "exited port tag"               EOL
+            "exited port"					EOL
 			"exited io"						EOL
 			"exited block attribute"        EOL
-            "entered end tag"               EOL
-            "exited end tag"                EOL
+            "entered end"					EOL
+            "exited end"					EOL
             "exited block"                  EOL
         , listener.log());
     }
@@ -47,22 +47,22 @@ YW_TEST_SET
 
         Assert::AreEqual(
             "entered block"                 EOL
-            "entered begin tag"             EOL
+            "entered begin"					EOL
             "entered block name"            EOL
             "exited block name"             EOL
-            "exited begin tag"              EOL
+            "exited begin"					EOL
             "entered block attribute"       EOL
 			"entered io"					EOL
-			"entered port tag"              EOL
+			"entered port"					EOL
             "entered output port keyword"   EOL
             "exited output port keyword"    EOL
             "entered port name"             EOL
             "exited port name"              EOL
-            "exited port tag"               EOL
+            "exited port"					EOL
 			"exited io"						EOL
 			"exited block attribute"        EOL
-            "entered end tag"               EOL
-            "exited end tag"                EOL
+            "entered end"					EOL
+            "exited end"					EOL
             "exited block"                  EOL
         , listener.log());
     }

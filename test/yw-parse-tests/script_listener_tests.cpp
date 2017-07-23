@@ -20,14 +20,14 @@ YW_TEST_SET
         Assert::AreEqual(
             "entered script"        EOL
             "entered block"         EOL
-            "entered begin tag"     EOL
+            "entered begin"         EOL
             "entered block name"    EOL
             "exited block name"     EOL
-            "exited begin tag"      EOL
-            "entered end tag"       EOL
+            "exited begin"          EOL
+            "entered end"           EOL
             "entered block name"    EOL
             "exited block name"     EOL
-            "exited end tag"        EOL
+            "exited end"            EOL
             "exited block"          EOL
             "exited script"         EOL
         , listener.log());
@@ -43,12 +43,12 @@ YW_TEST_SET
         Assert::AreEqual(
             "entered script"        EOL
             "entered block"         EOL
-            "entered begin tag"     EOL
+            "entered begin"         EOL
             "entered block name"    EOL
             "exited block name"     EOL
-            "exited begin tag"      EOL
-            "entered end tag"       EOL
-            "exited end tag"        EOL
+            "exited begin"          EOL
+            "entered end"           EOL
+            "exited end"            EOL
             "exited block"          EOL
             "exited script"         EOL
         , listener.log());
@@ -64,18 +64,18 @@ YW_TEST_SET
         Assert::AreEqual(
             "entered script"            EOL
             "entered block"             EOL
-            "entered begin tag"         EOL
+            "entered begin"             EOL
             "entered block name"        EOL
             "exited block name"         EOL
-            "exited begin tag"          EOL
+            "exited begin"              EOL
             "entered block attribute"   EOL
-            "entered desc tag"          EOL
+            "entered desc"              EOL
             "entered description"       EOL
             "exited description"        EOL
-            "exited desc tag"           EOL
+            "exited desc"               EOL
             "exited block attribute"    EOL
-            "entered end tag"           EOL
-            "exited end tag"            EOL
+            "entered end"               EOL
+            "exited end"                EOL
             "exited block"              EOL
             "exited script"             EOL
         , listener.log());
