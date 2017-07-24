@@ -10,7 +10,8 @@ namespace yw {
 
 			const yw::sqlite::row_id sourceId;
 			yw::db::YesWorkflowDB& ywdb;
-			yw::sqlite::nullable_row_id lastPrimaryAnnotationId = yw::sqlite::null_id;
+			yw::sqlite::nullable_row_id currentPrimaryAnnotationId;
+			std::stack<yw::sqlite::nullable_row_id> primaryAnnotationId;
 
 		public:
 
@@ -25,6 +26,7 @@ namespace yw {
 			void enterUri(YWParser::UriContext *context) override;
 			void enterFile(YWParser::FileContext *context) override;
 			void enterResource(YWParser::ResourceContext *context) override;
+			void exitIo(YWParser::IoContext *context) override;
 
 		private:
 

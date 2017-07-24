@@ -34,10 +34,20 @@ namespace yw {
 			}
 		}
 
+		void AnnotationListener::enterAlias(YWParser::AliasContext *alias)
+		{
+			auto rangeInLine = getCharacterRangeOnLine(alias);
+			ywdb.insert(AnnotationRow{ auto_id, currentPrimaryAnnotationId, getLineId(alias),
+				rangeInLine.start, rangeInLine.end,
+				alias->AsKeyword()->getText(),
+				nullable_string(alias->dataName()->getText()) });
+		}
+
 		void AnnotationListener::enterBegin(YWParser::BeginContext *begin) 
 		{
 			auto rangeInLine = getCharacterRangeOnLine(begin);
-			lastPrimaryAnnotationId = ywdb.insert(
+			primaryAnnotationId.push(currentPrimaryAnnotationId);
+			currentPrimaryAnnotationId = ywdb.insert(
 				AnnotationRow{ auto_id, null_id, getLineId(begin),
 							   rangeInLine.start, rangeInLine.end,
 							   begin->BeginKeyword()->getText(),
@@ -51,12 +61,14 @@ namespace yw {
 									   rangeInLine.start, rangeInLine.end, 
 									   end->EndKeyword()->getText(), 
 									   getNullableArgument(end->blockName()) });
+			currentPrimaryAnnotationId = primaryAnnotationId.top();
+			primaryAnnotationId.pop();
 		}
 
 		void AnnotationListener::enterDesc(YWParser::DescContext *desc) 
 		{
 			auto rangeInLine = getCharacterRangeOnLine(desc);
-			ywdb.insert(AnnotationRow{ auto_id, lastPrimaryAnnotationId, getLineId(desc),
+			ywdb.insert(AnnotationRow{ auto_id, currentPrimaryAnnotationId, getLineId(desc),
 				                       rangeInLine.start, rangeInLine.end,
 				                       desc->DescKeyword()->getText(),
 				                       nullable_string(desc->description()->getText()) });
@@ -68,16 +80,21 @@ namespace yw {
 			if (port->inputKeyword() != NULL) {
 				for (auto portName : port->portName()) {
 					lastPortId = ywdb.insert(
-						AnnotationRow{ auto_id, lastPrimaryAnnotationId, getLineId(port),
+						AnnotationRow{ auto_id, currentPrimaryAnnotationId, getLineId(port),
 						               rangeInLine.start, rangeInLine.end,
 						               port->inputKeyword()->getText(),
 						               nullable_string(portName->getText()) });
 				}
 			}
-			lastPrimaryAnnotationId = lastPortId;
+			primaryAnnotationId.push(currentPrimaryAnnotationId);
+			currentPrimaryAnnotationId = lastPortId;
 		}
 
-		void AnnotationListener::enterAlias(YWParser::AliasContext *context) {};
+		void AnnotationListener::exitIo(YWParser::IoContext *context) {
+			currentPrimaryAnnotationId = primaryAnnotationId.top();
+			primaryAnnotationId.pop();
+		}
+
 		void AnnotationListener::enterCall(YWParser::CallContext *context) {};
 		void AnnotationListener::enterUri(YWParser::UriContext *context) {};
 		void AnnotationListener::enterFile(YWParser::FileContext *context) {};
