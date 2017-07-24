@@ -77,14 +77,12 @@ namespace yw {
 		void AnnotationListener::enterPort(YWParser::PortContext *port) {
 			auto rangeInLine = getCharacterRangeOnLine(port);
 			nullable_row_id lastPortId;
-			if (port->inputKeyword() != NULL) {
-				for (auto portName : port->portName()) {
-					lastPortId = ywdb.insert(
-						AnnotationRow{ auto_id, currentPrimaryAnnotationId, getLineId(port),
-						               rangeInLine.start, rangeInLine.end,
-						               port->inputKeyword()->getText(),
-						               nullable_string(portName->getText()) });
-				}
+			for (auto portName : port->portName()) {
+				auto keyword = port->inputKeyword() != NULL ? port->inputKeyword()->getText() : port->outputKeyword()->getText();
+				lastPortId = ywdb.insert(
+					AnnotationRow{ auto_id, currentPrimaryAnnotationId, getLineId(port),
+						           rangeInLine.start, rangeInLine.end,
+						           keyword, nullable_string(portName->getText()) });
 			}
 			primaryAnnotationId.push(currentPrimaryAnnotationId);
 			currentPrimaryAnnotationId = lastPortId;

@@ -306,5 +306,90 @@ YW_TEST_SET
 		Assert::AreEqual(paramAnnotation.id.getValue(), aliasAnnotation.qualifiesId.getValue());
 	}
 
+	YW_TEST(AnnotationListener, WhenOutWithSingleArgumentFollowsBeginOnSameLineQualifyingIdOfOutIsIdOfBegin)
+	{
+		this->storeAndParse(
+			"@begin b @out p"
+		);
+
+		auto beginAnnotation = ywdb.selectAnnotationById(1);
+		auto outAnnotation = ywdb.selectAnnotationById(2);
+		Expect::AreEqual(1, ywdb.getRowCount("line"));
+		Expect::AreEqual(2, ywdb.getRowCount("annotation"));
+		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 9, 14, "@out", "p" }, outAnnotation);
+
+		Assert::AreEqual(beginAnnotation.id.getValue(), outAnnotation.qualifiesId.getValue());
+	}
+
+	YW_TEST(AnnotationListener, WhenReturnWithSingleArgumentFollowsBeginOnSameLineQualifyingIdOfReturnIsIdOfBegin)
+	{
+		this->storeAndParse(
+			"@begin b @return p"
+		);
+
+		auto beginAnnotation = ywdb.selectAnnotationById(1);
+		auto returnAnnotation = ywdb.selectAnnotationById(2);
+		Expect::AreEqual(1, ywdb.getRowCount("line"));
+		Expect::AreEqual(2, ywdb.getRowCount("annotation"));
+		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 9, 17, "@return", "p" }, returnAnnotation);
+
+		Assert::AreEqual(beginAnnotation.id.getValue(), returnAnnotation.qualifiesId.getValue());
+	}
+
+	YW_TEST(AnnotationListener, WhenParamFollowsInAliasFollowingParamHasQualifyingIdOfParam__FOO)
+	{
+		this->storeAndParse(
+			"@begin b @desc description of block b"	EOL
+			"@in p q"								EOL
+			"@out r s"								EOL
+			"@end b"								EOL
+													EOL
+			"@begin c"								EOL
+			"@param t"								EOL
+			"@return u"								EOL
+			"@as name of data param receives"		EOL
+			"@end c"								EOL
+		);
+
+		auto beginAnnotation1 = ywdb.selectAnnotationById(1);
+		auto descAnnotation = ywdb.selectAnnotationById(2);
+		auto inAnnotation1 = ywdb.selectAnnotationById(3);
+		auto inAnnotation2 = ywdb.selectAnnotationById(4);
+		auto outAnnotation1 = ywdb.selectAnnotationById(5);
+		auto outAnnotation2 = ywdb.selectAnnotationById(6);
+		auto endAnnotation1 = ywdb.selectAnnotationById(7);
+		auto beginAnnotation2 = ywdb.selectAnnotationById(8);
+		auto paramAnnotation = ywdb.selectAnnotationById(9);
+		auto returnAnnotation = ywdb.selectAnnotationById(10);
+		auto aliasAnnotation = ywdb.selectAnnotationById(11);
+		auto endAnnotation2 = ywdb.selectAnnotationById(12);
+		Expect::AreEqual(10, ywdb.getRowCount("line"));
+		Expect::AreEqual(12, ywdb.getRowCount("annotation"));
+		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 9, 36, "@desc", "description of block b" }, descAnnotation);
+		Expect::AreEqual(AnnotationRow{ 3, 1, 2, 0, 6, "@in", "p" }, inAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 4, 1, 2, 0, 6, "@in", "q" }, inAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 5, 1, 3, 0, 7, "@out", "r" }, outAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 6, 1, 3, 0, 7, "@out", "s" }, outAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 7, null_id, 4, 0, 5, "@end", "b" }, endAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 8, null_id, 6, 0, 7, "@begin", "c" }, beginAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 9, 8, 7, 0, 7, "@param", "t" }, paramAnnotation);
+		Expect::AreEqual(AnnotationRow{ 10, 8, 8, 0, 8, "@return", "u" }, returnAnnotation);
+		Expect::AreEqual(AnnotationRow{ 11, 10, 9, 0, 30, "@as", "name of data param receives" }, aliasAnnotation);
+		Expect::AreEqual(AnnotationRow{ 12, null_id, 10, 0, 5, "@end", "c" }, endAnnotation2);
+
+		Expect::AreEqual(beginAnnotation1.id.getValue(), descAnnotation.qualifiesId.getValue());
+		Expect::AreEqual(beginAnnotation1.id.getValue(), inAnnotation1.qualifiesId.getValue());
+		Expect::AreEqual(beginAnnotation1.id.getValue(), inAnnotation2.qualifiesId.getValue());
+		Expect::AreEqual(beginAnnotation1.id.getValue(), outAnnotation1.qualifiesId.getValue());
+		Expect::AreEqual(beginAnnotation1.id.getValue(), outAnnotation2.qualifiesId.getValue());
+		Expect::AreEqual(beginAnnotation2.id.getValue(), paramAnnotation.qualifiesId.getValue());
+		Expect::AreEqual(beginAnnotation2.id.getValue(), returnAnnotation.qualifiesId.getValue());
+
+		Assert::AreEqual(returnAnnotation.id.getValue(), aliasAnnotation.qualifiesId.getValue());
+	}
+
 
 YW_TEST_END
