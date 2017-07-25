@@ -57,7 +57,7 @@ namespace yw {
 		void AnnotationListener::enterEnd(YWParser::EndContext *end) 
 		{
 			auto rangeInLine = getCharacterRangeOnLine(end);
-			ywdb.insert(AnnotationRow{ auto_id, null_id, getLineId(end), 
+			ywdb.insert(AnnotationRow{ auto_id, currentPrimaryAnnotationId, getLineId(end),
 									   rangeInLine.start, rangeInLine.end, 
 									   end->EndKeyword()->getText(), 
 									   getNullableArgument(end->blockName()) });
