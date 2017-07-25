@@ -34,7 +34,7 @@ YW_TEST_FIXTURE(AnnotationListener)
 
 YW_TEST_SET
 
-	YW_TEST(AnnotationListener, WhenBeginAnnotationAtStartOfOnlyLineInsertsOneLineAndOneAnnotation)
+	YW_TEST(AnnotationListener, WhenBeginAnnotationAtStartOfOnlyLineInsertOneLineAndOneAnnotation)
 	{
 		this->storeAndParse(
 			"@begin b"
@@ -45,7 +45,7 @@ YW_TEST_SET
 		Assert::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
 	}
 
-	YW_TEST(AnnotationListener, WhenBeginAnnotationInMiddleOfOnlyLineInsertsOneLineAndOneAnnotation)
+	YW_TEST(AnnotationListener, WhenBeginAnnotationInMiddleOfOnlyLineInsertOneLineAndOneAnnotation)
 	{
 		this->storeAndParse(
 			"     @begin b"
@@ -56,7 +56,7 @@ YW_TEST_SET
 		Assert::AreEqual(AnnotationRow{ 1, null_id, 1, 5, 12, "@begin", "b" }, ywdb.selectAnnotationById(1));
 	}
 
-	YW_TEST(AnnotationListener, WhenBeginAnnotationOnSecondOfThreeLinesInsertsThreeLinesAndOneAnnotation)
+	YW_TEST(AnnotationListener, WhenBeginAnnotationOnSecondOfThreeLinesInsertThreeLinesAndOneAnnotation)
 	{
 		this->storeAndParse(
 			EOL
@@ -69,7 +69,27 @@ YW_TEST_SET
 		Assert::AreEqual(AnnotationRow{ 1, null_id, 2, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
 	}
 
-	YW_TEST(AnnotationListener, WhenBeginAndEndOnOnlyLineInsertsOneLineAndTwoAnnotations)
+	YW_TEST(AnnotationListener, NestedBeginAnnotationQualifiesParentBeginAnnotation)
+	{
+		this->storeAndParse(
+			"@begin b"	EOL
+			"@begin c"	EOL
+			"@begin d"	EOL
+		);
+		auto beginAnnotation1 = ywdb.selectAnnotationById(1);
+		auto beginAnnotation2 = ywdb.selectAnnotationById(2);
+		auto beginAnnotation3 = ywdb.selectAnnotationById(3);
+		Expect::AreEqual(3, ywdb.getRowCount("line"));
+		Expect::AreEqual(3, ywdb.getRowCount("annotation"));
+		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 2, 1, 2, 0, 7, "@begin", "c" }, beginAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 3, 2, 3, 0, 7, "@begin", "d" }, beginAnnotation3);
+
+		Assert::AreEqual(beginAnnotation1.id.getValue(), beginAnnotation2.qualifiesId.getValue());
+		Assert::AreEqual(beginAnnotation2.id.getValue(), beginAnnotation3.qualifiesId.getValue());
+	}
+
+	YW_TEST(AnnotationListener, WhenBeginAndEndOnOnlyLineInsertOneLineAndTwoAnnotations)
 	{
 		this->storeAndParse("@begin b @end b");
 
@@ -79,7 +99,20 @@ YW_TEST_SET
 		Assert::AreEqual(AnnotationRow{ 2, 1, 1, 9, 14, "@end", "b" }, ywdb.selectAnnotationById(2));
 	}
 
-	YW_TEST(AnnotationListener, WhenBeginAndEndSecondAndFourthOfFiveLinesInsertsFiveLineAndTwoAnnotations)
+	YW_TEST(AnnotationListener, SingleLevelEndAnnotationQualifiesSingleTopLevelBeginAnnotation)
+	{
+		this->storeAndParse("@begin b @end b");
+		auto beginAnnotation = ywdb.selectAnnotationById(1);
+		auto endAnnotation = ywdb.selectAnnotationById(2);
+		Expect::AreEqual(1, ywdb.getRowCount("line"));
+		Expect::AreEqual(2, ywdb.getRowCount("annotation"));
+		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 9, 14, "@end", "b" }, endAnnotation);
+
+		Assert::AreEqual(beginAnnotation.id.getValue(), endAnnotation.qualifiesId.getValue());
+	}
+
+	YW_TEST(AnnotationListener, WhenBeginAndEndOnSecondAndFourthOfFiveLinesInsertFiveLineAndTwoAnnotations)
 	{
 		this->storeAndParse(
 			EOL
@@ -107,7 +140,58 @@ YW_TEST_SET
 		Assert::IsNull(endAnnotation.value);
 	}
 
-	YW_TEST(AnnotationListener, WhenDescFollowsBeginOnSameLineQualifiesIdOfDescIsBeginId)
+
+	YW_TEST(AnnotationListener, TopLevelEndAnnotationQualifiesMatchingTopLevelBeginAnnotation)
+	{
+		this->storeAndParse(
+			"@begin b"	EOL
+			"@end b"	EOL
+			EOL
+			"@begin c"	EOL
+			"@end c"	EOL
+		);
+		auto beginAnnotation1 = ywdb.selectAnnotationById(1);
+		auto endAnnotation1 = ywdb.selectAnnotationById(2);
+		auto beginAnnotation2 = ywdb.selectAnnotationById(3);
+		auto endAnnotation2 = ywdb.selectAnnotationById(4);
+		Expect::AreEqual(5, ywdb.getRowCount("line"));
+		Expect::AreEqual(4, ywdb.getRowCount("annotation"));
+		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 2, 1, 2, 0, 5, "@end", "b" }, endAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 3, null_id, 4, 0, 7, "@begin", "c" }, beginAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 4, 3, 5, 0, 5, "@end", "c" }, endAnnotation2);
+
+		Assert::AreEqual(beginAnnotation1.id.getValue(), endAnnotation1.qualifiesId.getValue());
+		Assert::AreEqual(beginAnnotation2.id.getValue(), endAnnotation2.qualifiesId.getValue());
+	}
+
+	YW_TEST(AnnotationListener, NestedEndAnnotationQualifiesMatchingBeginAnnotation)
+	{
+		this->storeAndParse(
+			"@begin b"	EOL
+						EOL
+			"@begin c"	EOL
+			"@end c"	EOL
+						EOL
+			"@end b"	EOL
+		);
+		auto beginAnnotation1 = ywdb.selectAnnotationById(1);
+		auto beginAnnotation2 = ywdb.selectAnnotationById(2);
+		auto endAnnotation2 = ywdb.selectAnnotationById(3);
+		auto endAnnotation1 = ywdb.selectAnnotationById(4);
+		Expect::AreEqual(6, ywdb.getRowCount("line"));
+		Expect::AreEqual(4, ywdb.getRowCount("annotation"));
+		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 2, 1, 3, 0, 7, "@begin", "c" }, beginAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 3, 2, 4, 0, 5, "@end", "c" }, endAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 4, 1, 6, 0, 5, "@end", "b" }, endAnnotation1);
+
+		Assert::AreEqual(beginAnnotation1.id.getValue(), endAnnotation1.qualifiesId.getValue());
+		Assert::AreEqual(beginAnnotation2.id.getValue(), endAnnotation2.qualifiesId.getValue());
+	}
+
+
+	YW_TEST(AnnotationListener, WhenDescFollowsBeginOnSameLineDescQualifiesBeginAnnotation)
 	{	
 		this->storeAndParse(
 			"@begin b @desc the description of the block"
@@ -123,7 +207,7 @@ YW_TEST_SET
 		Assert::AreEqual(beginAnnotation.id.getValue(), descAnnotation.qualifiesId.getValue());
 	}
 
-	YW_TEST(AnnotationListener, WhenDescFollowsBeginOnNextLineQualifiesIdOfDescIsBeginI)
+	YW_TEST(AnnotationListener, WhenDescFollowsBeginOnNextLineDescQualifiesBeginAnnotation)
 	{
 		this->storeAndParse(
 			"@begin b"								EOL
@@ -140,7 +224,7 @@ YW_TEST_SET
 		Assert::AreEqual(beginAnnotation.id.getValue(), descAnnotation.qualifiesId.getValue());
 	}
 
-	YW_TEST(AnnotationListener, WhenInWithSingleArgumentFollowsBeginOnSameLineQualifyingIdOfInIsIdOfBegin)
+	YW_TEST(AnnotationListener, WhenInWithSingleArgumentFollowsBeginOnSameLineInQualifiesBeginAnnotation)
 	{
 		this->storeAndParse(
 			"@begin b @in p"
@@ -156,7 +240,40 @@ YW_TEST_SET
 		Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
 	}
 
-	YW_TEST(AnnotationListener, WhenParamWithSingleArgumentFollowsBeginOnNextLineQualifyingIdOfInIsIdOfBegin)
+	YW_TEST(AnnotationListener, WhenInWithSingleArgumentFollowsBeginOnNextLineInQualifiesBeginAnnotation)
+	{
+		this->storeAndParse(
+			"@begin b"	EOL
+			"@in p"		EOL
+		);
+
+		auto beginAnnotation = ywdb.selectAnnotationById(1);
+		auto inAnnotation = ywdb.selectAnnotationById(2);
+		Expect::AreEqual(2, ywdb.getRowCount("line"));
+		Expect::AreEqual(2, ywdb.getRowCount("annotation"));
+		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, 1, 2, 0, 4, "@in", "p" }, inAnnotation);
+
+		Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
+	}
+
+	YW_TEST(AnnotationListener, WhenParamWithSingleArgumentFollowsBeginOnSameLineParamQualifiesBeginAnnotation)
+	{
+		this->storeAndParse(
+			"@begin b @param p"
+		);
+
+		auto beginAnnotation = ywdb.selectAnnotationById(1);
+		auto paramAnnotation = ywdb.selectAnnotationById(2);
+		Expect::AreEqual(1, ywdb.getRowCount("line"));
+		Expect::AreEqual(2, ywdb.getRowCount("annotation"));
+		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 9, 16, "@param", "p" }, paramAnnotation);
+
+		Assert::AreEqual(beginAnnotation.id.getValue(), paramAnnotation.qualifiesId.getValue());
+	}
+
+	YW_TEST(AnnotationListener, WhenParamWithSingleArgumentFollowsBeginOnNextLineParamQualifiesBeginAnnotation)
 	{
 		this->storeAndParse(
 			"@begin b"	EOL

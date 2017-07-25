@@ -48,7 +48,7 @@ namespace yw {
 			auto rangeInLine = getCharacterRangeOnLine(begin);
 			primaryAnnotationId.push(currentPrimaryAnnotationId);
 			currentPrimaryAnnotationId = ywdb.insert(
-				AnnotationRow{ auto_id, null_id, getLineId(begin),
+				AnnotationRow{ auto_id, currentPrimaryAnnotationId, getLineId(begin),
 							   rangeInLine.start, rangeInLine.end,
 							   begin->BeginKeyword()->getText(),
 							   nullable_string(begin->blockName()->getText()) });
