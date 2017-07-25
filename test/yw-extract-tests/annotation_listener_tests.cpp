@@ -39,6 +39,7 @@ YW_TEST_SET
 		this->storeAndParse(
 			"@begin b"
 		);
+		Expect::NonEmptyString(stderrRecorder.str());
 
 		Assert::AreEqual(1, ywdb.getRowCount("line"));
 		Assert::AreEqual(1, ywdb.getRowCount("annotation"));
@@ -50,10 +51,23 @@ YW_TEST_SET
 		this->storeAndParse(
 			"     @begin b"
 		);
+		Expect::NonEmptyString(stderrRecorder.str());
 
 		Assert::AreEqual(1, ywdb.getRowCount("line"));
 		Assert::AreEqual(1, ywdb.getRowCount("annotation"));
 		Assert::AreEqual(AnnotationRow{ 1, null_id, 1, 5, 12, "@begin", "b" }, ywdb.selectAnnotationById(1));
+	}
+
+	YW_TEST(AnnotationListener, WhenCodePrecedesBeginAnnotationOnOnlyLineInsertOneLineAndOneAnnotation)
+	{
+		this->storeAndParse(
+			"some code @begin b"
+		);
+		Expect::NonEmptyString(stderrRecorder.str());
+
+		Assert::AreEqual(1, ywdb.getRowCount("line"));
+		Assert::AreEqual(1, ywdb.getRowCount("annotation"));
+		Assert::AreEqual(AnnotationRow{ 1, null_id, 1, 10, 17, "@begin", "b" }, ywdb.selectAnnotationById(1));
 	}
 
 	YW_TEST(AnnotationListener, WhenBeginAnnotationOnSecondOfThreeLinesInsertThreeLinesAndOneAnnotation)
@@ -63,6 +77,7 @@ YW_TEST_SET
 			"@begin b" EOL
 			EOL
 		);
+		Expect::NonEmptyString(stderrRecorder.str());
 
 		Assert::AreEqual(3, ywdb.getRowCount("line"));
 		Assert::AreEqual(1, ywdb.getRowCount("annotation"));
@@ -76,6 +91,8 @@ YW_TEST_SET
 			"@begin c"	EOL
 			"@begin d"	EOL
 		);
+		Expect::NonEmptyString(stderrRecorder.str());
+		
 		auto beginAnnotation1 = ywdb.selectAnnotationById(1);
 		auto beginAnnotation2 = ywdb.selectAnnotationById(2);
 		auto beginAnnotation3 = ywdb.selectAnnotationById(3);
@@ -92,6 +109,7 @@ YW_TEST_SET
 	YW_TEST(AnnotationListener, WhenBeginAndEndOnOnlyLineInsertOneLineAndTwoAnnotations)
 	{
 		this->storeAndParse("@begin b @end b");
+		Expect::EmptyString(stderrRecorder.str());
 
 		Assert::AreEqual(1, ywdb.getRowCount("line"));
 		Assert::AreEqual(2, ywdb.getRowCount("annotation"));
@@ -99,9 +117,55 @@ YW_TEST_SET
 		Assert::AreEqual(AnnotationRow{ 2, 1, 1, 9, 14, "@end", "b" }, ywdb.selectAnnotationById(2));
 	}
 
+	YW_TEST(AnnotationListener, WhenCodePrecedsBeginAndEndOnNextLineInsertTwoLinesAndTwoAnnotations)
+	{
+		this->storeAndParse(
+			"some code"			EOL
+			"@begin b @end b"	EOL
+		);
+		Expect::EmptyString(stderrRecorder.str());
+
+		Assert::AreEqual(2, ywdb.getRowCount("line"));
+		Assert::AreEqual(2, ywdb.getRowCount("annotation"));
+		Assert::AreEqual(AnnotationRow{ 1, null_id, 2, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
+		Assert::AreEqual(AnnotationRow{ 2, 1, 2, 9, 14, "@end", "b" }, ywdb.selectAnnotationById(2));
+	}
+
+	YW_TEST(AnnotationListener, WhenCodeFollowsBeginAndEndOnNextLineInsertTwoLinesAndTwoAnnotations)
+	{
+		this->storeAndParse(
+			"@begin b @end b"	EOL
+			"some code"			EOL
+		);
+		Expect::EmptyString(stderrRecorder.str());
+
+		Assert::AreEqual(2, ywdb.getRowCount("line"));
+		Assert::AreEqual(2, ywdb.getRowCount("annotation"));
+		Assert::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
+		Assert::AreEqual(AnnotationRow{ 2, 1, 1, 9, 14, "@end", "b" }, ywdb.selectAnnotationById(2));
+	}
+
+
+	YW_TEST(AnnotationListener, WhenCodeOnLineBetweenBeginAndEndInsertThreeLinesAndTwoAnnotations)
+	{
+		this->storeAndParse(
+			"@begin b"	EOL
+			"some code"	EOL
+			"@end b"	EOL
+		);
+		Expect::EmptyString(stderrRecorder.str());
+
+		Assert::AreEqual(3, ywdb.getRowCount("line"));
+		Assert::AreEqual(2, ywdb.getRowCount("annotation"));
+		Assert::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
+		Assert::AreEqual(AnnotationRow{ 2, 1, 3, 0, 5, "@end", "b" }, ywdb.selectAnnotationById(2));
+	}
+
 	YW_TEST(AnnotationListener, SingleLevelEndAnnotationQualifiesSingleTopLevelBeginAnnotation)
 	{
 		this->storeAndParse("@begin b @end b");
+		Expect::EmptyString(stderrRecorder.str());
+
 		auto beginAnnotation = ywdb.selectAnnotationById(1);
 		auto endAnnotation = ywdb.selectAnnotationById(2);
 		Expect::AreEqual(1, ywdb.getRowCount("line"));
@@ -121,6 +185,7 @@ YW_TEST_SET
 			"@end b" EOL
 			EOL
 		);
+		Expect::EmptyString(stderrRecorder.str());
 
 		Assert::AreEqual(5, ywdb.getRowCount("line"));
 		Assert::AreEqual(2, ywdb.getRowCount("annotation"));
@@ -133,6 +198,7 @@ YW_TEST_SET
 		this->storeAndParse(
 			"@begin b @end"
 		);
+		Expect::EmptyString(stderrRecorder.str());
 
 		auto endAnnotation = ywdb.selectAnnotationById(2);
 		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 9, 12, "@end", null_string }, endAnnotation);
@@ -150,6 +216,8 @@ YW_TEST_SET
 			"@begin c"	EOL
 			"@end c"	EOL
 		);
+		Expect::EmptyString(stderrRecorder.str());
+
 		auto beginAnnotation1 = ywdb.selectAnnotationById(1);
 		auto endAnnotation1 = ywdb.selectAnnotationById(2);
 		auto beginAnnotation2 = ywdb.selectAnnotationById(3);
@@ -165,6 +233,33 @@ YW_TEST_SET
 		Assert::AreEqual(beginAnnotation2.id.getValue(), endAnnotation2.qualifiesId.getValue());
 	}
 
+	YW_TEST(AnnotationListener, WhenCodeBetweenBlocksTopLevelEndAnnotationQualifiesMatchingTopLevelBeginAnnotation)
+	{
+		this->storeAndParse(
+			"@begin b"	EOL
+			"@end b"	EOL
+			"some code"	EOL
+			"@begin c"	EOL
+			"@end c"	EOL
+		);
+		Expect::EmptyString(stderrRecorder.str());
+
+		auto beginAnnotation1 = ywdb.selectAnnotationById(1);
+		auto endAnnotation1 = ywdb.selectAnnotationById(2);
+		auto beginAnnotation2 = ywdb.selectAnnotationById(3);
+		auto endAnnotation2 = ywdb.selectAnnotationById(4);
+		Expect::AreEqual(5, ywdb.getRowCount("line"));
+		Expect::AreEqual(4, ywdb.getRowCount("annotation"));
+		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 2, 1, 2, 0, 5, "@end", "b" }, endAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 3, null_id, 4, 0, 7, "@begin", "c" }, beginAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 4, 3, 5, 0, 5, "@end", "c" }, endAnnotation2);
+
+		Assert::AreEqual(beginAnnotation1.id.getValue(), endAnnotation1.qualifiesId.getValue());
+		Assert::AreEqual(beginAnnotation2.id.getValue(), endAnnotation2.qualifiesId.getValue());
+	}
+
+
 	YW_TEST(AnnotationListener, NestedEndAnnotationQualifiesMatchingBeginAnnotation)
 	{
 		this->storeAndParse(
@@ -175,6 +270,8 @@ YW_TEST_SET
 						EOL
 			"@end b"	EOL
 		);
+		Expect::EmptyString(stderrRecorder.str());
+
 		auto beginAnnotation1 = ywdb.selectAnnotationById(1);
 		auto beginAnnotation2 = ywdb.selectAnnotationById(2);
 		auto endAnnotation2 = ywdb.selectAnnotationById(3);
@@ -191,12 +288,40 @@ YW_TEST_SET
 	}
 
 
+	YW_TEST(AnnotationListener, WhenCodeBetweenNestedBlocksNestedEndAnnotationQualifiesMatchingBeginAnnotation)
+	{
+		this->storeAndParse(
+			"@begin b"		EOL
+			"some code"		EOL
+			"@begin c"		EOL
+			"@end c"		EOL
+			"more code"		EOL
+			"@end b"		EOL
+		);
+		Expect::EmptyString(stderrRecorder.str());
+
+		auto beginAnnotation1 = ywdb.selectAnnotationById(1);
+		auto beginAnnotation2 = ywdb.selectAnnotationById(2);
+		auto endAnnotation2 = ywdb.selectAnnotationById(3);
+		auto endAnnotation1 = ywdb.selectAnnotationById(4);
+		Expect::AreEqual(6, ywdb.getRowCount("line"));
+		Expect::AreEqual(4, ywdb.getRowCount("annotation"));
+		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 2, 1, 3, 0, 7, "@begin", "c" }, beginAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 3, 2, 4, 0, 5, "@end", "c" }, endAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 4, 1, 6, 0, 5, "@end", "b" }, endAnnotation1);
+
+		Assert::AreEqual(beginAnnotation1.id.getValue(), endAnnotation1.qualifiesId.getValue());
+		Assert::AreEqual(beginAnnotation2.id.getValue(), endAnnotation2.qualifiesId.getValue());
+	}
+
 	YW_TEST(AnnotationListener, WhenDescFollowsBeginOnSameLineDescQualifiesBeginAnnotation)
 	{	
 		this->storeAndParse(
 			"@begin b @desc the description of the block"
 		);
-		
+		Expect::NonEmptyString(stderrRecorder.str());
+
 		auto beginAnnotation = ywdb.selectAnnotationById(1);
 		auto descAnnotation = ywdb.selectAnnotationById(2);
 		Expect::AreEqual(1, ywdb.getRowCount("line"));
@@ -213,7 +338,8 @@ YW_TEST_SET
 			"@begin b"								EOL
 			"@desc the description of the block"	EOL
 		);
-		
+		Expect::NonEmptyString(stderrRecorder.str());
+
 		auto beginAnnotation = ywdb.selectAnnotationById(1);
 		auto descAnnotation = ywdb.selectAnnotationById(2);
 		Expect::AreEqual(2, ywdb.getRowCount("line"));
@@ -229,6 +355,7 @@ YW_TEST_SET
 		this->storeAndParse(
 			"@begin b @in p"
 		);
+		Expect::NonEmptyString(stderrRecorder.str());
 
 		auto beginAnnotation = ywdb.selectAnnotationById(1);
 		auto inAnnotation = ywdb.selectAnnotationById(2);		
@@ -246,6 +373,7 @@ YW_TEST_SET
 			"@begin b"	EOL
 			"@in p"		EOL
 		);
+		Expect::NonEmptyString(stderrRecorder.str());
 
 		auto beginAnnotation = ywdb.selectAnnotationById(1);
 		auto inAnnotation = ywdb.selectAnnotationById(2);
@@ -257,11 +385,61 @@ YW_TEST_SET
 		Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
 	}
 
+	YW_TEST(AnnotationListener, WhenCodeLineBetweenBeginAndInInQualifiesBeginAnnotation)
+	{
+		this->storeAndParse(
+			"@begin b"	EOL
+			"some code"	EOL
+			"@in p"		EOL
+			"@end b"	EOL
+		);
+		Expect::EmptyString(stderrRecorder.str());
+
+		auto beginAnnotation = ywdb.selectAnnotationById(1);
+		auto inAnnotation = ywdb.selectAnnotationById(2);
+		auto endAnnotation = ywdb.selectAnnotationById(3);
+		Expect::AreEqual(4, ywdb.getRowCount("line"));
+		Expect::AreEqual(3, ywdb.getRowCount("annotation"));
+		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, 1, 3, 0, 4, "@in", "p" }, inAnnotation);
+		Expect::AreEqual(AnnotationRow{ 3, 1, 4, 0, 5, "@end", "b" }, endAnnotation);
+
+		Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
+	}
+
+	YW_TEST(AnnotationListener, WhenCodeLineBetweenInAndOutBothPortsQualifyBeginAnnotation)
+	{
+		this->storeAndParse(
+			"@begin b"	EOL
+			"@in p"		EOL
+			"some code"	EOL
+			"@out q"	EOL
+			"@end b"	EOL
+		);
+		Expect::EmptyString(stderrRecorder.str());
+
+		auto beginAnnotation = ywdb.selectAnnotationById(1);
+		auto inAnnotation = ywdb.selectAnnotationById(2);
+		auto outAnnotation = ywdb.selectAnnotationById(3);
+		auto endAnnotation = ywdb.selectAnnotationById(4);
+		Expect::AreEqual(5, ywdb.getRowCount("line"));
+		Expect::AreEqual(4, ywdb.getRowCount("annotation"));
+		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, 1, 2, 0, 4, "@in", "p" }, inAnnotation);
+		Expect::AreEqual(AnnotationRow{ 3, 1, 4, 0, 5, "@out", "q" }, outAnnotation);
+		Expect::AreEqual(AnnotationRow{ 4, 1, 5, 0, 5, "@end", "b" }, endAnnotation);
+
+		Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
+		Assert::AreEqual(beginAnnotation.id.getValue(), outAnnotation.qualifiesId.getValue());
+	}
+
+
 	YW_TEST(AnnotationListener, WhenParamWithSingleArgumentFollowsBeginOnSameLineParamQualifiesBeginAnnotation)
 	{
 		this->storeAndParse(
 			"@begin b @param p"
 		);
+		Expect::NonEmptyString(stderrRecorder.str());
 
 		auto beginAnnotation = ywdb.selectAnnotationById(1);
 		auto paramAnnotation = ywdb.selectAnnotationById(2);
@@ -279,6 +457,7 @@ YW_TEST_SET
 			"@begin b"	EOL
 			"@param p"	EOL
 		);
+		Expect::NonEmptyString(stderrRecorder.str());
 
 		auto beginAnnotation = ywdb.selectAnnotationById(1);
 		auto paramAnnotation = ywdb.selectAnnotationById(2);
@@ -296,6 +475,7 @@ YW_TEST_SET
 		this->storeAndParse(
 			"@begin b @in p q r"
 		);
+		Expect::NonEmptyString(stderrRecorder.str());
 
 		auto beginAnnotation = ywdb.selectAnnotationById(1);
 		auto inAnnotation1 = ywdb.selectAnnotationById(2);
@@ -317,17 +497,44 @@ YW_TEST_SET
 	YW_TEST(AnnotationListener, WhenDescFollowsInWithSingleArgumentLineQualifyingIdOfDescIsIdOfIn)
 	{
 		this->storeAndParse(
-			"@begin b @in p @desc description of port"
+			"@begin b @in p @desc description of port @end b"
 		);
+		Expect::EmptyString(stderrRecorder.str());
 
 		auto beginAnnotation = ywdb.selectAnnotationById(1);
 		auto inAnnotation = ywdb.selectAnnotationById(2);
 		auto descAnnotation = ywdb.selectAnnotationById(3);
+		auto endAnnotation = ywdb.selectAnnotationById(4);
 		Expect::AreEqual(1, ywdb.getRowCount("line"));
-		Expect::AreEqual(3, ywdb.getRowCount("annotation"));
+		Expect::AreEqual(4, ywdb.getRowCount("annotation"));
 		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, beginAnnotation);
 		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 9, 13, "@in", "p" }, inAnnotation);
 		Expect::AreEqual(AnnotationRow{ 3, 2, 1, 15, 39, "@desc", "description of port" }, descAnnotation);
+		Expect::AreEqual(AnnotationRow{ 4, 1, 1, 41, 46, "@end", "b" }, endAnnotation);
+		Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
+
+		Assert::AreEqual(inAnnotation.id.getValue(), descAnnotation.qualifiesId.getValue());
+	}
+
+	YW_TEST(AnnotationListener, WhenCodeBetweenPortNameAndDescAnnotationsDescQualifestInAnnotation)
+	{
+		this->storeAndParse(
+			"@begin b @in p"					EOL
+			"some code"							EOL
+			"@desc description of port @end b"	EOL
+		);
+		Expect::EmptyString(stderrRecorder.str());
+
+		auto beginAnnotation = ywdb.selectAnnotationById(1);
+		auto inAnnotation = ywdb.selectAnnotationById(2);
+		auto descAnnotation = ywdb.selectAnnotationById(3);
+		auto endAnnotation = ywdb.selectAnnotationById(4);
+		Expect::AreEqual(3, ywdb.getRowCount("line"));
+		Expect::AreEqual(4, ywdb.getRowCount("annotation"));
+		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 9, 13, "@in", "p" }, inAnnotation);
+		Expect::AreEqual(AnnotationRow{ 3, 2, 3, 0, 24, "@desc", "description of port" }, descAnnotation);
+		Expect::AreEqual(AnnotationRow{ 4, 1, 3, 26, 31, "@end", "b" }, endAnnotation);
 		Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
 
 		Assert::AreEqual(inAnnotation.id.getValue(), descAnnotation.qualifiesId.getValue());
@@ -336,21 +543,24 @@ YW_TEST_SET
 	YW_TEST(AnnotationListener, WhenDescFollowsInWithMultiplesArgumentLineQualifyingIdOfDescIsIdOfFinalPort)
 	{
 		this->storeAndParse(
-			"@begin b @in p q r @desc description of port"
+			"@begin b @in p q r @desc description of port @end b"
 		);
+		Expect::EmptyString(stderrRecorder.str());
 
 		auto beginAnnotation = ywdb.selectAnnotationById(1);
 		auto inAnnotation1 = ywdb.selectAnnotationById(2);
 		auto inAnnotation2 = ywdb.selectAnnotationById(3);
 		auto inAnnotation3 = ywdb.selectAnnotationById(4);
 		auto descAnnotation = ywdb.selectAnnotationById(5);
+		auto endAnnotation = ywdb.selectAnnotationById(6);
 		Expect::AreEqual(1, ywdb.getRowCount("line"));
-		Expect::AreEqual(5, ywdb.getRowCount("annotation"));
+		Expect::AreEqual(6, ywdb.getRowCount("annotation"));
 		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 0, 7, "@begin", "b" }, beginAnnotation);
 		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 9, 17, "@in", "p" }, inAnnotation1);
 		Expect::AreEqual(AnnotationRow{ 3, 1, 1, 9, 17, "@in", "q" }, inAnnotation2);
 		Expect::AreEqual(AnnotationRow{ 4, 1, 1, 9, 17, "@in", "r" }, inAnnotation3);
 		Expect::AreEqual(AnnotationRow{ 5, 4, 1, 19, 43, "@desc", "description of port" }, descAnnotation);
+		Expect::AreEqual(AnnotationRow{ 6, 1, 1, 45, 50, "@end", "b" }, endAnnotation);
 		Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation1.qualifiesId.getValue());
 
 		Assert::AreEqual(inAnnotation3.id.getValue(), descAnnotation.qualifiesId.getValue());
@@ -361,6 +571,7 @@ YW_TEST_SET
 		this->storeAndParse(
 			"@begin b @in p @as name of data port receives"
 		);
+		Expect::NonEmptyString(stderrRecorder.str());
 
 		auto beginAnnotation = ywdb.selectAnnotationById(1);
 		auto inAnnotation = ywdb.selectAnnotationById(2);
@@ -381,6 +592,7 @@ YW_TEST_SET
 			"@begin b @in p"					EOL
 			"@as name of data port receives"	EOL
 		);
+		Expect::NonEmptyString(stderrRecorder.str());
 
 		auto beginAnnotation = ywdb.selectAnnotationById(1);
 		auto inAnnotation = ywdb.selectAnnotationById(2);
@@ -403,6 +615,7 @@ YW_TEST_SET
 			"@param r"							EOL
 			"@as name of data param receives"	EOL
 		);
+		Expect::NonEmptyString(stderrRecorder.str());
 
 		auto beginAnnotation = ywdb.selectAnnotationById(1);
 		auto inAnnotation1 = ywdb.selectAnnotationById(2);
@@ -428,6 +641,7 @@ YW_TEST_SET
 		this->storeAndParse(
 			"@begin b @out p"
 		);
+		Expect::NonEmptyString(stderrRecorder.str());
 
 		auto beginAnnotation = ywdb.selectAnnotationById(1);
 		auto outAnnotation = ywdb.selectAnnotationById(2);
@@ -444,6 +658,7 @@ YW_TEST_SET
 		this->storeAndParse(
 			"@begin b @return p"
 		);
+		Expect::NonEmptyString(stderrRecorder.str());
 
 		auto beginAnnotation = ywdb.selectAnnotationById(1);
 		auto returnAnnotation = ywdb.selectAnnotationById(2);
@@ -469,6 +684,7 @@ YW_TEST_SET
 			"@as name of data param receives"		EOL
 			"@end c"								EOL
 		);
+		Expect::EmptyString(stderrRecorder.str());
 
 		auto beginAnnotation1 = ywdb.selectAnnotationById(1);
 		auto descAnnotation = ywdb.selectAnnotationById(2);

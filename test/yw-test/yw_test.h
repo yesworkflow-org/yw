@@ -27,13 +27,24 @@ namespace yw {
             static void EmptyString(std::string actual) {
 
                 #ifdef MSTEST
-					MSTEST::AreEqual("", actual.c_str());
+					MSTEST::IsTrue(actual.empty());
                 #endif
 
                 #ifdef CPPUTEST
-                    STRCMP_EQUAL("", actual.c_str());
+					CHECK(actual.empty());
                 #endif
             }
+
+			static void NonEmptyString(std::string actual) {
+
+				#ifdef MSTEST
+					MSTEST::IsTrue(!actual.empty());
+				#endif
+
+				#ifdef CPPUTEST
+					CHECK(!actual.empty());
+				#endif
+			}
 
             template<typename T> 
             static void IsNull(const T* actual, const wchar_t* message = nullptr) {

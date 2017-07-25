@@ -1,10 +1,10 @@
 grammar YW ;
 
 // YW annotation compositions
-script          : ws? block (ws block)* ws?;
-block           : begin (ws blockAttribute)* (ws block)* ws end ;
+script          : na? block (na? block)* na?;
+block           : begin (na? blockAttribute)* (na? block)* na? end ;
 blockAttribute  : io | desc | call;
-io				: port (ws portAttribute)* ;
+io				: port (na? portAttribute)* ;
 port  		    : (inputKeyword | outputKeyword) (SPACE+ portName)+ ;
 portAttribute   : desc | alias | resource ;
 
@@ -23,13 +23,13 @@ outputKeyword   : OutKeyword | ReturnKeyword ;
 
 // YW keyword arguments
 blockName       : phrase ;
-portName        : Word ;
+portName        : WORD ;
 dataName        : phrase ;
 uriTemplate     : ((scheme) ':')? pathTemplate ;
 scheme          : 'file' | 'http' ; 
 description     : phrase;
-phrase          : Word (SPACE+ Word)* ;
-pathTemplate    : Word ;
+phrase          : WORD (SPACE+ WORD)* ;
+pathTemplate    : WORD ;
 
 // YW keywords
 AsKeyword       : '@as' ;
@@ -44,9 +44,10 @@ ParamKeyword    : '@param' ;
 ReturnKeyword   : '@return' ;
 UriKeyword      : '@uri' ;
 
-ws              : (SPACE | NEWLINE)+ ;
+na				: (SPACE | NEWLINE | WORD | OTHER)+ ;
 
 SPACE           : [ \t] ;
 NEWLINE         : '\r'? '\n' ;
-Word            : [a-zA-Z0-9\\_]+ ;
+WORD            : [a-zA-Z0-9\\_]+ ;
+OTHER			: .+? ;
 

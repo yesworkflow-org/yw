@@ -54,7 +54,7 @@ YW_TEST_SET
             "@begin"    EOL
             "block"     EOL);
         YWParser::BlockContext* blockContext = parser_builder.parse()->block();
-		Expect::AreEqual("line 1:6 mismatched input '\\n' expecting SPACE" EOL, stderrRecorder.str());
+		Expect::NonEmptyString(stderrRecorder.str());
 
         Assert::AreEqual("@begin", blockContext->begin()->BeginKeyword()->getText());
         Assert::IsNull(blockContext->begin()->blockName());

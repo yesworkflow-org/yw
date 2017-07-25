@@ -88,8 +88,8 @@ public:
   virtual void enterPathTemplate(YWParser::PathTemplateContext *ctx) = 0;
   virtual void exitPathTemplate(YWParser::PathTemplateContext *ctx) = 0;
 
-  virtual void enterWs(YWParser::WsContext *ctx) = 0;
-  virtual void exitWs(YWParser::WsContext *ctx) = 0;
+  virtual void enterNa(YWParser::NaContext *ctx) = 0;
+  virtual void exitNa(YWParser::NaContext *ctx) = 0;
 
 
 };
