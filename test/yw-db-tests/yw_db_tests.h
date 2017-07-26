@@ -7,5 +7,6 @@
 #endif
 
 #include <memory>
+#include "sqlite_db.h"
 #include "yesworkflow_db.h"
-#include "yw_test.h"
+#include "yw_db_test_helpers.h"

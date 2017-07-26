@@ -9,7 +9,7 @@ using std::make_unique;
 YW_TEST_FIXTURE(AnnotationTable)
 
     YesWorkflowDB ywdb { false };
-	long user13, model17, language2, file5, source8, line19, line25, line77;
+	long user13, model17, language2, file5, source8, line19, line25, line77, line119, line125, line177, line199;
 
 	YW_TEST_SETUP(AnnotationTable)
 	{
@@ -32,6 +32,9 @@ YW_TEST_FIXTURE(AnnotationTable)
 		Expect::AreEqual(19, ywdb.insert(LineRow{ (line19 = 19), source8, 1, "@begin block" }));
 		Expect::AreEqual(25, ywdb.insert(LineRow{ (line25 = 25), source8, 4, "@in port" }));
 		Assert::AreEqual(77, ywdb.insert(LineRow{ (line77 = 77), source8, 5, "@end block" }));
+		Expect::AreEqual(119, ywdb.insert(LineRow{ (line119 = 119), source8, 11, "@begin second block" }));
+		Expect::AreEqual(125, ywdb.insert(LineRow{ (line125 = 125), source8, 14, "@in second port" }));
+		Assert::AreEqual(177, ywdb.insert(LineRow{ (line177 = 177), source8, 15, "@end second block" }));
 
 		ywdb.createAnnotationTable();
 	}
@@ -90,5 +93,64 @@ YW_TEST_SET
             Assert::AreEqual("No row with that id", e.what());
         }
     }
+
+	YW_TEST(AnnotationTable, SelectAnnotationTreeReturnsOneRowWhenRootAnnotationHasNoChildren) {
+		auto annotation1 = AnnotationRow{ auto_id, null_id, line19, 0, 11, "@begin", "block" };
+		long insertedAnnotationId;
+		Expect::AreEqual(1, (insertedAnnotationId = ywdb.insert(annotation1)));
+		auto selectedAnnotations = ywdb.selectAnnotationTree(insertedAnnotationId);
+
+		Assert::AreEqual(1, selectedAnnotations.size());
+		Assert::AreEqual(AnnotationRow{ 1, null_id, line19, 0, 11, "@begin", "block" }, selectedAnnotations[0]);
+	}
+
+	YW_TEST(AnnotationTable, SelectAnnotationTreeReturnsAllRowWhenOnlyRootAndChildrenInserted) {
+		auto annotation1 = AnnotationRow{ auto_id, null_id, line19, 0, 11, "@begin", "block" };
+		long rootAnnotationId;
+		Expect::AreEqual(1, (rootAnnotationId = ywdb.insert(annotation1)));
+		auto annotation2 = AnnotationRow{ auto_id, rootAnnotationId, line25, 0, 8, "@in", "port" };
+		auto annotation3 = AnnotationRow{ auto_id, rootAnnotationId, line77, 0, 10, "@end", "block" };
+		ywdb.insert(annotation2);
+		ywdb.insert(annotation3);
+		auto selectedAnnotations = ywdb.selectAnnotationTree(rootAnnotationId);
+
+		Assert::AreEqual(3, selectedAnnotations.size());
+		Assert::AreEqual(AnnotationRow{ 1, null_id, line19, 0, 11, "@begin", "block" }, selectedAnnotations[0]);
+		Assert::AreEqual(AnnotationRow{ 2, 1, line25, 0, 8, "@in", "port" }, selectedAnnotations[1]);
+		Assert::AreEqual(AnnotationRow{ 3, 1, line77, 0, 10, "@end", "block" }, selectedAnnotations[2]);
+	}
+
+	YW_TEST(AnnotationTable, SelectAnnotationTreeReturnsTwoDifferentTreesDependingOnRoot) {
+
+		auto annotation1 = AnnotationRow{ auto_id, null_id, line19, 0, 11, "@begin", "block" };
+		long firstRootAnnotationId;
+		Expect::AreEqual(1, (firstRootAnnotationId = ywdb.insert(annotation1)));
+		auto annotation2 = AnnotationRow{ auto_id, firstRootAnnotationId, line25, 0, 8, "@in", "port" };
+		auto annotation3 = AnnotationRow{ auto_id, firstRootAnnotationId, line77, 0, 10, "@end", "block" };
+		ywdb.insert(annotation2);
+		ywdb.insert(annotation3);
+		Expect::AreEqual(3, ywdb.getRowCount("annotation"));
+
+		auto annotation4 = AnnotationRow{ auto_id, null_id, line119, 0, 18, "@begin", "second block" };
+		long secondRootAnnotationId;
+		Expect::AreEqual(4, (secondRootAnnotationId = ywdb.insert(annotation4)));
+		auto annotation5 = AnnotationRow{ auto_id, secondRootAnnotationId, line125, 0, 15, "@in", "second port" };
+		auto annotation6 = AnnotationRow{ auto_id, secondRootAnnotationId, line177, 0, 17, "@end", "second block" };
+		ywdb.insert(annotation5);
+		ywdb.insert(annotation6);
+		Expect::AreEqual(6, ywdb.getRowCount("annotation"));
+
+		auto firstAnnotationTree = ywdb.selectAnnotationTree(firstRootAnnotationId);
+		auto secondAnnotationTree = ywdb.selectAnnotationTree(secondRootAnnotationId);
+		Assert::AreEqual(3, firstAnnotationTree.size());
+		Assert::AreEqual(AnnotationRow{ 1, null_id, line19, 0, 11, "@begin", "block" }, firstAnnotationTree[0]);
+		Assert::AreEqual(AnnotationRow{ 2, 1, line25, 0, 8, "@in", "port" }, firstAnnotationTree[1]);
+		Assert::AreEqual(AnnotationRow{ 3, 1, line77, 0, 10, "@end", "block" }, firstAnnotationTree[2]);
+
+		Assert::AreEqual(3, secondAnnotationTree.size());
+		Assert::AreEqual(AnnotationRow{ 4, null_id, line119, 0, 18, "@begin", "second block" }, secondAnnotationTree[0]);
+		Assert::AreEqual(AnnotationRow{ 5, 4, line125, 0, 15, "@in", "second port" }, secondAnnotationTree[1]);
+		Assert::AreEqual(AnnotationRow{ 6, 4, line177, 0, 17, "@end", "second block" }, secondAnnotationTree[2]);
+	}
 
 YW_TEST_END

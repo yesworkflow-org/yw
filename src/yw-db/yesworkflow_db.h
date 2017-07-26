@@ -1,8 +1,9 @@
 #pragma once
 
 #include <memory>
-#include "sqlite_db.h"
+#include <vector>
 
+#include "sqlite_db.h"
 #include "annotation_row.h"
 #include "file_row.h"
 #include "language_row.h"
@@ -22,7 +23,8 @@ namespace yw {
 			void createAnnotationTable();
 			long insert(const AnnotationRow& row);
 			AnnotationRow selectAnnotationById(long requested_id);
-			
+			std::vector<AnnotationRow> selectAnnotationTree(yw::sqlite::row_id rootAnnotationId);
+
 			void createFileTable();
 			long insert(const FileRow& file);
             FileRow selectFileById(long requested_id);
