@@ -12,6 +12,8 @@ namespace yw {
 			yw::db::YesWorkflowDB& ywdb;
 			yw::sqlite::nullable_row_id currentPrimaryAnnotationId;
 			std::stack<yw::sqlite::nullable_row_id> primaryAnnotationId;
+			long currentLineNumber = 0;
+			long currentRankOnLine = 0;
 
 		public:
 
