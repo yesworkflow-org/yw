@@ -15,6 +15,7 @@ CPPFLAGS += -W -Wall -Wno-deprecated -pedantic -O3 -Wno-unused-but-set-variable 
 CPPFLAGS += -I$(CPPUTEST_INCLUDE_DIR)
 CPPFLAGS += -I$(YW_SRC_DIRS)/sqlite-db
 CPPFLAGS += -I$(YW_SRC_DIRS)/yw-db
+CPPFLAGS += -I$(YW_TEST_DIRS)/yw-db-tests
 CPPFLAGS += -I$(YW_SRC_DIRS)/yw-parse
 CPPFLAGS += -I$(YW_SRC_DIRS)/yw-extract
 CPPFLAGS += -I$(ANTLR4_RUNTIME_SRC)
