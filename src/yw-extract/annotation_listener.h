@@ -32,8 +32,10 @@ namespace yw {
 
 		private:
 
-			yw::sqlite::row_id getLineId(antlr4::ParserRuleContext* context);
-			yw::sqlite::nullable_string getNullableArgument(antlr4::ParserRuleContext* context);
+			auto getLineId(antlr4::ParserRuleContext* context);
+			auto getNullableArgument(antlr4::ParserRuleContext* context);
+			auto getRangeInLine(antlr4::ParserRuleContext* context);
 		};
 	}
 }
+

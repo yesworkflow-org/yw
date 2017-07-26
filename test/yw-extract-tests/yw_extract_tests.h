@@ -13,4 +13,5 @@
 #include "yw_parser_builder.h"
 #include "sqlite_db.h"
 #include "source_loader.h"
+#include "outline_exporter.h"
 #include "yw_db_test_helpers.h"
