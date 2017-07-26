@@ -95,4 +95,18 @@ YW_TEST_SET
 			, exporter->getOutline(1));
 	}
 
+	YW_TEST(OutlineExporter, DescriptionOfBeginFollowsOnNextLine)
+	{
+		this->storeAndParse(
+			"@begin b @desc the only block"	EOL
+			"@end b"						EOL
+		);
+
+		Assert::AreEqual(
+			"@begin b"				EOL
+			"@desc the only block"	EOL
+			"@end b"				EOL
+			, exporter->getOutline(1));
+	}
+
 YW_TEST_END

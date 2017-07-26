@@ -8,7 +8,7 @@ namespace yw {
 			std::stringstream outline;
 			auto annotations = ywdb.selectAnnotationTree(rootAnnotation);
 			for (auto annotation : annotations) {
-				outline << annotation.tag << " " << annotation.value.getValue() << std::endl;
+				outline << annotation.keyword << " " << annotation.value.getValue() << std::endl;
 			}
 			return outline.str();
 		}

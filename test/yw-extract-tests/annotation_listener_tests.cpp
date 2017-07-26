@@ -6,6 +6,8 @@ using namespace yw::test;
 using namespace yw::db;
 using namespace yw::sqlite;
 
+using Tag = yw::db::AnnotationRow::Tag;
+
 YW_TEST_FIXTURE(AnnotationListener)
 
 	YesWorkflowDB ywdb;
@@ -43,7 +45,7 @@ YW_TEST_SET
 
 		Assert::AreEqual(1, ywdb.getRowCount("line"));
 		Assert::AreEqual(1, ywdb.getRowCount("annotation"));
-		Assert::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
+		Assert::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
 	}
 
 	YW_TEST(AnnotationListener, WhenBeginAnnotationInMiddleOfOnlyLineInsertOneLineAndOneAnnotation)
@@ -55,7 +57,7 @@ YW_TEST_SET
 
 		Assert::AreEqual(1, ywdb.getRowCount("line"));
 		Assert::AreEqual(1, ywdb.getRowCount("annotation"));
-		Assert::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 5, 12, "@begin", "b" }, ywdb.selectAnnotationById(1));
+		Assert::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 5, 12, "@begin", "b" }, ywdb.selectAnnotationById(1));
 	}
 
 	YW_TEST(AnnotationListener, WhenCodePrecedesBeginAnnotationOnOnlyLineInsertOneLineAndOneAnnotation)
@@ -67,7 +69,7 @@ YW_TEST_SET
 
 		Assert::AreEqual(1, ywdb.getRowCount("line"));
 		Assert::AreEqual(1, ywdb.getRowCount("annotation"));
-		Assert::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 10, 17, "@begin", "b" }, ywdb.selectAnnotationById(1));
+		Assert::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 10, 17, "@begin", "b" }, ywdb.selectAnnotationById(1));
 	}
 
 	YW_TEST(AnnotationListener, WhenBeginAnnotationOnSecondOfThreeLinesInsertThreeLinesAndOneAnnotation)
@@ -81,7 +83,7 @@ YW_TEST_SET
 
 		Assert::AreEqual(3, ywdb.getRowCount("line"));
 		Assert::AreEqual(1, ywdb.getRowCount("annotation"));
-		Assert::AreEqual(AnnotationRow{ 1, null_id, 2, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
+		Assert::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 2, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
 	}
 
 	YW_TEST(AnnotationListener, NestedBeginAnnotationQualifiesParentBeginAnnotation)
@@ -98,9 +100,9 @@ YW_TEST_SET
 		auto beginAnnotation3 = ywdb.selectAnnotationById(3);
 		Expect::AreEqual(3, ywdb.getRowCount("line"));
 		Expect::AreEqual(3, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 2, 1, 0, 7, "@begin", "c" }, beginAnnotation2);
-		Expect::AreEqual(AnnotationRow{ 3, 2, 3, 1, 0, 7, "@begin", "d" }, beginAnnotation3);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::BEGIN, 1, 2, 1, 0, 7, "@begin", "c" }, beginAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 3, Tag::BEGIN, 2, 3, 1, 0, 7, "@begin", "d" }, beginAnnotation3);
 
 		Assert::AreEqual(beginAnnotation1.id.getValue(), beginAnnotation2.qualifiesId.getValue());
 		Assert::AreEqual(beginAnnotation2.id.getValue(), beginAnnotation3.qualifiesId.getValue());
@@ -113,8 +115,8 @@ YW_TEST_SET
 
 		Assert::AreEqual(1, ywdb.getRowCount("line"));
 		Assert::AreEqual(2, ywdb.getRowCount("annotation"));
-		Assert::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
-		Assert::AreEqual(AnnotationRow{ 2, 1, 1, 2, 9, 14, "@end", "b" }, ywdb.selectAnnotationById(2));
+		Assert::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
+		Assert::AreEqual(AnnotationRow{ 2, Tag::END, 1, 1, 2, 9, 14, "@end", "b" }, ywdb.selectAnnotationById(2));
 	}
 
 	YW_TEST(AnnotationListener, WhenCodePrecedsBeginAndEndOnNextLineInsertTwoLinesAndTwoAnnotations)
@@ -127,8 +129,8 @@ YW_TEST_SET
 
 		Assert::AreEqual(2, ywdb.getRowCount("line"));
 		Assert::AreEqual(2, ywdb.getRowCount("annotation"));
-		Assert::AreEqual(AnnotationRow{ 1, null_id, 2, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
-		Assert::AreEqual(AnnotationRow{ 2, 1, 2, 2, 9, 14, "@end", "b" }, ywdb.selectAnnotationById(2));
+		Assert::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 2, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
+		Assert::AreEqual(AnnotationRow{ 2, Tag::END, 1, 2, 2, 9, 14, "@end", "b" }, ywdb.selectAnnotationById(2));
 	}
 
 	YW_TEST(AnnotationListener, WhenCodeFollowsBeginAndEndOnNextLineInsertTwoLinesAndTwoAnnotations)
@@ -141,8 +143,8 @@ YW_TEST_SET
 
 		Assert::AreEqual(2, ywdb.getRowCount("line"));
 		Assert::AreEqual(2, ywdb.getRowCount("annotation"));
-		Assert::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
-		Assert::AreEqual(AnnotationRow{ 2, 1, 1, 2, 9, 14, "@end", "b" }, ywdb.selectAnnotationById(2));
+		Assert::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
+		Assert::AreEqual(AnnotationRow{ 2, Tag::END, 1, 1, 2, 9, 14, "@end", "b" }, ywdb.selectAnnotationById(2));
 	}
 
 
@@ -157,8 +159,8 @@ YW_TEST_SET
 
 		Assert::AreEqual(3, ywdb.getRowCount("line"));
 		Assert::AreEqual(2, ywdb.getRowCount("annotation"));
-		Assert::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
-		Assert::AreEqual(AnnotationRow{ 2, 1, 3, 1, 0, 5, "@end", "b" }, ywdb.selectAnnotationById(2));
+		Assert::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
+		Assert::AreEqual(AnnotationRow{ 2, Tag::END, 1, 3, 1, 0, 5, "@end", "b" }, ywdb.selectAnnotationById(2));
 	}
 
 	YW_TEST(AnnotationListener, SingleLevelEndAnnotationQualifiesSingleTopLevelBeginAnnotation)
@@ -170,8 +172,8 @@ YW_TEST_SET
 		auto endAnnotation = ywdb.selectAnnotationById(2);
 		Expect::AreEqual(1, ywdb.getRowCount("line"));
 		Expect::AreEqual(2, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 2, 9, 14, "@end", "b" }, endAnnotation);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::END, 1, 1, 2, 9, 14, "@end", "b" }, endAnnotation);
 
 		Assert::AreEqual(beginAnnotation.id.getValue(), endAnnotation.qualifiesId.getValue());
 	}
@@ -189,8 +191,8 @@ YW_TEST_SET
 
 		Assert::AreEqual(5, ywdb.getRowCount("line"));
 		Assert::AreEqual(2, ywdb.getRowCount("annotation"));
-		Assert::AreEqual(AnnotationRow{ 1, null_id, 2, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
-		Assert::AreEqual(AnnotationRow{ 2, 1, 4, 1, 0, 5, "@end", "b" }, ywdb.selectAnnotationById(2));
+		Assert::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 2, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
+		Assert::AreEqual(AnnotationRow{ 2, Tag::END, 1, 4, 1, 0, 5, "@end", "b" }, ywdb.selectAnnotationById(2));
 	}
 
 	YW_TEST(AnnotationListener, WhenEndHasNoArgumentAnnotationHasNullBlockName)
@@ -201,7 +203,7 @@ YW_TEST_SET
 		Expect::EmptyString(stderrRecorder.str());
 
 		auto endAnnotation = ywdb.selectAnnotationById(2);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 2, 9, 12, "@end", null_string }, endAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::END, 1, 1, 2, 9, 12, "@end", null_string }, endAnnotation);
 
 		Assert::IsNull(endAnnotation.value);
 	}
@@ -224,10 +226,10 @@ YW_TEST_SET
 		auto endAnnotation2 = ywdb.selectAnnotationById(4);
 		Expect::AreEqual(5, ywdb.getRowCount("line"));
 		Expect::AreEqual(4, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 2, 1, 0, 5, "@end", "b" }, endAnnotation1);
-		Expect::AreEqual(AnnotationRow{ 3, null_id, 4, 1, 0, 7, "@begin", "c" }, beginAnnotation2);
-		Expect::AreEqual(AnnotationRow{ 4, 3, 5, 1, 0, 5, "@end", "c" }, endAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::END, 1, 2, 1, 0, 5, "@end", "b" }, endAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 3, Tag::BEGIN, null_id, 4, 1, 0, 7, "@begin", "c" }, beginAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 4, Tag::END, 3, 5, 1, 0, 5, "@end", "c" }, endAnnotation2);
 
 		Assert::AreEqual(beginAnnotation1.id.getValue(), endAnnotation1.qualifiesId.getValue());
 		Assert::AreEqual(beginAnnotation2.id.getValue(), endAnnotation2.qualifiesId.getValue());
@@ -250,10 +252,10 @@ YW_TEST_SET
 		auto endAnnotation2 = ywdb.selectAnnotationById(4);
 		Expect::AreEqual(5, ywdb.getRowCount("line"));
 		Expect::AreEqual(4, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 2, 1, 0, 5, "@end", "b" }, endAnnotation1);
-		Expect::AreEqual(AnnotationRow{ 3, null_id, 4, 1, 0, 7, "@begin", "c" }, beginAnnotation2);
-		Expect::AreEqual(AnnotationRow{ 4, 3, 5, 1, 0, 5, "@end", "c" }, endAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::END, 1, 2, 1, 0, 5, "@end", "b" }, endAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 3, Tag::BEGIN, null_id, 4, 1, 0, 7, "@begin", "c" }, beginAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 4, Tag::END, 3, 5, 1, 0, 5, "@end", "c" }, endAnnotation2);
 
 		Assert::AreEqual(beginAnnotation1.id.getValue(), endAnnotation1.qualifiesId.getValue());
 		Assert::AreEqual(beginAnnotation2.id.getValue(), endAnnotation2.qualifiesId.getValue());
@@ -278,10 +280,10 @@ YW_TEST_SET
 		auto endAnnotation1 = ywdb.selectAnnotationById(4);
 		Expect::AreEqual(6, ywdb.getRowCount("line"));
 		Expect::AreEqual(4, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 3, 1, 0, 7, "@begin", "c" }, beginAnnotation2);
-		Expect::AreEqual(AnnotationRow{ 3, 2, 4, 1, 0, 5, "@end", "c" }, endAnnotation2);
-		Expect::AreEqual(AnnotationRow{ 4, 1, 6, 1, 0, 5, "@end", "b" }, endAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::BEGIN, 1, 3, 1, 0, 7, "@begin", "c" }, beginAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 3, Tag::END, 2, 4, 1, 0, 5, "@end", "c" }, endAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 4, Tag::END, 1, 6, 1, 0, 5, "@end", "b" }, endAnnotation1);
 
 		Assert::AreEqual(beginAnnotation1.id.getValue(), endAnnotation1.qualifiesId.getValue());
 		Assert::AreEqual(beginAnnotation2.id.getValue(), endAnnotation2.qualifiesId.getValue());
@@ -306,10 +308,10 @@ YW_TEST_SET
 		auto endAnnotation1 = ywdb.selectAnnotationById(4);
 		Expect::AreEqual(6, ywdb.getRowCount("line"));
 		Expect::AreEqual(4, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 3, 1, 0, 7, "@begin", "c" }, beginAnnotation2);
-		Expect::AreEqual(AnnotationRow{ 3, 2, 4, 1, 0, 5, "@end", "c" }, endAnnotation2);
-		Expect::AreEqual(AnnotationRow{ 4, 1, 6, 1, 0, 5, "@end", "b" }, endAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::BEGIN, 1, 3, 1, 0, 7, "@begin", "c" }, beginAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 3, Tag::END, 2, 4, 1, 0, 5, "@end", "c" }, endAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 4, Tag::END, 1, 6, 1, 0, 5, "@end", "b" }, endAnnotation1);
 
 		Assert::AreEqual(beginAnnotation1.id.getValue(), endAnnotation1.qualifiesId.getValue());
 		Assert::AreEqual(beginAnnotation2.id.getValue(), endAnnotation2.qualifiesId.getValue());
@@ -326,8 +328,8 @@ YW_TEST_SET
 		auto descAnnotation = ywdb.selectAnnotationById(2);
 		Expect::AreEqual(1, ywdb.getRowCount("line"));
 		Expect::AreEqual(2, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 2, 9, 42, "@desc", "the description of the block" }, descAnnotation);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::DESC, 1, 1, 2, 9, 42, "@desc", "the description of the block" }, descAnnotation);
 
 		Assert::AreEqual(beginAnnotation.id.getValue(), descAnnotation.qualifiesId.getValue());
 	}
@@ -344,8 +346,8 @@ YW_TEST_SET
 		auto descAnnotation = ywdb.selectAnnotationById(2);
 		Expect::AreEqual(2, ywdb.getRowCount("line"));
 		Expect::AreEqual(2, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 2, 1, 0, 33, "@desc", "the description of the block" }, descAnnotation);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::DESC, 1, 2, 1, 0, 33, "@desc", "the description of the block" }, descAnnotation);
 
 		Assert::AreEqual(beginAnnotation.id.getValue(), descAnnotation.qualifiesId.getValue());
 	}
@@ -361,8 +363,8 @@ YW_TEST_SET
 		auto inAnnotation = ywdb.selectAnnotationById(2);		
 		Expect::AreEqual(1, ywdb.getRowCount("line"));
 		Expect::AreEqual(2, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::IN, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
 
 		Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
 	}
@@ -379,8 +381,8 @@ YW_TEST_SET
 		auto inAnnotation = ywdb.selectAnnotationById(2);
 		Expect::AreEqual(2, ywdb.getRowCount("line"));
 		Expect::AreEqual(2, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 2, 1, 0, 4, "@in", "p" }, inAnnotation);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::IN, 1, 2, 1, 0, 4, "@in", "p" }, inAnnotation);
 
 		Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
 	}
@@ -400,9 +402,9 @@ YW_TEST_SET
 		auto endAnnotation = ywdb.selectAnnotationById(3);
 		Expect::AreEqual(4, ywdb.getRowCount("line"));
 		Expect::AreEqual(3, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 3, 1, 0, 4, "@in", "p" }, inAnnotation);
-		Expect::AreEqual(AnnotationRow{ 3, 1, 4, 1, 0, 5, "@end", "b" }, endAnnotation);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::IN, 1, 3, 1, 0, 4, "@in", "p" }, inAnnotation);
+		Expect::AreEqual(AnnotationRow{ 3, Tag::END, 1, 4, 1, 0, 5, "@end", "b" }, endAnnotation);
 
 		Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
 	}
@@ -424,10 +426,10 @@ YW_TEST_SET
 		auto endAnnotation = ywdb.selectAnnotationById(4);
 		Expect::AreEqual(5, ywdb.getRowCount("line"));
 		Expect::AreEqual(4, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 2, 1, 0, 4, "@in", "p" }, inAnnotation);
-		Expect::AreEqual(AnnotationRow{ 3, 1, 4, 1, 0, 5, "@out", "q" }, outAnnotation);
-		Expect::AreEqual(AnnotationRow{ 4, 1, 5, 1, 0, 5, "@end", "b" }, endAnnotation);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::IN, 1, 2, 1, 0, 4, "@in", "p" }, inAnnotation);
+		Expect::AreEqual(AnnotationRow{ 3, Tag::OUT, 1, 4, 1, 0, 5, "@out", "q" }, outAnnotation);
+		Expect::AreEqual(AnnotationRow{ 4, Tag::END, 1, 5, 1, 0, 5, "@end", "b" }, endAnnotation);
 
 		Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
 		Assert::AreEqual(beginAnnotation.id.getValue(), outAnnotation.qualifiesId.getValue());
@@ -445,8 +447,8 @@ YW_TEST_SET
 		auto paramAnnotation = ywdb.selectAnnotationById(2);
 		Expect::AreEqual(1, ywdb.getRowCount("line"));
 		Expect::AreEqual(2, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 2, 9, 16, "@param", "p" }, paramAnnotation);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::PARAM, 1, 1, 2, 9, 16, "@param", "p" }, paramAnnotation);
 
 		Assert::AreEqual(beginAnnotation.id.getValue(), paramAnnotation.qualifiesId.getValue());
 	}
@@ -463,8 +465,8 @@ YW_TEST_SET
 		auto paramAnnotation = ywdb.selectAnnotationById(2);
 		Expect::AreEqual(2, ywdb.getRowCount("line"));
 		Expect::AreEqual(2, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 2, 1, 0, 7, "@param", "p" }, paramAnnotation);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::PARAM, 1, 2, 1, 0, 7, "@param", "p" }, paramAnnotation);
 
 		Assert::AreEqual(beginAnnotation.id.getValue(), paramAnnotation.qualifiesId.getValue());
 	}
@@ -484,10 +486,10 @@ YW_TEST_SET
 		Expect::AreEqual(1, ywdb.getRowCount("line"));
 		Expect::AreEqual(4, ywdb.getRowCount("annotation"));
 
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 2, 9, 17, "@in", "p" }, inAnnotation1);
-		Expect::AreEqual(AnnotationRow{ 3, 1, 1, 3, 9, 17, "@in", "q" }, inAnnotation2);
-		Expect::AreEqual(AnnotationRow{ 4, 1, 1, 4, 9, 17, "@in", "r" }, inAnnotation3);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::IN, 1, 1, 2, 9, 17, "@in", "p" }, inAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 3, Tag::IN, 1, 1, 3, 9, 17, "@in", "q" }, inAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 4, Tag::IN, 1, 1, 4, 9, 17, "@in", "r" }, inAnnotation3);
 
 		Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation1.qualifiesId.getValue());
 		Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation2.qualifiesId.getValue());
@@ -507,10 +509,10 @@ YW_TEST_SET
 		auto endAnnotation = ywdb.selectAnnotationById(4);
 		Expect::AreEqual(1, ywdb.getRowCount("line"));
 		Expect::AreEqual(4, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
-		Expect::AreEqual(AnnotationRow{ 3, 2, 1, 3, 15, 39, "@desc", "description of port" }, descAnnotation);
-		Expect::AreEqual(AnnotationRow{ 4, 1, 1, 4, 41, 46, "@end", "b" }, endAnnotation);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::IN, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
+		Expect::AreEqual(AnnotationRow{ 3, Tag::DESC, 2, 1, 3, 15, 39, "@desc", "description of port" }, descAnnotation);
+		Expect::AreEqual(AnnotationRow{ 4, Tag::END, 1, 1, 4, 41, 46, "@end", "b" }, endAnnotation);
 		Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
 
 		Assert::AreEqual(inAnnotation.id.getValue(), descAnnotation.qualifiesId.getValue());
@@ -531,10 +533,10 @@ YW_TEST_SET
 		auto endAnnotation = ywdb.selectAnnotationById(4);
 		Expect::AreEqual(3, ywdb.getRowCount("line"));
 		Expect::AreEqual(4, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
-		Expect::AreEqual(AnnotationRow{ 3, 2, 3, 1, 0, 24, "@desc", "description of port" }, descAnnotation);
-		Expect::AreEqual(AnnotationRow{ 4, 1, 3, 2, 26, 31, "@end", "b" }, endAnnotation);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::IN, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
+		Expect::AreEqual(AnnotationRow{ 3, Tag::DESC, 2, 3, 1, 0, 24, "@desc", "description of port" }, descAnnotation);
+		Expect::AreEqual(AnnotationRow{ 4, Tag::END, 1, 3, 2, 26, 31, "@end", "b" }, endAnnotation);
 		Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
 
 		Assert::AreEqual(inAnnotation.id.getValue(), descAnnotation.qualifiesId.getValue());
@@ -555,12 +557,12 @@ YW_TEST_SET
 		auto endAnnotation = ywdb.selectAnnotationById(6);
 		Expect::AreEqual(1, ywdb.getRowCount("line"));
 		Expect::AreEqual(6, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 2, 9, 17, "@in", "p" }, inAnnotation1);
-		Expect::AreEqual(AnnotationRow{ 3, 1, 1, 3, 9, 17, "@in", "q" }, inAnnotation2);
-		Expect::AreEqual(AnnotationRow{ 4, 1, 1, 4, 9, 17, "@in", "r" }, inAnnotation3);
-		Expect::AreEqual(AnnotationRow{ 5, 4, 1, 5, 19, 43, "@desc", "description of port" }, descAnnotation);
-		Expect::AreEqual(AnnotationRow{ 6, 1, 1, 6, 45, 50, "@end", "b" }, endAnnotation);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::IN, 1, 1, 2, 9, 17, "@in", "p" }, inAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 3, Tag::IN, 1, 1, 3, 9, 17, "@in", "q" }, inAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 4, Tag::IN, 1, 1, 4, 9, 17, "@in", "r" }, inAnnotation3);
+		Expect::AreEqual(AnnotationRow{ 5, Tag::DESC, 4, 1, 5, 19, 43, "@desc", "description of port" }, descAnnotation);
+		Expect::AreEqual(AnnotationRow{ 6, Tag::END, 1, 1, 6, 45, 50, "@end", "b" }, endAnnotation);
 		Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation1.qualifiesId.getValue());
 
 		Assert::AreEqual(inAnnotation3.id.getValue(), descAnnotation.qualifiesId.getValue());
@@ -578,9 +580,9 @@ YW_TEST_SET
 		auto aliasAnnotation = ywdb.selectAnnotationById(3);
 		Expect::AreEqual(1, ywdb.getRowCount("line"));
 		Expect::AreEqual(3, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
-		Expect::AreEqual(AnnotationRow{ 3, 2, 1, 3, 15, 44, "@as", "name of data port receives" }, aliasAnnotation);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::IN, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
+		Expect::AreEqual(AnnotationRow{ 3, Tag::AS, 2, 1, 3, 15, 44, "@as", "name of data port receives" }, aliasAnnotation);
 		Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
 
 		Assert::AreEqual(inAnnotation.id.getValue(), aliasAnnotation.qualifiesId.getValue());
@@ -599,9 +601,9 @@ YW_TEST_SET
 		auto aliasAnnotation = ywdb.selectAnnotationById(3);
 		Expect::AreEqual(2, ywdb.getRowCount("line"));
 		Expect::AreEqual(3, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
-		Expect::AreEqual(AnnotationRow{ 3, 2, 2, 1, 0, 29, "@as", "name of data port receives" }, aliasAnnotation);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::IN, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
+		Expect::AreEqual(AnnotationRow{ 3, Tag::AS, 2, 2, 1, 0, 29, "@as", "name of data port receives" }, aliasAnnotation);
 		Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
 
 		Assert::AreEqual(inAnnotation.id.getValue(), aliasAnnotation.qualifiesId.getValue());
@@ -624,11 +626,11 @@ YW_TEST_SET
 		auto aliasAnnotation = ywdb.selectAnnotationById(5);
 		Expect::AreEqual(4, ywdb.getRowCount("line"));
 		Expect::AreEqual(5, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 2, 1, 0, 6, "@in", "p" }, inAnnotation1);
-		Expect::AreEqual(AnnotationRow{ 3, 1, 2, 2, 0, 6, "@in", "q" }, inAnnotation2);
-		Expect::AreEqual(AnnotationRow{ 4, 1, 3, 1, 0, 7, "@param", "r" }, paramAnnotation);
-		Expect::AreEqual(AnnotationRow{ 5, 4, 4, 1, 0, 30, "@as", "name of data param receives" }, aliasAnnotation);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::IN, 1, 2, 1, 0, 6, "@in", "p" }, inAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 3, Tag::IN, 1, 2, 2, 0, 6, "@in", "q" }, inAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 4, Tag::PARAM, 1, 3, 1, 0, 7, "@param", "r" }, paramAnnotation);
+		Expect::AreEqual(AnnotationRow{ 5, Tag::AS, 4, 4, 1, 0, 30, "@as", "name of data param receives" }, aliasAnnotation);
 		Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation1.qualifiesId.getValue());
 		Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation2.qualifiesId.getValue());
 		Expect::AreEqual(beginAnnotation.id.getValue(), paramAnnotation.qualifiesId.getValue());
@@ -647,8 +649,8 @@ YW_TEST_SET
 		auto outAnnotation = ywdb.selectAnnotationById(2);
 		Expect::AreEqual(1, ywdb.getRowCount("line"));
 		Expect::AreEqual(2, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 2, 9, 14, "@out", "p" }, outAnnotation);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::OUT, 1, 1, 2, 9, 14, "@out", "p" }, outAnnotation);
 
 		Assert::AreEqual(beginAnnotation.id.getValue(), outAnnotation.qualifiesId.getValue());
 	}
@@ -664,8 +666,8 @@ YW_TEST_SET
 		auto returnAnnotation = ywdb.selectAnnotationById(2);
 		Expect::AreEqual(1, ywdb.getRowCount("line"));
 		Expect::AreEqual(2, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 2, 9, 17, "@return", "p" }, returnAnnotation);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::RETURN, 1, 1, 2, 9, 17, "@return", "p" }, returnAnnotation);
 
 		Assert::AreEqual(beginAnnotation.id.getValue(), returnAnnotation.qualifiesId.getValue());
 	}
@@ -700,18 +702,18 @@ YW_TEST_SET
 		auto endAnnotation2 = ywdb.selectAnnotationById(12);
 		Expect::AreEqual(10, ywdb.getRowCount("line"));
 		Expect::AreEqual(12, ywdb.getRowCount("annotation"));
-		Expect::AreEqual(AnnotationRow{ 1, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
-		Expect::AreEqual(AnnotationRow{ 2, 1, 1, 2, 9, 36, "@desc", "description of block b" }, descAnnotation);
-		Expect::AreEqual(AnnotationRow{ 3, 1, 2, 1, 0, 6, "@in", "p" }, inAnnotation1);
-		Expect::AreEqual(AnnotationRow{ 4, 1, 2, 2, 0, 6, "@in", "q" }, inAnnotation2);
-		Expect::AreEqual(AnnotationRow{ 5, 1, 3, 1, 0, 7, "@out", "r" }, outAnnotation1);
-		Expect::AreEqual(AnnotationRow{ 6, 1, 3, 2, 0, 7, "@out", "s" }, outAnnotation2);
-		Expect::AreEqual(AnnotationRow{ 7, 1, 4, 1, 0, 5, "@end", "b" }, endAnnotation1);
-		Expect::AreEqual(AnnotationRow{ 8, null_id, 6, 1, 0, 7, "@begin", "c" }, beginAnnotation2);
-		Expect::AreEqual(AnnotationRow{ 9, 8, 7, 1, 0, 7, "@param", "t" }, paramAnnotation);
-		Expect::AreEqual(AnnotationRow{ 10, 8, 8, 1, 0, 8, "@return", "u" }, returnAnnotation);
-		Expect::AreEqual(AnnotationRow{ 11, 10, 9, 1, 0, 30, "@as", "name of data param receives" }, aliasAnnotation);
-		Expect::AreEqual(AnnotationRow{ 12, 8, 10, 1, 0, 5, "@end", "c" }, endAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 1, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 2, Tag::DESC, 1, 1, 2, 9, 36, "@desc", "description of block b" }, descAnnotation);
+		Expect::AreEqual(AnnotationRow{ 3, Tag::IN, 1, 2, 1, 0, 6, "@in", "p" }, inAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 4, Tag::IN, 1, 2, 2, 0, 6, "@in", "q" }, inAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 5, Tag::OUT, 1, 3, 1, 0, 7, "@out", "r" }, outAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 6, Tag::OUT, 1, 3, 2, 0, 7, "@out", "s" }, outAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 7, Tag::END, 1, 4, 1, 0, 5, "@end", "b" }, endAnnotation1);
+		Expect::AreEqual(AnnotationRow{ 8, Tag::BEGIN, null_id, 6, 1, 0, 7, "@begin", "c" }, beginAnnotation2);
+		Expect::AreEqual(AnnotationRow{ 9, Tag::PARAM, 8, 7, 1, 0, 7, "@param", "t" }, paramAnnotation);
+		Expect::AreEqual(AnnotationRow{ 10, Tag::RETURN, 8, 8, 1, 0, 8, "@return", "u" }, returnAnnotation);
+		Expect::AreEqual(AnnotationRow{ 11, Tag::AS, 10, 9, 1, 0, 30, "@as", "name of data param receives" }, aliasAnnotation);
+		Expect::AreEqual(AnnotationRow{ 12, Tag::END, 8, 10, 1, 0, 5, "@end", "c" }, endAnnotation2);
 
 		Expect::AreEqual(beginAnnotation1.id.getValue(), descAnnotation.qualifiesId.getValue());
 		Expect::AreEqual(beginAnnotation1.id.getValue(), inAnnotation1.qualifiesId.getValue());

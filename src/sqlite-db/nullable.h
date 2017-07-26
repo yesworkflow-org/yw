@@ -43,7 +43,7 @@ namespace yw {
 
 		class nullable_row_id : public nullable<long> {
 		public:
-			enum class generation { not_requested, requested }  request;
+			enum class generation { not_requested, requested } request;
 			nullable_row_id() : nullable() {}
 			nullable_row_id(const long& value) : nullable(value) {}
 			nullable_row_id(generation request) : nullable{}, request(request) {}
