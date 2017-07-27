@@ -109,4 +109,80 @@ YW_TEST_SET
 			, exporter->getOutline(1));
 	}
 
+	YW_TEST(OutlineExporter, NestedBlockIsIndentedOnce)
+	{
+		this->storeAndParse(
+			"@begin b"	EOL
+			"@begin c"	EOL
+			"@end c"	EOL
+			"@end b"	EOL
+		);
+
+		Assert::AreEqual(
+			"@begin b"		EOL
+			""				EOL
+			"    @begin c"	EOL
+			"    @end c"	EOL
+			""				EOL
+			"@end b"		EOL
+			, exporter->getOutline(1));
+	}
+
+	YW_TEST(OutlineExporter, SecondNestedBlockIsIndentedOnce)
+	{
+		this->storeAndParse(
+			"@begin b"	EOL
+			"@begin c"	EOL
+			"@end c"	EOL
+			"@begin d"	EOL
+			"@end d"	EOL
+			"@end b"	EOL
+		);
+
+		Assert::AreEqual(
+			"@begin b"		EOL
+			""				EOL
+			"    @begin c"	EOL
+			"    @end c"	EOL
+			""				EOL
+			"    @begin d"	EOL
+			"    @end d"	EOL
+			""				EOL
+			"@end b"		EOL
+			, exporter->getOutline(1));
+	}
+
+	YW_TEST(OutlineExporter, SecondTopLevelBlockIsNotIndented)
+	{
+		this->storeAndParse(
+			"@begin b"	EOL
+			"@end b"	EOL
+			"@begin c"	EOL
+			"@end c"	EOL
+		);
+
+		Assert::AreEqual(
+			"@begin b"		EOL
+			"@end b"		EOL
+			""				EOL
+			"@begin c"		EOL
+			"@end c"		EOL
+			, exporter->getOutline());
+	}
+
+	YW_TEST(OutlineExporter, SecondTopLevelBlockOnSameLineIsNotIndented)
+	{
+		this->storeAndParse(
+			"@begin b @end b @begin c @end c"
+		);
+
+		Assert::AreEqual(
+			"@begin b"		EOL
+			"@end b"		EOL
+			""				EOL
+			"@begin c"		EOL
+			"@end c"		EOL
+			, exporter->getOutline());
+	}
+
 YW_TEST_END

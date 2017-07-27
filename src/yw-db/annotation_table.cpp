@@ -64,7 +64,22 @@ namespace yw {
 			return getRowFromAnnotationColumns(statement);
         }
 
-		std::vector<AnnotationRow> YesWorkflowDB::selectAnnotationTree(row_id rootAnnotationId) {
+		std::vector<AnnotationRow> YesWorkflowDB::selectTopLevelAnnotations() {
+			auto sql = std::string(R"(
+				SELECT annotation.id, tag, qualifies, line, rank, start, end, keyword, value FROM annotation
+				JOIN line ON annotation.line=line.id
+				WHERE annotation.qualifies IS NULL
+			    ORDER BY line.number, rank
+			)");
+			SelectStatement statement(db, sql);
+			auto annotations = std::vector<AnnotationRow>{};
+			while (statement.step() == SQLITE_ROW) {
+				annotations.push_back(getRowFromAnnotationColumns(statement));
+			}
+			return annotations;
+		}
+
+		std::vector<AnnotationRow> YesWorkflowDB::selectAnnotationTree(nullable_row_id rootAnnotationId) {
 
 			auto sql = std::string(R"(
 
@@ -83,12 +98,13 @@ namespace yw {
 			)");
 
 			SelectStatement statement(db, sql);
-			statement.bindId(1, rootAnnotationId);
+			statement.bindNullableId(1, rootAnnotationId);
 
 			auto annotations = std::vector<AnnotationRow>{};
 			while (statement.step() == SQLITE_ROW) {
 				annotations.push_back(getRowFromAnnotationColumns(statement));
 			}
+
 			return annotations;
 		}
 

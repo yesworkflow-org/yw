@@ -56,17 +56,10 @@ namespace yw {
 			}
 
 			static std::string to_string(Tag tag) {
-				switch (tag) {
-				case Tag::BEGIN:	return "BEGIN";
-				case Tag::END:		return "END";
-				case Tag::DESC:		return "DESC";
-				case Tag::IN:		return "IN";
-				case Tag::OUT:		return "OUT";
-				case Tag::PARAM:	return "PARAM";
-				case Tag::RETURN:	return "RETURN";
-				case Tag::AS:		return "AS";
-				default: throw std::runtime_error("invalid tag");
-				}
+				static const std::vector<std::string> names { 
+					"BEGIN", "END", "DESC", "IN", "OUT", "PARAM", "RETURN", "AS" 
+				};
+				return names[static_cast<int>(tag) - 1];
 			}
 		};
 	}

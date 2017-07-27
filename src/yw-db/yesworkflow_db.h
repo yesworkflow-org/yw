@@ -23,7 +23,8 @@ namespace yw {
 			void createAnnotationTable();
 			long insert(const AnnotationRow& row);
 			AnnotationRow selectAnnotationById(long requested_id);
-			std::vector<AnnotationRow> selectAnnotationTree(yw::sqlite::row_id rootAnnotationId);
+			std::vector<AnnotationRow> selectTopLevelAnnotations();
+			std::vector<AnnotationRow> selectAnnotationTree(yw::sqlite::nullable_row_id rootAnnotationId);
 
 			void createFileTable();
 			long insert(const FileRow& file);
