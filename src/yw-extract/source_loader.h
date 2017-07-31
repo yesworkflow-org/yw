@@ -4,19 +4,19 @@
 #include "YWBaseListener.h"
 
 namespace yw {
-	namespace extract {
+    namespace extract {
 
-		class SourceLoader {
+        class SourceLoader {
 
-			yw::db::YesWorkflowDB& ywdb;
-			yw::sqlite::row_id sourceId;
+            yw::db::YesWorkflowDB& ywdb;
+            yw::sqlite::row_id sourceId;
 
-		public:
+        public:
 
-			SourceLoader(yw::db::YesWorkflowDB& ywdb, yw::sqlite::row_id sourceId) : 
-				ywdb(ywdb), sourceId(sourceId) {}
+            SourceLoader(yw::db::YesWorkflowDB& ywdb, yw::sqlite::row_id sourceId) :
+                ywdb(ywdb), sourceId(sourceId) {}
 
-			void loadFromString(std::string sourceString);
-		};
-	}
+            void loadFromString(std::string sourceString);
+        };
+    }
 }

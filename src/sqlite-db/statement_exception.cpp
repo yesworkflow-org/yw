@@ -14,9 +14,9 @@ namespace yw {
         string StatementException::getMessage() const {
             return "SQLite statement exception: " + string(what());
         }
-        
-        string StatementException::getSql() const { 
-            return sql; 
+
+        string StatementException::getSql() const {
+            return sql;
         }
     }
 }

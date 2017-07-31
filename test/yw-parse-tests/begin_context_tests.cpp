@@ -22,7 +22,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@begin block");
         YWParser::BeginContext* context = parser_builder.parse()->begin();
-		Expect::EmptyString(stderrRecorder.str());
+        Expect::EmptyString(stderrRecorder.str());
         Assert::AreEqual("block", context->blockName()->getText());
     }
 
@@ -30,7 +30,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@begin b l o c k");
         YWParser::BeginContext* context = parser_builder.parse()->begin();
-		Expect::EmptyString(stderrRecorder.str());
+        Expect::EmptyString(stderrRecorder.str());
         Assert::AreEqual("b l o c k", context->blockName()->getText());
     }
 
@@ -39,9 +39,9 @@ YW_TEST_SET
         YWParserBuilder parser_builder(
             "@begin b l o "	EOL
             "c k"           EOL
-		);
+        );
         YWParser::BeginContext* context = parser_builder.parse()->begin();
-		Expect::EmptyString(stderrRecorder.str());
+        Expect::EmptyString(stderrRecorder.str());
         Assert::AreEqual("b l o", context->blockName()->getText());
     }
 
@@ -50,9 +50,9 @@ YW_TEST_SET
         YWParserBuilder parser_builder(
             "@begin"    EOL
             "b"         EOL
-		);
+        );
         YWParser::BeginContext* context = parser_builder.parse()->begin();
-		Expect::AreEqual("line 1:6 mismatched input '\\n' expecting SPACE" "\n", stderrRecorder.str());
+        Expect::AreEqual("line 1:6 mismatched input '\\n' expecting SPACE" "\n", stderrRecorder.str());
         Assert::AreEqual("@begin", context->BeginKeyword()->getText());
         Assert::IsNull(context->blockName());
     }

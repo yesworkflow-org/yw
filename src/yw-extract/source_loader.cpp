@@ -8,15 +8,15 @@ using std::istringstream;
 using std::string;
 
 namespace yw {
-	namespace extract {
+    namespace extract {
 
-		void SourceLoader::loadFromString(string sourceString) {
-			istringstream sourceStream{ sourceString };
-			string lineText;
-			long lineNumber = 0;
-			while (std::getline(sourceStream, lineText)) {
-				ywdb.insert(LineRow{ auto_id, sourceId, ++lineNumber, lineText });
-			}
-		}
-	}
+        void SourceLoader::loadFromString(string sourceString) {
+            istringstream sourceStream{ sourceString };
+            string lineText;
+            long lineNumber = 0;
+            while (std::getline(sourceStream, lineText)) {
+                ywdb.insert(LineRow{ auto_id, sourceId, ++lineNumber, lineText });
+            }
+        }
+    }
 }

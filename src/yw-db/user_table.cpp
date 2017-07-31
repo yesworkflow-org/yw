@@ -6,24 +6,24 @@ using std::string;
 using namespace yw::sqlite;
 
 namespace yw {
-	namespace db {
+    namespace db {
 
-		void YesWorkflowDB::createUserTable() {
-			SQLiteDB::createTable(db, std::string(R"(
+        void YesWorkflowDB::createUserTable() {
+            SQLiteDB::createTable(db, std::string(R"(
 
-				CREATE TABLE user(
-					id                  INTEGER         NOT NULL        PRIMARY KEY,
-					name                TEXT            NULL
-				);
+                CREATE TABLE user(
+                    id                  INTEGER         NOT NULL        PRIMARY KEY,
+                    name                TEXT            NULL
+                );
 
-			)"));
-		}
+            )"));
+        }
 
         long YesWorkflowDB::insert(const UserRow& user) {
             string sql = "INSERT INTO user(id, name) VALUES (?,?);";
             InsertStatement statement(db, sql);
-			statement.bindNullableId(1, user.id);
-			statement.bindNullableText(2, user.name);
+            statement.bindNullableId(1, user.id);
+            statement.bindNullableText(2, user.name);
             statement.execute();
             return statement.getGeneratedId();
         }

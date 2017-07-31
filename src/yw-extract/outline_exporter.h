@@ -3,18 +3,18 @@
 #include "yesworkflow_db.h"
 
 namespace yw {
-	namespace extract {
-		class OutlineExporter {
-		
-			yw::db::YesWorkflowDB& ywdb;
+    namespace extract {
+        class OutlineExporter {
 
-		public:
-		
-			OutlineExporter(yw::db::YesWorkflowDB& ywdb) : ywdb(ywdb) {}
+            yw::db::YesWorkflowDB& ywdb;
 
-			std::string getOutline();
-			std::string getOutline(yw::sqlite::nullable_row_id rootAnnotation);
+        public:
 
-		};
-	}
+            OutlineExporter(yw::db::YesWorkflowDB& ywdb) : ywdb(ywdb) {}
+
+            std::string getOutline();
+            std::string getOutline(yw::sqlite::nullable_row_id rootAnnotation);
+
+        };
+    }
 }

@@ -11,7 +11,7 @@ YW_TEST_SET
 
     YW_TEST(CreateStatement, ValidStatementConstructsSuccessfully)
     {
-    Statement statement(db, R"(
+        Statement statement(db, R"(
             CREATE TABLE user(
                 id                  INTEGER         NOT NULL        PRIMARY KEY,
                 name                TEXT            NULL

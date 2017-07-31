@@ -15,7 +15,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@begin b @end b");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->script());
-		Expect::EmptyString(stderrRecorder.str());
+        Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "entered script"        EOL
@@ -30,7 +30,7 @@ YW_TEST_SET
             "exited end"            EOL
             "exited block"          EOL
             "exited script"         EOL
-        , listener.log());
+            , listener.log());
     }
 
     YW_TEST(ScriptListener, Begin_End_NoFinalBlockName)
@@ -38,7 +38,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@begin b @end");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->script());
-		Expect::EmptyString(stderrRecorder.str());
+        Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "entered script"        EOL
@@ -51,7 +51,7 @@ YW_TEST_SET
             "exited end"            EOL
             "exited block"          EOL
             "exited script"         EOL
-        , listener.log());
+            , listener.log());
     }
 
     YW_TEST(ScriptListener, Begin_Desc_End)
@@ -59,7 +59,7 @@ YW_TEST_SET
         StubYWListener listener;
         YWParserBuilder parser_builder("@begin b @desc a simple block @end");
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->script());
-		Expect::EmptyString(stderrRecorder.str());
+        Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "entered script"            EOL
@@ -78,7 +78,7 @@ YW_TEST_SET
             "exited end"                EOL
             "exited block"              EOL
             "exited script"             EOL
-        , listener.log());
+            , listener.log());
     }
 
 YW_TEST_END

@@ -28,18 +28,18 @@ namespace yw {
             int rc = sqlite3_exec(connection, sql.c_str(), 0, 0, &err_msg);
         }
 
-		void SQLiteDB::createTable(std::shared_ptr<SQLiteDB> connection, const string& sql) {
-			CreateStatement statement(connection, sql);
-			statement.execute();
-		}
+        void SQLiteDB::createTable(std::shared_ptr<SQLiteDB> connection, const string& sql) {
+            CreateStatement statement(connection, sql);
+            statement.execute();
+        }
 
-		size_t SQLiteDB::getRowCount(std::shared_ptr<SQLiteDB> connection, const std::string& tableName) {
-			string sql = "SELECT COUNT(id) FROM " + tableName;
-			SelectStatement statement(connection, sql);
-			statement.step();
-			return statement.getInt64Field(0);
-		}
-	}
+        size_t SQLiteDB::getRowCount(std::shared_ptr<SQLiteDB> connection, const std::string& tableName) {
+            string sql = "SELECT COUNT(id) FROM " + tableName;
+            SelectStatement statement(connection, sql);
+            statement.step();
+            return statement.getInt64Field(0);
+        }
+    }
 
 }
 

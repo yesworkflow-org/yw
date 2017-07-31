@@ -8,23 +8,23 @@ using namespace yw::sqlite;
 namespace yw {
     namespace db {
 
-		void YesWorkflowDB::createExtractionTable() {
-			SQLiteDB::createTable(db, std::string(R"(
+        void YesWorkflowDB::createExtractionTable() {
+            SQLiteDB::createTable(db, std::string(R"(
 
-				CREATE TABLE extraction(
-					id              INTEGER         NOT NULL        PRIMARY KEY,
-					user			INTEGER         NOT NULL        REFERENCES user(id),
-					created			TEXT            NOT NULL
-				);
+                CREATE TABLE extraction(
+                    id              INTEGER         NOT NULL        PRIMARY KEY,
+                    user            INTEGER         NOT NULL        REFERENCES user(id),
+                    created         TEXT            NOT NULL
+                );
 
-			)"));
-		}
+            )"));
+        }
 
         long YesWorkflowDB::insert(const ExtractionRow& model) {
             string sql = "INSERT INTO extraction(id, user, created) VALUES (?,?,?);";
             InsertStatement statement(db, sql);
-			statement.bindNullableId(1, model.id);
-			statement.bindId(2, model.userId);
+            statement.bindNullableId(1, model.id);
+            statement.bindId(2, model.userId);
             statement.bindText(3, model.created);
             statement.execute();
             return statement.getGeneratedId();

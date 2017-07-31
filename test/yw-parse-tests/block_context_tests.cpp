@@ -14,7 +14,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@begin b @end b");
         YWParser::BlockContext* context = parser_builder.parse()->block();
-		Expect::EmptyString(stderrRecorder.str());
+        Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual("@begin b @end b", context->getText());
         Assert::AreEqual("@begin", context->begin()->BeginKeyword()->getText());
@@ -33,7 +33,7 @@ YW_TEST_SET
             "@end b"    EOL
         );
         YWParser::BlockContext* context = parser_builder.parse()->block();
-		Expect::EmptyString(stderrRecorder.str());
+        Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(
             "@begin b"  EOL
@@ -54,7 +54,7 @@ YW_TEST_SET
             "@begin"    EOL
             "block"     EOL);
         YWParser::BlockContext* blockContext = parser_builder.parse()->block();
-		Expect::NonEmptyString(stderrRecorder.str());
+        Expect::NonEmptyString(stderrRecorder.str());
 
         Assert::AreEqual("@begin", blockContext->begin()->BeginKeyword()->getText());
         Assert::IsNull(blockContext->begin()->blockName());
@@ -64,7 +64,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@begin b @end");
         YWParser::BlockContext* context = parser_builder.parse()->block();
-		Expect::EmptyString(stderrRecorder.str());
+        Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual("@begin b @end", context->getText());
         Assert::AreEqual("@begin", context->begin()->BeginKeyword()->getText());
@@ -79,7 +79,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@begin b @desc word @end");
         YWParser::BlockContext* context = parser_builder.parse()->block();
-		Expect::EmptyString(stderrRecorder.str());
+        Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual("@begin b @desc word @end", context->getText());
         Assert::AreEqual("@begin", context->begin()->BeginKeyword()->getText());
@@ -96,7 +96,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@begin b @desc a multiple word description @end");
         YWParser::BlockContext* context = parser_builder.parse()->block();
-		Expect::EmptyString(stderrRecorder.str());
+        Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual("@begin b @desc a multiple word description @end", context->getText());
         Assert::AreEqual("@begin", context->begin()->BeginKeyword()->getText());
@@ -113,7 +113,7 @@ YW_TEST_SET
     {
         YWParserBuilder parser_builder("@begin b\n@desc a multiple word description @end");
         YWParser::BlockContext* context = parser_builder.parse()->block();
-		Expect::EmptyString(stderrRecorder.str());
+        Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual("@begin b\n@desc a multiple word description @end", context->getText());
         Assert::AreEqual("@begin", context->begin()->BeginKeyword()->getText());

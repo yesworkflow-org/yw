@@ -13,13 +13,13 @@ inline SimpleString StringFrom(const yw::db::AnnotationRow::Tag& tag) { return y
 
 #ifdef MSTEST
 namespace Microsoft {
-	namespace VisualStudio {
-		namespace CppUnitTestFramework {
-			static std::wstring ToString(const yw::db::AnnotationRow& row) { RETURN_WIDE_STRING(row); }
-			static std::wstring ToString(const yw::db::LineRow& row) { RETURN_WIDE_STRING(row); }
-			static std::wstring ToString(const yw::db::AnnotationRow::Tag& tag) { RETURN_WIDE_STRING(yw::db::AnnotationRow::to_string(tag).c_str()); }
-		}
-	}
+    namespace VisualStudio {
+        namespace CppUnitTestFramework {
+            static std::wstring ToString(const yw::db::AnnotationRow& row) { RETURN_WIDE_STRING(row); }
+            static std::wstring ToString(const yw::db::LineRow& row) { RETURN_WIDE_STRING(row); }
+            static std::wstring ToString(const yw::db::AnnotationRow::Tag& tag) { RETURN_WIDE_STRING(yw::db::AnnotationRow::to_string(tag).c_str()); }
+        }
+    }
 }
 
 #endif

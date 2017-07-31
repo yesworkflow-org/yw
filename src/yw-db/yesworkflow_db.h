@@ -19,36 +19,36 @@ namespace yw {
 
             YesWorkflowDB(bool createTables = true);
 
-			void createAnnotationTable();
-			long insert(const AnnotationRow& row);
-			AnnotationRow selectAnnotationById(long requested_id);
-			std::vector<AnnotationRow> selectTopLevelAnnotations();
-			std::vector<AnnotationRow> selectAnnotationTree(yw::sqlite::nullable_row_id rootAnnotationId);
+            void createAnnotationTable();
+            long insert(const AnnotationRow& row);
+            AnnotationRow selectAnnotationById(long requested_id);
+            std::vector<AnnotationRow> selectTopLevelAnnotations();
+            std::vector<AnnotationRow> selectAnnotationTree(yw::sqlite::nullable_row_id rootAnnotationId);
 
-			void createFileTable();
-			long insert(const FileRow& file);
+            void createFileTable();
+            long insert(const FileRow& file);
             FileRow selectFileById(long requested_id);
 
-			void createLineTable();
-			long insert(const LineRow& line);
-			LineRow selectLineById(long requested_id);
-			yw::sqlite::row_id selectLineIdBySourceAndLineNumber(yw::sqlite::row_id sourceId, long number);
+            void createLineTable();
+            long insert(const LineRow& line);
+            LineRow selectLineById(long requested_id);
+            yw::sqlite::row_id selectLineIdBySourceAndLineNumber(yw::sqlite::row_id sourceId, long number);
 
-			void createExtractionTable();
-			long insert(const ExtractionRow& extraction);
+            void createExtractionTable();
+            long insert(const ExtractionRow& extraction);
             ExtractionRow selectExtractionById(long requested_id);
 
-			void createSourceTable();
-			long insert(const SourceRow& source);
+            void createSourceTable();
+            long insert(const SourceRow& source);
             SourceRow selectSourceById(long id);
 
-			void createAllTables();
+            void createAllTables();
 
-			void createUserTable();
-			long insert(const UserRow& user);
+            void createUserTable();
+            long insert(const UserRow& user);
             UserRow selectUserById(long requested_id);
 
-			size_t getRowCount(const std::string& tableName);
+            size_t getRowCount(const std::string& tableName);
 
         private:
 

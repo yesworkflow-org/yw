@@ -12,9 +12,9 @@ namespace yw {
         class PreparationException : public StatementException {
         public:
             PreparationException(
-				std::string message, 
-				std::string sql
-			) : StatementException(message, sql) {}
+                std::string message,
+                std::string sql
+            ) : StatementException(message, sql) {}
 
             virtual std::string getMessage() const override;
         };

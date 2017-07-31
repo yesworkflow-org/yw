@@ -9,7 +9,7 @@ namespace yw {
         void InsertStatement::execute() {
             int rc = sqlite3_step(statement);
             if (rc != SQLITE_DONE) {
-				auto errorMessage = db->getLastErrorMessage();
+                auto errorMessage = db->getLastErrorMessage();
                 throw InsertException(errorMessage, sql);
             }
         }

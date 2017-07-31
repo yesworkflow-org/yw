@@ -7,25 +7,25 @@ using std::string;
 namespace yw {
     namespace db {
 
-		YesWorkflowDB::YesWorkflowDB(bool createTables) {
-			db = std::make_shared<SQLiteDB>();
-			if (createTables) {
-				createAllTables();
-			}
+        YesWorkflowDB::YesWorkflowDB(bool createTables) {
+            db = std::make_shared<SQLiteDB>();
+            if (createTables) {
+                createAllTables();
+            }
         }
 
         void YesWorkflowDB::createAllTables() {
-			createUserTable();
-			createExtractionTable();
-			createFileTable();
-			createSourceTable();
-			createLineTable();
-			createAnnotationTable();
+            createUserTable();
+            createExtractionTable();
+            createFileTable();
+            createSourceTable();
+            createLineTable();
+            createAnnotationTable();
         }
 
-		size_t YesWorkflowDB::getRowCount(const std::string& tableName) {
-			return SQLiteDB::getRowCount(db, tableName);
-		}
+        size_t YesWorkflowDB::getRowCount(const std::string& tableName) {
+            return SQLiteDB::getRowCount(db, tableName);
+        }
 
     }
 }
