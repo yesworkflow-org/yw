@@ -23,7 +23,7 @@ namespace yw {
             return string(sqlite3_errmsg(connection));
         }
 
-        void SQLiteDB::execute(std::string sql) {
+        void SQLiteDB::execute(const std::string& sql) {
             char* err_msg = 0;
             int rc = sqlite3_exec(connection, sql.c_str(), 0, 0, &err_msg);
         }

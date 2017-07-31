@@ -12,17 +12,21 @@ namespace yw {
 
         public:
 
-            SelectStatement(std::shared_ptr<SQLiteDB> connection, const std::string& sql);
+            SelectStatement(
+				std::shared_ptr<SQLiteDB> connection, 
+				const std::string& sql
+			) : BindableStatement(connection, sql)
+			{}
 
             int step();
             int getSingleRow();
 
-            long getInt64Field(int column);
-			nullable_long getNullableInt64Field(int column);
-			long getIdField(int column);
-			nullable_row_id getNullableIdField(int column);
-			std::string getTextField(int column);
-			nullable_string getNullableTextField(int column);
+            long getInt64Field(int column) const;
+			nullable_long getNullableInt64Field(int column) const;
+			long getIdField(int column) const;
+			nullable_row_id getNullableIdField(int column) const;
+			std::string getTextField(int column) const;
+			nullable_string getNullableTextField(int column) const;
 		};
     }
 }

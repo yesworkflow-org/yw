@@ -17,12 +17,13 @@ namespace yw {
 			sqlite3_bind_int64(statement, column, (sqlite3_int64)value);
 		}
 
-		void BindableStatement::bindNullableId(int column, nullable_row_id id) {
+		void BindableStatement::bindNullableId(int column, const nullable_row_id& id) {
 			if (id.hasValue()) {
 				sqlite3_bind_int64(statement, column, (sqlite3_int64)id.getValue());
 			}
 		}
-		void BindableStatement::bindNullableInt64(int column, nullable_long number) {
+
+		void BindableStatement::bindNullableInt64(int column, const nullable_long& number) {
 			if (number.hasValue()) {
 				sqlite3_bind_int64(statement, column, (sqlite3_int64)number.getValue());
 			}

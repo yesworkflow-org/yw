@@ -10,8 +10,16 @@ namespace yw {
     namespace sqlite {
 
         class InsertException : public StatementException {
-        public:
-            InsertException(std::string message, std::string sql);
+        
+		public:
+
+            InsertException(
+				const std::string& message, 
+				const std::string& sql
+			) : StatementException(message, sql) 
+			{}
+
+
             virtual std::string getMessage() const override;
         };
     }

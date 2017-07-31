@@ -19,7 +19,7 @@ namespace yw {
             SQLiteDB();
             ~SQLiteDB();
 
-            void execute(std::string sql);
+            void execute(const std::string& sql);
 
             std::string getLastErrorMessage();
 

@@ -8,22 +8,31 @@ namespace yw {
 
 		template<typename T>
 		class nullable {
+		
 		protected:
+		
 			bool isSet;
 			T value;
+		
 		public:
+
 			nullable() : isSet(false), value() {}
+			
 			explicit nullable(const T& value) : isSet(true), value(value) {}
+			
 			bool hasValue() const { return isSet; }
+			
 			const T& getValue() const {
 				if (!isSet) { throw std::runtime_error("No value assigned"); }
 				return value;
 			}
+			
 			std::string str() const {
 				std::stringstream ss;
 				if (isSet) ss << value; else ss << "NULL";
 				return ss.str();
 			}
+			
 			nullable<T> operator=(const nullable<T>& rhs) {
 				isSet = rhs.isSet;
 				value = rhs.value;
