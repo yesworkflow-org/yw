@@ -36,7 +36,7 @@ namespace yw {
             string sql = "SELECT id, source, number, text FROM line WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindId(1, requested_id);
-            if (statement.step() != SQLITE_ROW) throw std::runtime_error("No row with that id");
+            if (statement.step() != SQLITE_ROW) throw std::runtime_error("No line row with that id");
             auto id = statement.getNullableIdField(0);
             auto sourceId = statement.getInt64Field(1);
 			auto number = statement.getInt64Field(2);
@@ -49,7 +49,7 @@ namespace yw {
 			SelectStatement statement(db, sql);
 			statement.bindId(1, sourceId);
 			statement.bindInt64(2, number);
-			if (statement.step() != SQLITE_ROW) throw std::runtime_error("No row with that source id and line number");
+			if (statement.step() != SQLITE_ROW) throw std::runtime_error("No line row with that source id and line number");
 			return statement.getNullableIdField(0).getValue();
 		}
     }

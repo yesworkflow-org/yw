@@ -24,12 +24,6 @@
     <ClCompile Include="..\..\test\yw-db-tests\file_table_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\yw-db-tests\language_table_tests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\test\yw-db-tests\model_table_tests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\test\yw-db-tests\user_table_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -43,6 +37,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\test\yw-db-tests\source_table_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\yw-db-tests\extraction_table_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

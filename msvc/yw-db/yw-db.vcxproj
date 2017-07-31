@@ -21,9 +21,8 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\yw-db\annotation_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\file_table.cpp" />
-    <ClCompile Include="..\..\src\yw-db\language_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\line_table.cpp" />
-    <ClCompile Include="..\..\src\yw-db\model_table.cpp" />
+    <ClCompile Include="..\..\src\yw-db\extraction_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\source_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\user_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\yesworkflow_db.cpp" />
@@ -32,9 +31,8 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-db\annotation_row.h" />
     <ClInclude Include="..\..\src\yw-db\file_row.h" />
-    <ClInclude Include="..\..\src\yw-db\language_row.h" />
     <ClInclude Include="..\..\src\yw-db\line_row.h" />
-    <ClInclude Include="..\..\src\yw-db\model_row.h" />
+    <ClInclude Include="..\..\src\yw-db\extraction_row.h" />
     <ClInclude Include="..\..\src\yw-db\source_row.h" />
     <ClInclude Include="..\..\src\yw-db\user_row.h" />
     <ClInclude Include="..\..\src\yw-db\yesworkflow_db.h" />

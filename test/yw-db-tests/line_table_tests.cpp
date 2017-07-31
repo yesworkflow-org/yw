@@ -10,24 +10,15 @@ using std::string;
 YW_TEST_FIXTURE(LineTable)
 
 	YesWorkflowDB ywdb { false };
-	long user8, model17, language18, file99, source34;
+	long file99, source34;
 	
 	YW_TEST_SETUP(LineTable)
 	{
-		ywdb.createUserTable();
-		Expect::AreEqual(8, ywdb.insert(UserRow{ (user8 = 8), "user1" }));
-
-		ywdb.createModelTable();
-		Expect::AreEqual(17, ywdb.insert(ModelRow{ (model17 = 17), user8, "2017-06-22 10:52:00.000" }));
-
 		ywdb.createFileTable();
 		Expect::AreEqual(99, (ywdb.insert(FileRow{ (file99 = 99), "main.c" })));
 
-		ywdb.createLanguageTable();
-		Expect::AreEqual(18, ywdb.insert(LanguageRow{ (language18 = 18), "C" }));
-
 		ywdb.createSourceTable();
-		Expect::AreEqual(34, ywdb.insert(SourceRow{ (source34 = 34), model17, language18, file99 }));
+		Expect::AreEqual(34, ywdb.insert(SourceRow{ (source34 = 34), file99, "C" }));
 
 		ywdb.createLineTable();
 	}
@@ -64,7 +55,7 @@ YW_TEST_SET
             Assert::Fail();
         }
         catch (std::runtime_error& e) {
-            Assert::AreEqual("No row with that id", e.what());
+            Assert::AreEqual("No line row with that id", e.what());
         }
     }
 

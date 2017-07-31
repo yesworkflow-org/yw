@@ -44,7 +44,7 @@ namespace yw {
             string sql = "SELECT id, name FROM file WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindInt64(1, requested_id);
-            if (statement.step() != SQLITE_ROW) throw std::runtime_error("No row with that id");
+            if (statement.step() != SQLITE_ROW) throw std::runtime_error("No file row with that id");
             auto id = statement.getNullableIdField(0);
             auto name = statement.getTextField(1);
 			return FileRow{ id, name };

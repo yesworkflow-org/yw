@@ -22,16 +22,8 @@ namespace yw {
 				AS		= 8
 			};
 
-			AnnotationRow(
-				yw::sqlite::nullable_row_id id, Tag tag, yw::sqlite::nullable_row_id qualifiesId, 
-				long lineId, long rankOnLine, long start, long end, const std::string& keyword, 
-				const yw::sqlite::nullable_string& value) 
-				:
-				id(id), tag(tag), qualifiesId(qualifiesId), lineId(lineId), rankOnLine(rankOnLine),
-				start(start), end(end), keyword(keyword), value(value) 
-			{};
-
 			const yw::sqlite::nullable_row_id id;
+			const yw::sqlite::row_id extractionId;
 			const Tag tag;
 			const yw::sqlite::nullable_row_id qualifiesId;
 			const yw::sqlite::row_id lineId;
@@ -41,9 +33,25 @@ namespace yw {
 			const std::string keyword;
 			const yw::sqlite::nullable_string value;
 
+			AnnotationRow(
+				const yw::sqlite::nullable_row_id& id, 
+				const yw::sqlite::row_id& extractionId,
+				Tag tag, 
+				const yw::sqlite::nullable_row_id& qualifiesId,
+				long lineId, 
+				long rankOnLine, 
+				long start, 
+				long end, 
+				const std::string& keyword, 
+				const yw::sqlite::nullable_string& value
+			) : id(id), extractionId(extractionId), tag(tag), qualifiesId(qualifiesId), lineId(lineId), 
+				rankOnLine(rankOnLine), start(start), end(end), keyword(keyword), value(value) 
+			{};
+
 			std::string elements() const override {
 				std::stringstream ss;
 				ss  << id.str()
+					<< "|" << extractionId
 					<< "|" << to_string(tag)
 					<< "|" << qualifiesId.str()
 					<< "|" << lineId

@@ -14,12 +14,9 @@ YW_TEST_FIXTURE(SourceLoader)
 
 	YW_TEST_SETUP(SourceLoader) {
 
-		long userId, modelId, languageId, sourceId;
+		long sourceId;
 
-		Expect::AreEqual(1, (userId = ywdb.insert(UserRow{ auto_id, "user1" })));
-		Expect::AreEqual(1, (modelId = ywdb.insert(ModelRow{ auto_id, userId, "2017-06-22 10:52:00.000" })));
-		Expect::AreEqual(1, (languageId = ywdb.insert(LanguageRow{ auto_id, "YW" })));
-		Expect::AreEqual(1, (sourceId = ywdb.insert(SourceRow{ auto_id, modelId, languageId, null_id })));
+		Expect::AreEqual(1, (sourceId = ywdb.insert(SourceRow{ auto_id, null_id, "C" })));
 
 		sourceLoader = std::make_shared<SourceLoader>(ywdb, sourceId);
 	}

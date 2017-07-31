@@ -22,15 +22,14 @@ YW_TEST_FIXTURE(OutlineExporter)
 
 	YW_TEST_SETUP(OutlineExporter) {
 
-		long userId, modelId, languageId, sourceId;
+		long userId, extractionId, sourceId;
 
 		Expect::AreEqual(1, (userId = ywdb.insert(UserRow{ auto_id, "user1" })));
-		Expect::AreEqual(1, (modelId = ywdb.insert(ModelRow{ auto_id, userId, "2017-06-22 10:52:00.000" })));
-		Expect::AreEqual(1, (languageId = ywdb.insert(LanguageRow{ auto_id, "C" })));
-		Expect::AreEqual(1, (sourceId = ywdb.insert(SourceRow{ auto_id, modelId, languageId, null_id })));
+		Expect::AreEqual(1, (extractionId = ywdb.insert(ExtractionRow{ auto_id, userId, "2017-06-22 10:52:00.000" })));
+		Expect::AreEqual(1, (sourceId = ywdb.insert(SourceRow{ auto_id, null_id, null_string })));
 
 		sourceLoader = std::make_shared<SourceLoader>(ywdb, sourceId);
-		listener = new AnnotationListener(ywdb, sourceId);
+		listener = new AnnotationListener(ywdb, extractionId, sourceId);
 		exporter = new OutlineExporter(ywdb);
 	}
 

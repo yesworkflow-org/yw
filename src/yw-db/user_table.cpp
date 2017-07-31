@@ -32,7 +32,7 @@ namespace yw {
             string sql = "SELECT id, name FROM user WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindId(1, requested_id);
-            if (statement.step() != SQLITE_ROW) throw std::runtime_error("No row with that id");
+            if (statement.step() != SQLITE_ROW) throw std::runtime_error("No user row with that id");
             auto id = statement.getNullableIdField(0);
             auto name = statement.getNullableTextField(1);
             return UserRow(id, name);

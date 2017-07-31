@@ -11,7 +11,8 @@ namespace yw {
             const yw::sqlite::nullable_row_id id;
             const std::string name;
 			
-			FileRow(yw::sqlite::nullable_row_id rowId, const std::string& name) :
+			FileRow(const yw::sqlite::nullable_row_id& rowId, 
+				    const std::string& name) :
                 id(rowId), name(name) {};
         };
     }

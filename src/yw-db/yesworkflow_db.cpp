@@ -16,9 +16,8 @@ namespace yw {
 
         void YesWorkflowDB::createAllTables() {
 			createUserTable();
-			createModelTable();
+			createExtractionTable();
 			createFileTable();
-			createLanguageTable();
 			createSourceTable();
 			createLineTable();
 			createAnnotationTable();

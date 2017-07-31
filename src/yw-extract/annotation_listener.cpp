@@ -9,9 +9,6 @@ using Tag = yw::db::AnnotationRow::Tag;
 namespace yw {
 	namespace extract {
 
-		AnnotationListener::AnnotationListener(YesWorkflowDB& ywdb, yw::sqlite::row_id sourceId) :
-			ywdb(ywdb), sourceId(sourceId) {}
-
 		struct AnnotationRange { long start; long end; };
 
 		auto AnnotationListener::getRangeInLine(antlr4::ParserRuleContext* context) {
@@ -44,7 +41,7 @@ namespace yw {
 		{
 			auto lineId = getLineId(alias);
 			auto rangeInLine = getRangeInLine(alias);
-			ywdb.insert(AnnotationRow{ auto_id, Tag::AS, currentPrimaryAnnotationId, lineId,
+			ywdb.insert(AnnotationRow{ auto_id, extractionId, Tag::AS, currentPrimaryAnnotationId, lineId,
 				currentRankOnLine++, rangeInLine.start, rangeInLine.end,
 				alias->AsKeyword()->getText(),
 				nullable_string(alias->dataName()->getText()) });
@@ -56,7 +53,7 @@ namespace yw {
 			auto rangeInLine = getRangeInLine(begin);
 			primaryAnnotationId.push(currentPrimaryAnnotationId);
 			currentPrimaryAnnotationId = ywdb.insert(
-				AnnotationRow{ auto_id, Tag::BEGIN, currentPrimaryAnnotationId, lineId,
+				AnnotationRow{ auto_id, extractionId, Tag::BEGIN, currentPrimaryAnnotationId, lineId,
 							   currentRankOnLine++, rangeInLine.start, rangeInLine.end,
 							   begin->BeginKeyword()->getText(),
 							   nullable_string(begin->blockName()->getText()) });
@@ -66,7 +63,7 @@ namespace yw {
 		{
 			auto lineId = getLineId(end);
 			auto rangeInLine = getRangeInLine(end);
-			ywdb.insert(AnnotationRow{ auto_id, Tag::END, currentPrimaryAnnotationId, lineId,
+			ywdb.insert(AnnotationRow{ auto_id, extractionId, Tag::END, currentPrimaryAnnotationId, lineId,
 									   currentRankOnLine++, rangeInLine.start, rangeInLine.end,
 									   end->EndKeyword()->getText(), 
 									   getNullableArgument(end->blockName()) });
@@ -78,7 +75,7 @@ namespace yw {
 		{
 			auto lineId = getLineId(desc);
 			auto rangeInLine = getRangeInLine(desc);
-			ywdb.insert(AnnotationRow{ auto_id, Tag::DESC, currentPrimaryAnnotationId, lineId,
+			ywdb.insert(AnnotationRow{ auto_id, extractionId, Tag::DESC, currentPrimaryAnnotationId, lineId,
 									   currentRankOnLine++, rangeInLine.start, rangeInLine.end,
 				                       desc->DescKeyword()->getText(),
 				                       nullable_string(desc->description()->getText()) });
@@ -106,7 +103,7 @@ namespace yw {
 			for (auto portName : port->portName()) {
 				auto keyword = port->inputKeyword() != NULL ? port->inputKeyword()->getText() : port->outputKeyword()->getText();
 				lastPortId = ywdb.insert(
-					AnnotationRow{ auto_id, tag, currentPrimaryAnnotationId, lineId,
+					AnnotationRow{ auto_id, extractionId, tag, currentPrimaryAnnotationId, lineId,
 								   currentRankOnLine++, rangeInLine.start, rangeInLine.end,
 						           keyword, nullable_string(portName->getText()) });
 			}

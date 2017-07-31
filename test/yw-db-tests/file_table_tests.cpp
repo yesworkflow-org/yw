@@ -44,7 +44,7 @@ YW_TEST_SET
             Assert::Fail();
         }
         catch (std::runtime_error& e) {
-            Assert::AreEqual("No row with that id", e.what());
+            Assert::AreEqual("No file row with that id", e.what());
         }
     }
 

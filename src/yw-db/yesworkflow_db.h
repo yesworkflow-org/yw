@@ -6,9 +6,8 @@
 #include "sqlite_db.h"
 #include "annotation_row.h"
 #include "file_row.h"
-#include "language_row.h"
 #include "line_row.h"
-#include "model_row.h"
+#include "extraction_row.h"
 #include "source_row.h"
 #include "user_row.h"
 
@@ -30,18 +29,14 @@ namespace yw {
 			long insert(const FileRow& file);
             FileRow selectFileById(long requested_id);
 
-			void createLanguageTable();
-			long insert(const LanguageRow& language);
-            LanguageRow selectLanguageById(long requested_id);
-
 			void createLineTable();
 			long insert(const LineRow& line);
 			LineRow selectLineById(long requested_id);
 			yw::sqlite::row_id selectLineIdBySourceAndLineNumber(yw::sqlite::row_id sourceId, long number);
 
-			void createModelTable();
-			long insert(const ModelRow& model);
-            ModelRow selectModelById(long requested_id);
+			void createExtractionTable();
+			long insert(const ExtractionRow& extraction);
+            ExtractionRow selectExtractionById(long requested_id);
 
 			void createSourceTable();
 			long insert(const SourceRow& source);

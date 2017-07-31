@@ -8,8 +8,9 @@ namespace yw {
 
 		class AnnotationListener : public YWBaseListener {
 
-			const yw::sqlite::row_id sourceId;
 			yw::db::YesWorkflowDB& ywdb;
+			const yw::sqlite::row_id extractionId;
+			const yw::sqlite::row_id sourceId;
 			yw::sqlite::nullable_row_id currentPrimaryAnnotationId;
 			std::stack<yw::sqlite::nullable_row_id> primaryAnnotationId;
 			long currentLineNumber = 0;
@@ -17,7 +18,12 @@ namespace yw {
 
 		public:
 
-			AnnotationListener(yw::db::YesWorkflowDB& ywdb, yw::sqlite::row_id sourceId);
+			AnnotationListener(
+				yw::db::YesWorkflowDB& ywdb,
+				const yw::sqlite::row_id& extractionId,
+				const yw::sqlite::row_id& sourceId
+			) : ywdb(ywdb), extractionId(extractionId), sourceId(sourceId) 
+			{}
 
 			void enterBegin(YWParser::BeginContext *context) override;
 			void enterEnd(YWParser::EndContext *context) override;
