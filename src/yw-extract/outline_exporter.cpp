@@ -7,59 +7,70 @@ using namespace yw::sqlite;
 namespace yw {
     namespace extract {
 
+        std::string spaces(size_t n) {
+            static std::string spaces{ " " };
+            while (spaces.length() < n) spaces += spaces;
+            return spaces.substr(0, n);
+        }
+
         std::string OutlineExporter::getOutline() {
 
-            std::stringstream outline;
+            std::stringstream multiRootOutline;
             auto rootAnnotations = ywdb.selectTopLevelAnnotations();
             bool first = true;
             for (auto root : rootAnnotations) {
                 if (!first) {
-                    outline << std::endl;
+                    multiRootOutline << std::endl;
                 }
                 else {
                     first = false;
                 }
-                outline << getOutline(root.id);
+                multiRootOutline << getOutline(root.id);
             }
 
-            return outline.str();
+            return multiRootOutline.str();
+        }
+
+        void OutlineExporter::printAnnotation(const AnnotationRow& annotation) {
+            outline << spaces(currentIndent) << annotation.keyword << " " << annotation.value.getValue() << std::endl;
         }
 
         std::string OutlineExporter::getOutline(const nullable_row_id& rootAnnotation) {
 
             using Tag = yw::db::AnnotationRow::Tag;
 
-            std::string indent{ "" };
-            std::stringstream outline;
-            AnnotationRow* parentBegin = nullptr;
-            bool lastLineWasBlank = false;
+            outline.str("");
+            currentIndent = 0;
+            bool firstBlock = true;
+            Tag lastAnnotationTag;
 
             auto annotations = ywdb.selectAnnotationTree(rootAnnotation);
 
             for (auto annotation : annotations) {
 
-                if (annotation.tag == Tag::BEGIN) {
-                    if (parentBegin != nullptr) {
-                        indent += "    ";
-                        if (!lastLineWasBlank) {
-                            outline << std::endl;
-                            lastLineWasBlank = true;
-                        }
+                switch (annotation.tag) {
+
+                case Tag::BEGIN:
+                    if (firstBlock) firstBlock = false; else outline << std::endl;
+                    if (annotation.qualifiesId.hasValue()) {
+                        currentIndent += blockIndentSize;
                     }
-                    parentBegin = &annotation;
+                    printAnnotation(annotation);
+                    break;
+
+                case Tag::END:
+                    if (lastAnnotationTag == Tag::END) outline << std::endl;
+                    printAnnotation(annotation);
+                    if (blockIndentSize > 0 && currentIndent >= blockIndentSize) {
+                        currentIndent -= blockIndentSize;
+                    }
+                    break;
+
+                default:
+                    printAnnotation(annotation);
                 }
 
-                outline << indent << annotation.keyword << " " << annotation.value.getValue() << std::endl;
-                lastLineWasBlank = false;
-
-                if (annotation.tag == Tag::END) {
-
-                    if (indent.length() >= 4) {
-                        outline << std::endl;
-                        indent = indent.substr(0, indent.length() - 4);
-                        lastLineWasBlank = true;
-                    }
-                }
+                lastAnnotationTag = annotation.tag;
             }
 
             return outline.str();
