@@ -1,6 +1,6 @@
 #pragma once
 
-#include "yesworkflow_db.h"
+#include "yw_db.h"
 
 #ifdef CPPUTEST
 #include "CppUTest/SimpleString.h"

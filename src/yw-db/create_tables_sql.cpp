@@ -1,4 +1,4 @@
-#include "yesworkflow_db.h"
+#include "yw_db.h"
 
 const std::string yw::db::YesWorkflowDB::create_tables_sql = R"(
 
