@@ -6,7 +6,7 @@
 namespace yw {
     namespace db {
 
-        struct UserRow {
+        struct UserRow : yw::sqlite::TableRow {
 
             const yw::sqlite::nullable_row_id id;
             const yw::sqlite::nullable_string name;

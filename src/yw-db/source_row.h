@@ -5,7 +5,7 @@
 namespace yw {
     namespace db {
 
-        struct SourceRow {
+        struct SourceRow : yw::sqlite::TableRow {
 
             const yw::sqlite::nullable_row_id id;
             const yw::sqlite::nullable_row_id fileId;

@@ -6,7 +6,7 @@
 namespace yw {
     namespace db {
 
-        struct FileRow {
+        struct FileRow : yw::sqlite::TableRow {
 
             const yw::sqlite::nullable_row_id id;
             const std::string name;
