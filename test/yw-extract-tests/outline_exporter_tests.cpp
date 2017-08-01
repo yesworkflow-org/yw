@@ -430,6 +430,45 @@ YW_TEST_SET
             , exporter.getOutline());
     }
 
+    YW_TEST(OutlineExporter, WhenEndAnnotationLacksArgumentItsArgumentInOutlineMatchesThatOfBegin)
+    {
+        this->storeAndParse(
+            "@begin b @end"
+        );
+        OutlineExporter exporter{ ywdb };
+
+        Assert::AreEqual(
+            "@begin b"  EOL
+            "@end b"    EOL
+            , exporter.getOutline());
+    }
+
+    YW_TEST(OutlineExporter, WhenNestedEndAnnotationsLackArgumentsTheirArgumentInOutlineMatchThosOfPairedBegins)
+    {
+        this->storeAndParse(
+            "@begin b"  EOL
+            "@begin c"  EOL
+            "@begin d"  EOL
+            "@end"      EOL
+            "@end"      EOL
+            "@end"      EOL
+        );
+        OutlineExporter exporter{ ywdb, 4 };
+
+        Assert::AreEqual(
+            "@begin b"            EOL
+            ""                    EOL
+            "    @begin c"        EOL
+            ""                    EOL
+            "        @begin d"    EOL
+            "        @end d"      EOL
+            ""                    EOL
+            "    @end c"          EOL
+            ""                    EOL
+            "@end b"              EOL
+            , exporter.getOutline());
+    }
+
     YW_TEST(OutlineExporter, PortsOnDoublyNestedBlockAreIndentedTwiceWhenIndentSizeNonzero)
     {
         this->storeAndParse(

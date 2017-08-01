@@ -4,6 +4,8 @@
 using namespace yw::db;
 using namespace yw::sqlite;
 
+using std::string;
+
 namespace yw {
     namespace extract {
 
@@ -31,21 +33,19 @@ namespace yw {
             return multiRootOutline.str();
         }
 
-        void OutlineExporter::append(const AnnotationRow& annotation) {
-            outline << annotation.keyword
-                    << " "
-                    << annotation.value.getValue();
+        void OutlineExporter::append(const string& keyword, const string& value) {
+            outline << keyword << " " << value;
         }
 
-        void OutlineExporter::appendOnNewLine(const AnnotationRow& annotation, const size_t extraIndent) {
+        void OutlineExporter::appendOnNewLine(const string& keyword, const string& value, const size_t extraIndent) {
             outline << std::endl 
-                    << spaces(nesting * blockIndentSize + extraIndent);
-            append(annotation);
+                    << spaces((blockStack.size() - 1) * blockIndentSize + extraIndent);
+            append(keyword, value);
         }
 
-        void OutlineExporter::appendOnSameLine(const AnnotationRow& annotation) {
+        void OutlineExporter::appendOnSameLine(const string& keyword, const string& value) {
             outline << " ";
-            append(annotation);
+            append(keyword, value);
         }
 
         std::string OutlineExporter::getOutline(const nullable_row_id& rootAnnotation) {
@@ -53,7 +53,7 @@ namespace yw {
             using Tag = yw::db::AnnotationRow::Tag;
 
             outline.str("");
-            nesting = 0;
+            while (!blockStack.empty()) blockStack.pop();
             bool firstBlock = true;
             Tag lastAnnotationTag;
 
@@ -64,13 +64,13 @@ namespace yw {
                 switch (annotation.tag) {
 
                 case Tag::BEGIN:
+                    blockStack.push(annotation);
                     if (firstBlock) {
-                        append(annotation);
+                        append(annotation.keyword, annotation.value.getValue());
                         firstBlock = false;
                     } else {
-                        if (annotation.qualifiesId.hasValue()) nesting++;
                         outline << std::endl;
-                        appendOnNewLine(annotation);
+                        appendOnNewLine(annotation.keyword, annotation.value.getValue());
                     }
                     break;
 
@@ -78,22 +78,25 @@ namespace yw {
                 case Tag::PARAM:
                 case Tag::OUT:
                 case Tag::RETURN:
-                    appendOnNewLine(annotation);
+                    appendOnNewLine(annotation.keyword, annotation.value.getValue());
                     break;
 
                 case Tag::AS:
                 case Tag::DESC:
                     if (qualifiersOnSameLine) {
-                        appendOnSameLine(annotation);
+                        appendOnSameLine(annotation.keyword, annotation.value.getValue());
                     } else {
-                        appendOnNewLine(annotation, qualifierIndentSize);
+                        appendOnNewLine(annotation.keyword, annotation.value.getValue(), qualifierIndentSize);
                     }
                     break;
 
                 case Tag::END:
                     if (lastAnnotationTag == Tag::END) outline << std::endl;
-                    appendOnNewLine(annotation);
-                    if (nesting > 0) nesting--;
+                    appendOnNewLine(
+                        annotation.keyword, 
+                        annotation.value.hasValue() ? annotation.value.getValue() : blockStack.top().value.getValue()
+                    );
+                    blockStack.pop();
                     break;
 
                 default:
