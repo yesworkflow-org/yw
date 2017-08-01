@@ -31,8 +31,20 @@ namespace yw {
             return multiRootOutline.str();
         }
 
-        void OutlineExporter::printAnnotation(const AnnotationRow& annotation) {
-            outline << spaces(currentIndent) << annotation.keyword << " " << annotation.value.getValue() << std::endl;
+        void OutlineExporter::append(const AnnotationRow& annotation) {
+            outline << annotation.keyword
+                    << " "
+                    << annotation.value.getValue();
+        }
+
+        void OutlineExporter::appendOnNewLine(const AnnotationRow& annotation) {
+            outline << std::endl << spaces(nesting * blockIndentSize);
+            append(annotation);
+        }
+
+        void OutlineExporter::appendOnSameLine(const AnnotationRow& annotation) {
+            outline << " ";
+            append(annotation);
         }
 
         std::string OutlineExporter::getOutline(const nullable_row_id& rootAnnotation) {
@@ -40,7 +52,7 @@ namespace yw {
             using Tag = yw::db::AnnotationRow::Tag;
 
             outline.str("");
-            currentIndent = 0;
+            nesting = 0;
             bool firstBlock = true;
             Tag lastAnnotationTag;
 
@@ -51,27 +63,31 @@ namespace yw {
                 switch (annotation.tag) {
 
                 case Tag::BEGIN:
-                    if (firstBlock) firstBlock = false; else outline << std::endl;
-                    if (annotation.qualifiesId.hasValue()) {
-                        currentIndent += blockIndentSize;
+                    if (firstBlock) {
+                        append(annotation);
+                        firstBlock = false;
                     }
-                    printAnnotation(annotation);
+                    else {
+                        if (annotation.qualifiesId.hasValue()) nesting++;
+                        outline << std::endl;
+                        appendOnNewLine(annotation);
+                    }
                     break;
 
                 case Tag::END:
                     if (lastAnnotationTag == Tag::END) outline << std::endl;
-                    printAnnotation(annotation);
-                    if (blockIndentSize > 0 && currentIndent >= blockIndentSize) {
-                        currentIndent -= blockIndentSize;
-                    }
+                    appendOnNewLine(annotation);
+                    if (nesting > 0) nesting--;
                     break;
 
                 default:
-                    printAnnotation(annotation);
+                    appendOnNewLine(annotation);
                 }
 
                 lastAnnotationTag = annotation.tag;
             }
+
+            outline << std::endl;
 
             return outline.str();
         }

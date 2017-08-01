@@ -111,6 +111,26 @@ YW_TEST_SET
             , exporter.getOutline(1));
     }
 
+    YW_TEST(OutlineExporter, NestedBlockIsNotIndentedOnceWhenIndentSizeIsZero)
+    {
+        this->storeAndParse(
+            "@begin b"  EOL
+            "@begin c"  EOL
+            "@end c"    EOL
+            "@end b"    EOL
+        );
+        OutlineExporter exporter{ ywdb };
+
+        Assert::AreEqual(
+            "@begin b"  EOL
+            ""          EOL
+            "@begin c"  EOL
+            "@end c"    EOL
+            ""          EOL
+            "@end b"    EOL
+            , exporter.getOutline(1));
+    }
+
     YW_TEST(OutlineExporter, NestedBlockIsIndentedOnceWhenIndentSizeNonzero)
     {
         this->storeAndParse(
@@ -128,6 +148,33 @@ YW_TEST_SET
             "    @end c"    EOL
             ""              EOL
             "@end b"        EOL
+            , exporter.getOutline(1));
+    }
+
+
+    YW_TEST(OutlineExporter, DoublyNestedBlockIsNotIndentedTwiceWhenIndentSizeIsZero)
+    {
+        this->storeAndParse(
+            "@begin b"  EOL
+            "@begin c"  EOL
+            "@begin d"  EOL
+            "@end d"    EOL
+            "@end c"    EOL
+            "@end b"    EOL
+        );
+        OutlineExporter exporter{ ywdb };
+
+        Assert::AreEqual(
+            "@begin b"  EOL
+            ""          EOL
+            "@begin c"  EOL
+            ""          EOL
+            "@begin d"  EOL
+            "@end d"    EOL
+            ""          EOL
+            "@end c"    EOL
+            ""          EOL
+            "@end b"    EOL
             , exporter.getOutline(1));
     }
 

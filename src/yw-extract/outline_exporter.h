@@ -8,11 +8,13 @@ namespace yw {
 
             yw::db::YesWorkflowDB& ywdb;
             size_t blockIndentSize;
-            size_t currentIndent;
+            size_t nesting = 0;
             std::stringstream outline;
 
-            void printAnnotation(const yw::db::AnnotationRow& annotation);
- 
+            void append(const yw::db::AnnotationRow& annotation);
+            void appendOnNewLine(const yw::db::AnnotationRow& annotation);
+            void appendOnSameLine(const yw::db::AnnotationRow& annotation);
+
         public:
 
             OutlineExporter(
