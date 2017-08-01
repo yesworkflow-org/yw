@@ -18,11 +18,15 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\yw-types\nullable.h" />
+    <ClInclude Include="..\..\src\yw-types\yw_types.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{9CD083F8-A23A-4F54-B5F0-5840A92FB619}</ProjectGuid>
+    <ProjectGuid>{7FF323B9-9432-48FA-8B1A-090062B6440B}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>sqlitedb</RootNamespace>
+    <RootNamespace>ywtypes</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -70,18 +74,7 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-3.19.3;$(IncludePath)</IncludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-3.19.3;$(IncludePath)</IncludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-3.19.3;$(IncludePath)</IncludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-3.19.3;$(IncludePath)</IncludePath>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>
@@ -89,8 +82,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -103,8 +94,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -119,8 +108,6 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -137,8 +124,6 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -146,46 +131,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <Text Include="ReadMe.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\src\sqlite-db\bindable_statement.cpp" />
-    <ClCompile Include="..\..\src\sqlite-db\create_statement.cpp" />
-    <ClCompile Include="..\..\src\sqlite-db\create_exception.cpp" />
-    <ClCompile Include="..\..\src\sqlite-db\insert_exception.cpp" />
-    <ClCompile Include="..\..\src\sqlite-db\insert_statement.cpp" />
-    <ClCompile Include="..\..\src\sqlite-db\preparation_exception.cpp" />
-    <ClCompile Include="..\..\src\sqlite-db\select_statement.cpp" />
-    <ClCompile Include="..\..\src\sqlite-db\sqlite_db.cpp" />
-    <ClCompile Include="..\..\src\sqlite-db\sqlite_exception.cpp" />
-    <ClCompile Include="..\..\src\sqlite-db\sqlite_log.cpp" />
-    <ClCompile Include="..\..\src\sqlite-db\statement.cpp" />
-    <ClCompile Include="..\..\src\sqlite-db\statement_exception.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\src\sqlite-db\bindable_statement.h" />
-    <ClInclude Include="..\..\src\sqlite-db\create_statement.h" />
-    <ClInclude Include="..\..\src\sqlite-db\create_exception.h" />
-    <ClInclude Include="..\..\src\sqlite-db\insert_exception.h" />
-    <ClInclude Include="..\..\src\sqlite-db\insert_statement.h" />
-    <ClInclude Include="..\..\src\sqlite-db\preparation_exception.h" />
-    <ClInclude Include="..\..\src\sqlite-db\select_statement.h" />
-    <ClInclude Include="..\..\src\sqlite-db\sqlite_db.h" />
-    <ClInclude Include="..\..\src\sqlite-db\sqlite_exception.h" />
-    <ClInclude Include="..\..\src\sqlite-db\sqlite_log.h" />
-    <ClInclude Include="..\..\src\sqlite-db\statement.h" />
-    <ClInclude Include="..\..\src\sqlite-db\statement_exception.h" />
-    <ClInclude Include="..\..\src\sqlite-db\table_row.h" />
-    <ClInclude Include="resource.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="sqlite-db.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="SQLiteDB.cd" />
-    <None Include="SQLiteException.cd" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

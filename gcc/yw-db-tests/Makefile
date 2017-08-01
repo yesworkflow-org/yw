@@ -13,6 +13,7 @@ SRC = $(wildcard $(YW_TEST_DIRS)/yw-db-tests/*.cpp) test_runner.c
 CPPFLAGS =  -std=c++14 -g3 -MMD -MP -D_THREAD_SAFE -DCPPUTEST -Wno-unused-parameter -Wno-unused-variable
 CPPFLAGS += -W -Wall -Wno-deprecated -pedantic -O3 -Wno-unused-but-set-variable
 CPPFLAGS += -I$(CPPUTEST_INCLUDE_DIR)
+CPPFLAGS += -I$(YW_SRC_DIRS)/yw-types
 CPPFLAGS += -I$(YW_SRC_DIRS)/sqlite-db
 CPPFLAGS += -I$(YW_SRC_DIRS)/yw-db
 CPPFLAGS += -I$(YW_TEST_DIRS)/yw-test

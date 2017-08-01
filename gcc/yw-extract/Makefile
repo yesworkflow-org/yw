@@ -6,6 +6,7 @@ YW_SRC_DIRS  = $(YW_REPO_ROOT)/src
 YW_EXTRACT_SRCS=$(wildcard $(YW_SRC_DIRS)/yw-extract/*.cpp)
 
 CPPFLAGS  = -I$(ANTLR4_RUNTIME_SRC) -Wno-attributes -DANTLR4CPP_STATIC
+CPPFLAGS += -I$(YW_SRC_DIRS)/yw-types
 CPPFLAGS += -I$(YW_SRC_DIRS)/sqlite-db
 CPPFLAGS += -I$(YW_SRC_DIRS)/yw-db
 CPPFLAGS += -I$(YW_SRC_DIRS)/yw-parse

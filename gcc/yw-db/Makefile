@@ -5,8 +5,8 @@ YW_DB_SRCS=$(wildcard ../../src/yw-db/*.cpp)
 YW_REPO_ROOT = ../..
 YW_SRC_DIRS  = $(YW_REPO_ROOT)/src
 
-CPPFLAGS = -I$(YW_SRC_DIRS)/sqlite-db
-
+CPPFLAGS  = -I$(YW_SRC_DIRS)/yw-types
+CPPFLAGS += -I$(YW_SRC_DIRS)/sqlite-db
 
 all: $(YW_DB_LIB)
 
