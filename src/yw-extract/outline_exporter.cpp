@@ -37,8 +37,9 @@ namespace yw {
                     << annotation.value.getValue();
         }
 
-        void OutlineExporter::appendOnNewLine(const AnnotationRow& annotation) {
-            outline << std::endl << spaces(nesting * blockIndentSize);
+        void OutlineExporter::appendOnNewLine(const AnnotationRow& annotation, const size_t extraIndent) {
+            outline << std::endl 
+                    << spaces(nesting * blockIndentSize + extraIndent);
             append(annotation);
         }
 
@@ -66,11 +67,26 @@ namespace yw {
                     if (firstBlock) {
                         append(annotation);
                         firstBlock = false;
-                    }
-                    else {
+                    } else {
                         if (annotation.qualifiesId.hasValue()) nesting++;
                         outline << std::endl;
                         appendOnNewLine(annotation);
+                    }
+                    break;
+
+                case Tag::IN:
+                case Tag::PARAM:
+                case Tag::OUT:
+                case Tag::RETURN:
+                    appendOnNewLine(annotation);
+                    break;
+
+                case Tag::AS:
+                case Tag::DESC:
+                    if (qualifiersOnSameLine) {
+                        appendOnSameLine(annotation);
+                    } else {
+                        appendOnNewLine(annotation, qualifierIndentSize);
                     }
                     break;
 
@@ -81,7 +97,7 @@ namespace yw {
                     break;
 
                 default:
-                    appendOnNewLine(annotation);
+                    throw std::runtime_error("unrecognized tag");
                 }
 
                 lastAnnotationTag = annotation.tag;

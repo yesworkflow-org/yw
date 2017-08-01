@@ -44,7 +44,7 @@ YW_TEST_SET
         Assert::AreEqual(
             "@begin b"  EOL
             "@end b"    EOL
-            , exporter.getOutline(1));
+            , exporter.getOutline());
     }
 
     YW_TEST(OutlineExporter, WhenBeginAndEndOnSameLineOutlineSpansTwoLines)
@@ -57,8 +57,216 @@ YW_TEST_SET
         Assert::AreEqual(
             "@begin b"  EOL
             "@end b"    EOL
+            , exporter.getOutline());
+    }
+
+    YW_TEST(OutlineExporter, DescriptionOfBeginFollowsOnSameLineByDefault)
+    {
+        this->storeAndParse(
+            "@begin b"              EOL
+            "@desc the only block"  EOL
+            "@end b"                EOL
+        );
+        OutlineExporter exporter{ ywdb };
+
+        Assert::AreEqual(
+            "@begin b @desc the only block"  EOL
+            "@end b"                         EOL
+            , exporter.getOutline());
+    }
+
+    YW_TEST(OutlineExporter, DescriptionNotIndentedOnLineFollowingBeginIfQualiferIndentSizeIsZero)
+    {
+        this->storeAndParse(
+            "@begin b @desc description of block @end b"
+        );
+        OutlineExporter exporter{ ywdb, 0, 0 };
+
+        Assert::AreEqual(
+            "@begin b"                      EOL
+            "@desc description of block"    EOL
+            "@end b"                        EOL
+            , exporter.getOutline());
+    }
+
+    YW_TEST(OutlineExporter, DescriptionIndentedOnLineFollowingBeginIfQualiferIndentSizeIsTwo)
+    {
+        this->storeAndParse(
+            "@begin b @desc description of block @end b"
+        );
+        OutlineExporter exporter{ ywdb, 0, 2 };
+
+        Assert::AreEqual(
+            "@begin b"                      EOL
+            "  @desc description of block"  EOL
+            "@end b"                        EOL
             , exporter.getOutline(1));
     }
+
+    YW_TEST(OutlineExporter, DescriptionOfPortFollowsOnSameLineByDefault)
+    {
+        this->storeAndParse(
+            "@begin b"              EOL
+            "@in p"                 EOL
+            "@desc the only port"   EOL
+            "@end b"                EOL
+        );
+        OutlineExporter exporter{ ywdb };
+
+        Assert::AreEqual(
+            "@begin b"                      EOL
+            "@in p @desc the only port"     EOL
+            "@end b"                        EOL
+            , exporter.getOutline());
+    }
+
+    YW_TEST(OutlineExporter, DescriptionOfPortFollowsUnindentedOnNextLineIfIndentSizeIsZero)
+    {
+        this->storeAndParse(
+            "@begin b"              EOL
+            "@in p"                 EOL
+            "@desc the only port"   EOL
+            "@end b"                EOL
+        );
+        OutlineExporter exporter{ ywdb, 0, 0 };
+
+        Assert::AreEqual(
+            "@begin b"              EOL
+            "@in p"                 EOL
+            "@desc the only port"   EOL
+            "@end b"                EOL
+            , exporter.getOutline());
+    }
+
+    YW_TEST(OutlineExporter, DescriptionOfPortFollowsIndentedOnNextLineIfIndentSizeIsTwo)
+    {
+        this->storeAndParse(
+            "@begin b"              EOL
+            "@in p"                 EOL
+            "@desc the only port"   EOL
+            "@end b"                EOL
+        );
+        OutlineExporter exporter{ ywdb, 0, 2 };
+
+        Assert::AreEqual(
+            "@begin b"                  EOL
+            "@in p"                     EOL
+            "  @desc the only port"     EOL
+            "@end b"                    EOL
+            , exporter.getOutline());
+    }
+
+    YW_TEST(OutlineExporter, AliasFollowsPortOnSameLineByDefault)
+    {
+        this->storeAndParse(
+            "@begin b"              EOL
+            "@in p"                 EOL
+            "@as name of data"      EOL
+            "@end b"                EOL
+        );
+        OutlineExporter exporter{ ywdb };
+
+        Assert::AreEqual(
+            "@begin b"                  EOL
+            "@in p @as name of data"    EOL
+            "@end b"                    EOL
+            , exporter.getOutline());
+    }
+
+    YW_TEST(OutlineExporter, AliasIsUnindentedOnNextLineIfIndentSizeIsZero)
+    {
+        this->storeAndParse(
+            "@begin b"              EOL
+            "@in p"                 EOL
+            "@as name of data"      EOL
+            "@end b"                EOL
+        );
+        OutlineExporter exporter{ ywdb, 0, 0 };
+
+        Assert::AreEqual(
+            "@begin b"          EOL
+            "@in p"             EOL
+            "@as name of data"  EOL
+            "@end b"            EOL
+            , exporter.getOutline());
+    }
+
+    YW_TEST(OutlineExporter, AliasIsIndentedOnNextLineIfIndentSizeIsTwo)
+    {
+        this->storeAndParse(
+            "@begin b"              EOL
+            "@in p"                 EOL
+            "@as name of data"      EOL
+            "@end b"                EOL
+        );
+        OutlineExporter exporter{ ywdb, 0, 2 };
+
+        Assert::AreEqual(
+            "@begin b"              EOL
+            "@in p"                 EOL
+            "  @as name of data"    EOL
+            "@end b"                EOL
+            , exporter.getOutline());
+    }
+
+    YW_TEST(OutlineExporter, AliasAndDescriptionFollowPortOnSameLineByDefault)
+    {
+        this->storeAndParse(
+            "@begin b"              EOL
+            "@in p"                 EOL
+            "@desc the only port"   EOL
+            "@as name of data"      EOL
+            "@end b"                EOL
+        );
+        OutlineExporter exporter{ ywdb };
+
+        Assert::AreEqual(
+            "@begin b"                                      EOL
+            "@in p @desc the only port @as name of data"    EOL
+            "@end b"                                        EOL
+            , exporter.getOutline());
+    }
+
+    YW_TEST(OutlineExporter, AliasAndDescriptionAreUnindentedOnFolloingLinesIfIndentSizeIsZero)
+    {
+        this->storeAndParse(
+            "@begin b"              EOL
+            "@in p"                 EOL
+            "@desc the only port"   EOL
+            "@as name of data"      EOL
+            "@end b"                EOL
+        );
+        OutlineExporter exporter{ ywdb, 0, 0 };
+
+        Assert::AreEqual(
+            "@begin b"              EOL
+            "@in p"                 EOL
+            "@desc the only port"   EOL
+            "@as name of data"      EOL
+            "@end b"                EOL
+            , exporter.getOutline());
+    }
+
+    YW_TEST(OutlineExporter, AliasAndDescriptionAreIndentedOnFolloingLinesIfIndentSizeIsTwo)
+    {
+        this->storeAndParse(
+            "@begin b"              EOL
+            "@in p"                 EOL
+            "@desc the only port"   EOL
+            "@as name of data"      EOL
+            "@end b"                EOL
+        );
+        OutlineExporter exporter{ ywdb, 0, 2 };
+
+        Assert::AreEqual(
+            "@begin b"              EOL
+            "@in p"                 EOL
+            "  @desc the only port" EOL
+            "  @as name of data"    EOL
+            "@end b"                EOL
+            , exporter.getOutline());
+    }
+
 
     YW_TEST(OutlineExporter, WhenBeginEndAndFourPortAnnotationsOnSameLineOutlineSpansSixLines)
     {
@@ -74,7 +282,7 @@ YW_TEST_SET
             "@out r"    EOL
             "@return s" EOL
             "@end b"    EOL
-            , exporter.getOutline(1));
+            , exporter.getOutline());
     }
 
     YW_TEST(OutlineExporter, WhenPortAnnotationHasThreeArgumentsOutlineHasThreePortAnnotations)
@@ -93,25 +301,10 @@ YW_TEST_SET
             "@out t"    EOL
             "@out u"    EOL
             "@end b"    EOL
-            , exporter.getOutline(1));
+            , exporter.getOutline());
     }
 
-    YW_TEST(OutlineExporter, DescriptionOfBeginFollowsOnNextLine)
-    {
-        this->storeAndParse(
-            "@begin b @desc the only block" EOL
-            "@end b"                        EOL
-        );
-        OutlineExporter exporter{ ywdb };
-
-        Assert::AreEqual(
-            "@begin b"              EOL
-            "@desc the only block"  EOL
-            "@end b"                EOL
-            , exporter.getOutline(1));
-    }
-
-    YW_TEST(OutlineExporter, NestedBlockIsNotIndentedOnceWhenIndentSizeIsZero)
+    YW_TEST(OutlineExporter, NestedBlockIsNotIndentedByDefault)
     {
         this->storeAndParse(
             "@begin b"  EOL
@@ -128,7 +321,7 @@ YW_TEST_SET
             "@end c"    EOL
             ""          EOL
             "@end b"    EOL
-            , exporter.getOutline(1));
+            , exporter.getOutline());
     }
 
     YW_TEST(OutlineExporter, NestedBlockIsIndentedOnceWhenIndentSizeNonzero)
@@ -148,11 +341,10 @@ YW_TEST_SET
             "    @end c"    EOL
             ""              EOL
             "@end b"        EOL
-            , exporter.getOutline(1));
+            , exporter.getOutline());
     }
 
-
-    YW_TEST(OutlineExporter, DoublyNestedBlockIsNotIndentedTwiceWhenIndentSizeIsZero)
+    YW_TEST(OutlineExporter, DoublyNestedBlockIsNotIndentedByDefault)
     {
         this->storeAndParse(
             "@begin b"  EOL
@@ -175,7 +367,41 @@ YW_TEST_SET
             "@end c"    EOL
             ""          EOL
             "@end b"    EOL
-            , exporter.getOutline(1));
+            , exporter.getOutline());
+    }
+
+    YW_TEST(OutlineExporter, PortsOnDoublyNestedBlockAreNotIndentedByDefault)
+    {
+        this->storeAndParse(
+            "@begin b"  EOL
+            "@in p q"   EOL
+            "@begin c"  EOL
+            "@in s"     EOL
+            "@begin d"  EOL
+            "@in t u"   EOL
+            "@end d"    EOL
+            "@end c"    EOL
+            "@end b"    EOL
+        );
+        OutlineExporter exporter{ ywdb };
+
+        Assert::AreEqual(
+            "@begin b"  EOL
+            "@in p"     EOL
+            "@in q"     EOL
+            ""          EOL
+            "@begin c"  EOL
+            "@in s"     EOL
+            ""          EOL
+            "@begin d"  EOL
+            "@in t"     EOL
+            "@in u"     EOL
+            "@end d"    EOL
+            ""          EOL
+            "@end c"    EOL
+            ""          EOL
+            "@end b"    EOL
+            , exporter.getOutline());
     }
 
     YW_TEST(OutlineExporter, DoublyNestedBlockIsIndentedTwiceWhenIndentSizeNonzero)
@@ -201,7 +427,41 @@ YW_TEST_SET
             "    @end c"          EOL
             ""                    EOL
             "@end b"              EOL
-            , exporter.getOutline(1));
+            , exporter.getOutline());
+    }
+
+    YW_TEST(OutlineExporter, PortsOnDoublyNestedBlockAreIndentedTwiceWhenIndentSizeNonzero)
+    {
+        this->storeAndParse(
+            "@begin b"  EOL
+            "@in p q"   EOL
+            "@begin c"  EOL
+            "@in s"     EOL
+            "@begin d"  EOL
+            "@in t u"   EOL
+            "@end d"    EOL
+            "@end c"    EOL
+            "@end b"    EOL
+        );
+        OutlineExporter exporter{ ywdb, 4 };
+
+        Assert::AreEqual(
+            "@begin b"          EOL
+            "@in p"             EOL
+            "@in q"             EOL
+            ""                  EOL
+            "    @begin c"      EOL
+            "    @in s"         EOL
+            ""                  EOL
+            "        @begin d"  EOL
+            "        @in t"     EOL
+            "        @in u"     EOL
+            "        @end d"    EOL
+            ""                  EOL
+            "    @end c"        EOL
+            ""                  EOL
+            "@end b"            EOL
+            , exporter.getOutline());
     }
 
     YW_TEST(OutlineExporter, SecondNestedBlockIsIndentedOnceWhenIndentSizeNonzero)
@@ -226,7 +486,7 @@ YW_TEST_SET
             "    @end d"    EOL
             ""              EOL
             "@end b"        EOL
-            , exporter.getOutline(1));
+            , exporter.getOutline());
     }
 
     YW_TEST(OutlineExporter, SecondTopLevelBlockIsNotIndented)
