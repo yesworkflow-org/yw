@@ -19,7 +19,7 @@ namespace yw {
             {}
 
             void execute();
-            long getGeneratedId();
+            row_id getGeneratedId();
         };
     }
 }

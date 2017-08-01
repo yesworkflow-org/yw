@@ -26,6 +26,5 @@ namespace yw {
         size_t YesWorkflowDB::getRowCount(const std::string& tableName) {
             return SQLiteDB::getRowCount(db, tableName);
         }
-
     }
 }

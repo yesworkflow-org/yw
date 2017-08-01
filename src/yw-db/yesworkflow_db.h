@@ -20,42 +20,39 @@ namespace yw {
             YesWorkflowDB(bool createTables = true);
 
             void createAnnotationTable();
-            long insert(const AnnotationRow& row);
-            AnnotationRow selectAnnotationById(long requested_id);
+            yw::sqlite::row_id insert(const AnnotationRow& row);
+            AnnotationRow selectAnnotationById(const yw::sqlite::row_id& requested_id);
             std::vector<AnnotationRow> selectTopLevelAnnotations();
-            std::vector<AnnotationRow> selectAnnotationTree(yw::sqlite::nullable_row_id rootAnnotationId);
+            std::vector<AnnotationRow> selectAnnotationTree(const yw::sqlite::nullable_row_id& rootAnnotationId);
 
             void createFileTable();
-            long insert(const FileRow& file);
-            FileRow selectFileById(long requested_id);
+            yw::sqlite::row_id insert(const FileRow& file);
+            FileRow selectFileById(const yw::sqlite::row_id& requested_id);
 
             void createLineTable();
-            long insert(const LineRow& line);
-            LineRow selectLineById(long requested_id);
-            yw::sqlite::row_id selectLineIdBySourceAndLineNumber(yw::sqlite::row_id sourceId, long number);
+            yw::sqlite::row_id insert(const LineRow& line);
+            LineRow selectLineById(const yw::sqlite::row_id& requested_id);
+            yw::sqlite::row_id selectLineIdBySourceAndLineNumber(const yw::sqlite::row_id& sourceId, long number);
 
             void createExtractionTable();
-            long insert(const ExtractionRow& extraction);
-            ExtractionRow selectExtractionById(long requested_id);
+            yw::sqlite::row_id insert(const ExtractionRow& extraction);
+            ExtractionRow selectExtractionById(const yw::sqlite::row_id& id);
 
             void createSourceTable();
-            long insert(const SourceRow& source);
-            SourceRow selectSourceById(long id);
-
-            void createAllTables();
+            yw::sqlite::row_id insert(const SourceRow& source);
+            SourceRow selectSourceById(const yw::sqlite::row_id& id);
 
             void createUserTable();
-            long insert(const UserRow& user);
-            UserRow selectUserById(long requested_id);
+            yw::sqlite::row_id insert(const UserRow& user);
+            UserRow selectUserById(const yw::sqlite::row_id& id);
 
+            void createAllTables();
             size_t getRowCount(const std::string& tableName);
 
         private:
 
             static const std::string create_tables_sql;
-
             std::shared_ptr<yw::sqlite::SQLiteDB> db;
-
         };
     }
 }

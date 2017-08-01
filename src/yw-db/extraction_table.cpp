@@ -20,17 +20,17 @@ namespace yw {
             )"));
         }
 
-        long YesWorkflowDB::insert(const ExtractionRow& model) {
+        row_id YesWorkflowDB::insert(const ExtractionRow& extraction) {
             string sql = "INSERT INTO extraction(id, user, created) VALUES (?,?,?);";
             InsertStatement statement(db, sql);
-            statement.bindNullableId(1, model.id);
-            statement.bindId(2, model.userId);
-            statement.bindText(3, model.created);
+            statement.bindNullableId(1, extraction.id);
+            statement.bindId(2, extraction.userId);
+            statement.bindText(3, extraction.created);
             statement.execute();
             return statement.getGeneratedId();
         }
 
-        ExtractionRow YesWorkflowDB::selectExtractionById(long requested_id) {
+        ExtractionRow YesWorkflowDB::selectExtractionById(const row_id& requested_id) {
             string sql = "SELECT id, user, created FROM extraction WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindId(1, requested_id);

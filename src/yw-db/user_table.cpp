@@ -28,7 +28,7 @@ namespace yw {
             return statement.getGeneratedId();
         }
 
-        UserRow YesWorkflowDB::selectUserById(long requested_id) {
+        UserRow YesWorkflowDB::selectUserById(const row_id& requested_id) {
             string sql = "SELECT id, name FROM user WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindId(1, requested_id);

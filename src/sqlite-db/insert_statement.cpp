@@ -14,7 +14,7 @@ namespace yw {
             }
         }
 
-        long InsertStatement::getGeneratedId() {
+        row_id InsertStatement::getGeneratedId() {
             return static_cast<long>(sqlite3_last_insert_rowid(db->getConnection()));
         }
     }

@@ -8,7 +8,7 @@ namespace yw {
 
         struct UserRow {
 
-            const yw::sqlite::nullable_row_id  id;
+            const yw::sqlite::nullable_row_id id;
             const yw::sqlite::nullable_string name;
 
             UserRow(

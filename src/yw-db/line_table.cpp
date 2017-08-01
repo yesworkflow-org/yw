@@ -21,7 +21,7 @@ namespace yw {
             )"));
         }
 
-        long YesWorkflowDB::insert(const LineRow& line) {
+        row_id YesWorkflowDB::insert(const LineRow& line) {
             string sql = "INSERT INTO line(id, source, number, text) VALUES (?,?,?,?);";
             InsertStatement statement(db, sql);
             statement.bindNullableId(1, line.id);
@@ -32,7 +32,7 @@ namespace yw {
             return statement.getGeneratedId();
         }
 
-        LineRow YesWorkflowDB::selectLineById(long requested_id) {
+        LineRow YesWorkflowDB::selectLineById(const row_id& requested_id) {
             string sql = "SELECT id, source, number, text FROM line WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindId(1, requested_id);
@@ -44,7 +44,7 @@ namespace yw {
             return LineRow(id, sourceId, number, text);
         }
 
-        row_id YesWorkflowDB::selectLineIdBySourceAndLineNumber(row_id sourceId, long number) {
+        row_id YesWorkflowDB::selectLineIdBySourceAndLineNumber(const row_id& sourceId, long number) {
             string sql = "SELECT id FROM line WHERE source = ? AND number=?";
             SelectStatement statement(db, sql);
             statement.bindId(1, sourceId);

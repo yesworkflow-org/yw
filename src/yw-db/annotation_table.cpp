@@ -42,7 +42,7 @@ namespace yw {
             return AnnotationRow(id, extraction, tag, qualifies, lineId, rankOnLine, start, end, keyword, value);
         }
 
-        long YesWorkflowDB::insert(const AnnotationRow& annotation) {
+        row_id YesWorkflowDB::insert(const AnnotationRow& annotation) {
             string sql = "INSERT INTO annotation(id, extraction, tag, qualifies, line, rank, start, end, keyword, value) VALUES (?,?,?,?,?,?,?,?,?,?);";
             InsertStatement statement(db, sql);
             statement.bindNullableId(1, annotation.id);
@@ -59,7 +59,7 @@ namespace yw {
             return statement.getGeneratedId();
         }
 
-        AnnotationRow YesWorkflowDB::selectAnnotationById(long requested_id) {
+        AnnotationRow YesWorkflowDB::selectAnnotationById(const row_id& requested_id) {
             string sql = "SELECT id, extraction, tag, qualifies, line, rank, start, end, keyword, value FROM annotation WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindId(1, requested_id);
@@ -82,7 +82,7 @@ namespace yw {
             return annotations;
         }
 
-        std::vector<AnnotationRow> YesWorkflowDB::selectAnnotationTree(nullable_row_id rootAnnotationId) {
+        std::vector<AnnotationRow> YesWorkflowDB::selectAnnotationTree(const nullable_row_id& rootAnnotationId) {
 
             auto sql = std::string(R"(
 
@@ -110,6 +110,5 @@ namespace yw {
 
             return annotations;
         }
-
     }
 }
