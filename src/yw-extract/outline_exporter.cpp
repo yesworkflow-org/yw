@@ -2,6 +2,7 @@
 #include <sstream>
 
 using namespace yw::db;
+using namespace yw::sqlite;
 
 namespace yw {
     namespace extract {
@@ -24,7 +25,7 @@ namespace yw {
             return outline.str();
         }
 
-        std::string OutlineExporter::getOutline(yw::sqlite::nullable_row_id rootAnnotation) {
+        std::string OutlineExporter::getOutline(const nullable_row_id& rootAnnotation) {
 
             using Tag = yw::db::AnnotationRow::Tag;
 

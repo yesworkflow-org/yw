@@ -14,7 +14,7 @@ YW_TEST_FIXTURE(OutlineExporter)
     OutlineExporter* exporter;
     StderrRecorder stderrRecorder;
 
-    void storeAndParse(std::string code) {
+    void storeAndParse(const std::string& code) {
         sourceLoader->loadFromString(code);
         YWParserBuilder parser_builder(code);
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(listener, parser_builder.parse()->script());

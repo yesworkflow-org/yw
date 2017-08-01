@@ -12,12 +12,10 @@ YW_TEST_FIXTURE(SourceLoader)
     std::shared_ptr<SourceLoader> sourceLoader;
     StderrRecorder stderrRecorder;
 
-    YW_TEST_SETUP(SourceLoader) {
-
+    YW_TEST_SETUP(SourceLoader) 
+    {
         long sourceId;
-
         Expect::AreEqual(1, (sourceId = ywdb.insert(SourceRow{ auto_id, null_id, "C" })));
-
         sourceLoader = std::make_shared<SourceLoader>(ywdb, sourceId);
     }
 

@@ -13,10 +13,13 @@ namespace yw {
 
         public:
 
-            SourceLoader(yw::db::YesWorkflowDB& ywdb, yw::sqlite::row_id sourceId) :
-                ywdb(ywdb), sourceId(sourceId) {}
+            SourceLoader(
+                yw::db::YesWorkflowDB& ywdb, 
+                yw::sqlite::row_id sourceId
+            ) : ywdb(ywdb), sourceId(sourceId) 
+            {}
 
-            void loadFromString(std::string sourceString);
+            void loadFromString(const std::string& sourceString);
         };
     }
 }

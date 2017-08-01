@@ -13,8 +13,7 @@ namespace yw {
             OutlineExporter(yw::db::YesWorkflowDB& ywdb) : ywdb(ywdb) {}
 
             std::string getOutline();
-            std::string getOutline(yw::sqlite::nullable_row_id rootAnnotation);
-
+            std::string getOutline(const yw::sqlite::nullable_row_id& rootAnnotation);
         };
     }
 }

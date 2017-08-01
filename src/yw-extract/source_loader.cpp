@@ -10,7 +10,7 @@ using std::string;
 namespace yw {
     namespace extract {
 
-        void SourceLoader::loadFromString(string sourceString) {
+        void SourceLoader::loadFromString(const string& sourceString) {
             istringstream sourceStream{ sourceString };
             string lineText;
             long lineNumber = 0;
