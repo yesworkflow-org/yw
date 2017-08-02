@@ -11,23 +11,24 @@ YW_TEST_FIXTURE(OutlineExporter)
     YesWorkflowDB ywdb;
     std::shared_ptr<SourceLoader> sourceLoader;
     AnnotationListener* listener;
+    row_id sourceId;
     StderrRecorder stderrRecorder;
 
     void storeAndParse(const std::string& code) {
-        sourceLoader->loadFromString(code);
+        sourceLoader->loadFromString(sourceId, code);
         YWParserBuilder parser_builder(code);
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(listener, parser_builder.parse()->script());
     }
 
     YW_TEST_SETUP(OutlineExporter) {
 
-        long userId, extractionId, sourceId;
+        row_id userId, extractionId;
 
         Expect::AreEqual(1, (userId = ywdb.insert(UserRow{ auto_id, "user1" })));
         Expect::AreEqual(1, (extractionId = ywdb.insert(ExtractionRow{ auto_id, userId, "2017-06-22 10:52:00.000" })));
         Expect::AreEqual(1, (sourceId = ywdb.insert(SourceRow{ auto_id, null_id, null_string })));
 
-        sourceLoader = std::make_shared<SourceLoader>(ywdb, sourceId);
+        sourceLoader = std::make_shared<SourceLoader>(ywdb);
         listener = new AnnotationListener(ywdb, extractionId, sourceId);
     }
 

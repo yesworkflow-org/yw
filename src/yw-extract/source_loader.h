@@ -9,17 +9,15 @@ namespace yw {
         class SourceLoader {
 
             yw::db::YesWorkflowDB& ywdb;
-            yw::sqlite::row_id sourceId;
 
         public:
 
-            SourceLoader(
-                yw::db::YesWorkflowDB& ywdb, 
-                yw::sqlite::row_id sourceId
-            ) : ywdb(ywdb), sourceId(sourceId) 
-            {}
+            SourceLoader(yw::db::YesWorkflowDB& ywdb) : ywdb(ywdb) {}
 
             void loadFromString(const std::string& sourceString);
+            void SourceLoader::loadFromString(const yw::sqlite::row_id& sourceId, const std::string& sourceString);
+            
+            std::string loadFromFile(const yw::sqlite::row_id& sourceId, const std::string& filePath);
         };
     }
 }
