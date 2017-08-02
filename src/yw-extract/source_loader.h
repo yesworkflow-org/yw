@@ -17,7 +17,7 @@ namespace yw {
             void loadFromString(const std::string& sourceString);
             void SourceLoader::loadFromString(const yw::sqlite::row_id& sourceId, const std::string& sourceString);
             
-            std::string loadFromFile(const yw::sqlite::row_id& sourceId, const std::string& filePath);
+            std::string insertSourceLinesFromFile(const yw::sqlite::row_id& sourceId, const std::string& filePath);
         };
     }
 }

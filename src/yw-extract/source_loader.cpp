@@ -24,12 +24,12 @@ namespace yw {
             }
         }
 
-        string SourceLoader::loadFromFile(const row_id& sourceId, const std::string& filePath) {
+        string SourceLoader::insertSourceLinesFromFile(const row_id& sourceId, const std::string& filePath) {
             std::stringstream sourceText;
             std::ifstream sourceFile;
             sourceFile.open(filePath);
             if (!sourceFile.is_open()) {
-                throw std::runtime_error("Cannot open source file: " + filePath);
+                throw std::runtime_error("Source loader cannot open source file " + filePath);
             }
             string lineText;
             long lineNumber = 0;

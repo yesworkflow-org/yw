@@ -143,11 +143,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\yw-extract\annotation_extractor.cpp" />
     <ClCompile Include="..\..\src\yw-extract\annotation_listener.cpp" />
     <ClCompile Include="..\..\src\yw-extract\outline_exporter.cpp" />
     <ClCompile Include="..\..\src\yw-extract\source_loader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\yw-extract\annotation_extractor.h" />
     <ClInclude Include="..\..\src\yw-extract\annotation_listener.h" />
     <ClInclude Include="..\..\src\yw-extract\outline_exporter.h" />
     <ClInclude Include="..\..\src\yw-extract\source_loader.h" />
