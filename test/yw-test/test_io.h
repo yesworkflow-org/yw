@@ -13,7 +13,7 @@ struct path_struct {
     std::string string() { return path; }
     path_struct append(std::string suffix) { path += suffix; return *this; }
 };
-inline path_struct temp_directory_path() { return path_struct{ "/tmp/" }; }
+inline path_struct temp_directory_path() { return path_struct{ std::string{getenv("TEMP")} +"/" }; }
 #endif
 
 inline std::string writeTempFile(std::string fileName, std::string sourceText) {
