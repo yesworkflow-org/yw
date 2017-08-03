@@ -13,7 +13,7 @@ namespace yw {
 
                 CREATE TABLE extraction(
                     id              INTEGER         NOT NULL        PRIMARY KEY,
-                    user            INTEGER         NOT NULL        REFERENCES user(id),
+                    user            INTEGER         NULL            REFERENCES user(id),
                     created         TEXT            NOT NULL
                 );
 
@@ -24,7 +24,7 @@ namespace yw {
             string sql = "INSERT INTO extraction(id, user, created) VALUES (?,?,?);";
             InsertStatement statement(db, sql);
             statement.bindNullableId(1, extraction.id);
-            statement.bindId(2, extraction.userId);
+            statement.bindNullableId(2, extraction.userId);
             statement.bindText(3, extraction.created);
             statement.execute();
             return statement.getGeneratedId();
@@ -36,7 +36,7 @@ namespace yw {
             statement.bindId(1, requested_id);
             if (statement.step() != SQLITE_ROW) throw std::runtime_error("No extraction row with that id");
             auto id = statement.getNullableIdField(0);
-            auto userId = statement.getInt64Field(1);
+            auto userId = statement.getNullableIdField(1);
             auto created = statement.getTextField(2);
             return ExtractionRow(id, userId, created);
         }

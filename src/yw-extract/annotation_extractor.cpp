@@ -15,11 +15,10 @@ namespace yw {
     namespace extract {
 
         void AnnotationExtractor::extractAnnotationsFromString(const row_id& sourceId, const string& sourceText) {
-            YWParserBuilder parser_builder(sourceText);
-            auto userId = ywdb.insert(UserRow{ auto_id, "user1" });
-            auto extractionId = ywdb.insert(ExtractionRow{ auto_id, userId, "2017-06-22 10:52:00.000" });
+            YWParserBuilder parser(sourceText);
+            auto extractionId = ywdb.insert(ExtractionRow{ auto_id, null_id, "" });
             AnnotationListener listener{ ywdb, extractionId, sourceId };
-            antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->script());
+            antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser.parse()->script());
         }
 
         void AnnotationExtractor::extractAnnotationsFromFile(const string& filePath) {

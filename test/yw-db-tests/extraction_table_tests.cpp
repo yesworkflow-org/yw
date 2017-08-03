@@ -43,7 +43,7 @@ YW_TEST_SET
 
         auto extraction = ywdb.selectExtractionById(2L);
         Assert::AreEqual(2, extraction.id.getValue());
-        Assert::AreEqual(101, extraction.userId);
+        Assert::AreEqual(101, extraction.userId.getValue());
         Assert::AreEqual(std::string("2017-06-22 10:52:01.000"), extraction.created);
     }
 
