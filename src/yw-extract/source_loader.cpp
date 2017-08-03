@@ -10,12 +10,7 @@ using std::string;
 namespace yw {
     namespace extract {
 
-         void SourceLoader::loadFromString(const string& sourceString) {
-            auto sourceId = ywdb.insert(SourceRow{ auto_id, null_id, null_string });
-            loadFromString(sourceId, sourceString);
-        }
-
-        void SourceLoader::loadFromString(const row_id& sourceId, const string& sourceString) {
+        void SourceLoader::insertSourceLinesFromString(const row_id& sourceId, const string& sourceString) {
             istringstream sourceStream{ sourceString };
             string lineText;
             long lineNumber = 0;
@@ -25,7 +20,7 @@ namespace yw {
         }
 
         string SourceLoader::insertSourceLinesFromFile(const row_id& sourceId, const std::string& filePath) {
-            std::stringstream sourceText;
+            std::ostringstream sourceText;
             std::ifstream sourceFile;
             sourceFile.open(filePath);
             if (!sourceFile.is_open()) {

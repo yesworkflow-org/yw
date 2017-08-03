@@ -24,7 +24,7 @@ namespace yw {
         void AnnotationExtractor::extractAnnotationsFromFile(const string& filePath) {
             auto fileId = ywdb.insert(FileRow{ auto_id, filePath });
             auto sourceId = ywdb.insert(SourceRow{ auto_id, fileId, null_string });
-            string sourceText = (SourceLoader{ ywdb }).insertSourceLinesFromFile(sourceId, filePath);
+            string sourceText = SourceLoader{ ywdb }.insertSourceLinesFromFile(sourceId, filePath);
             extractAnnotationsFromString(sourceId, sourceText);
         }
     }

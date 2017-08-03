@@ -164,6 +164,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\test\yw-extract-tests\annotation_extractor_tests.cpp" />
     <ClCompile Include="..\..\test\yw-extract-tests\annotation_listener_tests.cpp" />
     <ClCompile Include="..\..\test\yw-extract-tests\outline_exporter_tests.cpp" />
     <ClCompile Include="..\..\test\yw-extract-tests\source_loader_tests.cpp" />

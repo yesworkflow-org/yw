@@ -7,26 +7,26 @@
 using namespace yw::db;
 using namespace yw::sqlite;
 using namespace yw::extract;
-
+using std::cerr;
+using std::cout;
+using std::endl;
 
 int main(int argc, char** argv)
 {
     yw::db::YesWorkflowDB ywdb;
 
     if (argc != 2) {
-        std::cout << "Usage:  yw-extract <path-to-script>" << std::endl;
+        cout << "Usage:  yw-extract <path-to-script>" << endl;
         exit(0);
     }
 
-    AnnotationExtractor extractor{ ywdb };
     try {
-        extractor.extractAnnotationsFromFile(argv[1]);
+        AnnotationExtractor{ ywdb }.extractAnnotationsFromFile(argv[1]);
+        cout << OutlineExporter{ ywdb }.getOutline();
     }
     catch (std::runtime_error e) {
-        std::cerr << "ERROR: " << e.what() << std::endl;
+        cerr << "ERROR: " << e.what() << endl;
         exit(-1);
     }
-    OutlineExporter exporter{ ywdb };
-    std::cout << exporter.getOutline();
 }
 

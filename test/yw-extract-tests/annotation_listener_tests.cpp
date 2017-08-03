@@ -17,7 +17,7 @@ YW_TEST_FIXTURE(AnnotationListener)
     StderrRecorder stderrRecorder;
 
     void storeAndParse(const std::string& code) {
-        sourceLoader->loadFromString(sourceId, code);
+        sourceLoader->insertSourceLinesFromString(sourceId, code);
         YWParserBuilder parser_builder(code);
         antlr4::tree::ParseTreeWalker::DEFAULT.walk(listener, parser_builder.parse()->script());
     }

@@ -35,5 +35,8 @@
     <ClCompile Include="..\..\test\yw-extract-tests\outline_exporter_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\test\yw-extract-tests\annotation_extractor_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

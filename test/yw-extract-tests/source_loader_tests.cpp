@@ -23,14 +23,14 @@ YW_TEST_SET
 
     YW_TEST(SourceLoader, LoadingOneLineFromStringInsertsOneRowIntoLineTable)
     {
-        sourceLoader->loadFromString(sourceId, "@begin b");
+        sourceLoader->insertSourceLinesFromString(sourceId, "@begin b");
         Assert::AreEqual(1, ywdb.getRowCount("line"));
         Assert::AreEqual(LineRow{ 1, 1, 1, "@begin b" }, ywdb.selectLineById(1));
     }
 
     YW_TEST(SourceLoader, LoadingTwoLinesFromStringInsertsOneTwoRowsIntoLineTable)
     {
-        sourceLoader->loadFromString(
+        sourceLoader->insertSourceLinesFromString(
             sourceId,
             "@begin b"	EOL
             "@end b"	EOL);

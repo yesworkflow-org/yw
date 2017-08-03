@@ -14,9 +14,7 @@ namespace yw {
 
             SourceLoader(yw::db::YesWorkflowDB& ywdb) : ywdb(ywdb) {}
 
-            void loadFromString(const std::string& sourceString);
-            void SourceLoader::loadFromString(const yw::sqlite::row_id& sourceId, const std::string& sourceString);
-            
+            void insertSourceLinesFromString(const yw::sqlite::row_id& sourceId, const std::string& sourceString);            
             std::string insertSourceLinesFromFile(const yw::sqlite::row_id& sourceId, const std::string& filePath);
         };
     }
