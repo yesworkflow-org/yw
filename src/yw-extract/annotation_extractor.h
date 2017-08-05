@@ -14,8 +14,25 @@ namespace yw {
 
             AnnotationExtractor(yw::db::YesWorkflowDB& ywdb) : ywdb(ywdb) {}
 
-            void extractAnnotationsFromString(const yw::sqlite::row_id& sourceId, const std::string& sourceString);
-            void extractAnnotationsFromFile(const std::string& filePath);
+            void extractAnnotationsFromString(
+                const std::string& sourceText);
+            
+            void extractAnnotationsFromFile(
+                const std::string& filePath);
+
+            void extractAnnotationsFromFiles(
+                const std::vector<std::string>& filePath);
+
+        private:
+
+            void extractAnnotationsFromString(
+                const yw::sqlite::row_id& extractionId,
+                const yw::sqlite::row_id& sourceId,
+                const std::string& sourceString);
+
+            void extractAnnotationsFromFile(
+                const yw::sqlite::row_id& extractionId,
+                const std::string& filePath);
         };
     }
 }

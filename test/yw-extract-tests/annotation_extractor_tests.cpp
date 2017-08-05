@@ -18,6 +18,26 @@ YW_TEST_FIXTURE(AnnotationExtractor)
 
 YW_TEST_SET
 
+
+    YW_TEST(AnnotationExtractor, ExtractingOneSourceStringYieldsOneExtractionOneSourceAndZeroFiles)
+    {
+        extractor.extractAnnotationsFromString(
+            R"(
+                # @begin hello world @desc Exercise YW with a classic program.
+                # @out greeting @desc Greeting displayed to user.
+                print("Hello world!")
+                # @end hello world
+            )");
+
+        Expect::AreEqual("", stderrRecorder.str());
+        Expect::AreEqual(6, ywdb.getRowCount("line"));
+        Expect::AreEqual(5, ywdb.getRowCount("annotation"));
+
+        Assert::AreEqual(1, ywdb.getRowCount("extraction"));
+        Assert::AreEqual(1, ywdb.getRowCount("source"));
+        Assert::AreEqual(0, ywdb.getRowCount("file"));
+    }
+
     YW_TEST(AnnotationExtractor, ExtractingOneSourceFileYieldsOneExtractionOneSourceAndOneFile)
     {
         auto sourceFilePath = writeTempFile(
@@ -32,15 +52,107 @@ YW_TEST_SET
         extractor.extractAnnotationsFromFile(sourceFilePath);
         
         Expect::AreEqual("", stderrRecorder.str());
-        Expect::AreEqual(0, ywdb.getRowCount("user"));
         Expect::AreEqual(6, ywdb.getRowCount("line"));
         Expect::AreEqual(5, ywdb.getRowCount("annotation"));
         Expect::AreEqual(FileRow{ 1, "hello.py" }, ywdb.selectFileById(1));
-        Expect::AreEqual(ExtractionRow{ 1, null_id, "" }, ywdb.selectExtractionById(1));
 
         Assert::AreEqual(1, ywdb.getRowCount("extraction"));
         Assert::AreEqual(1, ywdb.getRowCount("source"));
         Assert::AreEqual(1, ywdb.getRowCount("file"));
+    }
+
+    YW_TEST(AnnotationExtractor, ExtractingTwoSourceStringsYieldsTwoExtractionsTwoSourcesAndZeroFiles)
+    {
+        extractor.extractAnnotationsFromString(
+            R"(
+                # @begin hello world @desc Exercise YW with a classic program.
+                # @out greeting @desc Greeting displayed to user.
+                print("Hello world!")
+                # @end hello world
+            )");
+
+        extractor.extractAnnotationsFromString(
+            R"(
+                # @begin hey world
+                # @out greeting
+                print("Hey world!")
+                # @end hello world
+            )");
+
+        Expect::AreEqual("", stderrRecorder.str());
+        Expect::AreEqual(12, ywdb.getRowCount("line"));
+        Expect::AreEqual(8, ywdb.getRowCount("annotation"));
+
+        Assert::AreEqual(2, ywdb.getRowCount("extraction"));
+        Assert::AreEqual(2, ywdb.getRowCount("source"));
+        Assert::AreEqual(0, ywdb.getRowCount("file"));
+    }
+
+
+    YW_TEST(AnnotationExtractor, ExtractingTwoSourceFilesSeparatelyYieldsTwoExtractionsTwoSourcesAndTwoFiles)
+    {
+        auto helloFilePath = writeTempFile(
+            "hello.py",
+            R"(
+                # @begin hello world @desc Exercise YW with a classic program.
+                # @out greeting @desc Greeting displayed to user.
+                print("Hello world!")
+                # @end hello world
+            )");
+
+        auto heyFilePath = writeTempFile(
+            "hey.py",
+            R"(
+                # @begin hey world
+                # @out greeting
+                print("Hey world!")
+                # @end hello world
+            )");
+
+        extractor.extractAnnotationsFromFile(helloFilePath);
+        extractor.extractAnnotationsFromFile(heyFilePath);
+
+        Expect::AreEqual("", stderrRecorder.str());
+        Expect::AreEqual(12, ywdb.getRowCount("line"));
+        Expect::AreEqual(8, ywdb.getRowCount("annotation"));
+        Expect::AreEqual(FileRow{ 1, "hello.py" }, ywdb.selectFileById(1));
+
+        Assert::AreEqual(2, ywdb.getRowCount("extraction"));
+        Assert::AreEqual(2, ywdb.getRowCount("source"));
+        Assert::AreEqual(2, ywdb.getRowCount("file"));
+    }
+
+    YW_TEST(AnnotationExtractor, ExtractingTwoSourceFilesTogetherYieldsOneExtractionTwoSourcesAndTwoFiles)
+    {
+        auto helloFilePath = writeTempFile(
+            "hello.py",
+            R"(
+                # @begin hello world @desc Exercise YW with a classic program.
+                # @out greeting @desc Greeting displayed to user.
+                print("Hello world!")
+                # @end hello world
+            )");
+
+        auto heyFilePath = writeTempFile(
+            "hey.py",
+            R"(
+                # @begin hey world
+                # @out greeting
+                print("Hey world!")
+                # @end hello world
+            )");
+
+        extractor.extractAnnotationsFromFiles(std::vector<string> {helloFilePath, heyFilePath});
+
+        Expect::AreEqual("", stderrRecorder.str());
+        Expect::AreEqual(12, ywdb.getRowCount("line"));
+        Expect::AreEqual(8, ywdb.getRowCount("annotation"));
+        Expect::AreEqual(FileRow{ 1, "hello.py" }, ywdb.selectFileById(1));
+        Expect::AreEqual(FileRow{ 2, "hey.py" }, ywdb.selectFileById(2));
+
+        Assert::AreEqual(1, ywdb.getRowCount("extraction"));
+        Assert::AreEqual(2, ywdb.getRowCount("source"));
+        Assert::AreEqual(2, ywdb.getRowCount("file"));
     }
 
 YW_TEST_END
