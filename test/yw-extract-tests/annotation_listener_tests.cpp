@@ -133,6 +133,48 @@ YW_TEST_SET
         Assert::AreEqual(AnnotationRow{ 2, extractionId, Tag::END, 1, 2, 2, 9, 14, "@end", "b" }, ywdb.selectAnnotationById(2));
     }
 
+    YW_TEST(AnnotationListener, WhenNonNameTextFollowsBeginOnSameLineTheTextIsIgnored)
+    {
+        this->storeAndParse(
+            "@begin b *"    EOL
+            "@end b"	    EOL
+        );
+        Expect::EmptyString(stderrRecorder.str());
+
+        Assert::AreEqual(2, ywdb.getRowCount("line"));
+        Assert::AreEqual(2, ywdb.getRowCount("annotation"));
+        Assert::AreEqual(AnnotationRow{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, ywdb.selectAnnotationById(1));
+        Assert::AreEqual(AnnotationRow{ 2, extractionId, Tag::END, 1, 2, 1, 0, 5, "@end", "b" }, ywdb.selectAnnotationById(2));
+    }
+
+    YW_TEST(AnnotationListener, WhenAnnotationsInCDelimitedCommentsDelimiterNotIncludedInArgument)
+    {
+        this->storeAndParse(
+            "/* @begin b */"    EOL
+            "/* @end b */"	    EOL
+        );
+        Expect::EmptyString(stderrRecorder.str());
+
+        Assert::AreEqual(2, ywdb.getRowCount("line"));
+        Assert::AreEqual(2, ywdb.getRowCount("annotation"));
+        Assert::AreEqual(AnnotationRow{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 3, 10, "@begin", "b" }, ywdb.selectAnnotationById(1));
+        Assert::AreEqual(AnnotationRow{ 2, extractionId, Tag::END, 1, 2, 1, 3, 8, "@end", "b" }, ywdb.selectAnnotationById(2));
+    }
+
+
+    YW_TEST(AnnotationListener, WhenAnotationsInDelimitedCommentsOnSameLineDelimitersNotIncludedInArgument)
+    {
+        this->storeAndParse(
+            "/* @begin b */ some code /* @end b */"
+        );
+        Expect::EmptyString(stderrRecorder.str());
+
+        Assert::AreEqual(1, ywdb.getRowCount("line"));
+        Assert::AreEqual(2, ywdb.getRowCount("annotation"));
+        Assert::AreEqual(AnnotationRow{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 3, 10, "@begin", "b" }, ywdb.selectAnnotationById(1));
+        Assert::AreEqual(AnnotationRow{ 2, extractionId, Tag::END, 1, 1, 2, 28, 33, "@end", "b" }, ywdb.selectAnnotationById(2));
+    }
+
     YW_TEST(AnnotationListener, WhenCodeFollowsBeginAndEndOnNextLineInsertTwoLinesAndTwoAnnotations)
     {
         this->storeAndParse(
