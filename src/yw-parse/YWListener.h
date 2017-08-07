@@ -82,11 +82,14 @@ public:
   virtual void enterDescription(YWParser::DescriptionContext *ctx) = 0;
   virtual void exitDescription(YWParser::DescriptionContext *ctx) = 0;
 
-  virtual void enterPhrase(YWParser::PhraseContext *ctx) = 0;
-  virtual void exitPhrase(YWParser::PhraseContext *ctx) = 0;
+  virtual void enterUnquotedPhrase(YWParser::UnquotedPhraseContext *ctx) = 0;
+  virtual void exitUnquotedPhrase(YWParser::UnquotedPhraseContext *ctx) = 0;
 
   virtual void enterPathTemplate(YWParser::PathTemplateContext *ctx) = 0;
   virtual void exitPathTemplate(YWParser::PathTemplateContext *ctx) = 0;
+
+  virtual void enterPhrase(YWParser::PhraseContext *ctx) = 0;
+  virtual void exitPhrase(YWParser::PhraseContext *ctx) = 0;
 
   virtual void enterNa(YWParser::NaContext *ctx) = 0;
   virtual void exitNa(YWParser::NaContext *ctx) = 0;

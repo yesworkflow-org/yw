@@ -84,11 +84,14 @@ public:
   virtual void enterDescription(YWParser::DescriptionContext * /*ctx*/) override { }
   virtual void exitDescription(YWParser::DescriptionContext * /*ctx*/) override { }
 
-  virtual void enterPhrase(YWParser::PhraseContext * /*ctx*/) override { }
-  virtual void exitPhrase(YWParser::PhraseContext * /*ctx*/) override { }
+  virtual void enterUnquotedPhrase(YWParser::UnquotedPhraseContext * /*ctx*/) override { }
+  virtual void exitUnquotedPhrase(YWParser::UnquotedPhraseContext * /*ctx*/) override { }
 
   virtual void enterPathTemplate(YWParser::PathTemplateContext * /*ctx*/) override { }
   virtual void exitPathTemplate(YWParser::PathTemplateContext * /*ctx*/) override { }
+
+  virtual void enterPhrase(YWParser::PhraseContext * /*ctx*/) override { }
+  virtual void exitPhrase(YWParser::PhraseContext * /*ctx*/) override { }
 
   virtual void enterNa(YWParser::NaContext * /*ctx*/) override { }
   virtual void exitNa(YWParser::NaContext * /*ctx*/) override { }

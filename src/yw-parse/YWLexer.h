@@ -15,8 +15,8 @@ public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, AsKeyword = 4, BeginKeyword = 5, CallKeyword = 6, 
     DescKeyword = 7, EndKeyword = 8, FileKeyword = 9, InKeyword = 10, OutKeyword = 11, 
-    ParamKeyword = 12, ReturnKeyword = 13, UriKeyword = 14, SPACE = 15, 
-    NEWLINE = 16, WORD = 17, OTHER = 18
+    ParamKeyword = 12, ReturnKeyword = 13, UriKeyword = 14, DQ = 15, SQ = 16, 
+    SPACE = 17, NEWLINE = 18, WORD = 19, OTHER = 20
   };
 
   YWLexer(antlr4::CharStream *input);

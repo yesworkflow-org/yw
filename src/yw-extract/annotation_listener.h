@@ -39,7 +39,6 @@ namespace yw {
         private:
 
             auto getLineId(antlr4::ParserRuleContext* context);
-            auto getNullableArgument(antlr4::ParserRuleContext* context);
             auto getRangeInLine(antlr4::ParserRuleContext* context);
         };
     }

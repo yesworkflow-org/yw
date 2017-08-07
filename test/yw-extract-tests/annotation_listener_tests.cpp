@@ -133,6 +133,45 @@ YW_TEST_SET
         Assert::AreEqual(AnnotationRow{ 2, extractionId, Tag::END, 1, 2, 2, 9, 14, "@end", "b" }, ywdb.selectAnnotationById(2));
     }
 
+    YW_TEST(AnnotationListener, WhenBlockNameIsInSingleQuotesTheyAreNotIncludedInName)
+    {
+        this->storeAndParse(
+            "@begin 'b'"    EOL
+            "@end b"	    EOL
+        );
+        Expect::EmptyString(stderrRecorder.str());
+
+        Assert::AreEqual(2, ywdb.getRowCount("line"));
+        Assert::AreEqual(2, ywdb.getRowCount("annotation"));
+        Assert::AreEqual(AnnotationRow{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 9, "@begin", "b" }, ywdb.selectAnnotationById(1));
+        Assert::AreEqual(AnnotationRow{ 2, extractionId, Tag::END, 1, 2, 1, 0, 5, "@end", "b" }, ywdb.selectAnnotationById(2));
+    }
+
+    YW_TEST(AnnotationListener, WhenTextFollowsBlockNameInSingleQuotesTextisNotIncludedInName)
+    {
+        this->storeAndParse(
+            "@begin 'b' some text"    EOL
+            "@end b"	    EOL
+        );
+        Expect::EmptyString(stderrRecorder.str());
+
+        Assert::AreEqual(2, ywdb.getRowCount("line"));
+        Assert::AreEqual(2, ywdb.getRowCount("annotation"));
+        Assert::AreEqual(AnnotationRow{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 9, "@begin", "b" }, ywdb.selectAnnotationById(1));
+        Assert::AreEqual(AnnotationRow{ 2, extractionId, Tag::END, 1, 2, 1, 0, 5, "@end", "b" }, ywdb.selectAnnotationById(2));
+    }
+
+    YW_TEST(AnnotationListener, WhenTextFollowsBlockNameInDoubleQuotesTextisNotIncludedInName)
+    {
+        this->storeAndParse(R"(@begin "b" some text @end b)");
+        Expect::EmptyString(stderrRecorder.str());
+
+        Assert::AreEqual(1, ywdb.getRowCount("line"));
+        Assert::AreEqual(2, ywdb.getRowCount("annotation"));
+        Assert::AreEqual(AnnotationRow{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 9, "@begin", "b" }, ywdb.selectAnnotationById(1));
+        Assert::AreEqual(AnnotationRow{ 2, extractionId, Tag::END, 1, 1, 2, 21, 26, "@end", "b" }, ywdb.selectAnnotationById(2));
+    }
+
     YW_TEST(AnnotationListener, WhenNonNameTextFollowsBeginOnSameLineTheTextIsIgnored)
     {
         this->storeAndParse(
@@ -173,6 +212,30 @@ YW_TEST_SET
         Assert::AreEqual(2, ywdb.getRowCount("annotation"));
         Assert::AreEqual(AnnotationRow{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 3, 10, "@begin", "b" }, ywdb.selectAnnotationById(1));
         Assert::AreEqual(AnnotationRow{ 2, extractionId, Tag::END, 1, 1, 2, 28, 33, "@end", "b" }, ywdb.selectAnnotationById(2));
+    }
+
+    YW_TEST(AnnotationListener, WhenTextBetweenBeginAndEndWithSingleQuotedArgumentsOnSameLineTextIsIgnored)
+    {
+        this->storeAndParse(
+            "/* @begin 'only block' some text  @end 'only block' */"
+        );
+        Expect::EmptyString(stderrRecorder.str());
+
+        Assert::AreEqual(1, ywdb.getRowCount("line"));
+        Assert::AreEqual(2, ywdb.getRowCount("annotation"));
+        Assert::AreEqual(AnnotationRow{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 3, 21, "@begin", "only block" }, ywdb.selectAnnotationById(1));
+        Assert::AreEqual(AnnotationRow{ 2, extractionId, Tag::END, 1, 1, 2, 34, 50, "@end", "only block" }, ywdb.selectAnnotationById(2));
+    }
+
+    YW_TEST(AnnotationListener, WhenTextBetweenBeginAndEndWithDoubleQuotedArgumentsOnSameLineTextIsIgnored)
+    {
+        this->storeAndParse(R"(/* @begin "only block" some text  @end "only block" */)");
+        Expect::EmptyString(stderrRecorder.str());
+
+        Assert::AreEqual(1, ywdb.getRowCount("line"));
+        Assert::AreEqual(2, ywdb.getRowCount("annotation"));
+        Assert::AreEqual(AnnotationRow{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 3, 21, "@begin", "only block" }, ywdb.selectAnnotationById(1));
+        Assert::AreEqual(AnnotationRow{ 2, extractionId, Tag::END, 1, 1, 2, 34, 50, "@end", "only block" }, ywdb.selectAnnotationById(2));
     }
 
     YW_TEST(AnnotationListener, WhenCodeFollowsBeginAndEndOnNextLineInsertTwoLinesAndTwoAnnotations)

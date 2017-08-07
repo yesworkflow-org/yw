@@ -15,8 +15,8 @@ public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, AsKeyword = 4, BeginKeyword = 5, CallKeyword = 6, 
     DescKeyword = 7, EndKeyword = 8, FileKeyword = 9, InKeyword = 10, OutKeyword = 11, 
-    ParamKeyword = 12, ReturnKeyword = 13, UriKeyword = 14, SPACE = 15, 
-    NEWLINE = 16, WORD = 17, OTHER = 18
+    ParamKeyword = 12, ReturnKeyword = 13, UriKeyword = 14, DQ = 15, SQ = 16, 
+    SPACE = 17, NEWLINE = 18, WORD = 19, OTHER = 20
   };
 
   enum {
@@ -24,8 +24,8 @@ public:
     RulePortAttribute = 5, RuleBegin = 6, RuleEnd = 7, RuleDesc = 8, RuleAlias = 9, 
     RuleCall = 10, RuleUri = 11, RuleFile = 12, RuleResource = 13, RuleInputKeyword = 14, 
     RuleOutputKeyword = 15, RuleBlockName = 16, RulePortName = 17, RuleDataName = 18, 
-    RuleUriTemplate = 19, RuleScheme = 20, RuleDescription = 21, RulePhrase = 22, 
-    RulePathTemplate = 23, RuleNa = 24
+    RuleUriTemplate = 19, RuleScheme = 20, RuleDescription = 21, RuleUnquotedPhrase = 22, 
+    RulePathTemplate = 23, RulePhrase = 24, RuleNa = 25
   };
 
   YWParser(antlr4::TokenStream *input);
@@ -60,8 +60,9 @@ public:
   class UriTemplateContext;
   class SchemeContext;
   class DescriptionContext;
-  class PhraseContext;
+  class UnquotedPhraseContext;
   class PathTemplateContext;
+  class PhraseContext;
   class NaContext; 
 
   class  ScriptContext : public antlr4::ParserRuleContext {
@@ -398,9 +399,9 @@ public:
 
   DescriptionContext* description();
 
-  class  PhraseContext : public antlr4::ParserRuleContext {
+  class  UnquotedPhraseContext : public antlr4::ParserRuleContext {
   public:
-    PhraseContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    UnquotedPhraseContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     std::vector<antlr4::tree::TerminalNode *> WORD();
     antlr4::tree::TerminalNode* WORD(size_t i);
@@ -412,7 +413,7 @@ public:
    
   };
 
-  PhraseContext* phrase();
+  UnquotedPhraseContext* unquotedPhrase();
 
   class  PathTemplateContext : public antlr4::ParserRuleContext {
   public:
@@ -427,6 +428,23 @@ public:
 
   PathTemplateContext* pathTemplate();
 
+  class  PhraseContext : public antlr4::ParserRuleContext {
+  public:
+    PhraseContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    UnquotedPhraseContext *unquotedPhrase();
+    std::vector<antlr4::tree::TerminalNode *> SQ();
+    antlr4::tree::TerminalNode* SQ(size_t i);
+    std::vector<antlr4::tree::TerminalNode *> DQ();
+    antlr4::tree::TerminalNode* DQ(size_t i);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  PhraseContext* phrase();
+
   class  NaContext : public antlr4::ParserRuleContext {
   public:
     NaContext(antlr4::ParserRuleContext *parent, size_t invokingState);
@@ -435,6 +453,10 @@ public:
     antlr4::tree::TerminalNode* SPACE(size_t i);
     std::vector<antlr4::tree::TerminalNode *> NEWLINE();
     antlr4::tree::TerminalNode* NEWLINE(size_t i);
+    std::vector<antlr4::tree::TerminalNode *> DQ();
+    antlr4::tree::TerminalNode* DQ(size_t i);
+    std::vector<antlr4::tree::TerminalNode *> SQ();
+    antlr4::tree::TerminalNode* SQ(size_t i);
     std::vector<antlr4::tree::TerminalNode *> WORD();
     antlr4::tree::TerminalNode* WORD(size_t i);
     std::vector<antlr4::tree::TerminalNode *> OTHER();

@@ -28,15 +28,6 @@ namespace yw {
             return ywdb.selectLineIdBySourceAndLineNumber(sourceId, lineNumber);
         }
 
-        auto AnnotationListener::getNullableArgument(antlr4::ParserRuleContext* context) {
-            if (context == NULL) {
-                return null_string;
-            }
-            else {
-                return nullable_string(context->getText());
-            }
-        }
-
         void AnnotationListener::enterAlias(YWParser::AliasContext *alias)
         {
             auto lineId = getLineId(alias);
@@ -56,17 +47,20 @@ namespace yw {
                 AnnotationRow{ auto_id, extractionId, Tag::BEGIN, currentPrimaryAnnotationId, lineId,
                                currentRankOnLine++, rangeInLine.start, rangeInLine.end,
                                begin->BeginKeyword()->getText(),
-                               nullable_string(begin->blockName()->getText()) });
+                               nullable_string(begin->blockName()->phrase()->unquotedPhrase()->getText()) });
         }
 
         void AnnotationListener::enterEnd(YWParser::EndContext *end)
         {
             auto lineId = getLineId(end);
             auto rangeInLine = getRangeInLine(end);
+
+            auto optionalBlockName = (end->blockName() != nullptr) ? 
+                nullable_string(end->blockName()->phrase()->unquotedPhrase()->getText()) : null_string;
+                
             ywdb.insert(AnnotationRow{ auto_id, extractionId, Tag::END, currentPrimaryAnnotationId, lineId,
                                        currentRankOnLine++, rangeInLine.start, rangeInLine.end,
-                                       end->EndKeyword()->getText(),
-                                       getNullableArgument(end->blockName()) });
+                                       end->EndKeyword()->getText(), optionalBlockName });
             currentPrimaryAnnotationId = primaryAnnotationId.top();
             primaryAnnotationId.pop();
         }

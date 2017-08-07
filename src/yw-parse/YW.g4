@@ -28,8 +28,10 @@ dataName        : phrase ;
 uriTemplate     : ((scheme) ':')? pathTemplate ;
 scheme          : 'file' | 'http' ; 
 description     : phrase;
-phrase          : WORD (SPACE+ WORD)* ;
+unquotedPhrase  : WORD (SPACE+ WORD)* ;
 pathTemplate    : WORD ;
+
+phrase			: unquotedPhrase | (SQ unquotedPhrase SQ) | (DQ unquotedPhrase DQ) ;
 
 // YW keywords
 AsKeyword       : '@as' ;
@@ -44,8 +46,10 @@ ParamKeyword    : '@param' ;
 ReturnKeyword   : '@return' ;
 UriKeyword      : '@uri' ;
 
-na				: (SPACE | NEWLINE | WORD | OTHER)+ ;
+na				: (SPACE | NEWLINE | DQ | SQ | WORD | OTHER)+ ;
 
+DQ				: '"' ;
+SQ				: '\'' ;
 SPACE           : [ \t] ;
 NEWLINE         : '\r'? '\n' ;
 WORD            : [a-zA-Z0-9\\_]+ ;
