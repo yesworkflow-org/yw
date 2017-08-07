@@ -35,7 +35,7 @@ namespace yw {
             ywdb.insert(AnnotationRow{ auto_id, extractionId, Tag::AS, currentPrimaryAnnotationId, lineId,
                 currentRankOnLine++, rangeInLine.start, rangeInLine.end,
                 alias->AsKeyword()->getText(),
-                nullable_string(alias->dataName()->getText()) });
+                nullable_string(alias->dataName()->phrase()->unquotedPhrase()->getText()) });
         }
 
         void AnnotationListener::enterBegin(YWParser::BeginContext *begin)

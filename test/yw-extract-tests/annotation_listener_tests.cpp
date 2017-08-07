@@ -757,6 +757,45 @@ YW_TEST_SET
         Assert::AreEqual(inAnnotation.id.getValue(), aliasAnnotation.qualifiesId.getValue());
     }
 
+    YW_TEST(AnnotationListener, WhenDataNameArgumentOfAliasTagIsSinglyQuotedTextFollowingDataNameIsIgnored)
+    {
+        this->storeAndParse(
+            "@begin b @in p @as 'name of data port receives' some extra text"
+        );
+        Expect::NonEmptyString(stderrRecorder.str());
+
+        auto beginAnnotation = ywdb.selectAnnotationById(1);
+        auto inAnnotation = ywdb.selectAnnotationById(2);
+        auto aliasAnnotation = ywdb.selectAnnotationById(3);
+        Expect::AreEqual(1, ywdb.getRowCount("line"));
+        Expect::AreEqual(3, ywdb.getRowCount("annotation"));
+        Expect::AreEqual(AnnotationRow{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+        Expect::AreEqual(AnnotationRow{ 2, extractionId, Tag::IN, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
+        Expect::AreEqual(AnnotationRow{ 3, extractionId, Tag::AS, 2, 1, 3, 15, 46, "@as", "name of data port receives" }, aliasAnnotation);
+        Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
+
+        Assert::AreEqual(inAnnotation.id.getValue(), aliasAnnotation.qualifiesId.getValue());
+    }
+
+    YW_TEST(AnnotationListener, WhenDataNameArgumentOfAliasTagIsDoublyQuotedTextFollowingDataNameIsIgnored)
+    {
+        this->storeAndParse(R"(@begin b @in p @as "name of data port receives" some extra text)");
+        Expect::NonEmptyString(stderrRecorder.str());
+
+        auto beginAnnotation = ywdb.selectAnnotationById(1);
+        auto inAnnotation = ywdb.selectAnnotationById(2);
+        auto aliasAnnotation = ywdb.selectAnnotationById(3);
+        Expect::AreEqual(1, ywdb.getRowCount("line"));
+        Expect::AreEqual(3, ywdb.getRowCount("annotation"));
+        Expect::AreEqual(AnnotationRow{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+        Expect::AreEqual(AnnotationRow{ 2, extractionId, Tag::IN, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
+        Expect::AreEqual(AnnotationRow{ 3, extractionId, Tag::AS, 2, 1, 3, 15, 46, "@as", "name of data port receives" }, aliasAnnotation);
+        Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
+
+        Assert::AreEqual(inAnnotation.id.getValue(), aliasAnnotation.qualifiesId.getValue());
+    }
+
+
     YW_TEST(AnnotationListener, WhenParamFollowsInAliasFollowingParamHasQualifyingIdOfParam)
     {
         this->storeAndParse(
