@@ -72,7 +72,7 @@ namespace yw {
             ywdb.insert(AnnotationRow{ auto_id, extractionId, Tag::DESC, currentPrimaryAnnotationId, lineId,
                                        currentRankOnLine++, rangeInLine.start, rangeInLine.end,
                                        desc->DescKeyword()->getText(),
-                                       nullable_string(desc->description()->getText()) });
+                                       nullable_string(desc->description()->phrase()->unquotedPhrase()->getText()) });
         }
 
         AnnotationRow::Tag getPortTag(YWParser::PortContext *port)

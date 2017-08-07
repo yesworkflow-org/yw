@@ -623,6 +623,49 @@ YW_TEST_SET
         Assert::AreEqual(inAnnotation.id.getValue(), descAnnotation.qualifiesId.getValue());
     }
 
+
+    YW_TEST(AnnotationListener, WhenDescTextIsSinglyQuotedTextFollowingDescriptionIsIgnored)
+    {
+        this->storeAndParse(
+            "@begin b @in p @desc 'description of port' some extra text @end b"
+        );
+        Expect::EmptyString(stderrRecorder.str());
+
+        auto beginAnnotation = ywdb.selectAnnotationById(1);
+        auto inAnnotation = ywdb.selectAnnotationById(2);
+        auto descAnnotation = ywdb.selectAnnotationById(3);
+        auto endAnnotation = ywdb.selectAnnotationById(4);
+        Expect::AreEqual(1, ywdb.getRowCount("line"));
+        Expect::AreEqual(4, ywdb.getRowCount("annotation"));
+        Expect::AreEqual(AnnotationRow{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+        Expect::AreEqual(AnnotationRow{ 2, extractionId, Tag::IN, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
+        Expect::AreEqual(AnnotationRow{ 4, extractionId, Tag::END, 1, 1, 4, 59, 64, "@end", "b" }, endAnnotation);
+        Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
+        Expect::AreEqual(inAnnotation.id.getValue(), descAnnotation.qualifiesId.getValue());
+
+        Assert::AreEqual(AnnotationRow{ 3, extractionId, Tag::DESC, 2, 1, 3, 15, 41, "@desc", "description of port" }, descAnnotation);
+    }
+
+    YW_TEST(AnnotationListener, WhenDescTextIsDoublyQuotedTextFollowingDescriptionIsIgnored)
+    {
+        this->storeAndParse(R"(@begin b @in p @desc "description of port" some extra text @end b)");
+        Expect::EmptyString(stderrRecorder.str());
+
+        auto beginAnnotation = ywdb.selectAnnotationById(1);
+        auto inAnnotation = ywdb.selectAnnotationById(2);
+        auto descAnnotation = ywdb.selectAnnotationById(3);
+        auto endAnnotation = ywdb.selectAnnotationById(4);
+        Expect::AreEqual(1, ywdb.getRowCount("line"));
+        Expect::AreEqual(4, ywdb.getRowCount("annotation"));
+        Expect::AreEqual(AnnotationRow{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
+        Expect::AreEqual(AnnotationRow{ 2, extractionId, Tag::IN, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
+        Expect::AreEqual(AnnotationRow{ 4, extractionId, Tag::END, 1, 1, 4, 59, 64, "@end", "b" }, endAnnotation);
+        Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
+        Expect::AreEqual(inAnnotation.id.getValue(), descAnnotation.qualifiesId.getValue());
+
+        Assert::AreEqual(AnnotationRow{ 3, extractionId, Tag::DESC, 2, 1, 3, 15, 41, "@desc", "description of port" }, descAnnotation);
+    }
+
     YW_TEST(AnnotationListener, WhenCodeBetweenPortNameAndDescAnnotationsDescQualifestInAnnotation)
     {
         this->storeAndParse(
