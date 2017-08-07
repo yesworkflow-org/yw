@@ -99,7 +99,7 @@ namespace yw {
                 lastPortId = ywdb.insert(
                     AnnotationRow{ auto_id, extractionId, tag, currentPrimaryAnnotationId, lineId,
                                    currentRankOnLine++, rangeInLine.start, rangeInLine.end,
-                                   keyword, nullable_string(portName->getText()) });
+                                   keyword, nullable_string(portName->word()->unquotedWord()->getText()) });
             }
             primaryAnnotationId.push(currentPrimaryAnnotationId);
             currentPrimaryAnnotationId = lastPortId;

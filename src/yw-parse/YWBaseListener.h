@@ -75,23 +75,29 @@ public:
   virtual void enterDataName(YWParser::DataNameContext * /*ctx*/) override { }
   virtual void exitDataName(YWParser::DataNameContext * /*ctx*/) override { }
 
+  virtual void enterDescription(YWParser::DescriptionContext * /*ctx*/) override { }
+  virtual void exitDescription(YWParser::DescriptionContext * /*ctx*/) override { }
+
+  virtual void enterPathTemplate(YWParser::PathTemplateContext * /*ctx*/) override { }
+  virtual void exitPathTemplate(YWParser::PathTemplateContext * /*ctx*/) override { }
+
   virtual void enterUriTemplate(YWParser::UriTemplateContext * /*ctx*/) override { }
   virtual void exitUriTemplate(YWParser::UriTemplateContext * /*ctx*/) override { }
 
   virtual void enterScheme(YWParser::SchemeContext * /*ctx*/) override { }
   virtual void exitScheme(YWParser::SchemeContext * /*ctx*/) override { }
 
-  virtual void enterDescription(YWParser::DescriptionContext * /*ctx*/) override { }
-  virtual void exitDescription(YWParser::DescriptionContext * /*ctx*/) override { }
+  virtual void enterPhrase(YWParser::PhraseContext * /*ctx*/) override { }
+  virtual void exitPhrase(YWParser::PhraseContext * /*ctx*/) override { }
 
   virtual void enterUnquotedPhrase(YWParser::UnquotedPhraseContext * /*ctx*/) override { }
   virtual void exitUnquotedPhrase(YWParser::UnquotedPhraseContext * /*ctx*/) override { }
 
-  virtual void enterPathTemplate(YWParser::PathTemplateContext * /*ctx*/) override { }
-  virtual void exitPathTemplate(YWParser::PathTemplateContext * /*ctx*/) override { }
+  virtual void enterWord(YWParser::WordContext * /*ctx*/) override { }
+  virtual void exitWord(YWParser::WordContext * /*ctx*/) override { }
 
-  virtual void enterPhrase(YWParser::PhraseContext * /*ctx*/) override { }
-  virtual void exitPhrase(YWParser::PhraseContext * /*ctx*/) override { }
+  virtual void enterUnquotedWord(YWParser::UnquotedWordContext * /*ctx*/) override { }
+  virtual void exitUnquotedWord(YWParser::UnquotedWordContext * /*ctx*/) override { }
 
   virtual void enterNa(YWParser::NaContext * /*ctx*/) override { }
   virtual void exitNa(YWParser::NaContext * /*ctx*/) override { }

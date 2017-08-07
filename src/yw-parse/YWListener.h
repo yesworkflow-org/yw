@@ -73,23 +73,29 @@ public:
   virtual void enterDataName(YWParser::DataNameContext *ctx) = 0;
   virtual void exitDataName(YWParser::DataNameContext *ctx) = 0;
 
+  virtual void enterDescription(YWParser::DescriptionContext *ctx) = 0;
+  virtual void exitDescription(YWParser::DescriptionContext *ctx) = 0;
+
+  virtual void enterPathTemplate(YWParser::PathTemplateContext *ctx) = 0;
+  virtual void exitPathTemplate(YWParser::PathTemplateContext *ctx) = 0;
+
   virtual void enterUriTemplate(YWParser::UriTemplateContext *ctx) = 0;
   virtual void exitUriTemplate(YWParser::UriTemplateContext *ctx) = 0;
 
   virtual void enterScheme(YWParser::SchemeContext *ctx) = 0;
   virtual void exitScheme(YWParser::SchemeContext *ctx) = 0;
 
-  virtual void enterDescription(YWParser::DescriptionContext *ctx) = 0;
-  virtual void exitDescription(YWParser::DescriptionContext *ctx) = 0;
+  virtual void enterPhrase(YWParser::PhraseContext *ctx) = 0;
+  virtual void exitPhrase(YWParser::PhraseContext *ctx) = 0;
 
   virtual void enterUnquotedPhrase(YWParser::UnquotedPhraseContext *ctx) = 0;
   virtual void exitUnquotedPhrase(YWParser::UnquotedPhraseContext *ctx) = 0;
 
-  virtual void enterPathTemplate(YWParser::PathTemplateContext *ctx) = 0;
-  virtual void exitPathTemplate(YWParser::PathTemplateContext *ctx) = 0;
+  virtual void enterWord(YWParser::WordContext *ctx) = 0;
+  virtual void exitWord(YWParser::WordContext *ctx) = 0;
 
-  virtual void enterPhrase(YWParser::PhraseContext *ctx) = 0;
-  virtual void exitPhrase(YWParser::PhraseContext *ctx) = 0;
+  virtual void enterUnquotedWord(YWParser::UnquotedWordContext *ctx) = 0;
+  virtual void exitUnquotedWord(YWParser::UnquotedWordContext *ctx) = 0;
 
   virtual void enterNa(YWParser::NaContext *ctx) = 0;
   virtual void exitNa(YWParser::NaContext *ctx) = 0;

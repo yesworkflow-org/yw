@@ -23,15 +23,19 @@ outputKeyword   : OutKeyword | ReturnKeyword ;
 
 // YW keyword arguments
 blockName       : phrase ;
-portName        : WORD ;
+portName        : word ;
 dataName        : phrase ;
+description     : phrase;
+pathTemplate    : word ;
+
 uriTemplate     : ((scheme) ':')? pathTemplate ;
 scheme          : 'file' | 'http' ; 
-description     : phrase;
-unquotedPhrase  : WORD (SPACE+ WORD)* ;
-pathTemplate    : WORD ;
 
 phrase			: unquotedPhrase | (SQ unquotedPhrase SQ) | (DQ unquotedPhrase DQ) ;
+unquotedPhrase  : WORD (SPACE+ WORD)* ;
+
+word			: unquotedWord | (SQ unquotedWord SQ) | (DQ unquotedWord DQ) ;
+unquotedWord	: WORD ;
 
 // YW keywords
 AsKeyword       : '@as' ;
