@@ -1,5 +1,6 @@
 obj
 .vs
+Release
 Debug
 x64
 .vscode

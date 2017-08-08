@@ -15,6 +15,61 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <ClInclude Include="$(GRAPHVIZ_LIB_SRC)\cdt\cdt.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="$(GRAPHVIZ_LIB_SRC)\cdt\dthdr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtclose.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtdisc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtextract.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtflatten.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dthash.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtlist.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtmethod.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtopen.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtrenew.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtrestore.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtsize.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtstat.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtstrhash.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dttree.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtview.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtwalk.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

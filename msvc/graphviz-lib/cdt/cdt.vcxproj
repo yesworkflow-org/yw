@@ -71,7 +71,17 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <SourcePath>$(GRAPHVIZ_LIB_SRC)\cdt;$(VC_SourcePath);</SourcePath>
+    <SourcePath>$(VC_SourcePath)</SourcePath>
+    <IncludePath>$(GRAPHVIZ_LIB_SRC)\cdt;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(GRAPHVIZ_LIB_SRC)\cdt;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <IncludePath>$(GRAPHVIZ_LIB_SRC)\cdt;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>$(GRAPHVIZ_LIB_SRC)\cdt;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -79,7 +89,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>EXPORT_CDT;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -91,7 +101,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>EXPORT_CDT;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -105,7 +115,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>EXPORT_CDT;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -121,7 +131,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>EXPORT_CDT;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -130,7 +140,26 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Text Include="ReadMe.txt" />
+    <ClInclude Include="$(GRAPHVIZ_LIB_SRC)\cdt\cdt.h" />
+    <ClInclude Include="$(GRAPHVIZ_LIB_SRC)\cdt\dthdr.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtclose.c" />
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtdisc.c" />
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtextract.c" />
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtflatten.c" />
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dthash.c" />
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtlist.c" />
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtmethod.c" />
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtopen.c" />
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtrenew.c" />
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtrestore.c" />
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtsize.c" />
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtstat.c" />
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtstrhash.c" />
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dttree.c" />
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtview.c" />
+    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cdt\dtwalk.c" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
