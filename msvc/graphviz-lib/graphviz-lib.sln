@@ -17,6 +17,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pathplan", "pathplan\pathpl
 		{5ABE8699-038C-4134-B704-EE11D67292B0} = {5ABE8699-038C-4134-B704-EE11D67292B0}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xdot", "xdot\xdot.vcxproj", "{323FFDE4-45CC-4732-9D9E-47101F724426}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1BB58279-E53B-4BCA-8007-5A77854E6EE8} = {1BB58279-E53B-4BCA-8007-5A77854E6EE8}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -57,6 +62,14 @@ Global
 		{3A365D0B-78D0-4659-A276-D1423B378E2E}.Release|x64.Build.0 = Release|x64
 		{3A365D0B-78D0-4659-A276-D1423B378E2E}.Release|x86.ActiveCfg = Release|Win32
 		{3A365D0B-78D0-4659-A276-D1423B378E2E}.Release|x86.Build.0 = Release|Win32
+		{323FFDE4-45CC-4732-9D9E-47101F724426}.Debug|x64.ActiveCfg = Debug|x64
+		{323FFDE4-45CC-4732-9D9E-47101F724426}.Debug|x64.Build.0 = Debug|x64
+		{323FFDE4-45CC-4732-9D9E-47101F724426}.Debug|x86.ActiveCfg = Debug|Win32
+		{323FFDE4-45CC-4732-9D9E-47101F724426}.Debug|x86.Build.0 = Debug|Win32
+		{323FFDE4-45CC-4732-9D9E-47101F724426}.Release|x64.ActiveCfg = Release|x64
+		{323FFDE4-45CC-4732-9D9E-47101F724426}.Release|x64.Build.0 = Release|x64
+		{323FFDE4-45CC-4732-9D9E-47101F724426}.Release|x86.ActiveCfg = Release|Win32
+		{323FFDE4-45CC-4732-9D9E-47101F724426}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
