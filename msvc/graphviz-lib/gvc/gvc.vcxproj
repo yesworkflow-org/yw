@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\args.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\arrows.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\colxlate.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\ellipse.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\emit.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\geom.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\globals.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\htmllex.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\htmlparse.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\htmltable.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\input.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\intset.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\labels.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\memory.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\ns.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\output.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\pointset.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\postproc.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\psusershape.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\routespl.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\shapes.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\splines.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\taper.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\textspan.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\timing.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\common\utils.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\gvc\gvc.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\gvc\gvconfig.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\gvc\gvcontext.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\gvc\gvdevice.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\gvc\gvevent.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\gvc\gvjobs.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\gvc\gvlayout.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\gvc\gvloadimage.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\gvc\gvplugin.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\gvc\gvrender.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\gvc\gvtextlayout.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\gvc\gvusershape.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\label\index.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\label\node.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\label\rectangle.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\label\split.q.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\label\xlabels.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\pack\ccomps.c" />
+    <ClCompile Include="..\..\..\..\graphviz\lib\pack\pack.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\arith.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\color.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\colorprocs.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\colortbl.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\const.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\entities.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\geom.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\geomprocs.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\globals.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\htmllex.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\htmlparse.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\htmltable.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\logic.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\macros.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\memory.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\pointset.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\render.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\textspan.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\types.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\usershape.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\common\utils.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\gvc\gvc.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\gvc\gvcext.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\gvc\gvcint.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\gvc\gvcjob.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\gvc\gvcommon.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\gvc\gvconfig.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\gvc\gvcproc.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\gvc\gvio.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\gvc\gvplugin.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\gvc\gvplugin_device.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\gvc\gvplugin_layout.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\gvc\gvplugin_loadimage.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\gvc\gvplugin_render.h" />
+    <ClInclude Include="..\..\..\..\graphviz\lib\pack\pack.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{163817B5-D3D2-4294-BF2B-BFA129371073}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>gvc</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup />
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>GVC_EXPORTS;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(GRAPHVIZ_LIB_SRC)\..;$(GRAPHVIZ_LIB_SRC)\..\windows\include;$(GRAPHVIZ_LIB_SRC)\..\windows\dependencies\GTK2\include;$(GRAPHVIZ_LIB_SRC)\..\windows\dependencies\libraries\x86\include;$(GRAPHVIZ_LIB_SRC)\gvc;$(GRAPHVIZ_LIB_SRC)\cdt;$(GRAPHVIZ_LIB_SRC)\cgraph;$(GRAPHVIZ_LIB_SRC)\common;$(GRAPHVIZ_LIB_SRC)\fdpgen;$(GRAPHVIZ_LIB_SRC)\label;$(GRAPHVIZ_LIB_SRC)\pathplan;$(GRAPHVIZ_LIB_SRC)\xdot</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>GVC_EXPORTS;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(GRAPHVIZ_LIB_SRC)\..;$(GRAPHVIZ_LIB_SRC)\..\windows\include;$(GRAPHVIZ_LIB_SRC)\..\windows\dependencies\GTK2\include;$(GRAPHVIZ_LIB_SRC)\..\windows\dependencies\libraries\x86\include;$(GRAPHVIZ_LIB_SRC)\gvc;$(GRAPHVIZ_LIB_SRC)\cdt;$(GRAPHVIZ_LIB_SRC)\cgraph;$(GRAPHVIZ_LIB_SRC)\common;$(GRAPHVIZ_LIB_SRC)\fdpgen;$(GRAPHVIZ_LIB_SRC)\label;$(GRAPHVIZ_LIB_SRC)\pathplan;$(GRAPHVIZ_LIB_SRC)\xdot</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>GVC_EXPORTS;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(GRAPHVIZ_LIB_SRC)\..;$(GRAPHVIZ_LIB_SRC)\..\windows\include;$(GRAPHVIZ_LIB_SRC)\..\windows\dependencies\GTK2\include;$(GRAPHVIZ_LIB_SRC)\..\windows\dependencies\libraries\x86\include;$(GRAPHVIZ_LIB_SRC)\gvc;$(GRAPHVIZ_LIB_SRC)\cdt;$(GRAPHVIZ_LIB_SRC)\cgraph;$(GRAPHVIZ_LIB_SRC)\common;$(GRAPHVIZ_LIB_SRC)\fdpgen;$(GRAPHVIZ_LIB_SRC)\label;$(GRAPHVIZ_LIB_SRC)\pathplan;$(GRAPHVIZ_LIB_SRC)\xdot</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>GVC_EXPORTS;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(GRAPHVIZ_LIB_SRC)\..;$(GRAPHVIZ_LIB_SRC)\..\windows\include;$(GRAPHVIZ_LIB_SRC)\..\windows\dependencies\GTK2\include;$(GRAPHVIZ_LIB_SRC)\..\windows\dependencies\libraries\x86\include;$(GRAPHVIZ_LIB_SRC)\gvc;$(GRAPHVIZ_LIB_SRC)\cdt;$(GRAPHVIZ_LIB_SRC)\cgraph;$(GRAPHVIZ_LIB_SRC)\common;$(GRAPHVIZ_LIB_SRC)\fdpgen;$(GRAPHVIZ_LIB_SRC)\label;$(GRAPHVIZ_LIB_SRC)\pathplan;$(GRAPHVIZ_LIB_SRC)\xdot</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
