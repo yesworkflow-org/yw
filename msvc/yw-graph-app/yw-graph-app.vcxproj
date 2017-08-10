@@ -18,35 +18,38 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\yw-graph-app\yw_graph_app.c" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{1BB58279-E53B-4BCA-8007-5A77854E6EE8}</ProjectGuid>
+    <ProjectGuid>{DCC389A5-1968-493B-9BEC-633C9F0EC79A}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>cgraph</RootNamespace>
+    <RootNamespace>ywgraphapp</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -70,48 +73,49 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(GRAPHVIZ_LIB_SRC)\cgraph;$(GRAPHVIZ_LIB_SRC)\cdt;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LinkIncremental>true</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(GRAPHVIZ_LIB_SRC)\cgraph;$(GRAPHVIZ_LIB_SRC)\cdt;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(GRAPHVIZ_LIB_SRC)\cgraph;$(GRAPHVIZ_LIB_SRC)\cdt;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IncludePath>$(ProjectDir);$(SolutionDir);$(GRAPHVIZ_LIB_SRC)\cgraph;$(GRAPHVIZ_LIB_SRC)\cdt;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
+    <LinkIncremental>false</LinkIncremental>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>YY_NO_UNISTD_H;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-    </ClCompile>
-    <Link>
-      <SubSystem>Windows</SubSystem>
-    </Link>
-    <PreBuildEvent>
-      <Command>bison -dy %GRAPHVIZ_LIB_SRC%\cgraph\grammar.y -o grammar.c</Command>
-    </PreBuildEvent>
-  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>YY_NO_UNISTD_H;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(GRAPHVIZ_LIB_SRC)\xdot;$(GRAPHVIZ_LIB_SRC)\gvc;$(GRAPHVIZ_LIB_SRC)\common;$(GRAPHVIZ_LIB_SRC)\pathplan;$(GRAPHVIZ_LIB_SRC)\cgraph;$(GRAPHVIZ_LIB_SRC)\cdt</AdditionalIncludeDirectories>
+      <UndefinePreprocessorDefinitions>
+      </UndefinePreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>$(SolutionDir)/graphviz-lib/x64/Debug;$(GRAPHVIZ_LIB_SRC)/../windows/dependencies/libraries/x64/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cdt.lib;cgraph.lib;gvc.lib;patchwork.lib;pathplan.lib;xdot.lib;expat.lib;glib-2.0.lib;rxspencer.lib;zlib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PreBuildEvent>
-      <Command>bison -dy %GRAPHVIZ_LIB_SRC%\cgraph\grammar.y -o %GRAPHVIZ_LIB_SRC%\cgraph\grammar.c
-flex -o%GRAPHVIZ_LIB_SRC%\cgraph\scan.c %GRAPHVIZ_LIB_SRC%\cgraph\scan.l</Command>
-    </PreBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(GRAPHVIZ_LIB_SRC)\gvc;$(GRAPHVIZ_LIB_SRC)\common;$(GRAPHVIZ_LIB_SRC)\pathplan;$(GRAPHVIZ_LIB_SRC)\cgraph;$(GRAPHVIZ_LIB_SRC)\cdt</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>$(SolutionDir)/graphviz-lib/x64/Debug;$(GRAPHVIZ_LIB_SRC)/../windows/dependencies/libraries/x64/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cdt.lib;cgraph.lib;gvc.lib;patchwork.lib;pathplan.lib;xdot.lib;expat.lib;glib-2.0.lib;rxspencer.lib;zlib.lib;zlib.libexpat.libcdt.lib;cgraph.lib;gvc.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -121,16 +125,16 @@ flex -o%GRAPHVIZ_LIB_SRC%\cgraph\scan.c %GRAPHVIZ_LIB_SRC%\cgraph\scan.l</Comman
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>YY_NO_UNISTD_H;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(GRAPHVIZ_LIB_SRC)\gvc;$(GRAPHVIZ_LIB_SRC)\common;$(GRAPHVIZ_LIB_SRC)\pathplan;$(GRAPHVIZ_LIB_SRC)\cgraph;$(GRAPHVIZ_LIB_SRC)\cdt</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)/graphviz-lib/x64/Debug;$(GRAPHVIZ_LIB_SRC)/../windows/dependencies/libraries/x64/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cdt.lib;cgraph.lib;gvc.lib;patchwork.lib;pathplan.lib;xdot.lib;expat.lib;glib-2.0.lib;rxspencer.lib;zlib.lib;zlib.libexpat.libcdt.lib;cgraph.lib;gvc.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PreBuildEvent>
-      <Command>bison -dy %GRAPHVIZ_LIB_SRC%\cgraph\grammar.y -o grammar.c</Command>
-    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -140,48 +144,17 @@ flex -o%GRAPHVIZ_LIB_SRC%\cgraph\scan.c %GRAPHVIZ_LIB_SRC%\cgraph\scan.l</Comman
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>YY_NO_UNISTD_H;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(GRAPHVIZ_LIB_SRC)\gvc;$(GRAPHVIZ_LIB_SRC)\common;$(GRAPHVIZ_LIB_SRC)\pathplan;$(GRAPHVIZ_LIB_SRC)\cgraph;$(GRAPHVIZ_LIB_SRC)\cdt</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)/graphviz-lib/x64/Debug;$(GRAPHVIZ_LIB_SRC)/../windows/dependencies/libraries/x64/lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>cdt.lib;cgraph.lib;gvc.lib;patchwork.lib;pathplan.lib;xdot.lib;expat.lib;glib-2.0.lib;rxspencer.lib;zlib.lib;zlib.libexpat.libcdt.lib;cgraph.lib;gvc.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
-    <PreBuildEvent>
-      <Command>bison -dy %GRAPHVIZ_LIB_SRC%\cgraph\grammar.y -o grammar.c</Command>
-    </PreBuildEvent>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\agerror.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\agxbuf.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\apply.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\attr.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\edge.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\flatten.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\graph.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\id.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\imap.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\io.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\mem.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\node.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\obj.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\pend.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\rec.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\refstr.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\scan.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\subg.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\utils.c" />
-    <ClCompile Include="$(GRAPHVIZ_LIB_SRC)\cgraph\write.c" />
-    <ClCompile Include="grammar.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="$(GRAPHVIZ_LIB_SRC)\cgraph\agxbuf.h" />
-    <ClInclude Include="$(GRAPHVIZ_LIB_SRC)\cgraph\cghdr.h" />
-    <ClInclude Include="$(GRAPHVIZ_LIB_SRC)\cgraph\cgraph.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="$(GRAPHVIZ_LIB_SRC)\cgraph\grammar.y" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

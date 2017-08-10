@@ -55,6 +55,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-extract-app", "yw-extrac
 		{158B1288-0CC1-426B-8967-800EDBD8C278} = {158B1288-0CC1-426B-8967-800EDBD8C278}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-graph-app", "yw-graph-app\yw-graph-app.vcxproj", "{DCC389A5-1968-493B-9BEC-633C9F0EC79A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -175,6 +177,16 @@ Global
 		{D6FB9826-7E50-44DA-822E-F0A27F2A4CCE}.Release|x64.Build.0 = Release|x64
 		{D6FB9826-7E50-44DA-822E-F0A27F2A4CCE}.Release|x86.ActiveCfg = Release|Win32
 		{D6FB9826-7E50-44DA-822E-F0A27F2A4CCE}.Release|x86.Build.0 = Release|Win32
+		{DCC389A5-1968-493B-9BEC-633C9F0EC79A}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{DCC389A5-1968-493B-9BEC-633C9F0EC79A}.Debug|x64.ActiveCfg = Debug|x64
+		{DCC389A5-1968-493B-9BEC-633C9F0EC79A}.Debug|x64.Build.0 = Debug|x64
+		{DCC389A5-1968-493B-9BEC-633C9F0EC79A}.Debug|x86.ActiveCfg = Debug|Win32
+		{DCC389A5-1968-493B-9BEC-633C9F0EC79A}.Debug|x86.Build.0 = Debug|Win32
+		{DCC389A5-1968-493B-9BEC-633C9F0EC79A}.Release|Any CPU.ActiveCfg = Release|Win32
+		{DCC389A5-1968-493B-9BEC-633C9F0EC79A}.Release|x64.ActiveCfg = Release|x64
+		{DCC389A5-1968-493B-9BEC-633C9F0EC79A}.Release|x64.Build.0 = Release|x64
+		{DCC389A5-1968-493B-9BEC-633C9F0EC79A}.Release|x86.ActiveCfg = Release|Win32
+		{DCC389A5-1968-493B-9BEC-633C9F0EC79A}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

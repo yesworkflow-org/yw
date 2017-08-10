@@ -83,7 +83,6 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>EXPORT_XDOT;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(GRAPHVIZ_LIB_SRC)\xdot</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -96,7 +95,6 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>EXPORT_XDOT;WIN32;_DEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(GRAPHVIZ_LIB_SRC)\xdot</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -111,7 +109,6 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>EXPORT_XDOT;WIN32;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(GRAPHVIZ_LIB_SRC)\xdot</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -128,7 +125,6 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>EXPORT_XDOT;NDEBUG;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(GRAPHVIZ_LIB_SRC)\xdot</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
