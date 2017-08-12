@@ -99,7 +99,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(GRAPHVIZ_SRC)/x64/StaticDebug;$(GRAPHVIZ_SRC)/windows/dependencies/libraries/x64/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>cdt.lib;cgraph.lib;gvc.lib;patchwork.lib;pathplan.lib;xdot.lib;expat.lib;glib-2.0.lib;rxspencer.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>cdt.lib;cgraph.lib;circogen.lib;dotgen.lib;fdpgen.lib;gvc.lib;gvortho.lib;gvplugin_core.lib;gvplugin_dot_layout.lib;ingraphs.lib;neatogen.lib;patchwork.lib;pathplan.lib;sparse.lib;twopigen.lib;vpsc.lib;xdot.lib;expat.lib;glib-2.0.lib;rxspencer.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -114,7 +114,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <AdditionalLibraryDirectories>$(SolutionDir)/graphviz-lib/x64/Debug;$(GRAPHVIZ_SRC)/windows/dependencies/libraries/x64/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>cdt.lib;cgraph.lib;gvc.lib;patchwork.lib;pathplan.lib;xdot.lib;expat.lib;glib-2.0.lib;rxspencer.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>cdt.lib;cgraph.lib;circogen.lib;dotgen.lib;fdpgen.lib;gvc.lib;gvortho.lib;gvplugin_core.lib;gvplugin_dot_layout.lib;ingraphs.lib;neatogen.lib;patchwork.lib;pathplan.lib;sparse.lib;twopigen.lib;vpsc.lib;xdot.lib;expat.lib;glib-2.0.lib;rxspencer.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -133,7 +133,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(SolutionDir)/graphviz-lib/x64/Debug;$(GRAPHVIZ_SRC)/windows/dependencies/libraries/x64/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>cdt.lib;cgraph.lib;gvc.lib;patchwork.lib;pathplan.lib;xdot.lib;expat.lib;glib-2.0.lib;rxspencer.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>cdt.lib;cgraph.lib;circogen.lib;dotgen.lib;fdpgen.lib;gvc.lib;gvortho.lib;gvplugin_core.lib;gvplugin_dot_layout.lib;ingraphs.lib;neatogen.lib;patchwork.lib;pathplan.lib;sparse.lib;twopigen.lib;vpsc.lib;xdot.lib;expat.lib;glib-2.0.lib;rxspencer.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -152,7 +152,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(GRAPHVIZ_SRC)/x64/StaticRelease;$(GRAPHVIZ_SRC)/windows/dependencies/libraries/x64/lib</AdditionalLibraryDirectories>
-      <AdditionalDependencies>cdt.lib;cgraph.lib;gvc.lib;patchwork.lib;pathplan.lib;xdot.lib;expat.lib;glib-2.0.lib;rxspencer.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>cdt.lib;cgraph.lib;circogen.lib;dotgen.lib;fdpgen.lib;gvc.lib;gvortho.lib;gvplugin_core.lib;gvplugin_dot_layout.lib;ingraphs.lib;neatogen.lib;patchwork.lib;pathplan.lib;sparse.lib;twopigen.lib;vpsc.lib;xdot.lib;expat.lib;glib-2.0.lib;rxspencer.lib;zlib.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
