@@ -36,7 +36,7 @@ YW_TEST_SET
         Assert::AreEqual(2, ywdb.insert(ExtractionRow{ auto_id, user19, "2017-06-22 10:52:01.000" }));
     }
 
-    YW_TEST(ExtractionTable, SelectExtractionById_RowExists) {
+    YW_TEST(ExtractionTable, SelectById_RowExists) {
 
         Expect::AreEqual(1, ywdb.insert(ExtractionRow{ auto_id, user19, "2017-06-22 10:52:00.000" }));
         Expect::AreEqual(2, ywdb.insert(ExtractionRow{ auto_id, user101, "2017-06-22 10:52:01.000" }));
@@ -47,7 +47,7 @@ YW_TEST_SET
         Assert::AreEqual(std::string("2017-06-22 10:52:01.000"), extraction.created);
     }
 
-    YW_TEST(ExtractionTable, SelectExtrationById_RowDoesntExist) {
+    YW_TEST(ExtractionTable, SelectById_RowDoesntExist) {
         try {
             auto user = ywdb.selectExtractionById(1L);
             Assert::Fail();

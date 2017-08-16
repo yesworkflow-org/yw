@@ -7,6 +7,7 @@
 #include "annotation_row.h"
 #include "file_row.h"
 #include "line_row.h"
+#include "model_row.h"
 #include "extraction_row.h"
 #include "source_row.h"
 #include "user_row.h"
@@ -37,6 +38,10 @@ namespace yw {
             void createExtractionTable();
             yw::sqlite::row_id insert(const ExtractionRow& extraction);
             ExtractionRow selectExtractionById(const yw::sqlite::row_id& id);
+
+            void createModelTable();
+            yw::sqlite::row_id insert(const ModelRow& model);
+            ModelRow selectModelById(const yw::sqlite::row_id& id);
 
             void createSourceTable();
             yw::sqlite::row_id insert(const SourceRow& source);

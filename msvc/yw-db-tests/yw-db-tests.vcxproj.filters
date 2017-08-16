@@ -42,5 +42,8 @@
     <ClCompile Include="..\..\test\yw-db-tests\extraction_table_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\test\yw-db-tests\model_table_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

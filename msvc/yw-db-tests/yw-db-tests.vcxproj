@@ -173,6 +173,7 @@
     <ClCompile Include="..\..\test\yw-db-tests\file_table_tests.cpp" />
     <ClCompile Include="..\..\test\yw-db-tests\line_table_tests.cpp" />
     <ClCompile Include="..\..\test\yw-db-tests\extraction_table_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-db-tests\model_table_tests.cpp" />
     <ClCompile Include="..\..\test\yw-db-tests\source_table_tests.cpp" />
     <ClCompile Include="..\..\test\yw-db-tests\user_table_tests.cpp" />
     <ClCompile Include="stdafx.cpp">
