@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\yw-db\annotation_table.cpp" />
+    <ClCompile Include="..\..\src\yw-db\block_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\file_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\line_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\extraction_table.cpp" />
@@ -31,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-db\annotation_row.h" />
+    <ClInclude Include="..\..\src\yw-db\block_row.h" />
     <ClInclude Include="..\..\src\yw-db\file_row.h" />
     <ClInclude Include="..\..\src\yw-db\line_row.h" />
     <ClInclude Include="..\..\src\yw-db\extraction_row.h" />

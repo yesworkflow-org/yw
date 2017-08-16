@@ -5,6 +5,7 @@
 
 #include "sqlite_db.h"
 #include "annotation_row.h"
+#include "block_row.h"
 #include "file_row.h"
 #include "line_row.h"
 #include "model_row.h"
@@ -25,6 +26,10 @@ namespace yw {
             AnnotationRow selectAnnotationById(const yw::sqlite::row_id& requested_id);
             std::vector<AnnotationRow> selectTopLevelAnnotations();
             std::vector<AnnotationRow> selectAnnotationTree(const yw::sqlite::nullable_row_id& rootAnnotationId);
+
+            void createBlockTable();
+            yw::sqlite::row_id insert(const BlockRow& model);
+            BlockRow selectBlockById(const yw::sqlite::row_id& id);
 
             void createFileTable();
             yw::sqlite::row_id insert(const FileRow& file);

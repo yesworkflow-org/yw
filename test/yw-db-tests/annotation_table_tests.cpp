@@ -10,7 +10,11 @@ using Tag = yw::db::AnnotationRow::Tag;
 YW_TEST_FIXTURE(AnnotationTable)
 
     YesWorkflowDB ywdb { false };
-    long user13, extraction17, language2, file5, source8, line19, line25, line77, line119, line125, line177, line199;
+    row_id user13;
+    row_id extraction17;
+    row_id file5;
+    row_id source8;
+    row_id line19, line25, line77, line119, line125, line177, line199;
 
     YW_TEST_SETUP(AnnotationTable)
     {
