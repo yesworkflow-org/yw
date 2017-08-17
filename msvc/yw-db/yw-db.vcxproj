@@ -21,12 +21,14 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\yw-db\annotation_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\block_table.cpp" />
+    <ClCompile Include="..\..\src\yw-db\data_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\file_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\line_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\extraction_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\model_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\port_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\source_table.cpp" />
+    <ClCompile Include="..\..\src\yw-db\transceiver_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\user_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\yw_db.cpp" />
     <ClCompile Include="..\..\src\yw-db\create_tables_sql.cpp" />
@@ -34,12 +36,14 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-db\annotation_row.h" />
     <ClInclude Include="..\..\src\yw-db\block_row.h" />
+    <ClInclude Include="..\..\src\yw-db\data_row.h" />
     <ClInclude Include="..\..\src\yw-db\file_row.h" />
     <ClInclude Include="..\..\src\yw-db\line_row.h" />
     <ClInclude Include="..\..\src\yw-db\extraction_row.h" />
     <ClInclude Include="..\..\src\yw-db\model_row.h" />
     <ClInclude Include="..\..\src\yw-db\port_row.h" />
     <ClInclude Include="..\..\src\yw-db\source_row.h" />
+    <ClInclude Include="..\..\src\yw-db\transceiver_row.h" />
     <ClInclude Include="..\..\src\yw-db\user_row.h" />
     <ClInclude Include="..\..\src\yw-db\yw_db.h" />
   </ItemGroup>

@@ -6,12 +6,14 @@
 #include "sqlite_db.h"
 #include "annotation_row.h"
 #include "block_row.h"
+#include "data_row.h"
 #include "extraction_row.h"
 #include "file_row.h"
 #include "line_row.h"
 #include "model_row.h"
 #include "port_row.h"
 #include "source_row.h"
+#include "transceiver_row.h"
 #include "user_row.h"
 
 namespace yw {
@@ -31,6 +33,10 @@ namespace yw {
             void createBlockTable();
             yw::sqlite::row_id insert(const BlockRow& model);
             BlockRow selectBlockById(const yw::sqlite::row_id& id);
+
+            void createDataTable();
+            yw::sqlite::row_id insert(const DataRow& model);
+            DataRow selectDataById(const yw::sqlite::row_id& id);
 
             void createFileTable();
             yw::sqlite::row_id insert(const FileRow& file);
@@ -56,6 +62,10 @@ namespace yw {
             void createSourceTable();
             yw::sqlite::row_id insert(const SourceRow& source);
             SourceRow selectSourceById(const yw::sqlite::row_id& id);
+
+            void createTransceiverTable();
+            yw::sqlite::row_id insert(const TransceiverRow& model);
+            TransceiverRow selectTransceiverById(const yw::sqlite::row_id& id);
 
             void createUserTable();
             yw::sqlite::row_id insert(const UserRow& user);

@@ -24,6 +24,8 @@ namespace yw {
             createModelTable();
             createBlockTable();
             createPortTable();
+            createDataTable();
+            createTransceiverTable();
         }
 
         size_t YesWorkflowDB::getRowCount(const std::string& tableName) {
