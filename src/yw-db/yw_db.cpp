@@ -22,6 +22,8 @@ namespace yw {
             createLineTable();
             createAnnotationTable();
             createModelTable();
+            createBlockTable();
+            createPortTable();
         }
 
         size_t YesWorkflowDB::getRowCount(const std::string& tableName) {

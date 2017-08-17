@@ -6,10 +6,11 @@
 #include "sqlite_db.h"
 #include "annotation_row.h"
 #include "block_row.h"
+#include "extraction_row.h"
 #include "file_row.h"
 #include "line_row.h"
 #include "model_row.h"
-#include "extraction_row.h"
+#include "port_row.h"
 #include "source_row.h"
 #include "user_row.h"
 
@@ -47,6 +48,10 @@ namespace yw {
             void createModelTable();
             yw::sqlite::row_id insert(const ModelRow& model);
             ModelRow selectModelById(const yw::sqlite::row_id& id);
+
+            void createPortTable();
+            yw::sqlite::row_id insert(const PortRow& model);
+            PortRow selectPortById(const yw::sqlite::row_id& id);
 
             void createSourceTable();
             yw::sqlite::row_id insert(const SourceRow& source);

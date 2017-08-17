@@ -69,7 +69,7 @@ YW_TEST_SET
         auto block = ywdb.selectBlockById(2L);
         Assert::AreEqual(2, block.id.getValue());
         Assert::AreEqual(77, block.modelId);
-        Assert::AreEqual(1, block.containerId.getValue());
+        Assert::AreEqual(1, block.workflowId.getValue());
         Assert::AreEqual(12, block.annotationId.getValue());
         Assert::AreEqual(std::string("nested block"), block.name);
     }

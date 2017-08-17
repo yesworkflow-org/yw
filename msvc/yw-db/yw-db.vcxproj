@@ -25,6 +25,7 @@
     <ClCompile Include="..\..\src\yw-db\line_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\extraction_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\model_table.cpp" />
+    <ClCompile Include="..\..\src\yw-db\port_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\source_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\user_table.cpp" />
     <ClCompile Include="..\..\src\yw-db\yw_db.cpp" />
@@ -37,6 +38,7 @@
     <ClInclude Include="..\..\src\yw-db\line_row.h" />
     <ClInclude Include="..\..\src\yw-db\extraction_row.h" />
     <ClInclude Include="..\..\src\yw-db\model_row.h" />
+    <ClInclude Include="..\..\src\yw-db\port_row.h" />
     <ClInclude Include="..\..\src\yw-db\source_row.h" />
     <ClInclude Include="..\..\src\yw-db\user_row.h" />
     <ClInclude Include="..\..\src\yw-db\yw_db.h" />

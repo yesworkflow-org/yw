@@ -5,21 +5,19 @@
 namespace yw {
     namespace db {
 
-        struct BlockRow : yw::sqlite::TableRow {
+        struct PortRow : yw::sqlite::TableRow {
 
             const yw::sqlite::nullable_row_id id;
-            const yw::sqlite::row_id modelId;
-            const yw::sqlite::nullable_row_id workflowId;
+            const yw::sqlite::row_id blockId;
             const yw::sqlite::nullable_row_id annotationId;
             const std::string name;
 
-            BlockRow(
+            PortRow(
                 const yw::sqlite::nullable_row_id& id,
-                const yw::sqlite::row_id& modelId,
-                const yw::sqlite::nullable_row_id workflowId,
+                const yw::sqlite::row_id& blockId,
                 const yw::sqlite::nullable_row_id annotationId,
                 const std::string& name
-            ) : id(id), modelId(modelId), workflowId(workflowId), annotationId(annotationId), name(name)
+            ) : id(id), blockId(blockId), annotationId(annotationId), name(name)
             {}
         };
     }

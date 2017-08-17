@@ -37,6 +37,9 @@
     <ClCompile Include="..\..\src\yw-db\block_table.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\yw-db\port_table.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-db\source_row.h">
@@ -64,6 +67,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\yw-db\block_row.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-db\port_row.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
