@@ -15,7 +15,7 @@ namespace yw {
             string lineText;
             long lineNumber = 0;
             while (std::getline(sourceStream, lineText)) {
-                ywdb.insert(LineRow{ auto_id, sourceId, ++lineNumber, lineText });
+                ywdb.insert(Line{ auto_id, sourceId, ++lineNumber, lineText });
             }
         }
 
@@ -30,7 +30,7 @@ namespace yw {
             long lineNumber = 0;
             while (std::getline(sourceFile, lineText)) {
                 sourceText << lineText << std::endl;
-                ywdb.insert(LineRow{ auto_id, sourceId, ++lineNumber, lineText });
+                ywdb.insert(Line{ auto_id, sourceId, ++lineNumber, lineText });
             }
             return sourceText.str();
         }

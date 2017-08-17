@@ -20,7 +20,7 @@ namespace yw {
             )"));
         }
 
-        row_id YesWorkflowDB::insert(const ExtractionRow& extraction) {
+        row_id YesWorkflowDB::insert(const Extraction& extraction) {
             string sql = "INSERT INTO extraction(id, user, created) VALUES (?,?,?);";
             InsertStatement statement(db, sql);
             statement.bindNullableId(1, extraction.id);
@@ -30,7 +30,7 @@ namespace yw {
             return statement.getGeneratedId();
         }
 
-        ExtractionRow YesWorkflowDB::selectExtractionById(const row_id& requested_id) {
+        Extraction YesWorkflowDB::selectExtractionById(const row_id& requested_id) {
             string sql = "SELECT id, user, created FROM extraction WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindId(1, requested_id);
@@ -38,7 +38,7 @@ namespace yw {
             auto id = statement.getNullableIdField(0);
             auto userId = statement.getNullableIdField(1);
             auto created = statement.getTextField(2);
-            return ExtractionRow(id, userId, created);
+            return Extraction(id, userId, created);
         }
     }
 }

@@ -17,8 +17,8 @@ namespace yw {
         void AnnotationExtractor::extractAnnotationsFromString(
             const string& sourceText
         ) {
-            auto extractionId = ywdb.insert(ExtractionRow{ auto_id, null_id, "" });
-            auto sourceId = ywdb.insert(SourceRow{ auto_id, null_id, null_string });
+            auto extractionId = ywdb.insert(Extraction{ auto_id, null_id, "" });
+            auto sourceId = ywdb.insert(Source{ auto_id, null_id, null_string });
             SourceLoader{ ywdb }.insertSourceLinesFromString(sourceId, sourceText);
             extractAnnotationsFromString(extractionId, sourceId, sourceText);
         }
@@ -26,14 +26,14 @@ namespace yw {
         void AnnotationExtractor::extractAnnotationsFromFile(
             const string& filePath
         ) {
-            auto extractionId = ywdb.insert(ExtractionRow{ auto_id, null_id, "" });
+            auto extractionId = ywdb.insert(Extraction{ auto_id, null_id, "" });
             extractAnnotationsFromFile(extractionId, filePath);
         }
 
         void AnnotationExtractor::extractAnnotationsFromFiles(
             const std::vector<string>& filePaths
         ) {
-            auto extractionId = ywdb.insert(ExtractionRow{ auto_id, null_id, "" });
+            auto extractionId = ywdb.insert(Extraction{ auto_id, null_id, "" });
             for (const auto& filePath : filePaths) {
                 extractAnnotationsFromFile(extractionId, filePath);
             }
@@ -53,8 +53,8 @@ namespace yw {
             const row_id& extractionId,
             const string& filePath
         ) {
-            auto fileId = ywdb.insert(FileRow{ auto_id, filePath });
-            auto sourceId = ywdb.insert(SourceRow{ auto_id, fileId, null_string });
+            auto fileId = ywdb.insert(File{ auto_id, filePath });
+            auto sourceId = ywdb.insert(Source{ auto_id, fileId, null_string });
             string sourceText = SourceLoader{ ywdb }.insertSourceLinesFromFile(sourceId, filePath);
             extractAnnotationsFromString(extractionId, sourceId, sourceText);
         }

@@ -1,10 +1,10 @@
 #include "annotation_listener.h"
-#include "annotation_row.h"
+#include "annotation.h"
 
 using namespace yw::sqlite;
 using namespace yw::db;
 
-using Tag = yw::db::AnnotationRow::Tag;
+using Tag = yw::db::Annotation::Tag;
 
 namespace yw {
     namespace extract {
@@ -32,7 +32,7 @@ namespace yw {
         {
             auto lineId = getLineId(alias);
             auto rangeInLine = getRangeInLine(alias);
-            ywdb.insert(AnnotationRow{ auto_id, extractionId, Tag::AS, currentPrimaryAnnotationId, lineId,
+            ywdb.insert(Annotation{ auto_id, extractionId, Tag::AS, currentPrimaryAnnotationId, lineId,
                 currentRankOnLine++, rangeInLine.start, rangeInLine.end,
                 alias->AsKeyword()->getText(),
                 nullable_string(alias->dataName()->phrase()->unquotedPhrase()->getText()) });
@@ -44,7 +44,7 @@ namespace yw {
             auto rangeInLine = getRangeInLine(begin);
             primaryAnnotationId.push(currentPrimaryAnnotationId);
             currentPrimaryAnnotationId = ywdb.insert(
-                AnnotationRow{ auto_id, extractionId, Tag::BEGIN, currentPrimaryAnnotationId, lineId,
+                Annotation{ auto_id, extractionId, Tag::BEGIN, currentPrimaryAnnotationId, lineId,
                                currentRankOnLine++, rangeInLine.start, rangeInLine.end,
                                begin->BeginKeyword()->getText(),
                                nullable_string(begin->blockName()->phrase()->unquotedPhrase()->getText()) });
@@ -58,7 +58,7 @@ namespace yw {
             auto optionalBlockName = (end->blockName() != nullptr) ? 
                 nullable_string(end->blockName()->phrase()->unquotedPhrase()->getText()) : null_string;
                 
-            ywdb.insert(AnnotationRow{ auto_id, extractionId, Tag::END, currentPrimaryAnnotationId, lineId,
+            ywdb.insert(Annotation{ auto_id, extractionId, Tag::END, currentPrimaryAnnotationId, lineId,
                                        currentRankOnLine++, rangeInLine.start, rangeInLine.end,
                                        end->EndKeyword()->getText(), optionalBlockName });
             currentPrimaryAnnotationId = primaryAnnotationId.top();
@@ -69,13 +69,13 @@ namespace yw {
         {
             auto lineId = getLineId(desc);
             auto rangeInLine = getRangeInLine(desc);
-            ywdb.insert(AnnotationRow{ auto_id, extractionId, Tag::DESC, currentPrimaryAnnotationId, lineId,
+            ywdb.insert(Annotation{ auto_id, extractionId, Tag::DESC, currentPrimaryAnnotationId, lineId,
                                        currentRankOnLine++, rangeInLine.start, rangeInLine.end,
                                        desc->DescKeyword()->getText(),
                                        nullable_string(desc->description()->phrase()->unquotedPhrase()->getText()) });
         }
 
-        AnnotationRow::Tag getPortTag(YWParser::PortContext *port)
+        Annotation::Tag getPortTag(YWParser::PortContext *port)
         {
             if (port->inputKeyword() != NULL) {
                 if (port->inputKeyword()->InKeyword() != NULL) return Tag::IN;
@@ -97,7 +97,7 @@ namespace yw {
             for (auto portName : port->portName()) {
                 auto keyword = port->inputKeyword() != NULL ? port->inputKeyword()->getText() : port->outputKeyword()->getText();
                 lastPortId = ywdb.insert(
-                    AnnotationRow{ auto_id, extractionId, tag, currentPrimaryAnnotationId, lineId,
+                    Annotation{ auto_id, extractionId, tag, currentPrimaryAnnotationId, lineId,
                                    currentRankOnLine++, rangeInLine.start, rangeInLine.end,
                                    keyword, nullable_string(portName->word()->unquotedWord()->getText()) });
             }

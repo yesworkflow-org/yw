@@ -6,14 +6,14 @@
 namespace yw {
     namespace db {
 
-        struct LineRow : sqlite::TableRow {
+        struct Line : sqlite::TableRow {
 
             const nullable_row_id id;
             const row_id sourceId;
             const long number;
             const std::string text;
 
-            LineRow(
+            Line(
                 const nullable_row_id& id,
                 const row_id& sourceId,
                 long number,

@@ -23,7 +23,7 @@ namespace yw {
             )"));
         }
 
-        row_id YesWorkflowDB::insert(const TransceiverRow& transceiver) {
+        row_id YesWorkflowDB::insert(const Transceiver& transceiver) {
             string sql = "INSERT INTO transceiver(id, port, data, direction, min_rate, max_rate) VALUES (?,?,?,?,?,?);";
             InsertStatement statement(db, sql);
             statement.bindNullableId(1, transceiver.id);
@@ -36,7 +36,7 @@ namespace yw {
             return statement.getGeneratedId();
         }
 
-        TransceiverRow YesWorkflowDB::selectTransceiverById(const row_id& requested_id) {
+        Transceiver YesWorkflowDB::selectTransceiverById(const row_id& requested_id) {
             string sql = "SELECT id, port, data, direction, min_rate, max_rate FROM transceiver WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindId(1, requested_id);
@@ -44,10 +44,10 @@ namespace yw {
             auto id = statement.getNullableIdField(0);
             auto portId = statement.getIdField(1);
             auto dataId = statement.getIdField(2);
-            auto direction = static_cast<TransceiverRow::Direction>(statement.getInt64Field(3));
+            auto direction = static_cast<Transceiver::Direction>(statement.getInt64Field(3));
             auto minRate = statement.getNullableInt64Field(4);
             auto maxRate = statement.getNullableInt64Field(5);
-            return TransceiverRow(id, portId, dataId, direction, minRate, maxRate);
+            return Transceiver(id, portId, dataId, direction, minRate, maxRate);
         }
     }
 }

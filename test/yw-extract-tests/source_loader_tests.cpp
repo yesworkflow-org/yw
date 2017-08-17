@@ -15,7 +15,7 @@ YW_TEST_FIXTURE(SourceLoader)
 
     YW_TEST_SETUP(SourceLoader) 
     {
-        Expect::AreEqual(1, (sourceId = ywdb.insert(SourceRow{ auto_id, null_id, "C" })));
+        Expect::AreEqual(1, (sourceId = ywdb.insert(Source{ auto_id, null_id, "C" })));
         sourceLoader = std::make_shared<SourceLoader>(ywdb);
     }
 
@@ -25,7 +25,7 @@ YW_TEST_SET
     {
         sourceLoader->insertSourceLinesFromString(sourceId, "@begin b");
         Assert::AreEqual(1, ywdb.getRowCount("line"));
-        Assert::AreEqual(LineRow{ 1, 1, 1, "@begin b" }, ywdb.selectLineById(1));
+        Assert::AreEqual(Line{ 1, 1, 1, "@begin b" }, ywdb.selectLineById(1));
     }
 
     YW_TEST(SourceLoader, LoadingTwoLinesFromStringInsertsOneTwoRowsIntoLineTable)
@@ -35,8 +35,8 @@ YW_TEST_SET
             "@begin b"	EOL
             "@end b"	EOL);
         Assert::AreEqual(2, ywdb.getRowCount("line"));
-        Assert::AreEqual(LineRow{ 1, 1, 1, "@begin b" }, ywdb.selectLineById(1));
-        Assert::AreEqual(LineRow{ 2, 1, 2, "@end b" }, ywdb.selectLineById(2));
+        Assert::AreEqual(Line{ 1, 1, 1, "@begin b" }, ywdb.selectLineById(1));
+        Assert::AreEqual(Line{ 2, 1, 2, "@end b" }, ywdb.selectLineById(2));
     }
 
 YW_TEST_END

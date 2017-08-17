@@ -28,10 +28,10 @@ namespace yw {
             )"));
         }
 
-        AnnotationRow getRowFromAnnotationColumns(SelectStatement& statement) {
+        Annotation getRowFromAnnotationColumns(SelectStatement& statement) {
             auto id = statement.getNullableIdField(0);
             auto extraction = statement.getIdField(1);
-            auto tag = static_cast<AnnotationRow::Tag>(statement.getInt64Field(2));
+            auto tag = static_cast<Annotation::Tag>(statement.getInt64Field(2));
             auto qualifies = statement.getNullableIdField(3);
             auto lineId = statement.getInt64Field(4);
             auto rankOnLine = statement.getInt64Field(5);
@@ -39,10 +39,10 @@ namespace yw {
             auto end = statement.getInt64Field(7);
             auto keyword = statement.getTextField(8);
             auto value = statement.getNullableTextField(9);
-            return AnnotationRow(id, extraction, tag, qualifies, lineId, rankOnLine, start, end, keyword, value);
+            return Annotation(id, extraction, tag, qualifies, lineId, rankOnLine, start, end, keyword, value);
         }
 
-        row_id YesWorkflowDB::insert(const AnnotationRow& annotation) {
+        row_id YesWorkflowDB::insert(const Annotation& annotation) {
             string sql = "INSERT INTO annotation(id, extraction, tag, qualifies, line, rank, start, end, keyword, value) VALUES (?,?,?,?,?,?,?,?,?,?);";
             InsertStatement statement(db, sql);
             statement.bindNullableId(1, annotation.id);
@@ -59,15 +59,15 @@ namespace yw {
             return statement.getGeneratedId();
         }
 
-        AnnotationRow YesWorkflowDB::selectAnnotationById(const row_id& requested_id) {
+        Annotation YesWorkflowDB::selectAnnotationById(const row_id& requestedId) {
             string sql = "SELECT id, extraction, tag, qualifies, line, rank, start, end, keyword, value FROM annotation WHERE id = ?";
             SelectStatement statement(db, sql);
-            statement.bindId(1, requested_id);
+            statement.bindId(1, requestedId);
             if (statement.step() != SQLITE_ROW) throw std::runtime_error("No annotation row with that id");
             return getRowFromAnnotationColumns(statement);
         }
 
-        std::vector<AnnotationRow> YesWorkflowDB::selectTopLevelAnnotations() {
+        std::vector<Annotation> YesWorkflowDB::selectTopLevelAnnotations() {
             auto sql = std::string(R"(
                 SELECT annotation.id, extraction, tag, qualifies, line, rank, start, end, keyword, value FROM annotation
                 JOIN line ON annotation.line=line.id
@@ -75,14 +75,14 @@ namespace yw {
                 ORDER BY line.number, rank
             )");
             SelectStatement statement(db, sql);
-            auto annotations = std::vector<AnnotationRow>{};
+            auto annotations = std::vector<Annotation>{};
             while (statement.step() == SQLITE_ROW) {
                 annotations.push_back(getRowFromAnnotationColumns(statement));
             }
             return annotations;
         }
 
-        std::vector<AnnotationRow> YesWorkflowDB::selectAnnotationTree(const nullable_row_id& rootAnnotationId) {
+        std::vector<Annotation> YesWorkflowDB::selectAnnotationTree(const nullable_row_id& rootAnnotationId) {
 
             auto sql = std::string(R"(
 
@@ -103,7 +103,7 @@ namespace yw {
             SelectStatement statement(db, sql);
             statement.bindNullableId(1, rootAnnotationId);
 
-            auto annotations = std::vector<AnnotationRow>{};
+            auto annotations = std::vector<Annotation>{};
             while (statement.step() == SQLITE_ROW) {
                 annotations.push_back(getRowFromAnnotationColumns(statement));
             }

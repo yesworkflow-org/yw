@@ -20,7 +20,7 @@ namespace yw {
             )"));
         }
 
-        row_id YesWorkflowDB::insert(const SourceRow& source) {
+        row_id YesWorkflowDB::insert(const Source& source) {
             string sql = "INSERT INTO source(id, file, language) VALUES (?,?,?);";
             InsertStatement statement(db, sql);
             statement.bindNullableId(1, source.id);
@@ -30,7 +30,7 @@ namespace yw {
             return statement.getGeneratedId();
         }
 
-        SourceRow YesWorkflowDB::selectSourceById(const row_id& requested_id) {
+        Source YesWorkflowDB::selectSourceById(const row_id& requested_id) {
             string sql = "SELECT id, file, language FROM source WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindId(1, requested_id);
@@ -38,7 +38,7 @@ namespace yw {
             auto id = statement.getNullableIdField(0);
             auto fileId = statement.getNullableIdField(1);
             auto language = statement.getNullableTextField(2);
-            return SourceRow(id, fileId, language);
+            return Source(id, fileId, language);
         }
     }
 }

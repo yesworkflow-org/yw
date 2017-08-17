@@ -24,9 +24,9 @@ YW_TEST_FIXTURE(OutlineExporter)
 
         row_id userId, extractionId;
 
-        Expect::AreEqual(1, (userId = ywdb.insert(UserRow{ auto_id, "user1" })));
-        Expect::AreEqual(1, (extractionId = ywdb.insert(ExtractionRow{ auto_id, userId, "2017-06-22 10:52:00.000" })));
-        Expect::AreEqual(1, (sourceId = ywdb.insert(SourceRow{ auto_id, null_id, null_string })));
+        Expect::AreEqual(1, (userId = ywdb.insert(User{ auto_id, "user1" })));
+        Expect::AreEqual(1, (extractionId = ywdb.insert(Extraction{ auto_id, userId, "2017-06-22 10:52:00.000" })));
+        Expect::AreEqual(1, (sourceId = ywdb.insert(Source{ auto_id, null_id, null_string })));
 
         sourceLoader = std::make_shared<SourceLoader>(ywdb);
         listener = new AnnotationListener(ywdb, extractionId, sourceId);

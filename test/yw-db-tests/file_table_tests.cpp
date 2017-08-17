@@ -20,18 +20,18 @@ YW_TEST_SET
 
     YW_TEST(FileTable, InsertFile_OneRow_GeneratedIdIs_1)
     {
-        Assert::AreEqual(1, ywdb.insert(FileRow{ auto_id, "main.c" }));
+        Assert::AreEqual(1, ywdb.insert(File{ auto_id, "main.c" }));
     }
 
     YW_TEST(FileTable, InsertFile_TwoRows_SecondGeneratedIdIs_2)
     {
-        Expect::AreEqual(1, ywdb.insert(FileRow{ auto_id, "main.c" }));
-        Assert::AreEqual(2, ywdb.insert(FileRow{ auto_id, "script.sh" }));
+        Expect::AreEqual(1, ywdb.insert(File{ auto_id, "main.c" }));
+        Assert::AreEqual(2, ywdb.insert(File{ auto_id, "script.sh" }));
     }
 
     YW_TEST(FileTable, SelectFileById_RowExists) {
-        Expect::AreEqual(1, ywdb.insert(FileRow{ auto_id, "main.c" }));
-        Expect::AreEqual(2, ywdb.insert(FileRow{ auto_id, "script.sh" }));
+        Expect::AreEqual(1, ywdb.insert(File{ auto_id, "main.c" }));
+        Expect::AreEqual(2, ywdb.insert(File{ auto_id, "script.sh" }));
 
         auto file = ywdb.selectFileById(2L);
         Assert::AreEqual(2L, file.id);

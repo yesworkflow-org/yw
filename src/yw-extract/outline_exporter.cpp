@@ -50,7 +50,7 @@ namespace yw {
 
         std::string OutlineExporter::getOutline(const nullable_row_id& rootAnnotation) {
 
-            using Tag = yw::db::AnnotationRow::Tag;
+            using Tag = yw::db::Annotation::Tag;
 
             outline.str("");
             while (!blockStack.empty()) blockStack.pop();

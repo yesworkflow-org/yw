@@ -5,13 +5,13 @@
 namespace yw {
     namespace db {
 
-        struct DataRow : sqlite::TableRow {
+        struct Data : sqlite::TableRow {
 
             const nullable_row_id id;
             const nullable_row_id partOfId;
             const std::string name;
 
-            DataRow(
+            Data(
                 const nullable_row_id& id,
                 const nullable_row_id& partOfId,
                 const std::string& name

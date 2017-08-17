@@ -11,7 +11,7 @@ namespace yw {
             size_t blockIndentSize;
             int qualifierIndentSize;
             bool qualifiersOnSameLine;
-            std::stack<yw::db::AnnotationRow> blockStack;
+            std::stack<yw::db::Annotation> blockStack;
             std::stringstream outline;
 
             void append(const std::string& keyword, const std::string& value);

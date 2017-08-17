@@ -5,7 +5,7 @@
 namespace yw {
     namespace db {
 
-        struct TransceiverRow : sqlite::TableRow {
+        struct Transceiver : sqlite::TableRow {
 
             enum class Direction {
                 IN = 1,
@@ -19,7 +19,7 @@ namespace yw {
             const nullable_long minRate;
             const nullable_long maxRate;
 
-            TransceiverRow(
+            Transceiver(
                 const nullable_row_id& id,
                 const row_id& portId,
                 const row_id& dataId,

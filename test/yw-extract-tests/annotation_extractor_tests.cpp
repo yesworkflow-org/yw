@@ -8,7 +8,7 @@ using namespace yw::sqlite;
 
 using std::string;
 
-using Tag = yw::db::AnnotationRow::Tag;
+using Tag = yw::db::Annotation::Tag;
 
 YW_TEST_FIXTURE(AnnotationExtractor)
 
@@ -54,7 +54,7 @@ YW_TEST_SET
         Expect::AreEqual("", stderrRecorder.str());
         Expect::AreEqual(6, ywdb.getRowCount("line"));
         Expect::AreEqual(5, ywdb.getRowCount("annotation"));
-        Expect::AreEqual(FileRow{ 1, "hello.py" }, ywdb.selectFileById(1));
+        Expect::AreEqual(File{ 1, "hello.py" }, ywdb.selectFileById(1));
 
         Assert::AreEqual(1, ywdb.getRowCount("extraction"));
         Assert::AreEqual(1, ywdb.getRowCount("source"));
@@ -115,7 +115,7 @@ YW_TEST_SET
         Expect::AreEqual("", stderrRecorder.str());
         Expect::AreEqual(12, ywdb.getRowCount("line"));
         Expect::AreEqual(8, ywdb.getRowCount("annotation"));
-        Expect::AreEqual(FileRow{ 1, "hello.py" }, ywdb.selectFileById(1));
+        Expect::AreEqual(File{ 1, "hello.py" }, ywdb.selectFileById(1));
 
         Assert::AreEqual(2, ywdb.getRowCount("extraction"));
         Assert::AreEqual(2, ywdb.getRowCount("source"));
@@ -147,8 +147,8 @@ YW_TEST_SET
         Expect::AreEqual("", stderrRecorder.str());
         Expect::AreEqual(12, ywdb.getRowCount("line"));
         Expect::AreEqual(8, ywdb.getRowCount("annotation"));
-        Expect::AreEqual(FileRow{ 1, "hello.py" }, ywdb.selectFileById(1));
-        Expect::AreEqual(FileRow{ 2, "hey.py" }, ywdb.selectFileById(2));
+        Expect::AreEqual(File{ 1, "hello.py" }, ywdb.selectFileById(1));
+        Expect::AreEqual(File{ 2, "hey.py" }, ywdb.selectFileById(2));
 
         Assert::AreEqual(1, ywdb.getRowCount("extraction"));
         Assert::AreEqual(2, ywdb.getRowCount("source"));

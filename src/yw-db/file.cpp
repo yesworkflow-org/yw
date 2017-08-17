@@ -31,7 +31,7 @@ namespace yw {
             )"));
         }
 
-        row_id YesWorkflowDB::insert(const FileRow& file) {
+        row_id YesWorkflowDB::insert(const File& file) {
             string sql = "INSERT INTO file(id, name) VALUES (?,?);";
             InsertStatement statement(db, sql);
             statement.bindNullableId(1, file.id);
@@ -40,14 +40,14 @@ namespace yw {
             return statement.getGeneratedId();
         }
 
-        FileRow YesWorkflowDB::selectFileById(const row_id& requested_id) {
+        File YesWorkflowDB::selectFileById(const row_id& requested_id) {
             string sql = "SELECT id, name FROM file WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindInt64(1, requested_id);
             if (statement.step() != SQLITE_ROW) throw std::runtime_error("No file row with that id");
             auto id = statement.getNullableIdField(0);
             auto name = statement.getTextField(1);
-            return FileRow{ id, name };
+            return File{ id, name };
         }
     }
 }

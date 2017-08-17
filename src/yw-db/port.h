@@ -5,14 +5,14 @@
 namespace yw {
     namespace db {
 
-        struct PortRow : sqlite::TableRow {
+        struct Port : sqlite::TableRow {
 
             const nullable_row_id id;
             const row_id blockId;
             const nullable_row_id annotationId;
             const std::string name;
 
-            PortRow(
+            Port(
                 const nullable_row_id& id,
                 const row_id& blockId,
                 const nullable_row_id annotationId,

@@ -19,19 +19,19 @@ YW_TEST_SET
 
     YW_TEST(DataTable, InsertOneRow_GeneratedIdIs_1)
     {
-        Assert::AreEqual(1, ywdb.insert(DataRow{ auto_id, null_id, "d" }));
+        Assert::AreEqual(1, ywdb.insert(Data{ auto_id, null_id, "d" }));
     }
 
     YW_TEST(DataTable, InsertSource_TwoRows_SecondGeneratedIdIs_2)
     {
-        Expect::AreEqual(1, ywdb.insert(DataRow{ auto_id, null_id, "d" }));
-        Assert::AreEqual(2, ywdb.insert(DataRow{ auto_id, 1, "e" }));
+        Expect::AreEqual(1, ywdb.insert(Data{ auto_id, null_id, "d" }));
+        Assert::AreEqual(2, ywdb.insert(Data{ auto_id, 1, "e" }));
     }
 
     YW_TEST(DataTable, SelectById_RowExists)
     {
-        Expect::AreEqual(1, ywdb.insert(DataRow{ auto_id, null_id, "d" }));
-        Expect::AreEqual(2, ywdb.insert(DataRow{ auto_id, 1, "e" }));
+        Expect::AreEqual(1, ywdb.insert(Data{ auto_id, null_id, "d" }));
+        Expect::AreEqual(2, ywdb.insert(Data{ auto_id, 1, "e" }));
 
         auto data = ywdb.selectDataById(2L);
         Assert::AreEqual(2, data.id.getValue());

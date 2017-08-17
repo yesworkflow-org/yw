@@ -9,7 +9,7 @@
 namespace yw {
     namespace db {
 
-        struct AnnotationRow : sqlite::TableRow {
+        struct Annotation : sqlite::TableRow {
 
             enum class Tag {
                 BEGIN = 1,
@@ -33,7 +33,7 @@ namespace yw {
             const std::string keyword;
             const nullable_string value;
 
-            AnnotationRow(
+            Annotation(
                 const nullable_row_id& id,
                 const row_id& extractionId,
                 Tag tag,

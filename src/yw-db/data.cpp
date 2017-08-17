@@ -20,7 +20,7 @@ namespace yw {
             )"));
         }
 
-        row_id YesWorkflowDB::insert(const DataRow& data) {
+        row_id YesWorkflowDB::insert(const Data& data) {
             string sql = "INSERT INTO data(id, part_of, name) VALUES (?,?,?);";
             InsertStatement statement(db, sql);
             statement.bindNullableId(1, data.id);
@@ -30,7 +30,7 @@ namespace yw {
             return statement.getGeneratedId();
         }
 
-        DataRow YesWorkflowDB::selectDataById(const row_id& requested_id) {
+        Data YesWorkflowDB::selectDataById(const row_id& requested_id) {
             string sql = "SELECT id, part_of, name FROM data WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindId(1, requested_id);
@@ -38,7 +38,7 @@ namespace yw {
             auto id = statement.getNullableIdField(0);
             auto partOfId = statement.getNullableIdField(1);
             auto name = statement.getTextField(2);
-            return DataRow(id, partOfId, name);
+            return Data(id, partOfId, name);
         }
     }
 }
