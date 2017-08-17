@@ -8,7 +8,7 @@
 #include <sstream>
 
 #include "antlr4-runtime.h"
-#include "yw_db.h"
+#include "ywdb.h"
 #include "annotation_listener.h"
 #include "annotation_extractor.h"
 #include "yw_parser_builder.h"

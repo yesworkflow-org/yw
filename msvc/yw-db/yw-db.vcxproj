@@ -30,7 +30,7 @@
     <ClCompile Include="..\..\src\yw-db\source.cpp" />
     <ClCompile Include="..\..\src\yw-db\transceiver.cpp" />
     <ClCompile Include="..\..\src\yw-db\user.cpp" />
-    <ClCompile Include="..\..\src\yw-db\yw_db.cpp" />
+    <ClCompile Include="..\..\src\yw-db\ywdb.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-db\annotation.h" />
@@ -44,7 +44,7 @@
     <ClInclude Include="..\..\src\yw-db\source.h" />
     <ClInclude Include="..\..\src\yw-db\transceiver.h" />
     <ClInclude Include="..\..\src\yw-db\user.h" />
-    <ClInclude Include="..\..\src\yw-db\yw_db.h" />
+    <ClInclude Include="..\..\src\yw-db\ywdb.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

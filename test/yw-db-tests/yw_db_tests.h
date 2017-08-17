@@ -7,5 +7,5 @@
 #endif
 
 #include <memory>
-#include "yw_db.h"
+#include "ywdb.h"
 #include "yw_db_test_helpers.h"
