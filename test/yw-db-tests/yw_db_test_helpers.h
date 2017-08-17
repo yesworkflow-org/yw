@@ -9,6 +9,7 @@ inline SimpleString StringFrom(const yw::db::ExtractionRow& row) { return String
 inline SimpleString StringFrom(const yw::db::FileRow& row) { return StringFrom(row.str()); }
 inline SimpleString StringFrom(const yw::db::LineRow& row) { return StringFrom(row.str()); }
 inline SimpleString StringFrom(const yw::db::AnnotationRow::Tag& tag) { return yw::db::AnnotationRow::to_string(tag).c_str(); }
+inline SimpleString StringFrom(const yw::db::TransceiverRow::Direction& direction) { return yw::db::TransceiverRow::to_string(direction).c_str(); }
 #endif
 
 #include "yw_test.h"

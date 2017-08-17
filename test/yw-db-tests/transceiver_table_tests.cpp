@@ -6,8 +6,9 @@ using namespace yw::sqlite;
 
 using std::make_unique;
 using std::string;
-using Tag = yw::db::AnnotationRow::Tag;
 
+using Tag = yw::db::AnnotationRow::Tag;
+using Direction = yw::db::TransceiverRow::Direction;
 
 YW_TEST_FIXTURE(TransceiverTable)
 
@@ -70,23 +71,23 @@ YW_TEST_SET
     YW_TEST(TransceiverTable, InsertOneRow_GeneratedIdIs_1)
     {
         Assert::AreEqual(1, ywdb.insert(TransceiverRow{ auto_id, port28, data5, 
-            TransceiverRow::Direction::IN, nullable_long(1), nullable_long(1) }));
+            Direction::IN, nullable_long(1), nullable_long(1) }));
     }
 
     YW_TEST(TransceiverTable, InsertTwoRows_SecondGeneratedIdIs_2)
     {
         Expect::AreEqual(1, ywdb.insert(TransceiverRow{ auto_id, port28, data5,
-            TransceiverRow::Direction::IN, nullable_long(1), nullable_long(1) }));
+            Direction::IN, nullable_long(1), nullable_long(1) }));
         Assert::AreEqual(2, ywdb.insert(TransceiverRow{ auto_id, port88, data92,
-            TransceiverRow::Direction::OUT, nullable_long(1), nullable_long(1) }));
+            Direction::OUT, nullable_long(1), nullable_long(1) }));
     }
 
     YW_TEST(TransceiverTable, SelectById_RowExists) {
 
         Expect::AreEqual(1, ywdb.insert(TransceiverRow{ auto_id, port28, data5,
-            TransceiverRow::Direction::IN, nullable_long(1), nullable_long(2) }));
+            Direction::IN, nullable_long(1), nullable_long(2) }));
         Expect::AreEqual(2, ywdb.insert(TransceiverRow{ auto_id, port88, data92,
-            TransceiverRow::Direction::OUT, nullable_long(3), nullable_long(4) }));
+            Direction::OUT, nullable_long(3), nullable_long(4) }));
 
         auto transceiver = ywdb.selectTransceiverById(2L);
         Assert::AreEqual(2, transceiver.id.getValue());
