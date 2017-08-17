@@ -8,7 +8,7 @@ using std::make_unique;
 using std::string;
 using Tag = yw::db::Annotation::Tag;
 
-YW_TEST_FIXTURE(BlockTable)
+YW_TEST_FIXTURE(Block)
 
     YesWorkflowDB ywdb { false };
     row_id user13;
@@ -18,7 +18,7 @@ YW_TEST_FIXTURE(BlockTable)
     row_id annotation11, annotation12;
     row_id model77;
 
-    YW_TEST_SETUP(BlockTable)
+    YW_TEST_SETUP(Block)
     {
         ywdb.createUserTable();
         Expect::AreEqual(13, ywdb.insert(User{ (user13 = 13), "user1" }));
@@ -47,19 +47,19 @@ YW_TEST_FIXTURE(BlockTable)
 
 YW_TEST_SET
 
-    YW_TEST(BlockTable, InsertOneRow_GeneratedIdIs_1)
+    YW_TEST(Block, InsertOneRow_GeneratedIdIs_1)
     {
         Assert::AreEqual(1, ywdb.insert(Block{ auto_id, model77, null_id, annotation11, "block" }));
     }
 
-    YW_TEST(BlockTable, InsertTwoRows_SecondGeneratedIdIs_2)
+    YW_TEST(Block, InsertTwoRows_SecondGeneratedIdIs_2)
     {
         row_id block1;
         Expect::AreEqual(1, (block1 = ywdb.insert(Block{ auto_id, model77, null_id, annotation11, "block" })));
         Assert::AreEqual(2, ywdb.insert(Block{ auto_id, model77, block1, annotation12, "nested block" }));
     }
 
-    YW_TEST(BlockTable, SelectById_RowExists) {
+    YW_TEST(Block, SelectById_RowExists) {
 
         row_id block1;
         Expect::AreEqual(1, (block1 = ywdb.insert(Block{ auto_id, model77, null_id, annotation11, "block" })));
@@ -73,7 +73,7 @@ YW_TEST_SET
         Assert::AreEqual(std::string("nested block"), block.name);
     }
     
-    YW_TEST(BlockTable, SelectById_RowDoesntExist) {
+    YW_TEST(Block, SelectById_RowDoesntExist) {
         try {
             auto user = ywdb.selectBlockById(1L);
             Assert::Fail();

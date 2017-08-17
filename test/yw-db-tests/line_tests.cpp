@@ -7,12 +7,12 @@ using namespace yw::db;
 using std::make_unique;
 using std::string;
 
-YW_TEST_FIXTURE(LineTable)
+YW_TEST_FIXTURE(Line)
 
     YesWorkflowDB ywdb { false };
     long file99, source34;
 
-    YW_TEST_SETUP(LineTable)
+    YW_TEST_SETUP(Line)
     {
         ywdb.createFileTable();
         Expect::AreEqual(99, (ywdb.insert(File{ (file99 = 99), "main.c" })));
@@ -25,18 +25,18 @@ YW_TEST_FIXTURE(LineTable)
 
 YW_TEST_SET
 
-    YW_TEST(LineTable, InsertingFirstLineYieldsGeneratedId1)
+    YW_TEST(Line, InsertingFirstLineYieldsGeneratedId1)
     {
         Assert::AreEqual(1, ywdb.insert(Line(auto_id, source34, 1, "@begin block")));
     }
 
-    YW_TEST(LineTable, InsertingSecondLineYieldsGeneratedId2)
+    YW_TEST(Line, InsertingSecondLineYieldsGeneratedId2)
     {
         Expect::AreEqual(1, ywdb.insert(Line(auto_id, source34, 1, "@begin block")));
         Assert::AreEqual(2, ywdb.insert(Line(auto_id, source34, 2, "@end block")));
     }
 
-    YW_TEST(LineTable, SelectingExistingLineByIdYieldsCorrectAssignedValues)
+    YW_TEST(Line, SelectingExistingLineByIdYieldsCorrectAssignedValues)
     {
         Expect::AreEqual(1, ywdb.insert(Line(auto_id, source34, 1, "@begin block")));
         Expect::AreEqual(2, ywdb.insert(Line(auto_id, source34, 4, "@in port")));
@@ -49,7 +49,7 @@ YW_TEST_SET
         Assert::AreEqual("@in port", lineRow.text);
     }
 
-    YW_TEST(LineTable, SelectingNonexistentLineByIdThrowsException) {
+    YW_TEST(Line, SelectingNonexistentLineByIdThrowsException) {
         try {
             auto user = ywdb.selectLineById(1L);
             Assert::Fail();

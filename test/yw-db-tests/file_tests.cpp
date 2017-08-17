@@ -7,29 +7,29 @@ using namespace yw::db;
 using std::make_unique;
 using std::string;
 
-YW_TEST_FIXTURE(FileTable)
+YW_TEST_FIXTURE(File)
 
     YesWorkflowDB ywdb { false };
 
-    YW_TEST_SETUP(FileTable)
+    YW_TEST_SETUP(File)
     {
         ywdb.createFileTable();
     }
 
 YW_TEST_SET
 
-    YW_TEST(FileTable, InsertFile_OneRow_GeneratedIdIs_1)
+    YW_TEST(File, InsertFile_OneRow_GeneratedIdIs_1)
     {
         Assert::AreEqual(1, ywdb.insert(File{ auto_id, "main.c" }));
     }
 
-    YW_TEST(FileTable, InsertFile_TwoRows_SecondGeneratedIdIs_2)
+    YW_TEST(File, InsertFile_TwoRows_SecondGeneratedIdIs_2)
     {
         Expect::AreEqual(1, ywdb.insert(File{ auto_id, "main.c" }));
         Assert::AreEqual(2, ywdb.insert(File{ auto_id, "script.sh" }));
     }
 
-    YW_TEST(FileTable, SelectFileById_RowExists) {
+    YW_TEST(File, SelectFileById_RowExists) {
         Expect::AreEqual(1, ywdb.insert(File{ auto_id, "main.c" }));
         Expect::AreEqual(2, ywdb.insert(File{ auto_id, "script.sh" }));
 
@@ -38,7 +38,7 @@ YW_TEST_SET
         Assert::AreEqual("script.sh", file.name);
     }
 
-    YW_TEST(FileTable, SelectFileById_RowDoesntExist) {
+    YW_TEST(File, SelectFileById_RowDoesntExist) {
         try {
             auto user = ywdb.selectFileById(1L);
             Assert::Fail();

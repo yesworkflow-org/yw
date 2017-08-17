@@ -6,35 +6,35 @@ using namespace yw::db;
 
 using std::make_unique;
 
-YW_TEST_FIXTURE(UserTable)
+YW_TEST_FIXTURE(User)
 
     YesWorkflowDB ywdb { false };
 
-    YW_TEST_SETUP(UserTable)
+    YW_TEST_SETUP(User)
     {
         ywdb.createUserTable();
     }
 
 YW_TEST_SET
 
-    YW_TEST(UserTable, InsertingFirstUserWithNameYieldsGeneratedId1)
+    YW_TEST(User, InsertingFirstUserWithNameYieldsGeneratedId1)
     {
         Assert::AreEqual(1, ywdb.insert(User{ auto_id, "user1" }));
     }
 
-    YW_TEST(UserTable, InsertingFirstUserWithNoNameYieldsGeneratedId1)
+    YW_TEST(User, InsertingFirstUserWithNoNameYieldsGeneratedId1)
     {
         Assert::AreEqual(1, ywdb.insert(User{ auto_id, nullable_string{} }));
     }
 
-    YW_TEST(UserTable, InsertingSecondUserWithNameYieldsGeneratedId2)
+    YW_TEST(User, InsertingSecondUserWithNameYieldsGeneratedId2)
     {
         Expect::AreEqual(1, ywdb.insert(User{ auto_id, "user1" }));
 
         Assert::AreEqual(2, ywdb.insert(User{ auto_id, "user2" }));
     }
 
-    YW_TEST(UserTable, SelectingExistingUserWithNameByIdYieldsAssignedName)
+    YW_TEST(User, SelectingExistingUserWithNameByIdYieldsAssignedName)
     {
         Expect::AreEqual(1, ywdb.insert(User{ auto_id, "user1" }));
 
@@ -43,7 +43,7 @@ YW_TEST_SET
         Assert::AreEqual("user1", user.name.getValue());
     }
 
-    YW_TEST(UserTable, SelectingExistingUserNoNameByIdYieldsNullName)
+    YW_TEST(User, SelectingExistingUserNoNameByIdYieldsNullName)
     {
         Assert::AreEqual(1, ywdb.insert(User{ auto_id, nullable_string{} }));
 
@@ -52,7 +52,7 @@ YW_TEST_SET
         Assert::IsNull(user.name);
     }
 
-    YW_TEST(UserTable, SelectingNonexistentUserByIdThrowsException)
+    YW_TEST(User, SelectingNonexistentUserByIdThrowsException)
     {
         try {
             auto user = ywdb.selectUserById(1L);

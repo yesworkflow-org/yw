@@ -7,7 +7,7 @@ using namespace yw::test;
 using std::make_unique;
 using Tag = yw::db::Annotation::Tag;
 
-YW_TEST_FIXTURE(AnnotationTable)
+YW_TEST_FIXTURE(Annotation)
 
     YesWorkflowDB ywdb { false };
     row_id user13;
@@ -16,7 +16,7 @@ YW_TEST_FIXTURE(AnnotationTable)
     row_id source8;
     row_id line19, line25, line77, line119, line125, line177, line199;
 
-    YW_TEST_SETUP(AnnotationTable)
+    YW_TEST_SETUP(Annotation)
     {
         ywdb.createUserTable();
         Expect::AreEqual(13, ywdb.insert(User{ (user13 = 13), "user1" }));
@@ -43,19 +43,19 @@ YW_TEST_FIXTURE(AnnotationTable)
 
 YW_TEST_SET
 
-    YW_TEST(AnnotationTable, InsertingFirstAnnotationYieldsGeneratedId1)
+    YW_TEST(Annotation, InsertingFirstAnnotationYieldsGeneratedId1)
     {
         Assert::AreEqual(1, ywdb.insert(Annotation{ auto_id, extraction17, Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" }));
     }
 
-    YW_TEST(AnnotationTable, InsertingQualifyingAnnotationYieldsGeneratedId2)
+    YW_TEST(Annotation, InsertingQualifyingAnnotationYieldsGeneratedId2)
     {
         long annotation1;
         Assert::AreEqual(1, (annotation1 = ywdb.insert(Annotation{ auto_id, extraction17, Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" })));
         Assert::AreEqual(2, ywdb.insert(Annotation{ auto_id, extraction17, Tag::IN, annotation1, line25, 1, 0, 7, "@in", "port" }));
     }
 
-    YW_TEST(AnnotationTable, SelectingFirstAnnotationByIdYieldsAssignedFieldValues) {
+    YW_TEST(Annotation, SelectingFirstAnnotationByIdYieldsAssignedFieldValues) {
 
         long annotation1;
         Assert::AreEqual(1, (annotation1 = ywdb.insert(Annotation{ auto_id,extraction17,  Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" })));
@@ -71,7 +71,7 @@ YW_TEST_SET
         Assert::AreEqual("block", annotation.value.getValue());
     }
 
-    YW_TEST(AnnotationTable, SelectingQualifyingAnnotationByIdYieldsAssignedFieldValues) {
+    YW_TEST(Annotation, SelectingQualifyingAnnotationByIdYieldsAssignedFieldValues) {
 
         long annotation1;
         Assert::AreEqual(1, (annotation1 = ywdb.insert(Annotation{ auto_id, extraction17, Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" })));
@@ -88,7 +88,7 @@ YW_TEST_SET
         Assert::AreEqual("port", annotation.value.getValue());
     }
 
-    YW_TEST(AnnotationTable, SelectingNonexistent) {
+    YW_TEST(Annotation, SelectingNonexistent) {
         try {
             auto source = ywdb.selectAnnotationById(1L);
             Assert::Fail();
@@ -98,7 +98,7 @@ YW_TEST_SET
         }
     }
 
-    YW_TEST(AnnotationTable, SelectTopLevelAnnotationsReturnsOneRowWhenJustOneBeginAnnotation) {
+    YW_TEST(Annotation, SelectTopLevelAnnotationsReturnsOneRowWhenJustOneBeginAnnotation) {
         ywdb.insert(Annotation{ auto_id, extraction17, Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" });
         auto selectedAnnotations = ywdb.selectTopLevelAnnotations();
 
@@ -106,7 +106,7 @@ YW_TEST_SET
         Assert::AreEqual(Annotation{ 1, extraction17, Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" }, selectedAnnotations[0]);
     }
 
-    YW_TEST(AnnotationTable, SelectTopLevelAnnotationsReturnsTwoRowsWhenJustTwoBeginAnnotations) {
+    YW_TEST(Annotation, SelectTopLevelAnnotationsReturnsTwoRowsWhenJustTwoBeginAnnotations) {
         ywdb.insert(Annotation{ auto_id, extraction17, Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" });
         ywdb.insert(Annotation{ auto_id, extraction17, Tag::BEGIN, null_id, line119, 1, 0, 18, "@begin", "second block" });
         auto selectedAnnotations = ywdb.selectTopLevelAnnotations();
@@ -116,7 +116,7 @@ YW_TEST_SET
         Assert::AreEqual(Annotation{ 2, extraction17, Tag::BEGIN, null_id, line119, 1, 0, 18, "@begin", "second block" }, selectedAnnotations[1]);
     }
 
-    YW_TEST(AnnotationTable, SelectTopLevelAnnotationsReturnsTwoRowsWhenTwoTreesInserted) {
+    YW_TEST(Annotation, SelectTopLevelAnnotationsReturnsTwoRowsWhenTwoTreesInserted) {
 
         auto firstRoot = Annotation{ 1, extraction17, Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" };
         ywdb.insert(firstRoot);
@@ -135,7 +135,7 @@ YW_TEST_SET
         Assert::AreEqual(Annotation{ 4, extraction17, Tag::BEGIN, null_id, line119, 1, 0, 18, "@begin", "second block" }, selectedAnnotations[1]);
     }
 
-    YW_TEST(AnnotationTable, SelectAnnotationTreeReturnsOneRowWhenRootAnnotationHasNoChildren) {
+    YW_TEST(Annotation, SelectAnnotationTreeReturnsOneRowWhenRootAnnotationHasNoChildren) {
         auto annotation1 = Annotation{ auto_id, extraction17, Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" };
         long insertedAnnotationId;
         Expect::AreEqual(1, (insertedAnnotationId = ywdb.insert(annotation1)));
@@ -145,7 +145,7 @@ YW_TEST_SET
         Assert::AreEqual(Annotation{ 1, extraction17, Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" }, selectedAnnotations[0]);
     }
 
-    YW_TEST(AnnotationTable, SelectAnnotationTreeReturnsAllRowWhenOnlyRootAndChildrenInserted) {
+    YW_TEST(Annotation, SelectAnnotationTreeReturnsAllRowWhenOnlyRootAndChildrenInserted) {
         auto annotation1 = Annotation{ auto_id, extraction17, Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" };
         long rootAnnotationId;
         Expect::AreEqual(1, (rootAnnotationId = ywdb.insert(annotation1)));
@@ -161,7 +161,7 @@ YW_TEST_SET
         Assert::AreEqual(Annotation{ 3, extraction17, Tag::END, 1, line77, 1, 0, 10, "@end", "block" }, selectedAnnotations[2]);
     }
 
-    YW_TEST(AnnotationTable, SelectAnnotationTreeReturnsTwoDifferentTreesDependingOnRoot) {
+    YW_TEST(Annotation, SelectAnnotationTreeReturnsTwoDifferentTreesDependingOnRoot) {
 
         auto annotation1 = Annotation{ auto_id, extraction17, Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" };
         long firstRootAnnotationId;

@@ -10,7 +10,7 @@ using std::string;
 using Tag = yw::db::Annotation::Tag;
 using Direction = yw::db::Transceiver::Direction;
 
-YW_TEST_FIXTURE(TransceiverTable)
+YW_TEST_FIXTURE(Transceiver)
 
     YesWorkflowDB ywdb { false };
     row_id user13;
@@ -23,7 +23,7 @@ YW_TEST_FIXTURE(TransceiverTable)
     row_id port28, port88;
     row_id data5, data92;
 
-    YW_TEST_SETUP(TransceiverTable)
+    YW_TEST_SETUP(Transceiver)
     {
         ywdb.createUserTable();
         Expect::AreEqual(13, ywdb.insert(User{ (user13 = 13), "user1" }));
@@ -68,13 +68,13 @@ YW_TEST_FIXTURE(TransceiverTable)
 
 YW_TEST_SET
 
-    YW_TEST(TransceiverTable, InsertOneRow_GeneratedIdIs_1)
+    YW_TEST(Transceiver, InsertOneRow_GeneratedIdIs_1)
     {
         Assert::AreEqual(1, ywdb.insert(Transceiver{ auto_id, port28, data5, 
             Direction::IN, nullable_long(1), nullable_long(1) }));
     }
 
-    YW_TEST(TransceiverTable, InsertTwoRows_SecondGeneratedIdIs_2)
+    YW_TEST(Transceiver, InsertTwoRows_SecondGeneratedIdIs_2)
     {
         Expect::AreEqual(1, ywdb.insert(Transceiver{ auto_id, port28, data5,
             Direction::IN, nullable_long(1), nullable_long(1) }));
@@ -82,7 +82,7 @@ YW_TEST_SET
             Direction::OUT, nullable_long(1), nullable_long(1) }));
     }
 
-    YW_TEST(TransceiverTable, SelectById_RowExists) {
+    YW_TEST(Transceiver, SelectById_RowExists) {
 
         Expect::AreEqual(1, ywdb.insert(Transceiver{ auto_id, port28, data5,
             Direction::IN, nullable_long(1), nullable_long(2) }));
@@ -98,7 +98,7 @@ YW_TEST_SET
         Assert::AreEqual(4, transceiver.maxRate.getValue());
     }
     
-    YW_TEST(TransceiverTable, SelectById_RowDoesntExist) {
+    YW_TEST(Transceiver, SelectById_RowDoesntExist) {
         try {
             auto user = ywdb.selectTransceiverById(1L);
             Assert::Fail();

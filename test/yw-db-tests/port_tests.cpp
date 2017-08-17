@@ -9,7 +9,7 @@ using std::string;
 using Tag = yw::db::Annotation::Tag;
 
 
-YW_TEST_FIXTURE(PortTable)
+YW_TEST_FIXTURE(Port)
 
     YesWorkflowDB ywdb { false };
     row_id user13;
@@ -20,7 +20,7 @@ YW_TEST_FIXTURE(PortTable)
     row_id model77;
     row_id block1, block2;
 
-    YW_TEST_SETUP(PortTable)
+    YW_TEST_SETUP(Port)
     {
         ywdb.createUserTable();
         Expect::AreEqual(13, ywdb.insert(User{ (user13 = 13), "user1" }));
@@ -57,18 +57,18 @@ YW_TEST_FIXTURE(PortTable)
 
 YW_TEST_SET
 
-    YW_TEST(PortTable, InsertOneRow_GeneratedIdIs_1)
+    YW_TEST(Port, InsertOneRow_GeneratedIdIs_1)
     {
         Assert::AreEqual(1, ywdb.insert(Port{ auto_id, block1, annotation16, "port" }));
     }
 
-    YW_TEST(PortTable, InsertTwoRows_SecondGeneratedIdIs_2)
+    YW_TEST(Port, InsertTwoRows_SecondGeneratedIdIs_2)
     {
         Expect::AreEqual(1, ywdb.insert(Port{ auto_id, block1, annotation16, "port" }));
         Assert::AreEqual(2, ywdb.insert(Port{ auto_id, block2, annotation36, "second port" }));
     }
 
-    YW_TEST(PortTable, SelectById_RowExists) {
+    YW_TEST(Port, SelectById_RowExists) {
 
         Expect::AreEqual(1, ywdb.insert(Port{ auto_id, block1, annotation16, "port" }));
         Expect::AreEqual(2, ywdb.insert(Port{ auto_id, block2, annotation36, "second port" }));
@@ -80,7 +80,7 @@ YW_TEST_SET
         Assert::AreEqual(std::string("second port"), port.name);
     }
     
-    YW_TEST(PortTable, SelectById_RowDoesntExist) {
+    YW_TEST(Port, SelectById_RowDoesntExist) {
         try {
             auto user = ywdb.selectPortById(1L);
             Assert::Fail();

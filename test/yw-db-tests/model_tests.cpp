@@ -7,13 +7,13 @@ using namespace yw::db;
 using std::make_unique;
 using std::string;
 
-YW_TEST_FIXTURE(ModelTable)
+YW_TEST_FIXTURE(Model)
 
     YesWorkflowDB ywdb { false };
     long user4, user19, user101;
     long extraction2, extraction13;
 
-    YW_TEST_SETUP(ModelTable)
+    YW_TEST_SETUP(Model)
     {
         ywdb.createUserTable();
         Expect::AreEqual(4, ywdb.insert(User{ (user4 = 4), "user1" }));
@@ -29,18 +29,18 @@ YW_TEST_FIXTURE(ModelTable)
 
 YW_TEST_SET
 
-    YW_TEST(ModelTable, InsertOneRow_GeneratedIdIs_1)
+    YW_TEST(Model, InsertOneRow_GeneratedIdIs_1)
     {
         Assert::AreEqual(1, ywdb.insert(Model{ auto_id, user4, extraction2, "2017-06-22 10:52:00.000" }));
     }
 
-    YW_TEST(ModelTable, InsertTwoRows_SecondGeneratedIdIs_2)
+    YW_TEST(Model, InsertTwoRows_SecondGeneratedIdIs_2)
     {
         Expect::AreEqual(1, ywdb.insert(Model{ auto_id, user4, extraction2, "2017-06-22 10:52:00.000" }));
         Assert::AreEqual(2, ywdb.insert(Model{ auto_id, user19, extraction13, "2017-06-22 10:52:00.000" }));
     }
 
-    YW_TEST(ModelTable, SelectById_RowExists) {
+    YW_TEST(Model, SelectById_RowExists) {
 
         Expect::AreEqual(1, ywdb.insert(Model{ auto_id, user4, extraction2, "2017-06-22 10:52:00.000" }));
         Expect::AreEqual(2, ywdb.insert(Model{ auto_id, user19, extraction13, "2017-06-22 10:52:00.000" }));
@@ -52,7 +52,7 @@ YW_TEST_SET
         Assert::AreEqual(std::string("2017-06-22 10:52:00.000"), model.created);
     }
     
-    YW_TEST(ModelTable, SelectById_RowDoesntExist) {
+    YW_TEST(Model, SelectById_RowDoesntExist) {
         try {
             auto user = ywdb.selectModelById(1L);
             Assert::Fail();

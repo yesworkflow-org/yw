@@ -6,12 +6,12 @@ using namespace yw::db;
 
 using std::make_unique;
 
-YW_TEST_FIXTURE(SourceTable)
+YW_TEST_FIXTURE(Source)
 
     YesWorkflowDB ywdb { false };
     row_id file22, file70;
 
-    YW_TEST_SETUP(SourceTable)
+    YW_TEST_SETUP(Source)
     {
         ywdb.createFileTable();
         Expect::AreEqual(22, ywdb.insert(File{ (file22 = 22), "main.c" }));
@@ -22,18 +22,18 @@ YW_TEST_FIXTURE(SourceTable)
 
 YW_TEST_SET
 
-    YW_TEST(SourceTable, InsertSource_OneRow_GeneratedIdIs_1)
+    YW_TEST(Source, InsertSource_OneRow_GeneratedIdIs_1)
     {
         Assert::AreEqual(1, ywdb.insert(Source{ auto_id, file22, "C" }));
     }
 
-    YW_TEST(SourceTable, InsertSource_TwoRows_SecondGeneratedIdIs_2)
+    YW_TEST(Source, InsertSource_TwoRows_SecondGeneratedIdIs_2)
     {
         Expect::AreEqual(1, ywdb.insert(Source{ auto_id, file22, "C" }));
         Assert::AreEqual(2, ywdb.insert(Source{ auto_id, file70, "Bash" }));
     }
 
-    YW_TEST(SourceTable, SelectSourceById_RowExists)
+    YW_TEST(Source, SelectSourceById_RowExists)
     {
         Expect::AreEqual(1, ywdb.insert(Source{ auto_id, file22, "C" }));
         Expect::AreEqual(2, ywdb.insert(Source{ auto_id, file70, "Bash" }));
@@ -44,7 +44,7 @@ YW_TEST_SET
         Assert::AreEqual("Bash", source.language.getValue());
     }
 
-    YW_TEST(SourceTable, SelectSourceById_RowDoesntExist) {
+    YW_TEST(Source, SelectSourceById_RowDoesntExist) {
         try {
             auto source = ywdb.selectSourceById(1L);
             Assert::Fail();

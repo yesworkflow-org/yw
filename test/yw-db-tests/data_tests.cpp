@@ -6,29 +6,29 @@ using namespace yw::db;
 
 using std::make_unique;
 
-YW_TEST_FIXTURE(DataTable)
+YW_TEST_FIXTURE(Data)
 
     YesWorkflowDB ywdb { false };
 
-    YW_TEST_SETUP(DataTable)
+    YW_TEST_SETUP(Data)
     {
         ywdb.createDataTable();
     }
 
 YW_TEST_SET
 
-    YW_TEST(DataTable, InsertOneRow_GeneratedIdIs_1)
+    YW_TEST(Data, InsertOneRow_GeneratedIdIs_1)
     {
         Assert::AreEqual(1, ywdb.insert(Data{ auto_id, null_id, "d" }));
     }
 
-    YW_TEST(DataTable, InsertSource_TwoRows_SecondGeneratedIdIs_2)
+    YW_TEST(Data, InsertSource_TwoRows_SecondGeneratedIdIs_2)
     {
         Expect::AreEqual(1, ywdb.insert(Data{ auto_id, null_id, "d" }));
         Assert::AreEqual(2, ywdb.insert(Data{ auto_id, 1, "e" }));
     }
 
-    YW_TEST(DataTable, SelectById_RowExists)
+    YW_TEST(Data, SelectById_RowExists)
     {
         Expect::AreEqual(1, ywdb.insert(Data{ auto_id, null_id, "d" }));
         Expect::AreEqual(2, ywdb.insert(Data{ auto_id, 1, "e" }));
@@ -39,7 +39,7 @@ YW_TEST_SET
         Assert::AreEqual("e", data.name);
     }
     
-    YW_TEST(DataTable, SelectById_RowDoesntExist) {
+    YW_TEST(Data, SelectById_RowDoesntExist) {
         try {
             auto source = ywdb.selectDataById(1L);
             Assert::Fail();
