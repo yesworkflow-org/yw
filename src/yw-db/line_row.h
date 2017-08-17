@@ -8,14 +8,14 @@ namespace yw {
 
         struct LineRow : yw::sqlite::TableRow {
 
-            const yw::sqlite::nullable_row_id id;
-            const yw::sqlite::row_id sourceId;
+            const yw::nullable_row_id id;
+            const yw::row_id sourceId;
             const long number;
             const std::string text;
 
             LineRow(
-                const yw::sqlite::nullable_row_id& id,
-                const yw::sqlite::row_id& sourceId,
+                const yw::nullable_row_id& id,
+                const yw::row_id& sourceId,
                 long number,
                 const std::string& text
             ) : id(id), sourceId(sourceId), number(number), text(text)

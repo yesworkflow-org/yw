@@ -7,14 +7,14 @@ namespace yw {
 
         struct SourceRow : yw::sqlite::TableRow {
 
-            const yw::sqlite::nullable_row_id id;
-            const yw::sqlite::nullable_row_id fileId;
-            const yw::sqlite::nullable_string language;
+            const yw::nullable_row_id id;
+            const yw::nullable_row_id fileId;
+            const yw::nullable_string language;
 
             SourceRow(
-                const yw::sqlite::nullable_row_id& id,
-                const yw::sqlite::nullable_row_id& fileId,
-                const yw::sqlite::nullable_string& language
+                const yw::nullable_row_id& id,
+                const yw::nullable_row_id& fileId,
+                const yw::nullable_string& language
             ) : id(id), fileId(fileId), language(language) 
             {}
         };

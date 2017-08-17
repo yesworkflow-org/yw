@@ -4,71 +4,69 @@
 #include <stdexcept>
 
 namespace yw {
-    namespace sqlite {
 
-        template<typename T>
-        class nullable {
+    template<typename T>
+    class nullable {
 
-        protected:
+    protected:
 
-            bool isSet;
-            T value;
+        bool isSet;
+        T value;
 
-        public:
+    public:
 
-            nullable() : isSet(false), value() {}
+        nullable() : isSet(false), value() {}
 
-            explicit nullable(const T& value) : isSet(true), value(value) {}
+        explicit nullable(const T& value) : isSet(true), value(value) {}
 
-            bool hasValue() const { return isSet; }
+        bool hasValue() const { return isSet; }
 
-            const T& getValue() const {
-                if (!isSet) { throw std::runtime_error("No value assigned"); }
-                return value;
-            }
+        const T& getValue() const {
+            if (!isSet) { throw std::runtime_error("No value assigned"); }
+            return value;
+        }
 
-            std::string str() const {
-                std::stringstream ss;
-                if (isSet) ss << value; else ss << "NULL";
-                return ss.str();
-            }
+        std::string str() const {
+            std::stringstream ss;
+            if (isSet) ss << value; else ss << "NULL";
+            return ss.str();
+        }
 
-            nullable<T> operator=(const nullable<T>& rhs) {
-                isSet = rhs.isSet;
-                value = rhs.value;
-                return *this;
-            }
-        };
+        nullable<T> operator=(const nullable<T>& rhs) {
+            isSet = rhs.isSet;
+            value = rhs.value;
+            return *this;
+        }
+    };
 
-        class nullable_string : public nullable<std::string> {
-        public:
-            nullable_string() : nullable() {}
-            explicit nullable_string(const std::string& value) : nullable(value) {}
-            nullable_string(const char * c_ptr) : nullable(
-                c_ptr == nullptr ? nullable{} : nullable{ std::string(c_ptr) }) {}
-        };
+    class nullable_string : public nullable<std::string> {
+    public:
+        nullable_string() : nullable() {}
+        explicit nullable_string(const std::string& value) : nullable(value) {}
+        nullable_string(const char * c_ptr) : nullable(
+            c_ptr == nullptr ? nullable{} : nullable{ std::string(c_ptr) }) {}
+    };
 
-        using row_id = long;
+    using row_id = long;
 
-        class nullable_row_id : public nullable<long> {
-        public:
-            enum class generation { not_requested, requested } request;
-            nullable_row_id() : nullable() {}
-            nullable_row_id(const long& value) : nullable(value) {}
-            nullable_row_id(generation request) : nullable{}, request(request) {}
-            nullable_row_id operator=(const nullable_row_id& rhs) {
-                isSet = rhs.isSet;
-                value = rhs.value;
-                request = rhs.request;
-                return *this;
-            }
-        };
+    class nullable_row_id : public nullable<long> {
+    public:
+        enum class generation { not_requested, requested } request;
+        nullable_row_id() : nullable() {}
+        nullable_row_id(const long& value) : nullable(value) {}
+        nullable_row_id(generation request) : nullable{}, request(request) {}
+        nullable_row_id operator=(const nullable_row_id& rhs) {
+            isSet = rhs.isSet;
+            value = rhs.value;
+            request = rhs.request;
+            return *this;
+        }
+    };
 
-        using nullable_long = nullable<long>;
+    using nullable_long = nullable<long>;
 
-        static const auto null_id = nullable_row_id{ nullable_row_id::generation::not_requested };
-        static const auto auto_id = nullable_row_id{ nullable_row_id::generation::requested };
-        static const auto null_long = nullable_long{};
-        static const auto null_string = nullable_string{};
-    }
+    static const auto null_id = nullable_row_id{ nullable_row_id::generation::not_requested };
+    static const auto auto_id = nullable_row_id{ nullable_row_id::generation::requested };
+    static const auto null_long = nullable_long{};
+    static const auto null_string = nullable_string{};
 }

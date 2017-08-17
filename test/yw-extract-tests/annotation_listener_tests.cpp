@@ -1,10 +1,10 @@
 #include "yw_extract_tests.h"
 
+using namespace yw;
 using namespace yw::extract;
 using namespace yw::parse;
 using namespace yw::test;
 using namespace yw::db;
-using namespace yw::sqlite;
 
 using Tag = yw::db::AnnotationRow::Tag;
 

@@ -87,7 +87,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <LibraryPath>$(SolutionDir)\sqlite3\x64\Debug;$(SolutionDir)\antlr4-runtime\x64\Debug;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
+    <LibraryPath>$(SolutionDir)\sqlite3\x64\Debug;$(SolutionDir)\antlr4-runtime\x64\Release;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
     <IncludePath>$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\src\sqlite-db;$(ANTLR4_RUNTIME_SRC);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

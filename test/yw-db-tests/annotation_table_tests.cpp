@@ -1,8 +1,8 @@
 #include "yw_db_tests.h"
 
-using namespace yw::test;
-using namespace yw::sqlite;
+using namespace yw;
 using namespace yw::db;
+using namespace yw::test;
 
 using std::make_unique;
 using Tag = yw::db::AnnotationRow::Tag;

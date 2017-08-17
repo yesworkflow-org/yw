@@ -12,20 +12,20 @@ namespace yw {
                 OUT = 2
             };
 
-            const yw::sqlite::nullable_row_id id;
-            const yw::sqlite::row_id portId;
-            const yw::sqlite::row_id dataId;
+            const yw::nullable_row_id id;
+            const yw::row_id portId;
+            const yw::row_id dataId;
             const Direction direction;
-            const yw::sqlite::nullable_long minRate;
-            const yw::sqlite::nullable_long maxRate;
+            const yw::nullable_long minRate;
+            const yw::nullable_long maxRate;
 
             TransceiverRow(
-                const yw::sqlite::nullable_row_id& id,
-                const yw::sqlite::row_id& portId,
-                const yw::sqlite::row_id& dataId,
+                const yw::nullable_row_id& id,
+                const yw::row_id& portId,
+                const yw::row_id& dataId,
                 Direction direction,
-                const yw::sqlite::nullable_long& minRate,
-                const yw::sqlite::nullable_long& maxRate
+                const yw::nullable_long& minRate,
+                const yw::nullable_long& maxRate
             ) : id(id), portId(portId), dataId(dataId), direction(direction), minRate(minRate), maxRate(maxRate)
             {}
 

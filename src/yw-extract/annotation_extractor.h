@@ -26,12 +26,12 @@ namespace yw {
         private:
 
             void extractAnnotationsFromString(
-                const yw::sqlite::row_id& extractionId,
-                const yw::sqlite::row_id& sourceId,
+                const yw::row_id& extractionId,
+                const yw::row_id& sourceId,
                 const std::string& sourceString);
 
             void extractAnnotationsFromFile(
-                const yw::sqlite::row_id& extractionId,
+                const yw::row_id& extractionId,
                 const std::string& filePath);
         };
     }

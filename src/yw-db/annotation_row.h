@@ -22,28 +22,28 @@ namespace yw {
                 AS = 8
             };
 
-            const yw::sqlite::nullable_row_id id;
-            const yw::sqlite::row_id extractionId;
+            const yw::nullable_row_id id;
+            const yw::row_id extractionId;
             const Tag tag;
-            const yw::sqlite::nullable_row_id qualifiesId;
-            const yw::sqlite::row_id lineId;
+            const yw::nullable_row_id qualifiesId;
+            const yw::row_id lineId;
             const long rankOnLine;
             const long start;
             const long end;
             const std::string keyword;
-            const yw::sqlite::nullable_string value;
+            const yw::nullable_string value;
 
             AnnotationRow(
-                const yw::sqlite::nullable_row_id& id,
-                const yw::sqlite::row_id& extractionId,
+                const yw::nullable_row_id& id,
+                const yw::row_id& extractionId,
                 Tag tag,
-                const yw::sqlite::nullable_row_id& qualifiesId,
+                const yw::nullable_row_id& qualifiesId,
                 long lineId,
                 long rankOnLine,
                 long start,
                 long end,
                 const std::string& keyword,
-                const yw::sqlite::nullable_string& value
+                const yw::nullable_string& value
             ) : id(id), extractionId(extractionId), tag(tag), qualifiesId(qualifiesId), lineId(lineId),
                 rankOnLine(rankOnLine), start(start), end(end), keyword(keyword), value(value)
             {}

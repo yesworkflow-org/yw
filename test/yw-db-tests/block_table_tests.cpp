@@ -1,13 +1,12 @@
 #include "yw_db_tests.h"
 
+using namespace yw;
 using namespace yw::test;
 using namespace yw::db;
-using namespace yw::sqlite;
 
 using std::make_unique;
 using std::string;
 using Tag = yw::db::AnnotationRow::Tag;
-
 
 YW_TEST_FIXTURE(BlockTable)
 
