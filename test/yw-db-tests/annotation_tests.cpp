@@ -50,14 +50,14 @@ YW_TEST_SET
 
     YW_TEST(Annotation, InsertingQualifyingAnnotationYieldsGeneratedId2)
     {
-        long annotation1;
+        row_id annotation1;
         Assert::AreEqual(1, (annotation1 = ywdb.insert(Annotation{ auto_id, extraction17, Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" })));
         Assert::AreEqual(2, ywdb.insert(Annotation{ auto_id, extraction17, Tag::IN, annotation1, line25, 1, 0, 7, "@in", "port" }));
     }
 
     YW_TEST(Annotation, SelectingFirstAnnotationByIdYieldsAssignedFieldValues) {
 
-        long annotation1;
+        row_id annotation1;
         Assert::AreEqual(1, (annotation1 = ywdb.insert(Annotation{ auto_id,extraction17,  Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" })));
 
         auto annotation = ywdb.selectAnnotationById(1L);
@@ -137,7 +137,7 @@ YW_TEST_SET
 
     YW_TEST(Annotation, SelectAnnotationTreeReturnsOneRowWhenRootAnnotationHasNoChildren) {
         auto annotation1 = Annotation{ auto_id, extraction17, Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" };
-        long insertedAnnotationId;
+        row_id insertedAnnotationId;
         Expect::AreEqual(1, (insertedAnnotationId = ywdb.insert(annotation1)));
         auto selectedAnnotations = ywdb.selectAnnotationTree(insertedAnnotationId);
 
@@ -147,7 +147,7 @@ YW_TEST_SET
 
     YW_TEST(Annotation, SelectAnnotationTreeReturnsAllRowWhenOnlyRootAndChildrenInserted) {
         auto annotation1 = Annotation{ auto_id, extraction17, Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" };
-        long rootAnnotationId;
+        row_id rootAnnotationId;
         Expect::AreEqual(1, (rootAnnotationId = ywdb.insert(annotation1)));
         auto annotation2 = Annotation{ auto_id, extraction17, Tag::IN, rootAnnotationId, line25, 1, 0, 8, "@in", "port" };
         auto annotation3 = Annotation{ auto_id, extraction17, Tag::END, rootAnnotationId, line77, 1, 0, 10, "@end", "block" };
@@ -164,7 +164,7 @@ YW_TEST_SET
     YW_TEST(Annotation, SelectAnnotationTreeReturnsTwoDifferentTreesDependingOnRoot) {
 
         auto annotation1 = Annotation{ auto_id, extraction17, Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" };
-        long firstRootAnnotationId;
+        row_id firstRootAnnotationId;
         Expect::AreEqual(1, (firstRootAnnotationId = ywdb.insert(annotation1)));
         auto annotation2 = Annotation{ auto_id, extraction17, Tag::IN, firstRootAnnotationId, line25, 1, 0, 8, "@in", "port" };
         auto annotation3 = Annotation{ auto_id, extraction17, Tag::END, firstRootAnnotationId, line77, 1, 0, 10, "@end", "block" };
@@ -173,7 +173,7 @@ YW_TEST_SET
         Expect::AreEqual(3, ywdb.getRowCount("annotation"));
 
         auto annotation4 = Annotation{ auto_id, extraction17, Tag::BEGIN, null_id, line119, 1, 0, 18, "@begin", "second block" };
-        long secondRootAnnotationId;
+        row_id secondRootAnnotationId;
         Expect::AreEqual(4, (secondRootAnnotationId = ywdb.insert(annotation4)));
         auto annotation5 = Annotation{ auto_id, extraction17, Tag::IN, secondRootAnnotationId, line125, 1, 0, 15, "@in", "second port" };
         auto annotation6 = Annotation{ auto_id, extraction17, Tag::END, secondRootAnnotationId, line177, 1, 0, 17, "@end", "second block" };

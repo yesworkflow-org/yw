@@ -10,7 +10,7 @@ using std::string;
 YW_TEST_FIXTURE(Line)
 
     YesWorkflowDB ywdb { false };
-    long file99, source34;
+    row_id file99, source34;
 
     YW_TEST_SETUP(Line)
     {

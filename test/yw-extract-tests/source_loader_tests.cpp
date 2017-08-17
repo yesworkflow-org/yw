@@ -10,7 +10,7 @@ YW_TEST_FIXTURE(SourceLoader)
 
     YesWorkflowDB ywdb;
     std::shared_ptr<SourceLoader> sourceLoader;
-    long sourceId; 
+    row_id sourceId;
     StderrRecorder stderrRecorder;
 
     YW_TEST_SETUP(SourceLoader) 

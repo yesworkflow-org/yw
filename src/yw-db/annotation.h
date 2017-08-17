@@ -38,7 +38,7 @@ namespace yw {
                 const row_id& extractionId,
                 Tag tag,
                 const nullable_row_id& qualifiesId,
-                long lineId,
+                const row_id& lineId,
                 long rankOnLine,
                 long start,
                 long end,

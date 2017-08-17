@@ -9,7 +9,7 @@ namespace yw {
             Statement(connection, sql)
         {}
 
-        void BindableStatement::bindId(int column, long id) {
+        void BindableStatement::bindId(int column, const row_id& id) {
             sqlite3_bind_int64(statement, column, (sqlite3_int64)id);
         }
 

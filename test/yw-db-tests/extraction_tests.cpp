@@ -10,7 +10,7 @@ using std::string;
 YW_TEST_FIXTURE(Extraction)
 
     YesWorkflowDB ywdb { false };
-    long user4, user19, user101;
+    row_id user4, user19, user101;
 
     YW_TEST_SETUP(Extraction)
     {

@@ -17,7 +17,7 @@ namespace yw {
 
             BindableStatement(std::shared_ptr<SQLiteDB> connection, const std::string& sql);
 
-            void bindId(int column, long id);
+            void bindId(int column, const row_id& id);
             void bindNullableId(int column, const nullable_row_id& id);
             void bindInt64(int column, long value);
             void bindNullableInt64(int column, const nullable_long& value);

@@ -24,7 +24,7 @@ YW_TEST_FIXTURE(AnnotationListener)
 
     YW_TEST_SETUP(AnnotationListener) {
 
-        long userId;
+        row_id userId;
 
         Expect::AreEqual(1, (userId = ywdb.insert(User{ auto_id, "user1" })));
         Expect::AreEqual(1, (extractionId = ywdb.insert(Extraction{ auto_id, userId, "2017-06-22 10:52:00.000" })));

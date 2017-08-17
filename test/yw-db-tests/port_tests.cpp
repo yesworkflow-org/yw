@@ -8,7 +8,6 @@ using std::make_unique;
 using std::string;
 using Tag = yw::db::Annotation::Tag;
 
-
 YW_TEST_FIXTURE(Port)
 
     YesWorkflowDB ywdb { false };

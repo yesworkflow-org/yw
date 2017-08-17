@@ -29,7 +29,7 @@ namespace yw {
             return nullable_long(static_cast<long>(value));
         }
 
-        long SelectStatement::getIdField(int column) const {
+        row_id SelectStatement::getIdField(int column) const {
             return getInt64Field(column);
         }
 
