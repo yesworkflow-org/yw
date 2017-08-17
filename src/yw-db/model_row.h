@@ -5,17 +5,17 @@
 namespace yw {
     namespace db {
 
-        struct ModelRow : yw::sqlite::TableRow {
+        struct ModelRow : sqlite::TableRow {
 
-            const yw::nullable_row_id id;
-            const yw::nullable_row_id userId;
-            const yw::nullable_row_id extractionId;
+            const nullable_row_id id;
+            const nullable_row_id userId;
+            const nullable_row_id extractionId;
             const std::string created;
 
             ModelRow(
-                const yw::nullable_row_id& id,
-                const yw::nullable_row_id& userId,
-                const yw::nullable_row_id& extractionId,
+                const nullable_row_id& id,
+                const nullable_row_id& userId,
+                const nullable_row_id& extractionId,
                 const std::string& created
             ) : id(id), userId(userId), extractionId(extractionId), created(created)
             {}

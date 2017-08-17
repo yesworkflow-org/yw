@@ -9,10 +9,10 @@ namespace yw {
         class AnnotationListener : public YWBaseListener {
 
             yw::db::YesWorkflowDB& ywdb;
-            const yw::row_id extractionId;
-            const yw::row_id sourceId;
-            yw::nullable_row_id currentPrimaryAnnotationId;
-            std::stack<yw::nullable_row_id> primaryAnnotationId;
+            const row_id extractionId;
+            const row_id sourceId;
+            nullable_row_id currentPrimaryAnnotationId;
+            std::stack<nullable_row_id> primaryAnnotationId;
             long currentLineNumber = 0;
             long currentRankOnLine = 0;
 
@@ -20,8 +20,8 @@ namespace yw {
 
             AnnotationListener(
                 yw::db::YesWorkflowDB& ywdb,
-                const yw::row_id& extractionId,
-                const yw::row_id& sourceId
+                const row_id& extractionId,
+                const row_id& sourceId
             ) : ywdb(ywdb), extractionId(extractionId), sourceId(sourceId)
             {}
 

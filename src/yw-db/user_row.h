@@ -6,14 +6,14 @@
 namespace yw {
     namespace db {
 
-        struct UserRow : yw::sqlite::TableRow {
+        struct UserRow : sqlite::TableRow {
 
-            const yw::nullable_row_id id;
-            const yw::nullable_string name;
+            const nullable_row_id id;
+            const nullable_string name;
 
             UserRow(
-                const yw::nullable_row_id& id,
-                const yw::nullable_string& name
+                const nullable_row_id& id,
+                const nullable_string& name
             ) : id(id), name(name)
             {}
         };

@@ -26,12 +26,12 @@ namespace yw {
         private:
 
             void extractAnnotationsFromString(
-                const yw::row_id& extractionId,
-                const yw::row_id& sourceId,
+                const row_id& extractionId,
+                const row_id& sourceId,
                 const std::string& sourceString);
 
             void extractAnnotationsFromFile(
-                const yw::row_id& extractionId,
+                const row_id& extractionId,
                 const std::string& filePath);
         };
     }

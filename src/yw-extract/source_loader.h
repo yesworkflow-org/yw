@@ -14,8 +14,8 @@ namespace yw {
 
             SourceLoader(yw::db::YesWorkflowDB& ywdb) : ywdb(ywdb) {}
 
-            void insertSourceLinesFromString(const yw::row_id& sourceId, const std::string& sourceString);            
-            std::string insertSourceLinesFromFile(const yw::row_id& sourceId, const std::string& filePath);
+            void insertSourceLinesFromString(const row_id& sourceId, const std::string& sourceString);            
+            std::string insertSourceLinesFromFile(const row_id& sourceId, const std::string& filePath);
         };
     }
 }

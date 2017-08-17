@@ -60,7 +60,7 @@ namespace yw {
             }
 
             template<typename T>
-            static void IsNull(yw::nullable<T> actual, const wchar_t* message = nullptr) {
+            static void IsNull(nullable<T> actual, const wchar_t* message = nullptr) {
 
                 #ifdef MSTEST
                     MSTEST::IsTrue(!actual.hasValue(), message);
@@ -84,7 +84,7 @@ namespace yw {
             }
 
             template<typename T>
-            static void AreEqual(const T& expected, const yw::nullable<T>& actual, const wchar_t* message = nullptr) {
+            static void AreEqual(const T& expected, const nullable<T>& actual, const wchar_t* message = nullptr) {
 
                 #ifdef MSTEST
                     MSTEST::AreEqual(expected, actual.getValue(), message);

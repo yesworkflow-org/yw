@@ -30,7 +30,7 @@ namespace yw {
             {}
 
             std::string getOutline();
-            std::string getOutline(const yw::nullable_row_id& rootAnnotation);
+            std::string getOutline(const nullable_row_id& rootAnnotation);
         };
     }
 }
