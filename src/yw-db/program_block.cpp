@@ -11,10 +11,10 @@ namespace yw {
         void YesWorkflowDB::createBlockTable() {
             SQLiteDB::createTable(db, std::string(R"(
 
-                CREATE TABLE block(
+                CREATE TABLE program_block(
                     id              INTEGER         NOT NULL        PRIMARY KEY,
                     model           INTEGER         NOT NULL        REFERENCES model(id),
-                    workflow        INTEGER         NULL            REFERENCES block(id),
+                    workflow        INTEGER         NULL            REFERENCES program_block(id),
                     annotation      INTEGER         NULL            REFERENCES annotation(id),
                     name            TEXT            NOT NULL
                 );
@@ -22,8 +22,8 @@ namespace yw {
             )"));
         }
 
-        row_id YesWorkflowDB::insert(const Block& block) {
-            string sql = "INSERT INTO block(id, model, workflow, annotation, name) VALUES (?,?,?,?,?);";
+        row_id YesWorkflowDB::insert(const ProgramBlock& block) {
+            string sql = "INSERT INTO program_block(id, model, workflow, annotation, name) VALUES (?,?,?,?,?);";
             InsertStatement statement(db, sql);
             statement.bindNullableId(1, block.id);
             statement.bindId(2, block.modelId);
@@ -34,17 +34,17 @@ namespace yw {
             return statement.getGeneratedId();
         }
 
-        Block YesWorkflowDB::selectBlockById(const row_id& requested_id) {
-            string sql = "SELECT id, model, workflow, annotation, name FROM block WHERE id = ?";
+        ProgramBlock YesWorkflowDB::selectBlockById(const row_id& requested_id) {
+            string sql = "SELECT id, model, workflow, annotation, name FROM program_block WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindId(1, requested_id);
-            if (statement.step() != SQLITE_ROW) throw std::runtime_error("No block row with that id");
+            if (statement.step() != SQLITE_ROW) throw std::runtime_error("No program block with that id");
             auto id = statement.getNullableIdField(0);
             auto modelId = statement.getIdField(1);
             auto workflowId = statement.getNullableIdField(2);
             auto annotationId = statement.getNullableIdField(3);
             auto name = statement.getTextField(4);
-            return Block(id, modelId, workflowId, annotationId, name);
+            return ProgramBlock(id, modelId, workflowId, annotationId, name);
         }
     }
 }

@@ -8,16 +8,16 @@ namespace yw {
         struct Port : sqlite::TableRow {
 
             const nullable_row_id id;
-            const row_id blockId;
+            const row_id programBlockId;
             const nullable_row_id annotationId;
             const std::string name;
 
             Port(
                 const nullable_row_id& id,
-                const row_id& blockId,
-                const nullable_row_id annotationId,
+                const row_id& programBlockId,
+                const nullable_row_id& annotationId,
                 const std::string& name
-            ) : id(id), blockId(blockId), annotationId(annotationId), name(name)
+            ) : id(id), programBlockId(programBlockId), annotationId(annotationId), name(name)
             {}
         };
     }

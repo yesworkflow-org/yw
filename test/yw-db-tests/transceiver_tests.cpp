@@ -52,8 +52,8 @@ YW_TEST_FIXTURE(Transceiver)
         Expect::AreEqual(77, ywdb.insert(Model{ (model77 = 77), user13, extraction17, "2017-06-22 10:52:00.000" }));
 
         ywdb.createBlockTable();
-        Expect::AreEqual(12, (ywdb.insert(Block{ (block12 = 12), model77, null_id, annotation11, "block" })));
-        Expect::AreEqual(13, (ywdb.insert(Block{ (block13 = 13), model77, block12, annotation22, "nested block" })));
+        Expect::AreEqual(12, (ywdb.insert(ProgramBlock{ (block12 = 12), model77, null_id, annotation11, "block" })));
+        Expect::AreEqual(13, (ywdb.insert(ProgramBlock{ (block13 = 13), model77, block12, annotation22, "nested block" })));
 
         ywdb.createPortTable();
         Expect::AreEqual(28, ywdb.insert(Port{ (port28 = 28), block12, annotation16, "port" }));

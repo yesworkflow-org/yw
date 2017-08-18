@@ -13,7 +13,7 @@ namespace yw {
 
                 CREATE TABLE port(
                     id              INTEGER         NOT NULL        PRIMARY KEY,
-                    block           INTEGER         NOT NULL        REFERENCES block(id),
+                    program_block   INTEGER         NOT NULL        REFERENCES program_block(id),
                     annotation      INTEGER         NULL            REFERENCES annotation(id),
                     name            TEXT            NOT NULL
                 );
@@ -22,10 +22,10 @@ namespace yw {
         }
 
         row_id YesWorkflowDB::insert(const Port& port) {
-            string sql = "INSERT INTO port(id, block, annotation, name) VALUES (?,?,?,?);";
+            string sql = "INSERT INTO port(id, program_block, annotation, name) VALUES (?,?,?,?);";
             InsertStatement statement(db, sql);
             statement.bindNullableId(1, port.id);
-            statement.bindId(2, port.blockId);
+            statement.bindId(2, port.programBlockId);
             statement.bindNullableId(3, port.annotationId);
             statement.bindText(4, port.name);
             statement.execute();
@@ -33,15 +33,15 @@ namespace yw {
         }
 
         Port YesWorkflowDB::selectPortById(const row_id& requested_id) {
-            string sql = "SELECT id, block, annotation, name FROM port WHERE id = ?";
+            string sql = "SELECT id, program_block, annotation, name FROM port WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindId(1, requested_id);
             if (statement.step() != SQLITE_ROW) throw std::runtime_error("No port row with that id");
             auto id = statement.getNullableIdField(0);
-            auto blockId = statement.getIdField(1);
+            auto programBlockId = statement.getIdField(1);
             auto annotationId = statement.getNullableIdField(2);
             auto name = statement.getTextField(3);
-            return Port(id, blockId, annotationId, name);
+            return Port(id, programBlockId, annotationId, name);
         }
     }
 }
