@@ -42,7 +42,7 @@ YW_TEST_FIXTURE(ProgramBlock)
         ywdb.createModelTable();
         Expect::AreEqual(77, ywdb.insert(Model{ (model77 = 77), user13, extraction17, "2017-06-22 10:52:00.000" }));
 
-        ywdb.createBlockTable();
+        ywdb.createProgramBlockTable();
     }
 
 YW_TEST_SET
@@ -65,7 +65,7 @@ YW_TEST_SET
         Expect::AreEqual(1, (block1 = ywdb.insert(ProgramBlock{ auto_id, model77, null_id, annotation11, "block" })));
         Assert::AreEqual(2, ywdb.insert(ProgramBlock{ auto_id, model77, block1, annotation12, "nested block" }));
 
-        auto block = ywdb.selectBlockById(2L);
+        auto block = ywdb.selectProgramBlockById(2L);
         Assert::AreEqual(2, block.id.getValue());
         Assert::AreEqual(77, block.modelId);
         Assert::AreEqual(1, block.workflowId.getValue());
@@ -75,7 +75,7 @@ YW_TEST_SET
     
     YW_TEST(ProgramBlock, SelectById_RowDoesntExist) {
         try {
-            auto user = ywdb.selectBlockById(1L);
+            auto user = ywdb.selectProgramBlockById(1L);
             Assert::Fail();
         }
         catch (std::runtime_error& e) {

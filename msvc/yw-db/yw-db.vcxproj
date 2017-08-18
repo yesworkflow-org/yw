@@ -21,7 +21,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\yw-db\annotation.cpp" />
     <ClCompile Include="..\..\src\yw-db\program_block.cpp" />
-    <ClCompile Include="..\..\src\yw-db\data.cpp" />
+    <ClCompile Include="..\..\src\yw-db\data_block.cpp" />
     <ClCompile Include="..\..\src\yw-db\file.cpp" />
     <ClCompile Include="..\..\src\yw-db\line.cpp" />
     <ClCompile Include="..\..\src\yw-db\extraction.cpp" />
@@ -35,7 +35,7 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-db\annotation.h" />
     <ClInclude Include="..\..\src\yw-db\program_block.h" />
-    <ClInclude Include="..\..\src\yw-db\data.h" />
+    <ClInclude Include="..\..\src\yw-db\data_block.h" />
     <ClInclude Include="..\..\src\yw-db\file.h" />
     <ClInclude Include="..\..\src\yw-db\line.h" />
     <ClInclude Include="..\..\src\yw-db\extraction.h" />

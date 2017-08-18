@@ -14,7 +14,7 @@ namespace yw {
 
             const nullable_row_id id;
             const row_id portId;
-            const row_id dataId;
+            const row_id dataBlockId;
             const Direction direction;
             const nullable_long minRate;
             const nullable_long maxRate;
@@ -22,11 +22,11 @@ namespace yw {
             Transceiver(
                 const nullable_row_id& id,
                 const row_id& portId,
-                const row_id& dataId,
+                const row_id& dataBlockId,
                 Direction direction,
                 const nullable_long& minRate,
                 const nullable_long& maxRate
-            ) : id(id), portId(portId), dataId(dataId), direction(direction), minRate(minRate), maxRate(maxRate)
+            ) : id(id), portId(portId), dataBlockId(dataBlockId), direction(direction), minRate(minRate), maxRate(maxRate)
             {}
 
             static std::string to_string(Direction direction) {

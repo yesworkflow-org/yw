@@ -5,7 +5,7 @@
 
 #include "sqlite_db.h"
 #include "annotation.h"
-#include "data.h"
+#include "data_block.h"
 #include "extraction.h"
 #include "file.h"
 #include "line.h"
@@ -30,13 +30,13 @@ namespace yw {
             std::vector<Annotation> selectTopLevelAnnotations();
             std::vector<Annotation> selectAnnotationTree(const nullable_row_id& rootAnnotationId);
 
-            void createBlockTable();
+            void createProgramBlockTable();
             row_id insert(const ProgramBlock& model);
-            ProgramBlock selectBlockById(const row_id& id);
+            ProgramBlock selectProgramBlockById(const row_id& id);
 
-            void createDataTable();
-            row_id insert(const Data& model);
-            Data selectDataById(const row_id& id);
+            void createDataBlockTable();
+            row_id insert(const DataBlock& model);
+            DataBlock selectDataBlockById(const row_id& id);
 
             void createFileTable();
             row_id insert(const File& file);

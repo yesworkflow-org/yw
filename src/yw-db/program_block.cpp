@@ -8,7 +8,7 @@ using namespace yw::sqlite;
 namespace yw {
     namespace db {
 
-        void YesWorkflowDB::createBlockTable() {
+        void YesWorkflowDB::createProgramBlockTable() {
             SQLiteDB::createTable(db, std::string(R"(
 
                 CREATE TABLE program_block(
@@ -34,7 +34,7 @@ namespace yw {
             return statement.getGeneratedId();
         }
 
-        ProgramBlock YesWorkflowDB::selectBlockById(const row_id& requested_id) {
+        ProgramBlock YesWorkflowDB::selectProgramBlockById(const row_id& requested_id) {
             string sql = "SELECT id, model, workflow, annotation, name FROM program_block WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindId(1, requested_id);

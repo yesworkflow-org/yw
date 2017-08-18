@@ -22,9 +22,9 @@ namespace yw {
             createLineTable();
             createAnnotationTable();
             createModelTable();
-            createBlockTable();
+            createProgramBlockTable();
             createPortTable();
-            createDataTable();
+            createDataBlockTable();
             createTransceiverTable();
         }
 

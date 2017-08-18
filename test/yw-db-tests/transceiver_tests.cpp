@@ -51,7 +51,7 @@ YW_TEST_FIXTURE(Transceiver)
         ywdb.createModelTable();
         Expect::AreEqual(77, ywdb.insert(Model{ (model77 = 77), user13, extraction17, "2017-06-22 10:52:00.000" }));
 
-        ywdb.createBlockTable();
+        ywdb.createProgramBlockTable();
         Expect::AreEqual(12, (ywdb.insert(ProgramBlock{ (block12 = 12), model77, null_id, annotation11, "block" })));
         Expect::AreEqual(13, (ywdb.insert(ProgramBlock{ (block13 = 13), model77, block12, annotation22, "nested block" })));
 
@@ -59,9 +59,9 @@ YW_TEST_FIXTURE(Transceiver)
         Expect::AreEqual(28, ywdb.insert(Port{ (port28 = 28), block12, annotation16, "port" }));
         Expect::AreEqual(88, ywdb.insert(Port{ (port88 = 88), block13, annotation36, "second port" }));
 
-        ywdb.createDataTable();
-        Expect::AreEqual(5, ywdb.insert(Data{ (data5 = 5), null_id, "d" }));
-        Expect::AreEqual(92, ywdb.insert(Data{ (data92 = 92), 5, "e" }));
+        ywdb.createDataBlockTable();
+        Expect::AreEqual(5, ywdb.insert(DataBlock{ (data5 = 5), null_id, "d" }));
+        Expect::AreEqual(92, ywdb.insert(DataBlock{ (data92 = 92), 5, "e" }));
 
         ywdb.createTransceiverTable();
     }
@@ -92,7 +92,7 @@ YW_TEST_SET
         auto transceiver = ywdb.selectTransceiverById(2L);
         Assert::AreEqual(2, transceiver.id.getValue());
         Assert::AreEqual(88, transceiver.portId);
-        Assert::AreEqual(92, transceiver.dataId);
+        Assert::AreEqual(92, transceiver.dataBlockId);
         Assert::AreEqual(Transceiver::Direction::OUT, transceiver.direction);
         Assert::AreEqual(3, transceiver.minRate.getValue());
         Assert::AreEqual(4, transceiver.maxRate.getValue());

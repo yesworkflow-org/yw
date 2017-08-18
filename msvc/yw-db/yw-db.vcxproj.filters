@@ -10,9 +10,6 @@
     <ClCompile Include="..\..\src\yw-db\annotation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\yw-db\data.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\yw-db\extraction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -43,12 +40,12 @@
     <ClCompile Include="..\..\src\yw-db\program_block.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\yw-db\data_block.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-db\annotation.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\yw-db\data.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\yw-db\extraction.h">
@@ -79,6 +76,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\yw-db\program_block.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-db\data_block.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

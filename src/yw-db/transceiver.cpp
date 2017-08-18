@@ -14,7 +14,7 @@ namespace yw {
                 CREATE TABLE transceiver(
                     id              INTEGER         NOT NULL        PRIMARY KEY,
                     port            INTEGER         NOT NULL        REFERENCES port(id),
-                    data            INTEGER         NOT NULL        REFERENCES data(id),
+                    data_block      INTEGER         NOT NULL        REFERENCES data_block(id),
                     direction       INTEGER         NOT NULL,
                     min_rate        INTEGER         NULL,
                     max_rate        INTEGER         NULL
@@ -24,11 +24,11 @@ namespace yw {
         }
 
         row_id YesWorkflowDB::insert(const Transceiver& transceiver) {
-            string sql = "INSERT INTO transceiver(id, port, data, direction, min_rate, max_rate) VALUES (?,?,?,?,?,?);";
+            string sql = "INSERT INTO transceiver(id, port, data_block, direction, min_rate, max_rate) VALUES (?,?,?,?,?,?);";
             InsertStatement statement(db, sql);
             statement.bindNullableId(1, transceiver.id);
             statement.bindId(2, transceiver.portId);
-            statement.bindId(3, transceiver.dataId);
+            statement.bindId(3, transceiver.dataBlockId);
             statement.bindInt64(4, static_cast<long>(transceiver.direction));
             statement.bindNullableInt64(5, nullable_long(transceiver.minRate));
             statement.bindNullableInt64(6, nullable_long(transceiver.maxRate));
@@ -37,17 +37,17 @@ namespace yw {
         }
 
         Transceiver YesWorkflowDB::selectTransceiverById(const row_id& requested_id) {
-            string sql = "SELECT id, port, data, direction, min_rate, max_rate FROM transceiver WHERE id = ?";
+            string sql = "SELECT id, port, data_block, direction, min_rate, max_rate FROM transceiver WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindId(1, requested_id);
             if (statement.step() != SQLITE_ROW) throw std::runtime_error("No transceiver row with that id");
             auto id = statement.getNullableIdField(0);
             auto portId = statement.getIdField(1);
-            auto dataId = statement.getIdField(2);
+            auto dataBlockId = statement.getIdField(2);
             auto direction = static_cast<Transceiver::Direction>(statement.getInt64Field(3));
             auto minRate = statement.getNullableInt64Field(4);
             auto maxRate = statement.getNullableInt64Field(5);
-            return Transceiver(id, portId, dataId, direction, minRate, maxRate);
+            return Transceiver(id, portId, dataBlockId, direction, minRate, maxRate);
         }
     }
 }
