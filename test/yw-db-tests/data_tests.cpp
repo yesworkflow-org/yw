@@ -35,7 +35,7 @@ YW_TEST_SET
 
         auto data = ywdb.selectDataBlockById(2L);
         Assert::AreEqual(2, data.id.getValue());
-        Assert::AreEqual(1, data.partOfId.getValue());
+        Assert::AreEqual(1, data.structureId.getValue());
         Assert::AreEqual("e", data.name);
     }
     
