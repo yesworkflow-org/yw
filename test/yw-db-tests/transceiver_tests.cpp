@@ -60,8 +60,8 @@ YW_TEST_FIXTURE(Transceiver)
         Expect::AreEqual(88, ywdb.insert(Port{ (port88 = 88), block13, annotation36, "second port" }));
 
         ywdb.createDataBlockTable();
-        Expect::AreEqual(5, ywdb.insert(DataBlock{ (data5 = 5), null_id, "d" }));
-        Expect::AreEqual(92, ywdb.insert(DataBlock{ (data92 = 92), 5, "e" }));
+        Expect::AreEqual(5, ywdb.insert(DataBlock{ (data5 = 5), model77, null_id, "d" }));
+        Expect::AreEqual(92, ywdb.insert(DataBlock{ (data92 = 92), model77, 5, "e" }));
 
         ywdb.createTransceiverTable();
     }
