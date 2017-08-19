@@ -138,6 +138,17 @@ namespace yw {
                     CHECK(condition);
                 #endif
             }
+
+            static void IsFalse(const bool& condition, const wchar_t* message = nullptr) {
+
+                #ifdef MSTEST
+                    MSTEST::IsFalse(condition);
+                #endif
+
+                #ifdef CPPUTEST
+                    CHECK(!condition);
+                #endif
+            }
         };
 
         class Expect : public Assert {
