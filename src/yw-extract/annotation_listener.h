@@ -8,16 +8,18 @@ namespace yw {
 
         class AnnotationListener : public YWBaseListener {
 
+        protected:
             yw::db::YesWorkflowDB& ywdb;
             const row_id extractionId;
             const row_id sourceId;
-            nullable_row_id currentPrimaryAnnotationId;
-            std::stack<nullable_row_id> primaryAnnotationId;
+            std::shared_ptr<yw::db::Annotation> currentPrimaryAnnotation = nullptr;
+            std::stack<std::shared_ptr<yw::db::Annotation>> primaryAnnotationStack;
+
+        private:
             long currentLineNumber = 0;
             long currentRankOnLine = 0;
 
         public:
-
             AnnotationListener(
                 yw::db::YesWorkflowDB& ywdb,
                 const row_id& extractionId,
@@ -37,7 +39,6 @@ namespace yw {
             void exitIo(YWParser::IoContext *context) override;
 
         private:
-
             auto getLineId(antlr4::ParserRuleContext* context);
             auto getRangeInLine(antlr4::ParserRuleContext* context);
         };

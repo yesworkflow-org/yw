@@ -22,7 +22,7 @@ namespace yw {
             )"));
         }
 
-        row_id YesWorkflowDB::insert(const ProgramBlock& programBlock) {
+        row_id YesWorkflowDB::insert(ProgramBlock& programBlock) {
             string sql = "INSERT INTO program_block(id, model, workflow, annotation, name) VALUES (?,?,?,?,?);";
             InsertStatement statement(db, sql);
             statement.bindNullableId(1, programBlock.id);
@@ -31,7 +31,8 @@ namespace yw {
             statement.bindNullableId(4, programBlock.annotationId);
             statement.bindText(5, programBlock.name);
             statement.execute();
-            return statement.getGeneratedId();
+            programBlock.id = statement.getGeneratedId();
+            return programBlock.id.getValue();
         }
 
         ProgramBlock YesWorkflowDB::selectProgramBlockById(const row_id& requested_id) {

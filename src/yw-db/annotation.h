@@ -22,7 +22,8 @@ namespace yw {
                 AS = 8
             };
 
-            const nullable_row_id id;
+            nullable_row_id id;
+
             const row_id extractionId;
             const Tag tag;
             const nullable_row_id qualifiesId;

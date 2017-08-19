@@ -25,13 +25,13 @@ namespace yw {
             YesWorkflowDB(bool createTables = true);
 
             void createAnnotationTable();
-            row_id insert(const Annotation& annotation);
+            row_id insert(Annotation& annotation);
             Annotation selectAnnotationById(const row_id& requested_id);
             std::vector<Annotation> selectTopLevelAnnotations();
             std::vector<Annotation> selectAnnotationTree(const nullable_row_id& rootAnnotationId);
 
             void createProgramBlockTable();
-            row_id insert(const ProgramBlock& model);
+            row_id insert(ProgramBlock& model);
             ProgramBlock selectProgramBlockById(const row_id& id);
 
             void createDataBlockTable();

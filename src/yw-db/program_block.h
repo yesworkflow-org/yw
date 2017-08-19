@@ -7,7 +7,8 @@ namespace yw {
 
         struct ProgramBlock : sqlite::TableRow {
 
-            const nullable_row_id id;
+            nullable_row_id id;
+            
             const row_id modelId;
             const nullable_row_id workflowId;
             const nullable_row_id annotationId;
@@ -21,6 +22,16 @@ namespace yw {
                 const std::string& name
             ) : id(id), modelId(modelId), workflowId(workflowId), annotationId(annotationId), name(name)
             {}
+
+            std::string elements() const override {
+                std::stringstream ss;
+                ss << id.str()
+                    << "|" << modelId
+                    << "|" << workflowId.str()
+                    << "|" << annotationId.str()
+                    << "|" << name;
+                return ss.str();
+            }
         };
     }
 }

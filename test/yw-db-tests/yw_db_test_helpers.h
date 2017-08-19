@@ -22,6 +22,7 @@ namespace Microsoft {
             static std::wstring ToString(const yw::db::Extraction& row) { RETURN_WIDE_STRING(row); }
             static std::wstring ToString(const yw::db::File& row) { RETURN_WIDE_STRING(row); }
             static std::wstring ToString(const yw::db::Line& row) { RETURN_WIDE_STRING(row); }
+            static std::wstring ToString(const yw::db::ProgramBlock& row) { RETURN_WIDE_STRING(row); }
             static std::wstring ToString(const yw::db::Annotation::Tag& tag) { RETURN_WIDE_STRING(yw::db::Annotation::to_string(tag).c_str()); }
             static std::wstring ToString(const yw::db::Transceiver::Direction& direction) { RETURN_WIDE_STRING(yw::db::Transceiver::to_string(direction).c_str()); }
         }
