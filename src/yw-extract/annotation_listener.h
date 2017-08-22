@@ -19,6 +19,7 @@ namespace yw {
             yw::db::Annotation::Tag portTag;
             row_id portLineId;
             std::string portKeyword;
+            yw::nullable_string portName;
             std::shared_ptr<yw::db::Annotation> lastPortAnnotation;
             AnnotationRange portRangeInLine;
 

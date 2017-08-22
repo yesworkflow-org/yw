@@ -100,10 +100,11 @@ namespace yw {
         }
 
         void AnnotationListener::enterPortName(YWParser::PortNameContext *context) {
+            portName = nullable_string(context->word()->unquotedWord()->getText());
             lastPortAnnotation = std::make_shared<Annotation>(
                 auto_id, extractionId, portTag, currentPrimaryAnnotation->id, portLineId,
                 currentRankOnLine++, portRangeInLine.start, portRangeInLine.end,
-                portKeyword, nullable_string(context->word()->unquotedWord()->getText()));
+                portKeyword, portName);
             ywdb.insert(*lastPortAnnotation);
         }
 

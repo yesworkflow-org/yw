@@ -24,6 +24,7 @@ namespace yw {
 
             void enterBegin(YWParser::BeginContext *begin) override;
             void enterEnd(YWParser::EndContext *context) override;
+            void enterPortName(YWParser::PortNameContext *context);
         };
     }
 }

@@ -27,5 +27,13 @@ namespace yw {
             currentProgramBlock = programBlockStack.top();
             programBlockStack.pop();
         }
+
+        void ModelEntityListener::enterPortName(YWParser::PortNameContext *context) 
+        {
+            AnnotationListener::enterPortName(context);
+            auto port = Port{ auto_id, currentProgramBlock->id.getValue(),
+                 nullable_row_id{lastPortAnnotation->id}, portName.getValue() };
+            ywdb.insert(port);
+        }
     }
 }

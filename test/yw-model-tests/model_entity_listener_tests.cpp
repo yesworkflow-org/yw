@@ -209,4 +209,69 @@ YW_TEST_SET
         Assert::IsFalse(topProgramBlock2.workflowId.hasValue());
     }
 
+    YW_TEST(ModelEntityListener, WhenInPortHasOneNameInsertOnePort)
+    {
+        this->storeAndParse(
+            "@begin b"  EOL
+            "@in p"     EOL
+            "@end b"    EOL
+        );
+
+        Expect::EmptyString(stderrRecorder.str());
+        Expect::AreEqual(1, ywdb.getRowCount("program_block"));
+
+        Assert::AreEqual(1, ywdb.getRowCount("port"));
+        Assert::AreEqual(Port{ 1, 1, 2, "p" }, ywdb.selectPortById(1));
+    }
+
+    YW_TEST(ModelEntityListener, WhenInPortHasTwoNamesInsertTwoPorts)
+    {
+        this->storeAndParse(
+            "@begin b"  EOL
+            "@in p q"   EOL
+            "@end b"    EOL
+        );
+
+        Expect::EmptyString(stderrRecorder.str());
+        Expect::AreEqual(1, ywdb.getRowCount("program_block"));
+
+        Assert::AreEqual(2, ywdb.getRowCount("port"));
+        Assert::AreEqual(Port{ 1, 1, 2, "p" }, ywdb.selectPortById(1));
+        Assert::AreEqual(Port{ 2, 1, 3, "q" }, ywdb.selectPortById(2));
+    }
+
+    YW_TEST(ModelEntityListener, WhenTwoInPortsInsertTwoPorts)
+    {
+        this->storeAndParse(
+            "@begin b"  EOL
+            "@in p"     EOL
+            "@in q"     EOL
+            "@end b"    EOL
+        );
+
+        Expect::EmptyString(stderrRecorder.str());
+        Expect::AreEqual(1, ywdb.getRowCount("program_block"));
+
+        Assert::AreEqual(2, ywdb.getRowCount("port"));
+        Assert::AreEqual(Port{ 1, 1, 2, "p" }, ywdb.selectPortById(1));
+        Assert::AreEqual(Port{ 2, 1, 3, "q" }, ywdb.selectPortById(2));
+    }
+
+    YW_TEST(ModelEntityListener, WhenTwoOutPortsInsertTwoPorts)
+    {
+        this->storeAndParse(
+            "@begin b"  EOL
+            "@out p"    EOL
+            "@out q"    EOL
+            "@end b"    EOL
+        );
+
+        Expect::EmptyString(stderrRecorder.str());
+        Expect::AreEqual(1, ywdb.getRowCount("program_block"));
+
+        Assert::AreEqual(2, ywdb.getRowCount("port"));
+        Assert::AreEqual(Port{ 1, 1, 2, "p" }, ywdb.selectPortById(1));
+        Assert::AreEqual(Port{ 2, 1, 3, "q" }, ywdb.selectPortById(2));
+    }
+
 YW_TEST_END
