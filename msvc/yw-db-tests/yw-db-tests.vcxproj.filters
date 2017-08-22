@@ -27,9 +27,6 @@
     <ClCompile Include="..\..\test\yw-db-tests\user_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\yw-db-tests\transceiver_tests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\test\yw-db-tests\source_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -55,6 +52,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\test\yw-db-tests\block_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\yw-db-tests\flow_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

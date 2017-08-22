@@ -28,7 +28,7 @@
     <ClCompile Include="..\..\src\yw-db\model.cpp" />
     <ClCompile Include="..\..\src\yw-db\port.cpp" />
     <ClCompile Include="..\..\src\yw-db\source.cpp" />
-    <ClCompile Include="..\..\src\yw-db\transceiver.cpp" />
+    <ClCompile Include="..\..\src\yw-db\flow.cpp" />
     <ClCompile Include="..\..\src\yw-db\user.cpp" />
     <ClCompile Include="..\..\src\yw-db\ywdb.cpp" />
   </ItemGroup>
@@ -42,7 +42,7 @@
     <ClInclude Include="..\..\src\yw-db\model.h" />
     <ClInclude Include="..\..\src\yw-db\port.h" />
     <ClInclude Include="..\..\src\yw-db\source.h" />
-    <ClInclude Include="..\..\src\yw-db\transceiver.h" />
+    <ClInclude Include="..\..\src\yw-db\flow.h" />
     <ClInclude Include="..\..\src\yw-db\user.h" />
     <ClInclude Include="..\..\src\yw-db\ywdb.h" />
   </ItemGroup>

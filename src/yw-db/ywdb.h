@@ -13,7 +13,7 @@
 #include "port.h"
 #include "program_block.h"
 #include "source.h"
-#include "transceiver.h"
+#include "flow.h"
 #include "user.h"
 
 namespace yw {
@@ -63,9 +63,9 @@ namespace yw {
             row_id insert(const Source& source);
             Source selectSourceById(const row_id& id);
 
-            void createTransceiverTable();
-            row_id insert(const Transceiver& model);
-            Transceiver selectTransceiverById(const row_id& id);
+            void createFlowTable();
+            row_id insert(const Flow& flow);
+            Flow selectFlowById(const row_id& id);
 
             void createUserTable();
             row_id insert(const User& user);

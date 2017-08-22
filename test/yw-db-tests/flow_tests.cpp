@@ -8,9 +8,9 @@ using std::make_unique;
 using std::string;
 
 using Tag = yw::db::Annotation::Tag;
-using Direction = yw::db::Transceiver::Direction;
+using Direction = yw::db::Flow::Direction;
 
-YW_TEST_FIXTURE(Transceiver)
+YW_TEST_FIXTURE(Flow)
 
     YesWorkflowDB ywdb { false };
     row_id user13;
@@ -23,7 +23,7 @@ YW_TEST_FIXTURE(Transceiver)
     row_id port28, port88;
     row_id data5, data92;
 
-    YW_TEST_SETUP(Transceiver)
+    YW_TEST_SETUP(Flow)
     {
         ywdb.createUserTable();
         Expect::AreEqual(13, ywdb.insert(User{ (user13 = 13), "user1" }));
@@ -63,48 +63,48 @@ YW_TEST_FIXTURE(Transceiver)
         Expect::AreEqual(5, ywdb.insert(DataBlock{ (data5 = 5), model77, null_id, "d" }));
         Expect::AreEqual(92, ywdb.insert(DataBlock{ (data92 = 92), model77, 5, "e" }));
 
-        ywdb.createTransceiverTable();
+        ywdb.createFlowTable();
     }
 
 YW_TEST_SET
 
-    YW_TEST(Transceiver, InsertOneRow_GeneratedIdIs_1)
+    YW_TEST(Flow, InsertOneRow_GeneratedIdIs_1)
     {
-        Assert::AreEqual(1, ywdb.insert(Transceiver{ auto_id, port28, data5, 
+        Assert::AreEqual(1, ywdb.insert(Flow{ auto_id, port28, data5, 
             Direction::IN, nullable_long(1), nullable_long(1) }));
     }
 
-    YW_TEST(Transceiver, InsertTwoRows_SecondGeneratedIdIs_2)
+    YW_TEST(Flow, InsertTwoRows_SecondGeneratedIdIs_2)
     {
-        Expect::AreEqual(1, ywdb.insert(Transceiver{ auto_id, port28, data5,
+        Expect::AreEqual(1, ywdb.insert(Flow{ auto_id, port28, data5,
             Direction::IN, nullable_long(1), nullable_long(1) }));
-        Assert::AreEqual(2, ywdb.insert(Transceiver{ auto_id, port88, data92,
+        Assert::AreEqual(2, ywdb.insert(Flow{ auto_id, port88, data92,
             Direction::OUT, nullable_long(1), nullable_long(1) }));
     }
 
-    YW_TEST(Transceiver, SelectById_RowExists) {
+    YW_TEST(Flow, SelectById_RowExists) {
 
-        Expect::AreEqual(1, ywdb.insert(Transceiver{ auto_id, port28, data5,
+        Expect::AreEqual(1, ywdb.insert(Flow{ auto_id, port28, data5,
             Direction::IN, nullable_long(1), nullable_long(2) }));
-        Expect::AreEqual(2, ywdb.insert(Transceiver{ auto_id, port88, data92,
+        Expect::AreEqual(2, ywdb.insert(Flow{ auto_id, port88, data92,
             Direction::OUT, nullable_long(3), nullable_long(4) }));
 
-        auto transceiver = ywdb.selectTransceiverById(2L);
-        Assert::AreEqual(2, transceiver.id.getValue());
-        Assert::AreEqual(88, transceiver.portId);
-        Assert::AreEqual(92, transceiver.dataBlockId);
-        Assert::AreEqual(Transceiver::Direction::OUT, transceiver.direction);
-        Assert::AreEqual(3, transceiver.minRate.getValue());
-        Assert::AreEqual(4, transceiver.maxRate.getValue());
+        auto flow = ywdb.selectFlowById(2L);
+        Assert::AreEqual(2, flow.id.getValue());
+        Assert::AreEqual(88, flow.portId);
+        Assert::AreEqual(92, flow.dataBlockId);
+        Assert::AreEqual(Flow::Direction::OUT, flow.direction);
+        Assert::AreEqual(3, flow.minRate.getValue());
+        Assert::AreEqual(4, flow.maxRate.getValue());
     }
     
-    YW_TEST(Transceiver, SelectById_RowDoesntExist) {
+    YW_TEST(Flow, SelectById_RowDoesntExist) {
         try {
-            auto user = ywdb.selectTransceiverById(1L);
+            auto user = ywdb.selectFlowById(1L);
             Assert::Fail();
         }
         catch (std::runtime_error& e) {
-            Assert::AreEqual("No transceiver row with that id", e.what());
+            Assert::AreEqual("No flow with that id", e.what());
         }
     }
 

@@ -8,10 +8,10 @@ using namespace yw::sqlite;
 namespace yw {
     namespace db {
 
-        void YesWorkflowDB::createTransceiverTable() {
+        void YesWorkflowDB::createFlowTable() {
             SQLiteDB::createTable(db, std::string(R"(
 
-                CREATE TABLE transceiver(
+                CREATE TABLE flow(
                     id              INTEGER         NOT NULL        PRIMARY KEY,
                     port            INTEGER         NOT NULL        REFERENCES port(id),
                     data_block      INTEGER         NOT NULL        REFERENCES data_block(id),
@@ -23,31 +23,31 @@ namespace yw {
             )"));
         }
 
-        row_id YesWorkflowDB::insert(const Transceiver& transceiver) {
-            string sql = "INSERT INTO transceiver(id, port, data_block, direction, min_rate, max_rate) VALUES (?,?,?,?,?,?);";
+        row_id YesWorkflowDB::insert(const Flow& flow) {
+            string sql = "INSERT INTO flow(id, port, data_block, direction, min_rate, max_rate) VALUES (?,?,?,?,?,?);";
             InsertStatement statement(db, sql);
-            statement.bindNullableId(1, transceiver.id);
-            statement.bindId(2, transceiver.portId);
-            statement.bindId(3, transceiver.dataBlockId);
-            statement.bindInt64(4, static_cast<long>(transceiver.direction));
-            statement.bindNullableInt64(5, nullable_long(transceiver.minRate));
-            statement.bindNullableInt64(6, nullable_long(transceiver.maxRate));
+            statement.bindNullableId(1, flow.id);
+            statement.bindId(2, flow.portId);
+            statement.bindId(3, flow.dataBlockId);
+            statement.bindInt64(4, static_cast<long>(flow.direction));
+            statement.bindNullableInt64(5, nullable_long(flow.minRate));
+            statement.bindNullableInt64(6, nullable_long(flow.maxRate));
             statement.execute();
             return statement.getGeneratedId();
         }
 
-        Transceiver YesWorkflowDB::selectTransceiverById(const row_id& requested_id) {
-            string sql = "SELECT id, port, data_block, direction, min_rate, max_rate FROM transceiver WHERE id = ?";
+        Flow YesWorkflowDB::selectFlowById(const row_id& requested_id) {
+            string sql = "SELECT id, port, data_block, direction, min_rate, max_rate FROM flow WHERE id = ?";
             SelectStatement statement(db, sql);
             statement.bindId(1, requested_id);
-            if (statement.step() != SQLITE_ROW) throw std::runtime_error("No transceiver row with that id");
+            if (statement.step() != SQLITE_ROW) throw std::runtime_error("No flow with that id");
             auto id = statement.getNullableIdField(0);
             auto portId = statement.getIdField(1);
             auto dataBlockId = statement.getIdField(2);
-            auto direction = static_cast<Transceiver::Direction>(statement.getInt64Field(3));
+            auto direction = static_cast<Flow::Direction>(statement.getInt64Field(3));
             auto minRate = statement.getNullableInt64Field(4);
             auto maxRate = statement.getNullableInt64Field(5);
-            return Transceiver(id, portId, dataBlockId, direction, minRate, maxRate);
+            return Flow(id, portId, dataBlockId, direction, minRate, maxRate);
         }
     }
 }

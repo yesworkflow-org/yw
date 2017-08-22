@@ -3,7 +3,7 @@
 using namespace yw::sqlite;
 using namespace yw::db;
 
-using Direction = yw::db::Transceiver::Direction;
+using Direction = yw::db::Flow::Direction;
 
 namespace yw {
     namespace model {
