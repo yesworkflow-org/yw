@@ -12,6 +12,7 @@ namespace yw {
         struct Annotation : sqlite::TableRow {
 
             enum class Tag {
+                NONE = 0,
                 BEGIN = 1,
                 END = 2,
                 DESC = 3,
@@ -66,7 +67,7 @@ namespace yw {
 
             static std::string to_string(Tag tag) {
                 static const std::vector<std::string> names{
-                    "BEGIN", "END", "DESC", "IN", "OUT", "PARAM", "RETURN", "AS"
+                    "NONE", "BEGIN", "END", "DESC", "IN", "OUT", "PARAM", "RETURN", "AS"
                 };
                 return names[static_cast<int>(tag) - 1];
             }

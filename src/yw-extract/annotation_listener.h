@@ -8,12 +8,19 @@ namespace yw {
 
         class AnnotationListener : public YWBaseListener {
 
+            struct AnnotationRange { long start; long end; };
+
         protected:
             yw::db::YesWorkflowDB& ywdb;
             const row_id extractionId;
             const row_id sourceId;
             std::shared_ptr<yw::db::Annotation> currentPrimaryAnnotation = nullptr;
             std::stack<std::shared_ptr<yw::db::Annotation>> primaryAnnotationStack;
+            yw::db::Annotation::Tag portTag;
+            row_id portLineId;
+            std::string portKeyword;
+            std::shared_ptr<yw::db::Annotation> lastPortAnnotation;
+            AnnotationRange portRangeInLine;
 
         private:
             long currentLineNumber = 0;
@@ -31,11 +38,9 @@ namespace yw {
             void enterEnd(YWParser::EndContext *context) override;
             void enterDesc(YWParser::DescContext *context) override;
             void enterPort(YWParser::PortContext *context) override;
+            void exitPort(YWParser::PortContext *port) override;
+            void enterPortName(YWParser::PortNameContext *context) override;
             void enterAlias(YWParser::AliasContext *context) override;
-            void enterCall(YWParser::CallContext *context) override;
-            void enterUri(YWParser::UriContext *context) override;
-            void enterFile(YWParser::FileContext *context) override;
-            void enterResource(YWParser::ResourceContext *context) override;
             void exitIo(YWParser::IoContext *context) override;
 
         private:

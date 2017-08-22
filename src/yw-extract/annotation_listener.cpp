@@ -9,7 +9,6 @@ using Tag = yw::db::Annotation::Tag;
 namespace yw {
     namespace extract {
 
-        struct AnnotationRange { long start; long end; };
 
         auto AnnotationListener::getRangeInLine(antlr4::ParserRuleContext* context) {
             auto startInSource = static_cast<long>(context->getStart()->getStartIndex());
@@ -92,17 +91,23 @@ namespace yw {
         }
 
         void AnnotationListener::enterPort(YWParser::PortContext *port) {
-            auto tag = getPortTag(port);
-            auto lineId = getLineId(port);
-            auto rangeInLine = getRangeInLine(port);
-            std::shared_ptr<Annotation> lastPortAnnotation;
-            for (auto portName : port->portName()) {
-                auto keyword = port->inputKeyword() != NULL ? port->inputKeyword()->getText() : port->outputKeyword()->getText();
-                lastPortAnnotation = std::make_shared<Annotation>(auto_id, extractionId, tag, currentPrimaryAnnotation->id, lineId,
-                    currentRankOnLine++, rangeInLine.start, rangeInLine.end,
-                    keyword, nullable_string(portName->word()->unquotedWord()->getText()));
-                ywdb.insert(*lastPortAnnotation);
-            }
+            portTag = getPortTag(port);
+            portLineId = getLineId(port);
+            portKeyword = port->inputKeyword() != NULL ? 
+                port->inputKeyword()->getText() : 
+                port->outputKeyword()->getText();
+            portRangeInLine = getRangeInLine(port);
+        }
+
+        void AnnotationListener::enterPortName(YWParser::PortNameContext *context) {
+            lastPortAnnotation = std::make_shared<Annotation>(
+                auto_id, extractionId, portTag, currentPrimaryAnnotation->id, portLineId,
+                currentRankOnLine++, portRangeInLine.start, portRangeInLine.end,
+                portKeyword, nullable_string(context->word()->unquotedWord()->getText()));
+            ywdb.insert(*lastPortAnnotation);
+        }
+
+        void AnnotationListener::exitPort(YWParser::PortContext *port) {
             primaryAnnotationStack.push(currentPrimaryAnnotation);
             currentPrimaryAnnotation = lastPortAnnotation;
         }
@@ -112,9 +117,5 @@ namespace yw {
             primaryAnnotationStack.pop();
         }
 
-        void AnnotationListener::enterCall(YWParser::CallContext *context) {};
-        void AnnotationListener::enterUri(YWParser::UriContext *context) {};
-        void AnnotationListener::enterFile(YWParser::FileContext *context) {};
-        void AnnotationListener::enterResource(YWParser::ResourceContext *context) {};
     }
 }
