@@ -30,8 +30,8 @@ namespace yw {
             statement.bindId(2, flow.portId);
             statement.bindId(3, flow.dataBlockId);
             statement.bindInt64(4, static_cast<long>(flow.direction));
-            statement.bindNullableInt64(5, nullable_long(flow.minRate));
-            statement.bindNullableInt64(6, nullable_long(flow.maxRate));
+            statement.bindNullableInt64(5, flow.minRate);
+            statement.bindNullableInt64(6, flow.maxRate);
             statement.execute();
             return statement.getGeneratedId();
         }

@@ -40,7 +40,7 @@ YW_TEST_SET
         Expect::AreEqual(1, ywdb.insert(DataBlock{ auto_id, model28, null_id, "d" }));
         Expect::AreEqual(2, ywdb.insert(DataBlock{ auto_id, model28, 1, "e" }));
 
-        auto data = ywdb.selectDataBlockById(2L);
+        auto data = ywdb.selectDataBlockById(2);
         Assert::AreEqual(2, data.id.getValue());
         Assert::AreEqual(28, data.modelId);
         Assert::AreEqual(1, data.structureId.getValue());
@@ -49,7 +49,7 @@ YW_TEST_SET
     
     YW_TEST(DataBlock, SelectById_RowDoesntExist) {
         try {
-            auto source = ywdb.selectDataBlockById(1L);
+            auto source = ywdb.selectDataBlockById(1);
             Assert::Fail();
         }
         catch (std::runtime_error& e) {

@@ -29,7 +29,7 @@ namespace yw {
             statement.bindNullableId(3, port.annotationId);
             statement.bindText(4, port.name);
             statement.execute();
-            port.id = nullable_row_id{ statement.getGeneratedId() };
+            port.id = statement.getGeneratedId();
             return port.id.getValue();
         }
 

@@ -42,7 +42,7 @@ YW_TEST_SET
         Expect::AreEqual(2, ywdb.insert(Line(auto_id, source34, 4, "@in port")));
         Assert::AreEqual(3, ywdb.insert(Line(auto_id, source34, 5, "@end block")));
 
-        auto lineRow = ywdb.selectLineById(2L);
+        auto lineRow = ywdb.selectLineById(2);
         Assert::AreEqual(2L, lineRow.id);
         Assert::AreEqual(34, lineRow.sourceId);
         Assert::AreEqual(4L, lineRow.number);
@@ -51,7 +51,7 @@ YW_TEST_SET
 
     YW_TEST(Line, SelectingNonexistentLineByIdThrowsException) {
         try {
-            auto user = ywdb.selectLineById(1L);
+            auto user = ywdb.selectLineById(1);
             Assert::Fail();
         }
         catch (std::runtime_error& e) {

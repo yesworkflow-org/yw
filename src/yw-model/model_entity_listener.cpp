@@ -37,7 +37,7 @@ namespace yw {
         {
             AnnotationListener::enterPortName(context);
             auto port = Port{ auto_id, currentProgramBlock->id.getValue(),
-                 nullable_row_id{lastPortAnnotation->id}, portName.getValue() };
+                 lastPortAnnotation->id, portName.getValue() };
             ywdb.insert(port);
 
             auto dataName = (portNameIndex == aliasedPortIndex) ? portAlias : portName.getValue();
@@ -45,7 +45,7 @@ namespace yw {
             ywdb.insert(dataBlock);
 
             auto flow = Flow(auto_id, port.id.getValue(), dataBlock.id.getValue(), 
-                portDirection, nullable_long{ 1 }, nullable_long{ 1 });
+                portDirection, 1, 1);
             ywdb.insert(flow);
 
             portNameIndex++;

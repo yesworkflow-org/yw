@@ -38,7 +38,7 @@ YW_TEST_SET
         Expect::AreEqual(1, ywdb.insert(Source{ auto_id, file22, "C" }));
         Expect::AreEqual(2, ywdb.insert(Source{ auto_id, file70, "Bash" }));
 
-        auto source = ywdb.selectSourceById(2L);
+        auto source = ywdb.selectSourceById(2);
         Assert::AreEqual(2, source.id.getValue());
         Assert::AreEqual(70, source.fileId.getValue());
         Assert::AreEqual("Bash", source.language.getValue());
@@ -46,7 +46,7 @@ YW_TEST_SET
 
     YW_TEST(Source, SelectSourceById_RowDoesntExist) {
         try {
-            auto source = ywdb.selectSourceById(1L);
+            auto source = ywdb.selectSourceById(1);
             Assert::Fail();
         }
         catch (std::runtime_error& e) {

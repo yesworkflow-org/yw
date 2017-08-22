@@ -33,14 +33,14 @@ YW_TEST_SET
         Expect::AreEqual(1, ywdb.insert(File{ auto_id, "main.c" }));
         Expect::AreEqual(2, ywdb.insert(File{ auto_id, "script.sh" }));
 
-        auto file = ywdb.selectFileById(2L);
+        auto file = ywdb.selectFileById(2);
         Assert::AreEqual(2L, file.id);
         Assert::AreEqual("script.sh", file.name);
     }
 
     YW_TEST(File, SelectFileById_RowDoesntExist) {
         try {
-            auto user = ywdb.selectFileById(1L);
+            auto user = ywdb.selectFileById(1);
             Assert::Fail();
         }
         catch (std::runtime_error& e) {

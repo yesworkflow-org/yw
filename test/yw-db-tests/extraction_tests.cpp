@@ -41,7 +41,7 @@ YW_TEST_SET
         Expect::AreEqual(1, ywdb.insert(Extraction{ auto_id, user19, "2017-06-22 10:52:00.000" }));
         Expect::AreEqual(2, ywdb.insert(Extraction{ auto_id, user101, "2017-06-22 10:52:01.000" }));
 
-        auto extraction = ywdb.selectExtractionById(2L);
+        auto extraction = ywdb.selectExtractionById(2);
         Assert::AreEqual(2, extraction.id.getValue());
         Assert::AreEqual(101, extraction.userId.getValue());
         Assert::AreEqual(std::string("2017-06-22 10:52:01.000"), extraction.created);
@@ -49,7 +49,7 @@ YW_TEST_SET
 
     YW_TEST(Extraction, SelectById_RowDoesntExist) {
         try {
-            auto user = ywdb.selectExtractionById(1L);
+            auto user = ywdb.selectExtractionById(1);
             Assert::Fail();
         }
         catch (std::runtime_error& e) {

@@ -72,7 +72,7 @@ YW_TEST_SET
         Expect::AreEqual(1, ywdb.insert(Port{ auto_id, block1, annotation16, "port" }));
         Expect::AreEqual(2, ywdb.insert(Port{ auto_id, block2, annotation36, "second port" }));
 
-        auto port = ywdb.selectPortById(2L);
+        auto port = ywdb.selectPortById(2);
         Assert::AreEqual(2, port.id.getValue());
         Assert::AreEqual(2, port.programBlockId);
         Assert::AreEqual(36, port.annotationId.getValue());
@@ -81,7 +81,7 @@ YW_TEST_SET
     
     YW_TEST(Port, SelectById_RowDoesntExist) {
         try {
-            auto user = ywdb.selectPortById(1L);
+            auto user = ywdb.selectPortById(1);
             Assert::Fail();
         }
         catch (std::runtime_error& e) {

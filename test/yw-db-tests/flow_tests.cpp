@@ -70,26 +70,21 @@ YW_TEST_SET
 
     YW_TEST(Flow, InsertOneRow_GeneratedIdIs_1)
     {
-        Assert::AreEqual(1, ywdb.insert(Flow{ auto_id, port28, data5, 
-            Direction::IN, nullable_long(1), nullable_long(1) }));
+        Assert::AreEqual(1, ywdb.insert(Flow{ auto_id, port28, data5, Direction::IN, 1, 1 }));
     }
 
     YW_TEST(Flow, InsertTwoRows_SecondGeneratedIdIs_2)
     {
-        Expect::AreEqual(1, ywdb.insert(Flow{ auto_id, port28, data5,
-            Direction::IN, nullable_long(1), nullable_long(1) }));
-        Assert::AreEqual(2, ywdb.insert(Flow{ auto_id, port88, data92,
-            Direction::OUT, nullable_long(1), nullable_long(1) }));
+        Expect::AreEqual(1, ywdb.insert(Flow{ auto_id, port28, data5, Direction::IN, 1, 1 }));
+        Assert::AreEqual(2, ywdb.insert(Flow{ auto_id, port88, data92, Direction::OUT, 1, 1 }));
     }
 
     YW_TEST(Flow, SelectById_RowExists) {
 
-        Expect::AreEqual(1, ywdb.insert(Flow{ auto_id, port28, data5,
-            Direction::IN, nullable_long(1), nullable_long(2) }));
-        Expect::AreEqual(2, ywdb.insert(Flow{ auto_id, port88, data92,
-            Direction::OUT, nullable_long(3), nullable_long(4) }));
+        Expect::AreEqual(1, ywdb.insert(Flow{ auto_id, port28, data5, Direction::IN, 1, 2 }));
+        Expect::AreEqual(2, ywdb.insert(Flow{ auto_id, port88, data92, Direction::OUT, 3, 4 }));
 
-        auto flow = ywdb.selectFlowById(2L);
+        auto flow = ywdb.selectFlowById(2);
         Assert::AreEqual(2, flow.id.getValue());
         Assert::AreEqual(88, flow.portId);
         Assert::AreEqual(92, flow.dataBlockId);
@@ -100,7 +95,7 @@ YW_TEST_SET
     
     YW_TEST(Flow, SelectById_RowDoesntExist) {
         try {
-            auto user = ywdb.selectFlowById(1L);
+            auto user = ywdb.selectFlowById(1);
             Assert::Fail();
         }
         catch (std::runtime_error& e) {

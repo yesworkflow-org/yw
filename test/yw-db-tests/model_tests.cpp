@@ -45,7 +45,7 @@ YW_TEST_SET
         Expect::AreEqual(1, ywdb.insert(Model{ auto_id, user4, extraction2, "2017-06-22 10:52:00.000" }));
         Expect::AreEqual(2, ywdb.insert(Model{ auto_id, user19, extraction13, "2017-06-22 10:52:00.000" }));
 
-        auto model = ywdb.selectModelById(2L);
+        auto model = ywdb.selectModelById(2);
         Assert::AreEqual(2, model.id.getValue());
         Assert::AreEqual(19, model.userId.getValue());
         Assert::AreEqual(13, model.extractionId.getValue());
@@ -54,7 +54,7 @@ YW_TEST_SET
     
     YW_TEST(Model, SelectById_RowDoesntExist) {
         try {
-            auto user = ywdb.selectModelById(1L);
+            auto user = ywdb.selectModelById(1);
             Assert::Fail();
         }
         catch (std::runtime_error& e) {

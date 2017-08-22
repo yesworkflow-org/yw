@@ -60,7 +60,7 @@ YW_TEST_SET
         row_id annotation1;
         Assert::AreEqual(1, (annotation1 = ywdb.insert(Annotation{ auto_id,extraction17,  Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" })));
 
-        auto annotation = ywdb.selectAnnotationById(1L);
+        auto annotation = ywdb.selectAnnotationById(1);
         Assert::AreEqual(1, annotation.id.getValue());
         Assert::AreEqual(Tag::BEGIN, annotation.tag);
         Assert::IsNull(annotation.qualifiesId);
@@ -77,7 +77,7 @@ YW_TEST_SET
         Assert::AreEqual(1, (annotation1 = ywdb.insert(Annotation{ auto_id, extraction17, Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" })));
         Assert::AreEqual(2, ywdb.insert(Annotation{ auto_id, extraction17, Tag::IN, annotation1, line25, 1, 0, 7, "@in", "port" }));
 
-        auto annotation = ywdb.selectAnnotationById(2L);
+        auto annotation = ywdb.selectAnnotationById(2);
         Assert::AreEqual(2, annotation.id.getValue());
         Assert::AreEqual(Tag::IN, annotation.tag);
         Assert::AreEqual(1, annotation.qualifiesId.getValue());
@@ -90,7 +90,7 @@ YW_TEST_SET
 
     YW_TEST(Annotation, SelectingNonexistent) {
         try {
-            auto source = ywdb.selectAnnotationById(1L);
+            auto source = ywdb.selectAnnotationById(1);
             Assert::Fail();
         }
         catch (std::runtime_error& e) {

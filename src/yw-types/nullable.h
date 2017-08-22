@@ -17,7 +17,7 @@ namespace yw {
 
         nullable() : isSet(false), value() {}
 
-        explicit nullable(const T& value) : isSet(true), value(value) {}
+        nullable(const T& value) : isSet(true), value(value) {}
 
         bool hasValue() const { return isSet; }
 

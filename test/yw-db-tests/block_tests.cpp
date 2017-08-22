@@ -65,7 +65,7 @@ YW_TEST_SET
         Expect::AreEqual(1, (block1 = ywdb.insert(ProgramBlock{ auto_id, model77, null_id, annotation11, "block" })));
         Assert::AreEqual(2, ywdb.insert(ProgramBlock{ auto_id, model77, block1, annotation12, "nested block" }));
 
-        auto block = ywdb.selectProgramBlockById(2L);
+        auto block = ywdb.selectProgramBlockById(2);
         Assert::AreEqual(2, block.id.getValue());
         Assert::AreEqual(77, block.modelId);
         Assert::AreEqual(1, block.workflowId.getValue());
