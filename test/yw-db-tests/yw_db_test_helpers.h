@@ -20,8 +20,10 @@ namespace Microsoft {
     namespace VisualStudio {
         namespace CppUnitTestFramework {
             static std::wstring ToString(const yw::db::Annotation& row) { RETURN_WIDE_STRING(row); }
+            static std::wstring ToString(const yw::db::DataBlock& row) { RETURN_WIDE_STRING(row); }
             static std::wstring ToString(const yw::db::Extraction& row) { RETURN_WIDE_STRING(row); }
             static std::wstring ToString(const yw::db::File& row) { RETURN_WIDE_STRING(row); }
+            static std::wstring ToString(const yw::db::Flow& row) { RETURN_WIDE_STRING(row); }
             static std::wstring ToString(const yw::db::Line& row) { RETURN_WIDE_STRING(row); }
             static std::wstring ToString(const yw::db::Port& row) { RETURN_WIDE_STRING(row); }
             static std::wstring ToString(const yw::db::ProgramBlock& row) { RETURN_WIDE_STRING(row); }

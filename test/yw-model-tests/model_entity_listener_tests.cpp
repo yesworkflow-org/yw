@@ -30,7 +30,7 @@ YW_TEST_FIXTURE(ModelEntityListener)
         Expect::AreEqual(1, (userId = ywdb.insert(User{ auto_id, "user1" })));
         Expect::AreEqual(1, (extractionId = ywdb.insert(Extraction{ auto_id, userId, "2017-06-22 10:52:00.000" })));
         Expect::AreEqual(1, (sourceId = ywdb.insert(Source{ auto_id, null_id, "C" })));
-        Expect::AreEqual(1, (modelId = ywdb.insert(Model{ auto_id, userId, extractionId, "2017 - 06 - 22 10:52 : 00.000" })));
+        Expect::AreEqual(1, (modelId = ywdb.insert(Model{ auto_id, userId, extractionId, "2017-06-22 10:52:00.000" })));
 
         sourceLoader = std::make_shared<SourceLoader>(ywdb);
         listener = new ModelEntityListener{ ywdb, modelId, extractionId, sourceId };
@@ -209,7 +209,7 @@ YW_TEST_SET
         Assert::IsFalse(topProgramBlock2.workflowId.hasValue());
     }
 
-    YW_TEST(ModelEntityListener, WhenInPortHasOneNameInsertOnePort)
+    YW_TEST(ModelEntityListener, WhenInPortHasOneNameInsertOnePortOneFlowAndOneDataBlock)
     {
         this->storeAndParse(
             "@begin b"  EOL
@@ -221,7 +221,11 @@ YW_TEST_SET
         Expect::AreEqual(1, ywdb.getRowCount("program_block"));
 
         Assert::AreEqual(1, ywdb.getRowCount("port"));
+        Assert::AreEqual(1, ywdb.getRowCount("flow"));
+        Assert::AreEqual(1, ywdb.getRowCount("data_block"));
         Assert::AreEqual(Port{ 1, 1, 2, "p" }, ywdb.selectPortById(1));
+        Assert::AreEqual(DataBlock{ 1, modelId, null_id, "p" }, ywdb.selectDataBlockById(1));
+        Assert::AreEqual(Flow{ 1, 1, 1, Flow::Direction::IN, nullable_long{1}, nullable_long{1} }, ywdb.selectFlowById(1));
     }
 
     YW_TEST(ModelEntityListener, WhenInPortHasTwoNamesInsertTwoPorts)
@@ -236,8 +240,14 @@ YW_TEST_SET
         Expect::AreEqual(1, ywdb.getRowCount("program_block"));
 
         Assert::AreEqual(2, ywdb.getRowCount("port"));
+        Assert::AreEqual(2, ywdb.getRowCount("flow"));
+        Assert::AreEqual(2, ywdb.getRowCount("data_block"));
         Assert::AreEqual(Port{ 1, 1, 2, "p" }, ywdb.selectPortById(1));
+        Assert::AreEqual(DataBlock{ 1, modelId, null_id, "p" }, ywdb.selectDataBlockById(1));
+        Assert::AreEqual(Flow{ 1, 1, 1, Flow::Direction::IN, nullable_long{ 1 }, nullable_long{ 1 } }, ywdb.selectFlowById(1));
         Assert::AreEqual(Port{ 2, 1, 3, "q" }, ywdb.selectPortById(2));
+        Assert::AreEqual(DataBlock{ 2, modelId, null_id, "q" }, ywdb.selectDataBlockById(2));
+        Assert::AreEqual(Flow{ 2, 2, 2, Flow::Direction::IN, nullable_long{ 1 }, nullable_long{ 1 } }, ywdb.selectFlowById(2));
     }
 
     YW_TEST(ModelEntityListener, WhenTwoInPortsInsertTwoPorts)
@@ -253,8 +263,14 @@ YW_TEST_SET
         Expect::AreEqual(1, ywdb.getRowCount("program_block"));
 
         Assert::AreEqual(2, ywdb.getRowCount("port"));
+        Assert::AreEqual(2, ywdb.getRowCount("flow"));
+        Assert::AreEqual(2, ywdb.getRowCount("data_block"));
         Assert::AreEqual(Port{ 1, 1, 2, "p" }, ywdb.selectPortById(1));
+        Assert::AreEqual(DataBlock{ 1, modelId, null_id, "p" }, ywdb.selectDataBlockById(1));
+        Assert::AreEqual(Flow{ 1, 1, 1, Flow::Direction::IN, nullable_long{ 1 }, nullable_long{ 1 } }, ywdb.selectFlowById(1));
         Assert::AreEqual(Port{ 2, 1, 3, "q" }, ywdb.selectPortById(2));
+        Assert::AreEqual(DataBlock{ 2, modelId, null_id, "q" }, ywdb.selectDataBlockById(2));
+        Assert::AreEqual(Flow{ 2, 2, 2, Flow::Direction::IN, nullable_long{ 1 }, nullable_long{ 1 } }, ywdb.selectFlowById(2));
     }
 
     YW_TEST(ModelEntityListener, WhenTwoOutPortsInsertTwoPorts)
@@ -270,8 +286,14 @@ YW_TEST_SET
         Expect::AreEqual(1, ywdb.getRowCount("program_block"));
 
         Assert::AreEqual(2, ywdb.getRowCount("port"));
+        Assert::AreEqual(2, ywdb.getRowCount("flow"));
+        Assert::AreEqual(2, ywdb.getRowCount("data_block"));
         Assert::AreEqual(Port{ 1, 1, 2, "p" }, ywdb.selectPortById(1));
+        Assert::AreEqual(DataBlock{ 1, modelId, null_id, "p" }, ywdb.selectDataBlockById(1));
+        Assert::AreEqual(Flow{ 1, 1, 1, Flow::Direction::OUT, nullable_long{ 1 }, nullable_long{ 1 } }, ywdb.selectFlowById(1));
         Assert::AreEqual(Port{ 2, 1, 3, "q" }, ywdb.selectPortById(2));
+        Assert::AreEqual(DataBlock{ 2, modelId, null_id, "q" }, ywdb.selectDataBlockById(2));
+        Assert::AreEqual(Flow{ 2, 2, 2, Flow::Direction::OUT, nullable_long{ 1 }, nullable_long{ 1 } }, ywdb.selectFlowById(2));
     }
 
 YW_TEST_END

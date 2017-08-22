@@ -34,6 +34,13 @@ namespace yw {
             auto port = Port{ auto_id, currentProgramBlock->id.getValue(),
                  nullable_row_id{lastPortAnnotation->id}, portName.getValue() };
             ywdb.insert(port);
+
+            auto dataBlock = DataBlock(auto_id, modelId, null_id, portName.getValue());
+            ywdb.insert(dataBlock);
+
+            auto flow = Flow(auto_id, port.id.getValue(), dataBlock.id.getValue(), 
+                portDirection, nullable_long{ 1 }, nullable_long{ 1 });
+            ywdb.insert(flow);
         }
     }
 }

@@ -8,8 +8,9 @@ namespace yw {
         struct Flow : sqlite::TableRow {
 
             enum class Direction {
-                IN = 1,
-                OUT = 2
+                NONE    = 0,
+                IN      = 1,
+                OUT     = 2
             };
 
             const nullable_row_id id;
@@ -29,11 +30,22 @@ namespace yw {
             ) : id(id), portId(portId), dataBlockId(dataBlockId), direction(direction), minRate(minRate), maxRate(maxRate)
             {}
 
+            std::string elements() const override {
+                std::stringstream ss;
+                ss << id.str()
+                    << "|" << portId
+                    << "|" << dataBlockId
+                    << "|" << to_string(direction)
+                    << "|" << minRate.str()
+                    << "|" << maxRate.str();
+                return ss.str();
+            }
+
             static std::string to_string(Direction direction) {
                 static const std::vector<std::string> names{
-                    "IN", "OUT"
+                    "NONE", "IN", "OUT"
                 };
-                return names[static_cast<int>(direction) - 1];
+                return names[static_cast<int>(direction)];
             }
         };
     }

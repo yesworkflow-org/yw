@@ -93,9 +93,14 @@ namespace yw {
         void AnnotationListener::enterPort(YWParser::PortContext *port) {
             portTag = getPortTag(port);
             portLineId = getLineId(port);
-            portKeyword = port->inputKeyword() != NULL ? 
-                port->inputKeyword()->getText() : 
-                port->outputKeyword()->getText();
+            if (port->inputKeyword() != NULL) {
+                portKeyword = port->inputKeyword()->getText();
+                portDirection = Flow::Direction::IN;
+            }
+            else {
+                portKeyword = port->outputKeyword()->getText();
+                portDirection = Flow::Direction::OUT;
+            }
             portRangeInLine = getRangeInLine(port);
         }
 

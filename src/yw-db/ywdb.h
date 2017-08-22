@@ -35,7 +35,7 @@ namespace yw {
             ProgramBlock selectProgramBlockById(const row_id& id);
 
             void createDataBlockTable();
-            row_id insert(const DataBlock& model);
+            row_id insert(DataBlock& model);
             DataBlock selectDataBlockById(const row_id& id);
 
             void createFileTable();
@@ -56,7 +56,7 @@ namespace yw {
             Model selectModelById(const row_id& id);
 
             void createPortTable();
-            row_id insert(const Port& model);
+            row_id insert(Port& model);
             Port selectPortById(const row_id& id);
 
             void createSourceTable();

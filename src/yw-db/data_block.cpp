@@ -21,7 +21,7 @@ namespace yw {
             )"));
         }
 
-        row_id YesWorkflowDB::insert(const DataBlock& dataBlock) {
+        row_id YesWorkflowDB::insert(DataBlock& dataBlock) {
             string sql = "INSERT INTO data_block(id, model, structure, name) VALUES (?,?,?,?);";
             InsertStatement statement(db, sql);
             statement.bindNullableId(1, dataBlock.id);
@@ -29,7 +29,8 @@ namespace yw {
             statement.bindNullableId(3, dataBlock.structureId);
             statement.bindText(4, dataBlock.name);
             statement.execute();
-            return statement.getGeneratedId();
+            dataBlock.id = statement.getGeneratedId();
+            return dataBlock.id.getValue();
         }
 
         DataBlock YesWorkflowDB::selectDataBlockById(const row_id& requested_id) {

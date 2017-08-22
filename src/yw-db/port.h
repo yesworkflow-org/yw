@@ -7,7 +7,7 @@ namespace yw {
 
         struct Port : sqlite::TableRow {
 
-            const nullable_row_id id;
+            nullable_row_id id;
             const row_id programBlockId;
             const nullable_row_id annotationId;
             const std::string name;
@@ -19,6 +19,15 @@ namespace yw {
                 const std::string& name
             ) : id(id), programBlockId(programBlockId), annotationId(annotationId), name(name)
             {}
+
+            std::string elements() const override {
+                std::stringstream ss;
+                ss << id.str()
+                    << "|" << programBlockId
+                    << "|" << annotationId.str()
+                    << "|" << name;
+                return ss.str();
+            }
         };
     }
 }
