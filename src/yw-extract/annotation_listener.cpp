@@ -118,6 +118,18 @@ namespace yw {
             currentPrimaryAnnotation = lastPortAnnotation;
         }
 
+        void AnnotationListener::enterIo(YWParser::IoContext *io) {
+            portAlias = "";
+            aliasedPortIndex = -1;
+            for (auto attribute : io->portAttribute()) {
+                if (attribute->alias() != nullptr) {
+                    portAlias = attribute->alias()->dataName()->getText();
+                    aliasedPortIndex = io->port()->portName().size() - 1;
+                    break;
+                }
+            }
+        }
+
         void AnnotationListener::exitIo(YWParser::IoContext *context) {
             currentPrimaryAnnotation = primaryAnnotationStack.top();
             primaryAnnotationStack.pop();

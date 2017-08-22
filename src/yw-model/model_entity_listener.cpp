@@ -28,6 +28,11 @@ namespace yw {
             programBlockStack.pop();
         }
 
+        void ModelEntityListener::enterPort(YWParser::PortContext *context) {
+            AnnotationListener::enterPort(context);
+            portNameIndex = 0;
+        }
+
         void ModelEntityListener::enterPortName(YWParser::PortNameContext *context) 
         {
             AnnotationListener::enterPortName(context);
@@ -35,12 +40,15 @@ namespace yw {
                  nullable_row_id{lastPortAnnotation->id}, portName.getValue() };
             ywdb.insert(port);
 
-            auto dataBlock = DataBlock(auto_id, modelId, null_id, portName.getValue());
+            auto dataName = (portNameIndex == aliasedPortIndex) ? portAlias : portName.getValue();
+            auto dataBlock = DataBlock(auto_id, modelId, null_id, dataName);
             ywdb.insert(dataBlock);
 
             auto flow = Flow(auto_id, port.id.getValue(), dataBlock.id.getValue(), 
                 portDirection, nullable_long{ 1 }, nullable_long{ 1 });
             ywdb.insert(flow);
+
+            portNameIndex++;
         }
     }
 }

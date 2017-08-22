@@ -20,6 +20,8 @@ namespace yw {
             row_id portLineId;
             std::string portKeyword;
             yw::nullable_string portName;
+            std::string portAlias;
+            int aliasedPortIndex;
             yw::db::Flow::Direction portDirection;
             std::shared_ptr<yw::db::Annotation> lastPortAnnotation;
             AnnotationRange portRangeInLine;
@@ -43,6 +45,7 @@ namespace yw {
             void exitPort(YWParser::PortContext *port) override;
             void enterPortName(YWParser::PortNameContext *context) override;
             void enterAlias(YWParser::AliasContext *context) override;
+            void enterIo(YWParser::IoContext *context) override;
             void exitIo(YWParser::IoContext *context) override;
 
         private:

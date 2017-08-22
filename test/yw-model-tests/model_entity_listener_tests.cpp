@@ -296,4 +296,88 @@ YW_TEST_SET
         Assert::AreEqual(Flow{ 2, 2, 2, Flow::Direction::OUT, nullable_long{ 1 }, nullable_long{ 1 } }, ywdb.selectFlowById(2));
     }
 
+    YW_TEST(ModelEntityListener, WhenInPortHasAliasPortTakesNameAndDataBlockTakesAlias)
+    {
+        this->storeAndParse(
+            "@begin b"      EOL
+            "@in p @as d"   EOL
+            "@end b"        EOL
+        );
+
+        Expect::EmptyString(stderrRecorder.str());
+        Expect::AreEqual(1, ywdb.getRowCount("program_block"));
+
+        Assert::AreEqual(1, ywdb.getRowCount("port"));
+        Assert::AreEqual(1, ywdb.getRowCount("flow"));
+        Assert::AreEqual(1, ywdb.getRowCount("data_block"));
+        auto port = ywdb.selectPortById(1);
+        auto dataBlock = ywdb.selectDataBlockById(1);
+        Assert::AreEqual(Port{ 1, 1, 2, "p" }, port);
+        Assert::AreEqual(DataBlock{ 1, modelId, null_id, "d" }, dataBlock);
+        Assert::AreEqual(Flow{ 1, 1, 1, Flow::Direction::IN, nullable_long{ 1 }, nullable_long{ 1 } }, ywdb.selectFlowById(1));
+        Assert::AreEqual("p", port.name);
+        Assert::AreEqual("d", dataBlock.name);
+    }
+
+    YW_TEST(ModelEntityListener, WhenInPortWithTwoPortNamesHasAliasDataForFirstPortTakesNameAndDataForSecondPortTakesAlias)
+    {
+        this->storeAndParse(
+            "@begin b"      EOL
+            "@in p q @as d" EOL
+            "@end b"        EOL
+        );
+
+        Expect::EmptyString(stderrRecorder.str());
+        Expect::AreEqual(1, ywdb.getRowCount("program_block"));
+
+        Assert::AreEqual(2, ywdb.getRowCount("port"));
+        Assert::AreEqual(2, ywdb.getRowCount("flow"));
+        Assert::AreEqual(2, ywdb.getRowCount("data_block"));
+        auto port1 = ywdb.selectPortById(1);
+        auto dataBlock1 = ywdb.selectDataBlockById(1);
+        Assert::AreEqual(Port{ 1, 1, 2, "p" }, port1);
+        Assert::AreEqual(DataBlock{ 1, modelId, null_id, "p" }, dataBlock1);
+        Assert::AreEqual(Flow{ 1, 1, 1, Flow::Direction::IN, nullable_long{ 1 }, nullable_long{ 1 } }, ywdb.selectFlowById(1));
+        Assert::AreEqual("p", port1.name);
+        Assert::AreEqual("p", dataBlock1.name);
+        auto port2 = ywdb.selectPortById(2);
+        auto dataBlock2 = ywdb.selectDataBlockById(2);
+        Assert::AreEqual(Port{ 2, 1, 3, "q" }, port2);
+        Assert::AreEqual(DataBlock{ 2, modelId, null_id, "d" }, dataBlock2);
+        Assert::AreEqual(Flow{ 2, 2, 2, Flow::Direction::IN, nullable_long{ 1 }, nullable_long{ 1 } }, ywdb.selectFlowById(2));
+        Assert::AreEqual("q", port2.name);
+        Assert::AreEqual("d", dataBlock2.name);
+    }
+
+    YW_TEST(ModelEntityListener, WhenFirstInPortHasAliasAndSecondInPortDoesNotDataBlockForFirstPortTakesAlias)
+    {
+        this->storeAndParse(
+            "@begin b"      EOL
+            "@in p @as d"   EOL
+            "@in q"         EOL
+            "@end b"        EOL
+        );
+
+        Expect::EmptyString(stderrRecorder.str());
+        Expect::AreEqual(1, ywdb.getRowCount("program_block"));
+
+        Assert::AreEqual(2, ywdb.getRowCount("port"));
+        Assert::AreEqual(2, ywdb.getRowCount("flow"));
+        Assert::AreEqual(2, ywdb.getRowCount("data_block"));
+        auto port1 = ywdb.selectPortById(1);
+        auto dataBlock1 = ywdb.selectDataBlockById(1);
+        Assert::AreEqual(Port{ 1, 1, 2, "p" }, port1);
+        Assert::AreEqual(DataBlock{ 1, modelId, null_id, "d" }, dataBlock1);
+        Assert::AreEqual(Flow{ 1, 1, 1, Flow::Direction::IN, nullable_long{ 1 }, nullable_long{ 1 } }, ywdb.selectFlowById(1));
+        Assert::AreEqual("p", port1.name);
+        Assert::AreEqual("d", dataBlock1.name);
+        auto port2 = ywdb.selectPortById(2);
+        auto dataBlock2 = ywdb.selectDataBlockById(2);
+        Assert::AreEqual(Port{ 2, 1, 4, "q" }, port2);
+        Assert::AreEqual(DataBlock{ 2, modelId, null_id, "q" }, dataBlock2);
+        Assert::AreEqual(Flow{ 2, 2, 2, Flow::Direction::IN, nullable_long{ 1 }, nullable_long{ 1 } }, ywdb.selectFlowById(2));
+        Assert::AreEqual("q", port2.name);
+        Assert::AreEqual("q", dataBlock2.name);
+    }
+
 YW_TEST_END

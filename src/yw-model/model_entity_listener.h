@@ -11,6 +11,7 @@ namespace yw {
             const row_id& modelId;
             std::shared_ptr<yw::db::ProgramBlock> currentProgramBlock = nullptr;
             std::stack<std::shared_ptr<yw::db::ProgramBlock>> programBlockStack;
+            int portNameIndex;
 
         public:
 
@@ -24,7 +25,8 @@ namespace yw {
 
             void enterBegin(YWParser::BeginContext *begin) override;
             void enterEnd(YWParser::EndContext *context) override;
-            void enterPortName(YWParser::PortNameContext *context);
+            void enterPort(YWParser::PortContext *context) override;
+            void enterPortName(YWParser::PortNameContext *context) override;
         };
     }
 }
