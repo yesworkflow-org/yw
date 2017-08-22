@@ -40,9 +40,11 @@ YW_TEST_SET
 
     YW_TEST(ModelEntityListener, WhenBeginAnnotationAtStartOfOnlyLineInsertOneBlockWithNullWorkflowId)
     {
-        this->storeAndParse(
-            "@begin b"
-        );
+        this->storeAndParse(R"(
+
+            @begin b
+
+        )");
 
         Expect::NonEmptyString(stderrRecorder.str());
         Expect::AreEqual(1, ywdb.getRowCount("program_block"));
@@ -54,9 +56,11 @@ YW_TEST_SET
 
     YW_TEST(ModelEntityListener, WhenBeginAndEndAtStartOfOnlyLineInsertOneBlockWithNullWorkflowId)
     {
-        this->storeAndParse(
-            "@begin b @end b"
-        );
+        this->storeAndParse(R"(
+        
+            @begin b @end b
+        
+        )");
 
         Expect::EmptyString(stderrRecorder.str());
         Expect::AreEqual(1, ywdb.getRowCount("program_block"));
@@ -68,13 +72,15 @@ YW_TEST_SET
 
     YW_TEST(ModelEntityListener, WhenTwoBeginEndPairsAtTopLevelSecondOfTwoBlocksHasNullWorkflowId)
     {
-        this->storeAndParse(
-            "@begin b"  EOL
-            "@end b"    EOL
-                        EOL
-            "@begin c"  EOL
-            "@end c"    EOL
-        );
+        this->storeAndParse(R"(
+            
+            @begin b
+            @end b
+
+            @begin c
+            @end c
+
+        )");
 
         Expect::EmptyString(stderrRecorder.str());
         Expect::AreEqual(2, ywdb.getRowCount("program_block"));
@@ -86,12 +92,14 @@ YW_TEST_SET
 
     YW_TEST(ModelEntityListener, WhenTwoBeginEndPairsAreNestedAtTopLevelWorkflowIdOfNestedBlockIsIdOfTopBlock)
     {
-        this->storeAndParse(
-            "@begin b"      EOL
-            "   @begin c"   EOL
-            "   @end c"     EOL
-            "@end b"        EOL
-        );
+        this->storeAndParse(R"(
+
+            @begin b
+                @begin c
+                @end c
+            @end b
+
+        )");
 
         Expect::EmptyString(stderrRecorder.str());
         Expect::AreEqual(2, ywdb.getRowCount("program_block"));
@@ -105,14 +113,19 @@ YW_TEST_SET
 
     YW_TEST(ModelEntityListener, WhenTwoBlocksAreNestedInsideTopLevelWorkflowIdOfSecondNestedBlockIsIdOfTopBlock)
     {
-        this->storeAndParse(
-            "@begin b"      EOL
-            "   @begin c"   EOL
-            "   @end c"     EOL
-            "   @begin d"   EOL
-            "   @end d"     EOL
-            "@end b"        EOL
-        );
+        this->storeAndParse(R"(
+
+            @begin b
+            
+                @begin c
+                @end c
+                
+                @begin d
+                @end d
+            
+            @end b
+
+        )");
 
         Expect::EmptyString(stderrRecorder.str());
         Expect::AreEqual(3, ywdb.getRowCount("program_block"));
@@ -129,14 +142,16 @@ YW_TEST_SET
 
     YW_TEST(ModelEntityListener, WhenBlockIsDoublyNestedItsWorkflowIdIsIdOfImmediateParentBlock)
     {
-        this->storeAndParse(
-            "@begin b"          EOL
-            "   @begin c"       EOL
-            "      @begin d"    EOL
-            "      @end d"      EOL
-            "   @end c"         EOL
-            "@end b"            EOL
-        );
+        this->storeAndParse(R"(
+            
+            @begin b
+                @begin c
+                    @begin d
+                    @end d
+                @end c
+            @end b
+        
+        )");
 
         Expect::EmptyString(stderrRecorder.str());
         Expect::AreEqual(3, ywdb.getRowCount("program_block"));
@@ -153,16 +168,21 @@ YW_TEST_SET
 
     YW_TEST(ModelEntityListener, WhenNestedBlockFollowsDoublyNestedBlockItsWorkflowIdIsIdOfTopBlock)
     {
-        this->storeAndParse(
-            "@begin b"          EOL
-            "   @begin c"       EOL
-            "      @begin d"    EOL
-            "      @end d"      EOL
-            "   @end c"         EOL
-            "   @begin e"       EOL
-            "   @end e"         EOL
-            "@end b"            EOL
-        );
+        this->storeAndParse(R"(
+            
+            @begin b
+                
+                @begin c
+                    @begin d
+                    @end d
+                @end c
+                
+                @begin e
+                @end e
+            
+            @end b
+
+        )");
 
         Expect::EmptyString(stderrRecorder.str());
         Expect::AreEqual(4, ywdb.getRowCount("program_block"));
@@ -182,16 +202,19 @@ YW_TEST_SET
 
     YW_TEST(ModelEntityListener, WhenSecondTopBlockFollowsDoublyNestedBlocksItsWorkflowIdIsNull)
     {
-        this->storeAndParse(
-            "@begin b"          EOL
-            "   @begin c"       EOL
-            "      @begin d"    EOL
-            "      @end d"      EOL
-            "   @end c"         EOL
-            "@end b"            EOL
-            "@begin e"          EOL
-            "@end e"            EOL
-        );
+        this->storeAndParse(R"(
+
+            @begin b
+                @begin c
+                    @begin d
+                    @end d
+                @end c
+            @end b
+
+            @begin e
+            @end e
+
+        )");
 
         Expect::EmptyString(stderrRecorder.str());
         Expect::AreEqual(4, ywdb.getRowCount("program_block"));
@@ -211,11 +234,13 @@ YW_TEST_SET
 
     YW_TEST(ModelEntityListener, WhenInPortHasOneNameInsertOnePortOneFlowAndOneDataBlock)
     {
-        this->storeAndParse(
-            "@begin b"  EOL
-            "@in p"     EOL
-            "@end b"    EOL
-        );
+        this->storeAndParse(R"(
+
+            @begin b
+            @in p
+            @end b
+
+        )");
 
         Expect::EmptyString(stderrRecorder.str());
         Expect::AreEqual(1, ywdb.getRowCount("program_block"));
@@ -230,11 +255,13 @@ YW_TEST_SET
 
     YW_TEST(ModelEntityListener, WhenInPortHasTwoNamesInsertTwoPorts)
     {
-        this->storeAndParse(
-            "@begin b"  EOL
-            "@in p q"   EOL
-            "@end b"    EOL
-        );
+        this->storeAndParse(R"(
+
+            @begin b
+            @in p q
+            @end b
+
+        )");
 
         Expect::EmptyString(stderrRecorder.str());
         Expect::AreEqual(1, ywdb.getRowCount("program_block"));
@@ -252,12 +279,14 @@ YW_TEST_SET
 
     YW_TEST(ModelEntityListener, WhenTwoInPortsInsertTwoPorts)
     {
-        this->storeAndParse(
-            "@begin b"  EOL
-            "@in p"     EOL
-            "@in q"     EOL
-            "@end b"    EOL
-        );
+        this->storeAndParse(R"(
+
+            @begin b
+            @in p
+            @in q
+            @end b
+
+        )");
 
         Expect::EmptyString(stderrRecorder.str());
         Expect::AreEqual(1, ywdb.getRowCount("program_block"));
@@ -275,12 +304,14 @@ YW_TEST_SET
 
     YW_TEST(ModelEntityListener, WhenTwoOutPortsInsertTwoPorts)
     {
-        this->storeAndParse(
-            "@begin b"  EOL
-            "@out p"    EOL
-            "@out q"    EOL
-            "@end b"    EOL
-        );
+        this->storeAndParse(R"(
+
+            @begin b
+            @out p
+            @out q
+            @end b
+
+        )");
 
         Expect::EmptyString(stderrRecorder.str());
         Expect::AreEqual(1, ywdb.getRowCount("program_block"));
@@ -298,11 +329,13 @@ YW_TEST_SET
 
     YW_TEST(ModelEntityListener, WhenInPortHasAliasPortTakesNameAndDataBlockTakesAlias)
     {
-        this->storeAndParse(
-            "@begin b"      EOL
-            "@in p @as d"   EOL
-            "@end b"        EOL
-        );
+        this->storeAndParse(R"(
+
+            @begin b
+            @in p @as d
+            @end b
+
+       )");
 
         Expect::EmptyString(stderrRecorder.str());
         Expect::AreEqual(1, ywdb.getRowCount("program_block"));
@@ -321,11 +354,13 @@ YW_TEST_SET
 
     YW_TEST(ModelEntityListener, WhenInPortWithTwoPortNamesHasAliasDataForFirstPortTakesNameAndDataForSecondPortTakesAlias)
     {
-        this->storeAndParse(
-            "@begin b"      EOL
-            "@in p q @as d" EOL
-            "@end b"        EOL
-        );
+        this->storeAndParse(R"(
+
+            @begin b
+            @in p q @as d
+            @end b
+
+        )");
 
         Expect::EmptyString(stderrRecorder.str());
         Expect::AreEqual(1, ywdb.getRowCount("program_block"));
@@ -351,12 +386,14 @@ YW_TEST_SET
 
     YW_TEST(ModelEntityListener, WhenFirstInPortHasAliasAndSecondInPortDoesNotDataBlockForFirstPortTakesAlias)
     {
-        this->storeAndParse(
-            "@begin b"      EOL
-            "@in p @as d"   EOL
-            "@in q"         EOL
-            "@end b"        EOL
-        );
+        this->storeAndParse(R"(
+
+            @begin b
+            @in p @as d
+            @in q
+            @end b
+
+        )");
 
         Expect::EmptyString(stderrRecorder.str());
         Expect::AreEqual(1, ywdb.getRowCount("program_block"));
