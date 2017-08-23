@@ -14,7 +14,7 @@ namespace yw {
             auto beginAnnotation = currentPrimaryAnnotation;
             programBlockStack.push(currentProgramBlock);
             auto programBlock = std::make_shared<ProgramBlock>(
-                auto_id, modelId, 
+                auto_id, modelId,
                 (currentProgramBlock != nullptr ? currentProgramBlock->id : null_id),
                 beginAnnotation->id, beginAnnotation->value.str());
             ywdb.insert(*programBlock);
@@ -46,6 +46,18 @@ namespace yw {
             portNameIndex = 0;
         }
 
+        row_id ModelEntityListener::getIdForDataBlock(std::string dataName) {
+            auto it = dataIds.find(dataName);
+            row_id dataId;
+            if (it == dataIds.end()) {
+                dataId = ywdb.insert(DataBlock{ auto_id, modelId, null_id, dataName });
+                dataIds[dataName] = dataId;
+            } else {
+                dataId = it->second;
+            }
+            return dataId;
+        }
+
         void ModelEntityListener::enterPortName(YWParser::PortNameContext *context) 
         {
             AnnotationListener::enterPortName(context);
@@ -54,11 +66,9 @@ namespace yw {
             ywdb.insert(port);
 
             auto dataName = (portNameIndex == aliasedPortIndex) ? portAlias : portName.getValue();
-            auto dataBlock = DataBlock(auto_id, modelId, null_id, dataName);
-            ywdb.insert(dataBlock);
+            auto dataId = getIdForDataBlock(dataName);
 
-            auto flow = Flow(auto_id, port.id.getValue(), dataBlock.id.getValue(), 
-                portDirection, 1, 1);
+            auto flow = Flow(auto_id, port.id.getValue(), dataId, portDirection, 1, 1);
             ywdb.insert(flow);
 
             portNameIndex++;

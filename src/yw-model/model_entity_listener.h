@@ -11,6 +11,7 @@ namespace yw {
             const row_id& modelId;
             std::shared_ptr<yw::db::ProgramBlock> currentProgramBlock = nullptr;
             std::stack<std::shared_ptr<yw::db::ProgramBlock>> programBlockStack;
+            std::map<std::string, row_id> dataIds;
             std::string portAlias;
             int aliasedPortIndex;
             int portNameIndex;
@@ -24,6 +25,8 @@ namespace yw {
                 const row_id& sourceId
             ) : AnnotationListener(ywdb, extractionId, sourceId), modelId(modelId)
             {}
+
+            row_id getIdForDataBlock(std::string name);
 
             void enterBegin(YWParser::BeginContext *begin) override;
             void enterEnd(YWParser::EndContext *end) override;

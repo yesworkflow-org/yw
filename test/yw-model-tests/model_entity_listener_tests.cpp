@@ -417,4 +417,35 @@ YW_TEST_SET
         Assert::AreEqual("q", dataBlock2.name);
     }
 
+    YW_TEST(ModelEntityListener, WhenOutPortNameMatchesInPortNameOnDifferentBlockThePortShareOneDataBlock)
+    {
+        this->storeAndParse(R"(
+
+            @begin b
+            @out d
+            @end b
+
+            @begin c
+            @in d
+            @end c
+
+        )");
+
+        Expect::EmptyString(stderrRecorder.str());
+        Expect::AreEqual(2, ywdb.getRowCount("program_block"));
+
+        Assert::AreEqual(2, ywdb.getRowCount("port"));
+        Assert::AreEqual(2, ywdb.getRowCount("flow"));
+        Assert::AreEqual(1, ywdb.getRowCount("data_block"));
+
+        auto dataBlock = ywdb.selectDataBlockById(1);
+        Assert::AreEqual(DataBlock{ 1, modelId, null_id, "d" }, dataBlock);
+
+        Assert::AreEqual(Port{ 1, 1, 2, "d" }, ywdb.selectPortById(1));
+        Assert::AreEqual(Flow{ 1, 1, 1, Flow::Direction::OUT, 1, 1 }, ywdb.selectFlowById(1));
+        
+        Assert::AreEqual(Port{ 2, 2, 5, "d" }, ywdb.selectPortById(2));
+        Assert::AreEqual(Flow{ 2, 2, 1, Flow::Direction::IN, 1, 1 }, ywdb.selectFlowById(2));
+    }
+
 YW_TEST_END
