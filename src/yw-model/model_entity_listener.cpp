@@ -28,6 +28,19 @@ namespace yw {
             programBlockStack.pop();
         }
 
+        void ModelEntityListener::enterIo(YWParser::IoContext *io) {
+            AnnotationListener::enterIo(io);
+            portAlias = "";
+            aliasedPortIndex = -1;
+            for (auto attribute : io->portAttribute()) {
+                if (attribute->alias() != nullptr) {
+                    portAlias = attribute->alias()->dataName()->getText();
+                    aliasedPortIndex = io->port()->portName().size() - 1;
+                    break;
+                }
+            }
+        }
+
         void ModelEntityListener::enterPort(YWParser::PortContext *context) {
             AnnotationListener::enterPort(context);
             portNameIndex = 0;

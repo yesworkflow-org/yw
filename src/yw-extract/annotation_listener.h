@@ -20,8 +20,6 @@ namespace yw {
             row_id portLineId;
             std::string portKeyword;
             yw::nullable_string portName;
-            std::string portAlias;
-            int aliasedPortIndex;
             yw::db::Flow::Direction portDirection;
             std::shared_ptr<yw::db::Annotation> lastPortAnnotation;
             AnnotationRange portRangeInLine;
