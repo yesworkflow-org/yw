@@ -92,14 +92,17 @@ YW_TEST_SET
             "@begin b"	EOL
             "@begin c"	EOL
             "@begin d"	EOL
+            "@end d"    EOL
+            "@end c"    EOL
+            "@end b"    EOL
         );
-        Expect::NonEmptyString(stderrRecorder.str());
+        Expect::EmptyString(stderrRecorder.str());
 
         auto beginAnnotation1 = ywdb.selectAnnotationById(1);
         auto beginAnnotation2 = ywdb.selectAnnotationById(2);
         auto beginAnnotation3 = ywdb.selectAnnotationById(3);
-        Expect::AreEqual(3, ywdb.getRowCount("line"));
-        Expect::AreEqual(3, ywdb.getRowCount("annotation"));
+        Expect::AreEqual(6, ywdb.getRowCount("line"));
+        Expect::AreEqual(6, ywdb.getRowCount("annotation"));
         Expect::AreEqual(Annotation{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation1);
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::BEGIN, 1, 2, 1, 0, 7, "@begin", "c" }, beginAnnotation2);
         Expect::AreEqual(Annotation{ 3, extractionId, Tag::BEGIN, 2, 3, 1, 0, 7, "@begin", "d" }, beginAnnotation3);

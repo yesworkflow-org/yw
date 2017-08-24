@@ -2,8 +2,9 @@ grammar YW ;
 
 // YW annotation compositions
 script          : na? block (na? block)* na?;
-block           : begin (na? blockAttribute)* (na? block)* na? end ;
-blockAttribute  : io | desc | call;
+block           : begin (na? blockAttribute)* nestedBlocks na? end ;
+nestedBlocks	: (na? block)* ;
+blockAttribute  : io | desc | call ;
 io				: port (na? portAttribute)* ;
 port  		    : (inputKeyword | outputKeyword) (SPACE+ portName)+ ;
 portAttribute   : desc | alias | resource ;

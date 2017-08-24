@@ -23,7 +23,7 @@ YW_TEST_SET
         Assert::AreEqual("b", context->begin()->blockName()->getText());
 
         Assert::AreEqual(0, context->blockAttribute().size());
-        Assert::AreEqual(0, context->block().size());
+        Assert::AreEqual(0, context->nestedBlocks()->block().size());
     }
 
     YW_TEST(BlockContext, Begin_End_sOnDifferentLines)
@@ -45,7 +45,7 @@ YW_TEST_SET
         Assert::AreEqual("b", context->end()->blockName()->getText());
 
         Assert::AreEqual(0, context->blockAttribute().size());
-        Assert::AreEqual(0, context->block().size());
+        Assert::AreEqual(0, context->nestedBlocks()->block().size());
     }
 
     YW_TEST(BlockContext, NameOnNextLineNotFound)
@@ -70,7 +70,7 @@ YW_TEST_SET
         Assert::AreEqual("@begin", context->begin()->BeginKeyword()->getText());
         Assert::AreEqual("b", context->begin()->blockName()->getText());
         Assert::AreEqual(0, context->blockAttribute().size());
-        Assert::AreEqual(0, context->block().size());
+        Assert::AreEqual(0, context->nestedBlocks()->block().size());
         Assert::AreEqual("@end", context->end()->EndKeyword()->getText());
         Assert::IsNull(context->end()->blockName());
     }
@@ -88,7 +88,7 @@ YW_TEST_SET
         Assert::AreEqual("@desc", context->blockAttribute()[0]->desc()->DescKeyword()->getText());
         Assert::AreEqual("word", context->blockAttribute()[0]->desc()->description()->getText());
         Assert::AreEqual("@end", context->end()->EndKeyword()->getText());
-        Assert::AreEqual(0, context->block().size());
+        Assert::AreEqual(0, context->nestedBlocks()->block().size());
         Assert::IsNull(context->end()->blockName());
     }
 
@@ -105,7 +105,7 @@ YW_TEST_SET
         Assert::AreEqual("@desc", context->blockAttribute()[0]->desc()->DescKeyword()->getText());
         Assert::AreEqual("a multiple word description", context->blockAttribute()[0]->desc()->description()->getText());
         Assert::AreEqual("@end", context->end()->EndKeyword()->getText());
-        Assert::AreEqual(0, context->block().size());
+        Assert::AreEqual(0, context->nestedBlocks()->block().size());
         Assert::IsNull(context->end()->blockName());
     }
 
@@ -122,7 +122,7 @@ YW_TEST_SET
         Assert::AreEqual("@desc", context->blockAttribute()[0]->desc()->DescKeyword()->getText());
         Assert::AreEqual("a multiple word description", context->blockAttribute()[0]->desc()->description()->getText());
         Assert::AreEqual("@end", context->end()->EndKeyword()->getText());
-        Assert::AreEqual(0, context->block().size());
+        Assert::AreEqual(0, context->nestedBlocks()->block().size());
         Assert::IsNull(context->end()->blockName());
     }
 

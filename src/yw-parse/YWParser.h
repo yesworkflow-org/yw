@@ -20,13 +20,13 @@ public:
   };
 
   enum {
-    RuleScript = 0, RuleBlock = 1, RuleBlockAttribute = 2, RuleIo = 3, RulePort = 4, 
-    RulePortAttribute = 5, RuleBegin = 6, RuleEnd = 7, RuleDesc = 8, RuleAlias = 9, 
-    RuleCall = 10, RuleUri = 11, RuleFile = 12, RuleResource = 13, RuleInputKeyword = 14, 
-    RuleOutputKeyword = 15, RuleBlockName = 16, RulePortName = 17, RuleDataName = 18, 
-    RuleDescription = 19, RulePathTemplate = 20, RuleUriTemplate = 21, RuleScheme = 22, 
-    RulePhrase = 23, RuleUnquotedPhrase = 24, RuleWord = 25, RuleUnquotedWord = 26, 
-    RuleNa = 27
+    RuleScript = 0, RuleBlock = 1, RuleNestedBlocks = 2, RuleBlockAttribute = 3, 
+    RuleIo = 4, RulePort = 5, RulePortAttribute = 6, RuleBegin = 7, RuleEnd = 8, 
+    RuleDesc = 9, RuleAlias = 10, RuleCall = 11, RuleUri = 12, RuleFile = 13, 
+    RuleResource = 14, RuleInputKeyword = 15, RuleOutputKeyword = 16, RuleBlockName = 17, 
+    RulePortName = 18, RuleDataName = 19, RuleDescription = 20, RulePathTemplate = 21, 
+    RuleUriTemplate = 22, RuleScheme = 23, RulePhrase = 24, RuleUnquotedPhrase = 25, 
+    RuleWord = 26, RuleUnquotedWord = 27, RuleNa = 28
   };
 
   YWParser(antlr4::TokenStream *input);
@@ -41,6 +41,7 @@ public:
 
   class ScriptContext;
   class BlockContext;
+  class NestedBlocksContext;
   class BlockAttributeContext;
   class IoContext;
   class PortContext;
@@ -89,9 +90,24 @@ public:
     BlockContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     BeginContext *begin();
+    NestedBlocksContext *nestedBlocks();
     EndContext *end();
     std::vector<BlockAttributeContext *> blockAttribute();
     BlockAttributeContext* blockAttribute(size_t i);
+    std::vector<NaContext *> na();
+    NaContext* na(size_t i);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  BlockContext* block();
+
+  class  NestedBlocksContext : public antlr4::ParserRuleContext {
+  public:
+    NestedBlocksContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
     std::vector<BlockContext *> block();
     BlockContext* block(size_t i);
     std::vector<NaContext *> na();
@@ -102,7 +118,7 @@ public:
    
   };
 
-  BlockContext* block();
+  NestedBlocksContext* nestedBlocks();
 
   class  BlockAttributeContext : public antlr4::ParserRuleContext {
   public:

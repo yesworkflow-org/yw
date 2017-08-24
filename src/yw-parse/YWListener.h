@@ -22,6 +22,9 @@ public:
   virtual void enterBlock(YWParser::BlockContext *ctx) = 0;
   virtual void exitBlock(YWParser::BlockContext *ctx) = 0;
 
+  virtual void enterNestedBlocks(YWParser::NestedBlocksContext *ctx) = 0;
+  virtual void exitNestedBlocks(YWParser::NestedBlocksContext *ctx) = 0;
+
   virtual void enterBlockAttribute(YWParser::BlockAttributeContext *ctx) = 0;
   virtual void exitBlockAttribute(YWParser::BlockAttributeContext *ctx) = 0;
 

@@ -24,6 +24,9 @@ public:
   virtual void enterBlock(YWParser::BlockContext * /*ctx*/) override { }
   virtual void exitBlock(YWParser::BlockContext * /*ctx*/) override { }
 
+  virtual void enterNestedBlocks(YWParser::NestedBlocksContext * /*ctx*/) override { }
+  virtual void exitNestedBlocks(YWParser::NestedBlocksContext * /*ctx*/) override { }
+
   virtual void enterBlockAttribute(YWParser::BlockAttributeContext * /*ctx*/) override { }
   virtual void exitBlockAttribute(YWParser::BlockAttributeContext * /*ctx*/) override { }
 
