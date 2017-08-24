@@ -35,7 +35,7 @@ namespace yw {
             for (auto attribute : io->portAttribute()) {
                 if (attribute->alias() != nullptr) {
                     portAlias = attribute->alias()->dataName()->getText();
-                    aliasedPortIndex = io->port()->portName().size() - 1;
+                    aliasedPortIndex = static_cast<int>(io->port()->portName().size()) - 1;
                     break;
                 }
             }
@@ -46,11 +46,16 @@ namespace yw {
             portNameIndex = 0;
         }
 
+
+        nullable_row_id ModelEntityListener::currentWorkflowId() {
+            return programBlockStack.size() > 1 ? programBlockStack.top()->id : null_id;
+        }
+
         row_id ModelEntityListener::getIdForDataBlock(std::string dataName) {
             auto it = dataIds.find(dataName);
             row_id dataId;
             if (it == dataIds.end()) {
-                dataId = ywdb.insert(DataBlock{ auto_id, modelId, null_id, dataName });
+                dataId = ywdb.insert(DataBlock{ auto_id, modelId, currentWorkflowId(), null_id, dataName });
                 dataIds[dataName] = dataId;
             } else {
                 dataId = it->second;

@@ -250,7 +250,7 @@ YW_TEST_SET
         Assert::AreEqual(1, ywdb.getRowCount("flow"));
         Assert::AreEqual(1, ywdb.getRowCount("data_block"));
         Assert::AreEqual(Port{ 1, 1, 2, "p" }, ywdb.selectPortById(1));
-        Assert::AreEqual(DataBlock{ 1, modelId, null_id, "p" }, ywdb.selectDataBlockById(1));
+        Assert::AreEqual(DataBlock{ 1, modelId, null_id, null_id, "p" }, ywdb.selectDataBlockById(1));
         Assert::AreEqual(Flow{ 1, 1, 1, Direction::IN, 1, 1 }, ywdb.selectFlowById(1));
     }
 
@@ -271,10 +271,10 @@ YW_TEST_SET
         Assert::AreEqual(2, ywdb.getRowCount("flow"));
         Assert::AreEqual(2, ywdb.getRowCount("data_block"));
         Assert::AreEqual(Port{ 1, 1, 2, "p" }, ywdb.selectPortById(1));
-        Assert::AreEqual(DataBlock{ 1, modelId, null_id, "p" }, ywdb.selectDataBlockById(1));
+        Assert::AreEqual(DataBlock{ 1, modelId, null_id, null_id, "p" }, ywdb.selectDataBlockById(1));
         Assert::AreEqual(Flow{ 1, 1, 1, Direction::IN, 1, 1 }, ywdb.selectFlowById(1));
         Assert::AreEqual(Port{ 2, 1, 3, "q" }, ywdb.selectPortById(2));
-        Assert::AreEqual(DataBlock{ 2, modelId, null_id, "q" }, ywdb.selectDataBlockById(2));
+        Assert::AreEqual(DataBlock{ 2, modelId, null_id, null_id, "q" }, ywdb.selectDataBlockById(2));
         Assert::AreEqual(Flow{ 2, 2, 2, Direction::IN, 1, 1 }, ywdb.selectFlowById(2));
     }
 
@@ -296,10 +296,10 @@ YW_TEST_SET
         Assert::AreEqual(2, ywdb.getRowCount("flow"));
         Assert::AreEqual(2, ywdb.getRowCount("data_block"));
         Assert::AreEqual(Port{ 1, 1, 2, "p" }, ywdb.selectPortById(1));
-        Assert::AreEqual(DataBlock{ 1, modelId, null_id, "p" }, ywdb.selectDataBlockById(1));
+        Assert::AreEqual(DataBlock{ 1, modelId, null_id, null_id, "p" }, ywdb.selectDataBlockById(1));
         Assert::AreEqual(Flow{ 1, 1, 1, Direction::IN, 1, 1 }, ywdb.selectFlowById(1));
         Assert::AreEqual(Port{ 2, 1, 3, "q" }, ywdb.selectPortById(2));
-        Assert::AreEqual(DataBlock{ 2, modelId, null_id, "q" }, ywdb.selectDataBlockById(2));
+        Assert::AreEqual(DataBlock{ 2, modelId, null_id, null_id, "q" }, ywdb.selectDataBlockById(2));
         Assert::AreEqual(Flow{ 2, 2, 2, Direction::IN, 1, 1 }, ywdb.selectFlowById(2));
     }
 
@@ -321,10 +321,10 @@ YW_TEST_SET
         Assert::AreEqual(2, ywdb.getRowCount("flow"));
         Assert::AreEqual(2, ywdb.getRowCount("data_block"));
         Assert::AreEqual(Port{ 1, 1, 2, "p" }, ywdb.selectPortById(1));
-        Assert::AreEqual(DataBlock{ 1, modelId, null_id, "p" }, ywdb.selectDataBlockById(1));
+        Assert::AreEqual(DataBlock{ 1, modelId, null_id, null_id, "p" }, ywdb.selectDataBlockById(1));
         Assert::AreEqual(Flow{ 1, 1, 1, Direction::OUT, 1, 1 }, ywdb.selectFlowById(1));
         Assert::AreEqual(Port{ 2, 1, 3, "q" }, ywdb.selectPortById(2));
-        Assert::AreEqual(DataBlock{ 2, modelId, null_id, "q" }, ywdb.selectDataBlockById(2));
+        Assert::AreEqual(DataBlock{ 2, modelId, null_id, null_id, "q" }, ywdb.selectDataBlockById(2));
         Assert::AreEqual(Flow{ 2, 2, 2, Direction::OUT, 1, 1 }, ywdb.selectFlowById(2));
     }
 
@@ -347,7 +347,7 @@ YW_TEST_SET
         auto port = ywdb.selectPortById(1);
         auto dataBlock = ywdb.selectDataBlockById(1);
         Assert::AreEqual(Port{ 1, 1, 2, "p" }, port);
-        Assert::AreEqual(DataBlock{ 1, modelId, null_id, "d" }, dataBlock);
+        Assert::AreEqual(DataBlock{ 1, modelId, null_id, null_id, "d" }, dataBlock);
         Assert::AreEqual(Flow{ 1, 1, 1, Direction::IN, 1, 1 }, ywdb.selectFlowById(1));
         Assert::AreEqual("p", port.name);
         Assert::AreEqual("d", dataBlock.name);
@@ -372,14 +372,14 @@ YW_TEST_SET
         auto port1 = ywdb.selectPortById(1);
         auto dataBlock1 = ywdb.selectDataBlockById(1);
         Assert::AreEqual(Port{ 1, 1, 2, "p" }, port1);
-        Assert::AreEqual(DataBlock{ 1, modelId, null_id, "p" }, dataBlock1);
+        Assert::AreEqual(DataBlock{ 1, modelId, null_id, null_id, "p" }, dataBlock1);
         Assert::AreEqual(Flow{ 1, 1, 1, Direction::IN, 1, 1 }, ywdb.selectFlowById(1));
         Assert::AreEqual("p", port1.name);
         Assert::AreEqual("p", dataBlock1.name);
         auto port2 = ywdb.selectPortById(2);
         auto dataBlock2 = ywdb.selectDataBlockById(2);
         Assert::AreEqual(Port{ 2, 1, 3, "q" }, port2);
-        Assert::AreEqual(DataBlock{ 2, modelId, null_id, "d" }, dataBlock2);
+        Assert::AreEqual(DataBlock{ 2, modelId, null_id, null_id, "d" }, dataBlock2);
         Assert::AreEqual(Flow{ 2, 2, 2, Direction::IN, 1, 1 }, ywdb.selectFlowById(2));
         Assert::AreEqual("q", port2.name);
         Assert::AreEqual("d", dataBlock2.name);
@@ -405,14 +405,14 @@ YW_TEST_SET
         auto port1 = ywdb.selectPortById(1);
         auto dataBlock1 = ywdb.selectDataBlockById(1);
         Assert::AreEqual(Port{ 1, 1, 2, "p" }, port1);
-        Assert::AreEqual(DataBlock{ 1, modelId, null_id, "d" }, dataBlock1);
+        Assert::AreEqual(DataBlock{ 1, modelId, null_id, null_id, "d" }, dataBlock1);
         Assert::AreEqual(Flow{ 1, 1, 1, Direction::IN, 1, 1 }, ywdb.selectFlowById(1));
         Assert::AreEqual("p", port1.name);
         Assert::AreEqual("d", dataBlock1.name);
         auto port2 = ywdb.selectPortById(2);
         auto dataBlock2 = ywdb.selectDataBlockById(2);
         Assert::AreEqual(Port{ 2, 1, 4, "q" }, port2);
-        Assert::AreEqual(DataBlock{ 2, modelId, null_id, "q" }, dataBlock2);
+        Assert::AreEqual(DataBlock{ 2, modelId, null_id, null_id, "q" }, dataBlock2);
         Assert::AreEqual(Flow{ 2, 2, 2, Direction::IN, 1, 1 }, ywdb.selectFlowById(2));
         Assert::AreEqual("q", port2.name);
         Assert::AreEqual("q", dataBlock2.name);
@@ -444,7 +444,7 @@ YW_TEST_SET
         auto port2 = ywdb.selectPortById(2);
         auto flow2 = ywdb.selectFlowById(2);
 
-        Expect::AreEqual(DataBlock{ 1, modelId, null_id, "d" }, dataBlock);
+        Expect::AreEqual(DataBlock{ 1, modelId, null_id, null_id, "d" }, dataBlock);
         Expect::AreEqual(Port{ 1, 1, 2, "d" }, port1);
         Expect::AreEqual(Port{ 2, 2, 5, "d" }, port2);
         Expect::AreEqual(Flow{ 1, 1, 1, Direction::OUT, 1, 1 }, flow1);
@@ -487,8 +487,8 @@ YW_TEST_SET
         auto flow3 = ywdb.selectFlowById(3);
         auto flow4 = ywdb.selectFlowById(4);
 
-        Expect::AreEqual(DataBlock{ 1, modelId, null_id, "d1" }, dataBlock1);
-        Expect::AreEqual(DataBlock{ 2, modelId, null_id, "d2" }, dataBlock2);
+        Expect::AreEqual(DataBlock{ 1, modelId, null_id, null_id, "d1" }, dataBlock1);
+        Expect::AreEqual(DataBlock{ 2, modelId, null_id, null_id, "d2" }, dataBlock2);
         Expect::AreEqual(Port{ 1, 1, 2, "d1" }, port1);
         Expect::AreEqual(Port{ 2, 1, 3, "d2" }, port2);
         Expect::AreEqual(Port{ 3, 2, 6, "d1" }, port3);
@@ -544,8 +544,8 @@ YW_TEST_SET
         auto flow3 = ywdb.selectFlowById(3);
         auto flow4 = ywdb.selectFlowById(4);
 
-        Expect::AreEqual(DataBlock{ 1, modelId, null_id, "d1" }, dataBlock1);
-        Expect::AreEqual(DataBlock{ 2, modelId, null_id, "d2" }, dataBlock2);
+        Expect::AreEqual(DataBlock{ 1, modelId, 1, null_id, "d1" }, dataBlock1);
+        Expect::AreEqual(DataBlock{ 2, modelId, 1, null_id, "d2" }, dataBlock2);
         Expect::AreEqual(Port{ 1, 2, 3, "d1" }, port1);
         Expect::AreEqual(Port{ 2, 2, 4, "d2" }, port2);
         Expect::AreEqual(Port{ 3, 3, 7, "d1" }, port3);
@@ -605,8 +605,8 @@ YW_TEST_SET
         auto flow3 = ywdb.selectFlowById(3);
         auto flow4 = ywdb.selectFlowById(4);
 
-        Expect::AreEqual(DataBlock{ 1, modelId, null_id, "d1" }, dataBlock1);
-        Expect::AreEqual(DataBlock{ 2, modelId, null_id, "d2" }, dataBlock2);
+        Expect::AreEqual(DataBlock{ 1, modelId, null_id, null_id, "d1" }, dataBlock1);
+        Expect::AreEqual(DataBlock{ 2, modelId, 1, null_id, "d2" }, dataBlock2);
         Expect::AreEqual(Port{ 1, 1, 2, "d1" }, port1);
         Expect::AreEqual(Port{ 2, 2, 4, "d2" }, port2);
         Expect::AreEqual(Port{ 3, 3, 7, "d2" }, port3);

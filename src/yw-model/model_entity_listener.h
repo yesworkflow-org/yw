@@ -27,6 +27,7 @@ namespace yw {
             {}
 
             row_id getIdForDataBlock(std::string name);
+            nullable_row_id currentWorkflowId();
 
             void enterBegin(YWParser::BeginContext *begin) override;
             void enterEnd(YWParser::EndContext *end) override;

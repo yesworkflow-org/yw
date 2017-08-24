@@ -170,8 +170,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\test\yw-db-tests\annotation_tests.cpp" />
-    <ClCompile Include="..\..\test\yw-db-tests\block_tests.cpp" />
-    <ClCompile Include="..\..\test\yw-db-tests\data_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-db-tests\program_block_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-db-tests\data_block_tests.cpp" />
     <ClCompile Include="..\..\test\yw-db-tests\file_tests.cpp" />
     <ClCompile Include="..\..\test\yw-db-tests\flow_tests.cpp" />
     <ClCompile Include="..\..\test\yw-db-tests\line_tests.cpp" />
