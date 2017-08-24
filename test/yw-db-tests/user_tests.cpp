@@ -39,7 +39,7 @@ YW_TEST_SET
         Expect::AreEqual(1, ywdb.insert(User{ auto_id, "user1" }));
 
         auto user = ywdb.selectUserById(1);
-        Expect::AreEqual(1, user.id.getValue());
+        Expect::AreEqual(1L, user.id);
         Assert::AreEqual("user1", user.name.getValue());
     }
 
@@ -48,7 +48,7 @@ YW_TEST_SET
         Assert::AreEqual(1, ywdb.insert(User{ auto_id, nullable_string{} }));
 
         auto user = ywdb.selectUserById(1);
-        Expect::AreEqual(1, user.id.getValue());
+        Expect::AreEqual(1L, user.id);
         Assert::IsNull(user.name);
     }
 

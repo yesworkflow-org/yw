@@ -42,8 +42,8 @@ YW_TEST_SET
         Expect::AreEqual(2, ywdb.insert(Extraction{ auto_id, user101, "2017-06-22 10:52:01.000" }));
 
         auto extraction = ywdb.selectExtractionById(2);
-        Assert::AreEqual(2, extraction.id.getValue());
-        Assert::AreEqual(101, extraction.userId.getValue());
+        Assert::AreEqual(2L, extraction.id);
+        Assert::AreEqual(101L, extraction.userId);
         Assert::AreEqual(std::string("2017-06-22 10:52:01.000"), extraction.created);
     }
 

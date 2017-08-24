@@ -66,10 +66,10 @@ YW_TEST_SET
         Assert::AreEqual(2, ywdb.insert(ProgramBlock{ auto_id, model77, block1, annotation12, "nested block" }));
 
         auto block = ywdb.selectProgramBlockById(2);
-        Assert::AreEqual(2, block.id.getValue());
+        Assert::AreEqual(2L, block.id);
         Assert::AreEqual(77, block.modelId);
-        Assert::AreEqual(1, block.workflowId.getValue());
-        Assert::AreEqual(12, block.annotationId.getValue());
+        Assert::AreEqual(1L, block.workflowId);
+        Assert::AreEqual(12L, block.annotationId);
         Assert::AreEqual(std::string("nested block"), block.name);
     }
     

@@ -40,7 +40,7 @@ YW_TEST_SET
 
         auto source = ywdb.selectSourceById(2);
         Assert::AreEqual(2, source.id.getValue());
-        Assert::AreEqual(70, source.fileId.getValue());
+        Assert::AreEqual(70L, source.fileId);
         Assert::AreEqual("Bash", source.language.getValue());
     }
 

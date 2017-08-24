@@ -19,6 +19,7 @@ inline SimpleString StringFrom(const yw::db::Flow::Direction& direction) { retur
 namespace Microsoft {
     namespace VisualStudio {
         namespace CppUnitTestFramework {
+            static std::wstring ToString(const yw::nullable_row_id& id) { RETURN_WIDE_STRING(id.str().c_str()); }
             static std::wstring ToString(const yw::db::Annotation& row) { RETURN_WIDE_STRING(row); }
             static std::wstring ToString(const yw::db::DataBlock& row) { RETURN_WIDE_STRING(row); }
             static std::wstring ToString(const yw::db::Extraction& row) { RETURN_WIDE_STRING(row); }

@@ -37,12 +37,20 @@ namespace yw {
             value = rhs.value;
             return *this;
         }
+
+        bool operator==(const nullable<T>& rhs) const {
+            if (isSet) {
+                return rhs.isSet && value == rhs.value;
+            } else {
+                return !rhs.isSet;
+            }
+        }
     };
 
     class nullable_string : public nullable<std::string> {
     public:
         nullable_string() : nullable() {}
-        explicit nullable_string(const std::string& value) : nullable(value) {}
+        nullable_string(const std::string& value) : nullable(value) {}
         nullable_string(const char * c_ptr) : nullable(
             c_ptr == nullptr ? nullable{} : nullable{ std::string(c_ptr) }) {}
     };

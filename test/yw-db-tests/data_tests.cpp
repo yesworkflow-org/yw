@@ -41,9 +41,9 @@ YW_TEST_SET
         Expect::AreEqual(2, ywdb.insert(DataBlock{ auto_id, model28, 1, "e" }));
 
         auto data = ywdb.selectDataBlockById(2);
-        Assert::AreEqual(2, data.id.getValue());
+        Assert::AreEqual(2L, data.id);
         Assert::AreEqual(28, data.modelId);
-        Assert::AreEqual(1, data.structureId.getValue());
+        Assert::AreEqual(1L, data.structureId);
         Assert::AreEqual("e", data.name);
     }
     

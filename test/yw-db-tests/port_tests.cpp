@@ -73,9 +73,9 @@ YW_TEST_SET
         Expect::AreEqual(2, ywdb.insert(Port{ auto_id, block2, annotation36, "second port" }));
 
         auto port = ywdb.selectPortById(2);
-        Assert::AreEqual(2, port.id.getValue());
+        Assert::AreEqual(2L, port.id);
         Assert::AreEqual(2, port.programBlockId);
-        Assert::AreEqual(36, port.annotationId.getValue());
+        Assert::AreEqual(36L, port.annotationId);
         Assert::AreEqual(std::string("second port"), port.name);
     }
     

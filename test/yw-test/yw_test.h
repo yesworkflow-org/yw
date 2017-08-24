@@ -95,6 +95,30 @@ namespace yw {
                 #endif
             }
 
+            template<typename T>
+            static void AreEqual(const nullable<T>& expected, const T& actual, const wchar_t* message = nullptr) {
+
+                #ifdef MSTEST
+                    MSTEST::AreEqual(expected.getValue(), actual, message);
+                #endif
+
+                #ifdef CPPUTEST
+                    CHECK_EQUAL(expected.getValue(), actual);
+                #endif
+            }
+
+            template<typename T>
+            static void AreEqual(const nullable<T>& expected, const nullable<T>& actual, const wchar_t* message = nullptr) {
+
+                #ifdef MSTEST
+                    MSTEST::AreEqual(expected.getValue(), actual.getValue(), message);
+                #endif
+
+                #ifdef CPPUTEST
+                    CHECK_EQUAL(expected.getValue(), actual.getValue());
+                #endif
+            }
+
             static void AreEqual(const int& expected, const long& actual, const wchar_t* message = nullptr) {
 
                 #ifdef MSTEST

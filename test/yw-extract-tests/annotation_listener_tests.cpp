@@ -75,9 +75,9 @@ YW_TEST_SET
     YW_TEST(AnnotationListener, WhenBeginAnnotationOnSecondOfThreeLinesInsertThreeLinesAndOneAnnotation)
     {
         this->storeAndParse(
-            EOL
-            "@begin b" EOL
-            EOL
+                        EOL
+            "@begin b"  EOL
+                        EOL
         );
         Expect::NonEmptyString(stderrRecorder.str());
 
@@ -104,8 +104,8 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::BEGIN, 1, 2, 1, 0, 7, "@begin", "c" }, beginAnnotation2);
         Expect::AreEqual(Annotation{ 3, extractionId, Tag::BEGIN, 2, 3, 1, 0, 7, "@begin", "d" }, beginAnnotation3);
 
-        Assert::AreEqual(beginAnnotation1.id.getValue(), beginAnnotation2.qualifiesId.getValue());
-        Assert::AreEqual(beginAnnotation2.id.getValue(), beginAnnotation3.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation1.id, beginAnnotation2.qualifiesId);
+        Assert::AreEqual(beginAnnotation2.id, beginAnnotation3.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenBeginAndEndOnOnlyLineInsertOneLineAndTwoAnnotations)
@@ -150,8 +150,8 @@ YW_TEST_SET
     YW_TEST(AnnotationListener, WhenTextFollowsBlockNameInSingleQuotesTextisNotIncludedInName)
     {
         this->storeAndParse(
-            "@begin 'b' some text"    EOL
-            "@end b"	    EOL
+            "@begin 'b' some text"  EOL
+            "@end b"	            EOL
         );
         Expect::EmptyString(stderrRecorder.str());
 
@@ -280,17 +280,17 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::END, 1, 1, 2, 9, 14, "@end", "b" }, endAnnotation);
 
-        Assert::AreEqual(beginAnnotation.id.getValue(), endAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation.id, endAnnotation.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenBeginAndEndOnSecondAndFourthOfFiveLinesInsertFiveLineAndTwoAnnotations)
     {
         this->storeAndParse(
-            EOL
-            "@begin b" EOL
-            EOL
-            "@end b" EOL
-            EOL
+                        EOL
+            "@begin b"  EOL
+                        EOL
+            "@end b"    EOL
+                        EOL
         );
         Expect::EmptyString(stderrRecorder.str());
 
@@ -319,7 +319,7 @@ YW_TEST_SET
         this->storeAndParse(
             "@begin b"	EOL
             "@end b"	EOL
-            EOL
+                        EOL
             "@begin c"	EOL
             "@end c"	EOL
         );
@@ -336,8 +336,8 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 3, extractionId, Tag::BEGIN, null_id, 4, 1, 0, 7, "@begin", "c" }, beginAnnotation2);
         Expect::AreEqual(Annotation{ 4, extractionId, Tag::END, 3, 5, 1, 0, 5, "@end", "c" }, endAnnotation2);
 
-        Assert::AreEqual(beginAnnotation1.id.getValue(), endAnnotation1.qualifiesId.getValue());
-        Assert::AreEqual(beginAnnotation2.id.getValue(), endAnnotation2.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation1.id, endAnnotation1.qualifiesId);
+        Assert::AreEqual(beginAnnotation2.id, endAnnotation2.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenCodeBetweenBlocksTopLevelEndAnnotationQualifiesMatchingTopLevelBeginAnnotation)
@@ -362,8 +362,8 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 3, extractionId, Tag::BEGIN, null_id, 4, 1, 0, 7, "@begin", "c" }, beginAnnotation2);
         Expect::AreEqual(Annotation{ 4, extractionId, Tag::END, 3, 5, 1, 0, 5, "@end", "c" }, endAnnotation2);
 
-        Assert::AreEqual(beginAnnotation1.id.getValue(), endAnnotation1.qualifiesId.getValue());
-        Assert::AreEqual(beginAnnotation2.id.getValue(), endAnnotation2.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation1.id, endAnnotation1.qualifiesId);
+        Assert::AreEqual(beginAnnotation2.id, endAnnotation2.qualifiesId);
     }
 
 
@@ -371,10 +371,10 @@ YW_TEST_SET
     {
         this->storeAndParse(
             "@begin b"	EOL
-            EOL
+                        EOL
             "@begin c"	EOL
             "@end c"	EOL
-            EOL
+                        EOL
             "@end b"	EOL
         );
         Expect::EmptyString(stderrRecorder.str());
@@ -390,8 +390,8 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 3, extractionId, Tag::END, 2, 4, 1, 0, 5, "@end", "c" }, endAnnotation2);
         Expect::AreEqual(Annotation{ 4, extractionId, Tag::END, 1, 6, 1, 0, 5, "@end", "b" }, endAnnotation1);
 
-        Assert::AreEqual(beginAnnotation1.id.getValue(), endAnnotation1.qualifiesId.getValue());
-        Assert::AreEqual(beginAnnotation2.id.getValue(), endAnnotation2.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation1.id, endAnnotation1.qualifiesId);
+        Assert::AreEqual(beginAnnotation2.id, endAnnotation2.qualifiesId);
     }
 
 
@@ -418,8 +418,8 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 3, extractionId, Tag::END, 2, 4, 1, 0, 5, "@end", "c" }, endAnnotation2);
         Expect::AreEqual(Annotation{ 4, extractionId, Tag::END, 1, 6, 1, 0, 5, "@end", "b" }, endAnnotation1);
 
-        Assert::AreEqual(beginAnnotation1.id.getValue(), endAnnotation1.qualifiesId.getValue());
-        Assert::AreEqual(beginAnnotation2.id.getValue(), endAnnotation2.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation1.id, endAnnotation1.qualifiesId);
+        Assert::AreEqual(beginAnnotation2.id, endAnnotation2.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenDescFollowsBeginOnSameLineDescQualifiesBeginAnnotation)
@@ -436,7 +436,7 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::DESC, 1, 1, 2, 9, 42, "@desc", "the description of the block" }, descAnnotation);
 
-        Assert::AreEqual(beginAnnotation.id.getValue(), descAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation.id, descAnnotation.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenDescFollowsBeginOnNextLineDescQualifiesBeginAnnotation)
@@ -454,7 +454,7 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::DESC, 1, 2, 1, 0, 33, "@desc", "the description of the block" }, descAnnotation);
 
-        Assert::AreEqual(beginAnnotation.id.getValue(), descAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation.id, descAnnotation.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenInWithSingleArgumentFollowsBeginOnSameLineInQualifiesBeginAnnotation)
@@ -471,7 +471,7 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::IN, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
 
-        Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation.id, inAnnotation.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenInWithSingleQArgumentFollowsBeginOnSameLineInQualifiesBeginAnnotation)
@@ -488,7 +488,7 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::IN, 1, 1, 2, 9, 15, "@in", "p" }, inAnnotation);
 
-        Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation.id, inAnnotation.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenInWithSingleArgumentFollowsBeginOnNextLineInQualifiesBeginAnnotation)
@@ -506,7 +506,7 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::IN, 1, 2, 1, 0, 4, "@in", "p" }, inAnnotation);
 
-        Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation.id, inAnnotation.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenCodeLineBetweenBeginAndInInQualifiesBeginAnnotation)
@@ -528,7 +528,7 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::IN, 1, 3, 1, 0, 4, "@in", "p" }, inAnnotation);
         Expect::AreEqual(Annotation{ 3, extractionId, Tag::END, 1, 4, 1, 0, 5, "@end", "b" }, endAnnotation);
 
-        Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation.id, inAnnotation.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenCodeLineBetweenInAndOutBothPortsQualifyBeginAnnotation)
@@ -553,8 +553,8 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 3, extractionId, Tag::OUT, 1, 4, 1, 0, 5, "@out", "q" }, outAnnotation);
         Expect::AreEqual(Annotation{ 4, extractionId, Tag::END, 1, 5, 1, 0, 5, "@end", "b" }, endAnnotation);
 
-        Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
-        Assert::AreEqual(beginAnnotation.id.getValue(), outAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation.id, inAnnotation.qualifiesId);
+        Assert::AreEqual(beginAnnotation.id, outAnnotation.qualifiesId);
     }
 
 
@@ -572,7 +572,7 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::PARAM, 1, 1, 2, 9, 16, "@param", "p" }, paramAnnotation);
 
-        Assert::AreEqual(beginAnnotation.id.getValue(), paramAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation.id, paramAnnotation.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenParamWithSingleArgumentFollowsBeginOnNextLineParamQualifiesBeginAnnotation)
@@ -590,7 +590,7 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::PARAM, 1, 2, 1, 0, 7, "@param", "p" }, paramAnnotation);
 
-        Assert::AreEqual(beginAnnotation.id.getValue(), paramAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation.id, paramAnnotation.qualifiesId);
     }
 
 
@@ -613,9 +613,9 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 3, extractionId, Tag::IN, 1, 1, 3, 9, 17, "@in", "q" }, inAnnotation2);
         Expect::AreEqual(Annotation{ 4, extractionId, Tag::IN, 1, 1, 4, 9, 17, "@in", "r" }, inAnnotation3);
 
-        Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation1.qualifiesId.getValue());
-        Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation2.qualifiesId.getValue());
-        Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation3.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation.id, inAnnotation1.qualifiesId);
+        Assert::AreEqual(beginAnnotation.id, inAnnotation2.qualifiesId);
+        Assert::AreEqual(beginAnnotation.id, inAnnotation3.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenInHasMultipleSinglyQuotedArgumentsQualifyingIdOfEachIsIdOfBegin)
@@ -637,9 +637,9 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 3, extractionId, Tag::IN, 1, 1, 3, 9, 26, "@in", "q" }, inAnnotation2);
         Expect::AreEqual(Annotation{ 4, extractionId, Tag::IN, 1, 1, 4, 9, 26, "@in", "port_r" }, inAnnotation3);
 
-        Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation1.qualifiesId.getValue());
-        Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation2.qualifiesId.getValue());
-        Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation3.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation.id, inAnnotation1.qualifiesId);
+        Assert::AreEqual(beginAnnotation.id, inAnnotation2.qualifiesId);
+        Assert::AreEqual(beginAnnotation.id, inAnnotation3.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenInHasMultipleDoublyQuotedArgumentsQualifyingIdOfEachIsIdOfBegin)
@@ -659,9 +659,9 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 3, extractionId, Tag::IN, 1, 1, 3, 9, 26, "@in", "q" }, inAnnotation2);
         Expect::AreEqual(Annotation{ 4, extractionId, Tag::IN, 1, 1, 4, 9, 26, "@in", "port_r" }, inAnnotation3);
 
-        Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation1.qualifiesId.getValue());
-        Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation2.qualifiesId.getValue());
-        Assert::AreEqual(beginAnnotation.id.getValue(), inAnnotation3.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation.id, inAnnotation1.qualifiesId);
+        Assert::AreEqual(beginAnnotation.id, inAnnotation2.qualifiesId);
+        Assert::AreEqual(beginAnnotation.id, inAnnotation3.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenDescFollowsInWithSingleArgumentLineQualifyingIdOfDescIsIdOfIn)
@@ -681,9 +681,9 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::IN, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
         Expect::AreEqual(Annotation{ 3, extractionId, Tag::DESC, 2, 1, 3, 15, 39, "@desc", "description of port" }, descAnnotation);
         Expect::AreEqual(Annotation{ 4, extractionId, Tag::END, 1, 1, 4, 41, 46, "@end", "b" }, endAnnotation);
-        Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
+        Expect::AreEqual(beginAnnotation.id, inAnnotation.qualifiesId);
 
-        Assert::AreEqual(inAnnotation.id.getValue(), descAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(inAnnotation.id, descAnnotation.qualifiesId);
     }
 
 
@@ -703,8 +703,8 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::IN, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
         Expect::AreEqual(Annotation{ 4, extractionId, Tag::END, 1, 1, 4, 59, 64, "@end", "b" }, endAnnotation);
-        Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
-        Expect::AreEqual(inAnnotation.id.getValue(), descAnnotation.qualifiesId.getValue());
+        Expect::AreEqual(beginAnnotation.id, inAnnotation.qualifiesId);
+        Expect::AreEqual(inAnnotation.id, descAnnotation.qualifiesId);
 
         Assert::AreEqual(Annotation{ 3, extractionId, Tag::DESC, 2, 1, 3, 15, 41, "@desc", "description of port" }, descAnnotation);
     }
@@ -723,8 +723,8 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::IN, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
         Expect::AreEqual(Annotation{ 4, extractionId, Tag::END, 1, 1, 4, 59, 64, "@end", "b" }, endAnnotation);
-        Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
-        Expect::AreEqual(inAnnotation.id.getValue(), descAnnotation.qualifiesId.getValue());
+        Expect::AreEqual(beginAnnotation.id, inAnnotation.qualifiesId);
+        Expect::AreEqual(inAnnotation.id, descAnnotation.qualifiesId);
 
         Assert::AreEqual(Annotation{ 3, extractionId, Tag::DESC, 2, 1, 3, 15, 41, "@desc", "description of port" }, descAnnotation);
     }
@@ -748,9 +748,9 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::IN, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
         Expect::AreEqual(Annotation{ 3, extractionId, Tag::DESC, 2, 3, 1, 0, 24, "@desc", "description of port" }, descAnnotation);
         Expect::AreEqual(Annotation{ 4, extractionId, Tag::END, 1, 3, 2, 26, 31, "@end", "b" }, endAnnotation);
-        Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
+        Expect::AreEqual(beginAnnotation.id, inAnnotation.qualifiesId);
 
-        Assert::AreEqual(inAnnotation.id.getValue(), descAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(inAnnotation.id, descAnnotation.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenDescFollowsInWithMultiplesArgumentLineQualifyingIdOfDescIsIdOfFinalPort)
@@ -774,9 +774,9 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 4, extractionId, Tag::IN, 1, 1, 4, 9, 17, "@in", "r" }, inAnnotation3);
         Expect::AreEqual(Annotation{ 5, extractionId, Tag::DESC, 4, 1, 5, 19, 43, "@desc", "description of port" }, descAnnotation);
         Expect::AreEqual(Annotation{ 6, extractionId, Tag::END, 1, 1, 6, 45, 50, "@end", "b" }, endAnnotation);
-        Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation1.qualifiesId.getValue());
+        Expect::AreEqual(beginAnnotation.id, inAnnotation1.qualifiesId);
 
-        Assert::AreEqual(inAnnotation3.id.getValue(), descAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(inAnnotation3.id, descAnnotation.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenInWithAliasFollowsInOnSameLineQualifyingIdOfAliasIsIdOfIn)
@@ -794,9 +794,9 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::IN, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
         Expect::AreEqual(Annotation{ 3, extractionId, Tag::AS, 2, 1, 3, 15, 44, "@as", "name of data port receives" }, aliasAnnotation);
-        Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
+        Expect::AreEqual(beginAnnotation.id, inAnnotation.qualifiesId);
 
-        Assert::AreEqual(inAnnotation.id.getValue(), aliasAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(inAnnotation.id, aliasAnnotation.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenInWithAliasFollowsInOnNextLineQualifyingIdOfAliasIsIdOfIn)
@@ -815,9 +815,9 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::IN, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
         Expect::AreEqual(Annotation{ 3, extractionId, Tag::AS, 2, 2, 1, 0, 29, "@as", "name of data port receives" }, aliasAnnotation);
-        Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
+        Expect::AreEqual(beginAnnotation.id, inAnnotation.qualifiesId);
 
-        Assert::AreEqual(inAnnotation.id.getValue(), aliasAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(inAnnotation.id, aliasAnnotation.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenDataNameArgumentOfAliasTagIsSinglyQuotedTextFollowingDataNameIsIgnored)
@@ -835,9 +835,9 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::IN, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
         Expect::AreEqual(Annotation{ 3, extractionId, Tag::AS, 2, 1, 3, 15, 46, "@as", "name of data port receives" }, aliasAnnotation);
-        Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
+        Expect::AreEqual(beginAnnotation.id, inAnnotation.qualifiesId);
 
-        Assert::AreEqual(inAnnotation.id.getValue(), aliasAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(inAnnotation.id, aliasAnnotation.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenDataNameArgumentOfAliasTagIsDoublyQuotedTextFollowingDataNameIsIgnored)
@@ -853,9 +853,9 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::IN, 1, 1, 2, 9, 13, "@in", "p" }, inAnnotation);
         Expect::AreEqual(Annotation{ 3, extractionId, Tag::AS, 2, 1, 3, 15, 46, "@as", "name of data port receives" }, aliasAnnotation);
-        Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation.qualifiesId.getValue());
+        Expect::AreEqual(beginAnnotation.id, inAnnotation.qualifiesId);
 
-        Assert::AreEqual(inAnnotation.id.getValue(), aliasAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(inAnnotation.id, aliasAnnotation.qualifiesId);
     }
 
 
@@ -881,11 +881,11 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 3, extractionId, Tag::IN, 1, 2, 2, 0, 6, "@in", "q" }, inAnnotation2);
         Expect::AreEqual(Annotation{ 4, extractionId, Tag::PARAM, 1, 3, 1, 0, 7, "@param", "r" }, paramAnnotation);
         Expect::AreEqual(Annotation{ 5, extractionId, Tag::AS, 4, 4, 1, 0, 30, "@as", "name of data param receives" }, aliasAnnotation);
-        Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation1.qualifiesId.getValue());
-        Expect::AreEqual(beginAnnotation.id.getValue(), inAnnotation2.qualifiesId.getValue());
-        Expect::AreEqual(beginAnnotation.id.getValue(), paramAnnotation.qualifiesId.getValue());
+        Expect::AreEqual(beginAnnotation.id, inAnnotation1.qualifiesId);
+        Expect::AreEqual(beginAnnotation.id, inAnnotation2.qualifiesId);
+        Expect::AreEqual(beginAnnotation.id, paramAnnotation.qualifiesId);
 
-        Assert::AreEqual(paramAnnotation.id.getValue(), aliasAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(paramAnnotation.id, aliasAnnotation.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenOutWithSingleArgumentFollowsBeginOnSameLineQualifyingIdOfOutIsIdOfBegin)
@@ -902,7 +902,7 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::OUT, 1, 1, 2, 9, 14, "@out", "p" }, outAnnotation);
 
-        Assert::AreEqual(beginAnnotation.id.getValue(), outAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation.id, outAnnotation.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenReturnWithSingleArgumentFollowsBeginOnSameLineQualifyingIdOfReturnIsIdOfBegin)
@@ -919,7 +919,7 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
         Expect::AreEqual(Annotation{ 2, extractionId, Tag::RETURN, 1, 1, 2, 9, 17, "@return", "p" }, returnAnnotation);
 
-        Assert::AreEqual(beginAnnotation.id.getValue(), returnAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(beginAnnotation.id, returnAnnotation.qualifiesId);
     }
 
     YW_TEST(AnnotationListener, WhenParamFollowsInAliasFollowingParamHasQualifyingIdOfParam__FOO)
@@ -929,7 +929,7 @@ YW_TEST_SET
             "@in p q"								EOL
             "@out r s"								EOL
             "@end b"								EOL
-            EOL
+                                                    EOL
             "@begin c"								EOL
             "@param t"								EOL
             "@return u"								EOL
@@ -965,16 +965,15 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 11, extractionId, Tag::AS, 10, 9, 1, 0, 30, "@as", "name of data param receives" }, aliasAnnotation);
         Expect::AreEqual(Annotation{ 12, extractionId, Tag::END, 8, 10, 1, 0, 5, "@end", "c" }, endAnnotation2);
 
-        Expect::AreEqual(beginAnnotation1.id.getValue(), descAnnotation.qualifiesId.getValue());
-        Expect::AreEqual(beginAnnotation1.id.getValue(), inAnnotation1.qualifiesId.getValue());
-        Expect::AreEqual(beginAnnotation1.id.getValue(), inAnnotation2.qualifiesId.getValue());
-        Expect::AreEqual(beginAnnotation1.id.getValue(), outAnnotation1.qualifiesId.getValue());
-        Expect::AreEqual(beginAnnotation1.id.getValue(), outAnnotation2.qualifiesId.getValue());
-        Expect::AreEqual(beginAnnotation2.id.getValue(), paramAnnotation.qualifiesId.getValue());
-        Expect::AreEqual(beginAnnotation2.id.getValue(), returnAnnotation.qualifiesId.getValue());
+        Expect::AreEqual(beginAnnotation1.id, descAnnotation.qualifiesId);
+        Expect::AreEqual(beginAnnotation1.id, inAnnotation1.qualifiesId);
+        Expect::AreEqual(beginAnnotation1.id, inAnnotation2.qualifiesId);
+        Expect::AreEqual(beginAnnotation1.id, outAnnotation1.qualifiesId);
+        Expect::AreEqual(beginAnnotation1.id, outAnnotation2.qualifiesId);
+        Expect::AreEqual(beginAnnotation2.id, paramAnnotation.qualifiesId);
+        Expect::AreEqual(beginAnnotation2.id, returnAnnotation.qualifiesId);
 
-        Assert::AreEqual(returnAnnotation.id.getValue(), aliasAnnotation.qualifiesId.getValue());
+        Assert::AreEqual(returnAnnotation.id, aliasAnnotation.qualifiesId);
     }
-
 
 YW_TEST_END

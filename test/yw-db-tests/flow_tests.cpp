@@ -85,12 +85,12 @@ YW_TEST_SET
         Expect::AreEqual(2, ywdb.insert(Flow{ auto_id, port88, data92, Direction::OUT, 3, 4 }));
 
         auto flow = ywdb.selectFlowById(2);
-        Assert::AreEqual(2, flow.id.getValue());
+        Assert::AreEqual(2L, flow.id);
         Assert::AreEqual(88, flow.portId);
         Assert::AreEqual(92, flow.dataBlockId);
         Assert::AreEqual(Flow::Direction::OUT, flow.direction);
-        Assert::AreEqual(3, flow.minRate.getValue());
-        Assert::AreEqual(4, flow.maxRate.getValue());
+        Assert::AreEqual(3L, flow.minRate);
+        Assert::AreEqual(4L, flow.maxRate);
     }
     
     YW_TEST(Flow, SelectById_RowDoesntExist) {

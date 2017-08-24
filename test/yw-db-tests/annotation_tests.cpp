@@ -61,7 +61,7 @@ YW_TEST_SET
         Assert::AreEqual(1, (annotation1 = ywdb.insert(Annotation{ auto_id,extraction17,  Tag::BEGIN, null_id, line19, 1, 0, 11, "@begin", "block" })));
 
         auto annotation = ywdb.selectAnnotationById(1);
-        Assert::AreEqual(1, annotation.id.getValue());
+        Assert::AreEqual(1L, annotation.id);
         Assert::AreEqual(Tag::BEGIN, annotation.tag);
         Assert::IsNull(annotation.qualifiesId);
         Assert::AreEqual(19, annotation.lineId);
@@ -78,9 +78,9 @@ YW_TEST_SET
         Assert::AreEqual(2, ywdb.insert(Annotation{ auto_id, extraction17, Tag::IN, annotation1, line25, 1, 0, 7, "@in", "port" }));
 
         auto annotation = ywdb.selectAnnotationById(2);
-        Assert::AreEqual(2, annotation.id.getValue());
+        Assert::AreEqual(2L, annotation.id);
         Assert::AreEqual(Tag::IN, annotation.tag);
-        Assert::AreEqual(1, annotation.qualifiesId.getValue());
+        Assert::AreEqual(1L, annotation.qualifiesId);
         Assert::AreEqual(25, annotation.lineId);
         Assert::AreEqual(0, annotation.start);
         Assert::AreEqual(7, annotation.end);
