@@ -626,4 +626,65 @@ YW_TEST_SET
         Assert::AreEqual(dataBlock1.id, flow4.dataBlockId);
     }
 
+    YW_TEST(ModelEntityListener, WhenPairedPortsAtDifferentLeveHaveSameNamesEachMatchingPairsShareDifferentDataBlocks)
+    {
+        this->storeAndParse(R"(
+
+            @begin b
+            @out d
+
+                @begin c
+                @out d
+                @end c
+
+                @begin d
+                @in d
+                @end d
+
+            @end b
+
+            @begin e
+            @in d
+            @end e
+
+        )");
+
+        Expect::EmptyString(stderrRecorder.str());
+        Expect::AreEqual(4, ywdb.getRowCount("program_block"));
+        Expect::AreEqual(4, ywdb.getRowCount("port"));
+        Expect::AreEqual(4, ywdb.getRowCount("flow"));
+        Expect::AreEqual(2, ywdb.getRowCount("data_block"));
+
+        auto dataBlock1 = ywdb.selectDataBlockById(1);
+        auto dataBlock2 = ywdb.selectDataBlockById(2);
+        auto port1 = ywdb.selectPortById(1);
+        auto port2 = ywdb.selectPortById(2);
+        auto port3 = ywdb.selectPortById(3);
+        auto port4 = ywdb.selectPortById(4);
+        auto flow1 = ywdb.selectFlowById(1);
+        auto flow2 = ywdb.selectFlowById(2);
+        auto flow3 = ywdb.selectFlowById(3);
+        auto flow4 = ywdb.selectFlowById(4);
+
+        Expect::AreEqual(DataBlock{ 1, modelId, null_id, null_id, "d" }, dataBlock1);
+        Expect::AreEqual(DataBlock{ 2, modelId, 1, null_id, "d" }, dataBlock2);
+        Expect::AreEqual(Port{ 1, 1, 2, "d" }, port1);
+        Expect::AreEqual(Port{ 2, 2, 4, "d" }, port2);
+        Expect::AreEqual(Port{ 3, 3, 7, "d" }, port3);
+        Expect::AreEqual(Port{ 4, 4, 11, "d" }, port4);
+        Expect::AreEqual(Flow{ 1, 1, 1, Direction::OUT, 1, 1 }, flow1);
+        Expect::AreEqual(Flow{ 2, 2, 2, Direction::OUT, 1, 1 }, flow2);
+        Expect::AreEqual(Flow{ 3, 3, 2, Direction::IN,  1, 1 }, flow3);
+        Expect::AreEqual(Flow{ 4, 4, 1, Direction::IN,  1, 1 }, flow4);
+
+        Assert::AreEqual(port1.id, flow1.portId);
+        Assert::AreEqual(dataBlock1.id, flow1.dataBlockId);
+        Assert::AreEqual(port2.id, flow2.portId);
+        Assert::AreEqual(dataBlock2.id, flow2.dataBlockId);
+        Assert::AreEqual(port3.id, flow3.portId);
+        Assert::AreEqual(dataBlock2.id, flow3.dataBlockId);
+        Assert::AreEqual(port4.id, flow4.portId);
+        Assert::AreEqual(dataBlock1.id, flow4.dataBlockId);
+    }
+
 YW_TEST_END

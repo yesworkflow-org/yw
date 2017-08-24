@@ -21,6 +21,16 @@ namespace yw {
             currentProgramBlock = programBlock;
         }
 
+        void ModelEntityListener::enterNestedBlocks(YWParser::NestedBlocksContext *nestedBlocks) {
+            dataIdsStack.push(currentDataIds);
+            currentDataIds = std::make_shared<std::map<std::string, row_id>>();
+        }
+
+        void ModelEntityListener::exitNestedBlocks(YWParser::NestedBlocksContext *nestedBlocks) {
+            currentDataIds = dataIdsStack.top();
+            dataIdsStack.pop();
+        }
+
         void ModelEntityListener::enterEnd(YWParser::EndContext *end)
         {
             AnnotationListener::enterEnd(end);
@@ -52,11 +62,11 @@ namespace yw {
         }
 
         row_id ModelEntityListener::getIdForDataBlock(std::string dataName) {
-            auto it = dataIds.find(dataName);
+            auto it = currentDataIds->find(dataName);
             row_id dataId;
-            if (it == dataIds.end()) {
+            if (it == currentDataIds->end()) {
                 dataId = ywdb.insert(DataBlock{ auto_id, modelId, currentWorkflowId(), null_id, dataName });
-                dataIds[dataName] = dataId;
+                (*currentDataIds)[dataName] = dataId;
             } else {
                 dataId = it->second;
             }
