@@ -45,6 +45,11 @@ namespace yw {
                 return !rhs.isSet;
             }
         }
+        
+        bool operator!=(const nullable<T>& rhs) const {
+            return !(*this == rhs);
+        }
+
     };
 
     class nullable_string : public nullable<std::string> {
