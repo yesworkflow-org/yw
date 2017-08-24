@@ -26,16 +26,14 @@ namespace yw {
 
             void createAnnotationTable();
             row_id insert(Annotation& annotation);
+            row_id insert(const Annotation& annotation);
             Annotation selectAnnotationById(const row_id& requested_id);
             std::vector<Annotation> selectTopLevelAnnotations();
             std::vector<Annotation> selectAnnotationTree(const nullable_row_id& rootAnnotationId);
 
-            void createProgramBlockTable();
-            row_id insert(ProgramBlock& model);
-            ProgramBlock selectProgramBlockById(const row_id& id);
-
             void createDataBlockTable();
             row_id insert(DataBlock& model);
+            row_id insert(const DataBlock& dataBlock);
             DataBlock selectDataBlockById(const row_id& id);
 
             void createFileTable();
@@ -57,7 +55,13 @@ namespace yw {
 
             void createPortTable();
             row_id insert(Port& model);
+            row_id insert(const Port& port);
             Port selectPortById(const row_id& id);
+
+            void createProgramBlockTable();
+            row_id insert(ProgramBlock& programBlock);
+            row_id insert(const ProgramBlock& programBlock);
+            ProgramBlock selectProgramBlockById(const row_id& id);
 
             void createSourceTable();
             row_id insert(const Source& source);

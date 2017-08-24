@@ -43,6 +43,11 @@ namespace yw {
         }
 
         row_id YesWorkflowDB::insert(Annotation& annotation) {
+            annotation.id = insert(static_cast<const Annotation&>(annotation));
+            return annotation.id.getValue();
+        }
+
+        row_id YesWorkflowDB::insert(const Annotation& annotation) {
             string sql = "INSERT INTO annotation(id, extraction, tag, qualifies, line, rank, start, end, keyword, value) VALUES (?,?,?,?,?,?,?,?,?,?);";
             InsertStatement statement(db, sql);
             statement.bindNullableId(1, annotation.id);
@@ -56,9 +61,9 @@ namespace yw {
             statement.bindText(9, annotation.keyword);
             statement.bindNullableText(10, annotation.value);
             statement.execute();
-            annotation.id = statement.getGeneratedId();
-            return annotation.id.getValue();
+            return statement.getGeneratedId();
         }
+
 
         Annotation YesWorkflowDB::selectAnnotationById(const row_id& requestedId) {
             string sql = "SELECT id, extraction, tag, qualifies, line, rank, start, end, keyword, value FROM annotation WHERE id = ?";

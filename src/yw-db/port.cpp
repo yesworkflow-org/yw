@@ -22,6 +22,11 @@ namespace yw {
         }
 
         row_id YesWorkflowDB::insert(Port& port) {
+            port.id = insert(static_cast<const Port&>(port));
+            return port.id.getValue();
+        }
+
+        row_id YesWorkflowDB::insert(const Port& port) {
             string sql = "INSERT INTO port(id, program_block, annotation, name) VALUES (?,?,?,?);";
             InsertStatement statement(db, sql);
             statement.bindNullableId(1, port.id);
@@ -29,8 +34,7 @@ namespace yw {
             statement.bindNullableId(3, port.annotationId);
             statement.bindText(4, port.name);
             statement.execute();
-            port.id = statement.getGeneratedId();
-            return port.id.getValue();
+            return statement.getGeneratedId();
         }
 
         Port YesWorkflowDB::selectPortById(const row_id& requested_id) {
