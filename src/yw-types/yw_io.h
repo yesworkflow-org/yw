@@ -37,14 +37,13 @@ namespace yw {
         if (w_message == nullptr) w_message = L"";
         size_t newsize = (wcslen(w_message) + 1) * 2;
         char* c_message = new char[newsize];
-        wcstombs_s(nullptr, c_message, newsize, w_message, _TRUNCATE);
+        wcstombs(c_message, w_message, newsize);
         std::string s(c_message);
-        delete c_message;
+        delete[] c_message;
         return s;
     }
 
     inline std::string getFileName(std::string filePath) {
-
         #if defined(_MSC_VER)
             path p = filePath;
             return yw::wstring2string(p.filename().c_str());
