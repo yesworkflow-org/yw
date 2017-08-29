@@ -2,8 +2,7 @@
 
 #include "yw_test_msvc.h"
 #include "yw_test_cpputest.h"
-#include "nullable.h"
-#include "yw_io.h"
+#include "yw_types.h"
 
 #define EOL "\n"
 
@@ -148,7 +147,7 @@ namespace yw {
                 #endif      
 
                 #ifdef CPPUTEST
-                    FAIL((AssertMessage(w_message)).c_str());
+                    FAIL((wstring2string(w_message)).c_str());
                 #endif
             }
 

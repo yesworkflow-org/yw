@@ -3,7 +3,6 @@
 #if defined(CPPUTEST)
 
 #include "CppUTest/TestHarness.h"
-#include "assert_message.h"
 #include "stdio_recorders.h"
 
 #define YW_TEST_FIXTURE(fixture_name)    TEST_GROUP(fixture_name) {

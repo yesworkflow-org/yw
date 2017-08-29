@@ -34,13 +34,16 @@ inline std::string writeTempFile(std::string fileName, std::string sourceText) {
 namespace yw {
 
     inline std::string wstring2string(const wchar_t * w_message) {
-        if (w_message == nullptr) w_message = L"";
-        size_t newsize = (wcslen(w_message) + 1) * 2;
-        char* c_message = new char[newsize];
-        wcstombs(c_message, w_message, newsize);
-        std::string s(c_message);
-        delete[] c_message;
-        return s;
+        if (w_message == nullptr) {
+            return std::string("");
+        } else {
+            size_t newsize = (wcslen(w_message) + 1) * 2;
+            char* c_message = new char[newsize];
+            wcstombs(c_message, w_message, newsize);
+            std::string s(c_message);
+            delete[] c_message;
+            return s;
+        }
     }
 
     inline std::string getFileName(std::string filePath) {
