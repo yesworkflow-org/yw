@@ -22,6 +22,20 @@ YW_TEST_FIXTURE(Source)
 
 YW_TEST_SET
 
+    YW_TEST(Source, FieldValuesMatchAssignedValuesWithNulls) {
+        Assert::AreEqual(
+            "NULL|NULL|NULL",
+            Source{ auto_id, null_id, null_string }.fieldValues()
+        );
+    }
+
+    YW_TEST(Source, FieldValuesMatchAssignedValuesWithoutNulls) {
+        Assert::AreEqual(
+            "7|2|C",
+            Source{ 7, 2, "C" }.fieldValues()
+        );
+    }
+
     YW_TEST(Source, InsertSource_OneRow_GeneratedIdIs_1)
     {
         Assert::AreEqual(1, ywdb.insert(Source{ auto_id, file22, "C" }));

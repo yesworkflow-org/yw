@@ -17,6 +17,14 @@ namespace yw {
                 const nullable_string& language
             ) : id(id), fileId(fileId), language(language) 
             {}
+
+            std::string fieldValues() const override {
+                std::stringstream ss;
+                ss  <<        id.str()
+                    << "|" << fileId.str()
+                    << "|" << language.str();
+                return ss.str();
+            }
         };
     }
 }

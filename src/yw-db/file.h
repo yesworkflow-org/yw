@@ -16,6 +16,13 @@ namespace yw {
                 const std::string& name
             ) : id(rowId), name(name) 
             {}
+
+            std::string fieldValues() const override {
+                std::stringstream ss;
+                ss  <<        id.str()
+                    << "|" << name;
+                return ss.str();
+            }
         };
     }
 }

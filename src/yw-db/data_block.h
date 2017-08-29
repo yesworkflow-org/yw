@@ -22,9 +22,9 @@ namespace yw {
             ) : id(id), modelId(modelId), workflowId(workflowId), structureId(structureId), name(name)
             {}
 
-            std::string elements() const override {
+            std::string fieldValues() const override {
                 std::stringstream ss;
-                ss << id.str()
+                ss  <<        id.str()
                     << "|" << modelId
                     << "|" << workflowId.str()
                     << "|" << structureId.str()

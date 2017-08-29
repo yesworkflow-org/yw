@@ -20,9 +20,9 @@ namespace yw {
             ) : id(id), programBlockId(programBlockId), annotationId(annotationId), name(name)
             {}
 
-            std::string elements() const override {
+            std::string fieldValues() const override {
                 std::stringstream ss;
-                ss << id.str()
+                ss  <<        id.str()
                     << "|" << programBlockId
                     << "|" << annotationId.str()
                     << "|" << name;

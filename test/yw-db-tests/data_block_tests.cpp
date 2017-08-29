@@ -25,6 +25,20 @@ YW_TEST_FIXTURE(DataBlock)
           
 YW_TEST_SET
 
+    YW_TEST(DataBlock, FieldValuesMatchAssignedValuesWithNulls) {
+        Assert::AreEqual(
+            "NULL|28|NULL|NULL|d1", 
+            DataBlock{ auto_id, 28, null_id, null_id, "d1" }.fieldValues()
+        );
+    }
+
+    YW_TEST(DataBlock, FieldValuesMatchAssignedValuesWithoutNulls) {
+        Assert::AreEqual(
+            "7|28|2|17|d2", 
+            DataBlock{ 7, 28, 2, 17, "d2" }.fieldValues()
+        );
+    }
+
     YW_TEST(DataBlock, InsertOneRow_GeneratedIdIs_1)
     {
         Assert::AreEqual(1, ywdb.insert(DataBlock{ auto_id, model28, null_id, null_id, "d" }));

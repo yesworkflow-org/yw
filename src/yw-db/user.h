@@ -16,6 +16,13 @@ namespace yw {
                 const nullable_string& name
             ) : id(id), name(name)
             {}
+
+            std::string fieldValues() const override {
+                std::stringstream ss;
+                ss  <<        id.str()
+                    << "|" << name.str();
+                return ss.str();
+            }
         };
     }
 }

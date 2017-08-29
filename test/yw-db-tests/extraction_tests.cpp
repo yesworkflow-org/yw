@@ -24,6 +24,20 @@ YW_TEST_FIXTURE(Extraction)
 
 YW_TEST_SET
 
+    YW_TEST(Extraction, FieldValuesMatchAssignedValuesWithNulls) {
+        Assert::AreEqual(
+            "NULL|NULL|2017-06-22 10:52:00.000",
+            Extraction{ auto_id, null_id, "2017-06-22 10:52:00.000" }.fieldValues()
+        );
+    }
+
+    YW_TEST(Extraction, FieldValuesMatchAssignedValuesWithoutNulls) {
+        Assert::AreEqual(
+            "7|99|2017-06-22 10:52:00.000",
+            Extraction{ 7, 99, "2017-06-22 10:52:00.000" }.fieldValues()
+        );
+    }
+
     YW_TEST(Extraction, InsertOneRow_GeneratedIdIs_1)
     {
         Assert::AreEqual(1, ywdb.insert(Extraction{ auto_id, user4, "2017-06-22 10:52:00.000" }));

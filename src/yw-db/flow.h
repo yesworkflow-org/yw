@@ -30,9 +30,9 @@ namespace yw {
             ) : id(id), portId(portId), dataBlockId(dataBlockId), direction(direction), minRate(minRate), maxRate(maxRate)
             {}
 
-            std::string elements() const override {
+            std::string fieldValues() const override {
                 std::stringstream ss;
-                ss << id.str()
+                ss  <<        id.str()
                     << "|" << portId
                     << "|" << dataBlockId
                     << "|" << to_string(direction)

@@ -17,6 +17,20 @@ YW_TEST_FIXTURE(User)
 
 YW_TEST_SET
 
+    YW_TEST(User, FieldValuesMatchAssignedValuesWithNulls) {
+        Assert::AreEqual(
+            "NULL|user1",
+            User{ auto_id, "user1" }.fieldValues()
+        );
+    }
+
+    YW_TEST(User, FieldValuesMatchAssignedValuesWithoutNulls) {
+        Assert::AreEqual(
+            "17|user1",
+            User{ 17, "user1" }.fieldValues()
+        );
+    }
+
     YW_TEST(User, InsertingFirstUserWithNameYieldsGeneratedId1)
     {
         Assert::AreEqual(1, ywdb.insert(User{ auto_id, "user1" }));

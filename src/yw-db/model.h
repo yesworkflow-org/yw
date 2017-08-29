@@ -19,6 +19,15 @@ namespace yw {
                 const std::string& created
             ) : id(id), userId(userId), extractionId(extractionId), created(created)
             {}
+
+            std::string fieldValues() const override {
+                std::stringstream ss;
+                ss  <<        id.str()
+                    << "|" << userId.str()
+                    << "|" << extractionId.str()
+                    << "|" << created;
+                return ss.str();
+            }
         };
     }
 }

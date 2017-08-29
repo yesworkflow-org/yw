@@ -18,6 +18,20 @@ YW_TEST_FIXTURE(File)
 
 YW_TEST_SET
 
+    YW_TEST(File, FieldValuesMatchAssignedValuesWithNulls) {
+        Assert::AreEqual(
+            "NULL|script.sh",
+            File{ auto_id, "script.sh" }.fieldValues()
+        );
+    }
+
+    YW_TEST(File, FieldValuesMatchAssignedValuesWithoutNulls) {
+        Assert::AreEqual(
+            "7|script.sh",
+            File{ 7, "script.sh" }.fieldValues()
+        );
+    }
+
     YW_TEST(File, InsertFile_OneRow_GeneratedIdIs_1)
     {
         Assert::AreEqual(1, ywdb.insert(File{ auto_id, "main.c" }));

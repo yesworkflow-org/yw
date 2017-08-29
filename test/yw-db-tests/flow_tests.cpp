@@ -68,6 +68,20 @@ YW_TEST_FIXTURE(Flow)
 
 YW_TEST_SET
 
+    YW_TEST(Flow, FieldValuesMatchAssignedValuesWithNulls) {
+        Assert::AreEqual(
+            "NULL|28|5|IN|NULL|NULL",
+            Flow{ auto_id, 28, 5, Direction::IN, null_long, null_long }.fieldValues()
+        );
+    }
+
+    YW_TEST(Flow, FieldValuesMatchAssignedValuesWithoutNulls) {
+        Assert::AreEqual(
+            "7|28|5|IN|1|2",
+            Flow{ 7, 28, 5, Direction::IN, 1, 2 }.fieldValues()
+        );
+    }
+
     YW_TEST(Flow, InsertOneRow_GeneratedIdIs_1)
     {
         Assert::AreEqual(1, ywdb.insert(Flow{ auto_id, port28, data5, Direction::IN, 1, 1 }));

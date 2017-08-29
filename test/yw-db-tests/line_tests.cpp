@@ -25,6 +25,20 @@ YW_TEST_FIXTURE(Line)
 
 YW_TEST_SET
 
+    YW_TEST(Line, FieldValuesMatchAssignedValuesWithNulls) {
+        Assert::AreEqual(
+            "NULL|34|1|NULL",
+            Line{ auto_id, 34, 1, null_string }.fieldValues()
+        );
+    }
+
+    YW_TEST(Line, FieldValuesMatchAssignedValuesWithoutNulls) {
+        Assert::AreEqual(
+            "8|34|1|@begin block",
+            Line{ 8, 34, 1, "@begin block" }.fieldValues()
+        );
+    }
+
     YW_TEST(Line, InsertingFirstLineYieldsGeneratedId1)
     {
         Assert::AreEqual(1, ywdb.insert(Line(auto_id, source34, 1, "@begin block")));
@@ -46,7 +60,7 @@ YW_TEST_SET
         Assert::AreEqual(2L, lineRow.id);
         Assert::AreEqual(34, lineRow.sourceId);
         Assert::AreEqual(4L, lineRow.number);
-        Assert::AreEqual("@in port", lineRow.text);
+        Assert::AreEqual("@in port", lineRow.text.getValue());
     }
 
     YW_TEST(Line, SelectingNonexistentLineByIdThrowsException) {

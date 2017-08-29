@@ -8,10 +8,10 @@ namespace yw {
 
         class TableRow {
         public:
-            virtual std::string elements() const { return std::string(""); };
+            virtual std::string fieldValues() const { return std::string(""); };
             virtual std::string str() const {
                 std::stringstream ss;
-                ss << typeid(*this).name() << "{" << elements() << "}";
+                ss << typeid(*this).name() << "{" << fieldValues() << "}";
                 return ss.str();
             }
         };

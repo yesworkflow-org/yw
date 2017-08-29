@@ -50,9 +50,9 @@ namespace yw {
                 rankOnLine(rankOnLine), start(start), end(end), keyword(keyword), value(value)
             {}
 
-            std::string elements() const override {
+            std::string fieldValues() const override {
                 std::stringstream ss;
-                ss << id.str()
+                ss  <<        id.str()
                     << "|" << extractionId
                     << "|" << to_string(tag)
                     << "|" << qualifiesId.str()
@@ -69,7 +69,7 @@ namespace yw {
                 static const std::vector<std::string> names{
                     "NONE", "BEGIN", "END", "DESC", "IN", "OUT", "PARAM", "RETURN", "AS"
                 };
-                return names[static_cast<int>(tag) - 1];
+                return names[static_cast<int>(tag)];
             }
         };
     }

@@ -47,6 +47,20 @@ YW_TEST_FIXTURE(ProgramBlock)
 
 YW_TEST_SET
 
+    YW_TEST(ProgramBlock, FieldValuesMatchAssignedValuesWithNulls) {
+        Assert::AreEqual(
+            "NULL|77|NULL|NULL|b",
+            ProgramBlock{ auto_id, 77, null_id, null_id, "b" }.fieldValues()
+        );
+    }
+
+    YW_TEST(ProgramBlock, FieldValuesMatchAssignedValuesWithoutNulls) {
+        Assert::AreEqual(
+            "2|77|8|19|b",
+            ProgramBlock{ 2, 77, 8, 19, "b" }.fieldValues()
+        );
+    }
+
     YW_TEST(ProgramBlock, InsertOneRow_GeneratedIdIs_1)
     {
         Assert::AreEqual(1, ywdb.insert(ProgramBlock{ auto_id, model77, null_id, annotation11, "block" }));

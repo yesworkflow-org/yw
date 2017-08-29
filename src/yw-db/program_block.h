@@ -23,9 +23,9 @@ namespace yw {
             ) : id(id), modelId(modelId), workflowId(workflowId), annotationId(annotationId), name(name)
             {}
 
-            std::string elements() const override {
+            std::string fieldValues() const override {
                 std::stringstream ss;
-                ss << id.str()
+                ss  <<        id.str()
                     << "|" << modelId
                     << "|" << workflowId.str()
                     << "|" << annotationId.str()

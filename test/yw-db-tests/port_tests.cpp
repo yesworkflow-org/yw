@@ -56,6 +56,20 @@ YW_TEST_FIXTURE(Port)
 
 YW_TEST_SET
 
+    YW_TEST(Port, FieldValuesMatchAssignedValuesWithNulls) {
+        Assert::AreEqual(
+            "NULL|16|NULL|p1",
+           Port{ auto_id, 16, null_id, "p1" }.fieldValues()
+        );
+    }
+
+    YW_TEST(Port, FieldValuesMatchAssignedValuesWithoutNulls) {
+        Assert::AreEqual(
+            "8|16|27|p1",
+            Port{ 8, 16, 27, "p1" }.fieldValues()
+        );
+    }
+
     YW_TEST(Port, InsertOneRow_GeneratedIdIs_1)
     {
         Assert::AreEqual(1, ywdb.insert(Port{ auto_id, block1, annotation16, "port" }));

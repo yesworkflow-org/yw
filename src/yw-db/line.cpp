@@ -27,7 +27,7 @@ namespace yw {
             statement.bindNullableId(1, line.id);
             statement.bindId(2, line.sourceId);
             statement.bindInt64(3, line.number);
-            statement.bindText(4, line.text);
+            statement.bindNullableText(4, line.text);
             statement.execute();
             return statement.getGeneratedId();
         }
@@ -40,7 +40,7 @@ namespace yw {
             auto id = statement.getNullableIdField(0);
             auto sourceId = statement.getInt64Field(1);
             auto number = statement.getInt64Field(2);
-            auto text = statement.getTextField(3);
+            auto text = statement.getNullableTextField(3);
             return Line(id, sourceId, number, text);
         }
 
