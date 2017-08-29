@@ -8,7 +8,7 @@ YW_SRC_DIRS  = $(YW_REPO_ROOT)/src
 YW_TEST_DIRS = $(YW_REPO_ROOT)/test
 YW_GCC_DIRS  = $(YW_REPO_ROOT)/gcc
 
-SRC = $(wildcard $(YW_TEST_DIRS)/yw-db-tests/*.cpp) test_runner.c
+SRC = $(wildcard $(YW_TEST_DIRS)/yw-db-tests/*.cpp) $(TEST_RUNNER).cpp
 
 CPPFLAGS =  -std=c++14 -g3 -MMD -MP -D_THREAD_SAFE -DCPPUTEST -Wno-unused-parameter -Wno-unused-variable
 CPPFLAGS += -W -Wall -Wno-deprecated -pedantic -O3 -Wno-unused-but-set-variable

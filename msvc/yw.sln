@@ -75,9 +75,69 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-model-tests", "yw-model-
 		{2C3F23FE-F54E-4B9D-85FE-44889E06073A} = {2C3F23FE-F54E-4B9D-85FE-44889E06073A}
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3DE16776-1FA8-46EC-B7C7-E48E11F1C258}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documentation", "documentation", "{3DE16776-1FA8-46EC-B7C7-E48E11F1C258}"
 	ProjectSection(SolutionItems) = preProject
 		..\README.md = ..\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gcc", "gcc", "{67337B64-473B-4676-AF06-D1EDCE123B6D}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\common.Makefile = ..\gcc\common.Makefile
+		..\gcc\Makefile = ..\gcc\Makefile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sqlite-db-tests", "sqlite-db-tests", "{203206B4-5E83-4272-AAE2-5E67A9BCECA4}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\sqlite-db-tests\Makefile = ..\gcc\sqlite-db-tests\Makefile
+		..\gcc\sqlite-db-tests\test_runner.cpp = ..\gcc\sqlite-db-tests\test_runner.cpp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-extract-tests", "yw-extract-tests", "{19EA0903-BE1B-4FE4-8279-368B9192BA3B}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\yw-extract-tests\Makefile = ..\gcc\yw-extract-tests\Makefile
+		..\gcc\yw-extract-tests\test_runner.cpp = ..\gcc\yw-extract-tests\test_runner.cpp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-db-tests", "yw-db-tests", "{2F12580A-55E3-4EEA-BB07-CC4DA5383679}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\yw-db-tests\Makefile = ..\gcc\yw-db-tests\Makefile
+		..\gcc\yw-db-tests\test_runner.cpp = ..\gcc\yw-db-tests\test_runner.cpp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-parse-tests", "yw-parse-tests", "{286D0585-35D6-4C98-8008-4F8E9FC2A0B7}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\yw-parse-tests\Makefile = ..\gcc\yw-parse-tests\Makefile
+		..\gcc\yw-parse-tests\test_runner.cpp = ..\gcc\yw-parse-tests\test_runner.cpp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "antlr4-runtime", "antlr4-runtime", "{958B3ADE-6F2C-4DB7-A6C6-9375994443DF}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\antlr4-runtime\Makefile = ..\gcc\antlr4-runtime\Makefile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sqlite3", "sqlite3", "{A31E37FD-6C4F-4E69-8C51-ECFDBF18C286}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\sqlite3\Makefile = ..\gcc\sqlite3\Makefile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sqlite-db", "sqlite-db", "{ACE83BC1-EE99-4B92-9FA7-DE1C1BFCAA36}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\sqlite-db\Makefile = ..\gcc\sqlite-db\Makefile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-db", "yw-db", "{0685CE66-0727-45BF-8BA7-BE8AB2F0B1CC}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\yw-db\Makefile = ..\gcc\yw-db\Makefile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-extract", "yw-extract", "{3EA2063B-5DB0-4F41-8BBD-BA968E77DB47}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\yw-extract\Makefile = ..\gcc\yw-extract\Makefile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-parse", "yw-parse", "{472791FF-4381-475E-B0B9-52B813158FC5}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\yw-parse\Makefile = ..\gcc\yw-parse\Makefile
 	EndProjectSection
 EndProject
 Global
@@ -231,6 +291,18 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{203206B4-5E83-4272-AAE2-5E67A9BCECA4} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{19EA0903-BE1B-4FE4-8279-368B9192BA3B} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{2F12580A-55E3-4EEA-BB07-CC4DA5383679} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{286D0585-35D6-4C98-8008-4F8E9FC2A0B7} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{958B3ADE-6F2C-4DB7-A6C6-9375994443DF} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{A31E37FD-6C4F-4E69-8C51-ECFDBF18C286} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{ACE83BC1-EE99-4B92-9FA7-DE1C1BFCAA36} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{0685CE66-0727-45BF-8BA7-BE8AB2F0B1CC} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{3EA2063B-5DB0-4F41-8BBD-BA968E77DB47} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{472791FF-4381-475E-B0B9-52B813158FC5} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9AEF8164-5EBC-432F-98B9-C7C5704935A3}

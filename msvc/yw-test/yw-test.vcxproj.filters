@@ -19,9 +19,6 @@
     <ClInclude Include="..\..\test\yw-test\yw_test_cpputest.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\test\yw-test\assert_message.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\test\yw-test\yw_test_msvc.h">
       <Filter>Source Files</Filter>
     </ClInclude>

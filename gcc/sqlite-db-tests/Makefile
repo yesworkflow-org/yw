@@ -1,7 +1,7 @@
 TEST_RUNNER = test_runner
 
 CPPUTEST_INCLUDE_DIR = $(CPPUTEST_HOME)/include
-CPPUTEST_LIB_DIR     = $(CPPUTEST_HOME)/lib
+CPPUTEST_LIB_DIR     = $(CPPUTEST_HOME)/cpputest_build/lib
 
 YW_REPO_ROOT = ../..
 YW_SRC_DIRS  = $(YW_REPO_ROOT)/src
