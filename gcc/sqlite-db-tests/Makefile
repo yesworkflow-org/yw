@@ -1,14 +1,14 @@
 TEST_RUNNER = test_runner
 
 CPPUTEST_INCLUDE_DIR = $(CPPUTEST_HOME)/include
-CPPUTEST_LIB_DIR     = $(CPPUTEST_HOME)/cpputest_build/lib
+CPPUTEST_LIB_DIR     = $(CPPUTEST_HOME)/lib
 
 YW_REPO_ROOT = ../..
 YW_SRC_DIRS  = $(YW_REPO_ROOT)/src
 YW_TEST_DIRS = $(YW_REPO_ROOT)/test
 YW_GCC_DIRS  = $(YW_REPO_ROOT)/gcc
 
-SRC = $(wildcard $(YW_TEST_DIRS)/sqlite-db-tests/*.cpp) test_runner.c
+SRC = $(wildcard $(YW_TEST_DIRS)/sqlite-db-tests/*.cpp) test_runner.cpp
 
 CPPFLAGS =  -std=c++14 -g3 -MMD -MP -D_THREAD_SAFE -DCPPUTEST -Wno-unused-parameter -Wno-unused-variable
 CPPFLAGS += -W -Wall -Wno-deprecated -pedantic -O3 -Wno-unused-but-set-variable
