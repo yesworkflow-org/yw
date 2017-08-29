@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.16
+VisualStudioVersion = 15.0.26730.10
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-extract", "yw-extract\yw-extract.vcxproj", "{158B1288-0CC1-426B-8967-800EDBD8C278}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -73,6 +73,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-model-tests", "yw-model-
 		{7FF323B9-9432-48FA-8B1A-090062B6440B} = {7FF323B9-9432-48FA-8B1A-090062B6440B}
 		{9CD083F8-A23A-4F54-B5F0-5840A92FB619} = {9CD083F8-A23A-4F54-B5F0-5840A92FB619}
 		{2C3F23FE-F54E-4B9D-85FE-44889E06073A} = {2C3F23FE-F54E-4B9D-85FE-44889E06073A}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3DE16776-1FA8-46EC-B7C7-E48E11F1C258}"
+	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
 	EndProjectSection
 EndProject
 Global
@@ -226,5 +231,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9AEF8164-5EBC-432F-98B9-C7C5704935A3}
 	EndGlobalSection
 EndGlobal
