@@ -28,9 +28,6 @@
     <ClInclude Include="..\..\test\yw-test\stdio_recorders.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\test\yw-test\test_io.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">

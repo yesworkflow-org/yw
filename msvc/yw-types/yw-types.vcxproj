@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-types\nullable.h" />
+    <ClInclude Include="..\..\src\yw-types\yw_io.h" />
     <ClInclude Include="..\..\src\yw-types\yw_types.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -13,5 +13,8 @@
     <ClInclude Include="..\..\src\yw-types\yw_types.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\yw-types\yw_io.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

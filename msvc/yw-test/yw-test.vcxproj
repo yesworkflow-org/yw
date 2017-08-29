@@ -155,7 +155,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="..\..\test\yw-test\assert_message.h" />
-    <ClInclude Include="..\..\test\yw-test\test_io.h" />
     <ClInclude Include="..\..\test\yw-test\stdio_recorders.h" />
     <ClInclude Include="..\..\test\yw-test\yw_test.h" />
     <ClInclude Include="..\..\test\yw-test\yw_test_cpputest.h" />

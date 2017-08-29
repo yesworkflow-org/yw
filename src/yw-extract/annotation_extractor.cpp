@@ -2,6 +2,7 @@
 #include "annotation_listener.h"
 #include "source_loader.h"
 #include "yw_parser_builder.h"
+#include "yw_io.h"
 
 using namespace yw::db;
 using namespace yw::extract;
@@ -53,7 +54,8 @@ namespace yw {
             const row_id& extractionId,
             const string& filePath
         ) {
-            auto fileId = ywdb.insert(File{ auto_id, filePath });
+            auto fileName = getFileName(filePath);
+            auto fileId = ywdb.insert(File{ auto_id, fileName });
             auto sourceId = ywdb.insert(Source{ auto_id, fileId, null_string });
             string sourceText = SourceLoader{ ywdb }.insertSourceLinesFromFile(sourceId, filePath);
             extractAnnotationsFromString(extractionId, sourceId, sourceText);
