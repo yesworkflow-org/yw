@@ -147,7 +147,7 @@ namespace yw {
                 #endif      
 
                 #ifdef CPPUTEST
-                    FAIL((wstring2string(w_message)).c_str());
+                    FAIL((wchar2string(w_message)).c_str());
                 #endif
             }
 

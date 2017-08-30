@@ -32,13 +32,17 @@ YW_LIBS   += -lsqlitedb               -L$(YW_GCC_DIRS)/sqlite-db
 YW_LIBS   += -lsqlite3                -L$(YW_GCC_DIRS)/sqlite3
 ANTLRLIB  += -lantlr4                 -L$(YW_GCC_DIRS)/antlr4-runtime
 
+ifdef USING_STD_FILESYSTEM
+CONSTANTS += -D USING_STD_FILESYSTEM
+endif
+
 test: $(TEST_RUNNER)
 	./$(TEST_RUNNER) -v
 
 runner: $(TEST_RUNNER)
 
 $(TEST_RUNNER): $(SRC)  
-	$(CXX) $(CPPFLAGS) $(SRC) $(UTEST_LIBS) $(YW_LIBS) $(GCC_LIBS) $(ANTLRLIB) -o $(TEST_RUNNER)
+	$(CXX) $(CPPFLAGS) $(SRC) $(UTEST_LIBS) $(YW_LIBS) $(GCC_LIBS) $(ANTLRLIB) $(CONSTANTS) -o $(TEST_RUNNER)
 
 clean:
 	rm -f $(TEST_RUNNER) *.d
