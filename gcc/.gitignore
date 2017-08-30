@@ -2,4 +2,5 @@
 *.a
 *.exe
 *.d
-
+test_runner
+info.plist

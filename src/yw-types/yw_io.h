@@ -4,17 +4,17 @@
 #include <fstream>
 #include <sstream>
 
-#if defined(_MSC_VER)
+// #if defined(_MSC_VER)
 #include <experimental/filesystem>
 using namespace std::experimental::filesystem::v1;
-#else
-struct path_struct {
-    std::string path;
-    std::string string() { return path; }
-    path_struct append(std::string suffix) { path += suffix; return *this; }
-};
-inline path_struct temp_directory_path() { return path_struct{ std::string{getenv("TEMP")} +"/" }; }
-#endif
+// #else
+// struct path_struct {
+//     std::string path;
+//     std::string string() { return path; }
+//     path_struct append(std::string suffix) { path += suffix; return *this; }
+// };
+// inline path_struct temp_directory_path() { return path_struct{ std::string{getenv("TEMP")} +"/" }; }
+// #endif
 
 inline std::string writeTempFile(std::string fileName, std::string sourceText) {
     auto tempFilePath = temp_directory_path().append(fileName);
