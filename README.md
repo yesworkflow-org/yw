@@ -10,7 +10,7 @@ Please see the [yw-prototypes README](https://github.com/yesworkflow-org/yw-prot
 
 Installation and use of the native C++ implementation of YesWorkflow is expected to be simpler compared to the Java research prototype:
 
-Java research prototype ([yw-prototypes](https://github.com/yesworkflow-org/yw-prototypes)) | C++ implementation ([yw]())
+Java research prototype ([yw-prototypes](https://github.com/yesworkflow-org/yw-prototypes)) | C++ implementation ([yw](https://github.com/yesworkflow-org/yw))
 ----------------------------------------|------------------------
 Distributed as Java archive (JAR) files. | Will be distributed as native executables.
 Requires installation of Java Runtime Environment (JRE) on user machine. | No Java installation will be required.
