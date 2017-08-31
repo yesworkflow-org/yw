@@ -83,7 +83,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gcc", "gcc", "{67337B64-473B-4676-AF06-D1EDCE123B6D}"
 	ProjectSection(SolutionItems) = preProject
 		..\gcc\common.Makefile = ..\gcc\common.Makefile
+		..\gcc\cpp.makefile = ..\gcc\cpp.makefile
 		..\gcc\Makefile = ..\gcc\Makefile
+		..\gcc\test.targets.makefile = ..\gcc\test.targets.makefile
+		..\gcc\tests.makefile = ..\gcc\tests.makefile
+		..\gcc\yw.makefile = ..\gcc\yw.makefile
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sqlite-db-tests", "sqlite-db-tests", "{203206B4-5E83-4272-AAE2-5E67A9BCECA4}"

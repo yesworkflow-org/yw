@@ -1,0 +1,17 @@
+
+TEST_RUNNER = test_runner
+
+SRC      = $(TEST_SOURCES)  $(TEST_RUNNER).cpp
+INCLUDES = $(YW_INCLUDES) $(ANTLR_INCLUDES)
+LIBS     = $(CPPUTEST_LIBS) $(YW_LIBS) $(CPP_LIBS) $(ANTLR_LIB)
+
+test: $(TEST_RUNNER)
+	./$(TEST_RUNNER) -v
+
+runner: $(TEST_RUNNER)
+
+$(TEST_RUNNER): $(SRC)  
+	$(CXX) $(CPPFLAGS) $(CONSTANTS) $(INCLUDES) $(SRC) $(LIBS) -o $(TEST_RUNNER)
+
+clean:
+	rm -f $(TEST_RUNNER) *.d
