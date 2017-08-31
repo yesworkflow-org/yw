@@ -1,7 +1,7 @@
-include ../yw.makefile
-include ../cpp.makefile
-include ../tests.makefile
+include ../yw.setup.makefile
+include ../cpp.setup.makefile
+include ../tests.setup.makefile
 
-TEST_SOURCES = $(wildcard $(YW_TEST_DIR)/yw-extract-tests/*.cpp)
+TESTS = $(wildcard $(YW_TEST_DIR)/yw-extract-tests/*.cpp)
 
 include ../test.targets.makefile
