@@ -18,7 +18,7 @@
     <ClInclude Include="targetver.h">
       <Filter>Precompiled Header</Filter>
     </ClInclude>
-    <ClInclude Include="yw_model_tests.h">
+    <ClInclude Include="..\..\test\yw-model-tests\yw_model_tests.h">
       <Filter>Precompiled Header</Filter>
     </ClInclude>
   </ItemGroup>

@@ -82,12 +82,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documentation", "documentat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gcc", "gcc", "{67337B64-473B-4676-AF06-D1EDCE123B6D}"
 	ProjectSection(SolutionItems) = preProject
-		..\gcc\common.Makefile = ..\gcc\common.Makefile
-		..\gcc\cpp.makefile = ..\gcc\cpp.makefile
+		..\gcc\cpp.setup.makefile = ..\gcc\cpp.setup.makefile
 		..\gcc\Makefile = ..\gcc\Makefile
 		..\gcc\test.targets.makefile = ..\gcc\test.targets.makefile
-		..\gcc\tests.makefile = ..\gcc\tests.makefile
-		..\gcc\yw.makefile = ..\gcc\yw.makefile
+		..\gcc\tests.setup.makefile = ..\gcc\tests.setup.makefile
+		..\gcc\yw.setup.makefile = ..\gcc\yw.setup.makefile
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "sqlite-db-tests", "sqlite-db-tests", "{203206B4-5E83-4272-AAE2-5E67A9BCECA4}"
@@ -142,6 +141,16 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-parse", "yw-parse", "{472791FF-4381-475E-B0B9-52B813158FC5}"
 	ProjectSection(SolutionItems) = preProject
 		..\gcc\yw-parse\Makefile = ..\gcc\yw-parse\Makefile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-model-tests", "yw-model-tests", "{FA84A0C2-DAD6-40D6-850B-AC4E44A4C65C}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\yw-model-tests\Makefile = ..\gcc\yw-model-tests\Makefile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-model", "yw-model", "{919F1D73-BBEE-4C1B-8F85-1700B0071489}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\yw-model\Makefile = ..\gcc\yw-model\Makefile
 	EndProjectSection
 EndProject
 Global
@@ -307,6 +316,8 @@ Global
 		{0685CE66-0727-45BF-8BA7-BE8AB2F0B1CC} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 		{3EA2063B-5DB0-4F41-8BBD-BA968E77DB47} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 		{472791FF-4381-475E-B0B9-52B813158FC5} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{FA84A0C2-DAD6-40D6-850B-AC4E44A4C65C} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{919F1D73-BBEE-4C1B-8F85-1700B0071489} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9AEF8164-5EBC-432F-98B9-C7C5704935A3}

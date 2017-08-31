@@ -3,12 +3,14 @@
 YW_BUILDS =	sqlite-db \
 			yw-db  \
 		 	yw-parse \
-			yw-extract
+			yw-extract \
+			yw-model
 
 YW_TESTS = 	sqlite-db-tests \
 			yw-db-tests \
 			yw-parse-tests \
-			yw-extract-tests
+			yw-extract-tests \
+			yw-model-tests
 
 ALL_BUILDS = ${YW_BUILDS} ${YW_TESTS}
 

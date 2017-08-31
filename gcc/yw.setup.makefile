@@ -9,7 +9,9 @@ YW_INCLUDES += -I$(YW_SRC_DIR)/sqlite-db
 YW_INCLUDES += -I$(YW_SRC_DIR)/yw-db
 YW_INCLUDES += -I$(YW_SRC_DIR)/yw-parse
 YW_INCLUDES += -I$(YW_SRC_DIR)/yw-extract
+YW_INCLUDES += -I$(YW_SRC_DIR)/yw-model
 
+YW_LIBS   += -lywmodel   -L$(YW_GCC_DIR)/yw-model
 YW_LIBS   += -lywextract -L$(YW_GCC_DIR)/yw-extract
 YW_LIBS   += -lywparse   -L$(YW_GCC_DIR)/yw-parse
 YW_LIBS   += -lywdb      -L$(YW_GCC_DIR)/yw-db

@@ -152,7 +152,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="yw_model_tests.h" />
+    <ClInclude Include="..\..\test\yw-model-tests\yw_model_tests.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
