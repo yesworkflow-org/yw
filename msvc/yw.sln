@@ -83,6 +83,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gcc", "gcc", "{67337B64-473B-4676-AF06-D1EDCE123B6D}"
 	ProjectSection(SolutionItems) = preProject
 		..\gcc\cpp.setup.makefile = ..\gcc\cpp.setup.makefile
+		..\gcc\lib.targets.makefile = ..\gcc\lib.targets.makefile
 		..\gcc\Makefile = ..\gcc\Makefile
 		..\gcc\test.targets.makefile = ..\gcc\test.targets.makefile
 		..\gcc\tests.setup.makefile = ..\gcc\tests.setup.makefile

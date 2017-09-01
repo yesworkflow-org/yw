@@ -55,7 +55,7 @@ namespace yw {
             outline.str("");
             while (!blockStack.empty()) blockStack.pop();
             bool firstBlock = true;
-            Tag lastAnnotationTag;
+            Tag lastAnnotationTag = Tag::NONE;
 
             auto annotations = ywdb.selectAnnotationTree(rootAnnotation);
 

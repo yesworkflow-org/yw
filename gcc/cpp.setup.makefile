@@ -1,5 +1,9 @@
 
-CPPFLAGS += -std=c++14 -g3 -MMD -MP -D_THREAD_SAFE -O3 -W -Wall -pedantic 
+CPPFLAGS += -std=c++14 
+#CPPFLAGS += -O3 
+CPPFLAGS += -g3 
+CPPFLAGS += -Wall 
+CPPFLAGS += -pedantic 
 CPPFLAGS += -Wno-attributes
 CPPFLAGS += -Wno-deprecated 
 CPPFLAGS += -Wno-unused-parameter 

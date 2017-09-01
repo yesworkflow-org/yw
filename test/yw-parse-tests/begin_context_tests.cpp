@@ -10,7 +10,7 @@ YW_TEST_FIXTURE(BeginContext)
 
 YW_TEST_SET
 
-    YW_TEST(BeginContext, BeginWithNoArgumentYieldsNullBlockName)
+   YW_TEST(BeginContext, BeginWithNoArgumentYieldsNullBlockName)
     {
         YWParserBuilder parser_builder("@begin");
         YWParser::BeginContext* context = parser_builder.parse()->begin();
@@ -18,7 +18,7 @@ YW_TEST_SET
         Assert::IsNull(context->blockName());
     }
 
-    YW_TEST(BeginContext, BeginWithSingleArgumentOnSameLineYieldsArgumentAsBlockName)
+ YW_TEST(BeginContext, BeginWithSingleArgumentOnSameLineYieldsArgumentAsBlockName)
     {
         YWParserBuilder parser_builder("@begin block");
         YWParser::BeginContext* context = parser_builder.parse()->begin();

@@ -14,4 +14,4 @@ $(TEST_RUNNER): $(SRC)
 	$(CXX) $(CPPFLAGS) $(CONSTANTS) $(INCLUDES) $(SRC) $(LIBS) -o $(TEST_RUNNER)
 
 clean:
-	rm -f $(TEST_RUNNER) *.d
+	rm -f $(TEST_RUNNER)
