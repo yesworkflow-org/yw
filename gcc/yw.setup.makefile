@@ -4,6 +4,7 @@ YW_DIR = ../..
 YW_SRC_DIR  = $(YW_DIR)/src
 YW_GCC_DIR  = $(YW_DIR)/gcc
 
+YW_INCLUDES += -I$(YW_SRC_DIR)/sqlite-3.19.3
 YW_INCLUDES += -I$(YW_SRC_DIR)/yw-types
 YW_INCLUDES += -I$(YW_SRC_DIR)/sqlite-db
 YW_INCLUDES += -I$(YW_SRC_DIR)/yw-db
