@@ -10,7 +10,11 @@ CPPFLAGS += -Wno-unused-parameter
 CPPFLAGS += -Wno-unused-but-set-variable 
 CPPFLAGS += -Wno-unused-variable 
 
-CPP_LIBS  += -lm -lpthread -ldl -lstdc++
+CPP_LIBS  += -lm -lpthread -lstdc++
+
+ifdef USE_DL_LIB
+CPP_LIBS  += -ldl
+endif
 
 ifdef USING_STD_FILESYSTEM
 CONSTANTS += -D USING_STD_FILESYSTEM
