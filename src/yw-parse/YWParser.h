@@ -13,10 +13,10 @@ namespace yw {
 class  YWParser : public antlr4::Parser {
 public:
   enum {
-    T__0 = 1, T__1 = 2, T__2 = 3, AsKeyword = 4, BeginKeyword = 5, CallKeyword = 6, 
-    DescKeyword = 7, EndKeyword = 8, FileKeyword = 9, InKeyword = 10, OutKeyword = 11, 
-    ParamKeyword = 12, ReturnKeyword = 13, UriKeyword = 14, DQ = 15, SQ = 16, 
-    SPACE = 17, NEWLINE = 18, WORD = 19, OTHER = 20
+    T__0 = 1, T__1 = 2, AsKeyword = 3, BeginKeyword = 4, CallKeyword = 5, 
+    DescKeyword = 6, EndKeyword = 7, FileKeyword = 8, InKeyword = 9, OutKeyword = 10, 
+    ParamKeyword = 11, ReturnKeyword = 12, UriKeyword = 13, DQ = 14, SQ = 15, 
+    SPACE = 16, NEWLINE = 17, COLON = 18, WORD = 19, OTHER = 20
   };
 
   enum {
@@ -508,6 +508,8 @@ public:
     antlr4::tree::TerminalNode* SQ(size_t i);
     std::vector<antlr4::tree::TerminalNode *> WORD();
     antlr4::tree::TerminalNode* WORD(size_t i);
+    std::vector<antlr4::tree::TerminalNode *> COLON();
+    antlr4::tree::TerminalNode* COLON(size_t i);
     std::vector<antlr4::tree::TerminalNode *> OTHER();
     antlr4::tree::TerminalNode* OTHER(size_t i);
 

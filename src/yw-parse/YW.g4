@@ -43,7 +43,7 @@ AsKeyword       : '@as' ;
 BeginKeyword    : '@begin' ;
 CallKeyword     : '@call' ;
 DescKeyword     : '@desc' ;
-EndKeyword      : '@end'; 
+EndKeyword      : '@end' ; 
 FileKeyword     : '@file' ;
 InKeyword       : '@in' ;
 OutKeyword      : '@out' ;
@@ -51,12 +51,13 @@ ParamKeyword    : '@param' ;
 ReturnKeyword   : '@return' ;
 UriKeyword      : '@uri' ;
 
-na				: (SPACE | NEWLINE | DQ | SQ | WORD | OTHER)+ ;
+na				: (SPACE | NEWLINE | DQ | SQ | WORD | COLON | OTHER )+ ;
 
 DQ				: '"' ;
 SQ				: '\'' ;
 SPACE           : [ \t] ;
 NEWLINE         : '\r'? '\n' ;
+COLON			: ':' ;
 WORD            : [a-zA-Z0-9\\_]+ ;
 OTHER			: .+? ;
 

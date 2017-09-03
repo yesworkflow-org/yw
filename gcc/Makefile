@@ -16,7 +16,7 @@ YW_TESTS = sqlite-db-tests \
            yw-extract-tests \
            yw-model-tests
 
-YW_BUILDS = $(YW_LIBS) $(YW_TESTS)
+YW_BUILDS = $(YW_LIBS) $(YW_APPS) $(YW_TESTS)
 
 ALL_BUILDS = $(DEP_LIBS) $(YW_BUILDS)
 
