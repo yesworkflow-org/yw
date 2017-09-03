@@ -8,6 +8,8 @@ YW_LIBS  = sqlite-db \
            yw-extract \
            yw-model
 
+YW_APPS = yw-extract-app
+
 YW_TESTS = sqlite-db-tests \
            yw-db-tests \
            yw-parse-tests \
@@ -18,7 +20,7 @@ YW_BUILDS = $(YW_LIBS) $(YW_TESTS)
 
 ALL_BUILDS = $(DEP_LIBS) $(YW_BUILDS)
 
-all: dep lib test
+all: dep lib app test
 
 dep:
 	for BUILD in $(DEP_LIBS); do \
@@ -32,6 +34,13 @@ lib: dep
 		echo; \
 		echo "---------- Building $$BUILD --------------------" ;	\
 		$(MAKE) -C $$BUILD lib; \
+	done
+
+app: lib
+	for BUILD in $(YW_APPS); do \
+		echo; \
+		echo "---------- Building $$BUILD --------------------" ;	\
+		$(MAKE) -C $$BUILD app; \
 	done
 
 test: lib

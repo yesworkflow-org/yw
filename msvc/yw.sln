@@ -82,6 +82,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "documentation", "documentat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gcc", "gcc", "{67337B64-473B-4676-AF06-D1EDCE123B6D}"
 	ProjectSection(SolutionItems) = preProject
+		..\gcc\app.setup.makefile = ..\gcc\app.setup.makefile
+		..\gcc\app.targets.makefile = ..\gcc\app.targets.makefile
 		..\gcc\cpp.setup.makefile = ..\gcc\cpp.setup.makefile
 		..\gcc\lib.targets.makefile = ..\gcc\lib.targets.makefile
 		..\gcc\Makefile = ..\gcc\Makefile
@@ -152,6 +154,11 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-model", "yw-model", "{919F1D73-BBEE-4C1B-8F85-1700B0071489}"
 	ProjectSection(SolutionItems) = preProject
 		..\gcc\yw-model\Makefile = ..\gcc\yw-model\Makefile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-extract-app", "yw-extract-app", "{50BDBC51-F79F-446C-8B28-EF8EF190B6EA}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\yw-extract-app\Makefile = ..\gcc\yw-extract-app\Makefile
 	EndProjectSection
 EndProject
 Global
@@ -319,6 +326,7 @@ Global
 		{472791FF-4381-475E-B0B9-52B813158FC5} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 		{FA84A0C2-DAD6-40D6-850B-AC4E44A4C65C} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 		{919F1D73-BBEE-4C1B-8F85-1700B0071489} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{50BDBC51-F79F-446C-8B28-EF8EF190B6EA} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9AEF8164-5EBC-432F-98B9-C7C5704935A3}

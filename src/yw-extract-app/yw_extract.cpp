@@ -4,28 +4,23 @@
 
 #include <iostream>
 
-using namespace yw::db;
-using namespace yw::sqlite;
 using namespace yw::extract;
-using std::cerr;
-using std::cout;
-using std::endl;
 
 int main(int argc, char** argv)
 {
     yw::db::YesWorkflowDB ywdb;
 
     if (argc != 2) {
-        cout << "Usage:  yw-extract <path-to-script>" << endl;
+        std::cout << "Usage:  yw-extract <path-to-script>" << std::endl;
         exit(0);
     }
 
     try {
         AnnotationExtractor{ ywdb }.extractAnnotationsFromFile(argv[1]);
-        cout << OutlineExporter{ ywdb }.getOutline();
+        std::cout << OutlineExporter{ ywdb }.getOutline();
     }
     catch (std::runtime_error e) {
-        cerr << "ERROR: " << e.what() << endl;
+        std::cerr << "ERROR: " << e.what() << std::endl;
         exit(-1);
     }
 }
