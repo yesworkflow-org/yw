@@ -13,10 +13,10 @@ namespace yw {
             std::unique_ptr<antlr4::ANTLRInputStream> antlr_input_stream;
             std::unique_ptr<YWLexer> yw_lexer;
             std::unique_ptr<antlr4::CommonTokenStream> antlr_token_stream;
-            std::shared_ptr<YWParser> yw_parser;
+            std::shared_ptr<YWParser> yw_cli_parser;
         public:
             YWParserBuilder(const std::string& text);
-            std::shared_ptr<YWParser> parse() { return yw_parser; }
+            std::shared_ptr<YWParser> parse() { return yw_cli_parser; }
         };
     }
 }

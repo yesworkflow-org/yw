@@ -1,5 +1,5 @@
 
-// Generated from ywcli.g4 by ANTLR 4.7
+// Generated from YW_CLI_.g4 by ANTLR 4.7
 
 #pragma once
 
@@ -10,7 +10,7 @@
 namespace yw {
 
 
-class  ywcliParser : public antlr4::Parser {
+class  YW_CLI_Parser : public antlr4::Parser {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
@@ -24,8 +24,8 @@ public:
     RuleConfigValue = 12, RuleUnquotedValue = 13
   };
 
-  ywcliParser(antlr4::TokenStream *input);
-  ~ywcliParser();
+  YW_CLI_Parser(antlr4::TokenStream *input);
+  ~YW_CLI_Parser();
 
   virtual std::string getGrammarFileName() const override;
   virtual const antlr4::atn::ATN& getATN() const override { return _atn; };

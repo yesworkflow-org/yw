@@ -1,4 +1,4 @@
-grammar ywcli ;
+grammar YW_CLI_ ;
 
 // command line
 commandLine      : program (SPACE+ pflag)* (SPACE+ command)? (SPACE+ (argument | config))* NEWLINE*;

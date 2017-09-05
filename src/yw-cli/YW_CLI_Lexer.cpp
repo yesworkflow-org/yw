@@ -1,51 +1,51 @@
 
-// Generated from ywcli.g4 by ANTLR 4.7
+// Generated from YW_CLI_.g4 by ANTLR 4.7
 
 
-#include "ywcliLexer.h"
+#include "YW_CLI_Lexer.h"
 
 
 using namespace antlr4;
 
 using namespace yw;
 
-ywcliLexer::ywcliLexer(CharStream *input) : Lexer(input) {
+YW_CLI_Lexer::YW_CLI_Lexer(CharStream *input) : Lexer(input) {
   _interpreter = new atn::LexerATNSimulator(this, _atn, _decisionToDFA, _sharedContextCache);
 }
 
-ywcliLexer::~ywcliLexer() {
+YW_CLI_Lexer::~YW_CLI_Lexer() {
   delete _interpreter;
 }
 
-std::string ywcliLexer::getGrammarFileName() const {
-  return "ywcli.g4";
+std::string YW_CLI_Lexer::getGrammarFileName() const {
+  return "YW_CLI_.g4";
 }
 
-const std::vector<std::string>& ywcliLexer::getRuleNames() const {
+const std::vector<std::string>& YW_CLI_Lexer::getRuleNames() const {
   return _ruleNames;
 }
 
-const std::vector<std::string>& ywcliLexer::getChannelNames() const {
+const std::vector<std::string>& YW_CLI_Lexer::getChannelNames() const {
   return _channelNames;
 }
 
-const std::vector<std::string>& ywcliLexer::getModeNames() const {
+const std::vector<std::string>& YW_CLI_Lexer::getModeNames() const {
   return _modeNames;
 }
 
-const std::vector<std::string>& ywcliLexer::getTokenNames() const {
+const std::vector<std::string>& YW_CLI_Lexer::getTokenNames() const {
   return _tokenNames;
 }
 
-dfa::Vocabulary& ywcliLexer::getVocabulary() const {
+dfa::Vocabulary& YW_CLI_Lexer::getVocabulary() const {
   return _vocabulary;
 }
 
-const std::vector<uint16_t> ywcliLexer::getSerializedATN() const {
+const std::vector<uint16_t> YW_CLI_Lexer::getSerializedATN() const {
   return _serializedATN;
 }
 
-const atn::ATN& ywcliLexer::getATN() const {
+const atn::ATN& YW_CLI_Lexer::getATN() const {
   return _atn;
 }
 
@@ -53,41 +53,41 @@ const atn::ATN& ywcliLexer::getATN() const {
 
 
 // Static vars and initialization.
-std::vector<dfa::DFA> ywcliLexer::_decisionToDFA;
-atn::PredictionContextCache ywcliLexer::_sharedContextCache;
+std::vector<dfa::DFA> YW_CLI_Lexer::_decisionToDFA;
+atn::PredictionContextCache YW_CLI_Lexer::_sharedContextCache;
 
 // We own the ATN which in turn owns the ATN states.
-atn::ATN ywcliLexer::_atn;
-std::vector<uint16_t> ywcliLexer::_serializedATN;
+atn::ATN YW_CLI_Lexer::_atn;
+std::vector<uint16_t> YW_CLI_Lexer::_serializedATN;
 
-std::vector<std::string> ywcliLexer::_ruleNames = {
+std::vector<std::string> YW_CLI_Lexer::_ruleNames = {
   u8"T__0", u8"T__1", u8"T__2", u8"T__3", u8"T__4", u8"T__5", u8"T__6", 
   u8"T__7", u8"NEWLINE", u8"SPACE", u8"DQ", u8"SQ", u8"WORD"
 };
 
-std::vector<std::string> ywcliLexer::_channelNames = {
+std::vector<std::string> YW_CLI_Lexer::_channelNames = {
   "DEFAULT_TOKEN_CHANNEL", "HIDDEN"
 };
 
-std::vector<std::string> ywcliLexer::_modeNames = {
+std::vector<std::string> YW_CLI_Lexer::_modeNames = {
   u8"DEFAULT_MODE"
 };
 
-std::vector<std::string> ywcliLexer::_literalNames = {
+std::vector<std::string> YW_CLI_Lexer::_literalNames = {
   "", u8"'-h'", u8"'--help'", u8"'-v'", u8"'--version'", u8"'-c'", u8"'-config'", 
   u8"'--config'", u8"'='", "", "", u8"'\"'", u8"'''"
 };
 
-std::vector<std::string> ywcliLexer::_symbolicNames = {
+std::vector<std::string> YW_CLI_Lexer::_symbolicNames = {
   "", "", "", "", "", "", "", "", "", u8"NEWLINE", u8"SPACE", u8"DQ", u8"SQ", 
   u8"WORD"
 };
 
-dfa::Vocabulary ywcliLexer::_vocabulary(_literalNames, _symbolicNames);
+dfa::Vocabulary YW_CLI_Lexer::_vocabulary(_literalNames, _symbolicNames);
 
-std::vector<std::string> ywcliLexer::_tokenNames;
+std::vector<std::string> YW_CLI_Lexer::_tokenNames;
 
-ywcliLexer::Initializer::Initializer() {
+YW_CLI_Lexer::Initializer::Initializer() {
   // This code could be in a static initializer lambda, but VS doesn't allow access to private class members from there.
 	for (size_t i = 0; i < _symbolicNames.size(); ++i) {
 		std::string name = _vocabulary.getLiteralName(i);
@@ -174,4 +174,4 @@ ywcliLexer::Initializer::Initializer() {
   }
 }
 
-ywcliLexer::Initializer ywcliLexer::_init;
+YW_CLI_Lexer::Initializer YW_CLI_Lexer::_init;

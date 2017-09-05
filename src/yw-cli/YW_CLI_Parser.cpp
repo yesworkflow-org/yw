@@ -1,111 +1,111 @@
 
-// Generated from ywcli.g4 by ANTLR 4.7
+// Generated from YW_CLI_.g4 by ANTLR 4.7
 
 
-#include "ywcliListener.h"
+#include "YW_CLI_Listener.h"
 
-#include "ywcliParser.h"
+#include "YW_CLI_Parser.h"
 
 
 using namespace antlrcpp;
 using namespace yw;
 using namespace antlr4;
 
-ywcliParser::ywcliParser(TokenStream *input) : Parser(input) {
+YW_CLI_Parser::YW_CLI_Parser(TokenStream *input) : Parser(input) {
   _interpreter = new atn::ParserATNSimulator(this, _atn, _decisionToDFA, _sharedContextCache);
 }
 
-ywcliParser::~ywcliParser() {
+YW_CLI_Parser::~YW_CLI_Parser() {
   delete _interpreter;
 }
 
-std::string ywcliParser::getGrammarFileName() const {
-  return "ywcli.g4";
+std::string YW_CLI_Parser::getGrammarFileName() const {
+  return "YW_CLI_.g4";
 }
 
-const std::vector<std::string>& ywcliParser::getRuleNames() const {
+const std::vector<std::string>& YW_CLI_Parser::getRuleNames() const {
   return _ruleNames;
 }
 
-dfa::Vocabulary& ywcliParser::getVocabulary() const {
+dfa::Vocabulary& YW_CLI_Parser::getVocabulary() const {
   return _vocabulary;
 }
 
 
 //----------------- CommandLineContext ------------------------------------------------------------------
 
-ywcliParser::CommandLineContext::CommandLineContext(ParserRuleContext *parent, size_t invokingState)
+YW_CLI_Parser::CommandLineContext::CommandLineContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-ywcliParser::ProgramContext* ywcliParser::CommandLineContext::program() {
-  return getRuleContext<ywcliParser::ProgramContext>(0);
+YW_CLI_Parser::ProgramContext* YW_CLI_Parser::CommandLineContext::program() {
+  return getRuleContext<YW_CLI_Parser::ProgramContext>(0);
 }
 
-std::vector<ywcliParser::PflagContext *> ywcliParser::CommandLineContext::pflag() {
-  return getRuleContexts<ywcliParser::PflagContext>();
+std::vector<YW_CLI_Parser::PflagContext *> YW_CLI_Parser::CommandLineContext::pflag() {
+  return getRuleContexts<YW_CLI_Parser::PflagContext>();
 }
 
-ywcliParser::PflagContext* ywcliParser::CommandLineContext::pflag(size_t i) {
-  return getRuleContext<ywcliParser::PflagContext>(i);
+YW_CLI_Parser::PflagContext* YW_CLI_Parser::CommandLineContext::pflag(size_t i) {
+  return getRuleContext<YW_CLI_Parser::PflagContext>(i);
 }
 
-ywcliParser::CommandContext* ywcliParser::CommandLineContext::command() {
-  return getRuleContext<ywcliParser::CommandContext>(0);
+YW_CLI_Parser::CommandContext* YW_CLI_Parser::CommandLineContext::command() {
+  return getRuleContext<YW_CLI_Parser::CommandContext>(0);
 }
 
-std::vector<tree::TerminalNode *> ywcliParser::CommandLineContext::NEWLINE() {
-  return getTokens(ywcliParser::NEWLINE);
+std::vector<tree::TerminalNode *> YW_CLI_Parser::CommandLineContext::NEWLINE() {
+  return getTokens(YW_CLI_Parser::NEWLINE);
 }
 
-tree::TerminalNode* ywcliParser::CommandLineContext::NEWLINE(size_t i) {
-  return getToken(ywcliParser::NEWLINE, i);
+tree::TerminalNode* YW_CLI_Parser::CommandLineContext::NEWLINE(size_t i) {
+  return getToken(YW_CLI_Parser::NEWLINE, i);
 }
 
-std::vector<ywcliParser::ArgumentContext *> ywcliParser::CommandLineContext::argument() {
-  return getRuleContexts<ywcliParser::ArgumentContext>();
+std::vector<YW_CLI_Parser::ArgumentContext *> YW_CLI_Parser::CommandLineContext::argument() {
+  return getRuleContexts<YW_CLI_Parser::ArgumentContext>();
 }
 
-ywcliParser::ArgumentContext* ywcliParser::CommandLineContext::argument(size_t i) {
-  return getRuleContext<ywcliParser::ArgumentContext>(i);
+YW_CLI_Parser::ArgumentContext* YW_CLI_Parser::CommandLineContext::argument(size_t i) {
+  return getRuleContext<YW_CLI_Parser::ArgumentContext>(i);
 }
 
-std::vector<ywcliParser::ConfigContext *> ywcliParser::CommandLineContext::config() {
-  return getRuleContexts<ywcliParser::ConfigContext>();
+std::vector<YW_CLI_Parser::ConfigContext *> YW_CLI_Parser::CommandLineContext::config() {
+  return getRuleContexts<YW_CLI_Parser::ConfigContext>();
 }
 
-ywcliParser::ConfigContext* ywcliParser::CommandLineContext::config(size_t i) {
-  return getRuleContext<ywcliParser::ConfigContext>(i);
+YW_CLI_Parser::ConfigContext* YW_CLI_Parser::CommandLineContext::config(size_t i) {
+  return getRuleContext<YW_CLI_Parser::ConfigContext>(i);
 }
 
-std::vector<tree::TerminalNode *> ywcliParser::CommandLineContext::SPACE() {
-  return getTokens(ywcliParser::SPACE);
+std::vector<tree::TerminalNode *> YW_CLI_Parser::CommandLineContext::SPACE() {
+  return getTokens(YW_CLI_Parser::SPACE);
 }
 
-tree::TerminalNode* ywcliParser::CommandLineContext::SPACE(size_t i) {
-  return getToken(ywcliParser::SPACE, i);
+tree::TerminalNode* YW_CLI_Parser::CommandLineContext::SPACE(size_t i) {
+  return getToken(YW_CLI_Parser::SPACE, i);
 }
 
 
-size_t ywcliParser::CommandLineContext::getRuleIndex() const {
-  return ywcliParser::RuleCommandLine;
+size_t YW_CLI_Parser::CommandLineContext::getRuleIndex() const {
+  return YW_CLI_Parser::RuleCommandLine;
 }
 
-void ywcliParser::CommandLineContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::CommandLineContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->enterCommandLine(this);
 }
 
-void ywcliParser::CommandLineContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::CommandLineContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitCommandLine(this);
 }
 
-ywcliParser::CommandLineContext* ywcliParser::commandLine() {
+YW_CLI_Parser::CommandLineContext* YW_CLI_Parser::commandLine() {
   CommandLineContext *_localctx = _tracker.createInstance<CommandLineContext>(_ctx, getState());
-  enterRule(_localctx, 0, ywcliParser::RuleCommandLine);
+  enterRule(_localctx, 0, YW_CLI_Parser::RuleCommandLine);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -126,11 +126,11 @@ ywcliParser::CommandLineContext* ywcliParser::commandLine() {
         _la = _input->LA(1);
         do {
           setState(29);
-          match(ywcliParser::SPACE);
+          match(YW_CLI_Parser::SPACE);
           setState(32); 
           _errHandler->sync(this);
           _la = _input->LA(1);
-        } while (_la == ywcliParser::SPACE);
+        } while (_la == YW_CLI_Parser::SPACE);
         setState(34);
         pflag(); 
       }
@@ -148,11 +148,11 @@ ywcliParser::CommandLineContext* ywcliParser::commandLine() {
       _la = _input->LA(1);
       do {
         setState(40);
-        match(ywcliParser::SPACE);
+        match(YW_CLI_Parser::SPACE);
         setState(43); 
         _errHandler->sync(this);
         _la = _input->LA(1);
-      } while (_la == ywcliParser::SPACE);
+      } while (_la == YW_CLI_Parser::SPACE);
       setState(45);
       command();
       break;
@@ -162,17 +162,17 @@ ywcliParser::CommandLineContext* ywcliParser::commandLine() {
     setState(59);
     _errHandler->sync(this);
     _la = _input->LA(1);
-    while (_la == ywcliParser::SPACE) {
+    while (_la == YW_CLI_Parser::SPACE) {
       setState(49); 
       _errHandler->sync(this);
       _la = _input->LA(1);
       do {
         setState(48);
-        match(ywcliParser::SPACE);
+        match(YW_CLI_Parser::SPACE);
         setState(51); 
         _errHandler->sync(this);
         _la = _input->LA(1);
-      } while (_la == ywcliParser::SPACE);
+      } while (_la == YW_CLI_Parser::SPACE);
       setState(55);
       _errHandler->sync(this);
       switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 5, _ctx)) {
@@ -196,9 +196,9 @@ ywcliParser::CommandLineContext* ywcliParser::commandLine() {
     setState(65);
     _errHandler->sync(this);
     _la = _input->LA(1);
-    while (_la == ywcliParser::NEWLINE) {
+    while (_la == YW_CLI_Parser::NEWLINE) {
       setState(62);
-      match(ywcliParser::NEWLINE);
+      match(YW_CLI_Parser::NEWLINE);
       setState(67);
       _errHandler->sync(this);
       _la = _input->LA(1);
@@ -216,34 +216,34 @@ ywcliParser::CommandLineContext* ywcliParser::commandLine() {
 
 //----------------- ProgramContext ------------------------------------------------------------------
 
-ywcliParser::ProgramContext::ProgramContext(ParserRuleContext *parent, size_t invokingState)
+YW_CLI_Parser::ProgramContext::ProgramContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* ywcliParser::ProgramContext::WORD() {
-  return getToken(ywcliParser::WORD, 0);
+tree::TerminalNode* YW_CLI_Parser::ProgramContext::WORD() {
+  return getToken(YW_CLI_Parser::WORD, 0);
 }
 
 
-size_t ywcliParser::ProgramContext::getRuleIndex() const {
-  return ywcliParser::RuleProgram;
+size_t YW_CLI_Parser::ProgramContext::getRuleIndex() const {
+  return YW_CLI_Parser::RuleProgram;
 }
 
-void ywcliParser::ProgramContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::ProgramContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->enterProgram(this);
 }
 
-void ywcliParser::ProgramContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::ProgramContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitProgram(this);
 }
 
-ywcliParser::ProgramContext* ywcliParser::program() {
+YW_CLI_Parser::ProgramContext* YW_CLI_Parser::program() {
   ProgramContext *_localctx = _tracker.createInstance<ProgramContext>(_ctx, getState());
-  enterRule(_localctx, 2, ywcliParser::RuleProgram);
+  enterRule(_localctx, 2, YW_CLI_Parser::RuleProgram);
 
   auto onExit = finally([=] {
     exitRule();
@@ -251,7 +251,7 @@ ywcliParser::ProgramContext* ywcliParser::program() {
   try {
     enterOuterAlt(_localctx, 1);
     setState(68);
-    match(ywcliParser::WORD);
+    match(YW_CLI_Parser::WORD);
    
   }
   catch (RecognitionException &e) {
@@ -265,34 +265,34 @@ ywcliParser::ProgramContext* ywcliParser::program() {
 
 //----------------- CommandContext ------------------------------------------------------------------
 
-ywcliParser::CommandContext::CommandContext(ParserRuleContext *parent, size_t invokingState)
+YW_CLI_Parser::CommandContext::CommandContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* ywcliParser::CommandContext::WORD() {
-  return getToken(ywcliParser::WORD, 0);
+tree::TerminalNode* YW_CLI_Parser::CommandContext::WORD() {
+  return getToken(YW_CLI_Parser::WORD, 0);
 }
 
 
-size_t ywcliParser::CommandContext::getRuleIndex() const {
-  return ywcliParser::RuleCommand;
+size_t YW_CLI_Parser::CommandContext::getRuleIndex() const {
+  return YW_CLI_Parser::RuleCommand;
 }
 
-void ywcliParser::CommandContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::CommandContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->enterCommand(this);
 }
 
-void ywcliParser::CommandContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::CommandContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitCommand(this);
 }
 
-ywcliParser::CommandContext* ywcliParser::command() {
+YW_CLI_Parser::CommandContext* YW_CLI_Parser::command() {
   CommandContext *_localctx = _tracker.createInstance<CommandContext>(_ctx, getState());
-  enterRule(_localctx, 4, ywcliParser::RuleCommand);
+  enterRule(_localctx, 4, YW_CLI_Parser::RuleCommand);
 
   auto onExit = finally([=] {
     exitRule();
@@ -300,7 +300,7 @@ ywcliParser::CommandContext* ywcliParser::command() {
   try {
     enterOuterAlt(_localctx, 1);
     setState(70);
-    match(ywcliParser::WORD);
+    match(YW_CLI_Parser::WORD);
    
   }
   catch (RecognitionException &e) {
@@ -314,34 +314,34 @@ ywcliParser::CommandContext* ywcliParser::command() {
 
 //----------------- ArgumentContext ------------------------------------------------------------------
 
-ywcliParser::ArgumentContext::ArgumentContext(ParserRuleContext *parent, size_t invokingState)
+YW_CLI_Parser::ArgumentContext::ArgumentContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* ywcliParser::ArgumentContext::WORD() {
-  return getToken(ywcliParser::WORD, 0);
+tree::TerminalNode* YW_CLI_Parser::ArgumentContext::WORD() {
+  return getToken(YW_CLI_Parser::WORD, 0);
 }
 
 
-size_t ywcliParser::ArgumentContext::getRuleIndex() const {
-  return ywcliParser::RuleArgument;
+size_t YW_CLI_Parser::ArgumentContext::getRuleIndex() const {
+  return YW_CLI_Parser::RuleArgument;
 }
 
-void ywcliParser::ArgumentContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::ArgumentContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->enterArgument(this);
 }
 
-void ywcliParser::ArgumentContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::ArgumentContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitArgument(this);
 }
 
-ywcliParser::ArgumentContext* ywcliParser::argument() {
+YW_CLI_Parser::ArgumentContext* YW_CLI_Parser::argument() {
   ArgumentContext *_localctx = _tracker.createInstance<ArgumentContext>(_ctx, getState());
-  enterRule(_localctx, 6, ywcliParser::RuleArgument);
+  enterRule(_localctx, 6, YW_CLI_Parser::RuleArgument);
 
   auto onExit = finally([=] {
     exitRule();
@@ -349,7 +349,7 @@ ywcliParser::ArgumentContext* ywcliParser::argument() {
   try {
     enterOuterAlt(_localctx, 1);
     setState(72);
-    match(ywcliParser::WORD);
+    match(YW_CLI_Parser::WORD);
    
   }
   catch (RecognitionException &e) {
@@ -363,38 +363,38 @@ ywcliParser::ArgumentContext* ywcliParser::argument() {
 
 //----------------- PflagContext ------------------------------------------------------------------
 
-ywcliParser::PflagContext::PflagContext(ParserRuleContext *parent, size_t invokingState)
+YW_CLI_Parser::PflagContext::PflagContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-ywcliParser::HelpflagContext* ywcliParser::PflagContext::helpflag() {
-  return getRuleContext<ywcliParser::HelpflagContext>(0);
+YW_CLI_Parser::HelpflagContext* YW_CLI_Parser::PflagContext::helpflag() {
+  return getRuleContext<YW_CLI_Parser::HelpflagContext>(0);
 }
 
-ywcliParser::VersionflagContext* ywcliParser::PflagContext::versionflag() {
-  return getRuleContext<ywcliParser::VersionflagContext>(0);
+YW_CLI_Parser::VersionflagContext* YW_CLI_Parser::PflagContext::versionflag() {
+  return getRuleContext<YW_CLI_Parser::VersionflagContext>(0);
 }
 
 
-size_t ywcliParser::PflagContext::getRuleIndex() const {
-  return ywcliParser::RulePflag;
+size_t YW_CLI_Parser::PflagContext::getRuleIndex() const {
+  return YW_CLI_Parser::RulePflag;
 }
 
-void ywcliParser::PflagContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::PflagContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->enterPflag(this);
 }
 
-void ywcliParser::PflagContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::PflagContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitPflag(this);
 }
 
-ywcliParser::PflagContext* ywcliParser::pflag() {
+YW_CLI_Parser::PflagContext* YW_CLI_Parser::pflag() {
   PflagContext *_localctx = _tracker.createInstance<PflagContext>(_ctx, getState());
-  enterRule(_localctx, 8, ywcliParser::RulePflag);
+  enterRule(_localctx, 8, YW_CLI_Parser::RulePflag);
 
   auto onExit = finally([=] {
     exitRule();
@@ -403,16 +403,16 @@ ywcliParser::PflagContext* ywcliParser::pflag() {
     setState(76);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
-      case ywcliParser::T__0:
-      case ywcliParser::T__1: {
+      case YW_CLI_Parser::T__0:
+      case YW_CLI_Parser::T__1: {
         enterOuterAlt(_localctx, 1);
         setState(74);
         helpflag();
         break;
       }
 
-      case ywcliParser::T__2:
-      case ywcliParser::T__3: {
+      case YW_CLI_Parser::T__2:
+      case YW_CLI_Parser::T__3: {
         enterOuterAlt(_localctx, 2);
         setState(75);
         versionflag();
@@ -435,30 +435,30 @@ ywcliParser::PflagContext* ywcliParser::pflag() {
 
 //----------------- HelpflagContext ------------------------------------------------------------------
 
-ywcliParser::HelpflagContext::HelpflagContext(ParserRuleContext *parent, size_t invokingState)
+YW_CLI_Parser::HelpflagContext::HelpflagContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
 
-size_t ywcliParser::HelpflagContext::getRuleIndex() const {
-  return ywcliParser::RuleHelpflag;
+size_t YW_CLI_Parser::HelpflagContext::getRuleIndex() const {
+  return YW_CLI_Parser::RuleHelpflag;
 }
 
-void ywcliParser::HelpflagContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::HelpflagContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->enterHelpflag(this);
 }
 
-void ywcliParser::HelpflagContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::HelpflagContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitHelpflag(this);
 }
 
-ywcliParser::HelpflagContext* ywcliParser::helpflag() {
+YW_CLI_Parser::HelpflagContext* YW_CLI_Parser::helpflag() {
   HelpflagContext *_localctx = _tracker.createInstance<HelpflagContext>(_ctx, getState());
-  enterRule(_localctx, 10, ywcliParser::RuleHelpflag);
+  enterRule(_localctx, 10, YW_CLI_Parser::RuleHelpflag);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -468,9 +468,9 @@ ywcliParser::HelpflagContext* ywcliParser::helpflag() {
     enterOuterAlt(_localctx, 1);
     setState(78);
     _la = _input->LA(1);
-    if (!(_la == ywcliParser::T__0
+    if (!(_la == YW_CLI_Parser::T__0
 
-    || _la == ywcliParser::T__1)) {
+    || _la == YW_CLI_Parser::T__1)) {
     _errHandler->recoverInline(this);
     }
     else {
@@ -490,30 +490,30 @@ ywcliParser::HelpflagContext* ywcliParser::helpflag() {
 
 //----------------- VersionflagContext ------------------------------------------------------------------
 
-ywcliParser::VersionflagContext::VersionflagContext(ParserRuleContext *parent, size_t invokingState)
+YW_CLI_Parser::VersionflagContext::VersionflagContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
 
-size_t ywcliParser::VersionflagContext::getRuleIndex() const {
-  return ywcliParser::RuleVersionflag;
+size_t YW_CLI_Parser::VersionflagContext::getRuleIndex() const {
+  return YW_CLI_Parser::RuleVersionflag;
 }
 
-void ywcliParser::VersionflagContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::VersionflagContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->enterVersionflag(this);
 }
 
-void ywcliParser::VersionflagContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::VersionflagContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitVersionflag(this);
 }
 
-ywcliParser::VersionflagContext* ywcliParser::versionflag() {
+YW_CLI_Parser::VersionflagContext* YW_CLI_Parser::versionflag() {
   VersionflagContext *_localctx = _tracker.createInstance<VersionflagContext>(_ctx, getState());
-  enterRule(_localctx, 12, ywcliParser::RuleVersionflag);
+  enterRule(_localctx, 12, YW_CLI_Parser::RuleVersionflag);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -523,9 +523,9 @@ ywcliParser::VersionflagContext* ywcliParser::versionflag() {
     enterOuterAlt(_localctx, 1);
     setState(80);
     _la = _input->LA(1);
-    if (!(_la == ywcliParser::T__2
+    if (!(_la == YW_CLI_Parser::T__2
 
-    || _la == ywcliParser::T__3)) {
+    || _la == YW_CLI_Parser::T__3)) {
     _errHandler->recoverInline(this);
     }
     else {
@@ -545,50 +545,50 @@ ywcliParser::VersionflagContext* ywcliParser::versionflag() {
 
 //----------------- ConfigContext ------------------------------------------------------------------
 
-ywcliParser::ConfigContext::ConfigContext(ParserRuleContext *parent, size_t invokingState)
+YW_CLI_Parser::ConfigContext::ConfigContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-ywcliParser::CflagContext* ywcliParser::ConfigContext::cflag() {
-  return getRuleContext<ywcliParser::CflagContext>(0);
+YW_CLI_Parser::CflagContext* YW_CLI_Parser::ConfigContext::cflag() {
+  return getRuleContext<YW_CLI_Parser::CflagContext>(0);
 }
 
-ywcliParser::ConfigOptionContext* ywcliParser::ConfigContext::configOption() {
-  return getRuleContext<ywcliParser::ConfigOptionContext>(0);
+YW_CLI_Parser::ConfigOptionContext* YW_CLI_Parser::ConfigContext::configOption() {
+  return getRuleContext<YW_CLI_Parser::ConfigOptionContext>(0);
 }
 
-ywcliParser::ConfigAssignmentContext* ywcliParser::ConfigContext::configAssignment() {
-  return getRuleContext<ywcliParser::ConfigAssignmentContext>(0);
+YW_CLI_Parser::ConfigAssignmentContext* YW_CLI_Parser::ConfigContext::configAssignment() {
+  return getRuleContext<YW_CLI_Parser::ConfigAssignmentContext>(0);
 }
 
-std::vector<tree::TerminalNode *> ywcliParser::ConfigContext::SPACE() {
-  return getTokens(ywcliParser::SPACE);
+std::vector<tree::TerminalNode *> YW_CLI_Parser::ConfigContext::SPACE() {
+  return getTokens(YW_CLI_Parser::SPACE);
 }
 
-tree::TerminalNode* ywcliParser::ConfigContext::SPACE(size_t i) {
-  return getToken(ywcliParser::SPACE, i);
+tree::TerminalNode* YW_CLI_Parser::ConfigContext::SPACE(size_t i) {
+  return getToken(YW_CLI_Parser::SPACE, i);
 }
 
 
-size_t ywcliParser::ConfigContext::getRuleIndex() const {
-  return ywcliParser::RuleConfig;
+size_t YW_CLI_Parser::ConfigContext::getRuleIndex() const {
+  return YW_CLI_Parser::RuleConfig;
 }
 
-void ywcliParser::ConfigContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::ConfigContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->enterConfig(this);
 }
 
-void ywcliParser::ConfigContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::ConfigContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitConfig(this);
 }
 
-ywcliParser::ConfigContext* ywcliParser::config() {
+YW_CLI_Parser::ConfigContext* YW_CLI_Parser::config() {
   ConfigContext *_localctx = _tracker.createInstance<ConfigContext>(_ctx, getState());
-  enterRule(_localctx, 14, ywcliParser::RuleConfig);
+  enterRule(_localctx, 14, YW_CLI_Parser::RuleConfig);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -598,9 +598,9 @@ ywcliParser::ConfigContext* ywcliParser::config() {
     setState(93);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
-      case ywcliParser::T__4:
-      case ywcliParser::T__5:
-      case ywcliParser::T__6: {
+      case YW_CLI_Parser::T__4:
+      case YW_CLI_Parser::T__5:
+      case YW_CLI_Parser::T__6: {
         enterOuterAlt(_localctx, 1);
         setState(82);
         cflag();
@@ -610,11 +610,11 @@ ywcliParser::ConfigContext* ywcliParser::config() {
         _la = _input->LA(1);
         do {
           setState(83);
-          match(ywcliParser::SPACE);
+          match(YW_CLI_Parser::SPACE);
           setState(86); 
           _errHandler->sync(this);
           _la = _input->LA(1);
-        } while (_la == ywcliParser::SPACE);
+        } while (_la == YW_CLI_Parser::SPACE);
         setState(90);
         _errHandler->sync(this);
         switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 10, _ctx)) {
@@ -634,7 +634,7 @@ ywcliParser::ConfigContext* ywcliParser::config() {
         break;
       }
 
-      case ywcliParser::WORD: {
+      case YW_CLI_Parser::WORD: {
         enterOuterAlt(_localctx, 2);
         setState(92);
         configAssignment();
@@ -657,30 +657,30 @@ ywcliParser::ConfigContext* ywcliParser::config() {
 
 //----------------- CflagContext ------------------------------------------------------------------
 
-ywcliParser::CflagContext::CflagContext(ParserRuleContext *parent, size_t invokingState)
+YW_CLI_Parser::CflagContext::CflagContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
 
-size_t ywcliParser::CflagContext::getRuleIndex() const {
-  return ywcliParser::RuleCflag;
+size_t YW_CLI_Parser::CflagContext::getRuleIndex() const {
+  return YW_CLI_Parser::RuleCflag;
 }
 
-void ywcliParser::CflagContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::CflagContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->enterCflag(this);
 }
 
-void ywcliParser::CflagContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::CflagContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitCflag(this);
 }
 
-ywcliParser::CflagContext* ywcliParser::cflag() {
+YW_CLI_Parser::CflagContext* YW_CLI_Parser::cflag() {
   CflagContext *_localctx = _tracker.createInstance<CflagContext>(_ctx, getState());
-  enterRule(_localctx, 16, ywcliParser::RuleCflag);
+  enterRule(_localctx, 16, YW_CLI_Parser::RuleCflag);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -691,9 +691,9 @@ ywcliParser::CflagContext* ywcliParser::cflag() {
     setState(95);
     _la = _input->LA(1);
     if (!((((_la & ~ 0x3fULL) == 0) &&
-      ((1ULL << _la) & ((1ULL << ywcliParser::T__4)
-      | (1ULL << ywcliParser::T__5)
-      | (1ULL << ywcliParser::T__6))) != 0))) {
+      ((1ULL << _la) & ((1ULL << YW_CLI_Parser::T__4)
+      | (1ULL << YW_CLI_Parser::T__5)
+      | (1ULL << YW_CLI_Parser::T__6))) != 0))) {
     _errHandler->recoverInline(this);
     }
     else {
@@ -713,34 +713,34 @@ ywcliParser::CflagContext* ywcliParser::cflag() {
 
 //----------------- ConfigOptionContext ------------------------------------------------------------------
 
-ywcliParser::ConfigOptionContext::ConfigOptionContext(ParserRuleContext *parent, size_t invokingState)
+YW_CLI_Parser::ConfigOptionContext::ConfigOptionContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-ywcliParser::ConfigNameContext* ywcliParser::ConfigOptionContext::configName() {
-  return getRuleContext<ywcliParser::ConfigNameContext>(0);
+YW_CLI_Parser::ConfigNameContext* YW_CLI_Parser::ConfigOptionContext::configName() {
+  return getRuleContext<YW_CLI_Parser::ConfigNameContext>(0);
 }
 
 
-size_t ywcliParser::ConfigOptionContext::getRuleIndex() const {
-  return ywcliParser::RuleConfigOption;
+size_t YW_CLI_Parser::ConfigOptionContext::getRuleIndex() const {
+  return YW_CLI_Parser::RuleConfigOption;
 }
 
-void ywcliParser::ConfigOptionContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::ConfigOptionContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->enterConfigOption(this);
 }
 
-void ywcliParser::ConfigOptionContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::ConfigOptionContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitConfigOption(this);
 }
 
-ywcliParser::ConfigOptionContext* ywcliParser::configOption() {
+YW_CLI_Parser::ConfigOptionContext* YW_CLI_Parser::configOption() {
   ConfigOptionContext *_localctx = _tracker.createInstance<ConfigOptionContext>(_ctx, getState());
-  enterRule(_localctx, 18, ywcliParser::RuleConfigOption);
+  enterRule(_localctx, 18, YW_CLI_Parser::RuleConfigOption);
 
   auto onExit = finally([=] {
     exitRule();
@@ -762,38 +762,38 @@ ywcliParser::ConfigOptionContext* ywcliParser::configOption() {
 
 //----------------- ConfigAssignmentContext ------------------------------------------------------------------
 
-ywcliParser::ConfigAssignmentContext::ConfigAssignmentContext(ParserRuleContext *parent, size_t invokingState)
+YW_CLI_Parser::ConfigAssignmentContext::ConfigAssignmentContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-ywcliParser::ConfigNameContext* ywcliParser::ConfigAssignmentContext::configName() {
-  return getRuleContext<ywcliParser::ConfigNameContext>(0);
+YW_CLI_Parser::ConfigNameContext* YW_CLI_Parser::ConfigAssignmentContext::configName() {
+  return getRuleContext<YW_CLI_Parser::ConfigNameContext>(0);
 }
 
-ywcliParser::ConfigValueContext* ywcliParser::ConfigAssignmentContext::configValue() {
-  return getRuleContext<ywcliParser::ConfigValueContext>(0);
+YW_CLI_Parser::ConfigValueContext* YW_CLI_Parser::ConfigAssignmentContext::configValue() {
+  return getRuleContext<YW_CLI_Parser::ConfigValueContext>(0);
 }
 
 
-size_t ywcliParser::ConfigAssignmentContext::getRuleIndex() const {
-  return ywcliParser::RuleConfigAssignment;
+size_t YW_CLI_Parser::ConfigAssignmentContext::getRuleIndex() const {
+  return YW_CLI_Parser::RuleConfigAssignment;
 }
 
-void ywcliParser::ConfigAssignmentContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::ConfigAssignmentContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->enterConfigAssignment(this);
 }
 
-void ywcliParser::ConfigAssignmentContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::ConfigAssignmentContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitConfigAssignment(this);
 }
 
-ywcliParser::ConfigAssignmentContext* ywcliParser::configAssignment() {
+YW_CLI_Parser::ConfigAssignmentContext* YW_CLI_Parser::configAssignment() {
   ConfigAssignmentContext *_localctx = _tracker.createInstance<ConfigAssignmentContext>(_ctx, getState());
-  enterRule(_localctx, 20, ywcliParser::RuleConfigAssignment);
+  enterRule(_localctx, 20, YW_CLI_Parser::RuleConfigAssignment);
 
   auto onExit = finally([=] {
     exitRule();
@@ -803,7 +803,7 @@ ywcliParser::ConfigAssignmentContext* ywcliParser::configAssignment() {
     setState(99);
     configName();
     setState(100);
-    match(ywcliParser::T__7);
+    match(YW_CLI_Parser::T__7);
     setState(101);
     configValue();
    
@@ -819,34 +819,34 @@ ywcliParser::ConfigAssignmentContext* ywcliParser::configAssignment() {
 
 //----------------- ConfigNameContext ------------------------------------------------------------------
 
-ywcliParser::ConfigNameContext::ConfigNameContext(ParserRuleContext *parent, size_t invokingState)
+YW_CLI_Parser::ConfigNameContext::ConfigNameContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* ywcliParser::ConfigNameContext::WORD() {
-  return getToken(ywcliParser::WORD, 0);
+tree::TerminalNode* YW_CLI_Parser::ConfigNameContext::WORD() {
+  return getToken(YW_CLI_Parser::WORD, 0);
 }
 
 
-size_t ywcliParser::ConfigNameContext::getRuleIndex() const {
-  return ywcliParser::RuleConfigName;
+size_t YW_CLI_Parser::ConfigNameContext::getRuleIndex() const {
+  return YW_CLI_Parser::RuleConfigName;
 }
 
-void ywcliParser::ConfigNameContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::ConfigNameContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->enterConfigName(this);
 }
 
-void ywcliParser::ConfigNameContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::ConfigNameContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitConfigName(this);
 }
 
-ywcliParser::ConfigNameContext* ywcliParser::configName() {
+YW_CLI_Parser::ConfigNameContext* YW_CLI_Parser::configName() {
   ConfigNameContext *_localctx = _tracker.createInstance<ConfigNameContext>(_ctx, getState());
-  enterRule(_localctx, 22, ywcliParser::RuleConfigName);
+  enterRule(_localctx, 22, YW_CLI_Parser::RuleConfigName);
 
   auto onExit = finally([=] {
     exitRule();
@@ -854,7 +854,7 @@ ywcliParser::ConfigNameContext* ywcliParser::configName() {
   try {
     enterOuterAlt(_localctx, 1);
     setState(103);
-    match(ywcliParser::WORD);
+    match(YW_CLI_Parser::WORD);
    
   }
   catch (RecognitionException &e) {
@@ -868,50 +868,50 @@ ywcliParser::ConfigNameContext* ywcliParser::configName() {
 
 //----------------- ConfigValueContext ------------------------------------------------------------------
 
-ywcliParser::ConfigValueContext::ConfigValueContext(ParserRuleContext *parent, size_t invokingState)
+YW_CLI_Parser::ConfigValueContext::ConfigValueContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-ywcliParser::UnquotedValueContext* ywcliParser::ConfigValueContext::unquotedValue() {
-  return getRuleContext<ywcliParser::UnquotedValueContext>(0);
+YW_CLI_Parser::UnquotedValueContext* YW_CLI_Parser::ConfigValueContext::unquotedValue() {
+  return getRuleContext<YW_CLI_Parser::UnquotedValueContext>(0);
 }
 
-std::vector<tree::TerminalNode *> ywcliParser::ConfigValueContext::SQ() {
-  return getTokens(ywcliParser::SQ);
+std::vector<tree::TerminalNode *> YW_CLI_Parser::ConfigValueContext::SQ() {
+  return getTokens(YW_CLI_Parser::SQ);
 }
 
-tree::TerminalNode* ywcliParser::ConfigValueContext::SQ(size_t i) {
-  return getToken(ywcliParser::SQ, i);
+tree::TerminalNode* YW_CLI_Parser::ConfigValueContext::SQ(size_t i) {
+  return getToken(YW_CLI_Parser::SQ, i);
 }
 
-std::vector<tree::TerminalNode *> ywcliParser::ConfigValueContext::DQ() {
-  return getTokens(ywcliParser::DQ);
+std::vector<tree::TerminalNode *> YW_CLI_Parser::ConfigValueContext::DQ() {
+  return getTokens(YW_CLI_Parser::DQ);
 }
 
-tree::TerminalNode* ywcliParser::ConfigValueContext::DQ(size_t i) {
-  return getToken(ywcliParser::DQ, i);
+tree::TerminalNode* YW_CLI_Parser::ConfigValueContext::DQ(size_t i) {
+  return getToken(YW_CLI_Parser::DQ, i);
 }
 
 
-size_t ywcliParser::ConfigValueContext::getRuleIndex() const {
-  return ywcliParser::RuleConfigValue;
+size_t YW_CLI_Parser::ConfigValueContext::getRuleIndex() const {
+  return YW_CLI_Parser::RuleConfigValue;
 }
 
-void ywcliParser::ConfigValueContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::ConfigValueContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->enterConfigValue(this);
 }
 
-void ywcliParser::ConfigValueContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::ConfigValueContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitConfigValue(this);
 }
 
-ywcliParser::ConfigValueContext* ywcliParser::configValue() {
+YW_CLI_Parser::ConfigValueContext* YW_CLI_Parser::configValue() {
   ConfigValueContext *_localctx = _tracker.createInstance<ConfigValueContext>(_ctx, getState());
-  enterRule(_localctx, 24, ywcliParser::RuleConfigValue);
+  enterRule(_localctx, 24, YW_CLI_Parser::RuleConfigValue);
 
   auto onExit = finally([=] {
     exitRule();
@@ -920,32 +920,32 @@ ywcliParser::ConfigValueContext* ywcliParser::configValue() {
     setState(114);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
-      case ywcliParser::WORD: {
+      case YW_CLI_Parser::WORD: {
         enterOuterAlt(_localctx, 1);
         setState(105);
         unquotedValue();
         break;
       }
 
-      case ywcliParser::SQ: {
+      case YW_CLI_Parser::SQ: {
         enterOuterAlt(_localctx, 2);
         setState(106);
-        match(ywcliParser::SQ);
+        match(YW_CLI_Parser::SQ);
         setState(107);
         unquotedValue();
         setState(108);
-        match(ywcliParser::SQ);
+        match(YW_CLI_Parser::SQ);
         break;
       }
 
-      case ywcliParser::DQ: {
+      case YW_CLI_Parser::DQ: {
         enterOuterAlt(_localctx, 3);
         setState(110);
-        match(ywcliParser::DQ);
+        match(YW_CLI_Parser::DQ);
         setState(111);
         unquotedValue();
         setState(112);
-        match(ywcliParser::DQ);
+        match(YW_CLI_Parser::DQ);
         break;
       }
 
@@ -965,46 +965,46 @@ ywcliParser::ConfigValueContext* ywcliParser::configValue() {
 
 //----------------- UnquotedValueContext ------------------------------------------------------------------
 
-ywcliParser::UnquotedValueContext::UnquotedValueContext(ParserRuleContext *parent, size_t invokingState)
+YW_CLI_Parser::UnquotedValueContext::UnquotedValueContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-std::vector<tree::TerminalNode *> ywcliParser::UnquotedValueContext::WORD() {
-  return getTokens(ywcliParser::WORD);
+std::vector<tree::TerminalNode *> YW_CLI_Parser::UnquotedValueContext::WORD() {
+  return getTokens(YW_CLI_Parser::WORD);
 }
 
-tree::TerminalNode* ywcliParser::UnquotedValueContext::WORD(size_t i) {
-  return getToken(ywcliParser::WORD, i);
+tree::TerminalNode* YW_CLI_Parser::UnquotedValueContext::WORD(size_t i) {
+  return getToken(YW_CLI_Parser::WORD, i);
 }
 
-std::vector<tree::TerminalNode *> ywcliParser::UnquotedValueContext::SPACE() {
-  return getTokens(ywcliParser::SPACE);
+std::vector<tree::TerminalNode *> YW_CLI_Parser::UnquotedValueContext::SPACE() {
+  return getTokens(YW_CLI_Parser::SPACE);
 }
 
-tree::TerminalNode* ywcliParser::UnquotedValueContext::SPACE(size_t i) {
-  return getToken(ywcliParser::SPACE, i);
+tree::TerminalNode* YW_CLI_Parser::UnquotedValueContext::SPACE(size_t i) {
+  return getToken(YW_CLI_Parser::SPACE, i);
 }
 
 
-size_t ywcliParser::UnquotedValueContext::getRuleIndex() const {
-  return ywcliParser::RuleUnquotedValue;
+size_t YW_CLI_Parser::UnquotedValueContext::getRuleIndex() const {
+  return YW_CLI_Parser::RuleUnquotedValue;
 }
 
-void ywcliParser::UnquotedValueContext::enterRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::UnquotedValueContext::enterRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->enterUnquotedValue(this);
 }
 
-void ywcliParser::UnquotedValueContext::exitRule(tree::ParseTreeListener *listener) {
-  auto parserListener = dynamic_cast<ywcliListener *>(listener);
+void YW_CLI_Parser::UnquotedValueContext::exitRule(tree::ParseTreeListener *listener) {
+  auto parserListener = dynamic_cast<YW_CLI_Listener *>(listener);
   if (parserListener != nullptr)
     parserListener->exitUnquotedValue(this);
 }
 
-ywcliParser::UnquotedValueContext* ywcliParser::unquotedValue() {
+YW_CLI_Parser::UnquotedValueContext* YW_CLI_Parser::unquotedValue() {
   UnquotedValueContext *_localctx = _tracker.createInstance<UnquotedValueContext>(_ctx, getState());
-  enterRule(_localctx, 26, ywcliParser::RuleUnquotedValue);
+  enterRule(_localctx, 26, YW_CLI_Parser::RuleUnquotedValue);
   size_t _la = 0;
 
   auto onExit = finally([=] {
@@ -1018,14 +1018,14 @@ ywcliParser::UnquotedValueContext* ywcliParser::unquotedValue() {
     case 1: {
       enterOuterAlt(_localctx, 1);
       setState(116);
-      match(ywcliParser::WORD);
+      match(YW_CLI_Parser::WORD);
       break;
     }
 
     case 2: {
       enterOuterAlt(_localctx, 2);
       setState(117);
-      match(ywcliParser::WORD);
+      match(YW_CLI_Parser::WORD);
       setState(126);
       _errHandler->sync(this);
       alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 14, _ctx);
@@ -1036,13 +1036,13 @@ ywcliParser::UnquotedValueContext* ywcliParser::unquotedValue() {
           _la = _input->LA(1);
           do {
             setState(118);
-            match(ywcliParser::SPACE);
+            match(YW_CLI_Parser::SPACE);
             setState(121); 
             _errHandler->sync(this);
             _la = _input->LA(1);
-          } while (_la == ywcliParser::SPACE);
+          } while (_la == YW_CLI_Parser::SPACE);
           setState(123);
-          match(ywcliParser::WORD); 
+          match(YW_CLI_Parser::WORD); 
         }
         setState(128);
         _errHandler->sync(this);
@@ -1064,33 +1064,33 @@ ywcliParser::UnquotedValueContext* ywcliParser::unquotedValue() {
 }
 
 // Static vars and initialization.
-std::vector<dfa::DFA> ywcliParser::_decisionToDFA;
-atn::PredictionContextCache ywcliParser::_sharedContextCache;
+std::vector<dfa::DFA> YW_CLI_Parser::_decisionToDFA;
+atn::PredictionContextCache YW_CLI_Parser::_sharedContextCache;
 
 // We own the ATN which in turn owns the ATN states.
-atn::ATN ywcliParser::_atn;
-std::vector<uint16_t> ywcliParser::_serializedATN;
+atn::ATN YW_CLI_Parser::_atn;
+std::vector<uint16_t> YW_CLI_Parser::_serializedATN;
 
-std::vector<std::string> ywcliParser::_ruleNames = {
+std::vector<std::string> YW_CLI_Parser::_ruleNames = {
   "commandLine", "program", "command", "argument", "pflag", "helpflag", 
   "versionflag", "config", "cflag", "configOption", "configAssignment", 
   "configName", "configValue", "unquotedValue"
 };
 
-std::vector<std::string> ywcliParser::_literalNames = {
+std::vector<std::string> YW_CLI_Parser::_literalNames = {
   "", "'-h'", "'--help'", "'-v'", "'--version'", "'-c'", "'-config'", "'--config'", 
   "'='", "", "", "'\"'", "'''"
 };
 
-std::vector<std::string> ywcliParser::_symbolicNames = {
+std::vector<std::string> YW_CLI_Parser::_symbolicNames = {
   "", "", "", "", "", "", "", "", "", "NEWLINE", "SPACE", "DQ", "SQ", "WORD"
 };
 
-dfa::Vocabulary ywcliParser::_vocabulary(_literalNames, _symbolicNames);
+dfa::Vocabulary YW_CLI_Parser::_vocabulary(_literalNames, _symbolicNames);
 
-std::vector<std::string> ywcliParser::_tokenNames;
+std::vector<std::string> YW_CLI_Parser::_tokenNames;
 
-ywcliParser::Initializer::Initializer() {
+YW_CLI_Parser::Initializer::Initializer() {
 	for (size_t i = 0; i < _symbolicNames.size(); ++i) {
 		std::string name = _vocabulary.getLiteralName(i);
 		if (name.empty()) {
@@ -1205,4 +1205,4 @@ ywcliParser::Initializer::Initializer() {
   }
 }
 
-ywcliParser::Initializer ywcliParser::_init;
+YW_CLI_Parser::Initializer YW_CLI_Parser::_init;

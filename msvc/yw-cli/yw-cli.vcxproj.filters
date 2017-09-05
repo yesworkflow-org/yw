@@ -17,44 +17,50 @@
     <None Include="..\..\src\yw-cli\build.bat">
       <Filter>Grammar Definitions</Filter>
     </None>
-    <None Include="..\..\src\yw-cli\ywcli.g4">
-      <Filter>Grammar Definitions</Filter>
-    </None>
     <None Include="..\..\src\yw-cli\gtest.sh">
       <Filter>Grammar Definitions</Filter>
     </None>
-    <None Include="..\..\src\yw-cli\ywcli.tokens">
+    <None Include="..\..\src\yw-cli\YW_CLI_Lexer.tokens">
       <Filter>Generated Source Files</Filter>
     </None>
-    <None Include="..\..\src\yw-cli\ywcliLexer.tokens">
+    <None Include="..\..\src\yw-cli\YW_CLI_.tokens">
       <Filter>Generated Source Files</Filter>
+    </None>
+    <None Include="..\..\src\yw-cli\YW_CLI_.g4">
+      <Filter>Grammar Definitions</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\yw-cli\ywcliBaseListener.cpp">
+    <ClCompile Include="..\..\src\yw-cli\yw_cli_parser_builder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\yw-cli\YW_CLI_BaseListener.cpp">
       <Filter>Generated Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\yw-cli\ywcliLexer.cpp">
+    <ClCompile Include="..\..\src\yw-cli\YW_CLI_Lexer.cpp">
       <Filter>Generated Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\yw-cli\ywcliListener.cpp">
+    <ClCompile Include="..\..\src\yw-cli\YW_CLI_Listener.cpp">
       <Filter>Generated Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\yw-cli\ywcliParser.cpp">
+    <ClCompile Include="..\..\src\yw-cli\YW_CLI_Parser.cpp">
       <Filter>Generated Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\yw-cli\ywcliBaseListener.h">
+    <ClInclude Include="..\..\src\yw-cli\yw_cli_parser_builder.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-cli\YW_CLI_BaseListener.h">
       <Filter>Generated Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\yw-cli\ywcliLexer.h">
+    <ClInclude Include="..\..\src\yw-cli\YW_CLI_Lexer.h">
       <Filter>Generated Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\yw-cli\ywcliListener.h">
+    <ClInclude Include="..\..\src\yw-cli\YW_CLI_Listener.h">
       <Filter>Generated Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\yw-cli\ywcliParser.h">
+    <ClInclude Include="..\..\src\yw-cli\YW_CLI_Parser.h">
       <Filter>Generated Source Files</Filter>
     </ClInclude>
   </ItemGroup>

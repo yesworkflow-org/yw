@@ -1,5 +1,5 @@
 
-// Generated from ywcli.g4 by ANTLR 4.7
+// Generated from YW_CLI_.g4 by ANTLR 4.7
 
 #pragma once
 
@@ -10,15 +10,15 @@
 namespace yw {
 
 
-class  ywcliLexer : public antlr4::Lexer {
+class  YW_CLI_Lexer : public antlr4::Lexer {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
     T__7 = 8, NEWLINE = 9, SPACE = 10, DQ = 11, SQ = 12, WORD = 13
   };
 
-  ywcliLexer(antlr4::CharStream *input);
-  ~ywcliLexer();
+  YW_CLI_Lexer(antlr4::CharStream *input);
+  ~YW_CLI_Lexer();
 
   virtual std::string getGrammarFileName() const override;
   virtual const std::vector<std::string>& getRuleNames() const override;

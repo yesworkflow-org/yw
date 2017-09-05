@@ -22,21 +22,23 @@
     <None Include="..\..\src\yw-cli\.gitignore" />
     <None Include="..\..\src\yw-cli\build.bat" />
     <None Include="..\..\src\yw-cli\gtest.sh" />
-    <None Include="..\..\src\yw-cli\ywcli.g4" />
-    <None Include="..\..\src\yw-cli\ywcli.tokens" />
-    <None Include="..\..\src\yw-cli\ywcliLexer.tokens" />
+    <None Include="..\..\src\yw-cli\YW_CLI_.g4" />
+    <None Include="..\..\src\yw-cli\YW_CLI_.tokens" />
+    <None Include="..\..\src\yw-cli\YW_CLI_Lexer.tokens" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\yw-cli\ywcliBaseListener.cpp" />
-    <ClCompile Include="..\..\src\yw-cli\ywcliLexer.cpp" />
-    <ClCompile Include="..\..\src\yw-cli\ywcliListener.cpp" />
-    <ClCompile Include="..\..\src\yw-cli\ywcliParser.cpp" />
+    <ClCompile Include="..\..\src\yw-cli\YW_CLI_BaseListener.cpp" />
+    <ClCompile Include="..\..\src\yw-cli\YW_CLI_Lexer.cpp" />
+    <ClCompile Include="..\..\src\yw-cli\YW_CLI_Listener.cpp" />
+    <ClCompile Include="..\..\src\yw-cli\YW_CLI_Parser.cpp" />
+    <ClCompile Include="..\..\src\yw-cli\yw_cli_parser_builder.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\yw-cli\ywcliBaseListener.h" />
-    <ClInclude Include="..\..\src\yw-cli\ywcliLexer.h" />
-    <ClInclude Include="..\..\src\yw-cli\ywcliListener.h" />
-    <ClInclude Include="..\..\src\yw-cli\ywcliParser.h" />
+    <ClInclude Include="..\..\src\yw-cli\YW_CLI_BaseListener.h" />
+    <ClInclude Include="..\..\src\yw-cli\YW_CLI_Lexer.h" />
+    <ClInclude Include="..\..\src\yw-cli\YW_CLI_Listener.h" />
+    <ClInclude Include="..\..\src\yw-cli\YW_CLI_Parser.h" />
+    <ClInclude Include="..\..\src\yw-cli\yw_cli_parser_builder.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
