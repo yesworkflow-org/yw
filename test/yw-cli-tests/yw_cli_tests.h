@@ -1,13 +1,15 @@
-// stdafx.h : include file for standard system include files,
-// or project specific include files that are used frequently, but
-// are changed infrequently
-//
-
 #pragma once
 
+#ifdef _MSC_VER 
 #include "targetver.h"
+#endif
 
-// Headers for CppUnitTest
-#include "CppUnitTest.h"
+#include <iostream>
+#include <sstream>
 
-// TODO: reference additional headers your program requires here
+#include "antlr4-runtime.h"
+#include "YW_CLI_BaseListener.h"
+#include "YW_CLI_Parser.h"
+#include "YW_CLI_Lexer.h"
+#include "yw_cli_parser_builder.h"
+#include "yw_test.h"
