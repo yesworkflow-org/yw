@@ -162,6 +162,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-extract-app", "yw-extrac
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-cli", "yw-cli\yw-cli.vcxproj", "{19688ECD-0F81-4E43-BD3C-62E45B9725A1}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7FF323B9-9432-48FA-8B1A-090062B6440B} = {7FF323B9-9432-48FA-8B1A-090062B6440B}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-cli-tests", "yw-cli-tests\yw-cli-tests.vcxproj", "{238C5976-E68F-483B-8813-B006351BB6EB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CE3C782F-29AF-4822-90F5-4D83FE7E4140} = {CE3C782F-29AF-4822-90F5-4D83FE7E4140}
+		{7FF323B9-9432-48FA-8B1A-090062B6440B} = {7FF323B9-9432-48FA-8B1A-090062B6440B}
+		{19688ECD-0F81-4E43-BD3C-62E45B9725A1} = {19688ECD-0F81-4E43-BD3C-62E45B9725A1}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -321,6 +331,16 @@ Global
 		{19688ECD-0F81-4E43-BD3C-62E45B9725A1}.Release|x64.Build.0 = Release|x64
 		{19688ECD-0F81-4E43-BD3C-62E45B9725A1}.Release|x86.ActiveCfg = Release|Win32
 		{19688ECD-0F81-4E43-BD3C-62E45B9725A1}.Release|x86.Build.0 = Release|Win32
+		{238C5976-E68F-483B-8813-B006351BB6EB}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{238C5976-E68F-483B-8813-B006351BB6EB}.Debug|x64.ActiveCfg = Debug|x64
+		{238C5976-E68F-483B-8813-B006351BB6EB}.Debug|x64.Build.0 = Debug|x64
+		{238C5976-E68F-483B-8813-B006351BB6EB}.Debug|x86.ActiveCfg = Debug|Win32
+		{238C5976-E68F-483B-8813-B006351BB6EB}.Debug|x86.Build.0 = Debug|Win32
+		{238C5976-E68F-483B-8813-B006351BB6EB}.Release|Any CPU.ActiveCfg = Release|Win32
+		{238C5976-E68F-483B-8813-B006351BB6EB}.Release|x64.ActiveCfg = Release|x64
+		{238C5976-E68F-483B-8813-B006351BB6EB}.Release|x64.Build.0 = Release|x64
+		{238C5976-E68F-483B-8813-B006351BB6EB}.Release|x86.ActiveCfg = Release|Win32
+		{238C5976-E68F-483B-8813-B006351BB6EB}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
