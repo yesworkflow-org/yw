@@ -59,6 +59,18 @@ namespace yw {
             }
 
             template<typename T>
+            static void IsNotNull(const T* actual, const wchar_t* message = nullptr) {
+
+                #ifdef MSTEST
+                    MSTEST::IsNotNull(actual, message);
+                #endif
+
+                #ifdef CPPUTEST
+                    CHECK(actual != nullptr);
+                #endif
+            }
+
+            template<typename T>
             static void IsNull(nullable<T> actual, const wchar_t* message = nullptr) {
 
                 #ifdef MSTEST
