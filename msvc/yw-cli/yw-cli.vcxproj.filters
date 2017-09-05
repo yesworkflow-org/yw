@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Generated Source Files">
+      <UniqueIdentifier>{8259e179-74e2-4671-a36c-8c616f25631a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Grammar Definitions">
+      <UniqueIdentifier>{ec5b77e3-04ca-40ce-b02c-4dddbe1cf3f2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\yw-cli\.gitignore" />
+    <None Include="..\..\src\yw-cli\build.bat">
+      <Filter>Grammar Definitions</Filter>
+    </None>
+    <None Include="..\..\src\yw-cli\ywcli.g4">
+      <Filter>Grammar Definitions</Filter>
+    </None>
+    <None Include="..\..\src\yw-cli\gtest.sh">
+      <Filter>Grammar Definitions</Filter>
+    </None>
+    <None Include="..\..\src\yw-cli\ywcli.tokens">
+      <Filter>Generated Source Files</Filter>
+    </None>
+    <None Include="..\..\src\yw-cli\ywcliLexer.tokens">
+      <Filter>Generated Source Files</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\src\yw-cli\ywcliBaseListener.cpp">
+      <Filter>Generated Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\yw-cli\ywcliLexer.cpp">
+      <Filter>Generated Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\yw-cli\ywcliListener.cpp">
+      <Filter>Generated Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\yw-cli\ywcliParser.cpp">
+      <Filter>Generated Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\src\yw-cli\ywcliBaseListener.h">
+      <Filter>Generated Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-cli\ywcliLexer.h">
+      <Filter>Generated Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-cli\ywcliListener.h">
+      <Filter>Generated Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-cli\ywcliParser.h">
+      <Filter>Generated Source Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
