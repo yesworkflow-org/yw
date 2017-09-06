@@ -228,4 +228,31 @@ YW_TEST_SET
         Assert::IsNull(context->config()[3]->configValue());
     }
 
+    YW_TEST(CommandLineContext, CommandLineCanDistinguishInterleavedArgumentsAndConfigOptions)
+    {
+        YW_CLI_ParserBuilder parser_builder("yw graph arg1 extract.volatile=true arg2 -c model.workflow=top arg3 graph.title='My workflow' arg4 --config graph.workflowbox arg5");
+        YW_CLI_Parser::CommandLineContext* context = parser_builder.parse()->commandLine();
+        Expect::EmptyString(stderrRecorder.str());
+
+        Expect::AreEqual(0, context->pflag().size());
+        Expect::AreEqual("yw", context->program()->getText());
+        Expect::AreEqual("graph", context->command()->getText());
+
+        Assert::AreEqual(5, context->argument().size());
+        Assert::AreEqual("arg1", context->argument()[0]->getText());
+        Assert::AreEqual("arg2", context->argument()[1]->getText());
+        Assert::AreEqual("arg3", context->argument()[2]->getText());
+        Assert::AreEqual("arg4", context->argument()[3]->getText());
+        Assert::AreEqual("arg5", context->argument()[4]->getText());
+        Assert::AreEqual(4, context->config().size());
+        Assert::AreEqual("extract.volatile", context->config()[0]->configName()->getText());
+        Assert::AreEqual("true", context->config()[0]->configValue()->getText());
+        Assert::AreEqual("model.workflow", context->config()[1]->configName()->getText());
+        Assert::AreEqual("top", context->config()[1]->configValue()->getText());
+        Assert::AreEqual("graph.title", context->config()[2]->configName()->getText());
+        Assert::AreEqual("'My workflow'", context->config()[2]->configValue()->getText());
+        Assert::AreEqual("graph.workflowbox", context->config()[3]->configName()->getText());
+        Assert::IsNull(context->config()[3]->configValue());
+    }
+
 YW_TEST_END
