@@ -18,19 +18,22 @@ namespace yw {
         };
 
         struct Setting {
+
             const std::string key;
             const std::string value;
             const SettingSource source;
             const std::string resource;
+
             Setting(
                 const std::string& key, 
                 const std::string& value, 
-                const SettingSource source, 
-                const std::string& resource
+                const SettingSource source = SettingSource::UNKNOWN,
+                const std::string& resource = NO_RESOURCE
             ) : key(key), value(value), source(source), resource(resource) {}
-        };
 
-        static Setting UNDEFINED("", "", SettingSource::UNKNOWN, "");
+            static const Setting NO_SETTING;
+            static const std::string NO_RESOURCE;
+        };
 
         class Configuration {
             std::map<std::string, Setting> settings;
