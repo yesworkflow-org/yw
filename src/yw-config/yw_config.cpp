@@ -21,6 +21,12 @@ namespace yw {
             }
         }
 
+        void Configuration::insertAll(const Configuration& other) {
+            for (auto setting : other.settings) {
+                insert(setting.second);
+            }
+        }
+
         const Setting& Configuration::get(const std::string& key) {
             auto it = settings.find(key);
             if (it != settings.end()) {

@@ -41,6 +41,7 @@ namespace yw {
             Configuration() {}
             const Setting& get(const std::string& key);
             void insert(const Setting& setting);
+            void insertAll(const Configuration& settings);
             size_t size() { return settings.size(); }
         };
     }
