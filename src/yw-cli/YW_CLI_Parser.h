@@ -20,8 +20,7 @@ public:
   enum {
     RuleCommandLine = 0, RuleProgram = 1, RuleCommand = 2, RuleArgument = 3, 
     RulePflag = 4, RuleHelpflag = 5, RuleVersionflag = 6, RuleConfig = 7, 
-    RuleCflag = 8, RuleConfigOption = 9, RuleConfigAssignment = 10, RuleConfigName = 11, 
-    RuleConfigValue = 12, RuleUnquotedValue = 13
+    RuleCflag = 8, RuleConfigName = 9, RuleConfigValue = 10, RuleUnquotedValue = 11
   };
 
   YW_CLI_Parser(antlr4::TokenStream *input);
@@ -43,8 +42,6 @@ public:
   class VersionflagContext;
   class ConfigContext;
   class CflagContext;
-  class ConfigOptionContext;
-  class ConfigAssignmentContext;
   class ConfigNameContext;
   class ConfigValueContext;
   class UnquotedValueContext; 
@@ -59,12 +56,12 @@ public:
     CommandContext *command();
     std::vector<antlr4::tree::TerminalNode *> NEWLINE();
     antlr4::tree::TerminalNode* NEWLINE(size_t i);
+    std::vector<antlr4::tree::TerminalNode *> SPACE();
+    antlr4::tree::TerminalNode* SPACE(size_t i);
     std::vector<ArgumentContext *> argument();
     ArgumentContext* argument(size_t i);
     std::vector<ConfigContext *> config();
     ConfigContext* config(size_t i);
-    std::vector<antlr4::tree::TerminalNode *> SPACE();
-    antlr4::tree::TerminalNode* SPACE(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -155,10 +152,10 @@ public:
     ConfigContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     CflagContext *cflag();
-    ConfigOptionContext *configOption();
-    ConfigAssignmentContext *configAssignment();
+    ConfigNameContext *configName();
     std::vector<antlr4::tree::TerminalNode *> SPACE();
     antlr4::tree::TerminalNode* SPACE(size_t i);
+    ConfigValueContext *configValue();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -178,33 +175,6 @@ public:
   };
 
   CflagContext* cflag();
-
-  class  ConfigOptionContext : public antlr4::ParserRuleContext {
-  public:
-    ConfigOptionContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    ConfigNameContext *configName();
-
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-   
-  };
-
-  ConfigOptionContext* configOption();
-
-  class  ConfigAssignmentContext : public antlr4::ParserRuleContext {
-  public:
-    ConfigAssignmentContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    ConfigNameContext *configName();
-    ConfigValueContext *configValue();
-
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-   
-  };
-
-  ConfigAssignmentContext* configAssignment();
 
   class  ConfigNameContext : public antlr4::ParserRuleContext {
   public:

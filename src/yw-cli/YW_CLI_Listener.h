@@ -43,12 +43,6 @@ public:
   virtual void enterCflag(YW_CLI_Parser::CflagContext *ctx) = 0;
   virtual void exitCflag(YW_CLI_Parser::CflagContext *ctx) = 0;
 
-  virtual void enterConfigOption(YW_CLI_Parser::ConfigOptionContext *ctx) = 0;
-  virtual void exitConfigOption(YW_CLI_Parser::ConfigOptionContext *ctx) = 0;
-
-  virtual void enterConfigAssignment(YW_CLI_Parser::ConfigAssignmentContext *ctx) = 0;
-  virtual void exitConfigAssignment(YW_CLI_Parser::ConfigAssignmentContext *ctx) = 0;
-
   virtual void enterConfigName(YW_CLI_Parser::ConfigNameContext *ctx) = 0;
   virtual void exitConfigName(YW_CLI_Parser::ConfigNameContext *ctx) = 0;
 

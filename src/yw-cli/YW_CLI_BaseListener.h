@@ -45,12 +45,6 @@ public:
   virtual void enterCflag(YW_CLI_Parser::CflagContext * /*ctx*/) override { }
   virtual void exitCflag(YW_CLI_Parser::CflagContext * /*ctx*/) override { }
 
-  virtual void enterConfigOption(YW_CLI_Parser::ConfigOptionContext * /*ctx*/) override { }
-  virtual void exitConfigOption(YW_CLI_Parser::ConfigOptionContext * /*ctx*/) override { }
-
-  virtual void enterConfigAssignment(YW_CLI_Parser::ConfigAssignmentContext * /*ctx*/) override { }
-  virtual void exitConfigAssignment(YW_CLI_Parser::ConfigAssignmentContext * /*ctx*/) override { }
-
   virtual void enterConfigName(YW_CLI_Parser::ConfigNameContext * /*ctx*/) override { }
   virtual void exitConfigName(YW_CLI_Parser::ConfigNameContext * /*ctx*/) override { }
 
