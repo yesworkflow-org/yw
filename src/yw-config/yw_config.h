@@ -6,38 +6,40 @@
 namespace yw {
     namespace config {
 
-        class YWConfiguration {
+        enum class SettingSource {
+            UNKNOWN = 0,
+            YW_DEFAULTS = 1,
+            USER_DEFAULTS = 2,
+            CASCADING_FILE = 3,
+            LOCAL_FILE = 4,
+            NAMED_FILE = 5,
+            ENVIRONMENT = 6,
+            COMMAND_LINE = 7
+        };
 
-            struct SettingSource {
-                enum class SourceType {
-                    UNKNOWN         = 0,
-                    YW_DEFAULTS     = 1,
-                    USER_DEFAULTS   = 2,
-                    CASCADING_FILE  = 3,
-                    LOCAL_FILE      = 4,
-                    NAMED_FILE      = 5,
-                    ENVIRONMENT     = 6,
-                    COMMAND_LINE    = 7
-                };
-                const SourceType type;
-                const std::string resource;
-                SettingSource(SourceType type, std::string resource)
-                    : type(type), resource(resource) {}
-            };
+        struct Setting {
+            const std::string key;
+            const std::string value;
+            const SettingSource source;
+            const std::string resource;
+            Setting(
+                const std::string& key, 
+                const std::string& value, 
+                const SettingSource source, 
+                const std::string& resource
+            ) : key(key), value(value), source(source), resource(resource) {}
+        };
 
-            struct Setting {
-                const SettingSource source;
-                const std::string name;
-                const std::string value;
-                Setting(SettingSource source, const std::string& name, const std::string& value)
-                    : source(source), name(name), value(value) {}
-            };
+        static Setting UNDEFINED("", "", SettingSource::UNKNOWN, "");
 
-            std::map<std::string, YWConfiguration::Setting> settings;
-
-            YWConfiguration() {}
-
-            void insert(const YWConfiguration::Setting& setting);
+        class Configuration {
+            std::map<std::string, Setting> settings;
+        public:
+            Configuration() {}
+            void insert(const Setting& setting);
+            bool contains(const std::string& key);
+            size_t size() { return settings.size(); }
+            const Setting& get(const std::string& key);
         };
     }
 }
