@@ -8,20 +8,23 @@ namespace yw {
 
         void Configuration::insert(const Setting& setting) {
             auto it = settings.find(setting.key);
-            if (it != settings.end()) {
-                settings.erase(setting.key);
+            if (it == settings.end()) {
+                settings.emplace(setting.key, setting);
             }
-            settings.emplace(setting.key, setting);
-        }
-
-        bool Configuration::contains(const std::string& key) {
-            return settings.find(key) != settings.end();
+            else {
+                auto priorityOfCurrentSetting = it->second.source;
+                auto priorityOfNewSetting = setting.source;
+                if (priorityOfNewSetting >= priorityOfCurrentSetting) {
+                    settings.erase(setting.key);
+                    settings.emplace(setting.key, setting);
+                }
+            }
         }
 
         const Setting& Configuration::get(const std::string& key) {
             auto it = settings.find(key);
             if (it != settings.end()) {
-                return (*it).second;
+                return it->second;
             }
             else {
                 return Setting::NO_SETTING;
