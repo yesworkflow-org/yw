@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ywdb.h"
+#include "yw_config.h"
 #include <stack>
 
 namespace yw {
@@ -22,12 +23,8 @@ namespace yw {
 
             OutlineExporter(
                 yw::db::YesWorkflowDB& ywdb,
-                size_t blockIndentSize = 0,
-                int qualifierIndentSize = -1
-            ) : ywdb(ywdb), blockIndentSize(blockIndentSize), 
-                qualifierIndentSize(qualifierIndentSize),
-                qualifiersOnSameLine(qualifierIndentSize < 0) 
-            {}
+                const yw::config::Configuration& userConfiguration = yw::config::Configuration{}
+            );
 
             std::string getOutline();
             std::string getOutline(const nullable_row_id& rootAnnotation);

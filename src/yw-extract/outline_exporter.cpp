@@ -1,6 +1,7 @@
 #include "outline_exporter.h"
 #include <sstream>
 
+using namespace yw::config;
 using namespace yw::db;
 using namespace yw::sqlite;
 
@@ -8,6 +9,21 @@ using std::string;
 
 namespace yw {
     namespace extract {
+
+        OutlineExporter::OutlineExporter(
+            yw::db::YesWorkflowDB& ywdb,
+            const yw::config::Configuration& userConfiguration
+        ) : ywdb(ywdb) {
+
+            yw::config::Configuration configuration;
+            configuration.insert(Setting{ "outline.indentblock", "0", yw::config::Source::YW_DEFAULTS });
+            configuration.insert(Setting{ "outline.indentqualifiers", "-1", yw::config::Source::YW_DEFAULTS });
+            configuration.insertAll(userConfiguration);
+
+            blockIndentSize = std::stoi(configuration.get("outline.indentblock").value.getValue());
+            qualifierIndentSize = std::stoi(configuration.get("outline.indentqualifiers").value.getValue());
+            qualifiersOnSameLine = (qualifierIndentSize < 0);
+        }
 
         std::string spaces(size_t n) {
             static std::string spaces{ " " };
