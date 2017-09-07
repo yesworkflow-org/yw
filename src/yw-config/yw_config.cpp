@@ -27,6 +27,10 @@ namespace yw {
             }
         }
 
+        bool Configuration::contains(const std::string& key) {
+            return settings.find(key) != settings.end();
+        }
+
         const Setting& Configuration::get(const std::string& key) {
             auto it = settings.find(key);
             if (it != settings.end()) {

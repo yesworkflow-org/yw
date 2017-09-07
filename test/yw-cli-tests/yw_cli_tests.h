@@ -12,4 +12,5 @@
 #include "YW_CLI_Parser.h"
 #include "YW_CLI_Lexer.h"
 #include "yw_cli_parser_builder.h"
+#include "command_line.h"
 #include "yw_test.h"

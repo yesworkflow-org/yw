@@ -25,5 +25,8 @@
     <ClCompile Include="..\..\test\yw-cli-tests\command_line_context_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\test\yw-cli-tests\command_line_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

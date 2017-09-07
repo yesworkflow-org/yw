@@ -1,6 +1,7 @@
 #pragma once
 
 #include "yw_types.h"
+
 #include <map>
 
 namespace yw {
@@ -20,13 +21,13 @@ namespace yw {
         struct Setting {
 
             const std::string key;
-            const std::string value;
+            const nullable_string value;
             const Source source;
             const std::string resource;
 
             Setting(
                 const std::string& key, 
-                const std::string& value, 
+                const nullable_string& value, 
                 const Source source = Source::UNSPECIFIED,
                 const std::string& resource = NO_RESOURCE
             ) : key(key), value(value), source(source), resource(resource) {}
@@ -39,6 +40,7 @@ namespace yw {
             std::map<std::string, Setting> settings;
         public:
             Configuration() {}
+            bool contains(const std::string& key);
             const Setting& get(const std::string& key);
             void insert(const Setting& setting);
             void insertAll(const Configuration& settings);

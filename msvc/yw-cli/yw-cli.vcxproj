@@ -27,6 +27,7 @@
     <None Include="..\..\src\yw-cli\YW_CLI_Lexer.tokens" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\yw-cli\command_line.cpp" />
     <ClCompile Include="..\..\src\yw-cli\YW_CLI_BaseListener.cpp" />
     <ClCompile Include="..\..\src\yw-cli\YW_CLI_Lexer.cpp" />
     <ClCompile Include="..\..\src\yw-cli\YW_CLI_Listener.cpp" />
@@ -34,6 +35,7 @@
     <ClCompile Include="..\..\src\yw-cli\yw_cli_parser_builder.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\yw-cli\command_line.h" />
     <ClInclude Include="..\..\src\yw-cli\YW_CLI_BaseListener.h" />
     <ClInclude Include="..\..\src\yw-cli\YW_CLI_Lexer.h" />
     <ClInclude Include="..\..\src\yw-cli\YW_CLI_Listener.h" />
@@ -109,9 +111,9 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>ANTLR4CPP_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANTLR4CPP_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-types;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -126,9 +128,9 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>ANTLR4CPP_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANTLR4CPP_STATIC;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-types;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -145,9 +147,9 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>ANTLR4CPP_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANTLR4CPP_STATIC;_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-types;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -166,9 +168,9 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>ANTLR4CPP_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANTLR4CPP_STATIC;_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-types;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
