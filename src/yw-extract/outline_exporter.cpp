@@ -20,8 +20,8 @@ namespace yw {
             configuration.insert(Setting{ "outline.indentqualifiers", "-1", yw::config::Source::YW_DEFAULTS });
             configuration.insertAll(userConfiguration);
 
-            blockIndentSize = std::stoi(configuration.get("outline.indentblock").value.getValue());
-            qualifierIndentSize = std::stoi(configuration.get("outline.indentqualifiers").value.getValue());
+            blockIndentSize = configuration.getSizeValue("outline.indentblock");
+            qualifierIndentSize = configuration.getIntValue("outline.indentqualifiers");
             qualifiersOnSameLine = (qualifierIndentSize < 0);
         }
 

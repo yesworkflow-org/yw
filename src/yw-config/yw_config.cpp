@@ -31,7 +31,7 @@ namespace yw {
             return settings.find(key) != settings.end();
         }
 
-        const Setting& Configuration::get(const std::string& key) {
+        const Setting& Configuration::getSetting(const std::string& key) {
             auto it = settings.find(key);
             if (it != settings.end()) {
                 return it->second;
@@ -39,6 +39,39 @@ namespace yw {
             else {
                 return Setting::NO_SETTING;
             }
+        }
+
+        std::string Configuration::getStringValue(const std::string& key) {
+            auto setting = getSetting(key);
+            if (!setting.value.hasValue()) {
+                throw std::domain_error("Option '" + key + "' requires a value.");
+            }
+            return setting.value.getValue();
+        }
+
+        int Configuration::getIntValue(const std::string& key) {
+            auto stringValue = getStringValue(key);
+            try {
+                return std::stoi(stringValue);
+            }
+            catch (std::exception e) {
+                throw std::domain_error(
+                    "Value '" + stringValue + "' assigned to option '" + key + 
+                    "' cannot be converted to an integer."
+                );
+            }
+        }
+
+        size_t Configuration::getSizeValue(const std::string& key) {
+            int intValue = getIntValue(key);
+            if (intValue < 0) {
+                std::stringstream message;
+                message << "Invalid value '" << intValue
+                        << "' assigned to option '" << key << "'. "
+                        << "Value may not be negative.";
+                throw std::domain_error(message.str());
+            }
+            return static_cast<size_t>(intValue);
         }
     }
 }

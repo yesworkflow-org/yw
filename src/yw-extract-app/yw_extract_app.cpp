@@ -26,16 +26,16 @@ int main(int argc, char** argv)
     try {
         AnnotationExtractor{ ywdb }.extractAnnotationsFromFile(argv[1]);
     }
-    catch (std::runtime_error e) {
-        std::cerr << "Error extracting annotations: " << e.what() << std::endl;
+    catch (std::exception e) {
+        std::cerr << "Error extracting annotations. " << e.what() << std::endl;
         exit(-1);
     }
 
     try {
         std::cout << OutlineExporter{ ywdb, configuration }.getOutline();
     }
-    catch (std::runtime_error e) {
-        std::cerr << "Error exporting outline: " << e.what() << std::endl;
+    catch (std::exception e) {
+        std::cerr << "Error exporting outline. " << e.what() << std::endl;
         exit(-1);
     }
 }
