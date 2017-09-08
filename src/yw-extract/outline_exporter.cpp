@@ -6,6 +6,7 @@ using namespace yw::db;
 using namespace yw::sqlite;
 
 using std::string;
+using SettingSource = yw::config::Setting::SettingSource;
 
 namespace yw {
     namespace extract {
@@ -16,8 +17,8 @@ namespace yw {
         ) : ywdb(ywdb) {
 
             yw::config::Configuration configuration;
-            configuration.insert(Setting{ "outline.indentblock", "0", yw::config::Source::YW_DEFAULTS });
-            configuration.insert(Setting{ "outline.indentqualifiers", "-1", yw::config::Source::YW_DEFAULTS });
+            configuration.insert(Setting{ "outline.indentblock", "0", SettingSource::YW_DEFAULTS });
+            configuration.insert(Setting{ "outline.indentqualifiers", "-1", SettingSource::YW_DEFAULTS });
             configuration.insertAll(userConfiguration);
 
             blockIndentSize = configuration.getSizeValue("outline.indentblock");

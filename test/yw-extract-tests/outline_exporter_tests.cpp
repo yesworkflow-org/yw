@@ -6,6 +6,8 @@ using namespace yw::parse;
 using namespace yw::test;
 using namespace yw::db;
 
+using SettingSource = yw::config::Setting::SettingSource;
+
 YW_TEST_FIXTURE(OutlineExporter)
 
     YesWorkflowDB ywdb;
@@ -82,8 +84,8 @@ YW_TEST_SET
         this->storeAndParse(
             "@begin b @desc description of block @end b"
         );
-        config.insert(yw::config::Setting{ "outline.indentblock", "0", yw::config::Source::COMMAND_LINE });
-        config.insert(yw::config::Setting{ "outline.indentqualifiers", "0", yw::config::Source::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentblock", "0", SettingSource::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentqualifiers", "0", SettingSource::COMMAND_LINE });
         OutlineExporter exporter{ ywdb, config };
 
         Assert::AreEqual(
@@ -98,8 +100,8 @@ YW_TEST_SET
         this->storeAndParse(
             "@begin b @desc description of block @end b"
         );
-        config.insert(yw::config::Setting{ "outline.indentblock", "0", yw::config::Source::COMMAND_LINE });
-        config.insert(yw::config::Setting{ "outline.indentqualifiers", "2", yw::config::Source::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentblock", "0", SettingSource::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentqualifiers", "2", SettingSource::COMMAND_LINE });
         OutlineExporter exporter{ ywdb, config };
 
         Assert::AreEqual(
@@ -134,8 +136,8 @@ YW_TEST_SET
             "@desc the only port"   EOL
             "@end b"                EOL
         );
-        config.insert(yw::config::Setting{ "outline.indentblock", "0", yw::config::Source::COMMAND_LINE });
-        config.insert(yw::config::Setting{ "outline.indentqualifiers", "0", yw::config::Source::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentblock", "0", SettingSource::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentqualifiers", "0", SettingSource::COMMAND_LINE });
         OutlineExporter exporter{ ywdb, config };
 
         Assert::AreEqual(
@@ -154,8 +156,8 @@ YW_TEST_SET
             "@desc the only port"   EOL
             "@end b"                EOL
         );
-        config.insert(yw::config::Setting{ "outline.indentblock", "0", yw::config::Source::COMMAND_LINE });
-        config.insert(yw::config::Setting{ "outline.indentqualifiers", "2", yw::config::Source::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentblock", "0", SettingSource::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentqualifiers", "2", SettingSource::COMMAND_LINE });
         OutlineExporter exporter{ ywdb, config };
 
         Assert::AreEqual(
@@ -191,8 +193,8 @@ YW_TEST_SET
             "@as name of data"      EOL
             "@end b"                EOL
         );
-        config.insert(yw::config::Setting{ "outline.indentblock", "0", yw::config::Source::COMMAND_LINE });
-        config.insert(yw::config::Setting{ "outline.indentqualifiers", "0", yw::config::Source::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentblock", "0", SettingSource::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentqualifiers", "0", SettingSource::COMMAND_LINE });
         OutlineExporter exporter{ ywdb, config };
 
         Assert::AreEqual(
@@ -211,8 +213,8 @@ YW_TEST_SET
             "@as name of data"      EOL
             "@end b"                EOL
         );
-        config.insert(yw::config::Setting{ "outline.indentblock", "0", yw::config::Source::COMMAND_LINE });
-        config.insert(yw::config::Setting{ "outline.indentqualifiers", "2", yw::config::Source::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentblock", "0", SettingSource::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentqualifiers", "2", SettingSource::COMMAND_LINE });
         OutlineExporter exporter{ ywdb, config };
 
         Assert::AreEqual(
@@ -250,8 +252,8 @@ YW_TEST_SET
             "@as name of data"      EOL
             "@end b"                EOL
         );
-        config.insert(yw::config::Setting{ "outline.indentblock", "0", yw::config::Source::COMMAND_LINE });
-        config.insert(yw::config::Setting{ "outline.indentqualifiers", "0", yw::config::Source::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentblock", "0", SettingSource::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentqualifiers", "0", SettingSource::COMMAND_LINE });
         OutlineExporter exporter{ ywdb, config };
 
         Assert::AreEqual(
@@ -272,8 +274,8 @@ YW_TEST_SET
             "@as name of data"      EOL
             "@end b"                EOL
         );
-        config.insert(yw::config::Setting{ "outline.indentblock", "0", yw::config::Source::COMMAND_LINE });
-        config.insert(yw::config::Setting{ "outline.indentqualifiers", "2", yw::config::Source::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentblock", "0", SettingSource::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentqualifiers", "2", SettingSource::COMMAND_LINE });
         OutlineExporter exporter{ ywdb, config };
 
         Assert::AreEqual(
@@ -350,7 +352,7 @@ YW_TEST_SET
             "@end c"    EOL
             "@end b"    EOL
         );
-        config.insert(yw::config::Setting{ "outline.indentblock", "4", yw::config::Source::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentblock", "4", SettingSource::COMMAND_LINE });
         OutlineExporter exporter{ ywdb, config };
 
         Assert::AreEqual(
@@ -433,7 +435,7 @@ YW_TEST_SET
             "@end c"    EOL
             "@end b"    EOL
         );
-        config.insert(yw::config::Setting{ "outline.indentblock", "4", yw::config::Source::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentblock", "4", SettingSource::COMMAND_LINE });
         OutlineExporter exporter{ ywdb, config };
 
         Assert::AreEqual(
@@ -473,7 +475,7 @@ YW_TEST_SET
             "@end"      EOL
             "@end"      EOL
         );
-        config.insert(yw::config::Setting{ "outline.indentblock", "4", yw::config::Source::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentblock", "4", SettingSource::COMMAND_LINE });
         OutlineExporter exporter{ ywdb, config };
 
         Assert::AreEqual(
@@ -503,7 +505,7 @@ YW_TEST_SET
             "@end c"    EOL
             "@end b"    EOL
         );
-        config.insert(yw::config::Setting{ "outline.indentblock", "4", yw::config::Source::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentblock", "4", SettingSource::COMMAND_LINE });
         OutlineExporter exporter{ ywdb, config };
 
         Assert::AreEqual(
@@ -535,7 +537,7 @@ YW_TEST_SET
             "@end d"    EOL
             "@end b"    EOL
         );
-        config.insert(yw::config::Setting{ "outline.indentblock", "4", yw::config::Source::COMMAND_LINE });
+        config.insert(yw::config::Setting{ "outline.indentblock", "4", SettingSource::COMMAND_LINE });
         OutlineExporter exporter{ ywdb, config };
 
         Assert::AreEqual(

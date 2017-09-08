@@ -1,6 +1,7 @@
 #include "command_line.h"
 
 using namespace yw::config;
+using SettingSource = yw::config::Setting::SettingSource;
 
 namespace yw {
     namespace cli {
@@ -31,7 +32,7 @@ namespace yw {
                 auto key = config->configName()->getText();
                 nullable_string value = (config->configValue() == nullptr) ?
                     null_string : config->configValue()->unquotedValue()->getText();
-                settings.insert(Setting{ key, value, Source::COMMAND_LINE });
+                settings.insert(Setting{ key, value, SettingSource::COMMAND_LINE });
             }
         }
 

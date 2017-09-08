@@ -7,28 +7,28 @@
 namespace yw {
     namespace config {
 
-        enum class Source {
-            UNSPECIFIED = 0,
-            YW_DEFAULTS = 1,
-            USER_DEFAULTS = 2,
-            CASCADING_FILE = 3,
-            LOCAL_FILE = 4,
-            NAMED_FILE = 5,
-            ENVIRONMENT = 6,
-            COMMAND_LINE = 7
-        };
-
         struct Setting {
+
+            enum class SettingSource {
+                UNSPECIFIED = 0,
+                YW_DEFAULTS = 1,
+                USER_DEFAULTS = 2,
+                CASCADING_FILE = 3,
+                LOCAL_FILE = 4,
+                NAMED_FILE = 5,
+                ENVIRONMENT = 6,
+                COMMAND_LINE = 7
+            };
 
             const std::string key;
             const nullable_string value;
-            const Source source;
+            const SettingSource source;
             const std::string resource;
 
             Setting(
                 const std::string& key, 
                 const nullable_string& value, 
-                const Source source = Source::UNSPECIFIED,
+                const SettingSource source = SettingSource::UNSPECIFIED,
                 const std::string& resource = NO_RESOURCE
             ) : key(key), value(value), source(source), resource(resource) {}
 
