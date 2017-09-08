@@ -11,14 +11,23 @@ using SettingSource = yw::config::Setting::SettingSource;
 namespace yw {
     namespace extract {
 
+        yw::config::Configuration OutlineExporter::defaultSettings;
+
+        const Configuration& OutlineExporter::getSoftwareSettings() {
+            if (defaultSettings.size() == 0) {
+                defaultSettings.insert(SoftwareSetting{ "outline.indentblock", "0" });
+                defaultSettings.insert(SoftwareSetting{ "outline.indentqualifiers", "-1" });
+            }
+            return defaultSettings;
+        }
+
         OutlineExporter::OutlineExporter(
             yw::db::YesWorkflowDB& ywdb,
             const yw::config::Configuration& userConfiguration
         ) : ywdb(ywdb) {
 
-            yw::config::Configuration configuration;
-            configuration.insert(Setting{ "outline.indentblock", "0", SettingSource::YW_DEFAULTS });
-            configuration.insert(Setting{ "outline.indentqualifiers", "-1", SettingSource::YW_DEFAULTS });
+            Configuration configuration;
+            configuration.insertAll(getSoftwareSettings());
             configuration.insertAll(userConfiguration);
 
             blockIndentSize = configuration.getSizeValue("outline.indentblock");

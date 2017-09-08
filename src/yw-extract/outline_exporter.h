@@ -9,6 +9,7 @@ namespace yw {
         class OutlineExporter {
 
             yw::db::YesWorkflowDB& ywdb;
+            static yw::config::Configuration defaultSettings;
             size_t blockIndentSize;
             int qualifierIndentSize;
             bool qualifiersOnSameLine;
@@ -25,6 +26,8 @@ namespace yw {
                 yw::db::YesWorkflowDB& ywdb,
                 const yw::config::Configuration& userConfiguration = yw::config::Configuration{}
             );
+
+            static const yw::config::Configuration& getSoftwareSettings();
 
             std::string getOutline();
             std::string getOutline(const nullable_row_id& rootAnnotation);
