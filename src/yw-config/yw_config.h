@@ -36,6 +36,19 @@ namespace yw {
             static const std::string NO_RESOURCE;
         };
 
+        struct SoftwareSetting : public Setting {
+
+            const std::string description;
+            const std::vector<std::string> requiredValues;
+
+            SoftwareSetting(
+                const std::string& key,
+                const nullable_string& value,
+                const std::string& description = std::string{ "" },
+                const std::vector<std::string> requiredValues = {}
+            ) : Setting(key, value, SettingSource::YW_DEFAULTS, NO_RESOURCE), description(description), requiredValues(requiredValues) {}
+        };
+
         class Configuration {
             std::map<std::string, Setting> settings;
         public:
