@@ -7,14 +7,14 @@ using namespace yw::sqlite;
 namespace yw {
     namespace graph {
 
-        yw::config::Configuration WorkflowGrapher::defaultSettings;
+        yw::config::Configuration WorkflowGrapher::defaults;
 
         const Configuration& WorkflowGrapher::getSoftwareSettings() {
-            if (defaultSettings.size() == 0) {
-                defaultSettings.insert(SoftwareSetting{ "outline.indentblock", "0" });
-                defaultSettings.insert(SoftwareSetting{ "outline.indentqualifiers", "-1" });
+            if (defaults.size() == 0) {
+                defaults.insert(SoftwareSetting{ "graph.view", "combined", "Workflow view to render", { "PROCESS", "DATA", "COMBINED" } });
+                defaults.insert(SoftwareSetting{ "graph.workflowbox", "SHOW", "Box around nodes internal to workflow", { "SHOW", "HIDE" } });
             }
-            return defaultSettings;
+            return defaults;
         }
 
         WorkflowGrapher::WorkflowGrapher(

@@ -39,15 +39,15 @@ namespace yw {
         struct SoftwareSetting : public Setting {
 
             const std::string description;
-            const std::vector<std::string> requiredValues;
+            const std::vector<std::string> allowedValues;
 
             SoftwareSetting(
                 const std::string& key,
-                const nullable_string& value,
+                const nullable_string& defaultValue,
                 const std::string& description = std::string{ "" },
-                const std::vector<std::string> requiredValues = {}
-            ) : Setting(key, value, SettingSource::YW_DEFAULTS, NO_RESOURCE), 
-                description(description), requiredValues(requiredValues) 
+                const std::vector<std::string> allowedValues = {}
+            ) : Setting(key, defaultValue, SettingSource::YW_DEFAULTS, NO_RESOURCE), 
+                description(description), allowedValues(allowedValues) 
             {}
         };
 

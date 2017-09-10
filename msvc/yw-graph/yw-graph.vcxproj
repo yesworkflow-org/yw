@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\yw-graph\dot_builder.cpp" />
     <ClCompile Include="..\..\src\yw-graph\workflow_grapher.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\yw-graph\dot_builder.h" />
     <ClInclude Include="..\..\src\yw-graph\workflow_grapher.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -9,7 +9,7 @@ namespace yw {
         class WorkflowGrapher {
 
             yw::db::YesWorkflowDB& ywdb;
-            static yw::config::Configuration defaultSettings;
+            static yw::config::Configuration defaults;
 
             WorkflowGrapher(
                 yw::db::YesWorkflowDB& ywdb,

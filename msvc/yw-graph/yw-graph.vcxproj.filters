@@ -10,9 +10,15 @@
     <ClCompile Include="..\..\src\yw-graph\workflow_grapher.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\yw-graph\dot_builder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-graph\workflow_grapher.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-graph\dot_builder.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
