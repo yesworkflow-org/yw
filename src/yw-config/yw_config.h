@@ -46,7 +46,9 @@ namespace yw {
                 const nullable_string& value,
                 const std::string& description = std::string{ "" },
                 const std::vector<std::string> requiredValues = {}
-            ) : Setting(key, value, SettingSource::YW_DEFAULTS, NO_RESOURCE), description(description), requiredValues(requiredValues) {}
+            ) : Setting(key, value, SettingSource::YW_DEFAULTS, NO_RESOURCE), 
+                description(description), requiredValues(requiredValues) 
+            {}
         };
 
         class Configuration {
