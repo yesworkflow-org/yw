@@ -97,4 +97,17 @@ YW_TEST_SET
         }
     }
 
+    YW_TEST(ProgramBlock, SelectByWorkflowIdReturnsTwoBlocksForTwoProgramBlockWorkflow) {
+
+        row_id block1;
+        Expect::AreEqual(1, (block1 = ywdb.insert(ProgramBlock{ auto_id, model77, null_id, null_id, "workflow" })));
+        Expect::AreEqual(2, ywdb.insert(ProgramBlock{ auto_id, model77, block1, null_id, "block1" }));
+        Expect::AreEqual(3, ywdb.insert(ProgramBlock{ auto_id, model77, block1, null_id, "block2" }));
+        auto blocks = ywdb.selectProgramBlocksByWorkflowId(block1);
+        
+        Expect::AreEqual(2, blocks.size());
+        Expect::AreEqual(2, blocks[0].id.getValue());
+        Expect::AreEqual(3, blocks[1].id.getValue());
+    }
+
 YW_TEST_END

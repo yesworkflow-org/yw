@@ -22,6 +22,15 @@ namespace yw {
             )"));
         }
 
+        ProgramBlock getProgramBlockFromAnnotationColumns(SelectStatement& statement) {
+            auto id = statement.getNullableIdField(0);
+            auto modelId = statement.getIdField(1);
+            auto workflowId = statement.getNullableIdField(2);
+            auto annotationId = statement.getNullableIdField(3);
+            auto name = statement.getTextField(4);
+            return ProgramBlock(id, modelId, workflowId, annotationId, name);
+        }
+
         row_id YesWorkflowDB::insert(ProgramBlock& programBlock) {
             programBlock.id = insert(static_cast<const ProgramBlock&>(programBlock));
             return programBlock.id.getValue();
@@ -45,11 +54,23 @@ namespace yw {
             statement.bindId(1, requested_id);
             if (statement.step() != SQLITE_ROW) throw std::runtime_error("No program block with that id");
             auto id = statement.getNullableIdField(0);
-            auto modelId = statement.getIdField(1);
-            auto workflowId = statement.getNullableIdField(2);
-            auto annotationId = statement.getNullableIdField(3);
-            auto name = statement.getTextField(4);
-            return ProgramBlock(id, modelId, workflowId, annotationId, name);
+            return getProgramBlockFromAnnotationColumns(statement);
+        }
+
+        std::vector<ProgramBlock> YesWorkflowDB::selectProgramBlocksByWorkflowId(const row_id& workflowId) {
+            auto sql = std::string(R"(
+                SELECT id, model, workflow, annotation, name 
+                FROM program_block 
+                WHERE workflow = ?
+                ORDER BY name, id
+            )");
+            SelectStatement statement(db, sql);
+            statement.bindNullableId(1, workflowId);
+            auto programBlocks = std::vector<ProgramBlock>{};
+            while (statement.step() == SQLITE_ROW) {
+                programBlocks.push_back(getProgramBlockFromAnnotationColumns(statement));
+            }
+            return programBlocks;
         }
     }
 }
