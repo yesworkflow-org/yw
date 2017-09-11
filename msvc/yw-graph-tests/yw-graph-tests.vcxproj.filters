@@ -26,5 +26,8 @@
     <ClCompile Include="..\..\test\yw-graph-tests\dot_builder_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\test\yw-graph-tests\workflow_grapher_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

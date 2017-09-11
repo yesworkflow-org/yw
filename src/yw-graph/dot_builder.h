@@ -15,7 +15,6 @@ namespace yw {
 
             static yw::config::Configuration defaults;
 
-
         public:
 
             static const yw::config::Configuration& getSoftwareSettings();
@@ -31,7 +30,6 @@ namespace yw {
             void endGraph();
             void node(std::string name, std::string label);
             void node(std::string name);
-
 
         private:
 

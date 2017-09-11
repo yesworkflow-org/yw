@@ -9,7 +9,12 @@ namespace yw {
         class WorkflowGrapher {
 
             yw::db::YesWorkflowDB& ywdb;
+            yw::config::Configuration configuration;
+
             static yw::config::Configuration defaults;
+
+
+        public:
 
             WorkflowGrapher(
                 yw::db::YesWorkflowDB& ywdb,
@@ -17,6 +22,9 @@ namespace yw {
             );
 
             static const yw::config::Configuration& getSoftwareSettings();
+
+            std::string graph(const row_id& modelId, const std::string& workflowName);
+            std::string graph(const row_id& workflowId);
 
         };
     }

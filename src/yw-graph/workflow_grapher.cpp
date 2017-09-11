@@ -1,8 +1,11 @@
 #include "workflow_grapher.h"
+#include "dot_builder.h"
 
 using namespace yw::config;
 using namespace yw::db;
 using namespace yw::sqlite;
+
+using std::string;
 
 namespace yw {
     namespace graph {
@@ -21,10 +24,19 @@ namespace yw {
             yw::db::YesWorkflowDB& ywdb,
             const yw::config::Configuration& userConfiguration
         ) : ywdb(ywdb) {
-
-            Configuration configuration;
             configuration.insertAll(getSoftwareSettings());
             configuration.insertAll(userConfiguration);
+        }
+
+        string WorkflowGrapher::graph(const row_id& modelId, const string& workflowName) {
+            return graph(1);
+        }
+
+        string WorkflowGrapher::graph(const row_id& WorkflowId) {
+            DotBuilder dot;
+            dot.beginGraph();
+            dot.endGraph();
+            return dot.str();
         }
     }
 }
