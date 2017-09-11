@@ -29,11 +29,15 @@ namespace yw {
             void beginGraph();
             void comment(std::string text);
             void endGraph();
-            void quotedText(std::string unquotedText);
+            void node(std::string name, std::string label);
+            void node(std::string name);
+
 
         private:
 
             std::string config(std::string key);
+            void quotedAlways(std::string unquotedText);
+            void quotedIfNeeded(std::string unquotedText);
             void title(std::string text);
             void rankdir(std::string text);
 

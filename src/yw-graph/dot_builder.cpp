@@ -1,5 +1,7 @@
 #include "dot_builder.h"
 
+#include <regex>
+
 using namespace yw::config;
 using std::endl;
 using std::string;
@@ -49,6 +51,37 @@ namespace yw {
             dotStream << "}" << endl;
         }
 
+        void DotBuilder::node(std::string name, std::string label) {
+            quotedIfNeeded(name);
+            if (label != name) {
+                dotStream << " [label=";
+                quotedIfNeeded(label);
+                dotStream << "]";
+            }
+            dotStream << endl;
+        }
+
+        void DotBuilder::node(std::string name) {
+            node(name, name);
+        }
+
+        std::regex doubleQuoteSymbolPattern{ "\"" };
+        std::regex validDotIdPattern{ "[a-zA-Z_0-9]+" };
+
+        void DotBuilder::quotedAlways(string text) {
+            dotStream << "\"" << std::regex_replace(text, doubleQuoteSymbolPattern, "\\\"") << "\"";
+        }
+
+
+        void DotBuilder::quotedIfNeeded(string unquotedText) {
+            if (std::regex_match(unquotedText, validDotIdPattern)) {
+                dotStream << unquotedText;
+            }
+            else {
+                quotedAlways(unquotedText);
+            }
+        }
+
         void DotBuilder::rankdir(string direction) {
             dotStream << "rankdir=" << direction << endl;
         }
@@ -58,16 +91,13 @@ namespace yw {
             if (position != "HIDE") {
                 comment("Title for graph");
                 dotStream << "fontname=Helvetica; fontsize=18; labelloc=";
-                dotStream << (position == "TOP") ? "t" : "b";
+                dotStream << ((position == "TOP") ? "t" : "b");
                 dotStream << endl;
                 dotStream << "label=";
-                quotedText(text);
+                quotedAlways(text);
                 dotStream << endl;
             }
         }
 
-        void DotBuilder::quotedText(string unquotedText) {
-            dotStream << "\"" << unquotedText << "\"";
-        }
     }
 }
