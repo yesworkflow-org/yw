@@ -40,7 +40,6 @@ YW_TEST_FIXTURE(WorkflowGrapher)
         listener = new ModelEntityListener{ ywdb, modelId, extractionId, sourceId };
     }
 
-
 YW_TEST_SET
 
     YW_TEST(WorkflowGrapher, EmptyWorkflowReturnsEmptyGraph)
@@ -57,5 +56,54 @@ YW_TEST_SET
             "}"                     EOL
             , dotText);
     }
+
+    YW_TEST(WorkflowGrapher, SingleProgramWorkflowReturnsOneNodeGraph)
+    {
+        this->storeAndParse( R"(
+
+            @begin workflow
+
+                @begin b
+                @end b
+
+            @end workflow
+
+        )");
+        WorkflowGrapher grapher{ ywdb };
+        auto dotText = grapher.graph(modelId, "workflow");
+
+        Assert::AreEqual(
+            "digraph Workflow {"    EOL
+            "b"                     EOL
+            "}"                     EOL
+            , dotText);
+    }
+
+    YW_TEST(WorkflowGrapher, TwoProgramWorkflowReturnsTwoNodeGraph)
+    {
+        this->storeAndParse(R"(
+
+            @begin workflow
+
+                @begin b1
+                @end b1
+
+                @begin b2
+                @end b2
+
+            @end workflow
+
+        )");
+        WorkflowGrapher grapher{ ywdb };
+        auto dotText = grapher.graph(modelId, "workflow");
+
+        Assert::AreEqual(
+            "digraph Workflow {"    EOL
+            "b1"                    EOL
+            "b2"                    EOL
+            "}"                     EOL
+            , dotText);
+    }
+
 
 YW_TEST_END

@@ -29,14 +29,22 @@ namespace yw {
         }
 
         string WorkflowGrapher::graph(const row_id& modelId, const string& workflowName) {
-            return graph(1);
+            auto workflow = ywdb.selectProgramBlockByModelIdAndBlockName(modelId, workflowName);
+            return graph(workflow.id.getValue());
         }
 
-        string WorkflowGrapher::graph(const row_id& WorkflowId) {
-            DotBuilder dot;
-            dot.beginGraph();
-            dot.endGraph();
-            return dot.str();
+        string WorkflowGrapher::graph(const row_id& workflowId) {
+            dot = std::make_shared<DotBuilder>();
+            dot->beginGraph();
+            drawProgramBlocksAsNodes(workflowId);
+            dot->endGraph();
+            return dot->str();
+        }
+
+        void WorkflowGrapher::drawProgramBlocksAsNodes(const row_id& workflowId) {
+            for (auto programBlock : ywdb.selectProgramBlocksByWorkflowId(workflowId)) {
+                dot->node(programBlock.name);
+            }
         }
     }
 }

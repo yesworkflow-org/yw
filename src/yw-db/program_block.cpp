@@ -57,6 +57,16 @@ namespace yw {
             return getProgramBlockFromAnnotationColumns(statement);
         }
 
+        ProgramBlock YesWorkflowDB::selectProgramBlockByModelIdAndBlockName(const row_id& modelId, const string& blockName) {
+            string sql = "SELECT id, model, workflow, annotation, name FROM program_block WHERE model = ? AND name = ?";
+            SelectStatement statement(db, sql);
+            statement.bindId(1, modelId);
+            statement.bindText(2, blockName);
+            if (statement.step() != SQLITE_ROW) throw std::runtime_error("No program block with that name");
+            auto id = statement.getNullableIdField(0);
+            return getProgramBlockFromAnnotationColumns(statement);
+        }
+
         std::vector<ProgramBlock> YesWorkflowDB::selectProgramBlocksByWorkflowId(const row_id& workflowId) {
             auto sql = std::string(R"(
                 SELECT id, model, workflow, annotation, name 
@@ -72,5 +82,6 @@ namespace yw {
             }
             return programBlocks;
         }
+
     }
 }

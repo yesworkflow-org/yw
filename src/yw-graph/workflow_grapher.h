@@ -2,6 +2,7 @@
 
 #include "ywdb.h"
 #include "yw_config.h"
+#include "dot_builder.h"
 
 namespace yw {
     namespace graph {
@@ -10,6 +11,7 @@ namespace yw {
 
             yw::db::YesWorkflowDB& ywdb;
             yw::config::Configuration configuration;
+            std::shared_ptr<DotBuilder> dot;
 
             static yw::config::Configuration defaults;
 
@@ -25,6 +27,10 @@ namespace yw {
 
             std::string graph(const row_id& modelId, const std::string& workflowName);
             std::string graph(const row_id& workflowId);
+
+        private:
+
+            void drawProgramBlocksAsNodes(const row_id& workflowId);
 
         };
     }
