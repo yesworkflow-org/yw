@@ -32,8 +32,10 @@ namespace yw {
             configuration.insertAll(userConfiguration);
         }
 
-        void DotBuilder::beginGraph() {
-            dotStream << "digraph Workflow {" << endl;
+        void DotBuilder::beginGraph(string graphName) {
+            dotStream << "digraph ";
+            quotedIfNeeded(graphName);
+            dotStream << " {" << endl;
             if (config("graph.layout") != "TB") rankdir(config("graph.layout"));
             if (configuration.getSetting("graph.title").value.hasValue()) {
                 title(config("graph.title"));

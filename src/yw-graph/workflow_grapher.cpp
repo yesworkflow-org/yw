@@ -30,13 +30,9 @@ namespace yw {
 
         string WorkflowGrapher::graph(const row_id& modelId, const string& workflowName) {
             auto workflow = ywdb.selectProgramBlockByModelIdAndBlockName(modelId, workflowName);
-            return graph(workflow.id.getValue());
-        }
-
-        string WorkflowGrapher::graph(const row_id& workflowId) {
             dot = std::make_shared<DotBuilder>();
-            dot->beginGraph();
-            drawProgramBlocksAsNodes(workflowId);
+            dot->beginGraph(workflow.name);
+            drawProgramBlocksAsNodes(workflow.id.getValue());
             dot->endGraph();
             return dot->str();
         }

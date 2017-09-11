@@ -25,7 +25,7 @@ namespace yw {
 
             std::string str() { return dotStream.str(); }
 
-            void beginGraph();
+            void beginGraph(std::string graphName = "Workflow");
             void comment(std::string text);
             void endGraph();
             void node(std::string name, std::string label);

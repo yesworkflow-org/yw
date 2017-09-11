@@ -44,16 +44,19 @@ YW_TEST_SET
 
     YW_TEST(WorkflowGrapher, EmptyWorkflowReturnsEmptyGraph)
     {
-        this->storeAndParse(
-            "@begin b"	EOL
-            "@end b"	EOL
-        );
+        this->storeAndParse( R"(
+            
+            @begin b
+            @end b
+        
+        )");
+
         WorkflowGrapher grapher{ ywdb };
         auto dotText = grapher.graph(modelId, "b");
 
         Assert::AreEqual(
-            "digraph Workflow {"    EOL
-            "}"                     EOL
+            "digraph b {"   EOL
+            "}"             EOL
             , dotText);
     }
 
@@ -61,21 +64,22 @@ YW_TEST_SET
     {
         this->storeAndParse( R"(
 
-            @begin workflow
+            @begin w
 
                 @begin b
                 @end b
 
-            @end workflow
+            @end w
 
         )");
+
         WorkflowGrapher grapher{ ywdb };
-        auto dotText = grapher.graph(modelId, "workflow");
+        auto dotText = grapher.graph(modelId, "w");
 
         Assert::AreEqual(
-            "digraph Workflow {"    EOL
-            "b"                     EOL
-            "}"                     EOL
+            "digraph w {"   EOL
+            "b"             EOL
+            "}"             EOL
             , dotText);
     }
 
@@ -83,7 +87,7 @@ YW_TEST_SET
     {
         this->storeAndParse(R"(
 
-            @begin workflow
+            @begin w
 
                 @begin b1
                 @end b1
@@ -91,19 +95,53 @@ YW_TEST_SET
                 @begin b2
                 @end b2
 
-            @end workflow
+            @end w
 
         )");
+
         WorkflowGrapher grapher{ ywdb };
-        auto dotText = grapher.graph(modelId, "workflow");
+        auto dotText = grapher.graph(modelId, "w");
 
         Assert::AreEqual(
-            "digraph Workflow {"    EOL
-            "b1"                    EOL
-            "b2"                    EOL
-            "}"                     EOL
+            "digraph w {"   EOL
+            "b1"            EOL
+            "b2"            EOL
+            "}"             EOL
             , dotText);
     }
 
+    YW_TEST(WorkflowGrapher, WithThreeTopLevelProgramBlocksNamedBlockIsWorkflowRendered)
+    {
+        this->storeAndParse(R"(
+
+            @begin u
+            @end u
+
+            @begin v
+
+                @begin b1
+                @end b1
+
+                @begin b2
+                @end b2
+
+            @end v
+
+            @begin w
+            @end w
+
+
+        )");
+
+        WorkflowGrapher grapher{ ywdb };
+        auto dotText = grapher.graph(modelId, "v");
+
+        Assert::AreEqual(
+            "digraph v {"   EOL
+            "b1"            EOL
+            "b2"            EOL
+            "}"             EOL
+            , dotText);
+    }
 
 YW_TEST_END

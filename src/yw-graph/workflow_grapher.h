@@ -26,7 +26,6 @@ namespace yw {
             static const yw::config::Configuration& getSoftwareSettings();
 
             std::string graph(const row_id& modelId, const std::string& workflowName);
-            std::string graph(const row_id& workflowId);
 
         private:
 
