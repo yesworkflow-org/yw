@@ -11,11 +11,16 @@ namespace yw {
 
         const Configuration& DotBuilder::getSoftwareSettings() {
             if (defaults.size() == 0) {
-                defaults.insert(SoftwareSetting{ "graph.dotcomments", "ON", "Include comments in dot file",{ "ON", "OFF" } });
+                defaults.insert(SoftwareSetting{ "graph.dotcomments", "OFF", "Include comments in dot file",{ "ON", "OFF" } });
                 defaults.insert(SoftwareSetting{ "graph.layout", "TB", "Direction of graph layout", {"TB", "LR", "RL", "BT" } } );
+                defaults.insert(SoftwareSetting{ "graph.title", null_string, "Title for the graph as a whole" });
                 defaults.insert(SoftwareSetting{ "graph.titleposition", "TOP", "Where to place graph title",{ "TOP", "BOTTOM", "HIDE" } });
             }
             return defaults;
+        }
+
+        string DotBuilder::config(std::string key) {
+            return configuration.getStringValue(key);
         }
 
         DotBuilder::DotBuilder(
@@ -27,16 +32,25 @@ namespace yw {
 
         void DotBuilder::beginGraph() {
             dotStream << "digraph Workflow {" << endl;
-            dotStream << "rankdir=" << configuration.getStringValue("graph.layout") << endl;
+            if (config("graph.layout") != "TB") rankdir(config("graph.layout"));
+            if (configuration.getSetting("graph.title").value.hasValue()) {
+                title(config("graph.title"));
+            }
         }
 
         void DotBuilder::comment(string text) {
-            dotStream << endl;
-            dotStream << "/*" << text << "*/" << endl;
+            if (config("graph.comments") == "ON") {
+                dotStream << endl;
+                dotStream << "/* " << text << " */" << endl;
+            }
         }
 
         void DotBuilder::endGraph() {
             dotStream << "}" << endl;
+        }
+
+        void DotBuilder::rankdir(string direction) {
+            dotStream << "rankdir=" << direction << endl;
         }
 
         void DotBuilder::title(string text) {

@@ -7,12 +7,14 @@
 namespace yw {
     namespace graph {
 
-        std::stringstream dotStream;
-        yw::config::Configuration configuration;
 
         class DotBuilder {
 
+            std::stringstream dotStream;
+            yw::config::Configuration configuration;
+
             static yw::config::Configuration defaults;
+
 
         public:
 
@@ -22,11 +24,19 @@ namespace yw {
                 const yw::config::Configuration& userConfiguration = yw::config::Configuration{}
             );
 
+            std::string str() { return dotStream.str(); }
+
             void beginGraph();
             void comment(std::string text);
             void endGraph();
             void quotedText(std::string unquotedText);
+
+        private:
+
+            std::string config(std::string key);
             void title(std::string text);
+            void rankdir(std::string text);
+
         };
     }
 }
