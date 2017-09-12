@@ -14,6 +14,7 @@
 #include "program_block.h"
 #include "source.h"
 #include "flow.h"
+#include "flow_view.h"
 #include "user.h"
 
 namespace yw {
@@ -73,6 +74,9 @@ namespace yw {
             void createFlowTable();
             row_id insert(const Flow& flow);
             Flow selectFlowById(const row_id& id);
+            std::vector<Flow> selectFlowsByWorkflowId(const row_id& workflowId);
+
+            std::vector<FlowView> selectFlowViewsByWorkflowId(const row_id& workflowId);
 
             void createUserTable();
             row_id insert(const User& user);

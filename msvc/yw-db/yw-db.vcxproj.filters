@@ -43,6 +43,9 @@
     <ClCompile Include="..\..\src\yw-db\flow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\yw-db\flow_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-db\annotation.h">
@@ -79,6 +82,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\yw-db\flow.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-db\flow_view.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
