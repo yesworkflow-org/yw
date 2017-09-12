@@ -19,9 +19,11 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\yw-model\model_builder.cpp" />
     <ClCompile Include="..\..\src\yw-model\model_entity_listener.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\yw-model\model_builder.h" />
     <ClInclude Include="..\..\src\yw-model\model_entity_listener.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

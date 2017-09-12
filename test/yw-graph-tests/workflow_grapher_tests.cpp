@@ -1,7 +1,5 @@
 
 #include "yw_graph_tests.h"
-#include "model_entity_listener.h"
-#include "workflow_grapher.h"
 
 using namespace yw;
 using namespace yw::db;
@@ -15,36 +13,17 @@ using namespace yw::test;
 YW_TEST_FIXTURE(WorkflowGrapher)
 
     YesWorkflowDB ywdb;
-    row_id modelId, sourceId;
-    std::shared_ptr<SourceLoader> sourceLoader;
-    ModelEntityListener* listener;
+    row_id modelId = 1;
     StderrRecorder stderrRecorder;
     Configuration grapherConfiguration;
 
-    void storeAndParse(const std::string& code) {
-        sourceLoader->insertSourceLinesFromString(sourceId, code);
-        YWParserBuilder parser_builder(code);
-        antlr4::tree::ParseTreeWalker::DEFAULT.walk(listener, parser_builder.parse()->script());
-    }
-
-    YW_TEST_SETUP(WorkflowGrapher) {
-
-        row_id userId, extractionId;
-
-        Expect::AreEqual(1, (userId = ywdb.insert(User{ auto_id, "user1" })));
-        Expect::AreEqual(1, (extractionId = ywdb.insert(Extraction{ auto_id, userId, "2017-06-22 10:52:00.000" })));
-        Expect::AreEqual(1, (sourceId = ywdb.insert(Source{ auto_id, null_id, "C" })));
-        Expect::AreEqual(1, (modelId = ywdb.insert(Model{ auto_id, userId, extractionId, "2017-06-22 10:52:00.000" })));
-
-        sourceLoader = std::make_shared<SourceLoader>(ywdb);
-        listener = new ModelEntityListener{ ywdb, modelId, extractionId, sourceId };
-    }
 
 YW_TEST_SET
 
     YW_TEST(WorkflowGrapher, EmptyWorkflowReturnsEmptyGraph)
     {
-        this->storeAndParse( R"(
+        ModelBuilder builder(ywdb);
+        builder.buildModelFromString( R"(
             
             @begin b
             @end b
@@ -62,7 +41,8 @@ YW_TEST_SET
 
     YW_TEST(WorkflowGrapher, SingleProgramWorkflowReturnsOneNodeGraph)
     {
-        this->storeAndParse( R"(
+        ModelBuilder builder(ywdb);
+        builder.buildModelFromString(R"(
 
             @begin w
 
@@ -85,7 +65,8 @@ YW_TEST_SET
 
     YW_TEST(WorkflowGrapher, TwoProgramWorkflowReturnsTwoNodeGraph)
     {
-        this->storeAndParse(R"(
+        ModelBuilder builder(ywdb);
+        builder.buildModelFromString(R"(
 
             @begin w
 
@@ -112,7 +93,8 @@ YW_TEST_SET
 
     YW_TEST(WorkflowGrapher, WithThreeTopLevelProgramBlocksNamedBlockIsWorkflowRendered)
     {
-        this->storeAndParse(R"(
+        ModelBuilder builder(ywdb);
+        builder.buildModelFromString(R"(
 
             @begin u
             @end u
@@ -146,7 +128,8 @@ YW_TEST_SET
 
     YW_TEST(WorkflowGrapher, WorkflowWithTwoProgramsAndOneChannelYieldsThreeNodes)
     {
-        this->storeAndParse(R"(
+        ModelBuilder builder(ywdb);
+        builder.buildModelFromString(R"(
 
             @begin w
 
@@ -178,7 +161,8 @@ YW_TEST_SET
 
     YW_TEST(WorkflowGrapher, WorkflowWithTwoProgramsTwoChannelsYieldsFourNodes)
     {
-        this->storeAndParse(R"(
+        ModelBuilder builder(ywdb);
+        builder.buildModelFromString(R"(
 
             @begin w
 

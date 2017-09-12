@@ -8,8 +8,11 @@
 #include <sstream>
 
 #include "ywdb.h"
-#include "yw_parser_builder.h"
-#include "source_loader.h"
-#include "yw_db_test_helpers.h"
 #include "dot_builder.h"
+#include "model_builder.h"
+#include "source_loader.h"
+#include "workflow_grapher.h"
+#include "yw_db_test_helpers.h"
+#include "yw_parser_builder.h"
 #include "yw_test.h"
+

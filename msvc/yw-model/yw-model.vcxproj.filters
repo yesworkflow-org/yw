@@ -10,9 +10,15 @@
     <ClCompile Include="..\..\src\yw-model\model_entity_listener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\yw-model\model_builder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-model\model_entity_listener.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-model\model_builder.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
