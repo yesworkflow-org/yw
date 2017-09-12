@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\yw-graph-app\yw_graph_app.c">
+    <ClCompile Include="..\..\src\yw-graph-app\yw_graph_app.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
