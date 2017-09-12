@@ -25,19 +25,20 @@ namespace yw {
 
             std::string str() { return dotStream.str(); }
 
-            void beginGraph(std::string graphName = "Workflow");
-            void comment(std::string text);
+            void beginGraph(const std::string& graphName = "Workflow");
+            void comment(const std::string& text);
+            void edge(const std::string& from, const std::string& to, const std::string& label);
+            void edge(const std::string& from, const std::string& to);
             void endGraph();
-            void node(std::string name, std::string label);
-            void node(std::string name);
+            void node(const std::string& name, const std::string& label);
+            void node(const std::string& name);
 
         private:
 
-            std::string config(std::string key);
-            void quotedAlways(std::string unquotedText);
-            void quotedIfNeeded(std::string unquotedText);
-            void title(std::string text);
-            void rankdir(std::string text);
+            std::string config(const std::string& key);
+            const std::string q(const std::string& unquotedText);
+            void title(const std::string& text);
+            void rankdir(const std::string& text);
 
         };
     }

@@ -34,6 +34,7 @@ namespace yw {
             dot->beginGraph(workflow.name);
             drawProgramBlocksAsNodes(workflow.id.getValue());
             drawDataBlocksAsNodes(workflow.id.getValue());
+            drawFlowEdgesBetweenProgramsAndData(workflow.id.getValue());
             dot->endGraph();
             return dot->str();
         }
@@ -47,6 +48,17 @@ namespace yw {
         void WorkflowGrapher::drawDataBlocksAsNodes(const row_id& workflowId) {
             for (auto dataBlock : ywdb.selectDataBlocksByWorkflowId(workflowId)) {
                 dot->node(dataBlock.name);
+            }
+        }
+
+        void WorkflowGrapher::drawFlowEdgesBetweenProgramsAndData(const row_id& workflowId) {
+            for (auto flowView : ywdb.selectFlowViewsByWorkflowId(workflowId)) {
+                if (flowView.direction == Flow::Direction::OUT) {
+                    dot->edge(flowView.programBlockName, flowView.dataBlockName);
+                }
+                else {
+                    dot->edge(flowView.dataBlockName, flowView.programBlockName);
+                }
             }
         }
     }

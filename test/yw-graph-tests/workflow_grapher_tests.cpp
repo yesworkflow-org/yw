@@ -170,6 +170,8 @@ YW_TEST_SET
             "b1"            EOL
             "b2"            EOL
             "d1"            EOL
+            "d1 -> b2"      EOL
+            "b1 -> d1"      EOL
             "}"             EOL
             , dotText);
     }
@@ -203,6 +205,10 @@ YW_TEST_SET
             "b2"            EOL
             "d1"            EOL
             "d2"            EOL
+            "d1 -> b2"      EOL
+            "d2 -> b2"      EOL
+            "b1 -> d1"      EOL
+            "b1 -> d2"      EOL
             "}"             EOL
             , dotText);
     }

@@ -14,14 +14,14 @@ namespace yw {
         const Configuration& DotBuilder::getSoftwareSettings() {
             if (defaults.size() == 0) {
                 defaults.insert(SoftwareSetting{ "graph.dotcomments", "OFF", "Include comments in dot file",{ "ON", "OFF" } });
-                defaults.insert(SoftwareSetting{ "graph.layout", "TB", "Direction of graph layout", {"TB", "LR", "RL", "BT" } } );
+                defaults.insert(SoftwareSetting{ "graph.layout", "TB", "Direction of graph layout", {"TB", "LR", "RL", "BT" } });
                 defaults.insert(SoftwareSetting{ "graph.title", null_string, "Title for the graph as a whole" });
                 defaults.insert(SoftwareSetting{ "graph.titleposition", "TOP", "Where to place graph title",{ "TOP", "BOTTOM", "HIDE" } });
             }
             return defaults;
         }
 
-        string DotBuilder::config(std::string key) {
+        string DotBuilder::config(const string& key) {
             return configuration.getStringValue(key);
         }
 
@@ -32,72 +32,75 @@ namespace yw {
             configuration.insertAll(userConfiguration);
         }
 
-        void DotBuilder::beginGraph(string graphName) {
-            dotStream << "digraph ";
-            quotedIfNeeded(graphName);
-            dotStream << " {" << endl;
+        void DotBuilder::beginGraph(const string& graphName) {
+            dotStream << "digraph " << q(graphName) << " {" << endl;
             if (config("graph.layout") != "TB") rankdir(config("graph.layout"));
             if (configuration.getSetting("graph.title").value.hasValue()) {
                 title(config("graph.title"));
             }
         }
 
-        void DotBuilder::comment(string text) {
+        void DotBuilder::comment(const string& text) {
             if (config("graph.comments") == "ON") {
                 dotStream << endl;
                 dotStream << "/* " << text << " */" << endl;
             }
         }
 
-        void DotBuilder::endGraph() {
-            dotStream << "}" << endl;
-        }
-
-        void DotBuilder::node(std::string name, std::string label) {
-            quotedIfNeeded(name);
-            if (label != name) {
-                dotStream << " [label=";
-                quotedIfNeeded(label);
-                dotStream << "]";
+        void DotBuilder::edge(const string& from, const string& to, const string& label) {
+            dotStream << q(from) << " -> " << q(to);
+            if (!label.empty()) {
+                dotStream << " [label=" << q(label) << "]";
             }
             dotStream << endl;
         }
 
-        void DotBuilder::node(std::string name) {
+        void DotBuilder::edge(const string& from, const string& to) {
+            edge(from, to, "");
+        }
+
+        void DotBuilder::endGraph() {
+            dotStream << "}" << endl;
+        }
+
+        void DotBuilder::node(const string& name, const string& label) {
+            dotStream << q(name);
+            if (label != name) {
+                dotStream << " [label=" << q(label) << "]";
+            }
+            dotStream << endl;
+        }
+
+        void DotBuilder::node(const string& name) {
             node(name, name);
         }
 
         std::regex doubleQuoteSymbolPattern{ "\"" };
         std::regex validDotIdPattern{ "[a-zA-Z_0-9]+" };
 
-        void DotBuilder::quotedAlways(string text) {
-            dotStream << "\"" << std::regex_replace(text, doubleQuoteSymbolPattern, "\\\"") << "\"";
-        }
-
-
-        void DotBuilder::quotedIfNeeded(string unquotedText) {
-            if (std::regex_match(unquotedText, validDotIdPattern)) {
-                dotStream << unquotedText;
+        const std::string DotBuilder::q(const string& text) {
+            std::string s;
+            if (std::regex_match(text, validDotIdPattern)) {
+                s = text;
             }
             else {
-                quotedAlways(unquotedText);
+                s = "\"" + std::regex_replace(text, doubleQuoteSymbolPattern, "\\\"") + "\"";
             }
+            return s;
         }
 
-        void DotBuilder::rankdir(string direction) {
+        void DotBuilder::rankdir(const string& direction) {
             dotStream << "rankdir=" << direction << endl;
         }
 
-        void DotBuilder::title(string text) {
+        void DotBuilder::title(const string& text) {
             auto position = configuration.getStringValue("graph.titleposition");
             if (position != "HIDE") {
                 comment("Title for graph");
                 dotStream << "fontname=Helvetica; fontsize=18; labelloc=";
                 dotStream << ((position == "TOP") ? "t" : "b");
                 dotStream << endl;
-                dotStream << "label=";
-                quotedAlways(text);
-                dotStream << endl;
+                dotStream << "label=" << q(text) << endl;
             }
         }
 

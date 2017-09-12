@@ -31,6 +31,7 @@ namespace yw {
 
             void drawProgramBlocksAsNodes(const row_id& workflowId);
             void drawDataBlocksAsNodes(const row_id& workflowId);
+            void drawFlowEdgesBetweenProgramsAndData(const row_id& workflowId);
         };
     }
 }
