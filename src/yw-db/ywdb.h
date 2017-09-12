@@ -35,6 +35,7 @@ namespace yw {
             row_id insert(DataBlock& model);
             row_id insert(const DataBlock& dataBlock);
             DataBlock selectDataBlockById(const row_id& id);
+            std::vector<DataBlock> selectDataBlocksByWorkflowId(const row_id& workflowId);
 
             void createFileTable();
             row_id insert(const File& file);

@@ -22,7 +22,7 @@ namespace yw {
             )"));
         }
 
-        ProgramBlock getProgramBlockFromAnnotationColumns(SelectStatement& statement) {
+        ProgramBlock getProgramBlockFromSelectStatementFields(SelectStatement& statement) {
             auto id = statement.getNullableIdField(0);
             auto modelId = statement.getIdField(1);
             auto workflowId = statement.getNullableIdField(2);
@@ -54,7 +54,7 @@ namespace yw {
             statement.bindId(1, requested_id);
             if (statement.step() != SQLITE_ROW) throw std::runtime_error("No program block with that id");
             auto id = statement.getNullableIdField(0);
-            return getProgramBlockFromAnnotationColumns(statement);
+            return getProgramBlockFromSelectStatementFields(statement);
         }
 
         ProgramBlock YesWorkflowDB::selectProgramBlockByModelIdAndBlockName(const row_id& modelId, const string& blockName) {
@@ -64,7 +64,7 @@ namespace yw {
             statement.bindText(2, blockName);
             if (statement.step() != SQLITE_ROW) throw std::runtime_error("No program block with that name");
             auto id = statement.getNullableIdField(0);
-            return getProgramBlockFromAnnotationColumns(statement);
+            return getProgramBlockFromSelectStatementFields(statement);
         }
 
         std::vector<ProgramBlock> YesWorkflowDB::selectProgramBlocksByWorkflowId(const row_id& workflowId) {
@@ -78,7 +78,7 @@ namespace yw {
             statement.bindNullableId(1, workflowId);
             auto programBlocks = std::vector<ProgramBlock>{};
             while (statement.step() == SQLITE_ROW) {
-                programBlocks.push_back(getProgramBlockFromAnnotationColumns(statement));
+                programBlocks.push_back(getProgramBlockFromSelectStatementFields(statement));
             }
             return programBlocks;
         }

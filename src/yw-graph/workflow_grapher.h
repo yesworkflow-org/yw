@@ -30,7 +30,7 @@ namespace yw {
         private:
 
             void drawProgramBlocksAsNodes(const row_id& workflowId);
-
+            void drawDataBlocksAsNodes(const row_id& workflowId);
         };
     }
 }

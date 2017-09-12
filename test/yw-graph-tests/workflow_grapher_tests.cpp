@@ -144,4 +144,68 @@ YW_TEST_SET
             , dotText);
     }
 
+    YW_TEST(WorkflowGrapher, WorkflowWithTwoProgramsAndOneChannelYieldsThreeNodes)
+    {
+        this->storeAndParse(R"(
+
+            @begin w
+
+                @begin b1
+                @out d1
+                @end b1
+
+                @begin b2
+                @in d1
+                @end b2
+
+            @end w
+
+        )");
+
+        WorkflowGrapher grapher{ ywdb };
+        auto dotText = grapher.graph(modelId, "w");
+
+        Assert::AreEqual(
+            "digraph w {"   EOL
+            "b1"            EOL
+            "b2"            EOL
+            "d1"            EOL
+            "}"             EOL
+            , dotText);
+    }
+
+    YW_TEST(WorkflowGrapher, WorkflowWithTwoProgramsTwoChannelsYieldsFourNodes)
+    {
+        this->storeAndParse(R"(
+
+            @begin w
+
+                @begin b1
+                @out d1
+                @out d2
+                @end b1
+
+                @begin b2
+                @in d1
+                @in d2
+                @end b2
+
+            @end w
+
+        )");
+
+        WorkflowGrapher grapher{ ywdb };
+        auto dotText = grapher.graph(modelId, "w");
+
+        Assert::AreEqual(
+            "digraph w {"   EOL
+            "b1"            EOL
+            "b2"            EOL
+            "d1"            EOL
+            "d2"            EOL
+            "}"             EOL
+            , dotText);
+    }
+
+
 YW_TEST_END

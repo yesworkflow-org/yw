@@ -39,17 +39,37 @@ namespace yw {
             return statement.getGeneratedId();
         }
 
-        DataBlock YesWorkflowDB::selectDataBlockById(const row_id& requested_id) {
-            string sql = "SELECT id, model, workflow, structure, name FROM data_block WHERE id = ?";
-            SelectStatement statement(db, sql);
-            statement.bindId(1, requested_id);
-            if (statement.step() != SQLITE_ROW) throw std::runtime_error("No data block with that id");
+        DataBlock getDataBlockFromSelectStatementFields(SelectStatement& statement) {
             auto id = statement.getNullableIdField(0);
             auto modelId = statement.getIdField(1);
             auto workflowId = statement.getNullableIdField(2);
             auto structureId = statement.getNullableIdField(3);
             auto name = statement.getTextField(4);
             return DataBlock(id, modelId, workflowId, structureId, name);
+        }
+
+        DataBlock YesWorkflowDB::selectDataBlockById(const row_id& requested_id) {
+            string sql = "SELECT id, model, workflow, structure, name FROM data_block WHERE id = ?";
+            SelectStatement statement(db, sql);
+            statement.bindId(1, requested_id);
+            if (statement.step() != SQLITE_ROW) throw std::runtime_error("No data block with that id");
+            return getDataBlockFromSelectStatementFields(statement);
+        }
+
+        std::vector<DataBlock> YesWorkflowDB::selectDataBlocksByWorkflowId(const row_id& workflowId) {
+            auto sql = std::string(R"(
+                SELECT id, model, workflow, structure, name 
+                FROM data_block 
+                WHERE workflow = ?
+                ORDER BY name, id
+            )");
+            SelectStatement statement(db, sql);
+            statement.bindNullableId(1, workflowId);
+            auto dataBlocks = std::vector<DataBlock>{};
+            while (statement.step() == SQLITE_ROW) {
+                dataBlocks.push_back(getDataBlockFromSelectStatementFields(statement));
+            }
+            return dataBlocks;
         }
     }
 }

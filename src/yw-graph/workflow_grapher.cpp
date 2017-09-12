@@ -33,6 +33,7 @@ namespace yw {
             dot = std::make_shared<DotBuilder>();
             dot->beginGraph(workflow.name);
             drawProgramBlocksAsNodes(workflow.id.getValue());
+            drawDataBlocksAsNodes(workflow.id.getValue());
             dot->endGraph();
             return dot->str();
         }
@@ -40,6 +41,12 @@ namespace yw {
         void WorkflowGrapher::drawProgramBlocksAsNodes(const row_id& workflowId) {
             for (auto programBlock : ywdb.selectProgramBlocksByWorkflowId(workflowId)) {
                 dot->node(programBlock.name);
+            }
+        }
+
+        void WorkflowGrapher::drawDataBlocksAsNodes(const row_id& workflowId) {
+            for (auto dataBlock : ywdb.selectDataBlocksByWorkflowId(workflowId)) {
+                dot->node(dataBlock.name);
             }
         }
     }
