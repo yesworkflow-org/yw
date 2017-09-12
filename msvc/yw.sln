@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.10
+VisualStudioVersion = 15.0.26730.12
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-extract", "yw-extract\yw-extract.vcxproj", "{158B1288-0CC1-426B-8967-800EDBD8C278}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -202,6 +202,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-graph-tests", "yw-graph-
 		{EA928567-D2AB-4353-B0CB-43461B488643} = {EA928567-D2AB-4353-B0CB-43461B488643}
 	EndProjectSection
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-dot", "yw-dot\yw-dot.vcxproj", "{01360D1F-E0FE-45A9-919C-7645FD8BA8E5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -324,6 +326,7 @@ Global
 		{D6FB9826-7E50-44DA-822E-F0A27F2A4CCE}.Release|x86.Build.0 = Release|Win32
 		{DCC389A5-1968-493B-9BEC-633C9F0EC79A}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{DCC389A5-1968-493B-9BEC-633C9F0EC79A}.Debug|x64.ActiveCfg = Debug|x64
+		{DCC389A5-1968-493B-9BEC-633C9F0EC79A}.Debug|x64.Build.0 = Debug|x64
 		{DCC389A5-1968-493B-9BEC-633C9F0EC79A}.Debug|x86.ActiveCfg = Debug|Win32
 		{DCC389A5-1968-493B-9BEC-633C9F0EC79A}.Debug|x86.Build.0 = Debug|Win32
 		{DCC389A5-1968-493B-9BEC-633C9F0EC79A}.Release|Any CPU.ActiveCfg = Release|Win32
@@ -410,6 +413,16 @@ Global
 		{4189621D-7C32-4FB0-B429-A0EFF2153C92}.Release|x64.Build.0 = Release|x64
 		{4189621D-7C32-4FB0-B429-A0EFF2153C92}.Release|x86.ActiveCfg = Release|Win32
 		{4189621D-7C32-4FB0-B429-A0EFF2153C92}.Release|x86.Build.0 = Release|Win32
+		{01360D1F-E0FE-45A9-919C-7645FD8BA8E5}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{01360D1F-E0FE-45A9-919C-7645FD8BA8E5}.Debug|x64.ActiveCfg = Debug|x64
+		{01360D1F-E0FE-45A9-919C-7645FD8BA8E5}.Debug|x64.Build.0 = Debug|x64
+		{01360D1F-E0FE-45A9-919C-7645FD8BA8E5}.Debug|x86.ActiveCfg = Debug|Win32
+		{01360D1F-E0FE-45A9-919C-7645FD8BA8E5}.Debug|x86.Build.0 = Debug|Win32
+		{01360D1F-E0FE-45A9-919C-7645FD8BA8E5}.Release|Any CPU.ActiveCfg = Release|Win32
+		{01360D1F-E0FE-45A9-919C-7645FD8BA8E5}.Release|x64.ActiveCfg = Release|x64
+		{01360D1F-E0FE-45A9-919C-7645FD8BA8E5}.Release|x64.Build.0 = Release|x64
+		{01360D1F-E0FE-45A9-919C-7645FD8BA8E5}.Release|x86.ActiveCfg = Release|Win32
+		{01360D1F-E0FE-45A9-919C-7645FD8BA8E5}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
