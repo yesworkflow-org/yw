@@ -27,9 +27,11 @@ YW_TEST_SET
         DotBuilder dotBuilder;
         dotBuilder.beginGraph();
         
-        Assert::AreEqual(
-            "digraph Workflow {"    EOL
-        , dotBuilder.str());
+        Assert::AreEqual((trimmargins(R"(
+
+            digraph Workflow {
+
+        )")) , dotBuilder.str());
     }
 
     YW_TEST(DotBuilder, BeginGraphUsesNondefaultLayoutAsRankdir)
@@ -38,10 +40,12 @@ YW_TEST_SET
         DotBuilder dotBuilder(configuration);
         dotBuilder.beginGraph();
 
-        Assert::AreEqual(
-            "digraph Workflow {"    EOL
-            "rankdir=LR"            EOL
-            , dotBuilder.str());
+        Assert::AreEqual((trimmargins(R"(
+
+            digraph Workflow {
+            rankdir=LR
+
+        )")), dotBuilder.str());
     }
 
     YW_TEST(DotBuilder, BeginGraphDisplaysTitleAtTopIfTitleNotNullAndTitlePositionIsDefault)
@@ -51,11 +55,13 @@ YW_TEST_SET
         DotBuilder dotBuilder(configuration);
         dotBuilder.beginGraph();
 
-        Assert::AreEqual(
-            "digraph Workflow {"                            EOL
-            "fontname=Helvetica; fontsize=18; labelloc=t"   EOL
-            "label=\"Title of my graph\""                   EOL
-            , dotBuilder.str());
+        Assert::AreEqual((trimmargins(R"(
+
+            digraph Workflow {
+            fontname=Helvetica; fontsize=18; labelloc=t
+            label="Title of my graph"
+
+        )")), dotBuilder.str());
     }
 
     YW_TEST(DotBuilder, BeginGraphDisplaysTitleAtBottomIfTitleNotNullAndTitlePositionIsConfiguredAsBottom)
@@ -66,11 +72,13 @@ YW_TEST_SET
         DotBuilder dotBuilder(configuration);
         dotBuilder.beginGraph();
 
-        Assert::AreEqual(
-            "digraph Workflow {"                            EOL
-            "fontname=Helvetica; fontsize=18; labelloc=b"   EOL
-            "label=\"Title of my graph\""                   EOL
-            , dotBuilder.str());
+        Assert::AreEqual((trimmargins(R"(
+
+            digraph Workflow {
+            fontname=Helvetica; fontsize=18; labelloc=b
+            label="Title of my graph"
+
+        )")), dotBuilder.str());
     }
 
     YW_TEST(DotBuilder, BeginGraphHidesTitleIfTitleNotNullButTitlePositionIsHide)
@@ -81,9 +89,11 @@ YW_TEST_SET
         DotBuilder dotBuilder(configuration);
         dotBuilder.beginGraph();
 
-        Assert::AreEqual(
-            "digraph Workflow {"                            EOL
-            , dotBuilder.str());
+        Assert::AreEqual((trimmargins(R"(
+
+            digraph Workflow {
+
+        )")), dotBuilder.str());
     }
 
     YW_TEST(DotBuilder, CommentIsHiddenIfDisabled)
@@ -101,8 +111,10 @@ YW_TEST_SET
         dotBuilder.comment("A comment that should be shown");
 
         Assert::AreEqual(
-            ""                                      EOL
+
+            ""                                      EOL  
             "/* A comment that should be shown */"  EOL
+
             , dotBuilder.str());
     }
 
@@ -112,13 +124,15 @@ YW_TEST_SET
         DotBuilder dotBuilder(configuration);
         dotBuilder.beginGraph();
 
-        Assert::AreEqual(
-            "digraph Workflow {"                            EOL
-            ""                                              EOL
-            "/* Title for graph */"                         EOL
-            "fontname=Helvetica; fontsize=18; labelloc=t"   EOL
-            "label=\"Title of my graph\""                   EOL
-            , dotBuilder.str());
+        Assert::AreEqual((trimmargins(R"(
+
+            digraph Workflow {
+            
+            /* Title for graph */
+            fontname=Helvetica; fontsize=18; labelloc=t
+            label="Title of my graph"
+
+        )")), dotBuilder.str());
     }
 
     YW_TEST(DotBuilder, EndGraphAppendsClosingBraceAndNewline)
@@ -126,9 +140,11 @@ YW_TEST_SET
         DotBuilder dotBuilder;
         dotBuilder.endGraph();
 
-        Assert::AreEqual(
-            "}"    EOL
-            , dotBuilder.str());
+        Assert::AreEqual((trimmargins(R"(
+
+            }
+
+        )")), dotBuilder.str());
     }
 
     YW_TEST(DotBuilder, NodeIncludesLabelWhenItDiffersFromName) 
@@ -136,9 +152,11 @@ YW_TEST_SET
         DotBuilder dotBuilder;
         dotBuilder.node("the_node_name", "the_node_label");
 
-        Assert::AreEqual(
-            "the_node_name [label=the_node_label]"    EOL
-            , dotBuilder.str());
+        Assert::AreEqual((trimmargins(R"(
+
+            the_node_name [label=the_node_label]
+
+        )")), dotBuilder.str());
     }
 
     YW_TEST(DotBuilder, NodeDoesNotIncludeLabelWhenItIsSameAsName)
@@ -146,9 +164,11 @@ YW_TEST_SET
         DotBuilder dotBuilder;
         dotBuilder.node("the_node_name", "the_node_name");
 
-        Assert::AreEqual(
-            "the_node_name"    EOL
-            , dotBuilder.str());
+        Assert::AreEqual((trimmargins(R"(
+
+            the_node_name
+
+        )")), dotBuilder.str());
     }
 
     YW_TEST(DotBuilder, NodeNameIsQuotedWhenItIncludesSpaces)
@@ -156,9 +176,13 @@ YW_TEST_SET
         DotBuilder dotBuilder;
         dotBuilder.node("the node name", "the_node_label");
 
-        Assert::AreEqual(
-            "\"the node name\" [label=the_node_label]"    EOL
+        Assert::AreEqual((trimmargins(R"(
+
+            "the node name" [label=the_node_label]
+
             , dotBuilder.str());
+
+        )")), dotBuilder.str());
     }
 
     YW_TEST(DotBuilder, NodeNameIsQuotedWhenItIncludesDoubleQuoteSymbol)
@@ -166,9 +190,11 @@ YW_TEST_SET
         DotBuilder dotBuilder;
         dotBuilder.node(R"(the "node" name)", "the_node_label");
 
-        Assert::AreEqual(
-            R"("the \"node\" name" [label=the_node_label])"    EOL
-            , dotBuilder.str());
+        Assert::AreEqual((trimmargins(R"(
+
+            "the \"node\" name" [label=the_node_label]
+
+        )")) , dotBuilder.str());
     }
 
 
@@ -177,9 +203,11 @@ YW_TEST_SET
         DotBuilder dotBuilder;
         dotBuilder.node("the_node_name", "the node label");
 
-        Assert::AreEqual(
-            "the_node_name [label=\"the node label\"]"    EOL
-            , dotBuilder.str());
+        Assert::AreEqual((trimmargins(R"(
+
+            the_node_name [label="the node label"]
+
+        )")), dotBuilder.str());
     }
 
     YW_TEST(DotBuilder, NodeLabelIsQuotedWhenItIncludeDoubleQUoteSymbol)
@@ -187,9 +215,11 @@ YW_TEST_SET
         DotBuilder dotBuilder;
         dotBuilder.node("the_node_name", R"(the "node" label)");
 
-        Assert::AreEqual(
-            R"(the_node_name [label="the \"node\" label"])"    EOL
-            , dotBuilder.str());
+        Assert::AreEqual((trimmargins(R"(
+
+            the_node_name [label="the \"node\" label"]
+
+        )")) , dotBuilder.str());
     }
 
     YW_TEST(DotBuilder, SingleArgumentNodeYieldsUnquotedNameWhenItIncludesNoSpaces)
@@ -197,9 +227,11 @@ YW_TEST_SET
         DotBuilder dotBuilder;
         dotBuilder.node("the_node_name");
 
-        Assert::AreEqual(
-            "the_node_name"    EOL
-            , dotBuilder.str());
+        Assert::AreEqual((trimmargins(R"(
+
+            the_node_name
+
+        )")), dotBuilder.str());
     }
 
     YW_TEST(DotBuilder, SingleArgumentNodeYieldsQuotedNameWhenItIncludesSpaces)
@@ -207,9 +239,11 @@ YW_TEST_SET
         DotBuilder dotBuilder;
         dotBuilder.node("the node name");
 
-        Assert::AreEqual(
-            "\"the node name\""    EOL
-            , dotBuilder.str());
+        Assert::AreEqual((trimmargins(R"(
+
+            "the node name"
+
+        )")), dotBuilder.str());
     }
 
 YW_TEST_END

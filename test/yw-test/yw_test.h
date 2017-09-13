@@ -9,6 +9,31 @@
 namespace yw {
     namespace test {
 
+        inline std::string trimmargins(const std::string& untrimmedText) {
+
+            std::stringstream trimmed;
+            std::istringstream sourceStream{ untrimmedText };
+            std::string untrimmedLine;
+            size_t leftMargin = std::string::npos;
+
+            while (std::getline(sourceStream, untrimmedLine)) {
+
+                if (leftMargin == std::string::npos) {
+                    auto firstNonSpace = untrimmedLine.find_first_not_of(" ");
+                    if (firstNonSpace != std::string::npos) {
+                        leftMargin = firstNonSpace;
+                        trimmed << untrimmedLine.substr(leftMargin) << std::endl;
+                    }
+                }
+                else {
+                    if (untrimmedLine.size() < leftMargin) break;
+                    trimmed << untrimmedLine.substr(leftMargin) << std::endl;
+                }
+            }
+
+            return trimmed.str();
+        }
+
         class Assert {
 
         public:

@@ -34,40 +34,41 @@ YW_TEST_SET
 
     YW_TEST(WorkflowGraphCLI, RunningOnEmptyModelYieldsDotFileWithNoNodes)
     {
-        auto sourceFilePath = writeTempFile(
-            "sample.yw",
-            R"(
-                @begin workflow
-                @end workflow
-            )");
+        auto sourceFilePath = writeTempFile("sample.yw",R"(
+
+            @begin workflow
+            @end workflow
+
+        )");
 
         yw::graph::cli(CommandLine(
             "yw graph " + sourceFilePath
         ));
 
         Assert::EmptyString(stderrRecorder.str());
-        Assert::AreEqual(
-            "digraph workflow {"    EOL
-            "}"                     EOL
+        Assert::AreEqual((trimmargins(R"(
+
+            digraph workflow {
+            }
+
+        )"))
         , stdoutRecorder.str());
     }
 
     YW_TEST(WorkflowGraphCLI, RunningOnTwoProgramBlockWorkflowYieldsDotFileWithNodesAndEdgesAndComments)
     {
-        auto sourceFilePath = writeTempFile(
-            "sample.yw",
-            R"(
+        auto sourceFilePath = writeTempFile("sample.yw", R"(
 
                 @begin w
-
+                
                     @begin b1
                     @out d1
                     @end b1
-
+                
                     @begin b2
                     @in d1
                     @end b2
-
+                
                 @end w
 
             )");
@@ -77,28 +78,29 @@ YW_TEST_SET
         ));
 
         Assert::EmptyString(stderrRecorder.str());
-        Assert::AreEqual(
-            "digraph w {"                                                       EOL
-            ""                                                                  EOL
-            "/* Nodes representing program blocks in workflow */"               EOL
-            "b1"                                                                EOL
-            "b2"                                                                EOL
-            ""                                                                  EOL
-            "/* Nodes representing data blocks in workflow */"                  EOL
-            "d1"                                                                EOL
-            ""                                                                  EOL
-            "/* Edges representing flow of data into and out of code blocks */" EOL
-            "d1 -> b2"                                                          EOL
-            "b1 -> d1"                                                          EOL
-            "}"                                                                 EOL
-            , stdoutRecorder.str());
+
+        Assert::AreEqual(trimmargins(R"(
+
+            digraph w {
+            
+            /* Nodes representing program blocks in workflow */
+            b1
+            b2
+            
+            /* Nodes representing data blocks in workflow */
+            d1
+            
+            /* Edges representing flow of data into and out of code blocks */
+            d1 -> b2
+            b1 -> d1
+            }
+
+            )"), stdoutRecorder.str());
     }
 
     YW_TEST(WorkflowGraphCLI, RunningWithCommentsOffOnTwoProgramBlockWorkflowYieldsDotFileWithNodesAndEdgesAndNoComments)
     {
-        auto sourceFilePath = writeTempFile(
-            "sample.yw",
-            R"(
+        auto sourceFilePath = writeTempFile("sample.yw", R"(
 
                 @begin w
 
@@ -119,15 +121,17 @@ YW_TEST_SET
         ));
 
         Assert::EmptyString(stderrRecorder.str());
-        Assert::AreEqual(
-            "digraph w {"                                                       EOL
-            "b1"                                                                EOL
-            "b2"                                                                EOL
-            "d1"                                                                EOL
-            "d1 -> b2"                                                          EOL
-            "b1 -> d1"                                                          EOL
-            "}"                                                                 EOL
-            , stdoutRecorder.str());
+        Assert::AreEqual(trimmargins(R"(
+
+            digraph w {
+            b1
+            b2
+            d1
+            d1 -> b2
+            b1 -> d1
+            }
+
+            )"), stdoutRecorder.str());
     }
 
 

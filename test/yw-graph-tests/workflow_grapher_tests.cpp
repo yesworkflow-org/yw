@@ -29,10 +29,12 @@ YW_TEST_SET
         WorkflowGrapher grapher{ ywdb };
         auto dotText = grapher.graph(modelId);
 
-        Assert::AreEqual(
-            "digraph b {"   EOL
-            "}"             EOL
-            , dotText);
+        Assert::AreEqual((trimmargins(R"(
+
+            digraph b {
+            }
+
+            )")), dotText);
     }
 
     YW_TEST(WorkflowGrapher, SingleProgramWorkflowReturnsOneNodeGraphWithoutCommentsWhenDotCommentsAreOff)
@@ -53,11 +55,13 @@ YW_TEST_SET
         WorkflowGrapher grapher{ ywdb, config };
         auto dotText = grapher.graph(modelId);
 
-        Assert::AreEqual(
-            "digraph w {"   EOL
-            "b"             EOL
-            "}"             EOL
-            , dotText);
+        Assert::AreEqual((trimmargins(R"(
+
+            digraph w {
+            b
+            }
+
+            )")), dotText);
     }
 
     YW_TEST(WorkflowGrapher, SingleProgramWorkflowReturnsOneNodeGraphWithCommentsWhenDotCommentsOnByDefault)
@@ -76,13 +80,15 @@ YW_TEST_SET
         WorkflowGrapher grapher{ ywdb };
         auto dotText = grapher.graph(modelId);
 
-        Assert::AreEqual(
-            "digraph w {"                                                       EOL
-            ""                                                                  EOL
-            "/* Nodes representing program blocks in workflow */"               EOL
-            "b"                                                                 EOL
-            "}"                                                                 EOL
-            , dotText);
+        Assert::AreEqual((trimmargins(R"(
+
+            digraph w {
+            
+            /* Nodes representing program blocks in workflow */
+            b
+            }
+
+            )")), dotText);
     }
 
 
@@ -105,14 +111,16 @@ YW_TEST_SET
         WorkflowGrapher grapher{ ywdb };
         auto dotText = grapher.graph(modelId);
 
-        Assert::AreEqual(
-            "digraph w {"                                                       EOL
-            ""                                                                  EOL
-            "/* Nodes representing program blocks in workflow */"               EOL
-            "b1"                                                                EOL
-            "b2"                                                                EOL
-            "}"                                                                 EOL
-            , dotText);
+        Assert::AreEqual((trimmargins(R"(
+
+            digraph w {
+            
+            /* Nodes representing program blocks in workflow */
+            b1
+            b2
+            }
+
+            )")), dotText);
     }
 
     YW_TEST(WorkflowGrapher, WithThreeTopLevelProgramBlocksNamedBlockIsWorkflowRendered)
@@ -142,14 +150,16 @@ YW_TEST_SET
         WorkflowGrapher grapher{ ywdb, config };
         auto dotText = grapher.graph(modelId);
 
-        Assert::AreEqual(
-            "digraph v {"                                                       EOL
-            ""                                                                  EOL
-            "/* Nodes representing program blocks in workflow */"               EOL
-            "b1"                                                                EOL
-            "b2"                                                                EOL
-            "}"                                                                 EOL
-            , dotText);
+        Assert::AreEqual((trimmargins(R"(
+
+            digraph v {
+            
+            /* Nodes representing program blocks in workflow */
+            b1
+            b2
+            }
+
+            )")), dotText);
     }
 
     YW_TEST(WorkflowGrapher, WorkflowWithTwoProgramsAndOneChannelYieldsThreeNodes)
@@ -173,21 +183,23 @@ YW_TEST_SET
         WorkflowGrapher grapher{ ywdb };
         auto dotText = grapher.graph(modelId);
 
-        Assert::AreEqual(
-            "digraph w {"                                                       EOL
-            ""                                                                  EOL
-            "/* Nodes representing program blocks in workflow */"               EOL
-            "b1"                                                                EOL
-            "b2"                                                                EOL
-            ""                                                                  EOL
-            "/* Nodes representing data blocks in workflow */"                  EOL
-            "d1"                                                                EOL
-            ""                                                                  EOL
-            "/* Edges representing flow of data into and out of code blocks */" EOL
-            "d1 -> b2"                                                          EOL
-            "b1 -> d1"                                                          EOL
-            "}"                                                                 EOL
-            , dotText);
+        Assert::AreEqual((trimmargins(R"(
+
+            digraph w {
+            
+            /* Nodes representing program blocks in workflow */
+            b1
+            b2
+            
+            /* Nodes representing data blocks in workflow */
+            d1
+            
+            /* Edges representing flow of data into and out of code blocks */
+            d1 -> b2
+            b1 -> d1
+            }
+
+            )")), dotText);
     }
 
     YW_TEST(WorkflowGrapher, WorkflowWithTwoProgramsTwoChannelsYieldsFourNodes)
@@ -213,24 +225,26 @@ YW_TEST_SET
         WorkflowGrapher grapher{ ywdb };
         auto dotText = grapher.graph(modelId);
 
-        Assert::AreEqual(
-            "digraph w {"                                                       EOL
-            ""                                                                  EOL
-            "/* Nodes representing program blocks in workflow */"               EOL
-            "b1"                                                                EOL
-            "b2"                                                                EOL
-            ""                                                                  EOL
-            "/* Nodes representing data blocks in workflow */"                  EOL
-            "d1"                                                                EOL
-            "d2"                                                                EOL
-            ""                                                                  EOL
-            "/* Edges representing flow of data into and out of code blocks */" EOL
-            "d1 -> b2"                                                          EOL
-            "d2 -> b2"                                                          EOL
-            "b1 -> d1"                                                          EOL
-            "b1 -> d2"                                                          EOL
-            "}"                                                                 EOL
-            , dotText);
+        Assert::AreEqual((trimmargins(R"(
+
+            digraph w {
+            
+            /* Nodes representing program blocks in workflow */
+            b1
+            b2
+            
+            /* Nodes representing data blocks in workflow */
+            d1
+            d2
+            
+            /* Edges representing flow of data into and out of code blocks */
+            d1 -> b2
+            d2 -> b2
+            b1 -> d1
+            b1 -> d2
+            }
+
+            )")), dotText);
     }
 
 YW_TEST_END
