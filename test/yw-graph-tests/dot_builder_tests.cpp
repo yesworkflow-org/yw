@@ -47,6 +47,7 @@ YW_TEST_SET
     YW_TEST(DotBuilder, BeginGraphDisplaysTitleAtTopIfTitleNotNullAndTitlePositionIsDefault)
     {
         configuration.insert({ Setting{ "graph.title", "Title of my graph", Setting::SettingSource::COMMAND_LINE } });
+        configuration.insert({ Setting{ "graph.comments", "OFF", Setting::SettingSource::COMMAND_LINE } });
         DotBuilder dotBuilder(configuration);
         dotBuilder.beginGraph();
 
@@ -61,6 +62,7 @@ YW_TEST_SET
     {
         configuration.insert({ Setting{ "graph.title", "Title of my graph", Setting::SettingSource::COMMAND_LINE } });
         configuration.insert({ Setting{ "graph.titleposition", "BOTTOM", Setting::SettingSource::COMMAND_LINE } });
+        configuration.insert({ Setting{ "graph.comments", "OFF", Setting::SettingSource::COMMAND_LINE } });
         DotBuilder dotBuilder(configuration);
         dotBuilder.beginGraph();
 
@@ -75,6 +77,7 @@ YW_TEST_SET
     {
         configuration.insert({ Setting{ "graph.title", "Title of my graph", Setting::SettingSource::COMMAND_LINE } });
         configuration.insert({ Setting{ "graph.titleposition", "HIDE", Setting::SettingSource::COMMAND_LINE } });
+        configuration.insert({ Setting{ "graph.comments", "OFF", Setting::SettingSource::COMMAND_LINE } });
         DotBuilder dotBuilder(configuration);
         dotBuilder.beginGraph();
 
@@ -83,18 +86,18 @@ YW_TEST_SET
             , dotBuilder.str());
     }
 
-    YW_TEST(DotBuilder, CommentIsHiddenByDefault)
+    YW_TEST(DotBuilder, CommentIsHiddenIfDisabled)
     {
-        DotBuilder dotBuilder;
+        configuration.insert({ Setting{ "graph.comments", "OFF", Setting::SettingSource::COMMAND_LINE } });
+        DotBuilder dotBuilder(configuration);
         dotBuilder.comment("A comment that should be hidden");
 
         Assert::EmptyString(dotBuilder.str());
     }
 
-    YW_TEST(DotBuilder, CommentIsShownIfCommentsEnabled)
+    YW_TEST(DotBuilder, CommentIsShownByDefault)
     {
-        configuration.insert({ Setting{ "graph.comments", "ON", Setting::SettingSource::COMMAND_LINE } });
-        DotBuilder dotBuilder(configuration);
+        DotBuilder dotBuilder;
         dotBuilder.comment("A comment that should be shown");
 
         Assert::AreEqual(
@@ -106,7 +109,6 @@ YW_TEST_SET
     YW_TEST(DotBuilder, BeginGraphIncludesCommentIfTitleNotNullAndCommentsEnabled)
     {
         configuration.insert({ Setting{ "graph.title", "Title of my graph", Setting::SettingSource::COMMAND_LINE } });
-        configuration.insert({ Setting{ "graph.comments", "ON", Setting::SettingSource::COMMAND_LINE } });
         DotBuilder dotBuilder(configuration);
         dotBuilder.beginGraph();
 

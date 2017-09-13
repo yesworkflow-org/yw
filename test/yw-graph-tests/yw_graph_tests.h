@@ -13,6 +13,8 @@
 #include "source_loader.h"
 #include "workflow_grapher.h"
 #include "yw_db_test_helpers.h"
+#include "command_line.h"
 #include "yw_parser_builder.h"
+#include "yw_graph_cli.h"
 #include "yw_test.h"
 

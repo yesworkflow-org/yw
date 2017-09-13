@@ -15,7 +15,6 @@ namespace yw {
 
             static yw::config::Configuration defaults;
 
-
         public:
 
             WorkflowGrapher(

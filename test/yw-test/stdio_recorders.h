@@ -14,5 +14,15 @@ namespace yw {
             ~StderrRecorder() { std::cerr.rdbuf(previousBuffer); }
             auto str() { return recording.str(); }
         };
+
+        class StdoutRecorder {
+            std::stringstream recording;
+            std::streambuf * previousBuffer;
+        public:
+            StdoutRecorder() : previousBuffer{ std::cout.rdbuf(recording.rdbuf()) } {}
+            ~StdoutRecorder() { std::cout.rdbuf(previousBuffer); }
+            auto str() { return recording.str(); }
+        };
+
     }
 }

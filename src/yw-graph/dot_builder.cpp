@@ -13,7 +13,7 @@ namespace yw {
 
         const Configuration& DotBuilder::getSoftwareSettings() {
             if (defaults.size() == 0) {
-                defaults.insert(SoftwareSetting{ "graph.dotcomments", "OFF", "Include comments in dot file",{ "ON", "OFF" } });
+                defaults.insert(SoftwareSetting{ "graph.comments", "ON", "Include comments in dot file",{ "ON", "OFF" } });
                 defaults.insert(SoftwareSetting{ "graph.layout", "TB", "Direction of graph layout", {"TB", "LR", "RL", "BT" } });
                 defaults.insert(SoftwareSetting{ "graph.title", null_string, "Title for the graph as a whole" });
                 defaults.insert(SoftwareSetting{ "graph.titleposition", "TOP", "Where to place graph title",{ "TOP", "BOTTOM", "HIDE" } });

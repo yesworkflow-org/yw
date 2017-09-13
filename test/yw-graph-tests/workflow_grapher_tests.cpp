@@ -15,7 +15,7 @@ YW_TEST_FIXTURE(WorkflowGrapher)
     YesWorkflowDB ywdb;
     row_id modelId = 1;
     StderrRecorder stderrRecorder;
-    Configuration grapherConfiguration;
+    Configuration config;
 
 
 YW_TEST_SET
@@ -38,6 +38,7 @@ YW_TEST_SET
             "}"             EOL
             , dotText);
     }
+
 
     YW_TEST(WorkflowGrapher, SingleProgramWorkflowReturnsOneNodeGraph)
     {
@@ -62,6 +63,31 @@ YW_TEST_SET
             "}"             EOL
             , dotText);
     }
+
+    YW_TEST(WorkflowGrapher, SingleProgramWorkflowReturnsOneNodeGraphWithCommentsWhenDotCommentsOn)
+    {
+        ModelBuilder builder(ywdb);
+        builder.buildModelFromString(R"(
+
+            @begin w
+
+                @begin b
+                @end b
+
+            @end w
+
+        )");
+
+        WorkflowGrapher grapher{ ywdb };
+        auto dotText = grapher.graph(modelId);
+
+        Assert::AreEqual(
+            "digraph w {"   EOL
+            "b"             EOL
+            "}"             EOL
+            , dotText);
+    }
+
 
     YW_TEST(WorkflowGrapher, TwoProgramWorkflowReturnsTwoNodeGraph)
     {

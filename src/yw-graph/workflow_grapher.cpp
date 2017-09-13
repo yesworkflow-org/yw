@@ -45,7 +45,7 @@ namespace yw {
                 }
             }
             auto workflow = ywdb.selectProgramBlockByModelIdAndBlockName(modelId, workflowName);
-            dot = std::make_shared<DotBuilder>();
+            dot = std::make_shared<DotBuilder>(configuration);
             dot->beginGraph(workflow.name);
             drawProgramBlocksAsNodes(workflow.id.getValue());
             drawDataBlocksAsNodes(workflow.id.getValue());

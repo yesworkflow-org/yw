@@ -21,10 +21,12 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\yw-graph\dot_builder.cpp" />
     <ClCompile Include="..\..\src\yw-graph\workflow_grapher.cpp" />
+    <ClCompile Include="..\..\src\yw-graph\yw_graph_cli.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-graph\dot_builder.h" />
     <ClInclude Include="..\..\src\yw-graph\workflow_grapher.h" />
+    <ClInclude Include="..\..\src\yw-graph\yw_graph_cli.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -95,9 +97,9 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANTLR4CPP_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\yw-db;;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -109,9 +111,9 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANTLR4CPP_STATIC;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\yw-db;;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -125,7 +127,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANTLR4CPP_STATIC;_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3</AdditionalIncludeDirectories>
     </ClCompile>
@@ -143,7 +145,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANTLR4CPP_STATIC;_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3</AdditionalIncludeDirectories>
     </ClCompile>
