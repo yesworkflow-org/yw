@@ -65,7 +65,8 @@ namespace yw {
             row_id insert(const ProgramBlock& programBlock);
             ProgramBlock selectProgramBlockById(const row_id& id);
             ProgramBlock selectProgramBlockByModelIdAndBlockName(const row_id& modelId, const std::string& blockName);
-            std::vector<ProgramBlock> selectProgramBlocksByWorkflowId(const row_id& workflowId);
+            std::vector<ProgramBlock> selectTopLevelProgramBlocksInModel(const row_id& modelId);
+            std::vector<ProgramBlock> selectProgramBlocksInWorkflow(const row_id& workflowId);
 
             void createSourceTable();
             row_id insert(const Source& source);

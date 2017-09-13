@@ -8,28 +8,22 @@ namespace yw {
         class ModelBuilder {
 
             yw::db::YesWorkflowDB& ywdb;
+            row_id extractionId;
+            row_id modelId;
 
         public:
 
             ModelBuilder(yw::db::YesWorkflowDB& ywdb) : ywdb(ywdb) {}
 
-            void buildModelFromString(const std::string& sourceText);            
-            void buildModelFromFile(const std::string& filePath);
-            void buildModelFromFiles(const std::vector<std::string>& filePath);
+            row_id buildModelFromString(const std::string& sourceText);            
+            row_id buildModelFromFile(const std::string& filePath);
+            row_id buildModelFromFiles(const std::vector<std::string>& filePath);
 
         private:
 
             void buildModelFromString(
-                const row_id& modelId,
-                const row_id& extractionId,
                 const row_id& sourceId,
                 const std::string& sourceString
-            );
-
-            void buildModelFromFile(
-                const row_id& modelId,
-                const row_id& extractionId,
-                const std::string& filePath
             );
         };
     }

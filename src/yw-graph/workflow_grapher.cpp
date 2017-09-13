@@ -16,6 +16,7 @@ namespace yw {
             if (defaults.size() == 0) {
                 defaults.insert(SoftwareSetting{ "graph.view", "combined", "Workflow view to render", { "PROCESS", "DATA", "COMBINED" } });
                 defaults.insert(SoftwareSetting{ "graph.workflowbox", "SHOW", "Box around nodes internal to workflow", { "SHOW", "HIDE" } });
+                defaults.insert(SoftwareSetting{ "graph.workflow", null_string, "Name of workflow to graph" });
             }
             return defaults;
         }
@@ -28,7 +29,21 @@ namespace yw {
             configuration.insertAll(userConfiguration);
         }
 
-        string WorkflowGrapher::graph(const row_id& modelId, const string& workflowName) {
+        string WorkflowGrapher::graph(const row_id& modelId) {
+            auto workflowNameSetting = configuration.getSetting("graph.workflow");
+            string workflowName;
+            if (workflowNameSetting.value.hasValue()) {
+                workflowName = workflowNameSetting.value.getValue();
+            }
+            else {
+                auto topLevelProgramBlocks = ywdb.selectTopLevelProgramBlocksInModel(modelId);
+                if (topLevelProgramBlocks.size() > 0) {
+                    workflowName = topLevelProgramBlocks[0].name;
+                }
+                else {
+                    throw std::runtime_error("No top-level workflow found in model.");
+                }
+            }
             auto workflow = ywdb.selectProgramBlockByModelIdAndBlockName(modelId, workflowName);
             dot = std::make_shared<DotBuilder>();
             dot->beginGraph(workflow.name);
@@ -40,7 +55,7 @@ namespace yw {
         }
 
         void WorkflowGrapher::drawProgramBlocksAsNodes(const row_id& workflowId) {
-            for (auto programBlock : ywdb.selectProgramBlocksByWorkflowId(workflowId)) {
+            for (auto programBlock : ywdb.selectProgramBlocksInWorkflow(workflowId)) {
                 dot->node(programBlock.name);
             }
         }

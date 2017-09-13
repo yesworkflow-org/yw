@@ -67,7 +67,23 @@ namespace yw {
             return getProgramBlockFromSelectStatementFields(statement);
         }
 
-        std::vector<ProgramBlock> YesWorkflowDB::selectProgramBlocksByWorkflowId(const row_id& workflowId) {
+        std::vector<ProgramBlock> YesWorkflowDB::selectTopLevelProgramBlocksInModel(const row_id& modelId) {
+            auto sql = std::string(R"(
+                SELECT id, model, workflow, annotation, name 
+                FROM program_block 
+                WHERE workflow IS NULL AND model = ?
+                ORDER BY id
+            )");
+            SelectStatement statement(db, sql);
+            statement.bindNullableId(1, modelId);
+            auto programBlocks = std::vector<ProgramBlock>{};
+            while (statement.step() == SQLITE_ROW) {
+                programBlocks.push_back(getProgramBlockFromSelectStatementFields(statement));
+            }
+            return programBlocks;
+        }
+
+        std::vector<ProgramBlock> YesWorkflowDB::selectProgramBlocksInWorkflow(const row_id& workflowId) {
             auto sql = std::string(R"(
                 SELECT id, model, workflow, annotation, name 
                 FROM program_block 

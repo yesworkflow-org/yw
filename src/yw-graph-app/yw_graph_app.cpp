@@ -38,8 +38,9 @@ int main(int argc, char** argv)
     Configuration configuration;
     configuration.insertAll(commandLine.getSettings());
 
+    yw::row_id modelId;
     try {
-        ModelBuilder{ ywdb }.buildModelFromFiles(filesToExtract);
+        modelId = ModelBuilder{ ywdb }.buildModelFromFiles(filesToExtract);
     }
     catch (std::exception e) {
         std::cerr << "Error extracting annotations. " << e.what() << std::endl;
@@ -48,7 +49,7 @@ int main(int argc, char** argv)
 
     WorkflowGrapher grapher{ ywdb };
     try {
-        std::cout << grapher.graph(1,"Workflow");
+        std::cout << grapher.graph(modelId);
     }
     catch (std::exception e) {
         std::cerr << "Error exporting outline. " << e.what() << std::endl;

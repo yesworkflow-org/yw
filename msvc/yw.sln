@@ -60,6 +60,10 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-extract-app", "yw-extrac
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-graph-app", "yw-graph-app\yw-graph-app.vcxproj", "{DCC389A5-1968-493B-9BEC-633C9F0EC79A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EA928567-D2AB-4353-B0CB-43461B488643} = {EA928567-D2AB-4353-B0CB-43461B488643}
+		{19688ECD-0F81-4E43-BD3C-62E45B9725A1} = {19688ECD-0F81-4E43-BD3C-62E45B9725A1}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-model", "yw-model\yw-model.vcxproj", "{B511807B-8856-43EF-BD68-8B26D18642D4}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -193,6 +197,7 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-graph", "yw-graph\yw-graph.vcxproj", "{EA928567-D2AB-4353-B0CB-43461B488643}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B511807B-8856-43EF-BD68-8B26D18642D4} = {B511807B-8856-43EF-BD68-8B26D18642D4}
+		{12F54AB5-EC93-4E17-A652-E1620667FDDB} = {12F54AB5-EC93-4E17-A652-E1620667FDDB}
 		{7FF323B9-9432-48FA-8B1A-090062B6440B} = {7FF323B9-9432-48FA-8B1A-090062B6440B}
 	EndProjectSection
 EndProject

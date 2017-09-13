@@ -31,7 +31,7 @@ YW_TEST_SET
         )");
 
         WorkflowGrapher grapher{ ywdb };
-        auto dotText = grapher.graph(modelId, "b");
+        auto dotText = grapher.graph(modelId);
 
         Assert::AreEqual(
             "digraph b {"   EOL
@@ -54,7 +54,7 @@ YW_TEST_SET
         )");
 
         WorkflowGrapher grapher{ ywdb };
-        auto dotText = grapher.graph(modelId, "w");
+        auto dotText = grapher.graph(modelId);
 
         Assert::AreEqual(
             "digraph w {"   EOL
@@ -81,7 +81,7 @@ YW_TEST_SET
         )");
 
         WorkflowGrapher grapher{ ywdb };
-        auto dotText = grapher.graph(modelId, "w");
+        auto dotText = grapher.graph(modelId);
 
         Assert::AreEqual(
             "digraph w {"   EOL
@@ -114,9 +114,10 @@ YW_TEST_SET
 
 
         )");
-
-        WorkflowGrapher grapher{ ywdb };
-        auto dotText = grapher.graph(modelId, "v");
+        Configuration config;
+        config.insert(Setting{ "graph.workflow", "v", Setting::SettingSource::COMMAND_LINE });
+        WorkflowGrapher grapher{ ywdb, config };
+        auto dotText = grapher.graph(modelId);
 
         Assert::AreEqual(
             "digraph v {"   EOL
@@ -146,7 +147,7 @@ YW_TEST_SET
         )");
 
         WorkflowGrapher grapher{ ywdb };
-        auto dotText = grapher.graph(modelId, "w");
+        auto dotText = grapher.graph(modelId);
 
         Assert::AreEqual(
             "digraph w {"   EOL
@@ -181,7 +182,7 @@ YW_TEST_SET
         )");
 
         WorkflowGrapher grapher{ ywdb };
-        auto dotText = grapher.graph(modelId, "w");
+        auto dotText = grapher.graph(modelId);
 
         Assert::AreEqual(
             "digraph w {"   EOL
