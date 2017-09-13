@@ -14,33 +14,36 @@ YW_TEST_SET
 
     YW_TEST(WorkflowGraphCLI, RunningWithNoCommandYieldsErrorMessage)
     {
-        auto commandLine = yw::cli::CommandLine("yw");
-        yw::graph::main(commandLine);
+        yw::graph::cli(CommandLine(
+            "yw"
+        ));
 
         Assert::AreEqual("Error: No command given." EOL, stderrRecorder.str());
         Assert::AreEqual("Usage: yw graph <path-to-script>" EOL, stdoutRecorder.str());
-}
+    }
 
     YW_TEST(WorkflowGraphCLI, RunningWithNoArgumentsYieldsErrorMessage)
     {
-        auto commandLine = yw::cli::CommandLine("yw graph"); 
-        yw::graph::main(commandLine);
+        yw::graph::cli(CommandLine(
+            "yw graph"
+        ));
 
         Assert::AreEqual("Error: No file names given as arguments." EOL, stderrRecorder.str());
         Assert::AreEqual("Usage: yw graph <path-to-script>" EOL, stdoutRecorder.str());
     }
 
-    YW_TEST(WorkflowGraphCLI, RunningOnMinimalModelYieldsDotFile)
+    YW_TEST(WorkflowGraphCLI, RunningOnEmptyModelYieldsDotFileWithNoNodes)
     {
         auto sourceFilePath = writeTempFile(
-            "hello.py",
+            "sample.yw",
             R"(
                 @begin workflow
                 @end workflow
             )");
 
-        auto commandLine = yw::cli::CommandLine("yw graph " + sourceFilePath);
-        yw::graph::main(commandLine);
+        yw::graph::cli(CommandLine(
+            "yw graph " + sourceFilePath
+        ));
 
         Assert::EmptyString(stderrRecorder.str());
         Assert::AreEqual(
@@ -48,5 +51,84 @@ YW_TEST_SET
             "}"                     EOL
         , stdoutRecorder.str());
     }
+
+    YW_TEST(WorkflowGraphCLI, RunningOnTwoProgramBlockWorkflowYieldsDotFileWithNodesAndEdgesAndComments)
+    {
+        auto sourceFilePath = writeTempFile(
+            "sample.yw",
+            R"(
+
+                @begin w
+
+                    @begin b1
+                    @out d1
+                    @end b1
+
+                    @begin b2
+                    @in d1
+                    @end b2
+
+                @end w
+
+            )");
+
+        yw::graph::cli(CommandLine(
+            "yw graph " + sourceFilePath
+        ));
+
+        Assert::EmptyString(stderrRecorder.str());
+        Assert::AreEqual(
+            "digraph w {"                                                       EOL
+            ""                                                                  EOL
+            "/* Nodes representing program blocks in workflow */"               EOL
+            "b1"                                                                EOL
+            "b2"                                                                EOL
+            ""                                                                  EOL
+            "/* Nodes representing data blocks in workflow */"                  EOL
+            "d1"                                                                EOL
+            ""                                                                  EOL
+            "/* Edges representing flow of data into and out of code blocks */" EOL
+            "d1 -> b2"                                                          EOL
+            "b1 -> d1"                                                          EOL
+            "}"                                                                 EOL
+            , stdoutRecorder.str());
+    }
+
+    YW_TEST(WorkflowGraphCLI, RunningWithCommentsOffOnTwoProgramBlockWorkflowYieldsDotFileWithNodesAndEdgesAndNoComments)
+    {
+        auto sourceFilePath = writeTempFile(
+            "sample.yw",
+            R"(
+
+                @begin w
+
+                    @begin b1
+                    @out d1
+                    @end b1
+
+                    @begin b2
+                    @in d1
+                    @end b2
+
+                @end w
+
+            )");
+
+        yw::graph::cli(CommandLine(
+            "yw graph " + sourceFilePath + " graph.comments=OFF"
+        ));
+
+        Assert::EmptyString(stderrRecorder.str());
+        Assert::AreEqual(
+            "digraph w {"                                                       EOL
+            "b1"                                                                EOL
+            "b2"                                                                EOL
+            "d1"                                                                EOL
+            "d1 -> b2"                                                          EOL
+            "b1 -> d1"                                                          EOL
+            "}"                                                                 EOL
+            , stdoutRecorder.str());
+    }
+
 
 YW_TEST_END

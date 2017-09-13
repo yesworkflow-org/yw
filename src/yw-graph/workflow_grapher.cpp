@@ -55,24 +55,36 @@ namespace yw {
         }
 
         void WorkflowGrapher::drawProgramBlocksAsNodes(const row_id& workflowId) {
-            for (auto programBlock : ywdb.selectProgramBlocksInWorkflow(workflowId)) {
-                dot->node(programBlock.name);
+            auto programBlocks = ywdb.selectProgramBlocksInWorkflow(workflowId);
+            if (programBlocks.size() > 0) {
+                dot->comment("Nodes representing program blocks in workflow");
+                for (auto programBlock : programBlocks) {
+                    dot->node(programBlock.name);
+                }
             }
         }
 
         void WorkflowGrapher::drawDataBlocksAsNodes(const row_id& workflowId) {
-            for (auto dataBlock : ywdb.selectDataBlocksByWorkflowId(workflowId)) {
-                dot->node(dataBlock.name);
+            auto dataBlocks = ywdb.selectDataBlocksByWorkflowId(workflowId);
+            if (dataBlocks.size() > 0) {
+                dot->comment("Nodes representing data blocks in workflow");
+                for (auto dataBlock : dataBlocks) {
+                    dot->node(dataBlock.name);
+                }
             }
         }
 
         void WorkflowGrapher::drawFlowEdgesBetweenProgramsAndData(const row_id& workflowId) {
-            for (auto flowView : ywdb.selectFlowViewsByWorkflowId(workflowId)) {
-                if (flowView.direction == Flow::Direction::OUT) {
-                    dot->edge(flowView.programBlockName, flowView.dataBlockName);
-                }
-                else {
-                    dot->edge(flowView.dataBlockName, flowView.programBlockName);
+            auto flows = ywdb.selectFlowViewsByWorkflowId(workflowId);
+            if (flows.size() > 0) {
+                dot->comment("Edges representing flow of data into and out of code blocks");
+                for (auto flow : flows) {
+                    if (flow.direction == Flow::Direction::OUT) {
+                        dot->edge(flow.programBlockName, flow.dataBlockName);
+                    }
+                    else {
+                        dot->edge(flow.dataBlockName, flow.programBlockName);
+                    }
                 }
             }
         }

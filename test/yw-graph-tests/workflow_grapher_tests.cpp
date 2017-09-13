@@ -13,17 +13,13 @@ using namespace yw::test;
 YW_TEST_FIXTURE(WorkflowGrapher)
 
     YesWorkflowDB ywdb;
-    row_id modelId = 1;
     StderrRecorder stderrRecorder;
-    Configuration config;
-
 
 YW_TEST_SET
 
     YW_TEST(WorkflowGrapher, EmptyWorkflowReturnsEmptyGraph)
     {
-        ModelBuilder builder(ywdb);
-        builder.buildModelFromString( R"(
+        auto modelId = ModelBuilder{ ywdb }.buildModelFromString(R"(
             
             @begin b
             @end b
@@ -39,11 +35,9 @@ YW_TEST_SET
             , dotText);
     }
 
-
-    YW_TEST(WorkflowGrapher, SingleProgramWorkflowReturnsOneNodeGraph)
+    YW_TEST(WorkflowGrapher, SingleProgramWorkflowReturnsOneNodeGraphWithoutCommentsWhenDotCommentsAreOff)
     {
-        ModelBuilder builder(ywdb);
-        builder.buildModelFromString(R"(
+        auto modelId = ModelBuilder{ ywdb }.buildModelFromString(R"(
 
             @begin w
 
@@ -54,7 +48,9 @@ YW_TEST_SET
 
         )");
 
-        WorkflowGrapher grapher{ ywdb };
+        Configuration config;
+        config.insert(Setting{ "graph.comments", "OFF", Setting::SettingSource::COMMAND_LINE });
+        WorkflowGrapher grapher{ ywdb, config };
         auto dotText = grapher.graph(modelId);
 
         Assert::AreEqual(
@@ -64,10 +60,9 @@ YW_TEST_SET
             , dotText);
     }
 
-    YW_TEST(WorkflowGrapher, SingleProgramWorkflowReturnsOneNodeGraphWithCommentsWhenDotCommentsOn)
+    YW_TEST(WorkflowGrapher, SingleProgramWorkflowReturnsOneNodeGraphWithCommentsWhenDotCommentsOnByDefault)
     {
-        ModelBuilder builder(ywdb);
-        builder.buildModelFromString(R"(
+        auto modelId = ModelBuilder{ ywdb }.buildModelFromString(R"(
 
             @begin w
 
@@ -82,17 +77,18 @@ YW_TEST_SET
         auto dotText = grapher.graph(modelId);
 
         Assert::AreEqual(
-            "digraph w {"   EOL
-            "b"             EOL
-            "}"             EOL
+            "digraph w {"                                                       EOL
+            ""                                                                  EOL
+            "/* Nodes representing program blocks in workflow */"               EOL
+            "b"                                                                 EOL
+            "}"                                                                 EOL
             , dotText);
     }
 
 
     YW_TEST(WorkflowGrapher, TwoProgramWorkflowReturnsTwoNodeGraph)
     {
-        ModelBuilder builder(ywdb);
-        builder.buildModelFromString(R"(
+        auto modelId = ModelBuilder{ ywdb }.buildModelFromString(R"(
 
             @begin w
 
@@ -110,17 +106,18 @@ YW_TEST_SET
         auto dotText = grapher.graph(modelId);
 
         Assert::AreEqual(
-            "digraph w {"   EOL
-            "b1"            EOL
-            "b2"            EOL
-            "}"             EOL
+            "digraph w {"                                                       EOL
+            ""                                                                  EOL
+            "/* Nodes representing program blocks in workflow */"               EOL
+            "b1"                                                                EOL
+            "b2"                                                                EOL
+            "}"                                                                 EOL
             , dotText);
     }
 
     YW_TEST(WorkflowGrapher, WithThreeTopLevelProgramBlocksNamedBlockIsWorkflowRendered)
     {
-        ModelBuilder builder(ywdb);
-        builder.buildModelFromString(R"(
+        auto modelId = ModelBuilder{ ywdb }.buildModelFromString(R"(
 
             @begin u
             @end u
@@ -146,17 +143,18 @@ YW_TEST_SET
         auto dotText = grapher.graph(modelId);
 
         Assert::AreEqual(
-            "digraph v {"   EOL
-            "b1"            EOL
-            "b2"            EOL
-            "}"             EOL
+            "digraph v {"                                                       EOL
+            ""                                                                  EOL
+            "/* Nodes representing program blocks in workflow */"               EOL
+            "b1"                                                                EOL
+            "b2"                                                                EOL
+            "}"                                                                 EOL
             , dotText);
     }
 
     YW_TEST(WorkflowGrapher, WorkflowWithTwoProgramsAndOneChannelYieldsThreeNodes)
     {
-        ModelBuilder builder(ywdb);
-        builder.buildModelFromString(R"(
+        auto modelId = ModelBuilder{ ywdb }.buildModelFromString(R"(
 
             @begin w
 
@@ -176,20 +174,25 @@ YW_TEST_SET
         auto dotText = grapher.graph(modelId);
 
         Assert::AreEqual(
-            "digraph w {"   EOL
-            "b1"            EOL
-            "b2"            EOL
-            "d1"            EOL
-            "d1 -> b2"      EOL
-            "b1 -> d1"      EOL
-            "}"             EOL
+            "digraph w {"                                                       EOL
+            ""                                                                  EOL
+            "/* Nodes representing program blocks in workflow */"               EOL
+            "b1"                                                                EOL
+            "b2"                                                                EOL
+            ""                                                                  EOL
+            "/* Nodes representing data blocks in workflow */"                  EOL
+            "d1"                                                                EOL
+            ""                                                                  EOL
+            "/* Edges representing flow of data into and out of code blocks */" EOL
+            "d1 -> b2"                                                          EOL
+            "b1 -> d1"                                                          EOL
+            "}"                                                                 EOL
             , dotText);
     }
 
     YW_TEST(WorkflowGrapher, WorkflowWithTwoProgramsTwoChannelsYieldsFourNodes)
     {
-        ModelBuilder builder(ywdb);
-        builder.buildModelFromString(R"(
+        auto modelId = ModelBuilder{ ywdb }.buildModelFromString(R"(
 
             @begin w
 
@@ -211,18 +214,23 @@ YW_TEST_SET
         auto dotText = grapher.graph(modelId);
 
         Assert::AreEqual(
-            "digraph w {"   EOL
-            "b1"            EOL
-            "b2"            EOL
-            "d1"            EOL
-            "d2"            EOL
-            "d1 -> b2"      EOL
-            "d2 -> b2"      EOL
-            "b1 -> d1"      EOL
-            "b1 -> d2"      EOL
-            "}"             EOL
+            "digraph w {"                                                       EOL
+            ""                                                                  EOL
+            "/* Nodes representing program blocks in workflow */"               EOL
+            "b1"                                                                EOL
+            "b2"                                                                EOL
+            ""                                                                  EOL
+            "/* Nodes representing data blocks in workflow */"                  EOL
+            "d1"                                                                EOL
+            "d2"                                                                EOL
+            ""                                                                  EOL
+            "/* Edges representing flow of data into and out of code blocks */" EOL
+            "d1 -> b2"                                                          EOL
+            "d2 -> b2"                                                          EOL
+            "b1 -> d1"                                                          EOL
+            "b1 -> d2"                                                          EOL
+            "}"                                                                 EOL
             , dotText);
     }
-
 
 YW_TEST_END

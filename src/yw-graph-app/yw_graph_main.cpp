@@ -2,5 +2,5 @@
 
 int main(int argc, char** argv)
 {
-    return yw::graph::main(yw::cli::CommandLine(argc, argv));
+    return yw::graph::cli(yw::cli::CommandLine(argc, argv));
 }

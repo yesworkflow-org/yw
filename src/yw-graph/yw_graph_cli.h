@@ -5,7 +5,7 @@
 namespace yw {
     namespace graph {
 
-        int main(yw::cli::CommandLine& commandLine);
+        int cli(yw::cli::CommandLine& commandLine);
         void print_help();
     }
 }

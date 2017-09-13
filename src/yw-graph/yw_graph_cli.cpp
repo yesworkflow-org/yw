@@ -15,7 +15,7 @@ using namespace yw::model;
 namespace yw {
     namespace graph {
 
-        int main(CommandLine& commandLine)
+        int cli(CommandLine& commandLine)
         {
             YesWorkflowDB ywdb;
 
@@ -39,8 +39,8 @@ namespace yw {
                 return 0;
             }
 
-            Configuration configuration;
-            configuration.insertAll(commandLine.getSettings());
+            Configuration config;
+            config.insertAll(commandLine.getSettings());
 
             yw::row_id modelId;
             try {
@@ -51,7 +51,7 @@ namespace yw {
                 return 0;
             }
 
-            WorkflowGrapher grapher{ ywdb };
+            WorkflowGrapher grapher{ ywdb, config };
             try {
                 std::cout << grapher.graph(modelId);
             }
