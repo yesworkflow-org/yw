@@ -6,6 +6,8 @@ using namespace yw::config;
 using std::endl;
 using std::string;
 
+using Visibility = SoftwareSetting::Visibility;
+
 namespace yw {
     namespace graph {
 
@@ -61,6 +63,20 @@ namespace yw {
 
         void DotBuilder::endGraph() {
             dotStream << "}" << endl;
+        }
+
+        void DotBuilder::flushEdgeStyle() {
+            dotStream << "edge[fontname=" << edgeFont << "]" << endl;
+        }
+
+        void DotBuilder::flushNodeStyle() {
+            dotStream << "node[shape=" << q(nodeShape)
+                        << " style=" << q(nodeStyle)
+                        << " fillcolor=" << q(nodeFillcolor)
+                        << " peripheries=" << nodePeripheries
+                        << " fontname=" << q(nodeFont);
+            if (nodeWidth > 0)  dotStream << " width=" << nodeWidth;
+            dotStream << "]" << endl;
         }
 
         void DotBuilder::node(const string& name, const string& label) {

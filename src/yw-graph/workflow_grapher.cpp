@@ -6,6 +6,7 @@ using namespace yw::db;
 using namespace yw::sqlite;
 
 using std::string;
+using Visibility = SoftwareSetting::Visibility;
 
 namespace yw {
     namespace graph {
@@ -14,9 +15,24 @@ namespace yw {
 
         const Configuration& WorkflowGrapher::getSoftwareSettings() {
             if (defaults.size() == 0) {
+
                 defaults.insert(SoftwareSetting{ "graph.view", "combined", "Workflow view to render", { "PROCESS", "DATA", "COMBINED" } });
                 defaults.insert(SoftwareSetting{ "graph.workflowbox", "SHOW", "Box around nodes internal to workflow", { "SHOW", "HIDE" } });
                 defaults.insert(SoftwareSetting{ "graph.workflow", null_string, "Name of workflow to graph" });
+
+                defaults.insert(SoftwareSetting{ "graph.programshape", "box", "Shape of program block nodes", {}, Visibility::INTERMEDIATE });
+                defaults.insert(SoftwareSetting{ "graph.programstyle", "filled", "Styling of program block nodes", {}, Visibility::INTERMEDIATE });
+                defaults.insert(SoftwareSetting{ "graph.programfillcolor", "#CCFFCC", "Color of program block nodes", {}, Visibility::INTERMEDIATE });
+                defaults.insert(SoftwareSetting{ "graph.programfont", "Helvetica", "Font in program block nodes", {}, Visibility::INTERMEDIATE });
+                defaults.insert(SoftwareSetting{ "graph.programperipheries", "1", "Number of peripheries for program block nodes", {}, Visibility::INTERMEDIATE });
+
+                defaults.insert(SoftwareSetting{ "graph.datashape", "box", "Shape of data block nodes", {}, Visibility::INTERMEDIATE });
+                defaults.insert(SoftwareSetting{ "graph.datastyle", "rounded,filled", "Styling of data block nodes", {}, Visibility::INTERMEDIATE });
+                defaults.insert(SoftwareSetting{ "graph.datafillcolor", "#FFFFCC", "Color of data block nodes", {}, Visibility::INTERMEDIATE });
+                defaults.insert(SoftwareSetting{ "graph.datafont", "Helvetica", "Font in data block nodes", {}, Visibility::INTERMEDIATE });
+                defaults.insert(SoftwareSetting{ "graph.dataperipheries", "1", "Number of peripheries for data block nodes",{}, Visibility::INTERMEDIATE });
+
+                defaults.insert(SoftwareSetting{ "graph.styles", "OFF", "Apply node and edge styles to graph elements",{ "ON", "OFF" }, Visibility::EXPERT });
             }
             return defaults;
         }
@@ -27,6 +43,10 @@ namespace yw {
         ) : ywdb(ywdb) {
             configuration.insertAll(getSoftwareSettings());
             configuration.insertAll(userConfiguration);
+        }
+
+        string WorkflowGrapher::config(const string& key) {
+            return configuration.getStringValue(key);
         }
 
         string WorkflowGrapher::graph(const row_id& modelId) {
@@ -57,6 +77,17 @@ namespace yw {
         void WorkflowGrapher::drawProgramBlocksAsNodes(const row_id& workflowId) {
             auto programBlocks = ywdb.selectProgramBlocksInWorkflow(workflowId);
             if (programBlocks.size() > 0) {
+
+                if (config("graph.styles") != "YES") {
+                    dot->comment("Style for nodes representing program blocks in workflow");
+                    dot->setNodeFont(config("graph.programfont"));
+                    dot->setNodeShape(config("graph.programshape"));
+                    dot->setNodeStyle(config("graph.programstyle"));
+                    dot->setNodeFillcolor(config("graph.programfillcolor"));
+                    dot->setNodePeripheries(configuration.getIntValue("graph.programperipheries"));
+                    dot->flushNodeStyle();
+                }
+
                 dot->comment("Nodes representing program blocks in workflow");
                 for (auto programBlock : programBlocks) {
                     dot->node(programBlock.name);

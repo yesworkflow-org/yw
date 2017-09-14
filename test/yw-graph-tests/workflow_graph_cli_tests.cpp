@@ -83,6 +83,9 @@ YW_TEST_SET
 
             digraph w {
             
+            /* Style for nodes representing program blocks in workflow */
+            node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+            
             /* Nodes representing program blocks in workflow */
             b1
             b2
@@ -124,6 +127,7 @@ YW_TEST_SET
         Assert::AreEqual(trimmargins(R"(
 
             digraph w {
+            node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
             b1
             b2
             d1

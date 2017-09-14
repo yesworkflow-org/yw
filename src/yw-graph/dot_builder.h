@@ -12,6 +12,14 @@ namespace yw {
 
             std::stringstream dotStream;
             yw::config::Configuration configuration;
+            std::string edgeFont = "Helvetica";
+            std::string nodeFillcolor = "#FFFFFF";
+            std::string nodeFont = "Helvetica";
+            size_t nodePeripheries = 1;
+            std::string nodeShape = "box";
+            std::string nodeStyle = "filled";
+            double nodeWidth = -1;
+
 
             static yw::config::Configuration defaults;
 
@@ -30,8 +38,18 @@ namespace yw {
             void edge(const std::string& from, const std::string& to, const std::string& label);
             void edge(const std::string& from, const std::string& to);
             void endGraph();
+            void flushEdgeStyle();
+            void flushNodeStyle();
             void node(const std::string& name, const std::string& label);
             void node(const std::string& name);
+
+            void setEdgeFont(const std::string& font) { edgeFont = font; }
+            void setNodeFillcolor(const std::string& color) { nodeFillcolor = color; }
+            void setNodeFont(const std::string& font) { nodeFont = font;  }
+            void setNodePeripheries(size_t peripheries) { nodePeripheries = peripheries; }
+            void setNodeShape(const std::string& shape) { nodeShape = shape; }
+            void setNodeStyle(const std::string& style) { nodeStyle = style;  }
+            void setNodeWidth(double width) { nodeWidth = width; }
 
         private:
 
