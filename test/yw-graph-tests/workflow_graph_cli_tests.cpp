@@ -49,6 +49,13 @@ YW_TEST_SET
         Assert::AreEqual((trimmargins(R"(
 
             digraph workflow {
+            
+            /* Start of box around nodes in workflow */
+            subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+            subgraph cluster_workflow_box_inner { label=""; penwidth=0
+            
+            /* End of box around nodes in workflow */
+            }}
             }
 
         )"))
@@ -83,6 +90,10 @@ YW_TEST_SET
 
             digraph w {
             
+            /* Start of box around nodes in workflow */
+            subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+            subgraph cluster_workflow_box_inner { label=""; penwidth=0
+            
             /* Style for nodes representing program blocks in workflow */
             node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
             
@@ -99,6 +110,9 @@ YW_TEST_SET
             /* Edges representing flow of data into and out of code blocks */
             d1 -> b2
             b1 -> d1
+            
+            /* End of box around nodes in workflow */
+            }}
             }
 
             )"), stdoutRecorder.str());
@@ -130,6 +144,8 @@ YW_TEST_SET
         Assert::AreEqual(trimmargins(R"(
 
             digraph w {
+            subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+            subgraph cluster_workflow_box_inner { label=""; penwidth=0
             node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
             b1
             b2
@@ -137,6 +153,7 @@ YW_TEST_SET
             d1
             d1 -> b2
             b1 -> d1
+            }}
             }
 
             )"), stdoutRecorder.str());

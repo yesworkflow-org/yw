@@ -13,7 +13,13 @@ using namespace yw::test;
 YW_TEST_FIXTURE(WorkflowGrapher)
 
     YesWorkflowDB ywdb;
+    Configuration config;
     StderrRecorder stderrRecorder;
+
+    YW_TEST_SETUP(WorkflowGrapher) {
+        config.insert(Setting{ "graph.styles", "OFF", Setting::SettingSource::COMMAND_LINE });
+        config.insert(Setting{ "graph.layoutstyles", "OFF", Setting::SettingSource::COMMAND_LINE });
+    }
 
 YW_TEST_SET
 
@@ -26,7 +32,7 @@ YW_TEST_SET
         
         )");
 
-        WorkflowGrapher grapher{ ywdb };
+        WorkflowGrapher grapher{ ywdb, config };
         auto dotText = grapher.graph(modelId);
 
         Assert::AreEqual((trimmargins(R"(
@@ -50,7 +56,6 @@ YW_TEST_SET
 
         )");
 
-        Configuration config;
         config.insert(Setting{ "graph.comments", "OFF", Setting::SettingSource::COMMAND_LINE });
         WorkflowGrapher grapher{ ywdb, config };
         auto dotText = grapher.graph(modelId);
@@ -58,7 +63,6 @@ YW_TEST_SET
         Assert::AreEqual((trimmargins(R"(
 
             digraph w {
-            node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
             b
             }
 
@@ -78,15 +82,12 @@ YW_TEST_SET
 
         )");
 
-        WorkflowGrapher grapher{ ywdb };
+        WorkflowGrapher grapher{ ywdb, config };
         auto dotText = grapher.graph(modelId);
 
         Assert::AreEqual((trimmargins(R"(
 
             digraph w {
-            
-            /* Style for nodes representing program blocks in workflow */
-            node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
             
             /* Nodes representing program blocks in workflow */
             b
@@ -112,15 +113,12 @@ YW_TEST_SET
 
         )");
 
-        WorkflowGrapher grapher{ ywdb };
+        WorkflowGrapher grapher{ ywdb, config };
         auto dotText = grapher.graph(modelId);
 
         Assert::AreEqual((trimmargins(R"(
 
             digraph w {
-            
-            /* Style for nodes representing program blocks in workflow */
-            node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
             
             /* Nodes representing program blocks in workflow */
             b1
@@ -152,7 +150,6 @@ YW_TEST_SET
 
 
         )");
-        Configuration config;
         config.insert(Setting{ "graph.workflow", "v", Setting::SettingSource::COMMAND_LINE });
         WorkflowGrapher grapher{ ywdb, config };
         auto dotText = grapher.graph(modelId);
@@ -160,9 +157,6 @@ YW_TEST_SET
         Assert::AreEqual((trimmargins(R"(
 
             digraph v {
-            
-            /* Style for nodes representing program blocks in workflow */
-            node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
             
             /* Nodes representing program blocks in workflow */
             b1
@@ -190,22 +184,16 @@ YW_TEST_SET
 
         )");
 
-        WorkflowGrapher grapher{ ywdb };
+        WorkflowGrapher grapher{ ywdb, config };
         auto dotText = grapher.graph(modelId);
 
         Assert::AreEqual((trimmargins(R"(
 
             digraph w {
             
-            /* Style for nodes representing program blocks in workflow */
-            node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
-            
             /* Nodes representing program blocks in workflow */
             b1
             b2
-            
-            /* Style for nodes representing data blocks in workflow */
-            node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
             
             /* Nodes representing data blocks in workflow */
             d1
@@ -238,22 +226,16 @@ YW_TEST_SET
 
         )");
 
-        WorkflowGrapher grapher{ ywdb };
+        WorkflowGrapher grapher{ ywdb, config };
         auto dotText = grapher.graph(modelId);
 
         Assert::AreEqual((trimmargins(R"(
 
             digraph w {
             
-            /* Style for nodes representing program blocks in workflow */
-            node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
-            
             /* Nodes representing program blocks in workflow */
             b1
             b2
-            
-            /* Style for nodes representing data blocks in workflow */
-            node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
             
             /* Nodes representing data blocks in workflow */
             d1

@@ -34,10 +34,12 @@ namespace yw {
             std::string str() { return dotStream.str(); }
 
             void beginGraph(const std::string& graphName = "Workflow");
+            void beginSubgraph(const std::string& name, bool visible);
             void comment(const std::string& text);
             void edge(const std::string& from, const std::string& to, const std::string& label);
             void edge(const std::string& from, const std::string& to);
             void endGraph();
+            void endSubgraph();
             void flushEdgeStyle();
             void flushNodeStyle();
             void node(const std::string& name, const std::string& label);

@@ -15,10 +15,12 @@ namespace yw {
 
         const Configuration& DotBuilder::getSoftwareSettings() {
             if (defaults.size() == 0) {
-                defaults.insert(SoftwareSetting{ "graph.comments", "ON", "Include comments in dot file",{ "ON", "OFF" } });
+
                 defaults.insert(SoftwareSetting{ "graph.layout", "TB", "Direction of graph layout", {"TB", "LR", "RL", "BT" } });
                 defaults.insert(SoftwareSetting{ "graph.title", null_string, "Title for the graph as a whole" });
                 defaults.insert(SoftwareSetting{ "graph.titleposition", "TOP", "Where to place graph title",{ "TOP", "BOTTOM", "HIDE" } });
+
+                defaults.insert(SoftwareSetting{ "graph.comments", "ON", "Include comments in dot file",{ "ON", "OFF" }, Visibility::EXPERT });
             }
             return defaults;
         }
@@ -40,6 +42,25 @@ namespace yw {
             if (configuration.getSetting("graph.title").value.hasValue()) {
                 title(config("graph.title"));
             }
+        }
+
+        void DotBuilder::beginSubgraph(const std::string& name, bool visible) {
+
+            string outer = "cluster_" + name + "_outer";
+            string inner = "cluster_" + name + "_inner";
+
+            if (visible) {
+                dotStream << "subgraph " << q(outer) 
+                          << " { label=" << q("") << "; color=black; penwidth=2" << endl;
+            } else {
+                dotStream << "subgraph " << q(outer) << " { label=" << q("") << "; penwidth=0" << endl;
+            }
+
+            dotStream << "subgraph " << q(inner) << " { label=" << q("") << "; penwidth=0" << endl;
+        }
+
+        void DotBuilder::endSubgraph() {
+            dotStream << "}}" << endl;
         }
 
         void DotBuilder::comment(const string& text) {

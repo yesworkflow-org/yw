@@ -19,7 +19,7 @@ namespace yw {
                 defaults.insert(SoftwareSetting{ "graph.view", "combined", "Workflow view to render", { "PROCESS", "DATA", "COMBINED" } });
                 defaults.insert(SoftwareSetting{ "graph.workflowbox", "SHOW", "Box around nodes internal to workflow", { "SHOW", "HIDE" } });
                 defaults.insert(SoftwareSetting{ "graph.workflow", null_string, "Name of workflow to graph" });
-
+                
                 defaults.insert(SoftwareSetting{ "graph.programshape", "box", "Shape of program block nodes", {}, Visibility::INTERMEDIATE });
                 defaults.insert(SoftwareSetting{ "graph.programstyle", "filled", "Styling of program block nodes", {}, Visibility::INTERMEDIATE });
                 defaults.insert(SoftwareSetting{ "graph.programfillcolor", "#CCFFCC", "Color of program block nodes", {}, Visibility::INTERMEDIATE });
@@ -33,6 +33,7 @@ namespace yw {
                 defaults.insert(SoftwareSetting{ "graph.dataperipheries", "1", "Number of peripheries for data block nodes",{}, Visibility::INTERMEDIATE });
 
                 defaults.insert(SoftwareSetting{ "graph.styles", "ON", "Apply node and edge styles to graph elements",{ "ON", "OFF" }, Visibility::EXPERT });
+                defaults.insert(SoftwareSetting{ "graph.layoutstyles", "ON", "Use clusters to group group elements",{ "ON", "OFF" }, Visibility::EXPERT });
             }
             return defaults;
         }
@@ -67,11 +68,28 @@ namespace yw {
             auto workflow = ywdb.selectProgramBlockByModelIdAndBlockName(modelId, workflowName);
             dot = std::make_shared<DotBuilder>(configuration);
             dot->beginGraph(workflow.name);
+            beginWorkflowBox();
             drawProgramBlocksAsNodes(workflow.id.getValue());
             drawDataBlocksAsNodes(workflow.id.getValue());
             drawFlowEdgesBetweenProgramsAndData(workflow.id.getValue());
+            endWorkflowBox();
             dot->endGraph();
             return dot->str();
+        }
+
+
+        void WorkflowGrapher::beginWorkflowBox() {
+            if (config("graph.layoutstyles") == "ON") {
+                dot->comment("Start of box around nodes in workflow");
+                dot->beginSubgraph("workflow_box", config("graph.workflowbox") == "SHOW");
+            }
+        }
+
+        void WorkflowGrapher::endWorkflowBox() {
+            if (config("graph.layoutstyles") == "ON") {
+                dot->comment("End of box around nodes in workflow");
+                dot->endSubgraph();
+            }
         }
 
         void WorkflowGrapher::drawProgramBlocksAsNodes(const row_id& workflowId) {
