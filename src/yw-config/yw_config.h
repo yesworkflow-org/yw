@@ -38,16 +38,26 @@ namespace yw {
 
         struct SoftwareSetting : public Setting {
 
+            enum class Visibility {
+                BASIC = 0,
+                INTERMEDIATE = 1,
+                EXPERT = 2,
+                DEVELOPER = 3,
+                HIDDEN = 4
+            };
+
             const std::string description;
             const std::vector<std::string> allowedValues;
+            const Visibility visibility;
 
             SoftwareSetting(
                 const std::string& key,
                 const nullable_string& defaultValue,
                 const std::string& description = std::string{ "" },
-                const std::vector<std::string> allowedValues = {}
+                const std::vector<std::string> allowedValues = {},
+                Visibility visibility = Visibility::BASIC
             ) : Setting(key, defaultValue, SettingSource::YW_DEFAULTS, NO_RESOURCE), 
-                description(description), allowedValues(allowedValues) 
+                description(description), allowedValues(allowedValues), visibility(visibility)
             {}
         };
 
