@@ -11,6 +11,7 @@
 #include "line.h"
 #include "model.h"
 #include "port.h"
+#include "portal_view.h"
 #include "program_block.h"
 #include "source.h"
 #include "flow.h"
@@ -78,6 +79,7 @@ namespace yw {
             std::vector<Flow> selectFlowsByWorkflowId(const row_id& workflowId);
 
             std::vector<FlowView> selectFlowViewsByWorkflowId(const row_id& workflowId);
+            std::vector<PortalView> selectPortalViewsByWorkflowId(const row_id& workflowId);
 
             void createUserTable();
             row_id insert(const User& user);
