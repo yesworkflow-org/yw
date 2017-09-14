@@ -204,6 +204,9 @@ YW_TEST_SET
             b1
             b2
             
+            /* Style for nodes representing data blocks in workflow */
+            node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+            
             /* Nodes representing data blocks in workflow */
             d1
             
@@ -248,6 +251,9 @@ YW_TEST_SET
             /* Nodes representing program blocks in workflow */
             b1
             b2
+            
+            /* Style for nodes representing data blocks in workflow */
+            node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
             
             /* Nodes representing data blocks in workflow */
             d1

@@ -32,7 +32,7 @@ namespace yw {
                 defaults.insert(SoftwareSetting{ "graph.datafont", "Helvetica", "Font in data block nodes", {}, Visibility::INTERMEDIATE });
                 defaults.insert(SoftwareSetting{ "graph.dataperipheries", "1", "Number of peripheries for data block nodes",{}, Visibility::INTERMEDIATE });
 
-                defaults.insert(SoftwareSetting{ "graph.styles", "OFF", "Apply node and edge styles to graph elements",{ "ON", "OFF" }, Visibility::EXPERT });
+                defaults.insert(SoftwareSetting{ "graph.styles", "ON", "Apply node and edge styles to graph elements",{ "ON", "OFF" }, Visibility::EXPERT });
             }
             return defaults;
         }
@@ -78,7 +78,7 @@ namespace yw {
             auto programBlocks = ywdb.selectProgramBlocksInWorkflow(workflowId);
             if (programBlocks.size() > 0) {
 
-                if (config("graph.styles") != "YES") {
+                if (config("graph.styles") == "ON") {
                     dot->comment("Style for nodes representing program blocks in workflow");
                     dot->setNodeFont(config("graph.programfont"));
                     dot->setNodeShape(config("graph.programshape"));
@@ -98,6 +98,17 @@ namespace yw {
         void WorkflowGrapher::drawDataBlocksAsNodes(const row_id& workflowId) {
             auto dataBlocks = ywdb.selectDataBlocksByWorkflowId(workflowId);
             if (dataBlocks.size() > 0) {
+
+                if (config("graph.styles") == "ON") {
+                    dot->comment("Style for nodes representing data blocks in workflow");
+                    dot->setNodeFont(config("graph.datafont"));
+                    dot->setNodeShape(config("graph.datashape"));
+                    dot->setNodeStyle(config("graph.datastyle"));
+                    dot->setNodeFillcolor(config("graph.datafillcolor"));
+                    dot->setNodePeripheries(configuration.getIntValue("graph.dataperipheries"));
+                    dot->flushNodeStyle();
+                }
+
                 dot->comment("Nodes representing data blocks in workflow");
                 for (auto dataBlock : dataBlocks) {
                     dot->node(dataBlock.name);
