@@ -48,8 +48,8 @@ YW_TEST_FIXTURE(Port)
         Expect::AreEqual(77, ywdb.insert(Model{ (model77 = 77), user13, extraction17, "2017-06-22 10:52:00.000" }));
 
         ywdb.createProgramBlockTable();
-        Expect::AreEqual(1, (block1 = ywdb.insert(ProgramBlock{ auto_id, model77, null_id, annotation11, "block" })));
-        Expect::AreEqual(2, (block2 = ywdb.insert(ProgramBlock{ auto_id, model77, block1, annotation22, "nested block" })));
+        Expect::AreEqual(1, (block1 = ywdb.insert(ProgramBlock{ auto_id, model77, null_id, annotation11, "block", null_string })));
+        Expect::AreEqual(2, (block2 = ywdb.insert(ProgramBlock{ auto_id, model77, block1, annotation22, "nested block", null_string })));
 
         ywdb.createPortTable();
     }

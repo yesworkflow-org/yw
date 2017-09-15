@@ -51,7 +51,7 @@ YW_TEST_SET
         Expect::AreEqual(1, ywdb.getRowCount("program_block"));
 
         auto programBlock = ywdb.selectProgramBlockById(1);
-        Assert::AreEqual(ProgramBlock{ 1, modelId, null_id, 1, "b" }, programBlock);
+        Assert::AreEqual(ProgramBlock{ 1, modelId, null_id, 1, "b", null_string }, programBlock);
         Assert::IsTrue(! programBlock.workflowId.hasValue());
     }
 
@@ -67,7 +67,7 @@ YW_TEST_SET
         Expect::AreEqual(1, ywdb.getRowCount("program_block"));
 
         auto programBlock = ywdb.selectProgramBlockById(1);
-        Assert::AreEqual(ProgramBlock{ 1, modelId, null_id, 1, "b" }, programBlock);
+        Assert::AreEqual(ProgramBlock{ 1, modelId, null_id, 1, "b", null_string }, programBlock);
         Assert::IsFalse(programBlock.workflowId.hasValue());
     }
 
@@ -84,10 +84,13 @@ YW_TEST_SET
         )");
 
         Expect::EmptyString(stderrRecorder.str());
+        Expect::AreEqual(4, ywdb.getRowCount("annotation"));
         Expect::AreEqual(2, ywdb.getRowCount("program_block"));
 
+        //Expect::AreEqual(Annotation{ auto_id, 17, Tag::END, null_id, 19, 1, 0, 11, "@end", null_string }, ywdb.get
+
         auto programBlock2 = ywdb.selectProgramBlockById(2);
-        Assert::AreEqual(ProgramBlock{ 2, modelId, null_id, 3, "c" }, programBlock2);
+        Assert::AreEqual(ProgramBlock{ 2, modelId, null_id, 3, "c", null_string }, programBlock2);
         Assert::IsFalse(programBlock2.workflowId.hasValue());
     }
 
@@ -107,8 +110,8 @@ YW_TEST_SET
 
         auto topProgramBlock = ywdb.selectProgramBlockById(1);
         auto nestedProgramBlock = ywdb.selectProgramBlockById(2);
-        Assert::AreEqual(ProgramBlock{ 1, modelId, null_id, 1, "b" }, topProgramBlock);
-        Assert::AreEqual(ProgramBlock{ 2, modelId, 1, 2, "c" }, nestedProgramBlock);
+        Assert::AreEqual(ProgramBlock{ 1, modelId, null_id, 1, "b", null_string }, topProgramBlock);
+        Assert::AreEqual(ProgramBlock{ 2, modelId, 1, 2, "c", null_string }, nestedProgramBlock);
         Assert::AreEqual(topProgramBlock.id, nestedProgramBlock.workflowId);
     }
 
@@ -134,9 +137,9 @@ YW_TEST_SET
         auto topProgramBlock = ywdb.selectProgramBlockById(1);
         auto nestedProgramBlock1 = ywdb.selectProgramBlockById(2);
         auto nestedProgramBlock2 = ywdb.selectProgramBlockById(3);
-        Assert::AreEqual(ProgramBlock{ 1, modelId, null_id, 1, "b" }, topProgramBlock);
-        Assert::AreEqual(ProgramBlock{ 2, modelId, 1, 2, "c" }, nestedProgramBlock1);
-        Assert::AreEqual(ProgramBlock{ 3, modelId, 1, 4, "d" }, nestedProgramBlock2);
+        Assert::AreEqual(ProgramBlock{ 1, modelId, null_id, 1, "b", null_string }, topProgramBlock);
+        Assert::AreEqual(ProgramBlock{ 2, modelId, 1, 2, "c", null_string }, nestedProgramBlock1);
+        Assert::AreEqual(ProgramBlock{ 3, modelId, 1, 4, "d", null_string }, nestedProgramBlock2);
         Assert::AreEqual(topProgramBlock.id, nestedProgramBlock1.workflowId);
         Assert::AreEqual(topProgramBlock.id, nestedProgramBlock2.workflowId);
     }
@@ -160,9 +163,9 @@ YW_TEST_SET
         auto topProgramBlock = ywdb.selectProgramBlockById(1);
         auto nestedProgramBlock = ywdb.selectProgramBlockById(2);
         auto doublyNestedProgramBlock = ywdb.selectProgramBlockById(3);
-        Assert::AreEqual(ProgramBlock{ 1, modelId, null_id, 1, "b" }, topProgramBlock);
-        Assert::AreEqual(ProgramBlock{ 2, modelId, 1, 2, "c" }, nestedProgramBlock);
-        Assert::AreEqual(ProgramBlock{ 3, modelId, 2, 3, "d" }, doublyNestedProgramBlock);
+        Assert::AreEqual(ProgramBlock{ 1, modelId, null_id, 1, "b", null_string }, topProgramBlock);
+        Assert::AreEqual(ProgramBlock{ 2, modelId, 1, 2, "c", null_string }, nestedProgramBlock);
+        Assert::AreEqual(ProgramBlock{ 3, modelId, 2, 3, "d", null_string }, doublyNestedProgramBlock);
         Assert::AreEqual(topProgramBlock.id, nestedProgramBlock.workflowId);
         Assert::AreEqual(nestedProgramBlock.id, doublyNestedProgramBlock.workflowId);
     }
@@ -192,10 +195,10 @@ YW_TEST_SET
         auto nestedProgramBlock1 = ywdb.selectProgramBlockById(2);
         auto doublyNestedProgramBlock = ywdb.selectProgramBlockById(3);
         auto nestedProgramBlock2 = ywdb.selectProgramBlockById(4);
-        Assert::AreEqual(ProgramBlock{ 1, modelId, null_id, 1, "b" }, topProgramBlock);
-        Assert::AreEqual(ProgramBlock{ 2, modelId, 1, 2, "c" }, nestedProgramBlock1);
-        Assert::AreEqual(ProgramBlock{ 3, modelId, 2, 3, "d" }, doublyNestedProgramBlock);
-        Assert::AreEqual(ProgramBlock{ 4, modelId, 1, 6, "e" }, nestedProgramBlock2);
+        Assert::AreEqual(ProgramBlock{ 1, modelId, null_id, 1, "b", null_string }, topProgramBlock);
+        Assert::AreEqual(ProgramBlock{ 2, modelId, 1, 2, "c", null_string }, nestedProgramBlock1);
+        Assert::AreEqual(ProgramBlock{ 3, modelId, 2, 3, "d", null_string }, doublyNestedProgramBlock);
+        Assert::AreEqual(ProgramBlock{ 4, modelId, 1, 6, "e", null_string }, nestedProgramBlock2);
         Assert::AreEqual(topProgramBlock.id, nestedProgramBlock1.workflowId);
         Assert::AreEqual(nestedProgramBlock1.id, doublyNestedProgramBlock.workflowId);
         Assert::AreEqual(topProgramBlock.id, nestedProgramBlock2.workflowId);
@@ -224,10 +227,10 @@ YW_TEST_SET
         auto nestedProgramBlock = ywdb.selectProgramBlockById(2);
         auto doublyNestedProgramBlock = ywdb.selectProgramBlockById(3);
         auto topProgramBlock2 = ywdb.selectProgramBlockById(4);
-        Assert::AreEqual(ProgramBlock{ 1, modelId, null_id, 1, "b" }, topProgramBlock1);
-        Assert::AreEqual(ProgramBlock{ 2, modelId, 1, 2, "c" }, nestedProgramBlock);
-        Assert::AreEqual(ProgramBlock{ 3, modelId, 2, 3, "d" }, doublyNestedProgramBlock);
-        Assert::AreEqual(ProgramBlock{ 4, modelId, null_id, 7, "e" }, topProgramBlock2);
+        Assert::AreEqual(ProgramBlock{ 1, modelId, null_id, 1, "b", null_string }, topProgramBlock1);
+        Assert::AreEqual(ProgramBlock{ 2, modelId, 1, 2, "c", null_string }, nestedProgramBlock);
+        Assert::AreEqual(ProgramBlock{ 3, modelId, 2, 3, "d", null_string }, doublyNestedProgramBlock);
+        Assert::AreEqual(ProgramBlock{ 4, modelId, null_id, 7, "e", null_string }, topProgramBlock2);
         Assert::AreEqual(topProgramBlock1.id, nestedProgramBlock.workflowId);
         Assert::AreEqual(nestedProgramBlock.id, doublyNestedProgramBlock.workflowId);
         Assert::IsFalse(topProgramBlock2.workflowId.hasValue());

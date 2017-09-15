@@ -8,6 +8,16 @@ using Direction = yw::db::Flow::Direction;
 namespace yw {
     namespace model {
 
+        void ModelEntityListener::enterBlock(YWParser::BlockContext *block) {
+            blockDescription = null_string;
+            for (auto attribute : block->blockAttribute()) {
+                if (attribute->desc() != nullptr) {
+                    blockDescription = attribute->desc()->description()->getText();
+                    break;
+                }
+            }
+        }
+
         void ModelEntityListener::enterBegin(YWParser::BeginContext *begin)
         {
             AnnotationListener::enterBegin(begin);
@@ -16,7 +26,7 @@ namespace yw {
             auto programBlock = std::make_shared<ProgramBlock>(
                 auto_id, modelId,
                 (currentProgramBlock != nullptr ? currentProgramBlock->id : null_id),
-                beginAnnotation->id, beginAnnotation->value.str());
+                beginAnnotation->id, beginAnnotation->value.str(), blockDescription);
             ywdb.insert(*programBlock);
             currentProgramBlock = programBlock;
         }

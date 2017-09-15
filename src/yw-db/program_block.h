@@ -13,23 +13,27 @@ namespace yw {
             const nullable_row_id workflowId;
             const nullable_row_id annotationId;
             const std::string name;
+            const nullable_string description;
 
             ProgramBlock(
                 const nullable_row_id& id,
                 const row_id& modelId,
                 const nullable_row_id& workflowId,
                 const nullable_row_id& annotationId,
-                const std::string& name
-            ) : id(id), modelId(modelId), workflowId(workflowId), annotationId(annotationId), name(name)
+                const std::string& name,
+                const nullable_string& description
+            ) : id(id), modelId(modelId), workflowId(workflowId), 
+                annotationId(annotationId), name(name), description(description)
             {}
 
             std::string fieldValues() const override {
                 std::stringstream ss;
-                ss  <<        id.str()
+                ss   << id.str()
                     << "|" << modelId
                     << "|" << workflowId.str()
                     << "|" << annotationId.str()
-                    << "|" << name;
+                    << "|" << name
+                    << "|" << description.str();
                 return ss.str();
             }
         };

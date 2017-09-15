@@ -49,35 +49,35 @@ YW_TEST_SET
 
     YW_TEST(ProgramBlock, FieldValuesMatchAssignedValuesWithNulls) {
         Assert::AreEqual(
-            "NULL|77|NULL|NULL|b",
-            ProgramBlock{ auto_id, 77, null_id, null_id, "b" }.fieldValues()
+            "NULL|77|NULL|NULL|b|NULL",
+            ProgramBlock{ auto_id, 77, null_id, null_id, "b", null_string }.fieldValues()
         );
     }
 
     YW_TEST(ProgramBlock, FieldValuesMatchAssignedValuesWithoutNulls) {
         Assert::AreEqual(
-            "2|77|8|19|b",
-            ProgramBlock{ 2, 77, 8, 19, "b" }.fieldValues()
+            "2|77|8|19|b|desc",
+            ProgramBlock{ 2, 77, 8, 19, "b", "desc" }.fieldValues()
         );
     }
 
     YW_TEST(ProgramBlock, InsertOneRow_GeneratedIdIs_1)
     {
-        Assert::AreEqual(1, ywdb.insert(ProgramBlock{ auto_id, model77, null_id, annotation11, "block" }));
+        Assert::AreEqual(1, ywdb.insert(ProgramBlock{ auto_id, model77, null_id, annotation11, "block", null_string }));
     }
 
     YW_TEST(ProgramBlock, InsertTwoRows_SecondGeneratedIdIs_2)
     {
         row_id block1;
-        Expect::AreEqual(1, (block1 = ywdb.insert(ProgramBlock{ auto_id, model77, null_id, annotation11, "block" })));
-        Assert::AreEqual(2, ywdb.insert(ProgramBlock{ auto_id, model77, block1, annotation12, "nested block" }));
+        Expect::AreEqual(1, (block1 = ywdb.insert(ProgramBlock{ auto_id, model77, null_id, annotation11, "block", null_string })));
+        Assert::AreEqual(2, ywdb.insert(ProgramBlock{ auto_id, model77, block1, annotation12, "nested block", null_string }));
     }
 
     YW_TEST(ProgramBlock, SelectById_RowExists) {
 
         row_id block1;
-        Expect::AreEqual(1, (block1 = ywdb.insert(ProgramBlock{ auto_id, model77, null_id, annotation11, "block" })));
-        Assert::AreEqual(2, ywdb.insert(ProgramBlock{ auto_id, model77, block1, annotation12, "nested block" }));
+        Expect::AreEqual(1, (block1 = ywdb.insert(ProgramBlock{ auto_id, model77, null_id, annotation11, "block", null_string })));
+        Assert::AreEqual(2, ywdb.insert(ProgramBlock{ auto_id, model77, block1, annotation12, "nested block", null_string }));
 
         auto block = ywdb.selectProgramBlockById(2);
         Assert::AreEqual(2L, block.id);
@@ -100,9 +100,9 @@ YW_TEST_SET
     YW_TEST(ProgramBlock, SelectProgramBlocksInWorkflowReturnsTwoBlocksForTwoProgramBlockWorkflow) {
 
         row_id workflowId;
-        Expect::AreEqual(1, (workflowId = ywdb.insert(ProgramBlock{ auto_id, model77, null_id, null_id, "workflow" })));
-        Expect::AreEqual(2, ywdb.insert(ProgramBlock{ auto_id, model77, workflowId, null_id, "block1" }));
-        Expect::AreEqual(3, ywdb.insert(ProgramBlock{ auto_id, model77, workflowId, null_id, "block2" }));
+        Expect::AreEqual(1, (workflowId = ywdb.insert(ProgramBlock{ auto_id, model77, null_id, null_id, "workflow", null_string })));
+        Expect::AreEqual(2, ywdb.insert(ProgramBlock{ auto_id, model77, workflowId, null_id, "block1", null_string }));
+        Expect::AreEqual(3, ywdb.insert(ProgramBlock{ auto_id, model77, workflowId, null_id, "block2", null_string }));
         auto blocks = ywdb.selectProgramBlocksInWorkflow(workflowId);
         
         Expect::AreEqual(2, blocks.size());

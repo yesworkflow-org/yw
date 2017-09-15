@@ -16,6 +16,7 @@ namespace yw {
             std::string portAlias;
             int aliasedPortIndex;
             int portNameIndex;
+            nullable_string blockDescription;
 
         public:
 
@@ -32,6 +33,7 @@ namespace yw {
             row_id getIdForDataBlock(std::string name);
             nullable_row_id currentWorkflowId();
 
+            void enterBlock(YWParser::BlockContext *block) override;
             void enterBegin(YWParser::BeginContext *begin) override;
             void enterEnd(YWParser::EndContext *end) override;
             void enterIo(YWParser::IoContext *io) override;
