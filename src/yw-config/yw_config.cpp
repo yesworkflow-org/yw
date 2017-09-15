@@ -62,6 +62,19 @@ namespace yw {
             }
         }
 
+        double Configuration::getDoubleValue(const std::string& key) {
+            auto stringValue = getStringValue(key);
+            try {
+                return std::stod(stringValue);
+            }
+            catch (std::exception e) {
+                throw std::domain_error(
+                    "Value '" + stringValue + "' assigned to option '" + key +
+                    "' cannot be converted to a double."
+                );
+            }
+        }
+
         size_t Configuration::getSizeValue(const std::string& key) {
             int intValue = getIntValue(key);
             if (intValue < 0) {

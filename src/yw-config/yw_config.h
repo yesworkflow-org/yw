@@ -68,6 +68,7 @@ namespace yw {
             bool contains(const std::string& key);
             const Setting& getSetting(const std::string& key);
             int getIntValue(const std::string& key);
+            double getDoubleValue(const std::string& key);
             size_t getSizeValue(const std::string& key);
             std::string getStringValue(const std::string& key);
             void insert(const Setting& setting);
