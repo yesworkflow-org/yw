@@ -295,10 +295,13 @@ YW_TEST_SET
             subgraph cluster_workflow_inputs_box_inner { label=""; penwidth=0
             
             /* Nodes representing workflow input ports */
-            workflow_input_d1 [label=""]
+            "workflow input d1" [label=""]
             
             /* End of hidden box around workflow inputs */
             }}
+            
+            /* Edges representing flow of workflow input data */
+            "workflow input d1" -> d1
             }
 
             )")), dotText);
@@ -321,7 +324,6 @@ YW_TEST_SET
 
         )");
 
-         //config.insert(Setting{ "graph.layoutstyles", "ON", Setting::SettingSource::COMMAND_LINE });
          WorkflowGrapher grapher{ ywdb, config };
          auto dotText = grapher.graph(modelId);
 
@@ -341,10 +343,16 @@ YW_TEST_SET
             b -> d2
             
             /* Nodes representing workflow input ports */
-            workflow_input_d1 [label=""]
+            "workflow input d1" [label=""]
             
             /* Nodes representing workflow output ports */
-            workflow_output_d2 [label=""]
+            "workflow output d2" [label=""]
+            
+            /* Edges representing flow of workflow input data */
+            "workflow input d1" -> d1
+            
+            /* Edges representing flow of workflow output data */
+            d2 -> "workflow output d2"
             }
 
             )")), dotText);

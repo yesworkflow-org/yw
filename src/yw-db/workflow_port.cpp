@@ -47,7 +47,7 @@ namespace yw {
             auto direction = static_cast<Flow::Direction>(statement.getInt64Field(12));
 
             return WorkflowPort(workflowId, workflowName, workflowPortId, workflowPortName,
-                              workflowDataBlockId, workflowDataBlockName, programBlockId, programBlockName,
+                              workflowDataBlockId, workflowDataBlockName, programDataBlockId, programDataBlockName,
                               programPortId, programPortName, programBlockId, programBlockName, direction);
         }
 
