@@ -6,7 +6,7 @@
 namespace yw {
     namespace db {
 
-        struct PortalView : sqlite::TableRow {
+        struct WorkflowPort : sqlite::TableRow {
 
             const nullable_row_id workflowId;
             const std::string workflowName;
@@ -22,7 +22,7 @@ namespace yw {
             const std::string programBlockName;
             const Flow::Direction direction;
 
-            PortalView(
+            WorkflowPort(
                 const nullable_row_id& workflowId,
                 const std::string& workflowName,
                 const row_id& workflowPortId,

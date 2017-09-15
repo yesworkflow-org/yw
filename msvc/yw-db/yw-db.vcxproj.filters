@@ -46,7 +46,7 @@
     <ClCompile Include="..\..\src\yw-db\flow_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\yw-db\portal_view.cpp">
+    <ClCompile Include="..\..\src\yw-db\workflow_port.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -90,7 +90,7 @@
     <ClInclude Include="..\..\src\yw-db\flow_view.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\yw-db\portal_view.h">
+    <ClInclude Include="..\..\src\yw-db\workflow_port.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
