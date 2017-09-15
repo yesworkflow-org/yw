@@ -19,7 +19,7 @@ namespace yw {
             std::string nodeShape = "box";
             std::string nodeStyle = "filled";
             double nodeWidth = -1;
-
+            bool horizontalLayout = true;
 
             static yw::config::Configuration defaults;
 
@@ -44,6 +44,7 @@ namespace yw {
             void flushNodeStyle();
             void node(const std::string& name, const std::string& label);
             void node(const std::string& name);
+            void recordNode(const std::string& name, const std::string& label1, const std::string& label2);
 
             void setEdgeFont(const std::string& font) { edgeFont = font; }
             void setNodeFillcolor(const std::string& color) { nodeFillcolor = color; }
@@ -56,9 +57,9 @@ namespace yw {
         private:
 
             std::string config(const std::string& key);
-            const std::string q(const std::string& unquotedText);
+            std::string q(const std::string& text);
+            std::string esc(const std::string& text);
             void title(const std::string& text);
-            void rankdir(const std::string& text);
 
         };
     }

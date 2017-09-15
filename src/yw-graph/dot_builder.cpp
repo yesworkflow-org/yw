@@ -37,8 +37,15 @@ namespace yw {
         }
 
         void DotBuilder::beginGraph(const string& graphName) {
+
             dotStream << "digraph " << q(graphName) << " {" << endl;
-            if (config("graph.layout") != "TB") rankdir(config("graph.layout"));
+            
+            auto graphLayout = config("graph.layout");
+            horizontalLayout = (graphLayout == "LR") || (graphLayout == "RL");
+            if (graphLayout != "TB") {
+                dotStream << "rankdir=" << graphLayout << endl;
+            }
+
             if (configuration.getSetting("graph.title").value.hasValue()) {
                 title(config("graph.title"));
             }
@@ -112,10 +119,22 @@ namespace yw {
             node(name, name);
         }
 
+        void DotBuilder::recordNode(const std::string& name, const std::string& label1, const std::string& label2) {
+            dotStream << q(name) << " [shape=record rankdir=LR label=\"{";
+            if (horizontalLayout) dotStream << "{";
+            dotStream << "<f0> " << esc(label1) << " |<f1> " << esc(label2);
+            if (horizontalLayout) dotStream << "}";
+            dotStream << "}\"];" << endl;
+        }
+
+
         std::regex doubleQuoteSymbolPattern{ "\"" };
+        std::regex leftBracePattern{ "\\{" };
+        std::regex rightBracePattern{ "\\}" }; 
+        std::regex colonPattern{ ":" };
         std::regex validDotIdPattern{ "[a-zA-Z_0-9]+" };
 
-        const std::string DotBuilder::q(const string& text) {
+        std::string DotBuilder::q(const string& text) {
             std::string s;
             if (std::regex_match(text, validDotIdPattern)) {
                 s = text;
@@ -126,8 +145,14 @@ namespace yw {
             return s;
         }
 
-        void DotBuilder::rankdir(const string& direction) {
-            dotStream << "rankdir=" << direction << endl;
+        string DotBuilder::esc(const string& text) {
+            std::string s = text;
+            if (!std::regex_match(text, validDotIdPattern)) {
+                s = std::regex_replace(s, leftBracePattern, "\\{");
+                s = std::regex_replace(s, rightBracePattern, "\\}");
+                s = std::regex_replace(s, colonPattern, "\\:");
+            }
+            return s;
         }
 
         void DotBuilder::title(const string& text) {

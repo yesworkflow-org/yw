@@ -18,10 +18,9 @@ namespace yw {
 
                 defaults.insert(SoftwareSetting{ "graph.view", "combined", "Workflow view to render", { "PROCESS", "DATA", "COMBINED" } });
                 defaults.insert(SoftwareSetting{ "graph.portlayout", "GROUP", "Layout mode for workflow ports",{ "GROUP", "RELAX", "HIDE" } });
+                defaults.insert(SoftwareSetting{ "graph.programlabel", "NAME", "Info to display in program nodes", {"NAME", "DESCRIPTION", "BOTH" } });
                 defaults.insert(SoftwareSetting{ "graph.workflowbox", "SHOW", "Box around nodes internal to workflow", { "SHOW", "HIDE" } });
                 defaults.insert(SoftwareSetting{ "graph.workflow", null_string, "Name of workflow to graph" });
-                
-
 
                 defaults.insert(SoftwareSetting{ "graph.programshape", "box", "Shape of program block nodes", {}, Visibility::INTERMEDIATE });
                 defaults.insert(SoftwareSetting{ "graph.programstyle", "filled", "Styling of program block nodes", {}, Visibility::INTERMEDIATE });
@@ -105,6 +104,26 @@ namespace yw {
             }
         }
 
+        void WorkflowGrapher::drawProgramBlockAsNode(const ProgramBlock& programBlock) {
+
+            auto programLabelMode = config("graph.programlabel");
+   
+            if (programLabelMode == "NAME") { 
+                dot->node(programBlock.name); 
+                return; 
+            }
+            
+            if (programLabelMode == "DESCRIPTION") { 
+                dot->node(programBlock.name, "description"); 
+                return;
+            }
+            
+            if (programLabelMode == "BOTH") { 
+                dot->recordNode(programBlock.name, programBlock.name, "description"); 
+                return;
+            }
+        }
+
         void WorkflowGrapher::drawProgramBlocksAsNodes(const row_id& workflowId) {
             auto programBlocks = ywdb.selectProgramBlocksInWorkflow(workflowId);
             if (programBlocks.size() > 0) {
@@ -121,7 +140,7 @@ namespace yw {
 
                 dot->comment("Nodes representing program blocks in workflow");
                 for (auto programBlock : programBlocks) {
-                    dot->node(programBlock.name);
+                    drawProgramBlockAsNode(programBlock);
                 }
             }
         }
