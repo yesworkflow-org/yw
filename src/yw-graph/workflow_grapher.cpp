@@ -107,19 +107,20 @@ namespace yw {
         void WorkflowGrapher::drawProgramBlockAsNode(const ProgramBlock& programBlock) {
 
             auto programLabelMode = config("graph.programlabel");
+            auto description = programBlock.description;
    
-            if (programLabelMode == "NAME") { 
+            if (programLabelMode == "NAME" || !description.hasValue()) { 
                 dot->node(programBlock.name); 
                 return; 
             }
             
             if (programLabelMode == "DESCRIPTION") { 
-                dot->node(programBlock.name, "description"); 
+                dot->node(programBlock.name, description.str()); 
                 return;
             }
             
             if (programLabelMode == "BOTH") { 
-                dot->recordNode(programBlock.name, programBlock.name, "description"); 
+                dot->recordNode(programBlock.name, programBlock.name, description.str());
                 return;
             }
         }
