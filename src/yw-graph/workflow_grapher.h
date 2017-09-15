@@ -29,11 +29,14 @@ namespace yw {
         private:
 
             std::string config(const std::string& key);
-            
+
+            void applyWorkflowPortNodeStyle();
             void beginWorkflowBox();
             void drawProgramBlocksAsNodes(const row_id& workflowId);
             void drawDataBlocksAsNodes(const row_id& workflowId);
             void drawFlowEdgesBetweenProgramsAndData(const row_id& workflowId);
+            void drawWorkflowInputsAsNodes(const row_id& workflowId);
+            void drawWorkflowOutputsAsNodes(const row_id& workflowId);
             void endWorkflowBox();
         };
     }

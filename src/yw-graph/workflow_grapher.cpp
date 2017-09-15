@@ -17,9 +17,12 @@ namespace yw {
             if (defaults.size() == 0) {
 
                 defaults.insert(SoftwareSetting{ "graph.view", "combined", "Workflow view to render", { "PROCESS", "DATA", "COMBINED" } });
+                defaults.insert(SoftwareSetting{ "graph.portlayout", "GROUP", "Layout mode for workflow ports",{ "GROUP", "RELAX", "HIDE" } });
                 defaults.insert(SoftwareSetting{ "graph.workflowbox", "SHOW", "Box around nodes internal to workflow", { "SHOW", "HIDE" } });
                 defaults.insert(SoftwareSetting{ "graph.workflow", null_string, "Name of workflow to graph" });
                 
+
+
                 defaults.insert(SoftwareSetting{ "graph.programshape", "box", "Shape of program block nodes", {}, Visibility::INTERMEDIATE });
                 defaults.insert(SoftwareSetting{ "graph.programstyle", "filled", "Styling of program block nodes", {}, Visibility::INTERMEDIATE });
                 defaults.insert(SoftwareSetting{ "graph.programfillcolor", "#CCFFCC", "Color of program block nodes", {}, Visibility::INTERMEDIATE });
@@ -31,6 +34,11 @@ namespace yw {
                 defaults.insert(SoftwareSetting{ "graph.datafillcolor", "#FFFFCC", "Color of data block nodes", {}, Visibility::INTERMEDIATE });
                 defaults.insert(SoftwareSetting{ "graph.datafont", "Helvetica", "Font in data block nodes", {}, Visibility::INTERMEDIATE });
                 defaults.insert(SoftwareSetting{ "graph.dataperipheries", "1", "Number of peripheries for data block nodes",{}, Visibility::INTERMEDIATE });
+
+                defaults.insert(SoftwareSetting{ "graph.portshape", "circle", "Shape of workflow port nodes",{}, Visibility::INTERMEDIATE });
+                defaults.insert(SoftwareSetting{ "graph.portfillcolor", "#FFFFFF", "Color of workflow portnodes",{}, Visibility::INTERMEDIATE });
+                defaults.insert(SoftwareSetting{ "graph.portperipheries", "1", "Number of peripheries for workflow port nodes",{}, Visibility::INTERMEDIATE });
+                defaults.insert(SoftwareSetting{ "graph.portsize", "0.2", "Diameter of workflow port nodes",{}, Visibility::INTERMEDIATE });
 
                 defaults.insert(SoftwareSetting{ "graph.styles", "ON", "Apply node and edge styles to graph elements",{ "ON", "OFF" }, Visibility::EXPERT });
                 defaults.insert(SoftwareSetting{ "graph.layoutstyles", "ON", "Use clusters to group group elements",{ "ON", "OFF" }, Visibility::EXPERT });
@@ -66,13 +74,16 @@ namespace yw {
                 }
             }
             auto workflow = ywdb.selectProgramBlockByModelIdAndBlockName(modelId, workflowName);
+            auto workflowId = workflow.id.getValue();
             dot = std::make_shared<DotBuilder>(configuration);
             dot->beginGraph(workflow.name);
             beginWorkflowBox();
-            drawProgramBlocksAsNodes(workflow.id.getValue());
-            drawDataBlocksAsNodes(workflow.id.getValue());
-            drawFlowEdgesBetweenProgramsAndData(workflow.id.getValue());
+            drawProgramBlocksAsNodes(workflowId);
+            drawDataBlocksAsNodes(workflowId);
+            drawFlowEdgesBetweenProgramsAndData(workflowId);
             endWorkflowBox();
+            drawWorkflowInputsAsNodes(workflowId);
+            drawWorkflowOutputsAsNodes(workflowId);
             dot->endGraph();
             return dot->str();
         }
@@ -146,6 +157,82 @@ namespace yw {
                         dot->edge(flow.dataBlockName, flow.programBlockName);
                     }
                 }
+            }
+        }
+
+        void WorkflowGrapher::applyWorkflowPortNodeStyle() {
+            if (config("graph.styles") == "ON") {
+                dot->comment("Style for nodes representing workflow ports");
+                dot->setNodeShape(config("graph.portshape"));
+                dot->setNodeFillcolor(config("graph.portfillcolor"));
+                dot->setNodePeripheries(configuration.getIntValue("graph.portperipheries"));
+                dot->setNodeWidth(configuration.getDoubleValue("graph.portsize"));
+                dot->flushNodeStyle();
+            }
+        }
+
+        void WorkflowGrapher::drawWorkflowInputsAsNodes(const row_id& workflowId) {
+
+            if (config("graph.portlayout") == "HIDE") return;
+
+            auto portals = ywdb.selectWorkflowInputsByWorkflowId(workflowId);
+
+            if (portals.size() > 0) {
+
+                bool groupWorkflowPorts = config("graph.layoutstyles") == "ON"
+                    && config("graph.portlayout") == "GROUP";
+
+                if (groupWorkflowPorts) {
+                    dot->comment("Start of hidden box around workflow inputs");
+                    dot->beginSubgraph("workflow_inputs_box", false);
+                }
+
+                applyWorkflowPortNodeStyle();
+
+                dot->comment("Nodes representing workflow input ports");
+                for (auto portal : portals) {
+                    if (portal.direction == Flow::Direction::IN) {
+                        dot->node("workflow_input_" + portal.workflowPortName, "");
+                    }
+                }
+
+                if (groupWorkflowPorts) {
+                    dot->comment("End of hidden box around workflow inputs");
+                    dot->endSubgraph();
+                }
+            }
+        }
+
+        void WorkflowGrapher::drawWorkflowOutputsAsNodes(const row_id& workflowId) {
+
+            if (config("graph.portlayout") == "HIDE") return;
+
+            auto portals = ywdb.selectWorkflowOutputsByWorkflowId(workflowId);
+
+            if (portals.size() > 0) {
+
+                bool groupWorkflowPorts = config("graph.layoutstyles") == "ON"
+                    && config("graph.portlayout") == "GROUP";
+
+                if (groupWorkflowPorts) {
+                    dot->comment("Start of hidden box around workflow outputs");
+                    dot->beginSubgraph("workflow_outputs_box", false);
+                }
+
+                applyWorkflowPortNodeStyle();
+
+                dot->comment("Nodes representing workflow output ports");
+                for (auto portal : portals) {
+                    if (portal.direction == Flow::Direction::OUT) {
+                        dot->node("workflow_output_" + portal.workflowPortName, "");
+                    }
+                }
+
+                if (groupWorkflowPorts) {
+                    dot->comment("End of hidden box around workflow outputs");
+                    dot->endSubgraph();
+                }
+
             }
         }
     }

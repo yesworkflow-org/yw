@@ -251,4 +251,104 @@ YW_TEST_SET
             )")), dotText);
     }
 
+     YW_TEST(WorkflowGrapher, WorkflowWithInputYieldsNodeAndEdgeForInput)
+    {
+        auto modelId = ModelBuilder{ ywdb }.buildModelFromString(R"(
+
+            @begin w
+            @in d1
+
+                @begin b
+                @in d1
+                @end b
+
+            @end w
+
+        )");
+
+        config.insert(Setting{ "graph.layoutstyles", "ON", Setting::SettingSource::COMMAND_LINE });
+        WorkflowGrapher grapher{ ywdb, config };
+        auto dotText = grapher.graph(modelId);
+
+        Assert::AreEqual((trimmargins(R"(
+
+            digraph w {
+            
+            /* Start of box around nodes in workflow */
+            subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+            subgraph cluster_workflow_box_inner { label=""; penwidth=0
+            
+            /* Nodes representing program blocks in workflow */
+            b
+            
+            /* Nodes representing data blocks in workflow */
+            d1
+            
+            /* Edges representing flow of data into and out of code blocks */
+            d1 -> b
+            
+            /* End of box around nodes in workflow */
+            }}
+            
+            /* Start of hidden box around workflow inputs */
+            subgraph cluster_workflow_inputs_box_outer { label=""; penwidth=0
+            subgraph cluster_workflow_inputs_box_inner { label=""; penwidth=0
+            
+            /* Nodes representing workflow input ports */
+            workflow_input_d1 [label=""]
+            
+            /* End of hidden box around workflow inputs */
+            }}
+            }
+
+            )")), dotText);
+    }
+
+     YW_TEST(WorkflowGrapher, WorkflowWithInputsAndOutputsYieldsNodesAndEdgesForBoth)
+     {
+         auto modelId = ModelBuilder{ ywdb }.buildModelFromString(R"(
+
+            @begin w
+            @in d1
+            @out d2
+
+                @begin b
+                @in d1
+                @out d2
+                @end b
+
+            @end w
+
+        )");
+
+         //config.insert(Setting{ "graph.layoutstyles", "ON", Setting::SettingSource::COMMAND_LINE });
+         WorkflowGrapher grapher{ ywdb, config };
+         auto dotText = grapher.graph(modelId);
+
+         Assert::AreEqual((trimmargins(R"(
+
+            digraph w {
+            
+            /* Nodes representing program blocks in workflow */
+            b
+            
+            /* Nodes representing data blocks in workflow */
+            d1
+            d2
+            
+            /* Edges representing flow of data into and out of code blocks */
+            d1 -> b
+            b -> d2
+            
+            /* Nodes representing workflow input ports */
+            workflow_input_d1 [label=""]
+            
+            /* Nodes representing workflow output ports */
+            workflow_output_d2 [label=""]
+            }
+
+            )")), dotText);
+     }
+
+
 YW_TEST_END
