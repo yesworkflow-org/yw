@@ -49,6 +49,9 @@
     <ClCompile Include="..\..\src\yw-db\workflow_port.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\yw-db\flow_template.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-db\annotation.h">
@@ -91,6 +94,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\yw-db\workflow_port.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-db\flow_template.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -26,6 +26,7 @@ namespace yw {
             createPortTable();
             createDataBlockTable();
             createFlowTable();
+            createFlowTemplateTable();
             createWorkflowPortView();
         }
 

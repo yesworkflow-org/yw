@@ -4,19 +4,21 @@
 #include <vector>
 
 #include "sqlite_db.h"
+
 #include "annotation.h"
 #include "data_block.h"
 #include "extraction.h"
 #include "file.h"
+#include "flow.h"
+#include "flow_template.h"
+#include "flow_view.h"
 #include "line.h"
 #include "model.h"
 #include "port.h"
-#include "workflow_port.h"
 #include "program_block.h"
 #include "source.h"
-#include "flow.h"
-#include "flow_view.h"
 #include "user.h"
+#include "workflow_port.h"
 
 namespace yw {
     namespace db {
@@ -55,6 +57,10 @@ namespace yw {
             void createModelTable();
             row_id insert(const Model& model);
             Model selectModelById(const row_id& id);
+
+            void createFlowTemplateTable();
+            row_id insert(const FlowTemplate& pathTemplate);
+            FlowTemplate selectFlowTemplateById(const row_id& requested_id);
 
             void createPortTable();
             row_id insert(Port& model);
