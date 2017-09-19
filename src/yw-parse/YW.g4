@@ -27,10 +27,13 @@ blockName       : phrase ;
 portName        : word ;
 dataName        : phrase ;
 description     : phrase;
-pathTemplate    : word ;
+pathTemplate    : SLASH? SLASH? (pathConstant | pathVariable)+ ( SLASH (pathConstant | pathVariable)+ )* SLASH? ;
+pathVariable	: LEFTBRACE variableName RIGHTBRACE ;
+pathConstant	: word ;
+variableName	: word ;
 
 uriTemplate     : ((scheme) ':')? pathTemplate ;
-scheme          : 'file' | 'http' ; 
+scheme          : word ; 
 
 phrase			: unquotedPhrase | (SQ unquotedPhrase SQ) | (DQ unquotedPhrase DQ) ;
 unquotedPhrase  : WORD (SPACE+ WORD)* ;
@@ -51,11 +54,14 @@ ParamKeyword    : '@param' ;
 ReturnKeyword   : '@return' ;
 UriKeyword      : '@uri' ;
 
-na				: (SPACE | NEWLINE | DQ | SQ | WORD | COLON | OTHER )+ ;
+na				: (SPACE | NEWLINE | DQ | SQ | WORD | COLON | SLASH | LEFTBRACE| RIGHTBRACE | OTHER )+ ;
 
 DQ				: '"' ;
 SQ				: '\'' ;
 SPACE           : [ \t] ;
+SLASH			: '/' ;
+LEFTBRACE		: '{' ;
+RIGHTBRACE		: '}' ;
 NEWLINE         : '\r'? '\n' ;
 COLON			: ':' ;
 WORD            : [a-zA-Z0-9\\_]+ ;

@@ -13,10 +13,10 @@ namespace yw {
 class  YWLexer : public antlr4::Lexer {
 public:
   enum {
-    T__0 = 1, T__1 = 2, AsKeyword = 3, BeginKeyword = 4, CallKeyword = 5, 
-    DescKeyword = 6, EndKeyword = 7, FileKeyword = 8, InKeyword = 9, OutKeyword = 10, 
-    ParamKeyword = 11, ReturnKeyword = 12, UriKeyword = 13, DQ = 14, SQ = 15, 
-    SPACE = 16, NEWLINE = 17, COLON = 18, WORD = 19, OTHER = 20
+    AsKeyword = 1, BeginKeyword = 2, CallKeyword = 3, DescKeyword = 4, EndKeyword = 5, 
+    FileKeyword = 6, InKeyword = 7, OutKeyword = 8, ParamKeyword = 9, ReturnKeyword = 10, 
+    UriKeyword = 11, DQ = 12, SQ = 13, SPACE = 14, SLASH = 15, LEFTBRACE = 16, 
+    RIGHTBRACE = 17, NEWLINE = 18, COLON = 19, WORD = 20, OTHER = 21
   };
 
   YWLexer(antlr4::CharStream *input);
