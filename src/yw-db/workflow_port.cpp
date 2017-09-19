@@ -12,9 +12,19 @@ namespace yw {
             SQLiteDB::createTable(db, std::string(R"(
 
                 CREATE VIEW workflow_port AS
-                SELECT workflow_block.id AS workflow_block_id, workflow_block.name, workflow_port.id, workflow_port.name,
-                       workflow_data.id, workflow_data.name, program_data.id, program_data.name,
-                       program_port.id, program_port.name, program.id, program.name, program_flow.direction AS direction
+                SELECT workflow_block.id AS workflow_block_id, 
+                       workflow_block.name, 
+                       workflow_port.id, 
+                       workflow_port.name,
+                       workflow_data.id, 
+                       workflow_data.name, 
+                       program_data.id, 
+                       program_data.name AS program_data_block_name,
+                       program_port.id, 
+                       program_port.name, 
+                       program.id, 
+                       program.name, 
+                       program_flow.direction AS direction
 
                 FROM program_block AS workflow_block
                 JOIN program_block AS program ON program.workflow = workflow_block.id
@@ -51,10 +61,10 @@ namespace yw {
                               programPortId, programPortName, programBlockId, programBlockName, direction);
         }
 
-        std::vector<WorkflowPort> YesWorkflowDB::selectWorkflowInputsByWorkflowId(const row_id& workflowId) {
+        std::vector<WorkflowPort> YesWorkflowDB::selectWorkflowPortsByWorkflowId(const row_id& workflowId) {
             auto sql = std::string(R"(
                 SELECT * FROM workflow_port
-                WHERE workflow_block_id = ? AND direction=1
+                WHERE workflow_block_id = ?
             )");
             SelectStatement statement(db, sql);
             statement.bindNullableId(1, workflowId);
@@ -65,19 +75,20 @@ namespace yw {
             return portals;
         }
 
-        std::vector<WorkflowPort> YesWorkflowDB::selectWorkflowOutputsByWorkflowId(const row_id& workflowId) {
+        std::vector<std::string> YesWorkflowDB::selectWorkflowIODataNames(const row_id& workflowId, Flow::Direction direction) {
             auto sql = std::string(R"(
-                SELECT * FROM workflow_port
-                WHERE workflow_block_id = ? AND direction=2
+                SELECT DISTINCT program_data_block_name 
+                FROM workflow_port
+                WHERE workflow_block_id = ? AND direction = ?
             )");
-            SelectStatement statement(db, sql);
+            yw::sqlite::SelectStatement statement(db, sql);
             statement.bindNullableId(1, workflowId);
-            auto portals = std::vector<WorkflowPort>{};
+            statement.bindInt64(2, static_cast<long>(direction));
+            auto dataNames = std::vector<std::string>{};
             while (statement.step() == SQLITE_ROW) {
-                portals.push_back(getWorkflowPortFromSelectStatementFields(statement));
+                dataNames.push_back(statement.getTextField(0));
             }
-            return portals;
+            return dataNames;
         }
-
     }
 }

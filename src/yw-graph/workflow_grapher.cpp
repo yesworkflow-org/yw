@@ -81,10 +81,12 @@ namespace yw {
             drawDataBlocksAsNodes(workflowId);
             drawFlowEdgesBetweenProgramsAndData(workflowId);
             endWorkflowBox();
-            drawWorkflowInputsAsNodes(workflowId);
-            drawWorkflowOutputsAsNodes(workflowId);
-            drawEdgesFromWorkflowInputsToDataNodes(workflowId);
-            drawEdgesFromDataNodesToWorkflowOutputs(workflowId);
+            if (config("graph.portlayout") != "HIDE") {
+                drawWorkflowInputsAsNodes(workflowId);
+                drawWorkflowOutputsAsNodes(workflowId);
+                drawEdgesFromWorkflowInputsToDataNodes(workflowId);
+                drawEdgesFromDataNodesToWorkflowOutputs(workflowId);
+            }
             dot->endGraph();
             return dot->str();
         }
@@ -195,11 +197,8 @@ namespace yw {
 
         void WorkflowGrapher::drawWorkflowInputsAsNodes(const row_id& workflowId) {
 
-            if (config("graph.portlayout") == "HIDE") return;
-
-            auto portals = ywdb.selectWorkflowInputsByWorkflowId(workflowId);
-
-            if (portals.size() > 0) {
+            auto inputDataNames = ywdb.selectWorkflowIODataNames(workflowId, Flow::Direction::IN);
+            if (inputDataNames.size() > 0) {
 
                 bool groupWorkflowPorts = config("graph.layoutstyles") == "ON"
                     && config("graph.portlayout") == "GROUP";
@@ -212,8 +211,8 @@ namespace yw {
                 applyWorkflowPortNodeStyle();
 
                 dot->comment("Nodes representing workflow input ports");
-                for (auto portal : portals) {
-                    dot->node("workflow input " + portal.programDataBlockName, "");
+                for (auto name : inputDataNames) {
+                    dot->node("workflow input " + name, "");
                 }
 
                 if (groupWorkflowPorts) {
@@ -225,11 +224,8 @@ namespace yw {
 
         void WorkflowGrapher::drawWorkflowOutputsAsNodes(const row_id& workflowId) {
 
-            if (config("graph.portlayout") == "HIDE") return;
-
-            auto portals = ywdb.selectWorkflowOutputsByWorkflowId(workflowId);
-
-            if (portals.size() > 0) {
+            auto outputDataNames = ywdb.selectWorkflowIODataNames(workflowId, Flow::Direction::OUT);
+            if (outputDataNames.size() > 0) {
 
                 bool groupWorkflowPorts = config("graph.layoutstyles") == "ON"
                     && config("graph.portlayout") == "GROUP";
@@ -242,8 +238,8 @@ namespace yw {
                 applyWorkflowPortNodeStyle();
 
                 dot->comment("Nodes representing workflow output ports");
-                for (auto portal : portals) {
-                    dot->node("workflow output " + portal.programDataBlockName, "");
+                for (auto name : outputDataNames) {
+                    dot->node("workflow output " + name, "");
                 }
 
                 if (groupWorkflowPorts) {
@@ -254,34 +250,23 @@ namespace yw {
         }
 
         void WorkflowGrapher::drawEdgesFromWorkflowInputsToDataNodes(const row_id& workflowId) {
-
-            if (config("graph.portlayout") == "HIDE") return;
-
-            auto portals = ywdb.selectWorkflowInputsByWorkflowId(workflowId);
-
-            if (portals.size() > 0) {
-
+            auto inputDataNames = ywdb.selectWorkflowIODataNames(workflowId, Flow::Direction::IN);
+            if (inputDataNames.size() > 0) {
                 dot->comment("Edges representing flow of workflow input data");
-                for (auto portal : portals) {
-                    dot->edge("workflow input " + portal.programDataBlockName, portal.programDataBlockName );
+                for (auto name : inputDataNames) {
+                    dot->edge("workflow input " + name, name );
                 }
             }
         }
 
         void WorkflowGrapher::drawEdgesFromDataNodesToWorkflowOutputs(const row_id& workflowId) {
-
-            if (config("graph.portlayout") == "HIDE") return;
-
-            auto portals = ywdb.selectWorkflowOutputsByWorkflowId(workflowId);
-
-            if (portals.size() > 0) {
-
+            auto outputDataNames = ywdb.selectWorkflowIODataNames(workflowId, Flow::Direction::OUT);
+            if (outputDataNames.size() > 0) {
                 dot->comment("Edges representing flow of workflow output data");
-                for (auto portal : portals) {
-                    dot->edge(portal.programDataBlockName, "workflow output " + portal.programDataBlockName);
+                for (auto name : outputDataNames) {
+                    dot->edge(name, "workflow output " + name);
                 }
             }
         }
-
     }
 }
