@@ -16,6 +16,9 @@ namespace yw {
             std::string portAlias;
             int aliasedPortIndex;
             int portNameIndex;
+            row_id lastFlowId;
+            nullable_string flowTemplateScheme;
+            nullable_string flowTemplatePath;
             nullable_string blockDescription;
 
         public:
@@ -41,6 +44,8 @@ namespace yw {
             void exitNestedBlocks(YWParser::NestedBlocksContext *nestedBlocks) override;
             void enterPort(YWParser::PortContext *context) override;
             void enterPortName(YWParser::PortNameContext *context) override;
+            void enterResource(YWParser::ResourceContext *context);
+            void exitIo(YWParser::IoContext *context);
         };
     }
 }
