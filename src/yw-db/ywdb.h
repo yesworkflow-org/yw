@@ -60,7 +60,8 @@ namespace yw {
 
             void createFlowTemplateTable();
             row_id insert(const FlowTemplate& pathTemplate);
-            FlowTemplate selectFlowTemplateById(const row_id& requested_id);
+            FlowTemplate selectFlowTemplateById(const row_id& flowTemplateId);
+            std::vector<FlowTemplate> selectFlowTemplatesByDataId(const row_id& dataId);
 
             void createPortTable();
             row_id insert(Port& model);

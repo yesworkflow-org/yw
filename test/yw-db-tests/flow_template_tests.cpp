@@ -120,4 +120,19 @@ YW_TEST_SET
         }
     }
 
+    YW_TEST(FlowTemplate, SelectByDataId_RowExists) {
+
+        Expect::AreEqual(1, ywdb.insert(FlowTemplate{ auto_id, 8, "http", "/the/path" }));
+        Assert::AreEqual(2, ywdb.insert(FlowTemplate{ auto_id, 99, "file", "/another/path" }));
+
+        auto flowTemplates = ywdb.selectFlowTemplatesByDataId(92);
+        Expect::AreEqual(1, flowTemplates.size());
+        auto flowTemplate = flowTemplates[0];
+
+        Assert::AreEqual(2L, flowTemplate.id);
+        Assert::AreEqual(99, flowTemplate.flow);
+        Assert::AreEqual("file", flowTemplate.scheme.str());
+        Assert::AreEqual("/another/path", flowTemplate.path);
+    }
+
 YW_TEST_END

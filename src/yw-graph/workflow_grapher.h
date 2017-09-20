@@ -32,8 +32,9 @@ namespace yw {
 
             void applyWorkflowPortNodeStyle();
             void beginWorkflowBox();
-            void drawProgramBlocksAsNodes(const row_id& workflowId);
             void drawProgramBlockAsNode(const yw::db::ProgramBlock& programBlock);
+            void drawProgramBlocksAsNodes(const row_id& workflowId);
+            void drawDataBlockAsNode(const yw::db::DataBlock& dataBlock);
             void drawDataBlocksAsNodes(const row_id& workflowId);
             void drawFlowEdgesBetweenProgramsAndData(const row_id& workflowId);
             void drawWorkflowInputsAsNodes(const row_id& workflowId);

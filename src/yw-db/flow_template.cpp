@@ -32,16 +32,38 @@ namespace yw {
             return statement.getGeneratedId();
         }
 
-        FlowTemplate YesWorkflowDB::selectFlowTemplateById(const row_id& requested_id) {
-            string sql = "SELECT id, flow, scheme, path FROM flow_template WHERE id = ?";
-            SelectStatement statement(db, sql);
-            statement.bindInt64(1, requested_id);
-            if (statement.step() != SQLITE_ROW) throw std::runtime_error("No flow template with that id");
+        FlowTemplate getFlowTemplatesFromSelectStatementFields(const SelectStatement& statement) {
             auto id = statement.getNullableIdField(0);
             auto flow = statement.getIdField(1);
             auto scheme = statement.getNullableTextField(2);
             auto path = statement.getTextField(3);
             return FlowTemplate{ id, flow, scheme, path };
         }
+
+        FlowTemplate YesWorkflowDB::selectFlowTemplateById(const row_id& requested_id) {
+            string sql = "SELECT id, flow, scheme, path FROM flow_template WHERE id = ?";
+            SelectStatement statement(db, sql);
+            statement.bindInt64(1, requested_id);
+            if (statement.step() != SQLITE_ROW) throw std::runtime_error("No flow template with that id");
+            return getFlowTemplatesFromSelectStatementFields(statement);
+        }
+
+        std::vector<FlowTemplate> YesWorkflowDB::selectFlowTemplatesByDataId(const row_id& dataId) {
+            string sql = R"(
+                SELECT flow_template.id, flow, scheme, path FROM flow_template 
+                JOIN flow ON flow_template.flow = flow.id
+                JOIN data_block ON flow.data_block = data_block.id
+                WHERE data_block.id = ?
+                ORDER BY data_block.name, flow_template.id
+            )";
+            SelectStatement statement(db, sql);
+            statement.bindInt64(1, dataId);
+            auto flowTemplates = std::vector<FlowTemplate>{};
+            while (statement.step() == SQLITE_ROW) {
+                flowTemplates.push_back(getFlowTemplatesFromSelectStatementFields(statement));
+            }
+            return flowTemplates;
+        }
+
     }
 }

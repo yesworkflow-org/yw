@@ -16,9 +16,10 @@ namespace yw {
         const Configuration& WorkflowGrapher::getSoftwareSettings() {
             if (defaults.size() == 0) {
 
-                defaults.insert(SoftwareSetting{ "graph.view", "combined", "Workflow view to render", { "PROCESS", "DATA", "COMBINED" } });
+                defaults.insert(SoftwareSetting{ "graph.datalabel", "NAME", "Info to display in program nodes",{ "NAME", "URI", "BOTH" } });
                 defaults.insert(SoftwareSetting{ "graph.portlayout", "GROUP", "Layout mode for workflow ports",{ "GROUP", "RELAX", "HIDE" } });
                 defaults.insert(SoftwareSetting{ "graph.programlabel", "NAME", "Info to display in program nodes", {"NAME", "DESCRIPTION", "BOTH" } });
+                defaults.insert(SoftwareSetting{ "graph.view", "combined", "Workflow view to render",{ "PROCESS", "DATA", "COMBINED" } });
                 defaults.insert(SoftwareSetting{ "graph.workflowbox", "SHOW", "Box around nodes internal to workflow", { "SHOW", "HIDE" } });
                 defaults.insert(SoftwareSetting{ "graph.workflow", null_string, "Name of workflow to graph" });
 
@@ -112,18 +113,12 @@ namespace yw {
             auto description = programBlock.description;
    
             if (programLabelMode == "NAME" || !description.hasValue()) { 
-                dot->node(programBlock.name); 
-                return; 
-            }
-            
-            if (programLabelMode == "DESCRIPTION") { 
+                dot->node(programBlock.name);
+            } else if (programLabelMode == "DESCRIPTION") { 
                 dot->node(programBlock.name, description.str()); 
                 return;
-            }
-            
-            if (programLabelMode == "BOTH") { 
+            } else {
                 dot->recordNode(programBlock.name, programBlock.name, description.str());
-                return;
             }
         }
 
@@ -147,6 +142,33 @@ namespace yw {
                 }
             }
         }
+        
+        void WorkflowGrapher::drawDataBlockAsNode(const DataBlock& dataBlock) {
+
+            auto dataLabelMode = config("graph.datalabel");
+
+            nullable_string uri;
+            auto flowTemplates = ywdb.selectFlowTemplatesByDataId(dataBlock.id.getValue());
+            if (flowTemplates.size() > 0) {
+                auto firstFlowTemplate = flowTemplates[0];
+                std::string flowTemplate;
+                if (firstFlowTemplate.scheme.hasValue()) {
+                    flowTemplate += firstFlowTemplate.scheme.getValue() + ":";
+                }
+                flowTemplate += firstFlowTemplate.path;
+                uri = nullable_string(flowTemplate);
+            }
+
+            if (dataLabelMode == "NAME" || !uri.hasValue()) {
+                dot->node(dataBlock.name);
+            } else if (dataLabelMode == "URI") {
+                dot->node(dataBlock.name, uri.str());
+                return;
+            } else {
+                dot->recordNode(dataBlock.name, dataBlock.name, uri.str());
+                return;
+            }
+        }
 
         void WorkflowGrapher::drawDataBlocksAsNodes(const row_id& workflowId) {
             auto dataBlocks = ywdb.selectDataBlocksByWorkflowId(workflowId);
@@ -164,7 +186,7 @@ namespace yw {
 
                 dot->comment("Nodes representing data blocks in workflow");
                 for (auto dataBlock : dataBlocks) {
-                    dot->node(dataBlock.name);
+                    drawDataBlockAsNode(dataBlock);
                 }
             }
         }
