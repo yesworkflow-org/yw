@@ -55,5 +55,17 @@ namespace yw {
                 return ss.str();
             }
         };
+
+        struct DataProgramDataEdge {
+            const std::string inputDataBlockName;
+            const std::string programBlockName;
+            const std::string outputDataBlockName;
+        };
+
+        struct DataDataEdge {
+            const std::string inputDataBlockName;
+            const std::string outputDataBlockName;
+        };
+
     }
 }

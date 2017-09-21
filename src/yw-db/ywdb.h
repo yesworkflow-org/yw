@@ -82,6 +82,8 @@ namespace yw {
 
             void createProgramChannelView();
             std::vector<ProgramChannel> selectProgramChannelsByWorkflowId(const row_id& workflowId);
+            std::vector<DataDataEdge> YesWorkflowDB::selectDataDataEdges(const row_id& workflowId);
+            std::vector<DataProgramDataEdge> YesWorkflowDB::selectDataProgramDataEdges(const row_id& workflowId);
 
             void createSourceTable();
             row_id insert(const Source& source);

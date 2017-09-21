@@ -18,7 +18,7 @@ namespace yw {
                         input_port.id,
                         input_port.name,
                         program_block.id,
-                        program_block.name,
+                        program_block.name AS program_block_name,
                         output_port.id,
                         output_port.name,
                         output_data_block.id AS output_data_block_id,
@@ -68,6 +68,45 @@ namespace yw {
                 programChannels.push_back(getGetProgramChannelFromSelectStatementFields(statement));
             }
             return programChannels;
+        }
+
+        std::vector<DataDataEdge> YesWorkflowDB::selectDataDataEdges(const row_id& workflowId) {
+            auto sql = std::string(R"(
+                SELECT DISTINCT input_data_block_name, output_data_block_name 
+                FROM program_channel_view
+                WHERE workflow_block_id = ?
+                ORDER BY input_data_block_name, output_data_block_name
+            )");
+            SelectStatement statement(db, sql);
+            statement.bindNullableId(1, workflowId);
+            auto dataDataEdges = std::vector<DataDataEdge>{};
+            while (statement.step() == SQLITE_ROW) {
+                dataDataEdges.push_back(DataDataEdge{
+                    statement.getTextField(0),
+                    statement.getTextField(1)
+                });
+            }
+            return dataDataEdges;
+        }
+
+        std::vector<DataProgramDataEdge> YesWorkflowDB::selectDataProgramDataEdges(const row_id& workflowId) {
+            auto sql = std::string(R"(
+                SELECT DISTINCT input_data_block_name, program_block_name, output_data_block_name 
+                FROM program_channel_view
+                WHERE workflow_block_id = ?
+                ORDER BY input_data_block_name, program_block_name, output_data_block_name
+            )");
+            SelectStatement statement(db, sql);
+            statement.bindNullableId(1, workflowId);
+            auto dataProgramDataEdges = std::vector<DataProgramDataEdge>{};
+            while (statement.step() == SQLITE_ROW) {
+                dataProgramDataEdges.push_back( DataProgramDataEdge{
+                    statement.getTextField(0),
+                    statement.getTextField(1),
+                    statement.getTextField(2)
+                });
+            }
+            return dataProgramDataEdges;
         }
     }
 }

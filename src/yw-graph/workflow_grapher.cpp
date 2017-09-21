@@ -227,11 +227,11 @@ namespace yw {
         }
 
         void WorkflowGrapher::drawEdgesBetweenDataNodes(const row_id& workflowId) {
-            auto programChannels = ywdb.selectProgramChannelsByWorkflowId(workflowId);
-            if (programChannels.size() > 0) {
+            auto dataDataEdges = ywdb.selectDataDataEdges(workflowId);
+            if (dataDataEdges.size() > 0) {
                 dot->comment("Edges representing program blocks between data blocks");
-                for (auto channel : programChannels) {
-                    dot->edge(channel.inputDataBlockName, channel.outputDataBlockName);
+                for (auto dataDataEdge : dataDataEdges) {
+                    dot->edge(dataDataEdge.inputDataBlockName, dataDataEdge.outputDataBlockName);
                 }
             }
         }
