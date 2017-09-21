@@ -206,6 +206,49 @@ YW_TEST_SET
             )")), dotText);
     }
 
+    YW_TEST(WorkflowGrapher, InDataViewWorkflowWithTwoProgramsAndOneChannelYieldsThreeNodes)
+    {
+        auto modelId = ModelBuilder{ ywdb }.buildModelFromString(R"(
+
+            @begin w
+
+                @begin b1
+                @out d1
+                @end b1
+
+                @begin b2
+                @in d1
+                @out d2
+                @end b2
+
+                @begin b3
+                @in d2
+                @end b3
+
+            @end w
+
+        )");
+
+        config.insert(Setting{ "graph.view", "DATA", Setting::SettingSource::COMMAND_LINE });
+        WorkflowGrapher grapher{ ywdb, config };
+        auto dotText = grapher.graph(modelId);
+
+        Assert::AreEqual((trimmargins(R"(
+
+            digraph w {
+            
+            /* Nodes representing data blocks in workflow */
+            d1
+            d2
+            
+            /* Edges representing program blocks between data blocks */
+            d1 -> d2
+            }
+
+            )")), dotText);
+    }
+
+
     YW_TEST(WorkflowGrapher, WorkflowWithTwoProgramsTwoChannelsYieldsFourNodes)
     {
         auto modelId = ModelBuilder{ ywdb }.buildModelFromString(R"(

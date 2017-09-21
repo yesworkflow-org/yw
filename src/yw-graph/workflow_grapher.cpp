@@ -20,7 +20,7 @@ namespace yw {
                 defaults.insert(SoftwareSetting{ "graph.params", "REDUCE", "Visibility of parameters",{ "SHOW", "REDUCE" } });
                 defaults.insert(SoftwareSetting{ "graph.portlayout", "GROUP", "Layout mode for workflow ports",{ "GROUP", "RELAX", "HIDE" } });
                 defaults.insert(SoftwareSetting{ "graph.programlabel", "NAME", "Info to display in program nodes", {"NAME", "DESCRIPTION", "BOTH" } });
-                defaults.insert(SoftwareSetting{ "graph.view", "combined", "Workflow view to render",{ "PROCESS", "DATA", "COMBINED" } });
+                defaults.insert(SoftwareSetting{ "graph.view", "COMBINED", "Workflow view to render",{ "PROCESS", "DATA", "COMBINED" } });
                 defaults.insert(SoftwareSetting{ "graph.workflowbox", "SHOW", "Box around nodes internal to workflow", { "SHOW", "HIDE" } });
                 defaults.insert(SoftwareSetting{ "graph.workflow", null_string, "Name of workflow to graph" });
 
@@ -75,9 +75,24 @@ namespace yw {
                 }
             }
             auto workflow = ywdb.selectProgramBlockByModelIdAndBlockName(modelId, workflowName);
-            auto workflowId = workflow.id.getValue();
             dot = std::make_shared<DotBuilder>(configuration);
             dot->beginGraph(workflow.name);
+            auto view = config("graph.view");
+            if (view == "COMBINED") {
+                drawCombinedGraph(workflow.id.getValue());
+            }
+            else if (view == "DATA") {
+                drawDataGraph(workflow.id.getValue());
+            }
+            else if (view == "PROCESS") {
+                drawProcessGraph(workflow.id.getValue());
+            }
+
+            dot->endGraph();
+            return dot->str();
+        }
+
+        void WorkflowGrapher::drawCombinedGraph(const row_id& workflowId) {
             beginWorkflowBox();
             drawProgramBlocksAsNodes(workflowId);
             drawDataBlocksAsNodes(workflowId);
@@ -89,11 +104,23 @@ namespace yw {
                 drawEdgesFromWorkflowInputsToDataNodes(workflowId);
                 drawEdgesFromDataNodesToWorkflowOutputs(workflowId);
             }
-            dot->endGraph();
-            return dot->str();
         }
 
+        void WorkflowGrapher::drawDataGraph(const row_id& workflowId) {
+            beginWorkflowBox();
+            drawDataBlocksAsNodes(workflowId);
+            drawEdgesBetweenDataNodes(workflowId);
+            endWorkflowBox();
+            if (config("graph.portlayout") != "HIDE") {
+                drawWorkflowInputsAsNodes(workflowId);
+                drawWorkflowOutputsAsNodes(workflowId);
+                drawEdgesFromWorkflowInputsToDataNodes(workflowId);
+                drawEdgesFromDataNodesToWorkflowOutputs(workflowId);
+            }
+        }
 
+        void WorkflowGrapher::drawProcessGraph(const row_id& workflowId) {
+        }
         void WorkflowGrapher::beginWorkflowBox() {
             if (config("graph.layoutstyles") == "ON") {
                 dot->comment("Start of box around nodes in workflow");
@@ -195,6 +222,16 @@ namespace yw {
                 dot->comment("Nodes representing data blocks in workflow");
                 for (auto dataBlock : dataBlocks) {
                     drawDataBlockAsNode(dataBlock);
+                }
+            }
+        }
+
+        void WorkflowGrapher::drawEdgesBetweenDataNodes(const row_id& workflowId) {
+            auto programChannels = ywdb.selectProgramChannelsByWorkflowId(workflowId);
+            if (programChannels.size() > 0) {
+                dot->comment("Edges representing program blocks between data blocks");
+                for (auto channel : programChannels) {
+                    dot->edge(channel.inputDataBlockName, channel.outputDataBlockName);
                 }
             }
         }
