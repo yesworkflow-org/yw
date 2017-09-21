@@ -11,14 +11,16 @@
 #include "file.h"
 #include "flow.h"
 #include "flow_template.h"
-#include "flow_view.h"
 #include "line.h"
 #include "model.h"
 #include "port.h"
 #include "program_block.h"
 #include "source.h"
 #include "user.h"
-#include "workflow_port.h"
+
+#include "flow_view.h"
+#include "program_channel_view.h"
+#include "workflow_port_view.h"
 
 namespace yw {
     namespace db {
@@ -77,6 +79,9 @@ namespace yw {
             ProgramBlock selectProgramBlockByModelIdAndBlockName(const row_id& modelId, const std::string& blockName);
             std::vector<ProgramBlock> selectTopLevelProgramBlocksInModel(const row_id& modelId);
             std::vector<ProgramBlock> selectProgramBlocksInWorkflow(const row_id& workflowId);
+
+            void createProgramChannelView();
+            std::vector<ProgramChannel> selectProgramChannelsByWorkflowId(const row_id& workflowId);
 
             void createSourceTable();
             row_id insert(const Source& source);

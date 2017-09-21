@@ -11,13 +11,13 @@ namespace yw {
         void YesWorkflowDB::createWorkflowPortView() {
             SQLiteDB::createTable(db, std::string(R"(
 
-                CREATE VIEW workflow_port AS
+                CREATE VIEW workflow_port_view AS
                 SELECT workflow_block.id AS workflow_block_id, 
                        workflow_block.name, 
                        workflow_port.id, 
                        workflow_port.name,
                        workflow_data.id, 
-                       workflow_data.name, 
+                       workflow_data.name,
                        program_data.id, 
                        program_data.name AS program_data_block_name,
                        program_port.id, 
@@ -63,7 +63,7 @@ namespace yw {
 
         std::vector<WorkflowPort> YesWorkflowDB::selectWorkflowPortsByWorkflowId(const row_id& workflowId) {
             auto sql = std::string(R"(
-                SELECT * FROM workflow_port
+                SELECT * FROM workflow_port_view
                 WHERE workflow_block_id = ?
             )");
             SelectStatement statement(db, sql);
@@ -78,7 +78,7 @@ namespace yw {
         std::vector<std::string> YesWorkflowDB::selectWorkflowIODataNames(const row_id& workflowId, Flow::Direction direction) {
             auto sql = std::string(R"(
                 SELECT DISTINCT program_data_block_name 
-                FROM workflow_port
+                FROM workflow_port_view
                 WHERE workflow_block_id = ? AND direction = ?
             )");
             yw::sqlite::SelectStatement statement(db, sql);

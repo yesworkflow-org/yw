@@ -28,6 +28,7 @@ namespace yw {
             createFlowTable();
             createFlowTemplateTable();
             createWorkflowPortView();
+            createProgramChannelView();
         }
 
         size_t YesWorkflowDB::getRowCount(const std::string& tableName) {

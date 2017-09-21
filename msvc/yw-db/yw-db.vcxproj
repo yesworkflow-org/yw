@@ -22,7 +22,8 @@
     <ClCompile Include="..\..\src\yw-db\annotation.cpp" />
     <ClCompile Include="..\..\src\yw-db\flow_view.cpp" />
     <ClCompile Include="..\..\src\yw-db\flow_template.cpp" />
-    <ClCompile Include="..\..\src\yw-db\workflow_port.cpp" />
+    <ClCompile Include="..\..\src\yw-db\program_channel_view.cpp" />
+    <ClCompile Include="..\..\src\yw-db\workflow_port_view.cpp" />
     <ClCompile Include="..\..\src\yw-db\program_block.cpp" />
     <ClCompile Include="..\..\src\yw-db\data_block.cpp" />
     <ClCompile Include="..\..\src\yw-db\file.cpp" />
@@ -39,7 +40,8 @@
     <ClInclude Include="..\..\src\yw-db\annotation.h" />
     <ClInclude Include="..\..\src\yw-db\flow_view.h" />
     <ClInclude Include="..\..\src\yw-db\flow_template.h" />
-    <ClInclude Include="..\..\src\yw-db\workflow_port.h" />
+    <ClInclude Include="..\..\src\yw-db\program_channel_view.h" />
+    <ClInclude Include="..\..\src\yw-db\workflow_port_view.h" />
     <ClInclude Include="..\..\src\yw-db\program_block.h" />
     <ClInclude Include="..\..\src\yw-db\data_block.h" />
     <ClInclude Include="..\..\src\yw-db\file.h" />
