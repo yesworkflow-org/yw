@@ -71,5 +71,32 @@ namespace yw {
             }
             return dataBlocks;
         }
+
+        bool YesWorkflowDB::isInput(const row_id& dataId) {
+            auto sql = std::string(R"(
+                SELECT flow.id from flow
+                JOIN port ON port.id = flow.port
+                JOIN data_block ON data_block.id = flow.data_block 
+                WHERE data_block.id = ? AND flow.direction = 1
+            )");
+            SelectStatement statement(db, sql);
+            statement.bindNullableId(1, dataId);
+            return (statement.step() == SQLITE_ROW);
+        }
+
+
+        bool YesWorkflowDB::isParamOnly(const row_id& dataId) {
+            auto sql = std::string(R"(
+                SELECT annotation.id 
+                FROM annotation
+                JOIN port ON annotation.id = port.annotation
+                JOIN flow ON port.id = flow.port
+                JOIN data_block ON data_block.id = flow.data_block 
+                WHERE data_block.id = ? AND annotation.tag = 4
+            )");
+            SelectStatement statement(db, sql);
+            statement.bindNullableId(1, dataId);
+            return (statement.step() != SQLITE_ROW);
+        }
     }
 }

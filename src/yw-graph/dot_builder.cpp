@@ -39,7 +39,7 @@ namespace yw {
         void DotBuilder::beginGraph(const string& graphName) {
 
             dotStream << "digraph " << q(graphName) << " {" << endl;
-            
+
             auto graphLayout = config("graph.layout");
             horizontalLayout = (graphLayout == "LR") || (graphLayout == "RL");
             if (graphLayout != "TB") {
@@ -57,9 +57,10 @@ namespace yw {
             string inner = "cluster_" + name + "_inner";
 
             if (visible) {
-                dotStream << "subgraph " << q(outer) 
-                          << " { label=" << q("") << "; color=black; penwidth=2" << endl;
-            } else {
+                dotStream << "subgraph " << q(outer)
+                    << " { label=" << q("") << "; color=black; penwidth=2" << endl;
+            }
+            else {
                 dotStream << "subgraph " << q(outer) << " { label=" << q("") << "; penwidth=0" << endl;
             }
 
@@ -99,12 +100,16 @@ namespace yw {
 
         void DotBuilder::flushNodeStyle() {
             dotStream << "node[shape=" << q(nodeShape)
-                        << " style=" << q(nodeStyle)
-                        << " fillcolor=" << q(nodeFillcolor)
-                        << " peripheries=" << nodePeripheries
-                        << " fontname=" << q(nodeFont);
+                << " style=" << q(nodeStyle)
+                << " fillcolor=" << q(nodeFillcolor)
+                << " peripheries=" << nodePeripheries
+                << " fontname=" << q(nodeFont);
             if (nodeWidth > 0)  dotStream << " width=" << nodeWidth;
             dotStream << "]" << endl;
+        }
+
+        void DotBuilder::node(const string& name, const string& label, const string& fillcolor) {
+            dotStream << q(name) << " [label=" << q(label) << " fillcolor=\"" << fillcolor << "\"]" << endl;
         }
 
         void DotBuilder::node(const string& name, const string& label) {

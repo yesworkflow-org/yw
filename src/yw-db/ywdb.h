@@ -40,6 +40,8 @@ namespace yw {
             row_id insert(const DataBlock& dataBlock);
             DataBlock selectDataBlockById(const row_id& id);
             std::vector<DataBlock> selectDataBlocksByWorkflowId(const row_id& workflowId);
+            bool isInput(const row_id& dataId);
+            bool isParamOnly(const row_id& dataId);
 
             void createFileTable();
             row_id insert(const File& file);

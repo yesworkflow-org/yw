@@ -17,6 +17,7 @@ namespace yw {
             if (defaults.size() == 0) {
 
                 defaults.insert(SoftwareSetting{ "graph.datalabel", "NAME", "Info to display in program nodes",{ "NAME", "URI", "BOTH" } });
+                defaults.insert(SoftwareSetting{ "graph.params", "REDUCE", "Visibility of parameters",{ "SHOW", "REDUCE" } });
                 defaults.insert(SoftwareSetting{ "graph.portlayout", "GROUP", "Layout mode for workflow ports",{ "GROUP", "RELAX", "HIDE" } });
                 defaults.insert(SoftwareSetting{ "graph.programlabel", "NAME", "Info to display in program nodes", {"NAME", "DESCRIPTION", "BOTH" } });
                 defaults.insert(SoftwareSetting{ "graph.view", "combined", "Workflow view to render",{ "PROCESS", "DATA", "COMBINED" } });
@@ -159,14 +160,21 @@ namespace yw {
                 uri = nullable_string(flowTemplate);
             }
 
+            bool isParam = ywdb.isInput(dataBlock.id.getValue()) && ywdb.isParamOnly(dataBlock.id.getValue());
+
             if (dataLabelMode == "NAME" || !uri.hasValue()) {
-                dot->node(dataBlock.name);
-            } else if (dataLabelMode == "URI") {
+                if (isParam && config("graph.params") == "REDUCE") {
+                    dot->node(dataBlock.name, dataBlock.name, "#FFFFFF");
+                }
+                else {
+                    dot->node(dataBlock.name);
+                }
+            }
+            else if (dataLabelMode == "URI") {
                 dot->node(dataBlock.name, uri.str());
-                return;
-            } else {
+            }
+            else {
                 dot->recordNode(dataBlock.name, dataBlock.name, uri.str());
-                return;
             }
         }
 

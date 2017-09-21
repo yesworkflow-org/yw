@@ -42,6 +42,7 @@ namespace yw {
             void endSubgraph();
             void flushEdgeStyle();
             void flushNodeStyle();
+            void node(const std::string& name, const std::string& label, const std::string& fillcolor);
             void node(const std::string& name, const std::string& label);
             void node(const std::string& name);
             void recordNode(const std::string& name, const std::string& label1, const std::string& label2);
