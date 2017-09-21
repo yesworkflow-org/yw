@@ -2663,8 +2663,7 @@ std::vector<std::string> YWParser::_ruleNames = {
 };
 
 std::vector<std::string> YWParser::_literalNames = {
-  "", "'@as'", "'@begin'", "'@call'", "'@desc'", "'@end'", "'@file'", "'@in'", 
-  "'@out'", "'@param'", "'@return'", "'@uri'", "'\"'", "'''", "", "'/'", 
+  "", "", "", "", "", "", "", "", "", "", "", "", "'\"'", "'''", "", "'/'", 
   "'{'", "'}'", "", "':'"
 };
 

@@ -42,17 +42,17 @@ word			: unquotedWord | (SQ unquotedWord SQ) | (DQ unquotedWord DQ) ;
 unquotedWord	: WORD ;
 
 // YW keywords
-AsKeyword       : '@as' ;
-BeginKeyword    : '@begin' ;
-CallKeyword     : '@call' ;
-DescKeyword     : '@desc' ;
-EndKeyword      : '@end' ; 
-FileKeyword     : '@file' ;
-InKeyword       : '@in' ;
-OutKeyword      : '@out' ;
-ParamKeyword    : '@param' ;
-ReturnKeyword   : '@return' ;
-UriKeyword      : '@uri' ;
+AsKeyword       : '@as'    | '@AS' ;
+BeginKeyword    : '@begin' | '@BEGIN' ;
+CallKeyword     : '@call'  | '@CALL' ;
+DescKeyword     : '@desc'  | '@DESC' ;
+EndKeyword      : '@end'   | '@END';  
+FileKeyword     : '@file'  | '@FILE' ;
+InKeyword       : '@in'    | '@IN' ;
+OutKeyword      : '@out'   | '@OUT' ;
+ParamKeyword    : '@param' | '@PARAM' ;
+ReturnKeyword   : '@return'| '@RETURN' ;
+UriKeyword      : '@uri'   | '@URI' ;
 
 na				: (SPACE | NEWLINE | DQ | SQ | WORD | COLON | SLASH | LEFTBRACE| RIGHTBRACE | OTHER )+ ;
 
