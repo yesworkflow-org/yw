@@ -4,7 +4,7 @@ using namespace yw;
 using namespace yw::cli;
 using namespace yw::test;
 
-YW_TEST_FIXTURE(BeginContext)
+YW_TEST_FIXTURE(CommandLine)
 
     StderrRecorder stderrRecorder;
 

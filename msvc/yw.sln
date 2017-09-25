@@ -226,6 +226,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-cli", "yw-cli", "{9265BA
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-cli-tests", "yw-cli-tests", "{F1EC2F6B-014F-4064-B2C5-F37172E156E9}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\yw-cli-tests\Makefile = ..\gcc\yw-cli-tests\Makefile
+		..\gcc\yw-cli-tests\test_runner.cpp = ..\gcc\yw-cli-tests\test_runner.cpp
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
