@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-extract", "yw-extract\yw-extract.vcxproj", "{158B1288-0CC1-426B-8967-800EDBD8C278}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -208,6 +208,24 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-graph-tests", "yw-graph-
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-dot", "yw-dot\yw-dot.vcxproj", "{01360D1F-E0FE-45A9-919C-7645FD8BA8E5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-config", "yw-config", "{04A78B96-15F8-4BC6-A2AB-7C85D03218F1}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\yw-config\Makefile = ..\gcc\yw-config\Makefile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-config-tests", "yw-config-tests", "{35F9A935-896A-4707-BC10-6C782D0CFF15}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\yw-config-tests\Makefile = ..\gcc\yw-config-tests\Makefile
+		..\gcc\yw-config-tests\test_runner.cpp = ..\gcc\yw-config-tests\test_runner.cpp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-cli", "yw-cli", "{9265BA67-55E9-4668-B0A5-393C123F37D5}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\yw-cli\Makefile = ..\gcc\yw-cli\Makefile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-cli-tests", "yw-cli-tests", "{F1EC2F6B-014F-4064-B2C5-F37172E156E9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -446,6 +464,10 @@ Global
 		{FA84A0C2-DAD6-40D6-850B-AC4E44A4C65C} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 		{919F1D73-BBEE-4C1B-8F85-1700B0071489} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 		{50BDBC51-F79F-446C-8B28-EF8EF190B6EA} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{04A78B96-15F8-4BC6-A2AB-7C85D03218F1} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{35F9A935-896A-4707-BC10-6C782D0CFF15} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{9265BA67-55E9-4668-B0A5-393C123F37D5} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{F1EC2F6B-014F-4064-B2C5-F37172E156E9} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9AEF8164-5EBC-432F-98B9-C7C5704935A3}

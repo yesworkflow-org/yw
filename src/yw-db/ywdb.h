@@ -88,8 +88,8 @@ namespace yw {
 
             void createAdjacentDataBlocksView();
             std::vector<AdjacentDataBlockPair> selectAdjacentDataBlockPairsByWorkflowId(const row_id& workflowId);
-            std::vector<DataDataEdge> YesWorkflowDB::selectDataDataEdges(const row_id& workflowId);
-            std::vector<DataProgramDataEdge> YesWorkflowDB::selectDataProgramDataEdges(const row_id& workflowId);
+            std::vector<DataDataEdge> selectDataDataEdges(const row_id& workflowId);
+            std::vector<DataProgramDataEdge> selectDataProgramDataEdges(const row_id& workflowId);
 
             void createSourceTable();
             row_id insert(const Source& source);
@@ -104,7 +104,7 @@ namespace yw {
 
             void createWorkflowPortView();
             std::vector<WorkflowPort> selectWorkflowPortsByWorkflowId(const row_id& workflowId);
-            std::vector<std::string> YesWorkflowDB::selectWorkflowIODataNames(const row_id& workflowId, Flow::Direction direction);
+            std::vector<std::string> selectWorkflowIODataNames(const row_id& workflowId, Flow::Direction direction);
             std::vector<WorkflowIODataProgramEdge> selectWorkflowIODataProgramEdges(const row_id& workflowId, Flow::Direction direction);
 
             void createUserTable();

@@ -4,6 +4,7 @@
 
 #ifdef CPPUTEST
 #include "CppUTest/SimpleString.h"
+inline SimpleString StringFrom(const yw::nullable_row_id& row_id) { return row_id.str().c_str(); }
 inline SimpleString StringFrom(const yw::db::Annotation& row) { return StringFrom(row.str()); }
 inline SimpleString StringFrom(const yw::db::DataBlock& row) { return StringFrom(row.str()); }
 inline SimpleString StringFrom(const yw::db::Extraction& row) { return StringFrom(row.str()); }
@@ -14,7 +15,6 @@ inline SimpleString StringFrom(const yw::db::Port& row) { return StringFrom(row.
 inline SimpleString StringFrom(const yw::db::ProgramBlock& row) { return StringFrom(row.str()); }
 inline SimpleString StringFrom(const yw::db::Annotation::Tag& tag) { return yw::db::Annotation::to_string(tag).c_str(); }
 inline SimpleString StringFrom(const yw::db::Flow::Direction& direction) { return yw::db::Flow::to_string(direction).c_str(); }
-inline SimpleString StringFrom(const yw::nullable_row_id& row_id) { return row_id.str().c_str(); }
 #endif
 
 #include "yw_test.h"

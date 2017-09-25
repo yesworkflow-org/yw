@@ -3,6 +3,7 @@
 #include "yw_types.h"
 
 #include <map>
+#include <vector>
 
 namespace yw {
     namespace config {

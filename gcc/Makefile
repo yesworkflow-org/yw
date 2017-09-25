@@ -3,6 +3,8 @@ DEP_LIBS = antlr4-runtime \
            sqlite3
 
 YW_LIBS  = sqlite-db \
+           yw-config \
+           yw-cli \
            yw-db  \
            yw-parse \
            yw-extract \
@@ -11,6 +13,8 @@ YW_LIBS  = sqlite-db \
 YW_APPS = yw-extract-app
 
 YW_TESTS = sqlite-db-tests \
+           yw-config-tests \
+           yw-cli-tests \
            yw-db-tests \
            yw-parse-tests \
            yw-extract-tests \
