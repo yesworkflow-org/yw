@@ -206,7 +206,7 @@ YW_TEST_SET
             )")), dotText);
     }
 
-    YW_TEST(WorkflowGrapher, InDataViewWorkflowWithTwoProgramsAndOneChannelYieldsThreeNodes)
+    YW_TEST(WorkflowGrapher, InDataViewWorkflowWithThreeProgramsAndTwoDataBlockslYieldsTwoNodes)
     {
         auto modelId = ModelBuilder{ ywdb }.buildModelFromString(R"(
 
@@ -247,6 +247,51 @@ YW_TEST_SET
 
             )")), dotText);
     }
+
+    YW_TEST(WorkflowGrapher, InProcessViewWorkflowWithThreeProgramsAndTwoDataBlockslYieldsTwoNodes)
+    {
+        auto modelId = ModelBuilder{ ywdb }.buildModelFromString(R"(
+
+            @begin w
+
+                @begin b1
+                @out d1
+                @end b1
+
+                @begin b2
+                @in d1
+                @out d2
+                @end b2
+
+                @begin b3
+                @in d2
+                @end b3
+
+            @end w
+
+        )");
+
+        config.insert(Setting{ "graph.view", "PROCESS", Setting::SettingSource::COMMAND_LINE });
+        WorkflowGrapher grapher{ ywdb, config };
+        auto dotText = grapher.graph(modelId);
+
+        Assert::AreEqual((trimmargins(R"(
+
+            digraph w {
+            
+            /* Nodes representing program blocks in workflow */
+            b1
+            b2
+            b3
+            
+            /* Edges representing data blocks between program blocks */
+            b1 -> b2
+            b2 -> b3
+            }
+
+            )")), dotText);
+    }
+
 
 
     YW_TEST(WorkflowGrapher, WorkflowWithTwoProgramsTwoChannelsYieldsFourNodes)

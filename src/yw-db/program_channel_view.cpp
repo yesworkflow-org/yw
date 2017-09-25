@@ -70,7 +70,7 @@ namespace yw {
             return programChannels;
         }
 
-        std::vector<DataDataEdge> YesWorkflowDB::selectDataDataEdges(const row_id& workflowId) {
+        std::vector<DataDataEdge> YesWorkflowDB::selectEdgesBetweenDataNodes(const row_id& workflowId) {
             auto sql = std::string(R"(
                 SELECT DISTINCT input_data_block_name, output_data_block_name 
                 FROM program_channel_view
@@ -94,7 +94,7 @@ namespace yw {
                 SELECT DISTINCT input_data_block_name, program_block_name, output_data_block_name 
                 FROM program_channel_view
                 WHERE workflow_block_id = ?
-                ORDER BY input_data_block_name, program_block_name, output_data_block_name
+                ORDER BY input_data_block_name, output_data_block_name, program_block_name
             )");
             SelectStatement statement(db, sql);
             statement.bindNullableId(1, workflowId);

@@ -120,7 +120,18 @@ namespace yw {
         }
 
         void WorkflowGrapher::drawProcessGraph(const row_id& workflowId) {
+            beginWorkflowBox();
+            drawProgramBlocksAsNodes(workflowId);
+            drawEdgesBetweenProgramNodes(workflowId);
+            endWorkflowBox();
+            if (config("graph.portlayout") != "HIDE") {
+                drawWorkflowInputsAsNodes(workflowId);
+                drawWorkflowOutputsAsNodes(workflowId);
+                drawEdgesFromWorkflowInputsToProgramNodes(workflowId);
+                drawEdgesFromProgramNodesToWorkflowOutputs(workflowId);
+            }
         }
+
         void WorkflowGrapher::beginWorkflowBox() {
             if (config("graph.layoutstyles") == "ON") {
                 dot->comment("Start of box around nodes in workflow");
@@ -226,12 +237,22 @@ namespace yw {
             }
         }
 
+        void WorkflowGrapher::drawEdgesBetweenProgramNodes(const row_id& workflowId) {
+            auto programProgramEdges = ywdb.selectProgramProgramEdges(workflowId);
+            if (programProgramEdges.size() > 0) {
+                dot->comment("Edges representing data blocks between program blocks");
+                for (auto programProgramEdge : programProgramEdges) {
+                    dot->edge(programProgramEdge.upstreamProgramBlockName, programProgramEdge.downstreamProgramBlockName);
+                }
+            }
+        }
+
         void WorkflowGrapher::drawEdgesBetweenDataNodes(const row_id& workflowId) {
-            auto dataDataEdges = ywdb.selectDataDataEdges(workflowId);
-            if (dataDataEdges.size() > 0) {
+            auto programEdges = ywdb.selectEdgesBetweenDataNodes(workflowId);
+            if (programEdges.size() > 0) {
                 dot->comment("Edges representing program blocks between data blocks");
-                for (auto dataDataEdge : dataDataEdges) {
-                    dot->edge(dataDataEdge.inputDataBlockName, dataDataEdge.outputDataBlockName);
+                for (auto programEdge : programEdges) {
+                    dot->edge(programEdge.inputDataBlockName, programEdge.outputDataBlockName);
                 }
             }
         }
@@ -334,6 +355,14 @@ namespace yw {
                     dot->edge(name, "workflow output " + name);
                 }
             }
+        }
+
+        void  WorkflowGrapher::drawEdgesFromWorkflowInputsToProgramNodes(const row_id& workflowId) {
+
+        }
+
+        void  WorkflowGrapher::drawEdgesFromProgramNodesToWorkflowOutputs(const row_id& workflowId) {
+
         }
     }
 }

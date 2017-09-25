@@ -20,6 +20,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\yw-db\annotation.cpp" />
+    <ClCompile Include="..\..\src\yw-db\adjacent_program_blocks_view.cpp" />
     <ClCompile Include="..\..\src\yw-db\flow_view.cpp" />
     <ClCompile Include="..\..\src\yw-db\flow_template.cpp" />
     <ClCompile Include="..\..\src\yw-db\program_channel_view.cpp" />
@@ -38,6 +39,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-db\annotation.h" />
+    <ClInclude Include="..\..\src\yw-db\adjacent_program_blocks_view.h" />
     <ClInclude Include="..\..\src\yw-db\flow_view.h" />
     <ClInclude Include="..\..\src\yw-db\flow_template.h" />
     <ClInclude Include="..\..\src\yw-db\program_channel_view.h" />

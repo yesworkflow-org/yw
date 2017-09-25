@@ -18,6 +18,7 @@
 #include "source.h"
 #include "user.h"
 
+#include "adjacent_program_blocks_view.h"
 #include "flow_view.h"
 #include "program_channel_view.h"
 #include "workflow_port_view.h"
@@ -29,6 +30,11 @@ namespace yw {
         public:
 
             YesWorkflowDB(bool createTables = true);
+
+            void createAdjacentProgramBlocksView();
+            std::vector<AdjacentProgramBlocks> selectAdjacentProgramBlocksByWorkflowId(const row_id& workflowId);
+            std::vector<ProgramProgramEdge> selectProgramProgramEdges(const row_id& workflowId);
+            std::vector<ProgramDataProgramEdge> selectProgramDataProgramEdges(const row_id& workflowId);
 
             void createAnnotationTable();
             row_id insert(Annotation& annotation);
@@ -82,7 +88,7 @@ namespace yw {
 
             void createProgramChannelView();
             std::vector<ProgramChannel> selectProgramChannelsByWorkflowId(const row_id& workflowId);
-            std::vector<DataDataEdge> YesWorkflowDB::selectDataDataEdges(const row_id& workflowId);
+            std::vector<DataDataEdge> YesWorkflowDB::selectEdgesBetweenDataNodes(const row_id& workflowId);
             std::vector<DataProgramDataEdge> YesWorkflowDB::selectDataProgramDataEdges(const row_id& workflowId);
 
             void createSourceTable();
