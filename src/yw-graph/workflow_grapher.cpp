@@ -17,6 +17,7 @@ namespace yw {
             if (defaults.size() == 0) {
 
                 defaults.insert(SoftwareSetting{ "graph.datalabel", "NAME", "Info to display in program nodes",{ "NAME", "URI", "BOTH" } });
+                defaults.insert(SoftwareSetting{ "graph.edgelabels", "HIDE", "Labels on edges in process view",{ "SHOW", "HIDE" } });
                 defaults.insert(SoftwareSetting{ "graph.params", "REDUCE", "Visibility of parameters",{ "SHOW", "REDUCE" } });
                 defaults.insert(SoftwareSetting{ "graph.portlayout", "GROUP", "Layout mode for workflow ports",{ "GROUP", "RELAX", "HIDE" } });
                 defaults.insert(SoftwareSetting{ "graph.programlabel", "NAME", "Info to display in program nodes", {"NAME", "DESCRIPTION", "BOTH" } });
@@ -109,7 +110,7 @@ namespace yw {
         void WorkflowGrapher::drawDataGraph(const row_id& workflowId) {
             beginWorkflowBox();
             drawDataBlocksAsNodes(workflowId);
-            drawEdgesBetweenDataNodes(workflowId);
+            drawProgramEdgesBetweenDataNodes(workflowId);
             endWorkflowBox();
             if (config("graph.portlayout") != "HIDE") {
                 drawWorkflowInputsAsNodes(workflowId);
@@ -122,7 +123,7 @@ namespace yw {
         void WorkflowGrapher::drawProcessGraph(const row_id& workflowId) {
             beginWorkflowBox();
             drawProgramBlocksAsNodes(workflowId);
-            drawEdgesBetweenProgramNodes(workflowId);
+            drawDataEdgesBetweenProgramNodes(workflowId);
             endWorkflowBox();
             if (config("graph.portlayout") != "HIDE") {
                 drawWorkflowInputsAsNodes(workflowId);
@@ -237,17 +238,28 @@ namespace yw {
             }
         }
 
-        void WorkflowGrapher::drawEdgesBetweenProgramNodes(const row_id& workflowId) {
-            auto programProgramEdges = ywdb.selectProgramProgramEdges(workflowId);
-            if (programProgramEdges.size() > 0) {
-                dot->comment("Edges representing data blocks between program blocks");
-                for (auto programProgramEdge : programProgramEdges) {
-                    dot->edge(programProgramEdge.upstreamProgramBlockName, programProgramEdge.downstreamProgramBlockName);
+        void WorkflowGrapher::drawDataEdgesBetweenProgramNodes(const row_id& workflowId) {
+            if (config("graph.edgelabels") == "SHOW") {
+                auto programDataProgramEdges = ywdb.selectProgramDataProgramEdges(workflowId);
+                if (programDataProgramEdges.size() > 0) {
+                    dot->comment("Edges representing data blocks between program blocks");
+                    for (auto programDataProgramEdge : programDataProgramEdges) {
+                        dot->edge(programDataProgramEdge.upstreamProgramBlockName, programDataProgramEdge.downstreamProgramBlockName, programDataProgramEdge.dataBlockName);
+                    }
+                }
+            }
+            else {
+                auto programProgramEdges = ywdb.selectProgramProgramEdges(workflowId);
+                if (programProgramEdges.size() > 0) {
+                    dot->comment("Edges representing data blocks between program blocks");
+                    for (auto programProgramEdge : programProgramEdges) {
+                        dot->edge(programProgramEdge.upstreamProgramBlockName, programProgramEdge.downstreamProgramBlockName);
+                    }
                 }
             }
         }
 
-        void WorkflowGrapher::drawEdgesBetweenDataNodes(const row_id& workflowId) {
+        void WorkflowGrapher::drawProgramEdgesBetweenDataNodes(const row_id& workflowId) {
             auto programEdges = ywdb.selectEdgesBetweenDataNodes(workflowId);
             if (programEdges.size() > 0) {
                 dot->comment("Edges representing program blocks between data blocks");
@@ -358,21 +370,33 @@ namespace yw {
         }
 
         void  WorkflowGrapher::drawEdgesFromWorkflowInputsToProgramNodes(const row_id& workflowId) {
+            bool labelEdges = (config("graph.edgelabels") == "SHOW");
             auto dataProgramEdges = ywdb.selectWorkflowIODataProgramEdges(workflowId, Flow::Direction::IN);
             if (dataProgramEdges.size() > 0) {
                 dot->comment("Edges representing flow of workflow input data to program blocks");
                 for (auto dataProgramEdge : dataProgramEdges) {
-                    dot->edge("workflow input " + dataProgramEdge.dataName, dataProgramEdge.programName);
+                    if (labelEdges) {
+                        dot->edge("workflow input " + dataProgramEdge.dataName, dataProgramEdge.programName, dataProgramEdge.dataName);
+                    }
+                    else {
+                        dot->edge("workflow input " + dataProgramEdge.dataName, dataProgramEdge.programName);
+                    }
                 }
             }
         }
 
         void  WorkflowGrapher::drawEdgesFromProgramNodesToWorkflowOutputs(const row_id& workflowId) {
+            bool labelEdges = (config("graph.edgelabels") == "SHOW");
             auto dataProgramEdges = ywdb.selectWorkflowIODataProgramEdges(workflowId, Flow::Direction::OUT);
             if (dataProgramEdges.size() > 0) {
                 dot->comment("Edges representing flow of workflow program blocks to workflow outputs");
                 for (auto dataProgramEdge : dataProgramEdges) {
-                    dot->edge(dataProgramEdge.programName, "workflow output " + dataProgramEdge.dataName);
+                    if (labelEdges) {
+                        dot->edge(dataProgramEdge.programName, "workflow output " + dataProgramEdge.dataName, dataProgramEdge.dataName);
+                    }
+                    else {
+                        dot->edge(dataProgramEdge.programName, "workflow output " + dataProgramEdge.dataName);
+                    }
                 }
             }
         }
