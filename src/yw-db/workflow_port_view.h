@@ -63,5 +63,10 @@ namespace yw {
                 return ss.str();
             }
         };
+
+        struct WorkflowIODataProgramEdge {
+            std::string dataName;
+            std::string programName;
+        };
     }
 }

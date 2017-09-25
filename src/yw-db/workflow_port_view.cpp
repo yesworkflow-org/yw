@@ -23,7 +23,7 @@ namespace yw {
                        program_port.id, 
                        program_port.name, 
                        program.id, 
-                       program.name, 
+                       program.name AS program_block_name,
                        program_flow.direction AS direction
 
                 FROM program_block AS workflow_block
@@ -90,5 +90,22 @@ namespace yw {
             }
             return dataNames;
         }
+
+        std::vector<WorkflowIODataProgramEdge> YesWorkflowDB::selectWorkflowIODataProgramEdges(const row_id& workflowId, Flow::Direction direction) {
+            auto sql = std::string(R"(
+                SELECT DISTINCT program_data_block_name, program_block_name
+                FROM workflow_port_view
+                WHERE workflow_block_id = ? AND direction = ?
+            )");
+            yw::sqlite::SelectStatement statement(db, sql);
+            statement.bindNullableId(1, workflowId);
+            statement.bindInt64(2, static_cast<long>(direction));
+            auto dataProgramEdges = std::vector<WorkflowIODataProgramEdge>{};
+            while (statement.step() == SQLITE_ROW) {
+                dataProgramEdges.push_back(WorkflowIODataProgramEdge{ statement.getTextField(0), statement.getTextField(1) });
+            }
+            return dataProgramEdges;
+        }
+
     }
 }

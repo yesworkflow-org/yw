@@ -358,11 +358,23 @@ namespace yw {
         }
 
         void  WorkflowGrapher::drawEdgesFromWorkflowInputsToProgramNodes(const row_id& workflowId) {
-
+            auto dataProgramEdges = ywdb.selectWorkflowIODataProgramEdges(workflowId, Flow::Direction::IN);
+            if (dataProgramEdges.size() > 0) {
+                dot->comment("Edges representing flow of workflow input data to program blocks");
+                for (auto dataProgramEdge : dataProgramEdges) {
+                    dot->edge("workflow input " + dataProgramEdge.dataName, dataProgramEdge.programName);
+                }
+            }
         }
 
         void  WorkflowGrapher::drawEdgesFromProgramNodesToWorkflowOutputs(const row_id& workflowId) {
-
+            auto dataProgramEdges = ywdb.selectWorkflowIODataProgramEdges(workflowId, Flow::Direction::OUT);
+            if (dataProgramEdges.size() > 0) {
+                dot->comment("Edges representing flow of workflow program blocks to workflow outputs");
+                for (auto dataProgramEdge : dataProgramEdges) {
+                    dot->edge(dataProgramEdge.programName, "workflow output " + dataProgramEdge.dataName);
+                }
+            }
         }
     }
 }

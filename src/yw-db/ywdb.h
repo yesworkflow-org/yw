@@ -105,6 +105,7 @@ namespace yw {
             void createWorkflowPortView();
             std::vector<WorkflowPort> selectWorkflowPortsByWorkflowId(const row_id& workflowId);
             std::vector<std::string> YesWorkflowDB::selectWorkflowIODataNames(const row_id& workflowId, Flow::Direction direction);
+            std::vector<WorkflowIODataProgramEdge> selectWorkflowIODataProgramEdges(const row_id& workflowId, Flow::Direction direction);
 
             void createUserTable();
             row_id insert(const User& user);
