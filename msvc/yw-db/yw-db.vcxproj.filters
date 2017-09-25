@@ -49,13 +49,13 @@
     <ClCompile Include="..\..\src\yw-db\flow_template.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\yw-db\program_channel_view.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\yw-db\workflow_port_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\yw-db\adjacent_program_blocks_view.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\yw-db\adjacent_data_blocks_view.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -102,13 +102,13 @@
     <ClInclude Include="..\..\src\yw-db\flow_template.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\yw-db\program_channel_view.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\yw-db\workflow_port_view.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\yw-db\adjacent_program_blocks_view.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-db\adjacent_data_blocks_view.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

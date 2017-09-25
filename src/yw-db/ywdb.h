@@ -20,7 +20,7 @@
 
 #include "adjacent_program_blocks_view.h"
 #include "flow_view.h"
-#include "program_channel_view.h"
+#include "adjacent_data_blocks_view.h"
 #include "workflow_port_view.h"
 
 namespace yw {
@@ -86,9 +86,9 @@ namespace yw {
             std::vector<ProgramBlock> selectTopLevelProgramBlocksInModel(const row_id& modelId);
             std::vector<ProgramBlock> selectProgramBlocksInWorkflow(const row_id& workflowId);
 
-            void createProgramChannelView();
-            std::vector<ProgramChannel> selectProgramChannelsByWorkflowId(const row_id& workflowId);
-            std::vector<DataDataEdge> YesWorkflowDB::selectEdgesBetweenDataNodes(const row_id& workflowId);
+            void createAdjacentDataBlocksView();
+            std::vector<AdjacentDataBlockPair> selectAdjacentDataBlockPairsByWorkflowId(const row_id& workflowId);
+            std::vector<DataDataEdge> YesWorkflowDB::selectDataDataEdges(const row_id& workflowId);
             std::vector<DataProgramDataEdge> YesWorkflowDB::selectDataProgramDataEdges(const row_id& workflowId);
 
             void createSourceTable();

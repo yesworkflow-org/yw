@@ -8,10 +8,10 @@ using namespace yw::sqlite;
 namespace yw {
     namespace db {
 
-        void YesWorkflowDB::createProgramChannelView() {
+        void YesWorkflowDB::createAdjacentDataBlocksView() {
             SQLiteDB::createTable(db, std::string(R"(
 
-                CREATE VIEW program_channel_view AS
+                CREATE VIEW adjacent_data_blocks_view AS
                 SELECT  workflow_block.id AS workflow_block_id,
                         input_data_block.id AS input_data_block_id,
                         input_data_block.name AS input_data_block_name,
@@ -36,7 +36,7 @@ namespace yw {
             )"));
         }
 
-        ProgramChannel getGetProgramChannelFromSelectStatementFields(SelectStatement& statement) {
+        AdjacentDataBlockPair getAdjacentDataBlockPairFromSelectStatementFields(SelectStatement& statement) {
             
             auto workflowId = statement.getNullableIdField(0);
             auto inputDataBlockId = statement.getIdField(1);
@@ -50,30 +50,31 @@ namespace yw {
             auto outputDataBlockId = statement.getIdField(9);
             auto outputDataBlockName = statement.getTextField(10);
 
-            return ProgramChannel(workflowId, inputDataBlockId, inputDataBlockName, inputPortId, inputPortName,
+            return AdjacentDataBlockPair(workflowId, inputDataBlockId, inputDataBlockName, inputPortId, inputPortName,
                                   programBlockId, programBlockName, outputPortId, outputPortName,
                                   outputDataBlockId, outputDataBlockName);
         }
 
-        std::vector<ProgramChannel> YesWorkflowDB::selectProgramChannelsByWorkflowId(const row_id& workflowId) {
+        std::vector<AdjacentDataBlockPair> YesWorkflowDB::selectAdjacentDataBlockPairsByWorkflowId(const row_id& workflowId) {
             auto sql = std::string(R"(
-                SELECT * FROM program_channel_view
+                SELECT * 
+                FROM adjacent_data_blocks_view
                 WHERE workflow_block_id = ?
                 ORDER BY input_data_block_name, output_data_block_name, input_data_block_id, output_data_block_id
             )");
             SelectStatement statement(db, sql);
             statement.bindNullableId(1, workflowId);
-            auto programChannels = std::vector<ProgramChannel>{};
+            auto programChannels = std::vector<AdjacentDataBlockPair>{};
             while (statement.step() == SQLITE_ROW) {
-                programChannels.push_back(getGetProgramChannelFromSelectStatementFields(statement));
+                programChannels.push_back(getAdjacentDataBlockPairFromSelectStatementFields(statement));
             }
             return programChannels;
         }
 
-        std::vector<DataDataEdge> YesWorkflowDB::selectEdgesBetweenDataNodes(const row_id& workflowId) {
+        std::vector<DataDataEdge> YesWorkflowDB::selectDataDataEdges(const row_id& workflowId) {
             auto sql = std::string(R"(
                 SELECT DISTINCT input_data_block_name, output_data_block_name 
-                FROM program_channel_view
+                FROM adjacent_data_blocks_view
                 WHERE workflow_block_id = ?
                 ORDER BY input_data_block_name, output_data_block_name
             )");
@@ -92,7 +93,7 @@ namespace yw {
         std::vector<DataProgramDataEdge> YesWorkflowDB::selectDataProgramDataEdges(const row_id& workflowId) {
             auto sql = std::string(R"(
                 SELECT DISTINCT input_data_block_name, program_block_name, output_data_block_name 
-                FROM program_channel_view
+                FROM adjacent_data_blocks_view
                 WHERE workflow_block_id = ?
                 ORDER BY input_data_block_name, output_data_block_name, program_block_name
             )");

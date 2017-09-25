@@ -260,7 +260,7 @@ namespace yw {
         }
 
         void WorkflowGrapher::drawProgramEdgesBetweenDataNodes(const row_id& workflowId) {
-            auto programEdges = ywdb.selectEdgesBetweenDataNodes(workflowId);
+            auto programEdges = ywdb.selectDataDataEdges(workflowId);
             if (programEdges.size() > 0) {
                 dot->comment("Edges representing program blocks between data blocks");
                 for (auto programEdge : programEdges) {

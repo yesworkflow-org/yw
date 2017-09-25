@@ -28,7 +28,7 @@ namespace yw {
             createFlowTable();
             createFlowTemplateTable();
             createWorkflowPortView();
-            createProgramChannelView();
+            createAdjacentDataBlocksView();
             createAdjacentProgramBlocksView();
         }
 

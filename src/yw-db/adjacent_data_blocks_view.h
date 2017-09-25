@@ -5,7 +5,7 @@
 namespace yw {
     namespace db {
 
-        struct ProgramChannel : sqlite::TableRow {
+        struct AdjacentDataBlockPair : sqlite::TableRow {
 
             const nullable_row_id workflowId;
             const row_id inputDataBlockId;
@@ -19,7 +19,7 @@ namespace yw {
             const row_id outputDataBlockId;
             const std::string outputDataBlockName;
 
-            ProgramChannel(
+            AdjacentDataBlockPair(
                 const nullable_row_id& workflowId,
                 const row_id& inputDataBlockId,
                 const std::string& inputDataBlockName,
