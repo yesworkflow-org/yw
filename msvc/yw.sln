@@ -247,6 +247,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-graph-app", "yw-graph-ap
 		..\gcc\yw-graph-app\Makefile = ..\gcc\yw-graph-app\Makefile
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "graphviz-lib", "graphviz-lib", "{BFFDE3BA-F86B-4FCA-A0B1-D4D035806F75}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\graphviz-lib\Makefile = ..\gcc\graphviz-lib\Makefile
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-graphviz", "yw-graphviz\yw-graphviz.vcxproj", "{2D4FE63C-61E8-486F-A3BC-65CB44CDFF28}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -466,6 +473,16 @@ Global
 		{01360D1F-E0FE-45A9-919C-7645FD8BA8E5}.Release|x64.Build.0 = Release|x64
 		{01360D1F-E0FE-45A9-919C-7645FD8BA8E5}.Release|x86.ActiveCfg = Release|Win32
 		{01360D1F-E0FE-45A9-919C-7645FD8BA8E5}.Release|x86.Build.0 = Release|Win32
+		{2D4FE63C-61E8-486F-A3BC-65CB44CDFF28}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{2D4FE63C-61E8-486F-A3BC-65CB44CDFF28}.Debug|x64.ActiveCfg = Debug|x64
+		{2D4FE63C-61E8-486F-A3BC-65CB44CDFF28}.Debug|x64.Build.0 = Debug|x64
+		{2D4FE63C-61E8-486F-A3BC-65CB44CDFF28}.Debug|x86.ActiveCfg = Debug|Win32
+		{2D4FE63C-61E8-486F-A3BC-65CB44CDFF28}.Debug|x86.Build.0 = Debug|Win32
+		{2D4FE63C-61E8-486F-A3BC-65CB44CDFF28}.Release|Any CPU.ActiveCfg = Release|Win32
+		{2D4FE63C-61E8-486F-A3BC-65CB44CDFF28}.Release|x64.ActiveCfg = Release|x64
+		{2D4FE63C-61E8-486F-A3BC-65CB44CDFF28}.Release|x64.Build.0 = Release|x64
+		{2D4FE63C-61E8-486F-A3BC-65CB44CDFF28}.Release|x86.ActiveCfg = Release|Win32
+		{2D4FE63C-61E8-486F-A3BC-65CB44CDFF28}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -491,6 +508,7 @@ Global
 		{FB1DBF02-D35F-41A4-AC9D-4B32AF832202} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 		{030CC283-17BD-4E92-A6BE-D5CF949F5570} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 		{C4AA4D95-423C-4BF5-9CDA-8C50DF668B36} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{BFFDE3BA-F86B-4FCA-A0B1-D4D035806F75} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9AEF8164-5EBC-432F-98B9-C7C5704935A3}
