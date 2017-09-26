@@ -254,6 +254,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "graphviz-lib", "graphviz-li
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-graphviz", "yw-graphviz\yw-graphviz.vcxproj", "{2D4FE63C-61E8-486F-A3BC-65CB44CDFF28}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-graphviz-tests", "yw-graphviz-tests\yw-graphviz-tests.vcxproj", "{14AB3C13-B88C-4E4A-91C9-4088BE9C36AF}"
+	ProjectSection(ProjectDependencies) = postProject
+		{2D4FE63C-61E8-486F-A3BC-65CB44CDFF28} = {2D4FE63C-61E8-486F-A3BC-65CB44CDFF28}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -483,6 +488,16 @@ Global
 		{2D4FE63C-61E8-486F-A3BC-65CB44CDFF28}.Release|x64.Build.0 = Release|x64
 		{2D4FE63C-61E8-486F-A3BC-65CB44CDFF28}.Release|x86.ActiveCfg = Release|Win32
 		{2D4FE63C-61E8-486F-A3BC-65CB44CDFF28}.Release|x86.Build.0 = Release|Win32
+		{14AB3C13-B88C-4E4A-91C9-4088BE9C36AF}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{14AB3C13-B88C-4E4A-91C9-4088BE9C36AF}.Debug|x64.ActiveCfg = Debug|x64
+		{14AB3C13-B88C-4E4A-91C9-4088BE9C36AF}.Debug|x64.Build.0 = Debug|x64
+		{14AB3C13-B88C-4E4A-91C9-4088BE9C36AF}.Debug|x86.ActiveCfg = Debug|Win32
+		{14AB3C13-B88C-4E4A-91C9-4088BE9C36AF}.Debug|x86.Build.0 = Debug|Win32
+		{14AB3C13-B88C-4E4A-91C9-4088BE9C36AF}.Release|Any CPU.ActiveCfg = Release|Win32
+		{14AB3C13-B88C-4E4A-91C9-4088BE9C36AF}.Release|x64.ActiveCfg = Release|x64
+		{14AB3C13-B88C-4E4A-91C9-4088BE9C36AF}.Release|x64.Build.0 = Release|x64
+		{14AB3C13-B88C-4E4A-91C9-4088BE9C36AF}.Release|x86.ActiveCfg = Release|Win32
+		{14AB3C13-B88C-4E4A-91C9-4088BE9C36AF}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

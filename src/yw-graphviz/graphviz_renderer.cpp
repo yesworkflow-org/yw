@@ -1,8 +1,10 @@
-#include "yw_graphviz.h"
+#include "graphviz_renderer.h"
 
-extern gvplugin_library_t gvplugin_dot_layout_LTX_library;
-extern gvplugin_library_t gvplugin_core_LTX_library;
-extern gvplugin_library_t gvplugin_pango_LTX_library;
+#include "gvc.h"
+
+extern "C" gvplugin_library_t gvplugin_dot_layout_LTX_library;
+extern "C" gvplugin_library_t gvplugin_core_LTX_library;
+extern "C" gvplugin_library_t gvplugin_pango_LTX_library;
 
 lt_symlist_t lt_preloaded_symbols[] = {
     { "gvplugin_dot_layout_LTX_library", &gvplugin_dot_layout_LTX_library },
@@ -20,9 +22,9 @@ namespace yw {
             std::string imageFormat
         ) : dotText(dotText), layoutEngine(layoutEngine), imageFormat(imageFormat) 
         {
-            GVC_t *gvContext = gvContextPlugins(lt_preloaded_symbols, FALSE);
-            Agraph_t *graph = agmemread(dotText.c_str());
-            gvLayout(gvContext, graph, layoutEngine.c_str());
+            context = gvContextPlugins(lt_preloaded_symbols, FALSE);
+            graph = agmemread(dotText.c_str());
+            gvLayout(context, graph, layoutEngine.c_str());
         }
 
         GraphvizRenderer::~GraphvizRenderer() {

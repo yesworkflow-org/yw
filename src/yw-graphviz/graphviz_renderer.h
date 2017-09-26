@@ -1,7 +1,7 @@
 #pragma once
 
-#include "gvc.h"
-#include "xdot.h"
+#include "gvcext.h"
+#include "cgraph.h"
 
 #include <string>
 
@@ -21,7 +21,7 @@ namespace yw {
             GraphvizRenderer(
                 std::string dotText,
                 std::string layoutEngine = "dot",
-                std::string imageFormat = "png"
+                std::string imageFormat = "svg"
             );
 
             ~GraphvizRenderer();

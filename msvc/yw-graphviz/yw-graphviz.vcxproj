@@ -147,10 +147,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\yw-graphviz\yw_graphviz.cpp" />
+    <ClCompile Include="..\..\src\yw-graphviz\graphviz_renderer.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\yw-graphviz\yw_graphviz.h" />
+    <ClInclude Include="..\..\src\yw-graphviz\graphviz_renderer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

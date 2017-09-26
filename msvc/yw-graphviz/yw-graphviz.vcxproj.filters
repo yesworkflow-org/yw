@@ -7,12 +7,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\yw-graphviz\yw_graphviz.cpp">
+    <ClCompile Include="..\..\src\yw-graphviz\graphviz_renderer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\yw-graphviz\yw_graphviz.h">
+    <ClInclude Include="..\..\src\yw-graphviz\graphviz_renderer.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
