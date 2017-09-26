@@ -19,12 +19,12 @@ namespace yw {
             CommandLine(std::string line);
             CommandLine(int argc, char** argv);
 
-            std::string getLine() { return line; }
-            std::string getProgram() { return program; }
-            std::vector<std::string> getFlags() { return flags; }
-            nullable_string getCommand() { return command; }
-            std::vector<std::string> getArguments() { return arguments; }
-            yw::config::Configuration getSettings() { return settings; }
+            std::string getLine() const { return line; }
+            std::string getProgram() const { return program; }
+            std::vector<std::string> getFlags() const { return flags; }
+            nullable_string getCommand() const { return command; };
+            std::vector<std::string> getArguments() const { return arguments; }
+            yw::config::Configuration getSettings() const { return settings; }
 
             static std::string concatenate(int argc, char** argv);
         };

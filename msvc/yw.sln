@@ -231,6 +231,22 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-cli-tests", "yw-cli-test
 		..\gcc\yw-cli-tests\test_runner.cpp = ..\gcc\yw-cli-tests\test_runner.cpp
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-graph", "yw-graph", "{FB1DBF02-D35F-41A4-AC9D-4B32AF832202}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\yw-graph\Makefile = ..\gcc\yw-graph\Makefile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-graph-tests", "yw-graph-tests", "{030CC283-17BD-4E92-A6BE-D5CF949F5570}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\yw-graph-tests\Makefile = ..\gcc\yw-graph-tests\Makefile
+		..\gcc\yw-graph-tests\test_runner.cpp = ..\gcc\yw-graph-tests\test_runner.cpp
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-graph-app", "yw-graph-app", "{C4AA4D95-423C-4BF5-9CDA-8C50DF668B36}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\yw-graph-app\Makefile = ..\gcc\yw-graph-app\Makefile
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -472,6 +488,9 @@ Global
 		{35F9A935-896A-4707-BC10-6C782D0CFF15} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 		{9265BA67-55E9-4668-B0A5-393C123F37D5} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 		{F1EC2F6B-014F-4064-B2C5-F37172E156E9} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{FB1DBF02-D35F-41A4-AC9D-4B32AF832202} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{030CC283-17BD-4E92-A6BE-D5CF949F5570} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{C4AA4D95-423C-4BF5-9CDA-8C50DF668B36} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9AEF8164-5EBC-432F-98B9-C7C5704935A3}

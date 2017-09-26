@@ -8,9 +8,11 @@ YW_LIBS  = sqlite-db \
            yw-db  \
            yw-parse \
            yw-extract \
-           yw-model
+           yw-model \
+		   yw-graph
 
-YW_APPS = yw-extract-app
+YW_APPS = yw-extract-app \
+          yw-graph-app
 
 YW_TESTS = sqlite-db-tests \
            yw-config-tests \
@@ -18,7 +20,8 @@ YW_TESTS = sqlite-db-tests \
            yw-db-tests \
            yw-parse-tests \
            yw-extract-tests \
-           yw-model-tests
+           yw-model-tests \
+		   yw-graph-tests
 
 YW_BUILDS = $(YW_LIBS) $(YW_APPS) $(YW_TESTS)
 

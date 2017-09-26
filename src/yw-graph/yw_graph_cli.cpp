@@ -15,7 +15,7 @@ using namespace yw::model;
 namespace yw {
     namespace graph {
 
-        int cli(CommandLine& commandLine)
+        int cli(const CommandLine& commandLine)
         {
             YesWorkflowDB ywdb;
 
