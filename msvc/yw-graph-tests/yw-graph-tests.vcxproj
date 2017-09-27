@@ -103,8 +103,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>antlr4-runtime.lib;sqlite3.lib;sqlite-db.lib;yw-config.lib;yw-cli.lib;yw-db.lib;yw-extract.lib;yw-graph.lib;yw-model.lib;yw-parse.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(GRAPHVIZ_SRC)/x64/StaticDebug;$(GRAPHVIZ_SRC)/windows/dependencies/libraries/x64/lib;$(SolutionDir)\sqlite3\x64\Debug;$(SolutionDir)\antlr4-runtime\x64\Debug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvortho.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;expat.lib;rxspencer.lib;antlr4-runtime.lib;sqlite3.lib;sqlite-db.lib;yw-config.lib;yw-cli.lib;yw-db.lib;yw-extract.lib;yw-graph.lib;yw-model.lib;yw-parse.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

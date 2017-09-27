@@ -4,12 +4,17 @@
 #include "ywdb.h"
 #include "yw_config.h"
 
+#ifdef USE_GRAPHVIZ_LIB
+#include "graphviz_renderer.h"
+#endif
+
 #include <iostream>
 
 using namespace yw::cli;
 using namespace yw::config;
 using namespace yw::db;
 using namespace yw::graph;
+using namespace yw::graphviz;
 using namespace yw::model;
 
 namespace yw {
@@ -18,6 +23,16 @@ namespace yw {
         int cli(const CommandLine& commandLine)
         {
             YesWorkflowDB ywdb;
+            Configuration configuration;
+
+            configuration.insert(SoftwareSetting{ "graph.file", null_string, "Name of workflow graph image file to write" });
+            #ifdef USE_GRAPHVIZ_LIB
+                configuration.insert(SoftwareSetting{ "graph.format", "DOT", "Format of workflow graph image file to write",{ "DOT", "SVG" } });
+            #else
+                configuration.insert(SoftwareSetting{ "graph.format", "DOT", "Format of workflow graph image file",{ "DOT" } });
+            #endif
+
+                configuration.insertAll(commandLine.getSettings());
 
             if (!commandLine.getCommand().hasValue()) {
                 std::cerr << "Error: No command given." << std::endl;
@@ -39,8 +54,6 @@ namespace yw {
                 return 0;
             }
 
-            Configuration config;
-            config.insertAll(commandLine.getSettings());
 
             yw::row_id modelId;
             try {
@@ -51,13 +64,35 @@ namespace yw {
                 return 0;
             }
 
-            WorkflowGrapher grapher{ ywdb, config };
+            std::string dotText;
+            WorkflowGrapher grapher{ ywdb, configuration };
             try {
-                std::cout << grapher.graph(modelId);
+                dotText = grapher.graph(modelId);
             }
             catch (std::exception e) {
                 std::cerr << "Error graphing model. " << e.what() << std::endl;
                 return 0;
+            }
+
+            std::string graphFormatSetting = configuration.getStringValue("graph.format");
+            std::string graphText;
+            if (graphFormatSetting == "DOT") {
+                graphText = dotText;
+            } else if (graphFormatSetting == "SVG") {
+                #ifdef USE_GRAPHVIZ_LIB
+                GraphvizRenderer renderer{ dotText, "dot", "svg" };
+                graphText = renderer.str();
+                #endif
+            }
+
+            nullable_string graphFileSetting = configuration.getSetting("graph.file").value;
+            if (graphFileSetting.hasValue()) {
+                std::ofstream graphFile{ graphFileSetting.getValue() };
+                graphFile << graphText;
+                graphFile.close();
+            }
+            else {
+                std::cout << graphText;
             }
 
             return 0;
