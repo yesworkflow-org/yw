@@ -49,10 +49,10 @@ YW_TEST_SET
     YW_TEST(GraphvizRenderer, GraphWithOneNodeAReturnsSVGImageWithSingleCirculareNodeLabeledWithNodeName)
     {
         GraphvizRenderer renderer{ R"(
-                    digraph workflow {
-                    b
-                    }
-            )" };
+                digraph workflow {
+                b
+                }
+        )" };
 
         std::string svg = renderer.str();
         Expect::EmptyString(stdoutRecorder.str());
@@ -75,15 +75,12 @@ YW_TEST_SET
                 <g id="node1" class="node">
                 <title>b</title>
                 <ellipse fill="none" stroke="black" cx="27" cy="-18" rx="27" ry="18"/>
-                <text text-anchor="middle" x="27" y="-14.3" font-family="Times New Roman,serif" font-size="14.00">b</text>
+                <text text-anchor="middle" x="27" y="-13.8" font-family="Times New Roman,serif" font-size="14.00">b</text>
                 </g>
                 </g>
                 </svg>
 
-                )rawxml"), renderer.str());
-
-        Expect::EmptyString(stdoutRecorder.str());
-        Expect::EmptyString(stderrRecorder.str());
+        )rawxml"), renderer.str());
     }
 
 YW_TEST_END

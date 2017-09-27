@@ -91,8 +91,8 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>ANTLR4CPP_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-graph;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>USE_GRAPHVIZ_LIB;ANTLR4CPP_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-graphviz;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-graph;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types</AdditionalIncludeDirectories>
       <UndefinePreprocessorDefinitions>
       </UndefinePreprocessorDefinitions>
     </ClCompile>
@@ -108,8 +108,8 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>ANTLR4CPP_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-graph;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>USE_GRAPHVIZ_LIB;ANTLR4CPP_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-graphviz;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-graph;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -125,8 +125,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>ANTLR4CPP_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-graph;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>USE_GRAPHVIZ_LIB;ANTLR4CPP_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-graphviz;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-graph;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -144,8 +144,8 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>ANTLR4CPP_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-graph;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>USE_GRAPHVIZ_LIB;ANTLR4CPP_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-graphviz;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-graph;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
