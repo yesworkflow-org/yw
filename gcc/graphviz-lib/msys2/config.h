@@ -216,7 +216,7 @@
 //#define HAVE_STRINGS_H 1
 
 /* Define to 1 if you have the `strncasecmp' function. */
-//#define HAVE_STRNCASECMP 1
+#define HAVE_STRNCASECMP 1
 
 /* Define to 1 if you have the <sys/dir.h> header file, and it defines `DIR'.
    */
@@ -263,7 +263,7 @@
 /* #undef HAVE_TRIANGLE */
 
 /* Define to 1 if you have the <unistd.h> header file. */
-//#define HAVE_UNISTD_H 1
+#define HAVE_UNISTD_H 1
 
 /* Define to 1 if you have the `vsnprintf' function. */
 #define HAVE_VSNPRINTF 1
