@@ -1,4 +1,5 @@
 include ../yw.setup.makefile
+include ../graphviz.setup.makefile
 include ../cpp.setup.makefile
 include ../app.setup.makefile
 

@@ -2,7 +2,7 @@
 
 SRC      = $(APP_SRC)
 INCLUDES = $(YW_INCLUDES) $(ANTLR_INCLUDES)
-LIBS     = $(YW_LIBS) $(CPP_LIBS) $(ANTLR_LIB)
+LIBS     = $(YW_LIBS) $(CPP_LIBS) $(ANTLR_LIB) $(GV_LIBS)
 
 all: app
 
