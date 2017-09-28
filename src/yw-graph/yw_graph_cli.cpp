@@ -14,7 +14,7 @@ using namespace yw::cli;
 using namespace yw::config;
 using namespace yw::db;
 using namespace yw::graph;
-using namespace yw::graphviz;
+
 using namespace yw::model;
 
 namespace yw {
@@ -80,7 +80,7 @@ namespace yw {
                 graphText = dotText;
             } else if (graphFormatSetting == "SVG") {
                 #ifdef USE_GRAPHVIZ_LIB
-                GraphvizRenderer renderer{ dotText, "dot", "svg" };
+                yw::graphviz::GraphvizRenderer renderer{ dotText, "dot", "svg" };
                 graphText = renderer.str();
                 #endif
             }

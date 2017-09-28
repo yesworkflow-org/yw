@@ -93,6 +93,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "gcc", "gcc", "{67337B64-473
 		..\gcc\app.setup.makefile = ..\gcc\app.setup.makefile
 		..\gcc\app.targets.makefile = ..\gcc\app.targets.makefile
 		..\gcc\cpp.setup.makefile = ..\gcc\cpp.setup.makefile
+		..\gcc\graphviz.setup.makefile = ..\gcc\graphviz.setup.makefile
 		..\gcc\lib.targets.makefile = ..\gcc\lib.targets.makefile
 		..\gcc\Makefile = ..\gcc\Makefile
 		..\gcc\test.targets.makefile = ..\gcc\test.targets.makefile
@@ -256,6 +257,18 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-graphviz-tests", "yw-gra
 	ProjectSection(ProjectDependencies) = postProject
 		{2D4FE63C-61E8-486F-A3BC-65CB44CDFF28} = {2D4FE63C-61E8-486F-A3BC-65CB44CDFF28}
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "msys2", "msys2", "{4FFEE26C-A586-4DEC-A7B7-E61F3DE416D4}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\graphviz-lib\msys2\config.h = ..\gcc\graphviz-lib\msys2\config.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-graphviz", "yw-graphviz", "{4520D083-3914-444C-9B11-590BDD272DC5}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\yw-graphviz\Makefile = ..\gcc\yw-graphviz\Makefile
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-graphviz-tests", "yw-graphviz-tests", "{FE656FA7-CC96-49A7-928B-F4C05547E52E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -512,6 +525,9 @@ Global
 		{030CC283-17BD-4E92-A6BE-D5CF949F5570} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 		{C4AA4D95-423C-4BF5-9CDA-8C50DF668B36} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 		{BFFDE3BA-F86B-4FCA-A0B1-D4D035806F75} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{4FFEE26C-A586-4DEC-A7B7-E61F3DE416D4} = {BFFDE3BA-F86B-4FCA-A0B1-D4D035806F75}
+		{4520D083-3914-444C-9B11-590BDD272DC5} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{FE656FA7-CC96-49A7-928B-F4C05547E52E} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9AEF8164-5EBC-432F-98B9-C7C5704935A3}

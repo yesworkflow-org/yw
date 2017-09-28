@@ -9,7 +9,8 @@ YW_LIBS  = sqlite-db \
            yw-parse \
            yw-extract \
            yw-model \
-		   yw-graph
+		   yw-graph \
+		   yw-graphviz
 
 YW_APPS = yw-extract-app \
           yw-graph-app
