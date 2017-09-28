@@ -98,7 +98,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(OutDir);$(GRAPHVIZ_SRC)/x64/StaticDebug;$(GRAPHVIZ_SRC)/windows/dependencies/libraries/x64/lib;$(SolutionDir)\sqlite3\x64\Debug;$(SolutionDir)\antlr4-runtime\x64\Debug;$(OutDir);</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(GRAPHVIZ_SRC)/x64/StaticDebug;$(SolutionDir)\sqlite3\x64\Debug;$(SolutionDir)\antlr4-runtime\x64\Debug;$(OutDir);</AdditionalLibraryDirectories>
       <AdditionalDependencies>yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;sqlite3.lib;sqlite-db.lib;yw-db.lib;yw-extract.lib;yw-graph.lib;yw-model.lib;yw-parse.lib;yw-config.lib;yw-cli.lib;antlr4-runtime.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
