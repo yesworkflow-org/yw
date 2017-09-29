@@ -16,7 +16,8 @@ CFLAGS += -Wno-overflow
 
 LIB_TARGET = libgraphviz.a
 
-GV_INCLUDES += -Imsys2
+GV_INCLUDES += -I.
+GV_INCLUDES += -I$(YW_PLATFORM)
 
 GV_SRC   += $(wildcard $(GRAPHVIZ_SRC)/lib/cdt/*.c)
 GV_SRC   += $(wildcard $(GRAPHVIZ_SRC)/lib/dotgen/*.c)
