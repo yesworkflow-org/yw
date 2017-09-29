@@ -1,7 +1,7 @@
 include ../graphviz.setup.makefile
 
 CFLAGS += -g3 
-CLAGS += -Wall 
+CFLAGS += -Wall 
 CFLAGS += -pedantic 
 CFLAGS += -Wno-attributes
 CFLAGS += -Wno-deprecated 
@@ -114,7 +114,7 @@ common_utils.o:
 label_node.o:
 	$(CC) -c $(CFLAGS) $(CONSTANTS) $(INCLUDES) $(GRAPHVIZ_SRC)/lib/label/node.c -o label_node.o
 
-lib : common_util.o $(LIB_TARGET)
+lib : $(LIB_TARGET)
 	rm -f *.o
 
 clean:
