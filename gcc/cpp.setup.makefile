@@ -10,9 +10,8 @@ CPPFLAGS += -Wno-unused-variable
 
 LDFLAGS +=  -static-libstdc++
 
-CPP_LIBS  += -lstdc++
-
 ifeq ($(YW_PLATFORM),macos)
+CPP_LIBS  += -lstdc++
 LIBCPPFLAGS += -mmacosx-version-min=10.6
 APPCPPFLAGS += -mmacosx-version-min=10.6
 endif
