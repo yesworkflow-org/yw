@@ -16,6 +16,12 @@ LIBCPPFLAGS += -mmacosx-version-min=10.6
 APPCPPFLAGS += -mmacosx-version-min=10.6
 endif
 
+ifeq ($(YW_PLATFORM),ubuntu)
+CPP_LIBS  += -lstdc++
+CPP_LIBS  += -lm
+CPP_LIBS  += -lpthread
+endif
+
 ifeq ($(YW_BUILD),release)
 CPPFLAGS += -O3
 else
