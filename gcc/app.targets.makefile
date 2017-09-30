@@ -9,7 +9,7 @@ all: app
 app: $(APP)
 
 $(APP): $(APP_SRC)  
-	$(CXX) $(CPPFLAGS) $(CONSTANTS) $(INCLUDES) $(SRC) $(LIBS) -o $(APP)
+	$(CXX) $(CPPFLAGS) $(APPCPPFLAGS) $(CONSTANTS) $(INCLUDES) $(SRC) $(LIBS) $(LDFLAGS) -o $(APP)
 
 clean:
 	rm -f $(APP)

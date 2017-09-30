@@ -1,6 +1,5 @@
 include ../graphviz.setup.makefile
 
-CFLAGS += -g3 
 CFLAGS += -Wall 
 CFLAGS += -pedantic 
 CFLAGS += -Wno-attributes
@@ -13,6 +12,16 @@ CFLAGS += -Wno-implicit-int
 CFLAGS += -Wno-incompatible-pointer-types
 CLFAGS += -Wno-pointer-to-int-cast
 CFLAGS += -Wno-overflow
+
+ifeq ($(YW_PLATFORM),macos)
+CFLAGS += -mmacosx-version-min=10.6
+endif
+
+ifeq ($(YW_BUILD),release)
+CFLAGS += -O3
+else
+CFLAGS += -g3
+endif
 
 LIB_TARGET = libgraphviz.a
 
