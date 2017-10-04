@@ -117,7 +117,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)\sqlite3\x64\Debug;$(SolutionDir)\antlr4-runtime\x64\Debug;$(GRAPHVIZ_SRC)/x64/StaticDebug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)\sqlite3\Debug;$(SolutionDir)\antlr4-runtime\Debug;$(GRAPHVIZ_SRC)/Win32/StaticDebug</AdditionalLibraryDirectories>
       <AdditionalDependencies>yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;antlr4-runtime.lib;sqlite3.lib;sqlite-db.lib;yw-config.lib;yw-cli.lib;yw-db.lib;yw-extract.lib;yw-graph.lib;yw-model.lib;yw-parse.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -137,7 +137,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)\sqlite3\x64\Debug;$(SolutionDir)\antlr4-runtime\x64\Release;$(GRAPHVIZ_SRC)/x64/StaticRelease</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)\sqlite3\Release;$(SolutionDir)\antlr4-runtime\Release;$(GRAPHVIZ_SRC)/Win32/StaticRelease</AdditionalLibraryDirectories>
       <AdditionalDependencies>yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;antlr4-runtime.lib;sqlite3.lib;sqlite-db.lib;yw-config.lib;yw-cli.lib;yw-db.lib;yw-extract.lib;yw-graph.lib;yw-model.lib;yw-parse.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
