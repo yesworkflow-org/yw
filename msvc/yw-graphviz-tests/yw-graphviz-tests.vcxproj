@@ -91,7 +91,6 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(GRAPHVIZ_SRC)\lib\gvc;$(GRAPHVIZ_SRC)\lib\common;$(GRAPHVIZ_SRC)\lib\pathplan;$(GRAPHVIZ_SRC)\lib\cgraph;$(GRAPHVIZ_SRC)\lib\xdot;$(GRAPHVIZ_SRC)\lib\cdt;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\yw-graphviz;$(SolutionDir)\yw-graphviz-tests;$(SolutionDir)\..\test\yw-graphviz-tests;$(SolutionDir)\..\test\yw-test;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
@@ -100,15 +99,14 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(OutDir);$(GRAPHVIZ_SRC)/x64/StaticDebug;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(GRAPHVIZ_SRC)/x64/StaticDebug</AdditionalLibraryDirectories>
+      <AdditionalDependencies>yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
       <AdditionalIncludeDirectories>$(GRAPHVIZ_SRC)\lib\gvc;$(GRAPHVIZ_SRC)\lib\common;$(GRAPHVIZ_SRC)\lib\pathplan;$(GRAPHVIZ_SRC)\lib\cgraph;$(GRAPHVIZ_SRC)\lib\xdot;$(GRAPHVIZ_SRC)\lib\cdt;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\yw-graphviz;$(SolutionDir)\yw-graphviz-tests;$(SolutionDir)\..\test\yw-graphviz-tests;$(SolutionDir)\..\test\yw-test;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
@@ -117,15 +115,14 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(OutDir);$(GRAPHVIZ_SRC)/x64/StaticRelease;$(GRAPHVIZ_SRC)/windows/dependencies/libraries/x64/lib;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>yw-graphviz.lib;cdt.lib;cgraph.lib;circogen.lib;dotgen.lib;fdpgen.lib;gvc.lib;gvortho.lib;gvplugin_core.lib;gvplugin_dot_layout.lib;ingraphs.lib;gvplugin_pango.lib;neatogen.lib;patchwork.lib;pathplan.lib;sparse.lib;twopigen.lib;vpsc.lib;xdot.lib;cairo.lib;cairo-gobject.lib;expat.lib;glib-2.0.lib;gobject-2.0.lib;pango-1.0.lib;pangocairo-1.0.lib;pangoft2-1.0.lib;pangowin32-1.0.lib;rxspencer.lib;zlib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;yw-graphviz.lib;cdt.lib;cgraph.lib;circogen.lib;dotgen.lib;fdpgen.lib;gvc.lib;gvortho.lib;gvplugin_core.lib;gvplugin_dot_layout.lib;ingraphs.lib;gvplugin_pango.lib;neatogen.lib;patchwork.lib;pathplan.lib;sparse.lib;twopigen.lib;vpsc.lib;xdot.lib;cairo.lib;cairo-gobject.lib;expat.lib;glib-2.0.lib;gobject-2.0.lib;pango-1.0.lib;pangocairo-1.0.lib;pangoft2-1.0.lib;pangowin32-1.0.lib;rxspencer.lib;zlib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(GRAPHVIZ_SRC)/x64/StaticDebug</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>$(GRAPHVIZ_SRC)\lib\gvc;$(GRAPHVIZ_SRC)\lib\common;$(GRAPHVIZ_SRC)\lib\pathplan;$(GRAPHVIZ_SRC)\lib\cgraph;$(GRAPHVIZ_SRC)\lib\xdot;$(GRAPHVIZ_SRC)\lib\cdt;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\yw-graphviz;$(SolutionDir)\yw-graphviz-tests;$(SolutionDir)\..\test\yw-graphviz-tests;$(SolutionDir)\..\test\yw-test;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -138,15 +135,14 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(OutDir);$(GRAPHVIZ_SRC)/x64/StaticRelease;$(GRAPHVIZ_SRC)/windows/dependencies/libraries/x64/lib;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>yw-graphviz.lib;cdt.lib;cgraph.lib;circogen.lib;dotgen.lib;fdpgen.lib;gvc.lib;gvortho.lib;gvplugin_core.lib;gvplugin_dot_layout.lib;ingraphs.lib;gvplugin_pango.lib;neatogen.lib;patchwork.lib;pathplan.lib;sparse.lib;twopigen.lib;vpsc.lib;xdot.lib;cairo.lib;cairo-gobject.lib;expat.lib;glib-2.0.lib;gobject-2.0.lib;pango-1.0.lib;pangocairo-1.0.lib;pangoft2-1.0.lib;pangowin32-1.0.lib;rxspencer.lib;zlib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;yw-graphviz.lib;cdt.lib;cgraph.lib;circogen.lib;dotgen.lib;fdpgen.lib;gvc.lib;gvortho.lib;gvplugin_core.lib;gvplugin_dot_layout.lib;ingraphs.lib;gvplugin_pango.lib;neatogen.lib;patchwork.lib;pathplan.lib;sparse.lib;twopigen.lib;vpsc.lib;xdot.lib;cairo.lib;cairo-gobject.lib;expat.lib;glib-2.0.lib;gobject-2.0.lib;pango-1.0.lib;pangocairo-1.0.lib;pangoft2-1.0.lib;pangowin32-1.0.lib;rxspencer.lib;zlib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(GRAPHVIZ_SRC)/x64/StaticRelease</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <AdditionalIncludeDirectories>$(GRAPHVIZ_SRC)\lib\gvc;$(GRAPHVIZ_SRC)\lib\common;$(GRAPHVIZ_SRC)\lib\pathplan;$(GRAPHVIZ_SRC)\lib\cgraph;$(GRAPHVIZ_SRC)\lib\xdot;$(GRAPHVIZ_SRC)\lib\cdt;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\yw-graphviz;$(SolutionDir)\yw-graphviz-tests;$(SolutionDir)\..\test\yw-graphviz-tests;$(SolutionDir)\..\test\yw-test;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -159,8 +155,8 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(OutDir);$(GRAPHVIZ_SRC)/x64/StaticRelease;$(GRAPHVIZ_SRC)/windows/dependencies/libraries/x64/lib;$(VCInstallDir)UnitTest\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>yw-graphviz.lib;cdt.lib;cgraph.lib;circogen.lib;dotgen.lib;fdpgen.lib;gvc.lib;gvortho.lib;gvplugin_core.lib;gvplugin_dot_layout.lib;ingraphs.lib;gvplugin_pango.lib;neatogen.lib;patchwork.lib;pathplan.lib;sparse.lib;twopigen.lib;vpsc.lib;xdot.lib;cairo.lib;cairo-gobject.lib;expat.lib;glib-2.0.lib;gobject-2.0.lib;pango-1.0.lib;pangocairo-1.0.lib;pangoft2-1.0.lib;pangowin32-1.0.lib;rxspencer.lib;zlib.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(GRAPHVIZ_SRC)/x64/StaticRelease</AdditionalLibraryDirectories>
+      <AdditionalDependencies>yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

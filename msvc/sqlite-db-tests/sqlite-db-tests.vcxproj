@@ -77,69 +77,57 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>$(OutDir);$(SolutionDir)\sqlite3\x64\Debug;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\test\sqlite-db-tests;$(SolutionDir)\sqlite-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>$(OutDir);$(SolutionDir)\sqlite3\x64\Debug;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\test\sqlite-db-tests;$(SolutionDir)\sqlite-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>$(OutDir);$(SolutionDir)\sqlite3\x64\Debug;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\test\sqlite-db-tests;$(SolutionDir)\sqlite-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>$(OutDir);$(SolutionDir)\sqlite3\x64\Debug;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\test\sqlite-db-tests;$(SolutionDir)\sqlite-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\test\sqlite-db-tests;$(SolutionDir)\sqlite-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>sqlite_db_tests.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalDependencies>sqlite-db.lib;sqlite3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)\sqlite3\x64\Debug;$(LibraryPath)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\test\sqlite-db-tests;$(SolutionDir)\sqlite-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>sqlite_db_tests.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalDependencies>sqlite-db.lib;sqlite3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)\sqlite3\x64\Debug;$(LibraryPath)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\test\sqlite-db-tests;$(SolutionDir)\sqlite-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>sqlite_db_tests.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
@@ -148,19 +136,18 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>sqlite-db.lib;sqlite3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)\sqlite3\x64\Release;$(LibraryPath)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <PrecompiledHeader>Use</PrecompiledHeader>
-      <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\test\sqlite-db-tests;$(SolutionDir)\sqlite-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3</AdditionalIncludeDirectories>
       <PrecompiledHeaderFile>sqlite_db_tests.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
@@ -169,6 +156,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>sqlite-db.lib;sqlite3.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)\sqlite3\x64\Release;$(LibraryPath)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>

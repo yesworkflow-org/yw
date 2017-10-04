@@ -86,7 +86,6 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(GRAPHVIZ_SRC)\lib\gvc;$(GRAPHVIZ_SRC)\lib\common;$(GRAPHVIZ_SRC)\lib\pathplan;$(GRAPHVIZ_SRC)\lib\cgraph;$(GRAPHVIZ_SRC)\lib\xdot;$(GRAPHVIZ_SRC)\lib\cdt</AdditionalIncludeDirectories>
@@ -101,7 +100,6 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <AdditionalIncludeDirectories>$(GRAPHVIZ_SRC)\lib\gvc;$(GRAPHVIZ_SRC)\lib\common;$(GRAPHVIZ_SRC)\lib\pathplan;$(GRAPHVIZ_SRC)\lib\cgraph;$(GRAPHVIZ_SRC)\lib\xdot;$(GRAPHVIZ_SRC)\lib\cdt</AdditionalIncludeDirectories>
@@ -116,7 +114,6 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
@@ -135,7 +132,6 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>

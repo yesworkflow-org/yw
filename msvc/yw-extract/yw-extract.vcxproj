@@ -72,28 +72,23 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\yw-extract-tests;$(ANTLR4_RUNTIME_SRC);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\yw-extract-tests;$(ANTLR4_RUNTIME_SRC);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\yw-extract-tests;$(ANTLR4_RUNTIME_SRC);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\yw-extract-tests;$(ANTLR4_RUNTIME_SRC);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>ANTLR4CPP_STATIC;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\yw-extract-tests;$(ANTLR4_RUNTIME_SRC);</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -101,12 +96,11 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>ANTLR4CPP_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\yw-extract-tests;$(ANTLR4_RUNTIME_SRC);</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -115,13 +109,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>ANTLR4CPP_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\yw-extract-tests;$(ANTLR4_RUNTIME_SRC);</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,13 +125,12 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
-      <PrecompiledHeader>
-      </PrecompiledHeader>
-      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>ANTLR4CPP_STATIC;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\yw-extract-tests;$(ANTLR4_RUNTIME_SRC);</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

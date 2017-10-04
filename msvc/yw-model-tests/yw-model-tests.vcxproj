@@ -77,8 +77,6 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\..\test\yw-model-tests;$(SolutionDir)\..\test\yw-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\yw-model-tests;$(ANTLR4_RUNTIME_SRC);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>$(SolutionDir)\sqlite3\x64\Debug;$(SolutionDir)\antlr4-runtime\x64\Debug;$(OutDir);$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
@@ -88,8 +86,6 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\..\test\yw-model-tests;$(SolutionDir)\..\test\yw-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\yw-model-tests;$(ANTLR4_RUNTIME_SRC);$(VC_IncludePath);$(WindowsSDK_IncludePath);</IncludePath>
-    <LibraryPath>$(SolutionDir)\sqlite3\x64\Debug;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);$(NETFXKitsDir)Lib\um\x64</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -100,10 +96,12 @@
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>yw_model_tests.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\..\test\yw-model-tests;$(SolutionDir)\..\test\yw-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\yw-model-tests;$(ANTLR4_RUNTIME_SRC);</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalDependencies>sqlite3.lib;sqlite-db.lib;yw-db.lib;yw-model.lib;yw-extract.lib;yw-parse.lib;antlr4-runtime.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\sqlite3\x64\Debug;$(SolutionDir)\antlr4-runtime\x64\Debug;$(OutDir)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -114,9 +112,11 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\..\test\yw-model-tests;$(SolutionDir)\..\test\yw-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\yw-model-tests;$(ANTLR4_RUNTIME_SRC);</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <AdditionalLibraryDirectories>$(SolutionDir)\sqlite3\x64\Debug;$(SolutionDir)\antlr4-runtime\x64\Debug;$(OutDir)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -129,11 +129,13 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\..\test\yw-model-tests;$(SolutionDir)\..\test\yw-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\yw-model-tests;$(ANTLR4_RUNTIME_SRC);</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)\sqlite3\x64\Release;$(SolutionDir)\antlr4-runtime\x64\Release;$(OutDir)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -147,12 +149,14 @@
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>yw_model_tests.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\..\test\yw-model-tests;$(SolutionDir)\..\test\yw-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\yw-model-tests;$(ANTLR4_RUNTIME_SRC);</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>sqlite3.lib;sqlite-db.lib;yw-db.lib;yw-model.lib;yw-extract.lib;yw-parse.lib;antlr4-runtime.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)\sqlite3\x64\Release;$(SolutionDir)\antlr4-runtime\x64\Release;$(OutDir)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
