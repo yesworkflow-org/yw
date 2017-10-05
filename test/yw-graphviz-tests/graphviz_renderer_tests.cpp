@@ -50,7 +50,7 @@ YW_TEST_SET
     {
         GraphvizRenderer renderer{ R"(
                 digraph workflow {
-                b
+                b [fontname="serif"]
                 }
         )" };
 
@@ -75,7 +75,7 @@ YW_TEST_SET
                 <g id="node1" class="node">
                 <title>b</title>
                 <ellipse fill="none" stroke="black" cx="27" cy="-18" rx="27" ry="18"/>
-                <text text-anchor="middle" x="27" y="-13.8" font-family="Times New Roman,serif" font-size="14.00">b</text>
+                <text text-anchor="middle" x="27" y="-13.8" font-family="serif" font-size="14.00">b</text>
                 </g>
                 </g>
                 </svg>
