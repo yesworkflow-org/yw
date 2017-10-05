@@ -1,6 +1,7 @@
 
 DEP_LIBS = antlr4-runtime \
-           sqlite3
+           sqlite3 \
+		   graphviz-lib
 
 YW_LIBS  = sqlite-db \
            yw-config \
@@ -29,7 +30,7 @@ YW_BUILDS = $(YW_LIBS) $(YW_APPS) $(YW_TESTS)
 
 ALL_BUILDS = $(DEP_LIBS) $(YW_BUILDS)
 
-all: dep lib app test
+all: dep lib test app
 
 dep:
 	for BUILD in $(DEP_LIBS); do \
