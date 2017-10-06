@@ -1,7 +1,7 @@
 #include "ywdb.h"
 #include "outline_exporter.h"
 #include "annotation_extractor.h"
-#include "yw_config.h"
+#include "configuration.h"
 #include "command_line.h"
 
 #include <iostream>

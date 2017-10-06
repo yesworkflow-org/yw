@@ -93,19 +93,19 @@ YW_TEST_SET
             
             Configuration              Description
             -------------              -----------
-            graph.datalabel            Info to display in program nodes        
-            graph.edgelabels           Labels on edges in process view         
+            graph.datalabel            Info to display in program nodes (NAME, URI, or BOTH)
+            graph.edgelabels           Labels on edges in process view (SHOW or HIDE)
             graph.file                 Name of workflow graph image file to write
-            graph.format               Format of workflow graph image file to write
-            graph.layout               Direction of graph layout               
-            graph.params               Visibility of parameters                
-            graph.portlayout           Layout mode for workflow ports          
-            graph.programlabel         Info to display in program nodes        
-            graph.title                Title for the graph as a whole          
-            graph.titleposition        Where to place graph title              
-            graph.view                 Workflow view to render                 
-            graph.workflow             Name of workflow to graph               
-            graph.workflowbox          Box around nodes internal to workflow   
+            graph.format               Format of workflow graph image file to write (DOT or SVG)
+            graph.layout               Direction of graph layout (TB, LR, RL, or BT)
+            graph.params               Visibility of parameters (SHOW or REDUCE)
+            graph.portlayout           Layout mode for workflow ports (GROUP, RELAX, or HIDE)
+            graph.programlabel         Info to display in program nodes (NAME, DESCRIPTION, or BOTH)
+            graph.title                Title for the graph as a whole
+            graph.titleposition        Where to place graph title (TOP, BOTTOM, or HIDE)
+            graph.view                 Workflow view to render (PROCESS, DATA, or COMBINED)
+            graph.workflow             Name of workflow to graph
+            graph.workflowbox          Box around nodes internal to workflow (SHOW or HIDE)
 
         )"), trimmargins(stderrRecorder.str()));
     }

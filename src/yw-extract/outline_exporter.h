@@ -1,7 +1,7 @@
 #pragma once
 
 #include "ywdb.h"
-#include "yw_config.h"
+#include "configuration.h"
 #include <stack>
 
 namespace yw {

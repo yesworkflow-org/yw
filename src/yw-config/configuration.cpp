@@ -1,11 +1,8 @@
-#include "yw_config.h"
+#include "configuration.h"
 #include <iomanip>
 
 namespace yw {
     namespace config {
-
-        const std::string Setting::NO_RESOURCE = "yw::config::Setting::NO_RESOURCE";
-        const Setting Setting::NO_SETTING = Setting{ "", "" };
 
         void Configuration::insert(const Setting& setting) {
             auto it = settings.find(setting.key);
@@ -95,9 +92,7 @@ namespace yw {
             for (auto settingEntry : settings) {
                 auto setting = settingEntry.second;
                 if (setting.visibility <= settingVisibility) {
-                    help << std::left << std::setw(27) << setting.key;
-                    help << std::setw(40) << setting.description << std::endl;
-                    //help << setting.value.str() << std::endl;
+                    help << setting.str() << std::endl;
                 }
             }
 

@@ -56,24 +56,11 @@ namespace yw {
                 allowedValues(allowedValues), visibility(visibility)
             {}
 
+            std::string allowedValuesStr();
+            std::string str();
+
             static const Setting NO_SETTING;
             static const std::string NO_RESOURCE;
-        };
-
-        class Configuration {
-            std::map<std::string, Setting> settings;
-        public:
-            Configuration() {}
-            bool contains(const std::string& key);
-            const Setting& getSetting(const std::string& key);
-            int getIntValue(const std::string& key);
-            double getDoubleValue(const std::string& key);
-            size_t getSizeValue(const std::string& key);
-            std::string getStringValue(const std::string& key);
-            void insert(const Setting& setting);
-            void insertAll(const Configuration& settings);
-            size_t size() { return settings.size(); }
-            std::string str(Setting::Visibility minimumVisibility = Setting::Visibility::BASIC);
         };
     }
 }

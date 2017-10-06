@@ -7,5 +7,5 @@
 #include <iostream>
 #include <sstream>
 
-#include "yw_config.h"
+#include "configuration.h"
 #include "yw_test.h"

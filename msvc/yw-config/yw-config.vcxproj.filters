@@ -7,12 +7,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\yw-config\yw_config.h">
+    <ClInclude Include="..\..\src\yw-config\setting.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-config\configuration.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\yw-config\yw_config.cpp">
+    <ClCompile Include="..\..\src\yw-config\setting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\yw-config\configuration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -2,7 +2,7 @@
 #include "model_builder.h"
 #include "workflow_grapher.h"
 #include "ywdb.h"
-#include "yw_config.h"
+#include "configuration.h"
 #include "graphviz_renderer.h"
 
 #include <iostream>

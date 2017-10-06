@@ -19,10 +19,12 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\yw-config\yw_config.h" />
+    <ClInclude Include="..\..\src\yw-config\setting.h" />
+    <ClInclude Include="..\..\src\yw-config\configuration.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\yw-config\yw_config.cpp" />
+    <ClCompile Include="..\..\src\yw-config\setting.cpp" />
+    <ClCompile Include="..\..\src\yw-config\configuration.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
