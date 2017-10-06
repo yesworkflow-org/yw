@@ -22,7 +22,7 @@ namespace yw {
                 const yw::config::Configuration& userConfiguration = yw::config::Configuration{}
             );
 
-            static const yw::config::Configuration& getSoftwareSettings();
+            static const yw::config::Configuration& getSettings();
 
             std::string graph(const row_id& modelId);
 

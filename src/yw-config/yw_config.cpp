@@ -1,4 +1,5 @@
 #include "yw_config.h"
+#include <iomanip>
 
 namespace yw {
     namespace config {
@@ -85,6 +86,22 @@ namespace yw {
                 throw std::domain_error(message.str());
             }
             return static_cast<size_t>(intValue);
+        }
+
+        std::string Configuration::str(Setting::Visibility settingVisibility) {
+
+            std::stringstream help;
+
+            for (auto settingEntry : settings) {
+                auto setting = settingEntry.second;
+                if (setting.visibility <= settingVisibility) {
+                    help << std::left << std::setw(27) << setting.key;
+                    help << std::setw(40) << setting.description << std::endl;
+                    //help << setting.value.str() << std::endl;
+                }
+            }
+
+            return help.str();
         }
     }
 }

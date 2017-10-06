@@ -6,44 +6,44 @@ using namespace yw::db;
 using namespace yw::sqlite;
 
 using std::string;
-using Visibility = SoftwareSetting::Visibility;
+using Visibility = Setting::Visibility;
 
 namespace yw {
     namespace graph {
 
         yw::config::Configuration WorkflowGrapher::defaults;
 
-        const Configuration& WorkflowGrapher::getSoftwareSettings() {
+        const Configuration& WorkflowGrapher::getSettings() {
             if (defaults.size() == 0) {
 
-                defaults.insert(SoftwareSetting{ "graph.datalabel", "NAME", "Info to display in program nodes",{ "NAME", "URI", "BOTH" } });
-                defaults.insert(SoftwareSetting{ "graph.edgelabels", "HIDE", "Labels on edges in process view",{ "SHOW", "HIDE" } });
-                defaults.insert(SoftwareSetting{ "graph.params", "REDUCE", "Visibility of parameters",{ "SHOW", "REDUCE" } });
-                defaults.insert(SoftwareSetting{ "graph.portlayout", "GROUP", "Layout mode for workflow ports",{ "GROUP", "RELAX", "HIDE" } });
-                defaults.insert(SoftwareSetting{ "graph.programlabel", "NAME", "Info to display in program nodes", {"NAME", "DESCRIPTION", "BOTH" } });
-                defaults.insert(SoftwareSetting{ "graph.view", "COMBINED", "Workflow view to render",{ "PROCESS", "DATA", "COMBINED" } });
-                defaults.insert(SoftwareSetting{ "graph.workflowbox", "SHOW", "Box around nodes internal to workflow", { "SHOW", "HIDE" } });
-                defaults.insert(SoftwareSetting{ "graph.workflow", null_string, "Name of workflow to graph" });
+                defaults.insert(Setting{ "graph.datalabel", "NAME", "Info to display in program nodes",{ "NAME", "URI", "BOTH" } });
+                defaults.insert(Setting{ "graph.edgelabels", "HIDE", "Labels on edges in process view",{ "SHOW", "HIDE" } });
+                defaults.insert(Setting{ "graph.params", "REDUCE", "Visibility of parameters",{ "SHOW", "REDUCE" } });
+                defaults.insert(Setting{ "graph.portlayout", "GROUP", "Layout mode for workflow ports",{ "GROUP", "RELAX", "HIDE" } });
+                defaults.insert(Setting{ "graph.programlabel", "NAME", "Info to display in program nodes", {"NAME", "DESCRIPTION", "BOTH" } });
+                defaults.insert(Setting{ "graph.view", "COMBINED", "Workflow view to render",{ "PROCESS", "DATA", "COMBINED" } });
+                defaults.insert(Setting{ "graph.workflowbox", "SHOW", "Box around nodes internal to workflow", { "SHOW", "HIDE" } });
+                defaults.insert(Setting{ "graph.workflow", null_string, "Name of workflow to graph" });
 
-                defaults.insert(SoftwareSetting{ "graph.programshape", "box", "Shape of program block nodes", {}, Visibility::INTERMEDIATE });
-                defaults.insert(SoftwareSetting{ "graph.programstyle", "filled", "Styling of program block nodes", {}, Visibility::INTERMEDIATE });
-                defaults.insert(SoftwareSetting{ "graph.programfillcolor", "#CCFFCC", "Color of program block nodes", {}, Visibility::INTERMEDIATE });
-                defaults.insert(SoftwareSetting{ "graph.programfont", "Helvetica", "Font in program block nodes", {}, Visibility::INTERMEDIATE });
-                defaults.insert(SoftwareSetting{ "graph.programperipheries", "1", "Number of peripheries for program block nodes", {}, Visibility::INTERMEDIATE });
+                defaults.insert(Setting{ "graph.programshape", "box", "Shape of program block nodes", {}, Visibility::INTERMEDIATE });
+                defaults.insert(Setting{ "graph.programstyle", "filled", "Styling of program block nodes", {}, Visibility::INTERMEDIATE });
+                defaults.insert(Setting{ "graph.programfillcolor", "#CCFFCC", "Color of program block nodes", {}, Visibility::INTERMEDIATE });
+                defaults.insert(Setting{ "graph.programfont", "Helvetica", "Font in program block nodes", {}, Visibility::INTERMEDIATE });
+                defaults.insert(Setting{ "graph.programperipheries", "1", "Number of peripheries for program block nodes", {}, Visibility::INTERMEDIATE });
 
-                defaults.insert(SoftwareSetting{ "graph.datashape", "box", "Shape of data block nodes", {}, Visibility::INTERMEDIATE });
-                defaults.insert(SoftwareSetting{ "graph.datastyle", "rounded,filled", "Styling of data block nodes", {}, Visibility::INTERMEDIATE });
-                defaults.insert(SoftwareSetting{ "graph.datafillcolor", "#FFFFCC", "Color of data block nodes", {}, Visibility::INTERMEDIATE });
-                defaults.insert(SoftwareSetting{ "graph.datafont", "Helvetica", "Font in data block nodes", {}, Visibility::INTERMEDIATE });
-                defaults.insert(SoftwareSetting{ "graph.dataperipheries", "1", "Number of peripheries for data block nodes",{}, Visibility::INTERMEDIATE });
+                defaults.insert(Setting{ "graph.datashape", "box", "Shape of data block nodes", {}, Visibility::INTERMEDIATE });
+                defaults.insert(Setting{ "graph.datastyle", "rounded,filled", "Styling of data block nodes", {}, Visibility::INTERMEDIATE });
+                defaults.insert(Setting{ "graph.datafillcolor", "#FFFFCC", "Color of data block nodes", {}, Visibility::INTERMEDIATE });
+                defaults.insert(Setting{ "graph.datafont", "Helvetica", "Font in data block nodes", {}, Visibility::INTERMEDIATE });
+                defaults.insert(Setting{ "graph.dataperipheries", "1", "Number of peripheries for data block nodes",{}, Visibility::INTERMEDIATE });
 
-                defaults.insert(SoftwareSetting{ "graph.portshape", "circle", "Shape of workflow port nodes",{}, Visibility::INTERMEDIATE });
-                defaults.insert(SoftwareSetting{ "graph.portfillcolor", "#FFFFFF", "Color of workflow portnodes",{}, Visibility::INTERMEDIATE });
-                defaults.insert(SoftwareSetting{ "graph.portperipheries", "1", "Number of peripheries for workflow port nodes",{}, Visibility::INTERMEDIATE });
-                defaults.insert(SoftwareSetting{ "graph.portsize", "0.2", "Diameter of workflow port nodes",{}, Visibility::INTERMEDIATE });
+                defaults.insert(Setting{ "graph.portshape", "circle", "Shape of workflow port nodes",{}, Visibility::INTERMEDIATE });
+                defaults.insert(Setting{ "graph.portfillcolor", "#FFFFFF", "Color of workflow portnodes",{}, Visibility::INTERMEDIATE });
+                defaults.insert(Setting{ "graph.portperipheries", "1", "Number of peripheries for workflow port nodes",{}, Visibility::INTERMEDIATE });
+                defaults.insert(Setting{ "graph.portsize", "0.2", "Diameter of workflow port nodes",{}, Visibility::INTERMEDIATE });
 
-                defaults.insert(SoftwareSetting{ "graph.styles", "ON", "Apply node and edge styles to graph elements",{ "ON", "OFF" }, Visibility::EXPERT });
-                defaults.insert(SoftwareSetting{ "graph.layoutstyles", "ON", "Use clusters to group group elements",{ "ON", "OFF" }, Visibility::EXPERT });
+                defaults.insert(Setting{ "graph.styles", "ON", "Apply node and edge styles to graph elements",{ "ON", "OFF" }, Visibility::EXPERT });
+                defaults.insert(Setting{ "graph.layoutstyles", "ON", "Use clusters to group group elements",{ "ON", "OFF" }, Visibility::EXPERT });
             }
             return defaults;
         }
@@ -52,7 +52,7 @@ namespace yw {
             yw::db::YesWorkflowDB& ywdb,
             const yw::config::Configuration& userConfiguration
         ) : ywdb(ywdb) {
-            configuration.insertAll(getSoftwareSettings());
+            configuration.insertAll(getSettings());
             configuration.insertAll(userConfiguration);
         }
 

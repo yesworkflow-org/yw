@@ -6,6 +6,6 @@ namespace yw {
     namespace graph {
 
         int cli(const yw::cli::CommandLine& commandLine);
-        void print_usage();
+        void printUsage();
     }
 }

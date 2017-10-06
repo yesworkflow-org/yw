@@ -15,8 +15,8 @@ namespace yw {
 
         const Configuration& OutlineExporter::getSoftwareSettings() {
             if (defaultSettings.size() == 0) {
-                defaultSettings.insert(SoftwareSetting{ "outline.indentblock", "0" });
-                defaultSettings.insert(SoftwareSetting{ "outline.indentqualifiers", "-1" });
+                defaultSettings.insert(Setting{ "outline.indentblock", "0" });
+                defaultSettings.insert(Setting{ "outline.indentqualifiers", "-1" });
             }
             return defaultSettings;
         }

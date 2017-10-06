@@ -27,15 +27,15 @@ YW_TEST_SET
             
             USAGE: yw <command> [source files] [options]
             
-            Option                     Description
-            ------                     -----------
-            -c, --config <name=value>  Assigns a value to a configuration option.
-            -h, --help                 Displays detailed help including available 
-                                         configuration options.
-            
             Command                    Function
             -------                    --------
             graph                      Graphically renders workflow model of script.
+            
+            Option                     Description
+            ------                     -----------
+            -h, --help                 Displays detailed help including available 
+                                         configuration options.
+            <option>=<value>           Assigns value to configuration option.
 
         )"), trimmargins(stderrRecorder.str()) );
     }
@@ -55,15 +55,57 @@ YW_TEST_SET
             
             USAGE: yw <command> [source files] [options]
             
+            Command                    Function
+            -------                    --------
+            graph                      Graphically renders workflow model of script.
+            
             Option                     Description
             ------                     -----------
-            -c, --config <name=value>  Assigns a value to a configuration option.
             -h, --help                 Displays detailed help including available 
                                          configuration options.
+            <option>=<value>           Assigns value to configuration option.
+
+        )"), trimmargins(stderrRecorder.str()));
+    }
+
+    YW_TEST(WorkflowGraphCLI, RunningWithHelpOptionDisplaysAvailableOptions)
+    {
+        yw::graph::cli(CommandLine(trimmargins(R"(
+
+            yw -h
+
+        )")));
+
+        Assert::EmptyString(stdoutRecorder.str());
+        Assert::AreEqual(trimmargins(R"(
+
+            USAGE: yw <command> [source files] [options]
             
             Command                    Function
             -------                    --------
             graph                      Graphically renders workflow model of script.
+            
+            Option                     Description
+            ------                     -----------
+            -h, --help                 Displays detailed help including available 
+                                         configuration options.
+            <option>=<value>           Assigns value to configuration option.
+            
+            Configuration              Description
+            -------------              -----------
+            graph.datalabel            Info to display in program nodes        
+            graph.edgelabels           Labels on edges in process view         
+            graph.file                 Name of workflow graph image file to write
+            graph.format               Format of workflow graph image file to write
+            graph.layout               Direction of graph layout               
+            graph.params               Visibility of parameters                
+            graph.portlayout           Layout mode for workflow ports          
+            graph.programlabel         Info to display in program nodes        
+            graph.title                Title for the graph as a whole          
+            graph.titleposition        Where to place graph title              
+            graph.view                 Workflow view to render                 
+            graph.workflow             Name of workflow to graph               
+            graph.workflowbox          Box around nodes internal to workflow   
 
         )"), trimmargins(stderrRecorder.str()));
     }

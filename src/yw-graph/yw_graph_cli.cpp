@@ -22,27 +22,37 @@ namespace yw {
             YesWorkflowDB ywdb;
             Configuration configuration;
 
-            configuration.insert(SoftwareSetting{ "graph.file", null_string, "Name of workflow graph image file to write" });
-            configuration.insert(SoftwareSetting{ "graph.format", "DOT", "Format of workflow graph image file to write",{ "DOT", "SVG" } });
-
-            configuration.insertAll(commandLine.getSettings());
+            configuration.insert(Setting{ "graph.file", null_string, "Name of workflow graph image file to write" });
+            configuration.insert(Setting{ "graph.format", "DOT", "Format of workflow graph image file to write",{ "DOT", "SVG" } });
 
 			if (commandLine.hasFlag("-h") || commandLine.hasFlag("--help")) {
-				print_usage();
+				printUsage();
+                configuration.insertAll(WorkflowGrapher{ ywdb }.getSettings());
+                configuration.insertAll(DotBuilder{}.getSoftwareSettings());
+                std::cerr << std::endl;
+                std::cerr << trimmargins(R"(
+
+                    Configuration              Description
+                    -------------              -----------
+                )");
+        
+                std::cerr << configuration.str(Setting::Visibility::BASIC);
 				return 0;
 			}
+
+            configuration.insertAll(commandLine.getSettings());
 
             if (!commandLine.getCommand().hasValue()) {
                 std::cerr << std::endl;
                 std::cerr << "ERROR: Command must be first non-option argument to YesWorkflow" << std::endl;
-                print_usage();
+                printUsage();
                 return 0;
             }
 
             auto command = commandLine.getCommand().getValue();
             if (command != "graph") {
                 std::cerr << "ERROR: Only the graph command is supported." << std::endl;
-                print_usage();
+                printUsage();
                 return 0;
             }
 
@@ -50,7 +60,7 @@ namespace yw {
             if (filesToExtract.size() == 0) {
                 std::cerr << std::endl;
                 std::cerr << "ERROR: No source files given as arguments." << std::endl;
-                print_usage();
+                printUsage();
                 return 0;
             }
 
@@ -99,19 +109,19 @@ namespace yw {
 
             USAGE: yw <command> [source files] [options]
             
-            Option                     Description
-            ------                     -----------
-            -c, --config <name=value>  Assigns a value to a configuration option.
-            -h, --help                 Displays detailed help including available 
-                                         configuration options.
-            
             Command                    Function
             -------                    --------
             graph                      Graphically renders workflow model of script.
+            
+            Option                     Description
+            ------                     -----------
+            -h, --help                 Displays detailed help including available 
+                                         configuration options.
+            <option>=<value>           Assigns value to configuration option.
 
         )");
 
-        void print_usage() {
+        void printUsage() {
             std::cerr << std::endl;
             std::cerr << usage;
         }

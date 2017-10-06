@@ -21,24 +21,6 @@ namespace yw {
                 COMMAND_LINE = 7
             };
 
-            const std::string key;
-            const nullable_string value;
-            const SettingSource source;
-            const std::string resource;
-
-            Setting(
-                const std::string& key, 
-                const nullable_string& value, 
-                const SettingSource source = SettingSource::UNSPECIFIED,
-                const std::string& resource = NO_RESOURCE
-            ) : key(key), value(value), source(source), resource(resource) {}
-
-            static const Setting NO_SETTING;
-            static const std::string NO_RESOURCE;
-        };
-
-        struct SoftwareSetting : public Setting {
-
             enum class Visibility {
                 BASIC = 0,
                 INTERMEDIATE = 1,
@@ -47,19 +29,35 @@ namespace yw {
                 HIDDEN = 4
             };
 
+            const std::string key;
+            const nullable_string value;
+            const SettingSource source;
+            const std::string resource;
             const std::string description;
             const std::vector<std::string> allowedValues;
             const Visibility visibility;
 
-            SoftwareSetting(
+            Setting(
+                const std::string& key, 
+                const nullable_string& value, 
+                const SettingSource source = SettingSource::UNSPECIFIED,
+                const std::string& resource = NO_RESOURCE
+            ) : key(key), value(value), source(source), resource(resource),
+                description(""), allowedValues({}), visibility(Visibility::BASIC) {}
+
+            Setting(
                 const std::string& key,
                 const nullable_string& defaultValue,
-                const std::string& description = std::string{ "" },
+                const std::string& description,
                 const std::vector<std::string> allowedValues = {},
                 Visibility visibility = Visibility::BASIC
-            ) : Setting(key, defaultValue, SettingSource::YW_DEFAULTS, NO_RESOURCE), 
-                description(description), allowedValues(allowedValues), visibility(visibility)
+            ) : key(key), value(defaultValue), source(SettingSource::YW_DEFAULTS),
+                resource(NO_RESOURCE), description(description), 
+                allowedValues(allowedValues), visibility(visibility)
             {}
+
+            static const Setting NO_SETTING;
+            static const std::string NO_RESOURCE;
         };
 
         class Configuration {
@@ -75,6 +73,7 @@ namespace yw {
             void insert(const Setting& setting);
             void insertAll(const Configuration& settings);
             size_t size() { return settings.size(); }
+            std::string str(Setting::Visibility minimumVisibility = Setting::Visibility::BASIC);
         };
     }
 }
