@@ -10,7 +10,7 @@ namespace yw {
         {
             std::string line;
             std::string program;
-            std::vector<std::string> flags;
+            std::set<std::string> flags;
             nullable_string command;
             std::vector<std::string> arguments;
             yw::config::Configuration settings;
@@ -21,7 +21,8 @@ namespace yw {
 
             std::string getLine() const { return line; }
             std::string getProgram() const { return program; }
-            std::vector<std::string> getFlags() const { return flags; }
+            std::set<std::string> getFlags() const { return flags; }
+			bool hasFlag(std::string flag) const;
             nullable_string getCommand() const { return command; };
             std::vector<std::string> getArguments() const { return arguments; }
             yw::config::Configuration getSettings() const { return settings; }

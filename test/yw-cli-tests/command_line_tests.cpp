@@ -30,7 +30,7 @@ YW_TEST_SET
        Expect::AreEqual(0, commandLine.getSettings().size());
 
        Assert::AreEqual(1, commandLine.getFlags().size());
-       Assert::AreEqual("-h", commandLine.getFlags()[0]);
+       Assert::IsTrue(commandLine.hasFlag("-h"));
     }
 
     YW_TEST(CommandLine, WhenCommandLineIsProgramNameAndLongHelpFlagPFlagFieldISSet)
@@ -42,8 +42,8 @@ YW_TEST_SET
         Expect::AreEqual(0, commandLine.getSettings().size());
 
         Assert::AreEqual(1, commandLine.getFlags().size());
-        Assert::AreEqual("--help", commandLine.getFlags()[0]);
-    }
+		Assert::IsTrue(commandLine.hasFlag("--help"));
+	}
 
     YW_TEST(CommandLine, WhenCommandLineIsProgramNameAndShortVersionFlagFlagFieldIsSet)
     {
@@ -54,8 +54,8 @@ YW_TEST_SET
         Expect::AreEqual(0, commandLine.getSettings().size());
 
         Assert::AreEqual(1, commandLine.getFlags().size());
-        Assert::AreEqual("-v", commandLine.getFlags()[0]);
-    }
+		Assert::IsTrue(commandLine.hasFlag("-v"));
+	}
 
     YW_TEST(CommandLine, WhenCommandLineIsProgramNameAndLongVersionFlagProgramAndPFlagFieldsAreSet)
     {
@@ -66,8 +66,8 @@ YW_TEST_SET
         Expect::AreEqual(0, commandLine.getSettings().size());
 
         Assert::AreEqual(1, commandLine.getFlags().size());
-        Assert::AreEqual("--version", commandLine.getFlags()[0]);
-    }
+		Assert::IsTrue(commandLine.hasFlag("--version"));
+	}
 
     YW_TEST(CommandLine, WhenCommandLineIncludesProgramNameTheProgramFieldIsSet)
     {

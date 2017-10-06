@@ -17,7 +17,7 @@ namespace yw {
             program = context->program()->getText();
 
             for (auto flag : context->pflag()) {
-                flags.push_back(flag->getText());
+                flags.insert(flag->getText());
             }
 
             if (context->command() != nullptr) {
@@ -35,6 +35,10 @@ namespace yw {
                 settings.insert(Setting{ key, value, SettingSource::COMMAND_LINE });
             }
         }
+
+		bool CommandLine::hasFlag(std::string flag) const {
+			return flags.find(flag) != flags.end();
+		}
 
         std::string CommandLine::concatenate(int argc, char** argv) {
             std::stringstream ss;

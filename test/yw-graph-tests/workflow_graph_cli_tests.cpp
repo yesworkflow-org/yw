@@ -14,22 +14,58 @@ YW_TEST_SET
 
     YW_TEST(WorkflowGraphCLI, RunningWithNoCommandYieldsErrorMessage)
     {
-        yw::graph::cli(CommandLine(
-            "yw"
-        ));
+        yw::graph::cli(CommandLine(trimmargins(R"(
 
-        Assert::AreEqual("Error: No command given." EOL, stderrRecorder.str());
-        Assert::AreEqual("Usage: yw graph <path-to-script>" EOL, stdoutRecorder.str());
+            yw
+
+        )")));
+
+        Assert::EmptyString(stdoutRecorder.str());
+        Assert::AreEqual(trimmargins(R"(
+            
+            ERROR: Command must be first non-option argument to YesWorkflow
+            
+            USAGE: yw <command> [source files] [options]
+            
+            Option                     Description
+            ------                     -----------
+            -c, --config <name=value>  Assigns a value to a configuration option.
+            -h, --help                 Displays detailed help including available 
+                                         configuration options.
+            
+            Command                    Function
+            -------                    --------
+            graph                      Graphically renders workflow model of script.
+
+        )"), trimmargins(stderrRecorder.str()) );
     }
 
     YW_TEST(WorkflowGraphCLI, RunningWithNoArgumentsYieldsErrorMessage)
     {
-        yw::graph::cli(CommandLine(
-            "yw graph"
-        ));
+        yw::graph::cli(CommandLine(trimmargins(R"(
 
-        Assert::AreEqual("Error: No file names given as arguments." EOL, stderrRecorder.str());
-        Assert::AreEqual("Usage: yw graph <path-to-script>" EOL, stdoutRecorder.str());
+            yw graph
+
+        )")));
+
+        Assert::EmptyString(stdoutRecorder.str());
+        Assert::AreEqual(trimmargins(R"(
+
+            ERROR: No source files given as arguments.
+            
+            USAGE: yw <command> [source files] [options]
+            
+            Option                     Description
+            ------                     -----------
+            -c, --config <name=value>  Assigns a value to a configuration option.
+            -h, --help                 Displays detailed help including available 
+                                         configuration options.
+            
+            Command                    Function
+            -------                    --------
+            graph                      Graphically renders workflow model of script.
+
+        )"), trimmargins(stderrRecorder.str()));
     }
 
     YW_TEST(WorkflowGraphCLI, RunningOnEmptyModelYieldsDotFileWithNoNodes)

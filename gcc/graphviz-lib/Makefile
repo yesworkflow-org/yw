@@ -112,16 +112,12 @@ $(GENERATED_SRC): $(CGRAPHDIR)/grammar.y $(CGRAPHDIR)/scan.l
 	bison -dy $(CGRAPHDIR)/grammar.y -o $(CGRAPHDIR)/grammar.c
 	flex -o$(CGRAPHDIR)/scan.c $(CGRAPHDIR)/scan.l
 
-$(LIB_TARGET): $(LIB_SRC) common_utils.o label_node.o
+$(LIB_TARGET): $(LIB_SRC)
 	$(CC) -c $(CFLAGS) $(CONSTANTS) $(INCLUDES) $(SRC)
+	$(CC) -c $(CFLAGS) $(CONSTANTS) $(INCLUDES) $(GRAPHVIZ_SRC)/lib/common/utils.c -o common_utils.o
+	$(CC) -c $(CFLAGS) $(CONSTANTS) $(INCLUDES) $(GRAPHVIZ_SRC)/lib/label/node.c -o label_node.o
 	rm -f $(LIB_TARGET)
 	ar vq $(LIB_TARGET) *.o
-
-common_utils.o: 
-	$(CC) -c $(CFLAGS) $(CONSTANTS) $(INCLUDES) $(GRAPHVIZ_SRC)/lib/common/utils.c -o common_utils.o
-
-label_node.o:
-	$(CC) -c $(CFLAGS) $(CONSTANTS) $(INCLUDES) $(GRAPHVIZ_SRC)/lib/label/node.c -o label_node.o
 
 lib : $(LIB_TARGET)
 	rm -f *.o
