@@ -35,7 +35,7 @@ YW_TEST_SET
             ------                     -----------
             -h, --help                 Displays detailed help including available 
                                          configuration options.
-            <option>=<value>           Assigns value to configuration option.
+            <setting>=<value>          Assigns value to configuration setting.
 
         )"), trimmargins(stderrRecorder.str()) );
     }
@@ -63,7 +63,7 @@ YW_TEST_SET
             ------                     -----------
             -h, --help                 Displays detailed help including available 
                                          configuration options.
-            <option>=<value>           Assigns value to configuration option.
+            <setting>=<value>          Assigns value to configuration setting.
 
         )"), trimmargins(stderrRecorder.str()));
     }
@@ -89,23 +89,23 @@ YW_TEST_SET
             ------                     -----------
             -h, --help                 Displays detailed help including available 
                                          configuration options.
-            <option>=<value>           Assigns value to configuration option.
+            <setting>=<value>          Assigns value to configuration setting.
             
-            Configuration              Description
-            -------------              -----------
-            graph.datalabel            Info to display in program nodes (NAME, URI, or BOTH)
-            graph.edgelabels           Labels on edges in process view (SHOW or HIDE)
+            Setting                    Values (* indicates default)
+            -------------              ----------------------------
+            graph.datalabel            Info to display in data nodes (NAME*, URI, or BOTH)
+            graph.edgelabels           Labels on edges in process view (SHOW or HIDE*)
             graph.file                 Name of workflow graph image file to write
-            graph.format               Format of workflow graph image file to write (DOT or SVG)
-            graph.layout               Direction of graph layout (TB, LR, RL, or BT)
-            graph.params               Visibility of parameters (SHOW or REDUCE)
-            graph.portlayout           Layout mode for workflow ports (GROUP, RELAX, or HIDE)
-            graph.programlabel         Info to display in program nodes (NAME, DESCRIPTION, or BOTH)
+            graph.format               Format of workflow graph image file to write (DOT* or SVG)
+            graph.layout               Direction of graph layout (TB*, LR, RL, or BT)
+            graph.params               Visibility of parameters (SHOW or REDUCE*)
+            graph.portlayout           Layout mode for workflow ports (GROUP*, RELAX, or HIDE)
+            graph.programlabel         Info to display in program nodes (NAME*, DESCRIPTION, or BOTH)
             graph.title                Title for the graph as a whole
-            graph.titleposition        Where to place graph title (TOP, BOTTOM, or HIDE)
-            graph.view                 Workflow view to render (PROCESS, DATA, or COMBINED)
+            graph.titleposition        Where to place graph title (TOP*, BOTTOM, or HIDE)
+            graph.view                 Workflow view to render (PROCESS, DATA, or COMBINED*)
             graph.workflow             Name of workflow to graph
-            graph.workflowbox          Box around nodes internal to workflow (SHOW or HIDE)
+            graph.workflowbox          Box around nodes internal to workflow (SHOW* or HIDE)
 
         )"), trimmargins(stderrRecorder.str()));
     }

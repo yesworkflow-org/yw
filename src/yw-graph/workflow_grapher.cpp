@@ -16,7 +16,7 @@ namespace yw {
         const Configuration& WorkflowGrapher::getSettings() {
             if (defaults.size() == 0) {
 
-                defaults.insert(Setting{ "graph.datalabel", "NAME", "Info to display in program nodes",{ "NAME", "URI", "BOTH" } });
+                defaults.insert(Setting{ "graph.datalabel", "NAME", "Info to display in data nodes",{ "NAME", "URI", "BOTH" } });
                 defaults.insert(Setting{ "graph.edgelabels", "HIDE", "Labels on edges in process view",{ "SHOW", "HIDE" } });
                 defaults.insert(Setting{ "graph.params", "REDUCE", "Visibility of parameters",{ "SHOW", "REDUCE" } });
                 defaults.insert(Setting{ "graph.portlayout", "GROUP", "Layout mode for workflow ports",{ "GROUP", "RELAX", "HIDE" } });

@@ -32,8 +32,8 @@ namespace yw {
                 std::cerr << std::endl;
                 std::cerr << trimmargins(R"(
 
-                    Configuration              Description
-                    -------------              -----------
+                    Setting                    Values (* indicates default)
+                    -------------              ----------------------------
                 )");
         
                 std::cerr << configuration.str(Setting::Visibility::BASIC);
@@ -117,7 +117,7 @@ namespace yw {
             ------                     -----------
             -h, --help                 Displays detailed help including available 
                                          configuration options.
-            <option>=<value>           Assigns value to configuration option.
+            <setting>=<value>          Assigns value to configuration setting.
 
         )");
 

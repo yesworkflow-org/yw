@@ -36,7 +36,7 @@ namespace yw {
             const std::string description;
             const std::vector<std::string> allowedValues;
             const Visibility visibility;
-
+            
             Setting(
                 const std::string& key, 
                 const nullable_string& value, 
@@ -51,16 +51,18 @@ namespace yw {
                 const std::string& description,
                 const std::vector<std::string> allowedValues = {},
                 Visibility visibility = Visibility::BASIC
-            ) : key(key), value(defaultValue), source(SettingSource::YW_DEFAULTS),
-                resource(NO_RESOURCE), description(description), 
-                allowedValues(allowedValues), visibility(visibility)
-            {}
+            );
 
+            std::string allowedValueStr(size_t index);
             std::string allowedValuesStr();
             std::string str();
 
             static const Setting NO_SETTING;
             static const std::string NO_RESOURCE;
+
+        private:
+
+            int defaultIndex{ -1 };
         };
     }
 }
