@@ -27,7 +27,7 @@ namespace yw {
             static void EmptyString(std::string actual) {
 
                 #ifdef MSTEST
-                    MSTEST::IsTrue(actual.empty());
+                    MSTEST::AreEqual("", actual.c_str());
                 #endif
 
                 #ifdef CPPUTEST

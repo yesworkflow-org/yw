@@ -1,8 +1,22 @@
 #include "configuration.h"
+#include "yw_config_parser_builder.h"
 #include <iomanip>
 
 namespace yw {
     namespace config {
+
+        Configuration::Configuration(const std::string& text, Setting::SettingSource source) {
+
+            YW_CONFIG_ParserBuilder parser_builder(text + '\n');
+            YW_CONFIG_Parser::ConfigFileContext* context = parser_builder.parse()->configFile();
+
+            for (auto settingLine : context->settingLine()) {
+                auto setting = settingLine->setting();
+                auto key = setting->settingName()->getText();
+                auto value = setting->settingValue()->unquotedValue()->getText();
+                insert(Setting{ key, value, source });
+            }
+        }
 
         void Configuration::insert(const Setting& setting) {
             auto it = settings.find(setting.key);

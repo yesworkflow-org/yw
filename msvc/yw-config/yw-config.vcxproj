@@ -21,10 +21,26 @@
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-config\setting.h" />
     <ClInclude Include="..\..\src\yw-config\configuration.h" />
+    <ClInclude Include="..\..\src\yw-config\yw_config_parser_builder.h" />
+    <ClInclude Include="..\..\src\yw-config\YW_CONFIG_BaseListener.h" />
+    <ClInclude Include="..\..\src\yw-config\YW_CONFIG_Lexer.h" />
+    <ClInclude Include="..\..\src\yw-config\YW_CONFIG_Listener.h" />
+    <ClInclude Include="..\..\src\yw-config\YW_CONFIG_Parser.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\yw-config\setting.cpp" />
     <ClCompile Include="..\..\src\yw-config\configuration.cpp" />
+    <ClCompile Include="..\..\src\yw-config\yw_config_parser_builder.cpp" />
+    <ClCompile Include="..\..\src\yw-config\YW_CONFIG_BaseListener.cpp" />
+    <ClCompile Include="..\..\src\yw-config\YW_CONFIG_Lexer.cpp" />
+    <ClCompile Include="..\..\src\yw-config\YW_CONFIG_Listener.cpp" />
+    <ClCompile Include="..\..\src\yw-config\YW_CONFIG_Parser.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\yw-config\build.bat" />
+    <None Include="..\..\src\yw-config\YW_CONFIG_.g4" />
+    <None Include="..\..\src\yw-config\YW_CONFIG_.tokens" />
+    <None Include="..\..\src\yw-config\YW_CONFIG_Lexer.tokens" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
@@ -94,29 +110,35 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANTLR4CPP_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\yw-types;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\yw-types;</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)\..\src\yw-config\build.bat</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANTLR4CPP_STATIC;_CRT_SECURE_NO_WARNINGS;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-types;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\yw-types;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)\..\src\yw-config\build.bat</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -124,10 +146,10 @@
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANTLR4CPP_STATIC;_CRT_SECURE_NO_WARNINGS;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-types;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\yw-types;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -135,6 +157,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)\..\src\yw-config\build.bat</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -142,10 +167,10 @@
       <WarningLevel>Level3</WarningLevel>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>ANTLR4CPP_STATIC;_CRT_SECURE_NO_WARNINGS;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-types;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\yw-types;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -153,6 +178,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>$(SolutionDir)\..\src\yw-config\build.bat</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,12 +5,33 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Grammar Definitions">
+      <UniqueIdentifier>{b034c659-6d01-4836-bee0-88df5e5a71ff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Generated Source Files">
+      <UniqueIdentifier>{15c8107f-de30-4103-ad5d-d78d2fefc606}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-config\setting.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\yw-config\configuration.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-config\YW_CONFIG_Lexer.h">
+      <Filter>Generated Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-config\YW_CONFIG_Listener.h">
+      <Filter>Generated Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-config\YW_CONFIG_Parser.h">
+      <Filter>Generated Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-config\YW_CONFIG_BaseListener.h">
+      <Filter>Generated Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-config\yw_config_parser_builder.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -21,5 +42,34 @@
     <ClCompile Include="..\..\src\yw-config\configuration.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\yw-config\YW_CONFIG_Listener.cpp">
+      <Filter>Generated Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\yw-config\YW_CONFIG_Parser.cpp">
+      <Filter>Generated Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\yw-config\YW_CONFIG_BaseListener.cpp">
+      <Filter>Generated Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\yw-config\YW_CONFIG_Lexer.cpp">
+      <Filter>Generated Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\yw-config\yw_config_parser_builder.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\src\yw-config\YW_CONFIG_.g4">
+      <Filter>Grammar Definitions</Filter>
+    </None>
+    <None Include="..\..\src\yw-config\build.bat">
+      <Filter>Grammar Definitions</Filter>
+    </None>
+    <None Include="..\..\src\yw-config\YW_CONFIG_Lexer.tokens">
+      <Filter>Generated Source Files</Filter>
+    </None>
+    <None Include="..\..\src\yw-config\YW_CONFIG_.tokens">
+      <Filter>Generated Source Files</Filter>
+    </None>
   </ItemGroup>
 </Project>

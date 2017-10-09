@@ -22,7 +22,10 @@
     <ClCompile Include="stdafx.cpp">
       <Filter>Precompiled Headers</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\yw-config-tests\yw_config_tests.cpp">
+    <ClCompile Include="..\..\test\yw-config-tests\configuration_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\yw-config-tests\configuration_file_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

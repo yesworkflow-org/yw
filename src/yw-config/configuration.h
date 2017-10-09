@@ -9,9 +9,20 @@ namespace yw {
     namespace config {
 
         class Configuration {
+
+        private:
+
             std::map<std::string, Setting> settings;
+        
         public:
+            
             Configuration() {}
+            
+            Configuration::Configuration(
+                const std::string& text, 
+                Setting::SettingSource source = Setting::SettingSource::UNSPECIFIED
+            );
+            
             bool contains(const std::string& key);
             const Setting& getSetting(const std::string& key);
             int getIntValue(const std::string& key);
