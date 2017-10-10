@@ -5,8 +5,10 @@
 namespace yw {
     namespace config {
 
-        Configuration::Configuration(const std::string& text, Setting::SettingSource source) {
-
+        void Configuration::insertSettingsFromText(
+            const std::string& text, 
+            Setting::SettingSource source
+        ) {
             YW_CONFIG_ParserBuilder parser_builder(text + '\n');
             YW_CONFIG_Parser::ConfigFileContext* context = parser_builder.parse()->configFile();
 
@@ -16,6 +18,28 @@ namespace yw {
                 auto value = setting->settingValue()->unquotedValue()->getText();
                 insert(Setting{ key, value, source });
             }
+        }
+
+        void Configuration::insertSettingsFromFile(
+            const std::string& filePath, 
+            Setting::SettingSource source, 
+            bool throwIfNoSuchFile
+        ) {
+            std::ostringstream configurationText;
+            std::ifstream configurationFile;
+            configurationFile.open(filePath);
+            if (!configurationFile.is_open()) {
+                if (throwIfNoSuchFile) {
+                    throw std::runtime_error("Cannot open configuration file " + filePath);
+                } else {
+                    return;
+                }
+            }
+            std::string lineText;
+            while (std::getline(configurationFile, lineText)) {
+                configurationText << lineText << std::endl;
+            }
+            insertSettingsFromText(configurationText.str());
         }
 
         void Configuration::insert(const Setting& setting) {

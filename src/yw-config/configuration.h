@@ -18,11 +18,17 @@ namespace yw {
             
             Configuration() {}
             
-            Configuration::Configuration(
+            void insertSettingsFromText(
                 const std::string& text, 
                 Setting::SettingSource source = Setting::SettingSource::UNSPECIFIED
             );
-            
+
+            void insertSettingsFromFile(
+                const std::string& filePath,
+                Setting::SettingSource source = Setting::SettingSource::UNSPECIFIED,
+                bool throwIfNoSuchFile = true
+            );
+
             bool contains(const std::string& key);
             const Setting& getSetting(const std::string& key);
             int getIntValue(const std::string& key);

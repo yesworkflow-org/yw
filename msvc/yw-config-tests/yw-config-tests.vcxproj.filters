@@ -28,5 +28,8 @@
     <ClCompile Include="..\..\test\yw-config-tests\configuration_file_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\test\yw-config-tests\configuration_text_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
