@@ -1,5 +1,5 @@
-#include <map>
 #include "yw_config_tests.h"
+#include <map>
 
 using namespace yw;
 using namespace yw::config;

@@ -22,8 +22,9 @@ namespace yw {
             YesWorkflowDB ywdb;
             Configuration configuration;
 
+            configuration.insert(Setting{ "yw.config", "yw.properties", "Name of local YW configuration file" });
             configuration.insert(Setting{ "graph.file", null_string, "Name of workflow graph image file to write" });
-            configuration.insert(Setting{ "graph.format", "DOT", "Format of workflow graph image file to write",{ "DOT", "SVG" } });
+            configuration.insert(Setting{ "graph.format", "DOT", "Format of workflow graph image file to write", { "DOT", "SVG" } });
 
 			if (commandLine.hasFlag("-h") || commandLine.hasFlag("--help")) {
 				printUsage();
@@ -42,6 +43,9 @@ namespace yw {
 
             configuration.insertAll(commandLine.getSettings());
 
+            auto localConfigFile = configuration.getStringValue("yw.config");
+            configuration.insertSettingsFromFile(localConfigFile, Setting::SettingSource::LOCAL_FILE, false);
+    
             if (!commandLine.getCommand().hasValue()) {
                 std::cerr << std::endl;
                 std::cerr << "ERROR: Command must be first non-option argument to YesWorkflow" << std::endl;

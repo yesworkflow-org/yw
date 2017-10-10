@@ -16,7 +16,8 @@ namespace yw {
                 auto setting = settingLine->setting();
                 auto key = setting->settingName()->getText();
                 auto value = setting->settingValue()->unquotedValue()->getText();
-                insert(Setting{ key, value, source });
+                auto s = Setting{ key, value, source };
+                insert(s);
             }
         }
 
@@ -39,7 +40,7 @@ namespace yw {
             while (std::getline(configurationFile, lineText)) {
                 configurationText << lineText << std::endl;
             }
-            insertSettingsFromText(configurationText.str());
+            insertSettingsFromText(configurationText.str(), source);
         }
 
         void Configuration::insert(const Setting& setting) {

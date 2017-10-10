@@ -106,6 +106,7 @@ YW_TEST_SET
             graph.view                 Workflow view to render (PROCESS, DATA, or COMBINED*)
             graph.workflow             Name of workflow to graph
             graph.workflowbox          Box around nodes internal to workflow (SHOW* or HIDE)
+            yw.config                  Name of local YW configuration file
 
         )"), trimmargins(stderrRecorder.str()));
     }
@@ -236,6 +237,5 @@ YW_TEST_SET
 
             )"), stdoutRecorder.str());
     }
-
 
 YW_TEST_END

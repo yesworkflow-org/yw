@@ -169,6 +169,7 @@
     <ClCompile Include="..\..\test\yw-graph-tests\dot_builder_tests.cpp" />
     <ClCompile Include="..\..\test\yw-graph-tests\workflow_grapher_tests.cpp" />
     <ClCompile Include="..\..\test\yw-graph-tests\workflow_graph_cli_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-graph-tests\workflow_graph_config_tests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
