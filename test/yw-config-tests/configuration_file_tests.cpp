@@ -13,6 +13,42 @@ YW_TEST_FIXTURE(ConfigurationFile)
 
 YW_TEST_SET
 
+    YW_TEST(ConfigurationFile, MissingConfigurationFileYieldsEmptyConfigurationByDefault)
+    {
+        try {
+            configuration.insertSettingsFromFile("nosuchfile");
+            Assert::Fail();
+        }
+        catch (std::exception(e)) {
+            Assert::AreEqual("Cannot open configuration file: nosuchfile", e.what());
+        }
+        Expect::EmptyString(stderrRecorder.str());
+
+        Assert::AreEqual(0, configuration.size());
+    }
+
+    YW_TEST(ConfigurationFile, MissingConfigurationFileYieldsEmptyConfigurationIfThirdParameterIsTrue)
+    {
+        try {
+            configuration.insertSettingsFromFile("nosuchfile", Setting::SettingSource::NAMED_FILE, true);
+            Assert::Fail();
+        }
+        catch (std::exception(e)) {
+            Assert::AreEqual("Cannot open configuration file: nosuchfile", e.what());
+        }
+        Expect::EmptyString(stderrRecorder.str());
+
+        Assert::AreEqual(0, configuration.size());
+    }
+
+    YW_TEST(ConfigurationFile, MissingConfigurationFileYieldsEmptyConfigurationIfThirdParameterIsFalse)
+    {
+        configuration.insertSettingsFromFile("nosuchfile", Setting::SettingSource::NAMED_FILE, false);
+        Expect::EmptyString(stderrRecorder.str());
+
+        Assert::AreEqual(0, configuration.size());
+    }
+
     YW_TEST(ConfigurationFile, EmptyConfigurationTextYieldsConfigurationWithSizeIsZero)
     {
         auto configFilePath = writeTempFile( "yw.properties", "" );

@@ -30,7 +30,7 @@ namespace yw {
             configurationFile.open(filePath);
             if (!configurationFile.is_open()) {
                 if (throwIfNoSuchFile) {
-                    throw std::runtime_error("Cannot open configuration file " + filePath);
+                    throw std::runtime_error("Cannot open configuration file: " + filePath);
                 } else {
                     return;
                 }
