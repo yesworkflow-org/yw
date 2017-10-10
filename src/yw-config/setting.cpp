@@ -18,7 +18,7 @@ namespace yw {
             allowedValues(allowedValues), visibility(visibility)
         {
             if (defaultValue.hasValue()) {
-                for (int i = 0; i < allowedValues.size(); ++i) {
+                for (size_t i = 0; i < allowedValues.size(); ++i) {
                     if (allowedValues[i] == defaultValue.getValue()) {
                         defaultIndex = i;
                         break;

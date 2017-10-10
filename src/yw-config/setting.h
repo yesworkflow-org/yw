@@ -2,6 +2,7 @@
 
 #include "yw_types.h"
 
+#include <limits>
 #include <map>
 #include <vector>
 
@@ -62,7 +63,7 @@ namespace yw {
 
         private:
 
-            int defaultIndex{ -1 };
+            size_t defaultIndex{ std::numeric_limits<size_t>::max() };
         };
     }
 }

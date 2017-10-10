@@ -19,7 +19,7 @@ YW_TEST_SET
             configuration.insertSettingsFromFile("nosuchfile");
             Assert::Fail();
         }
-        catch (std::exception(e)) {
+        catch (std::runtime_error(e)) {
             Assert::AreEqual("Cannot open configuration file: nosuchfile", e.what());
         }
         Expect::EmptyString(stderrRecorder.str());
@@ -33,7 +33,7 @@ YW_TEST_SET
             configuration.insertSettingsFromFile("nosuchfile", Setting::SettingSource::NAMED_FILE, true);
             Assert::Fail();
         }
-        catch (std::exception(e)) {
+        catch (std::runtime_error(e)) {
             Assert::AreEqual("Cannot open configuration file: nosuchfile", e.what());
         }
         Expect::EmptyString(stderrRecorder.str());
