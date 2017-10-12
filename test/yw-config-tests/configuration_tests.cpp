@@ -40,7 +40,7 @@ YW_TEST_SET
     YW_TEST(Configuration, AfterInsertingOneSettingGetReturnsSettingWIthInsertedKeyAndValue)
     {
         configuration.insert(Setting{ "key", "value" });
-        Assert::AreEqual("value", configuration.getStringValue("key"));
+        Assert::AreEqual("value", configuration.getValueText("key"));
     }
 
     YW_TEST(Configuration, AfterInsertingTwoSettingsWithDifferentKeysGetOnSecondKeyReturnsSettingWithSecondInsertedKeyAndValue)
@@ -48,7 +48,7 @@ YW_TEST_SET
         configuration.insert(Setting{ "key1", "value1" });
         configuration.insert(Setting{ "key2", "value2" });
         Expect::AreEqual(2, configuration.size());
-        Assert::AreEqual("value2", configuration.getStringValue("key2"));
+        Assert::AreEqual("value2", configuration.getValueText("key2"));
     }
 
     YW_TEST(Configuration, AfterInsertingTwoSettingsWithSameKeyAndUnspecifiedSourceGetOReturnsSettingWithSecondInsertedValue)
@@ -56,7 +56,7 @@ YW_TEST_SET
         configuration.insert(Setting{ "key1", "value1" });
         configuration.insert(Setting{ "key1", "value2" });
         Expect::AreEqual(1, configuration.size());
-        Assert::AreEqual("value2", configuration.getStringValue("key1"));
+        Assert::AreEqual("value2", configuration.getValueText("key1"));
     }
 
     YW_TEST(Configuration, AfterInsertingOneSettingWithSpecifiedSourceGetReturnsSettingWithThatSource)
@@ -81,7 +81,7 @@ YW_TEST_SET
         configuration.insert(Setting{ "key1", "value2", SettingSource::YW_DEFAULTS });
         Expect::AreEqual(1, configuration.size());
         Expect::IsTrue(SettingSource::YW_DEFAULTS == configuration.getSetting("key1").source);
-        Assert::AreEqual("value2", configuration.getStringValue("key1"));
+        Assert::AreEqual("value2", configuration.getValueText("key1"));
     }
 
     YW_TEST(Configuration, AfterInsertingTwoSettingWithSameKeysButSecondWithSourceOfHigherPriorityGetReturnsSettingWithSecondInsertedValueAndSecondSource)
@@ -90,7 +90,7 @@ YW_TEST_SET
         configuration.insert(Setting{ "key1", "value2", SettingSource::USER_DEFAULTS });
         Expect::AreEqual(1, configuration.size());
         Expect::IsTrue(SettingSource::USER_DEFAULTS == configuration.getSetting("key1").source);
-        Assert::AreEqual("value2", configuration.getStringValue("key1"));
+        Assert::AreEqual("value2", configuration.getValueText("key1"));
     }
 
     YW_TEST(Configuration, AfterInsertingTwoSettingWithSameKeysButSecondWithSourceOfLowerPriorityGetReturnsSettingWithFirstInsertedValueAndFirstSource)
@@ -99,7 +99,7 @@ YW_TEST_SET
         configuration.insert(Setting{ "key1", "value2", SettingSource::YW_DEFAULTS });
         Expect::AreEqual(1, configuration.size());
         Expect::IsTrue(SettingSource::USER_DEFAULTS == configuration.getSetting("key1").source);
-        Assert::AreEqual("value1", configuration.getStringValue("key1"));
+        Assert::AreEqual("value1", configuration.getValueText("key1"));
     }
     
     YW_TEST(Configuration, InsertingOneConfigurationIntoAnotherWithDisjointKeysYieldsUnionOfSettings) {
@@ -112,10 +112,10 @@ YW_TEST_SET
         configuration.insertAll(otherConfiguration);
 
         Assert::AreEqual(4, configuration.size());
-        Assert::AreEqual("value1", configuration.getStringValue("key1"));
-        Assert::AreEqual("value2", configuration.getStringValue("key2"));
-        Assert::AreEqual("value3", configuration.getStringValue("key3"));
-        Assert::AreEqual("value4", configuration.getStringValue("key4"));
+        Assert::AreEqual("value1", configuration.getValueText("key1"));
+        Assert::AreEqual("value2", configuration.getValueText("key2"));
+        Assert::AreEqual("value3", configuration.getValueText("key3"));
+        Assert::AreEqual("value4", configuration.getValueText("key4"));
     }
 
     YW_TEST(Configuration, InsertingOneConfigurationIntoAnotherWithOneHigherPrioritySettingWithCommonKeyYieldsMergedSettingsWithOverriddenSetting) {
@@ -128,9 +128,9 @@ YW_TEST_SET
         configuration.insertAll(otherConfiguration);
 
         Assert::AreEqual(3, configuration.size());
-        Assert::AreEqual("value1", configuration.getStringValue("key1"));
-        Assert::AreEqual("other2", configuration.getStringValue("key2"));
-        Assert::AreEqual("value3", configuration.getStringValue("key3"));
+        Assert::AreEqual("value1", configuration.getValueText("key1"));
+        Assert::AreEqual("other2", configuration.getValueText("key2"));
+        Assert::AreEqual("value3", configuration.getValueText("key3"));
     }
 
 YW_TEST_END

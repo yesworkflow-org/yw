@@ -13,14 +13,14 @@ namespace yw {
 class  YW_CONFIG_Parser : public antlr4::Parser {
 public:
   enum {
-    T__0 = 1, T__1 = 2, T__2 = 3, NEWLINE = 4, SPACE = 5, DQ = 6, SQ = 7, 
-    WORD = 8
+    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, NEWLINE = 5, SPACE = 6, DQ = 7, 
+    SQ = 8, WORD = 9
   };
 
   enum {
     RuleConfigFile = 0, RuleBlankLine = 1, RuleCommentLine = 2, RuleSettingLine = 3, 
     RuleComment = 4, RuleSetting = 5, RuleSettingName = 6, RuleSettingValue = 7, 
-    RuleUnquotedValue = 8
+    RuleUnquotedValue = 8, RuleWord = 9
   };
 
   YW_CONFIG_Parser(antlr4::TokenStream *input);
@@ -41,7 +41,8 @@ public:
   class SettingContext;
   class SettingNameContext;
   class SettingValueContext;
-  class UnquotedValueContext; 
+  class UnquotedValueContext;
+  class WordContext; 
 
   class  ConfigFileContext : public antlr4::ParserRuleContext {
   public:
@@ -179,8 +180,8 @@ public:
     virtual size_t getRuleIndex() const override;
     std::vector<antlr4::tree::TerminalNode *> SPACE();
     antlr4::tree::TerminalNode* SPACE(size_t i);
-    std::vector<antlr4::tree::TerminalNode *> WORD();
-    antlr4::tree::TerminalNode* WORD(size_t i);
+    std::vector<WordContext *> word();
+    WordContext* word(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -188,6 +189,19 @@ public:
   };
 
   UnquotedValueContext* unquotedValue();
+
+  class  WordContext : public antlr4::ParserRuleContext {
+  public:
+    WordContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *WORD();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  WordContext* word();
 
 
 private:

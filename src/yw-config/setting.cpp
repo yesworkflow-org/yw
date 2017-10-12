@@ -9,11 +9,39 @@ namespace yw {
 
         Setting::Setting(
             const std::string& key,
+            const nullable_string& valueText,
+            const SettingSource source,
+            const std::string& resource
+        ) :key(key),
+            valueText(valueText),
+            source(source), resource(resource),
+            description(""), allowedValues({}), visibility(Visibility::BASIC)
+        {
+            if (valueText.hasValue()) {
+                valueVector = std::vector<std::string>{ valueText.getValue() };
+            }
+        }
+
+        Setting::Setting(
+            const std::string& key,
+            const nullable_string& valueText,
+            const std::vector<std::string> valueVector,
+            const SettingSource source,
+            const std::string& resource
+        ) : key(key), 
+            valueText(valueText),
+            source(source), resource(resource),
+            description(""), allowedValues({}), visibility(Visibility::BASIC),
+            valueVector{ valueVector }
+        {   }
+
+        Setting::Setting(
+            const std::string& key,
             const nullable_string& defaultValue,
             const std::string& description,
             const std::vector<std::string> allowedValues,
             Visibility visibility
-        ) : key(key), value(defaultValue), source(SettingSource::YW_DEFAULTS),
+        ) : key(key), valueText(defaultValue), source(SettingSource::YW_DEFAULTS),
             resource(NO_RESOURCE), description(description),
             allowedValues(allowedValues), visibility(visibility)
         {
@@ -27,7 +55,7 @@ namespace yw {
             }
         }
 
-        std::string Setting::allowedValueStr(size_t index) {
+        std::string Setting::allowedValueStr(size_t index) const {
             if (index == defaultIndex) {
                 return allowedValues[index] + "*";
             } else {
@@ -35,7 +63,7 @@ namespace yw {
             }
         }
 
-        std::string Setting::allowedValuesStr() {
+        std::string Setting::allowedValuesStr() const {
 
             std::stringstream ss;
 
@@ -64,7 +92,7 @@ namespace yw {
             return ss.str();
         }
 
-        std::string Setting::str() {
+        std::string Setting::str() const {
             std::stringstream ss;
             ss << std::left << std::setw(27) << key << std::setw(0) << description;
             auto avs = allowedValuesStr();

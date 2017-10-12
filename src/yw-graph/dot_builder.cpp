@@ -26,7 +26,7 @@ namespace yw {
         }
 
         string DotBuilder::config(const string& key) {
-            return configuration.getStringValue(key);
+            return configuration.getValueText(key);
         }
 
         DotBuilder::DotBuilder(
@@ -46,7 +46,7 @@ namespace yw {
                 dotStream << "rankdir=" << graphLayout << endl;
             }
 
-            if (configuration.getSetting("graph.title").value.hasValue()) {
+            if (configuration.getSetting("graph.title").valueText.hasValue()) {
                 title(config("graph.title"));
             }
         }
@@ -161,7 +161,7 @@ namespace yw {
         }
 
         void DotBuilder::title(const string& text) {
-            auto position = configuration.getStringValue("graph.titleposition");
+            auto position = configuration.getValueText("graph.titleposition");
             if (position != "HIDE") {
                 comment("Title for graph");
                 dotStream << "fontname=Helvetica; fontsize=18; labelloc=";

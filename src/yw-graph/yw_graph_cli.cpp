@@ -22,6 +22,7 @@ namespace yw {
             YesWorkflowDB ywdb;
             Configuration configuration;
 
+            configuration.insert(Setting{ "extract.sources", null_string, "List of source files to extract annotations from" });
             configuration.insert(Setting{ "yw.config", "yw.properties", "Name of local YW configuration file" });
             configuration.insert(Setting{ "graph.file", null_string, "Name of workflow graph image file to write" });
             configuration.insert(Setting{ "graph.format", "DOT", "Format of workflow graph image file to write", { "DOT", "SVG" } });
@@ -43,7 +44,7 @@ namespace yw {
 
             configuration.insertAll(commandLine.getSettings());
 
-            auto localConfigFile = configuration.getStringValue("yw.config");
+            auto localConfigFile = configuration.getValueText("yw.config");
             configuration.insertSettingsFromFile(localConfigFile, Setting::SettingSource::LOCAL_FILE, false);
     
             if (!commandLine.getCommand().hasValue()) {
@@ -60,14 +61,20 @@ namespace yw {
                 return 0;
             }
 
-            auto filesToExtract = commandLine.getArguments();
+            std::vector<std::string> filesToExtract;
+            if (commandLine.getArguments().size() > 0) {
+                filesToExtract = commandLine.getArguments();
+            } else {
+                filesToExtract = configuration.getValueVector("extract.sources");
+            }
+
             if (filesToExtract.size() == 0) {
                 std::cerr << std::endl;
                 std::cerr << "ERROR: No source files given as arguments." << std::endl;
                 printUsage();
                 return 0;
             }
-
+   
             yw::row_id modelId;
             try {
                 modelId = ModelBuilder{ ywdb }.buildModelFromFiles(filesToExtract);
@@ -87,7 +94,7 @@ namespace yw {
                 return 0;
             }
 
-            std::string graphFormatSetting = configuration.getStringValue("graph.format");
+            std::string graphFormatSetting = configuration.getValueText("graph.format");
             std::string graphText;
             if (graphFormatSetting == "DOT") {
                 graphText = dotText;
@@ -96,7 +103,7 @@ namespace yw {
                 graphText = renderer.str();
             }
 
-            nullable_string graphFileSetting = configuration.getSetting("graph.file").value;
+            nullable_string graphFileSetting = configuration.getSetting("graph.file").valueText;
             if (graphFileSetting.hasValue()) {
                 std::ofstream graphFile{ graphFileSetting.getValue() };
                 graphFile << graphText;

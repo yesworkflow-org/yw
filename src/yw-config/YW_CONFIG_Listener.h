@@ -43,6 +43,9 @@ public:
   virtual void enterUnquotedValue(YW_CONFIG_Parser::UnquotedValueContext *ctx) = 0;
   virtual void exitUnquotedValue(YW_CONFIG_Parser::UnquotedValueContext *ctx) = 0;
 
+  virtual void enterWord(YW_CONFIG_Parser::WordContext *ctx) = 0;
+  virtual void exitWord(YW_CONFIG_Parser::WordContext *ctx) = 0;
+
 
 };
 

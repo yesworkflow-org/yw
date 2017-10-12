@@ -10,12 +10,13 @@ comment			: ('#' | '//') (SPACE | WORD)* ;
 setting          : settingName SPACE* '=' SPACE* settingValue ;
 settingName      : WORD ;
 settingValue     : unquotedValue | (SQ unquotedValue SQ) | (DQ unquotedValue DQ) ;
-unquotedValue    : (SPACE | WORD | '=')*? ;
+unquotedValue    : (SPACE | ',' | word )*? ;
+word			: WORD ;
 
 // lexical tokens
 NEWLINE          : '\r'? '\n' ;
 SPACE           : [ \t] ;
 DQ               : '"' ;
 SQ               : '\'' ;
-WORD             : ~[ =\t\r\n"']+ ;
+WORD             : ~[ =,\t\r\n"']+ ;
 

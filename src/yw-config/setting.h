@@ -31,38 +31,47 @@ namespace yw {
             };
 
             const std::string key;
-            const nullable_string value;
+            const nullable_string valueText;
             const SettingSource source;
             const std::string resource;
             const std::string description;
             const std::vector<std::string> allowedValues;
             const Visibility visibility;
-            
-            Setting(
-                const std::string& key, 
-                const nullable_string& value, 
-                const SettingSource source = SettingSource::UNSPECIFIED,
-                const std::string& resource = NO_RESOURCE
-            ) : key(key), value(value), source(source), resource(resource),
-                description(""), allowedValues({}), visibility(Visibility::BASIC) {}
 
             Setting(
                 const std::string& key,
-                const nullable_string& defaultValue,
+                const nullable_string& valueText,
+                const SettingSource source = SettingSource::UNSPECIFIED,
+                const std::string& resource = NO_RESOURCE
+            );
+
+            Setting(
+                const std::string& key,
+                const nullable_string& valueText,
+                const std::vector<std::string> valueVector,
+                const SettingSource source = SettingSource::UNSPECIFIED,
+                const std::string& resource = NO_RESOURCE
+            );
+
+            Setting(
+                const std::string& key,
+                const nullable_string& defaultValueText,
                 const std::string& description,
                 const std::vector<std::string> allowedValues = {},
                 Visibility visibility = Visibility::BASIC
             );
 
-            std::string allowedValueStr(size_t index);
-            std::string allowedValuesStr();
-            std::string str();
+            const std::vector<std::string> getValueVector() const { return valueVector; }
+            std::string allowedValueStr(size_t index) const;
+            std::string allowedValuesStr() const;
+            std::string str() const;
 
             static const Setting NO_SETTING;
             static const std::string NO_RESOURCE;
 
         private:
 
+            std::vector<std::string> valueVector;
             size_t defaultIndex{ std::numeric_limits<size_t>::max() };
         };
     }

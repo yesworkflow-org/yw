@@ -1,6 +1,7 @@
 #include "configuration.h"
 #include "yw_config_parser_builder.h"
 #include <iomanip>
+#include <string>
 
 namespace yw {
     namespace config {
@@ -13,11 +14,19 @@ namespace yw {
             YW_CONFIG_Parser::ConfigFileContext* context = parser_builder.parse()->configFile();
 
             for (auto settingLine : context->settingLine()) {
+
                 auto setting = settingLine->setting();
                 auto key = setting->settingName()->getText();
-                auto value = setting->settingValue()->unquotedValue()->getText();
-                auto s = Setting{ key, value, source };
+                auto valueText = setting->settingValue()->unquotedValue()->getText();
+
+                std::vector<std::string> valueVector{};
+                for (auto wordContext : setting->settingValue()->unquotedValue()->word()) {
+                    valueVector.push_back(wordContext->getText());
+                }
+
+                auto s = Setting{ key, valueText, valueVector, source };
                 insert(s);
+
             }
         }
 
@@ -78,16 +87,30 @@ namespace yw {
             }
         }
 
-        std::string Configuration::getStringValue(const std::string& key) {
+        std::string Configuration::getValueText(const std::string& key) {
             auto setting = getSetting(key);
-            if (!setting.value.hasValue()) {
+            if (!setting.valueText.hasValue()) {
                 throw std::domain_error("Option '" + key + "' requires a value.");
             }
-            return setting.value.getValue();
+            return setting.valueText.getValue();
+        }
+
+        std::vector<std::string> Configuration::getValueVector(const std::string& key) {
+            return getSetting(key).getValueVector();
+            //std::vector<std::string> items;
+            //auto setting = getSetting(key);
+            //if (setting.valueText.hasValue()) {
+            //    std::istringstream ss(setting.valueText.getValue());
+            //    std::string item;
+            //    while (std::getline(ss, item, ' ')) {
+            //        items.push_back(item);
+            //    }         
+            //}
+            //return items;
         }
 
         int Configuration::getIntValue(const std::string& key) {
-            auto stringValue = getStringValue(key);
+            auto stringValue = getValueText(key);
             try {
                 return std::stoi(stringValue);
             }
@@ -100,7 +123,7 @@ namespace yw {
         }
 
         double Configuration::getDoubleValue(const std::string& key) {
-            auto stringValue = getStringValue(key);
+            auto stringValue = getValueText(key);
             try {
                 return std::stod(stringValue);
             }

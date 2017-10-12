@@ -129,7 +129,7 @@ YW_TEST_SET
         Assert::AreEqual("myscript.py", commandLine.getArguments()[0]);
         Assert::AreEqual(1, commandLine.getSettings().size());
         Assert::IsTrue(commandLine.getSettings().contains("extract.volatile"));
-        Assert::IsNull(commandLine.getSettings().getSetting("extract.volatile").value);
+        Assert::IsNull(commandLine.getSettings().getSetting("extract.volatile").valueText);
     }
 
     YW_TEST(CommandLine, WhenCommandLineIncludesOneConfigWithCFlagAndWithValueConfigNameAndConfigValueAreBothSet)
@@ -142,7 +142,7 @@ YW_TEST_SET
         Assert::AreEqual(1, commandLine.getArguments().size());
         Assert::AreEqual("myscript.py", commandLine.getArguments()[0]);
         Assert::AreEqual(1, commandLine.getSettings().size());
-        Assert::AreEqual("true", commandLine.getSettings().getSetting("extract.volatile").value.getValue());
+        Assert::AreEqual("true", commandLine.getSettings().getSetting("extract.volatile").valueText.getValue());
     }
 
     YW_TEST(CommandLine, WhenCommandLineIncludesOneConfigWithoutCFlagButWithValueConfigNameAndConfigValueAreBothSet)
@@ -155,7 +155,7 @@ YW_TEST_SET
         Assert::AreEqual(1, commandLine.getArguments().size());
         Assert::AreEqual("myscript.py", commandLine.getArguments()[0]);
         Assert::AreEqual(1, commandLine.getSettings().size());
-        Assert::AreEqual("true", commandLine.getSettings().getSetting("extract.volatile").value.getValue());
+        Assert::AreEqual("true", commandLine.getSettings().getSetting("extract.volatile").valueText.getValue());
     }
 
     YW_TEST(CommandLine, CommandLineCanAccomodateMultipleConfigOptionsWithAndWithoutValues)
@@ -168,11 +168,11 @@ YW_TEST_SET
         Expect::AreEqual("myscript.py", commandLine.getArguments()[0]);
 
         Assert::AreEqual(4, commandLine.getSettings().size());
-        Assert::AreEqual("true", commandLine.getSettings().getSetting("extract.volatile").value.getValue());
-        Assert::AreEqual("top", commandLine.getSettings().getSetting("model.workflow").value.getValue());
-        Assert::AreEqual("My workflow", commandLine.getSettings().getSetting("graph.title").value.getValue());
+        Assert::AreEqual("true", commandLine.getSettings().getSetting("extract.volatile").valueText.getValue());
+        Assert::AreEqual("top", commandLine.getSettings().getSetting("model.workflow").valueText.getValue());
+        Assert::AreEqual("My workflow", commandLine.getSettings().getSetting("graph.title").valueText.getValue());
         Assert::IsTrue(commandLine.getSettings().contains("graph.workflowbox"));
-        Assert::IsNull(commandLine.getSettings().getSetting("graph.workflowbox").value);
+        Assert::IsNull(commandLine.getSettings().getSetting("graph.workflowbox").valueText);
     }
 
     YW_TEST(CommandLine, CommandLineCanDistinguishInterleavedArgumentsAndConfigOptions)
@@ -189,11 +189,11 @@ YW_TEST_SET
         Assert::AreEqual("arg4", commandLine.getArguments()[3]);
         Assert::AreEqual("arg5", commandLine.getArguments()[4]);
         Assert::AreEqual(4, commandLine.getSettings().size());
-        Assert::AreEqual("true", commandLine.getSettings().getSetting("extract.volatile").value.getValue());
-        Assert::AreEqual("top", commandLine.getSettings().getSetting("model.workflow").value.getValue());
-        Assert::AreEqual("My workflow", commandLine.getSettings().getSetting("graph.title").value.getValue());
+        Assert::AreEqual("true", commandLine.getSettings().getSetting("extract.volatile").valueText.getValue());
+        Assert::AreEqual("top", commandLine.getSettings().getSetting("model.workflow").valueText.getValue());
+        Assert::AreEqual("My workflow", commandLine.getSettings().getSetting("graph.title").valueText.getValue());
         Assert::IsTrue(commandLine.getSettings().contains("graph.workflowbox"));
-        Assert::IsNull(commandLine.getSettings().getSetting("graph.workflowbox").value);
+        Assert::IsNull(commandLine.getSettings().getSetting("graph.workflowbox").valueText);
     }
 
 YW_TEST_END

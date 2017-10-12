@@ -57,14 +57,14 @@ namespace yw {
         }
 
         string WorkflowGrapher::config(const string& key) {
-            return configuration.getStringValue(key);
+            return configuration.getValueText(key);
         }
 
         string WorkflowGrapher::graph(const row_id& modelId) {
             auto workflowNameSetting = configuration.getSetting("graph.workflow");
             string workflowName;
-            if (workflowNameSetting.value.hasValue()) {
-                workflowName = workflowNameSetting.value.getValue();
+            if (workflowNameSetting.valueText.hasValue()) {
+                workflowName = workflowNameSetting.valueText.getValue();
             }
             else {
                 auto topLevelProgramBlocks = ywdb.selectTopLevelProgramBlocksInModel(modelId);

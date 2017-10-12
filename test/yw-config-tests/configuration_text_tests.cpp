@@ -27,7 +27,7 @@ YW_TEST_SET
         Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(1, configuration.size());
-        Assert::AreEqual("value", configuration.getStringValue("key"));
+        Assert::AreEqual("value", configuration.getValueText("key"));
     }
 
     YW_TEST(ConfigurationText, ConfigurationSettingOnOneLineWithWhitespaceYieldsConfigurationWithOneSetting)
@@ -36,7 +36,7 @@ YW_TEST_SET
         Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(1, configuration.size());
-        Assert::AreEqual("value", configuration.getStringValue("key"));
+        Assert::AreEqual("value", configuration.getValueText("key"));
     }
 
     YW_TEST(ConfigurationText, ConfigurationTextWithOneHashCommentYieldsConfigurationWithSizeIsZero)
@@ -74,7 +74,7 @@ YW_TEST_SET
         Expect::EmptyString(stderrRecorder.str());
 
         Assert::AreEqual(1, configuration.size());
-        Assert::AreEqual("value", configuration.getStringValue("key"));
+        Assert::AreEqual("value", configuration.getValueText("key"));
    }
 
    YW_TEST(ConfigurationText, ConfigurationTextWithOneSettingWithNoSpacesAroundEqualsYieldsConfigurationWithOneSetting)
@@ -87,33 +87,7 @@ YW_TEST_SET
        Expect::EmptyString(stderrRecorder.str());
 
        Assert::AreEqual(1, configuration.size());
-       Assert::AreEqual("value", configuration.getStringValue("key"));
-   }
-
-   YW_TEST(ConfigurationText, ConfigurationValueContainingEqualsYieldsConfigurationWithOneSetting)
-   {
-       configuration.insertSettingsFromText(R"(
-
-            key = value = 3
-
-        )" );
-       Expect::EmptyString(stderrRecorder.str());
-
-       Assert::AreEqual(1, configuration.size());
-       Assert::AreEqual("value = 3", configuration.getStringValue("key"));
-   }
-
-   YW_TEST(ConfigurationText, ConfigurationValueContainingEqualsWIthNoSpaceYieldsConfigurationWithOneSetting)
-   {
-       configuration.insertSettingsFromText(R"(
-
-            key=value=3
-
-        )" );
-       Expect::EmptyString(stderrRecorder.str());
-
-       Assert::AreEqual(1, configuration.size());
-       Assert::AreEqual("value=3", configuration.getStringValue("key"));
+       Assert::AreEqual("value", configuration.getValueText("key"));
    }
 
    YW_TEST(ConfigurationText, AfterInsertingTwoSettingsWithDifferentKeysConfigurationSizeIsTwo)
@@ -128,8 +102,8 @@ YW_TEST_SET
        Expect::EmptyString(stderrRecorder.str());
 
        Assert::AreEqual(2, configuration.size());
-       Assert::AreEqual("value 1", configuration.getStringValue("key1"));
-       Assert::AreEqual("value 2", configuration.getStringValue("key2"));
+       Assert::AreEqual("value 1", configuration.getValueText("key1"));
+       Assert::AreEqual("value 2", configuration.getValueText("key2"));
    }
 
    YW_TEST(ConfigurationText, ConfigurationTextWithOneMultiwordSettingYieldsConfigurationWithOneSetting)
@@ -142,7 +116,7 @@ YW_TEST_SET
        Expect::EmptyString(stderrRecorder.str());
 
        Assert::AreEqual(1, configuration.size());
-       Assert::AreEqual("multiple word value", configuration.getStringValue("key"));
+       Assert::AreEqual("multiple word value", configuration.getValueText("key"));
    }
 
    YW_TEST(ConfigurationText, ConfigurationTextWithSinglyQuotedMultiwordSettingYieldsConfigurationWithOneSetting)
@@ -155,7 +129,7 @@ YW_TEST_SET
        Expect::EmptyString(stderrRecorder.str());
 
        Assert::AreEqual(1, configuration.size());
-       Assert::AreEqual("multiple word value", configuration.getStringValue("key"));
+       Assert::AreEqual("multiple word value", configuration.getValueText("key"));
    }
 
    YW_TEST(ConfigurationText, ConfigurationTextWithDoublyQuotedMultiwordSettingYieldsConfigurationWithOneSetting)
@@ -168,7 +142,7 @@ YW_TEST_SET
        Expect::EmptyString(stderrRecorder.str());
 
        Assert::AreEqual(1, configuration.size());
-       Assert::AreEqual("multiple word value", configuration.getStringValue("key"));
+       Assert::AreEqual("multiple word value", configuration.getValueText("key"));
    }
 
 
@@ -184,7 +158,7 @@ YW_TEST_SET
        Expect::EmptyString(stderrRecorder.str());
 
        Assert::AreEqual(1, configuration.size());
-       Assert::AreEqual("value", configuration.getStringValue("key"));
+       Assert::AreEqual("value", configuration.getValueText("key"));
    }
 
    YW_TEST(ConfigurationText, ConfigurationTextWithCommentOnSameLineAsSettingYieldsConfigurationWithOneSetting)
@@ -197,7 +171,7 @@ YW_TEST_SET
        Expect::EmptyString(stderrRecorder.str());
 
        Assert::AreEqual(1, configuration.size());
-       Assert::AreEqual("multiple word value", configuration.getStringValue("key"));
+       Assert::AreEqual("multiple word value", configuration.getValueText("key"));
    }
 
    YW_TEST(ConfigurationText, ConfigurationTextWithCommentOnSameLineAsQuotedSettingWithTerminalSpacesYieldsConfigurationValueWithTerminalSpaces)
@@ -211,7 +185,7 @@ YW_TEST_SET
        Expect::EmptyString(stderrRecorder.str());
 
        Assert::AreEqual(1, configuration.size());
-       Assert::AreEqual("  multiple word value  ", configuration.getStringValue("key"));
+       Assert::AreEqual("  multiple word value  ", configuration.getValueText("key"));
     }
 
 YW_TEST_END

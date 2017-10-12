@@ -45,6 +45,9 @@ public:
   virtual void enterUnquotedValue(YW_CONFIG_Parser::UnquotedValueContext * /*ctx*/) override { }
   virtual void exitUnquotedValue(YW_CONFIG_Parser::UnquotedValueContext * /*ctx*/) override { }
 
+  virtual void enterWord(YW_CONFIG_Parser::WordContext * /*ctx*/) override { }
+  virtual void exitWord(YW_CONFIG_Parser::WordContext * /*ctx*/) override { }
+
 
   virtual void enterEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }
   virtual void exitEveryRule(antlr4::ParserRuleContext * /*ctx*/) override { }

@@ -93,6 +93,7 @@ YW_TEST_SET
             
             Setting                    Values (* indicates default)
             -------------              ----------------------------
+            extract.sources            List of source files to extract annotations from
             graph.datalabel            Info to display in data nodes (NAME*, URI, or BOTH)
             graph.edgelabels           Labels on edges in process view (SHOW or HIDE*)
             graph.file                 Name of workflow graph image file to write

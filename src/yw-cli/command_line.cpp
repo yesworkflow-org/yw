@@ -30,9 +30,9 @@ namespace yw {
 
             for (auto config : context->config()) {
                 auto key = config->configName()->getText();
-                nullable_string value = (config->configValue() == nullptr) ?
+                nullable_string valueText = (config->configValue() == nullptr) ?
                     null_string : config->configValue()->unquotedValue()->getText();
-                settings.insert(Setting{ key, value, SettingSource::COMMAND_LINE });
+                settings.insert(Setting{ key, valueText, SettingSource::COMMAND_LINE });
             }
         }
 

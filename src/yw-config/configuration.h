@@ -34,7 +34,8 @@ namespace yw {
             int getIntValue(const std::string& key);
             double getDoubleValue(const std::string& key);
             size_t getSizeValue(const std::string& key);
-            std::string getStringValue(const std::string& key);
+            std::string getValueText(const std::string& key);
+            std::vector<std::string> getValueVector(const std::string& key);
             void insert(const Setting& setting);
             void insertAll(const Configuration& settings);
             size_t size() { return settings.size(); }

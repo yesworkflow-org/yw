@@ -13,8 +13,8 @@ namespace yw {
 class  YW_CONFIG_Lexer : public antlr4::Lexer {
 public:
   enum {
-    T__0 = 1, T__1 = 2, T__2 = 3, NEWLINE = 4, SPACE = 5, DQ = 6, SQ = 7, 
-    WORD = 8
+    T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, NEWLINE = 5, SPACE = 6, DQ = 7, 
+    SQ = 8, WORD = 9
   };
 
   YW_CONFIG_Lexer(antlr4::CharStream *input);
