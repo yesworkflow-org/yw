@@ -16,12 +16,10 @@ namespace yw {
     public:
 
         nullable() : isSet(false), value() {}
-
         nullable(const T& value) : isSet(true), value(value) {}
-
         bool hasValue() const { return isSet; }
 
-        const T& getValue() const {
+        T getValue() const {
             if (!isSet) { throw std::runtime_error("No value assigned"); }
             return value;
         }
@@ -41,7 +39,8 @@ namespace yw {
         bool operator==(const nullable<T>& rhs) const {
             if (isSet) {
                 return rhs.isSet && value == rhs.value;
-            } else {
+            }
+            else {
                 return !rhs.isSet;
             }
         }
@@ -49,15 +48,13 @@ namespace yw {
         bool operator!=(const nullable<T>& rhs) const {
             return !(*this == rhs);
         }
-
     };
 
     class nullable_string : public nullable<std::string> {
     public:
         nullable_string() : nullable() {}
         nullable_string(const std::string& value) : nullable(value) {}
-        nullable_string(const char * c_ptr) : nullable(
-            c_ptr == nullptr ? nullable{} : nullable{ std::string(c_ptr) }) {}
+        nullable_string(const char * c_ptr) : nullable(c_ptr == nullptr ? nullable{} : nullable{ std::string(c_ptr) }) {}
     };
 
     using row_id = long;
@@ -68,12 +65,7 @@ namespace yw {
         nullable_row_id() : nullable() {}
         nullable_row_id(const long& value) : nullable(value) {}
         nullable_row_id(generation request) : nullable{}, request(request) {}
-        nullable_row_id operator=(const nullable_row_id& rhs) {
-            isSet = rhs.isSet;
-            value = rhs.value;
-            request = rhs.request;
-            return *this;
-        }
+        nullable_row_id operator=(const nullable_row_id& rhs);
     };
 
     using nullable_long = nullable<long>;

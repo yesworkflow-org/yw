@@ -96,7 +96,7 @@
       <PrecompiledHeaderFile>yw_test_msvc.h</PrecompiledHeaderFile>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\yw-test</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\yw-test</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -111,7 +111,7 @@
       <PrecompiledHeaderFile>yw_test_msvc.h</PrecompiledHeaderFile>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\yw-test</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\yw-test</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -127,7 +127,7 @@
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>yw_test_msvc.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\yw-test</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\yw-test</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -145,7 +145,7 @@
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>yw_test_msvc.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\yw-test</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\yw-test</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -154,7 +154,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\test\yw-test\stdio_recorders.h" />
     <ClInclude Include="..\..\test\yw-test\yw_test.h" />
     <ClInclude Include="..\..\test\yw-test\yw_test_cpputest.h" />
     <ClInclude Include="..\..\test\yw-test\yw_test_msvc.h" />

@@ -1,7 +1,9 @@
 #pragma once
 
 #include "ywdb.h"
+#include "stdio_recorders.h"
 #include "YWBaseListener.h"
+#include <iostream>
 
 namespace yw {
     namespace extract {
@@ -27,6 +29,7 @@ namespace yw {
         private:
             long currentLineNumber = 0;
             long currentRankOnLine = 0;
+            //yw::StderrRecorder stderrRecorder;
 
         public:
             AnnotationListener(
@@ -34,7 +37,13 @@ namespace yw {
                 const row_id& extractionId,
                 const row_id& sourceId
             ) : ywdb(ywdb), extractionId(extractionId), sourceId(sourceId)
-            {}
+            {
+                //std::cout << "constructor" << std::endl;
+            }
+
+            virtual ~AnnotationListener() {
+                //std::cout << "destructor" << std::endl;
+            }
 
             void enterBegin(YWParser::BeginContext *context) override;
             void enterEnd(YWParser::EndContext *context) override;
@@ -49,6 +58,7 @@ namespace yw {
         private:
             auto getLineId(antlr4::ParserRuleContext* context);
             auto getRangeInLine(antlr4::ParserRuleContext* context);
+            void throwParsingException(antlr4::ParserRuleContext* context);
         };
     }
 }

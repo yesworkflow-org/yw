@@ -15,6 +15,7 @@ YW_TEST_FIXTURE(AnnotationListener)
     std::shared_ptr<SourceLoader> sourceLoader;
     AnnotationListener* listener;
     StderrRecorder stderrRecorder;
+    StdoutRecorder stdoutRecorder;
 
     void storeAndParse(const std::string& code) {
         sourceLoader->insertSourceLinesFromString(sourceId, code);
@@ -97,6 +98,7 @@ YW_TEST_SET
             "@end b"    EOL
         );
         Expect::EmptyString(stderrRecorder.str());
+        Expect::EmptyString(stdoutRecorder.str());
 
         auto beginAnnotation1 = ywdb.selectAnnotationById(1);
         auto beginAnnotation2 = ywdb.selectAnnotationById(2);

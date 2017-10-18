@@ -8,4 +8,5 @@
 #include <sstream>
 
 #include "configuration.h"
+#include "yw_io.h"
 #include "yw_test.h"

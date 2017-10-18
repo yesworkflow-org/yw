@@ -15,3 +15,4 @@
 #include "source_loader.h"
 #include "outline_exporter.h"
 #include "yw_db_test_helpers.h"
+#include "yw_io.h"

@@ -33,6 +33,8 @@ namespace yw {
                 currentDataIds = std::make_shared<std::map<std::string, row_id>>();
             }
 
+            ~ModelEntityListener() {}
+
             row_id getIdForDataBlock(std::string name);
             nullable_row_id currentWorkflowId();
 

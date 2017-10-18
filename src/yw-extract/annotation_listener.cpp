@@ -1,5 +1,7 @@
 #include "annotation_listener.h"
 #include "annotation.h"
+#include "yw_parser_exception.h"
+
 
 using namespace yw::sqlite;
 using namespace yw::db;
@@ -8,7 +10,6 @@ using Tag = yw::db::Annotation::Tag;
 
 namespace yw {
     namespace extract {
-
 
         auto AnnotationListener::getRangeInLine(antlr4::ParserRuleContext* context) {
             auto startInSource = static_cast<long>(context->getStart()->getStartIndex());
@@ -52,8 +53,20 @@ namespace yw {
             currentPrimaryAnnotation = beginAnnotation;
         }
 
+        void AnnotationListener::throwParsingException(antlr4::ParserRuleContext* context) {
+            auto text = context->getText();
+            try {
+                std::rethrow_exception(context->exception);
+            }
+            catch (const std::exception& e) {
+                throw yw::parse::YWParserException{ "error"/*stderrRecorder.str()*/, text };
+            }
+        }
+
         void AnnotationListener::enterEnd(YWParser::EndContext *end)
         {
+            if (end->exception) throwParsingException(end);
+
             auto lineId = getLineId(end);
             auto rangeInLine = getRangeInLine(end);
             auto optionalBlockName = (end->blockName() != nullptr) ? 

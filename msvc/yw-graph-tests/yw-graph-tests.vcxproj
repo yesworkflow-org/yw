@@ -96,13 +96,13 @@
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>yw_graph_tests.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-graph;$(SolutionDir)\..\test\yw-graph-tests;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\..\test\yw-model-tests;$(SolutionDir)\..\test\yw-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\yw-model-tests;$(ANTLR4_RUNTIME_SRC)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-graph;$(SolutionDir)\..\test\yw-graph-tests;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\..\test\yw-model-tests;$(SolutionDir)\..\test\yw-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\yw-model-tests;$(ANTLR4_RUNTIME_SRC)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ANTLR4CPP_STATIC;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)\sqlite3\x64\Debug;$(SolutionDir)\antlr4-runtime\x64\Debug;$(GRAPHVIZ_SRC)/x64/StaticDebug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;antlr4-runtime.lib;sqlite3.lib;sqlite-db.lib;yw-config.lib;yw-cli.lib;yw-db.lib;yw-extract.lib;yw-graph.lib;yw-model.lib;yw-parse.lib</AdditionalDependencies>
+      <AdditionalDependencies>yw-common.lib;yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;antlr4-runtime.lib;sqlite3.lib;sqlite-db.lib;yw-config.lib;yw-cli.lib;yw-db.lib;yw-extract.lib;yw-graph.lib;yw-model.lib;yw-parse.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -112,13 +112,13 @@
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>yw_graph_tests.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-graph;$(SolutionDir)\..\test\yw-graph-tests;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\..\test\yw-model-tests;$(SolutionDir)\..\test\yw-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\yw-model-tests;$(ANTLR4_RUNTIME_SRC)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-graph;$(SolutionDir)\..\test\yw-graph-tests;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\..\test\yw-model-tests;$(SolutionDir)\..\test\yw-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\yw-model-tests;$(ANTLR4_RUNTIME_SRC)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ANTLR4CPP_STATIC;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)\sqlite3\Debug;$(SolutionDir)\antlr4-runtime\Debug;$(GRAPHVIZ_SRC)/Win32/StaticDebug</AdditionalLibraryDirectories>
-      <AdditionalDependencies>yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;antlr4-runtime.lib;sqlite3.lib;sqlite-db.lib;yw-config.lib;yw-cli.lib;yw-db.lib;yw-extract.lib;yw-graph.lib;yw-model.lib;yw-parse.lib</AdditionalDependencies>
+      <AdditionalDependencies>yw-common.lib;yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;antlr4-runtime.lib;sqlite3.lib;sqlite-db.lib;yw-config.lib;yw-cli.lib;yw-db.lib;yw-extract.lib;yw-graph.lib;yw-model.lib;yw-parse.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -130,7 +130,7 @@
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>yw_graph_tests.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-graph;$(SolutionDir)\..\test\yw-graph-tests;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\..\test\yw-model-tests;$(SolutionDir)\..\test\yw-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\yw-model-tests;$(ANTLR4_RUNTIME_SRC)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-graph;$(SolutionDir)\..\test\yw-graph-tests;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\..\test\yw-model-tests;$(SolutionDir)\..\test\yw-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\yw-model-tests;$(ANTLR4_RUNTIME_SRC)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ANTLR4CPP_STATIC;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -138,7 +138,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)\sqlite3\Release;$(SolutionDir)\antlr4-runtime\Release;$(GRAPHVIZ_SRC)/Win32/StaticRelease</AdditionalLibraryDirectories>
-      <AdditionalDependencies>yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;antlr4-runtime.lib;sqlite3.lib;sqlite-db.lib;yw-config.lib;yw-cli.lib;yw-db.lib;yw-extract.lib;yw-graph.lib;yw-model.lib;yw-parse.lib</AdditionalDependencies>
+      <AdditionalDependencies>yw-common.lib;yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;antlr4-runtime.lib;sqlite3.lib;sqlite-db.lib;yw-config.lib;yw-cli.lib;yw-db.lib;yw-extract.lib;yw-graph.lib;yw-model.lib;yw-parse.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -150,7 +150,7 @@
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>yw_graph_tests.h</PrecompiledHeaderFile>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-graph;$(SolutionDir)\..\test\yw-graph-tests;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\..\test\yw-model-tests;$(SolutionDir)\..\test\yw-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\yw-model-tests;$(ANTLR4_RUNTIME_SRC)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-graph;$(SolutionDir)\..\test\yw-graph-tests;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\src\yw-extract;$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\src\yw-parse;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\..\test\yw-extract-tests;$(SolutionDir)\..\test\yw-model-tests;$(SolutionDir)\..\test\yw-db-tests;$(SolutionDir)\..\test\yw-test;$(SolutionDir)\yw-model-tests;$(ANTLR4_RUNTIME_SRC)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ANTLR4CPP_STATIC;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
@@ -158,7 +158,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)\sqlite3\x64\Debug;$(SolutionDir)\antlr4-runtime\x64\Release;$(GRAPHVIZ_SRC)/x64/StaticRelease</AdditionalLibraryDirectories>
-      <AdditionalDependencies>yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;antlr4-runtime.lib;sqlite3.lib;sqlite-db.lib;yw-config.lib;yw-cli.lib;yw-db.lib;yw-extract.lib;yw-graph.lib;yw-model.lib;yw-parse.lib</AdditionalDependencies>
+      <AdditionalDependencies>yw-common.lib;yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;antlr4-runtime.lib;sqlite3.lib;sqlite-db.lib;yw-config.lib;yw-cli.lib;yw-db.lib;yw-extract.lib;yw-graph.lib;yw-model.lib;yw-parse.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\test\yw-graph-tests\dot_builder_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-graph-tests\graph_error_tests.cpp" />
     <ClCompile Include="..\..\test\yw-graph-tests\workflow_grapher_tests.cpp" />
     <ClCompile Include="..\..\test\yw-graph-tests\workflow_graph_cli_tests.cpp" />
     <ClCompile Include="..\..\test\yw-graph-tests\workflow_graph_config_tests.cpp" />

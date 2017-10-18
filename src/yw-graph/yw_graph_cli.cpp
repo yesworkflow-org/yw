@@ -4,6 +4,7 @@
 #include "ywdb.h"
 #include "configuration.h"
 #include "graphviz_renderer.h"
+#include "yw_io.h"
 
 #include <iostream>
 
@@ -80,7 +81,7 @@ namespace yw {
                 modelId = ModelBuilder{ ywdb }.buildModelFromFiles(filesToExtract);
             }
             catch (std::exception e) {
-                std::cerr << "Error extracting annotations. " << e.what() << std::endl;
+                std::cerr << "Error extracting annotations: " << e.what() << std::endl;
                 return 0;
             }
 

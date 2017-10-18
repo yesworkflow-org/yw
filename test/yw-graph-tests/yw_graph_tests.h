@@ -17,4 +17,5 @@
 #include "yw_parser_builder.h"
 #include "yw_graph_cli.h"
 #include "yw_test.h"
+#include "yw_io.h"
 

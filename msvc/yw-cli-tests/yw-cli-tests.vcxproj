@@ -91,7 +91,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\test\yw-cli-tests;$(SolutionDir)\yw-cli-tests;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\test\yw-test;$(ANTLR4_RUNTIME_SRC);$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\test\yw-cli-tests;$(SolutionDir)\yw-cli-tests;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\test\yw-test;$(ANTLR4_RUNTIME_SRC);$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ANTLR4CPP_STATIC;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>yw_cli_tests.h</PrecompiledHeaderFile>
@@ -99,7 +99,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>yw-cli.lib;yw-config.lib;antlr4-runtime.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>yw-common.lib;yw-cli.lib;yw-config.lib;antlr4-runtime.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\antlr4-runtime\x64\Debug;$(OutDir);</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -107,7 +107,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\test\yw-cli-tests;$(SolutionDir)\yw-cli-tests;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\test\yw-test;$(ANTLR4_RUNTIME_SRC);$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\test\yw-cli-tests;$(SolutionDir)\yw-cli-tests;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\test\yw-test;$(ANTLR4_RUNTIME_SRC);$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ANTLR4CPP_STATIC;WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>yw_cli_tests.h</PrecompiledHeaderFile>
@@ -115,7 +115,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalDependencies>yw-cli.lib;yw-config.lib;antlr4-runtime.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>yw-common.lib;yw-cli.lib;yw-config.lib;antlr4-runtime.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\antlr4-runtime\Debug;$(OutDir);</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -125,7 +125,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\test\yw-cli-tests;$(SolutionDir)\yw-cli-tests;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\test\yw-test;$(ANTLR4_RUNTIME_SRC);$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\test\yw-cli-tests;$(SolutionDir)\yw-cli-tests;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\test\yw-test;$(ANTLR4_RUNTIME_SRC);$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ANTLR4CPP_STATIC;WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>yw_cli_tests.h</PrecompiledHeaderFile>
@@ -135,7 +135,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>yw-cli.lib;yw-config.lib;antlr4-runtime.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>yw-common.lib;yw-cli.lib;yw-config.lib;antlr4-runtime.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\antlr4-runtime\Release;$(OutDir);</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
@@ -145,7 +145,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-types;$(SolutionDir)\..\test\yw-cli-tests;$(SolutionDir)\yw-cli-tests;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\test\yw-test;$(ANTLR4_RUNTIME_SRC);$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\test\yw-cli-tests;$(SolutionDir)\yw-cli-tests;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\test\yw-test;$(ANTLR4_RUNTIME_SRC);$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>ANTLR4CPP_STATIC;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>yw_cli_tests.h</PrecompiledHeaderFile>
@@ -155,7 +155,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>yw-cli.lib;yw-config.lib;antlr4-runtime.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>yw-common.lib;yw-cli.lib;yw-config.lib;antlr4-runtime.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\antlr4-runtime\x64\Release;$(OutDir);</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
