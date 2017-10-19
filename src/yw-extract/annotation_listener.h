@@ -25,6 +25,7 @@ namespace yw {
             yw::db::Flow::Direction portDirection;
             std::shared_ptr<yw::db::Annotation> lastPortAnnotation;
             AnnotationRange portRangeInLine;
+            StderrRecorder stderrRecorder;
 
         private:
             long currentLineNumber = 0;

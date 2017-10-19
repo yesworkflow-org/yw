@@ -13,7 +13,7 @@ namespace yw {
         {}
 
         string YWParserException::getMessage() const {
-            return "YW parser exception: " + string(what());
+            return string(what());
         }
 
         string YWParserException::getText() const {

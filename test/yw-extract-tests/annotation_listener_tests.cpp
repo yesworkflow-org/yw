@@ -42,7 +42,6 @@ YW_TEST_SET
         this->storeAndParse(
             "@begin b"
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         Assert::AreEqual(1, ywdb.getRowCount("line"));
         Assert::AreEqual(1, ywdb.getRowCount("annotation"));
@@ -54,7 +53,6 @@ YW_TEST_SET
         this->storeAndParse(
             "     @begin b"
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         Assert::AreEqual(1, ywdb.getRowCount("line"));
         Assert::AreEqual(1, ywdb.getRowCount("annotation"));
@@ -66,7 +64,6 @@ YW_TEST_SET
         this->storeAndParse(
             "some code @begin b"
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         Assert::AreEqual(1, ywdb.getRowCount("line"));
         Assert::AreEqual(1, ywdb.getRowCount("annotation"));
@@ -80,7 +77,6 @@ YW_TEST_SET
             "@begin b"  EOL
                         EOL
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         Assert::AreEqual(3, ywdb.getRowCount("line"));
         Assert::AreEqual(1, ywdb.getRowCount("annotation"));
@@ -432,7 +428,6 @@ YW_TEST_SET
         this->storeAndParse(
             "@begin b @desc the description of the block"
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         auto beginAnnotation = ywdb.selectAnnotationById(1);
         auto descAnnotation = ywdb.selectAnnotationById(2);
@@ -450,7 +445,6 @@ YW_TEST_SET
             "@begin b"								EOL
             "@desc the description of the block"	EOL
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         auto beginAnnotation = ywdb.selectAnnotationById(1);
         auto descAnnotation = ywdb.selectAnnotationById(2);
@@ -467,7 +461,6 @@ YW_TEST_SET
         this->storeAndParse(
             "@begin b @in p"
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         auto beginAnnotation = ywdb.selectAnnotationById(1);
         auto inAnnotation = ywdb.selectAnnotationById(2);
@@ -484,7 +477,6 @@ YW_TEST_SET
         this->storeAndParse(
             "@begin b @in 'p'"
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         auto beginAnnotation = ywdb.selectAnnotationById(1);
         auto inAnnotation = ywdb.selectAnnotationById(2);
@@ -502,7 +494,6 @@ YW_TEST_SET
             "@begin b"	EOL
             "@in p"		EOL
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         auto beginAnnotation = ywdb.selectAnnotationById(1);
         auto inAnnotation = ywdb.selectAnnotationById(2);
@@ -568,7 +559,6 @@ YW_TEST_SET
         this->storeAndParse(
             "@begin b @param p"
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         auto beginAnnotation = ywdb.selectAnnotationById(1);
         auto paramAnnotation = ywdb.selectAnnotationById(2);
@@ -586,7 +576,6 @@ YW_TEST_SET
             "@begin b"	EOL
             "@param p"	EOL
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         auto beginAnnotation = ywdb.selectAnnotationById(1);
         auto paramAnnotation = ywdb.selectAnnotationById(2);
@@ -604,7 +593,6 @@ YW_TEST_SET
         this->storeAndParse(
             "@begin b @in p q r"
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         auto beginAnnotation = ywdb.selectAnnotationById(1);
         auto inAnnotation1 = ywdb.selectAnnotationById(2);
@@ -628,7 +616,6 @@ YW_TEST_SET
         this->storeAndParse(
             "@begin b @in 'p' q 'port_r'"
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         auto beginAnnotation = ywdb.selectAnnotationById(1);
         auto inAnnotation1 = ywdb.selectAnnotationById(2);
@@ -650,7 +637,6 @@ YW_TEST_SET
     YW_TEST(AnnotationListener, WhenInHasMultipleDoublyQuotedArgumentsQualifyingIdOfEachIsIdOfBegin)
     {
         this->storeAndParse(R"(@begin b @in "p" q "port_r")");
-        Expect::NonEmptyString(stderrRecorder.str());
 
         auto beginAnnotation = ywdb.selectAnnotationById(1);
         auto inAnnotation1 = ywdb.selectAnnotationById(2);
@@ -789,7 +775,6 @@ YW_TEST_SET
         this->storeAndParse(
             "@begin b @in p @as name of data port receives"
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         auto beginAnnotation = ywdb.selectAnnotationById(1);
         auto inAnnotation = ywdb.selectAnnotationById(2);
@@ -810,7 +795,6 @@ YW_TEST_SET
             "@begin b @in p"					EOL
             "@as name of data port receives"	EOL
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         auto beginAnnotation = ywdb.selectAnnotationById(1);
         auto inAnnotation = ywdb.selectAnnotationById(2);
@@ -830,7 +814,6 @@ YW_TEST_SET
         this->storeAndParse(
             "@begin b @in p @as 'name of data port receives' some extra text"
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         auto beginAnnotation = ywdb.selectAnnotationById(1);
         auto inAnnotation = ywdb.selectAnnotationById(2);
@@ -848,7 +831,6 @@ YW_TEST_SET
     YW_TEST(AnnotationListener, WhenDataNameArgumentOfAliasTagIsDoublyQuotedTextFollowingDataNameIsIgnored)
     {
         this->storeAndParse(R"(@begin b @in p @as "name of data port receives" some extra text)");
-        Expect::NonEmptyString(stderrRecorder.str());
 
         auto beginAnnotation = ywdb.selectAnnotationById(1);
         auto inAnnotation = ywdb.selectAnnotationById(2);
@@ -872,7 +854,6 @@ YW_TEST_SET
             "@param r"							EOL
             "@as name of data param receives"	EOL
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         auto beginAnnotation = ywdb.selectAnnotationById(1);
         auto inAnnotation1 = ywdb.selectAnnotationById(2);
@@ -898,7 +879,6 @@ YW_TEST_SET
         this->storeAndParse(
             "@begin b @out p"
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         auto beginAnnotation = ywdb.selectAnnotationById(1);
         auto outAnnotation = ywdb.selectAnnotationById(2);
@@ -915,7 +895,6 @@ YW_TEST_SET
         this->storeAndParse(
             "@begin b @return p"
         );
-        Expect::NonEmptyString(stderrRecorder.str());
 
         auto beginAnnotation = ywdb.selectAnnotationById(1);
         auto returnAnnotation = ywdb.selectAnnotationById(2);

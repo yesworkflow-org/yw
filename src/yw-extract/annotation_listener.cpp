@@ -2,6 +2,8 @@
 #include "annotation.h"
 #include "yw_parser_exception.h"
 
+#include <istream>
+#include <regex>
 
 using namespace yw::sqlite;
 using namespace yw::db;
@@ -30,6 +32,8 @@ namespace yw {
 
         void AnnotationListener::enterAlias(YWParser::AliasContext *alias)
         {
+            if (alias->exception) throwParsingException(alias);
+
             auto lineId = getLineId(alias);
             auto rangeInLine = getRangeInLine(alias);
             ywdb.insert(Annotation{ auto_id, extractionId, Tag::AS, currentPrimaryAnnotation->id, lineId,
@@ -40,6 +44,8 @@ namespace yw {
 
         void AnnotationListener::enterBegin(YWParser::BeginContext *begin)
         {
+            if (begin->exception) throwParsingException(begin);
+
             auto lineId = getLineId(begin);
             auto rangeInLine = getRangeInLine(begin);
             primaryAnnotationStack.push(currentPrimaryAnnotation);
@@ -59,7 +65,23 @@ namespace yw {
                 std::rethrow_exception(context->exception);
             }
             catch (const std::exception& e) {
-                throw yw::parse::YWParserException{ "error"/*stderrRecorder.str()*/, text };
+                const std::regex pattern{ "line (\\d{1,9}):(\\d{1,9}) mismatched input ('.+').*" };
+                std::match_results<std::string::const_iterator> matches;
+                std::istringstream errorMessage { stderrRecorder.str() };
+                std::string currentLine;
+                while (std::getline(errorMessage, currentLine)) {
+                    if (std::regex_match(currentLine, matches, pattern)) {
+                        auto line = matches[1];
+                        auto column = matches[2];
+                        auto input = matches[3];
+                        throw yw::parse::YWParserException{
+                            "An unexpected token " + input.str() + 
+                            " was encountered on line " + line.str() + 
+                            " at column " + column.str() + ".", 
+                            text };
+                    }
+                }
+                throw yw::parse::YWParserException{ currentLine, text };
             }
         }
 
@@ -81,6 +103,8 @@ namespace yw {
 
         void AnnotationListener::enterDesc(YWParser::DescContext *desc)
         {
+            if (desc->exception) throwParsingException(desc);
+
             auto lineId = getLineId(desc);
             auto rangeInLine = getRangeInLine(desc);
             ywdb.insert(Annotation{ auto_id, extractionId, Tag::DESC, currentPrimaryAnnotation->id, lineId,
@@ -104,6 +128,9 @@ namespace yw {
         }
 
         void AnnotationListener::enterPort(YWParser::PortContext *port) {
+
+            if (port->exception) throwParsingException(port);
+
             portTag = getPortTag(port);
             portLineId = getLineId(port);
             if (port->inputKeyword() != NULL) {
@@ -118,6 +145,9 @@ namespace yw {
         }
 
         void AnnotationListener::enterPortName(YWParser::PortNameContext *context) {
+
+            if (context->exception) throwParsingException(context);
+
             portName = nullable_string(context->word()->unquotedWord()->getText());
             lastPortAnnotation = std::make_shared<Annotation>(
                 auto_id, extractionId, portTag, currentPrimaryAnnotation->id, portLineId,
@@ -133,9 +163,11 @@ namespace yw {
 
         void AnnotationListener::enterIo(YWParser::IoContext *io) 
         {
+            if (io->exception) throwParsingException(io);
         }
 
-        void AnnotationListener::exitIo(YWParser::IoContext *context) {
+        void AnnotationListener::exitIo(YWParser::IoContext *io) {
+            if (io->exception) throwParsingException(io);
             currentPrimaryAnnotation = primaryAnnotationStack.top();
             primaryAnnotationStack.pop();
         }

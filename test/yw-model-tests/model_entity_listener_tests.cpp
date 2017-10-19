@@ -47,7 +47,6 @@ YW_TEST_SET
 
         )");
 
-        Expect::NonEmptyString(stderrRecorder.str());
         Expect::AreEqual(1, ywdb.getRowCount("program_block"));
 
         auto programBlock = ywdb.selectProgramBlockById(1);
