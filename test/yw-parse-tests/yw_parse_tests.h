@@ -11,6 +11,7 @@
 #include "YWBaseListener.h"
 #include "YWParser.h"
 #include "YWLexer.h"
-#include "yw_parser_builder.h"
+#include "annotation_syntax_exception.h"
 #include "stub_yw_listener.h"
+#include "yw_parser_builder.h"
 #include "yw_test.h"

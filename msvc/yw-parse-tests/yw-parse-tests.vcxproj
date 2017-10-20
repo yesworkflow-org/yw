@@ -165,6 +165,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\test\yw-parse-tests\annotation_syntax_exception_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\begin_context_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\block_context_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\block_listener_tests.cpp" />

@@ -33,7 +33,7 @@ namespace yw {
             std::stringstream ss;
             ss << "A problem occurred parsing YW annotations";
             if (source.hasValue()) {
-                ss << " in source " << source.getValue();
+                ss << " in source file '" << source.getValue() << "'";
             }
             ss << ".";
             messageBacking = ss.str();

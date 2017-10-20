@@ -12,6 +12,19 @@ namespace yw {
             const std::string& what
         ) : ParsingException(source, what), line(line), column(column)
         {
+            updateMessage();
+        }
+
+        void AnnotationSyntaxException::updateMessage() {
+            auto source = getSource();
+            std::stringstream ss;
+            ss << "An annotation syntax error was encountered at column " << column;
+            ss << " of line " << line;
+            if (source.hasValue()) {
+                ss << " in source file '" << source.getValue() << "'";
+            }
+            ss << ".";
+            messageBacking = ss.str();
         }
     }
 }

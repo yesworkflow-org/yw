@@ -20,7 +20,7 @@ YW_TEST_SET
         catch (...) { Expect::Fail(); }
     }
 
-    YW_TEST(ParsingException, CatchingParsingExceptionAsStdExceptionReferenceYieldsExceptionWithSlicingWarningInMessage)
+    YW_TEST(ParsingException, CatchingParsingExceptionAsStdExceptionReferenceYieldsExceptionWithDefaultMessage)
     {
         try {
             throw ParsingException();
@@ -44,7 +44,7 @@ YW_TEST_SET
         catch (...) { Expect::Fail(); }
     }
 
-    YW_TEST(ParsingException, CatchingParsingExceptionAsStdRuntimeErrorReferenceYieldsExceptionWithSlicingWarningInMessage)
+    YW_TEST(ParsingException, CatchingParsingExceptionAsStdRuntimeErrorReferenceYieldsExceptionWithDefaultMessage)
     {
         try {
             throw ParsingException();
@@ -75,7 +75,7 @@ YW_TEST_SET
             Expect::Fail();
         }
         catch (const ParsingException& e) {
-            Assert::AreEqual("A problem occurred parsing YW annotations in source sample.sh.", e.what());
+            Assert::AreEqual("A problem occurred parsing YW annotations in source file 'sample.sh'.", e.what());
         }
         catch (...) { Expect::Fail(); }
     }
@@ -83,13 +83,13 @@ YW_TEST_SET
     YW_TEST(ParsingException, CatchingParsingExceptionWithSetSourceViaMethodYieldsMessageIncludingSource)
     {
         try {
-            auto exception = ParsingException("");
+            auto exception = ParsingException();
             exception.setSource("sample.sh");
             throw exception;
             Expect::Fail();
         }
         catch (const ParsingException& e) {
-            Assert::AreEqual("A problem occurred parsing YW annotations in source sample.sh.", e.what());
+            Assert::AreEqual("A problem occurred parsing YW annotations in source file 'sample.sh'.", e.what());
         }
         catch (...) { Expect::Fail(); }
     }

@@ -25,11 +25,11 @@ namespace yw {
 
             virtual void updateMessage();
 
+            std::string messageBacking;
+
         private:
 
             nullable_string source;
-            std::string messageBacking;
-
         };
     }
 }

@@ -18,6 +18,10 @@ namespace yw {
                 const nullable_string& source = null_string,
                 const std::string& what = "<sliced instance of yw::parse::AnnotationSyntaxException>"
             );
+
+        protected:
+
+            virtual void updateMessage();
         };
     }
 }
