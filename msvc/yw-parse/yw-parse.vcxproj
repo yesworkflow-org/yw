@@ -23,7 +23,7 @@
     <ProjectGuid>{7579AE60-7552-4A34-95D3-B360323FDAC0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ywparse</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -78,7 +78,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\yw-common</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PreprocessorDefinitions>ANTLR4CPP_STATIC;_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -93,7 +93,7 @@
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\yw-common</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <PreprocessorDefinitions>ANTLR4CPP_STATIC;_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -110,7 +110,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\yw-common</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PreprocessorDefinitions>ANTLR4CPP_STATIC;_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -129,7 +129,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\yw-common</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <PreprocessorDefinitions>ANTLR4CPP_STATIC;_UNICODE;UNICODE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
@@ -150,20 +150,24 @@
     <None Include="..\..\src\yw-parse\YWLexer.tokens" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\yw-parse\annotation_syntax_exception.cpp" />
+    <ClCompile Include="..\..\src\yw-parse\unexpected_token_exception.cpp" />
     <ClCompile Include="..\..\src\yw-parse\YWBaseListener.cpp" />
     <ClCompile Include="..\..\src\yw-parse\YWLexer.cpp" />
     <ClCompile Include="..\..\src\yw-parse\YWListener.cpp" />
     <ClCompile Include="..\..\src\yw-parse\YWParser.cpp" />
     <ClCompile Include="..\..\src\yw-parse\yw_parser_builder.cpp" />
-    <ClCompile Include="..\..\src\yw-parse\yw_parser_exception.cpp" />
+    <ClCompile Include="..\..\src\yw-parse\yw_parsing_exception.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\src\yw-parse\annotation_syntax_exception.h" />
+    <ClInclude Include="..\..\src\yw-parse\unexpected_token_exception.h" />
     <ClInclude Include="..\..\src\yw-parse\YWBaseListener.h" />
     <ClInclude Include="..\..\src\yw-parse\YWLexer.h" />
     <ClInclude Include="..\..\src\yw-parse\YWListener.h" />
     <ClInclude Include="..\..\src\yw-parse\YWParser.h" />
     <ClInclude Include="..\..\src\yw-parse\yw_parser_builder.h" />
-    <ClInclude Include="..\..\src\yw-parse\yw_parser_exception.h" />
+    <ClInclude Include="..\..\src\yw-parse\yw_parsing_exception.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

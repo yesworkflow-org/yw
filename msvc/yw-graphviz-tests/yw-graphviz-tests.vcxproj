@@ -23,7 +23,7 @@
     <ProjectGuid>{14AB3C13-B88C-4E4A-91C9-4088BE9C36AF}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ywgraphviztests</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
     <ProjectSubType>NativeUnitTestProject</ProjectSubType>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

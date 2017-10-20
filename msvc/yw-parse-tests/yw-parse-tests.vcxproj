@@ -23,7 +23,7 @@
     <ProjectGuid>{0270BA81-F73E-4AC9-B3C8-094F3F697BBD}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ywparsetests</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
     <ProjectSubType>NativeUnitTestProject</ProjectSubType>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

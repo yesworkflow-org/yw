@@ -43,7 +43,13 @@
     <ClCompile Include="..\..\src\yw-parse\yw_parser_builder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\yw-parse\yw_parser_exception.cpp">
+    <ClCompile Include="..\..\src\yw-parse\unexpected_token_exception.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\yw-parse\annotation_syntax_exception.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\yw-parse\yw_parsing_exception.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -63,7 +69,13 @@
     <ClInclude Include="..\..\src\yw-parse\yw_parser_builder.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\yw-parse\yw_parser_exception.h">
+    <ClInclude Include="..\..\src\yw-parse\unexpected_token_exception.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-parse\annotation_syntax_exception.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-parse\yw_parsing_exception.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

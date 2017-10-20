@@ -33,7 +33,7 @@
     <ProjectGuid>{EA928567-D2AB-4353-B0CB-43461B488643}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ywgraph</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

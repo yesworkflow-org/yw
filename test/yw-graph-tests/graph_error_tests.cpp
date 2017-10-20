@@ -1,6 +1,6 @@
 
 #include "yw_graph_tests.h"
-#include "yw_parser_exception.h"
+#include "yw_parsing_exception.h"
 
 using namespace yw;
 using namespace yw::cli;
@@ -83,5 +83,21 @@ YW_TEST_SET
             stderrRecorder.str()
         );
     }
+
+    //YW_TEST(GraphError, ErrorReportedBeginLacksProgramBlockName)
+    //{
+    //    runGraphCLIOnMalformedInput(trimmargins(R"(
+
+    //        # @begin 
+    //        # @end
+
+    //    )"));
+
+    //    Assert::AreEqual(
+    //        "ERROR: There was a problem parsing the YW annotations in the source files."    EOL
+    //        "CAUSE: An unexpected token '@out' was encountered on line 4 at column 2."      EOL,
+    //        stderrRecorder.str()
+    //    );
+    //}
 
 YW_TEST_END

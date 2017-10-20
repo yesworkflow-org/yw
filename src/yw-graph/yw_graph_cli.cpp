@@ -1,5 +1,5 @@
 #include "yw_graph_cli.h"
-#include "yw_parser_exception.h"
+#include "yw_parsing_exception.h"
 #include "model_builder.h"
 #include "workflow_grapher.h"
 #include "ywdb.h"
@@ -81,10 +81,13 @@ namespace yw {
             try {
                 modelId = ModelBuilder{ ywdb }.buildModelFromFiles(filesToExtract);
             }
-            catch (yw::parse::YWParserException error) {
+            catch (yw::parse::YWParsingException& error) {
                 std::cerr << "ERROR: There was a problem parsing the YW annotations in the source files." << std::endl;
                 std::cerr << "CAUSE: " << error.getMessage() << std::endl;
                 return 0;
+            }
+            catch (...) {
+
             }
 
             std::string dotText;

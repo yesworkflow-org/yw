@@ -23,7 +23,7 @@
     <ProjectGuid>{A6E1D227-30CF-40E3-A9E7-AE1DC0387AF6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ywextracttests</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
     <ProjectSubType>NativeUnitTestProject</ProjectSubType>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

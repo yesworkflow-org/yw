@@ -23,7 +23,7 @@
     <ProjectGuid>{158B1288-0CC1-426B-8967-800EDBD8C278}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ywextract</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">

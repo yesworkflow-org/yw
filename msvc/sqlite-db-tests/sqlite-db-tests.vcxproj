@@ -23,7 +23,7 @@
     <ProjectGuid>{79981E0C-55C7-403D-93F3-F113C9DA9F98}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>sqlitedbtests</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
     <ProjectSubType>NativeUnitTestProject</ProjectSubType>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />

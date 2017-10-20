@@ -1,6 +1,6 @@
 #include "annotation_listener.h"
 #include "annotation.h"
-#include "yw_parser_exception.h"
+#include "unexpected_token_exception.h"
 
 #include <istream>
 #include <regex>
@@ -71,17 +71,13 @@ namespace yw {
                 std::string currentLine;
                 while (std::getline(errorMessage, currentLine)) {
                     if (std::regex_match(currentLine, matches, pattern)) {
-                        auto line = matches[1];
-                        auto column = matches[2];
-                        auto input = matches[3];
-                        throw yw::parse::YWParserException{
-                            "An unexpected token " + input.str() + 
-                            " was encountered on line " + line.str() + 
-                            " at column " + column.str() + ".", 
-                            text };
+                        auto line = stoi(matches[1]);
+                        auto column = stoi(matches[2]);
+                        auto token = matches[3];
+                        throw yw::parse::UnexpectedTokenException{ line, column, token };
                     }
                 }
-                throw yw::parse::YWParserException{ currentLine, text };
+                //throw yw::parse::YWParsingException{ currentLine, text };
             }
         }
 
