@@ -29,16 +29,16 @@
     <ClCompile Include="..\..\test\yw-graph-tests\dot_builder_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\yw-graph-tests\workflow_grapher_tests.cpp">
+    <ClCompile Include="..\..\test\yw-graph-tests\yw_graph_cli_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\yw-graph-tests\workflow_graph_cli_tests.cpp">
+    <ClCompile Include="..\..\test\yw-graph-tests\yw_graph_config_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\yw-graph-tests\workflow_graph_config_tests.cpp">
+    <ClCompile Include="..\..\test\yw-graph-tests\yw_graph_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\yw-graph-tests\graph_error_tests.cpp">
+    <ClCompile Include="..\..\test\yw-graph-tests\yw_graph_error_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

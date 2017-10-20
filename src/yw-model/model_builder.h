@@ -10,6 +10,7 @@ namespace yw {
             yw::db::YesWorkflowDB& ywdb;
             row_id extractionId;
             row_id modelId;
+            nullable_string currentFilePath;
 
         public:
 
