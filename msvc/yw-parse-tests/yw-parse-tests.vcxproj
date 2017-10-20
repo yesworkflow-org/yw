@@ -172,6 +172,7 @@
     <ClCompile Include="..\..\test\yw-parse-tests\io_context_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\io_listener_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\script_listener_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-parse-tests\parsing_exception_tests.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

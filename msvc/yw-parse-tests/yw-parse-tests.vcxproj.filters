@@ -45,5 +45,8 @@
     <ClCompile Include="..\..\test\yw-parse-tests\io_context_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\test\yw-parse-tests\parsing_exception_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

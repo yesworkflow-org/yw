@@ -1,11 +1,11 @@
 #pragma once
 
-#include "yw_parsing_exception.h"
+#include "parsing_exception.h"
 
 namespace yw {
     namespace parse {
 
-        class AnnotationSyntaxException : public YWParsingException {
+        class AnnotationSyntaxException : public ParsingException {
 
         public:
 
@@ -13,9 +13,10 @@ namespace yw {
             const int column;
 
             AnnotationSyntaxException(
-                const std::string& message, 
                 int line,
-                int column
+                int column,
+                const nullable_string& source = null_string,
+                const std::string& what = "<sliced instance of yw::parse::AnnotationSyntaxException>"
             );
         };
     }

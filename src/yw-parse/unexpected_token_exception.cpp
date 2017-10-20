@@ -5,16 +5,18 @@ namespace yw {
     namespace parse {
 
         UnexpectedTokenException::UnexpectedTokenException(
+            const std::string& token,
             int line,
             int column,
-            const std::string& token
-        ) : AnnotationSyntaxException("Unexpected token found during parsing.", line, column), token(token)
+            const nullable_string& source,
+            const std::string& what
+        ) : AnnotationSyntaxException(line, column, source, what), token(token)
         {
-            std::stringstream ss;
-            ss << "An unexpected token " << token
-               << " was encountered on line " << line
-               << " at column " << column << ".";
-            message = ss.str();
+            //std::stringstream ss;
+            //ss << "An unexpected token " << token
+            //   << " was encountered on line " << line
+            //   << " at column " << column << ".";
+            //message = ss.str();
         }
     }
 }
