@@ -12,72 +12,72 @@ YW_TEST_SET
     {
         try {
             throw AnnotationSyntaxException(40, 100);
-            Expect::Fail();
         }
         catch (std::exception e) {
             Assert::AreEqual("<sliced instance of yw::parse::AnnotationSyntaxException>", e.what());
-        } 
-        catch (...) { Expect::Fail(); }
-    }
+            return;
+        }
+        Assert::Fail(L"Expected exception not caught.");
+}
 
     YW_TEST(AnnotationSyntaxException, CatchingAnnotationSyntaxExceptionAsStdExceptionReferenceYieldsExceptionWithMessageGivingColumnAndLine)
     {
         try {
             throw AnnotationSyntaxException(40, 100);
-            Expect::Fail();
         }
         catch (const std::exception& e) {
             Assert::AreEqual("An annotation syntax error was encountered at column 40 of line 100.", e.what());
+            return;
         }
-        catch (...) { Expect::Fail(); }
+        Assert::Fail(L"Expected exception not caught.");
     }
 
     YW_TEST(AnnotationSyntaxException, CatchingAnnotationSyntaxExceptionAsStdRuntimeErrorValueYieldsExceptionWithSlicingWarningMessage)
     {
         try {
             throw AnnotationSyntaxException(40, 100);
-            Expect::Fail();
         }
         catch (std::runtime_error e) {
             Assert::AreEqual("<sliced instance of yw::parse::AnnotationSyntaxException>", e.what());
+            return;
         }
-        catch (...) { Expect::Fail(); }
+        Assert::Fail(L"Expected exception not caught.");
     }
 
     YW_TEST(AnnotationSyntaxException, CatchingAnnotationSyntaxExceptionAsStdRuntimeErrorReferenceYieldsExceptionWithMessageGivingColumnAndLine)
     {
         try {
             throw AnnotationSyntaxException(40, 100);
-            Expect::Fail();
         }
         catch (const std::runtime_error& e) {
             Assert::AreEqual("An annotation syntax error was encountered at column 40 of line 100.", e.what());
+            return;
         }
-        catch (...) { Expect::Fail(); }
+        Assert::Fail(L"Expected exception not caught.");
     }
 
     YW_TEST(AnnotationSyntaxException, CatchingAnnotationSyntaxExceptionWithUnsetSourceYieldsExceptionWithMessageGivingColumnAndLine)
     {
         try {
             throw AnnotationSyntaxException(40, 100);
-            Expect::Fail();
         }
         catch (const AnnotationSyntaxException& e) {
             Assert::AreEqual("An annotation syntax error was encountered at column 40 of line 100.", e.what());
+            return;
         }
-        catch (...) { Expect::Fail(); }
+        Assert::Fail(L"Expected exception not caught.");
     }
 
     YW_TEST(AnnotationSyntaxException, CatchingAnnotationSyntaxExceptionWithSetSourceInConstructorsYieldsMessageIncludingSource)
     {
         try {
             throw AnnotationSyntaxException(40, 100, "sample.sh");
-            Expect::Fail();
         }
         catch (const AnnotationSyntaxException& e) {
             Assert::AreEqual("An annotation syntax error was encountered at column 40 of line 100 in source file 'sample.sh'.", e.what());
+            return;
         }
-        catch (...) { Expect::Fail(); }
+        Assert::Fail(L"Expected exception not caught.");
     }
 
 
@@ -87,12 +87,12 @@ YW_TEST_SET
             auto exception = AnnotationSyntaxException(40, 100);
             exception.setSource("sample.sh");
             throw exception;
-            Expect::Fail();
         }
         catch (const AnnotationSyntaxException& e) {
             Assert::AreEqual("An annotation syntax error was encountered at column 40 of line 100 in source file 'sample.sh'.", e.what());
+            return;
         }
-        catch (...) { Expect::Fail(); }
+        Assert::Fail(L"Expected exception not caught.");
     }
 
 YW_TEST_END

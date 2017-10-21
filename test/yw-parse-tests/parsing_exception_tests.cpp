@@ -12,72 +12,72 @@ YW_TEST_SET
     {
         try {
             throw ParsingException();
-            Expect::Fail();
         }
         catch (std::exception e) {
             Assert::AreEqual("<sliced instance of yw::parse::ParsingException>", e.what());
-        } 
-        catch (...) { Expect::Fail(); }
-    }
+            return;
+        }
+        Assert::Fail(L"Expected exception not caught.");
+}
 
     YW_TEST(ParsingException, CatchingParsingExceptionAsStdExceptionReferenceYieldsExceptionWithDefaultMessage)
     {
         try {
             throw ParsingException();
-            Expect::Fail();
         }
         catch (const std::exception& e) {
             Assert::AreEqual("A problem occurred parsing YW annotations.", e.what());
+            return;
         }
-        catch (...) { Expect::Fail(); }
+        Assert::Fail(L"Expected exception not caught.");
     }
 
     YW_TEST(ParsingException, CatchingParsingExceptionAsStdRuntimeErrorValueYieldsExceptionWithSlicingWarningInMessage)
     {
         try {
             throw ParsingException();
-            Expect::Fail();
         }
         catch (std::runtime_error e) {
             Assert::AreEqual("<sliced instance of yw::parse::ParsingException>", e.what());
+            return;
         }
-        catch (...) { Expect::Fail(); }
+        Assert::Fail(L"Expected exception not caught.");
     }
 
     YW_TEST(ParsingException, CatchingParsingExceptionAsStdRuntimeErrorReferenceYieldsExceptionWithDefaultMessage)
     {
         try {
             throw ParsingException();
-            Expect::Fail();
         }
         catch (const std::runtime_error& e) {
             Assert::AreEqual("A problem occurred parsing YW annotations.", e.what());
+            return;
         }
-        catch (...) { Expect::Fail(); }
+        Assert::Fail(L"Expected exception not caught.");
     }
 
     YW_TEST(ParsingException, CatchingParsingExceptionWithUnsetSourceYieldsDefaultMessage)
     {
         try {
             throw ParsingException();
-            Expect::Fail();
         }
         catch (const ParsingException& e) {
             Assert::AreEqual("A problem occurred parsing YW annotations.", e.what());
+            return;
         }
-        catch (...) { Expect::Fail(); }
+        Assert::Fail(L"Expected exception not caught.");
     }
 
     YW_TEST(ParsingException, CatchingParsingExceptionWithSetSourceInConstructorsYieldsMessageIncludingSource)
     {
         try {
             throw ParsingException("sample.sh");
-            Expect::Fail();
         }
         catch (const ParsingException& e) {
             Assert::AreEqual("A problem occurred parsing YW annotations in source file 'sample.sh'.", e.what());
+            return;
         }
-        catch (...) { Expect::Fail(); }
+        Assert::Fail(L"Expected exception not caught.");
     }
 
     YW_TEST(ParsingException, CatchingParsingExceptionWithSetSourceViaMethodYieldsMessageIncludingSource)
@@ -86,24 +86,24 @@ YW_TEST_SET
             auto exception = ParsingException();
             exception.setSource("sample.sh");
             throw exception;
-            Expect::Fail();
         }
         catch (const ParsingException& e) {
             Assert::AreEqual("A problem occurred parsing YW annotations in source file 'sample.sh'.", e.what());
+            return;
         }
-        catch (...) { Expect::Fail(); }
+        Assert::Fail(L"Expected exception not caught.");
     }
 
     YW_TEST(ParsingException, CallingGetSourceOnParsingExceptionWithUnsetSourceYieldsNullableStringWithUnsetValue)
     {
         try {
             throw ParsingException();
-            Expect::Fail();
         }
         catch (const ParsingException& e) {
             Assert::IsFalse(e.getSource().hasValue());
+            return;
         }
-        catch (...) { Expect::Fail(); }
+        Assert::Fail(L"Expected exception not caught.");
     }
 
 
@@ -111,13 +111,13 @@ YW_TEST_SET
     {
         try {
             throw ParsingException("sample.sh");
-            Expect::Fail();
         }
         catch (const ParsingException& e) {
             Assert::IsTrue(e.getSource().hasValue());
             Assert::AreEqual("sample.sh", e.getSource().getValue());
+            return;
         }
-        catch (...) { Expect::Fail(); }
+        Assert::Fail(L"Expected exception not caught.");
     }
 
 YW_TEST_END
