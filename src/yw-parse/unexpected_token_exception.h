@@ -13,7 +13,7 @@ namespace yw {
             
             const std::string token;
 
-            UnexpectedTokenException::UnexpectedTokenException(
+            UnexpectedTokenException(
                 const std::string& token,
                 int column,
                 int line,

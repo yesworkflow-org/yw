@@ -90,7 +90,7 @@ YW_TEST_SET
         )"));
 
         Assert::AreEqual(
-            "ERROR: An annotation syntax error was encountered at column 2 of line 1 in source file 'sample.yw'."   EOL,
+            "ERROR: The annotation '@begin' at column 2 of line 1 in source file 'sample.yw' is missing the required block name argument."  EOL,
             stderrRecorder.str()
         );
     }

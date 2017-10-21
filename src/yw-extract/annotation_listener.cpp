@@ -2,6 +2,7 @@
 #include "annotation.h"
 #include "annotation_syntax_exception.h"
 #include "unexpected_token_exception.h"
+#include "missing_argument_exception.h"
 
 #include <istream>
 #include <regex>
@@ -72,8 +73,9 @@ namespace yw {
                 blockNameText = safelyGetBlockNameFromBeginContext(begin);
             }
             catch (std::exception) {
-                throw yw::parse::AnnotationSyntaxException(
-                    //"Annotation '" + beginText + "' is missing program block name argument",
+                throw yw::parse::MissingArgumentException(
+                    beginText,
+                    "block name",
                     rangeInLine.start,
                     currentLineNumber
                 );

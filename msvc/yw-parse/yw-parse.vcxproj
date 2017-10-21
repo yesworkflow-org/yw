@@ -151,6 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\yw-parse\annotation_syntax_exception.cpp" />
+    <ClCompile Include="..\..\src\yw-parse\missing_argument_exception.cpp" />
     <ClCompile Include="..\..\src\yw-parse\unexpected_token_exception.cpp" />
     <ClCompile Include="..\..\src\yw-parse\YWBaseListener.cpp" />
     <ClCompile Include="..\..\src\yw-parse\YWLexer.cpp" />
@@ -161,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-parse\annotation_syntax_exception.h" />
+    <ClInclude Include="..\..\src\yw-parse\missing_argument_exception.h" />
     <ClInclude Include="..\..\src\yw-parse\unexpected_token_exception.h" />
     <ClInclude Include="..\..\src\yw-parse\YWBaseListener.h" />
     <ClInclude Include="..\..\src\yw-parse\YWLexer.h" />
