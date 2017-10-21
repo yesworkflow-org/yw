@@ -24,12 +24,12 @@ YW_TEST_SET
     {
         runGraphCLIOnMalformedInput(trimmargins(R"(
             
-            // @in p"
+            // @in p
 
         )"), "sample.cpp");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@in' was encountered at column 3 of line 1 in source file 'sample.cpp'."   EOL,
+            "ERROR: An unexpected token '@in' was encountered at column 4 of line 1 in source file 'sample.cpp'."   EOL,
             stderrRecorder.str()
         );
     }
@@ -43,7 +43,7 @@ YW_TEST_SET
         )"), "sample.sh");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@desc' was encountered at column 2 of line 1 in source file 'sample.sh'."  EOL,
+            "ERROR: An unexpected token '@desc' was encountered at column 3 of line 1 in source file 'sample.sh'."  EOL,
             stderrRecorder.str()
         );
     }
@@ -57,7 +57,7 @@ YW_TEST_SET
         )"), "sample.c");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@end' was encountered at column 3 of line 1 in source file 'sample.c'."    EOL,
+            "ERROR: An unexpected token '@end' was encountered at column 4 of line 1 in source file 'sample.c'."    EOL,
             stderrRecorder.str()
         );
     }
@@ -75,7 +75,7 @@ YW_TEST_SET
         )"), "sample.py");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@out' was encountered at column 2 of line 4 in source file 'sample.py'."   EOL,
+            "ERROR: An unexpected token '@out' was encountered at column 3 of line 4 in source file 'sample.py'."   EOL,
             stderrRecorder.str()
         );
     }
@@ -90,7 +90,7 @@ YW_TEST_SET
         )"));
 
         Assert::AreEqual(
-            "ERROR: The annotation '@begin' at column 2 of line 1 in source file 'sample.yw' is missing the required block name argument."  EOL,
+            "ERROR: The annotation '@begin' at column 3 of line 1 in source file 'sample.yw' is missing the required block name argument."  EOL,
             stderrRecorder.str()
         );
     }

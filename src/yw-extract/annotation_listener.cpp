@@ -76,7 +76,7 @@ namespace yw {
                 throw yw::parse::MissingArgumentException(
                     beginText,
                     "block name",
-                    rangeInLine.start,
+                    rangeInLine.start + 1,
                     currentLineNumber
                 );
             }
@@ -105,7 +105,7 @@ namespace yw {
                 while (std::getline(errorMessage, currentLine)) {
                     if (std::regex_match(currentLine, matches, pattern)) {
                         auto line = stoi(matches[1]);
-                        auto column = stoi(matches[2]);
+                        auto column = stoi(matches[2]) + 1;
                         auto token = matches[3];
                         throw yw::parse::UnexpectedTokenException{ token, column, line };
                     }
