@@ -43,6 +43,22 @@ namespace yw {
                 nullable_string(alias->dataName()->phrase()->unquotedPhrase()->getText()) });
         }
 
+        std::string safelyGetBlockNameFromBeginContext(YWParser::BeginContext *begin) {
+
+            YWParser::BlockNameContext* blockName;
+            YWParser::PhraseContext* phrase;
+            YWParser::UnquotedPhraseContext* unquotedPhrase;
+
+            if ( ((blockName = begin->blockName()) == nullptr) ||
+                 ((phrase = blockName->phrase()) == nullptr) ||
+                 ((unquotedPhrase = phrase->unquotedPhrase()) == nullptr)
+            ) {
+                throw std::exception();
+            }
+
+            return unquotedPhrase->getText();
+        }
+
         void AnnotationListener::enterBegin(YWParser::BeginContext *begin)
         {
             if (begin->exception) throwParsingException(begin);
@@ -50,22 +66,26 @@ namespace yw {
             auto lineId = getLineId(begin);
             auto rangeInLine = getRangeInLine(begin);
             auto beginText = begin->BeginKeyword()->getText();
-            auto blockName = begin->blockName()->phrase()->unquotedPhrase();
 
-            if (blockName == nullptr) {
+            std::string blockNameText;
+            try {
+                blockNameText = safelyGetBlockNameFromBeginContext(begin);
+            }
+            catch (std::exception) {
                 throw yw::parse::AnnotationSyntaxException(
                     //"Annotation '" + beginText + "' is missing program block name argument",
-                    rangeInLine.start, 
+                    rangeInLine.start,
                     currentLineNumber
                 );
             }
+
             primaryAnnotationStack.push(currentPrimaryAnnotation);
             auto beginAnnotation = std::make_shared<Annotation>(
                 auto_id, extractionId, Tag::BEGIN, 
                 (currentPrimaryAnnotation == nullptr ? null_id: currentPrimaryAnnotation->id), 
                 lineId, currentRankOnLine++, 
                 rangeInLine.start, rangeInLine.end, beginText,
-                nullable_string(blockName->getText()));
+                nullable_string(blockNameText));
             ywdb.insert(*beginAnnotation);
             currentPrimaryAnnotation = beginAnnotation;
         }

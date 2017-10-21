@@ -27,6 +27,8 @@ namespace yw {
             AnnotationRange portRangeInLine;
             StderrRecorder stderrRecorder;
 
+            void throwParsingException(antlr4::ParserRuleContext* context);
+
         private:
             long currentLineNumber = 0;
             long currentRankOnLine = 0;
@@ -59,7 +61,6 @@ namespace yw {
         private:
             auto getLineId(antlr4::ParserRuleContext* context);
             auto getRangeInLine(antlr4::ParserRuleContext* context);
-            void throwParsingException(antlr4::ParserRuleContext* context);
         };
     }
 }
