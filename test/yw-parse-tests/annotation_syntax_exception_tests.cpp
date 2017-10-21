@@ -11,7 +11,7 @@ YW_TEST_SET
     YW_TEST(AnnotationSyntaxException, CatchingAnnotationSyntaxExceptionAsStdExceptionValueYieldsExceptionWithSlicingWarningInMessage)
     {
         try {
-            throw AnnotationSyntaxException(100, 40);
+            throw AnnotationSyntaxException(40, 100);
             Expect::Fail();
         }
         catch (std::exception e) {
@@ -23,7 +23,7 @@ YW_TEST_SET
     YW_TEST(AnnotationSyntaxException, CatchingAnnotationSyntaxExceptionAsStdExceptionReferenceYieldsExceptionWithMessageGivingColumnAndLine)
     {
         try {
-            throw AnnotationSyntaxException(100, 40);
+            throw AnnotationSyntaxException(40, 100);
             Expect::Fail();
         }
         catch (const std::exception& e) {
@@ -35,7 +35,7 @@ YW_TEST_SET
     YW_TEST(AnnotationSyntaxException, CatchingAnnotationSyntaxExceptionAsStdRuntimeErrorValueYieldsExceptionWithSlicingWarningMessage)
     {
         try {
-            throw AnnotationSyntaxException(100, 40);
+            throw AnnotationSyntaxException(40, 100);
             Expect::Fail();
         }
         catch (std::runtime_error e) {
@@ -47,7 +47,7 @@ YW_TEST_SET
     YW_TEST(AnnotationSyntaxException, CatchingAnnotationSyntaxExceptionAsStdRuntimeErrorReferenceYieldsExceptionWithMessageGivingColumnAndLine)
     {
         try {
-            throw AnnotationSyntaxException(100, 40);
+            throw AnnotationSyntaxException(40, 100);
             Expect::Fail();
         }
         catch (const std::runtime_error& e) {
@@ -59,7 +59,7 @@ YW_TEST_SET
     YW_TEST(AnnotationSyntaxException, CatchingAnnotationSyntaxExceptionWithUnsetSourceYieldsExceptionWithMessageGivingColumnAndLine)
     {
         try {
-            throw AnnotationSyntaxException(100, 40);
+            throw AnnotationSyntaxException(40, 100);
             Expect::Fail();
         }
         catch (const AnnotationSyntaxException& e) {
@@ -71,7 +71,7 @@ YW_TEST_SET
     YW_TEST(AnnotationSyntaxException, CatchingAnnotationSyntaxExceptionWithSetSourceInConstructorsYieldsMessageIncludingSource)
     {
         try {
-            throw AnnotationSyntaxException(100, 40, "sample.sh");
+            throw AnnotationSyntaxException(40, 100, "sample.sh");
             Expect::Fail();
         }
         catch (const AnnotationSyntaxException& e) {
@@ -84,7 +84,7 @@ YW_TEST_SET
     YW_TEST(AnnotationSyntaxException, CatchingAnnotationSyntaxExceptionWithSetSourceViaMethodYieldsMessageIncludingSource)
     {
         try {
-            auto exception = AnnotationSyntaxException(100, 40);
+            auto exception = AnnotationSyntaxException(40, 100);
             exception.setSource("sample.sh");
             throw exception;
             Expect::Fail();

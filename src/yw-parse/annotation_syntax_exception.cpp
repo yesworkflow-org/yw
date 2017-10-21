@@ -6,11 +6,11 @@ namespace yw {
     namespace parse {
 
         AnnotationSyntaxException::AnnotationSyntaxException(
-            int line,
             int column,
+            int line,
             const nullable_string& source,
             const std::string& what
-        ) : ParsingException(source, what), line(line), column(column)
+        ) : ParsingException(source, what), column(column), line(line)
         {
             updateMessage();
         }

@@ -6,17 +6,26 @@ namespace yw {
 
         UnexpectedTokenException::UnexpectedTokenException(
             const std::string& token,
-            int line,
             int column,
+            int line,
             const nullable_string& source,
             const std::string& what
-        ) : AnnotationSyntaxException(line, column, source, what), token(token)
+        ) : AnnotationSyntaxException(column, line, source, what), token(token)
         {
-            //std::stringstream ss;
-            //ss << "An unexpected token " << token
-            //   << " was encountered on line " << line
-            //   << " at column " << column << ".";
-            //message = ss.str();
+            updateMessage();
+        }
+
+        void UnexpectedTokenException::updateMessage() {
+            auto source = getSource();
+            std::stringstream ss;
+            ss << "An unexpected token '" << token;
+            ss << "' was encountered at column " << column;
+            ss << " of line " << line;
+            if (source.hasValue()) {
+                ss << " in source file '" << source.getValue() << "'";
+            }
+            ss << ".";
+            messageBacking = ss.str();
         }
     }
 }

@@ -9,12 +9,12 @@ namespace yw {
 
         public:
 
-            const int line;
             const int column;
+            const int line;
 
             AnnotationSyntaxException(
-                int line,
                 int column,
+                int line,
                 const nullable_string& source = null_string,
                 const std::string& what = "<sliced instance of yw::parse::AnnotationSyntaxException>"
             );

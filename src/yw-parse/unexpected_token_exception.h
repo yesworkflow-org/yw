@@ -15,11 +15,16 @@ namespace yw {
 
             UnexpectedTokenException::UnexpectedTokenException(
                 const std::string& token,
-                int line,
                 int column,
+                int line,
                 const nullable_string& source = null_string,
                 const std::string& what = "<sliced instance of yw::parse::UnexpectedTokenException>"
             );
+
+        protected:
+
+            virtual void updateMessage();
+
         };
     }
 }
