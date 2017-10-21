@@ -1,5 +1,6 @@
 #include "annotation_listener.h"
 #include "annotation.h"
+#include "annotation_syntax_exception.h"
 #include "unexpected_token_exception.h"
 
 #include <istream>
@@ -48,13 +49,23 @@ namespace yw {
 
             auto lineId = getLineId(begin);
             auto rangeInLine = getRangeInLine(begin);
+            auto beginText = begin->BeginKeyword()->getText();
+            auto blockName = begin->blockName()->phrase()->unquotedPhrase();
+
+            if (blockName == nullptr) {
+                throw yw::parse::AnnotationSyntaxException(
+                    //"Annotation '" + beginText + "' is missing program block name argument",
+                    rangeInLine.start, 
+                    currentLineNumber
+                );
+            }
             primaryAnnotationStack.push(currentPrimaryAnnotation);
             auto beginAnnotation = std::make_shared<Annotation>(
                 auto_id, extractionId, Tag::BEGIN, 
                 (currentPrimaryAnnotation == nullptr ? null_id: currentPrimaryAnnotation->id), 
                 lineId, currentRankOnLine++, 
-                rangeInLine.start, rangeInLine.end, begin->BeginKeyword()->getText(),
-                nullable_string(begin->blockName()->phrase()->unquotedPhrase()->getText()) );
+                rangeInLine.start, rangeInLine.end, beginText,
+                nullable_string(blockName->getText()));
             ywdb.insert(*beginAnnotation);
             currentPrimaryAnnotation = beginAnnotation;
         }
@@ -65,7 +76,7 @@ namespace yw {
                 std::rethrow_exception(context->exception);
             }
             catch (const std::exception& e) {
-                const std::regex pattern{ "line (\\d{1,9}):(\\d{1,9}) mismatched input ('.+').*" };
+                const std::regex pattern{ "line (\\d{1,9}):(\\d{1,9}) mismatched input '(.+)'.*" };
                 std::match_results<std::string::const_iterator> matches;
                 std::istringstream errorMessage { stderrRecorder.str() };
                 std::string currentLine;
@@ -74,10 +85,10 @@ namespace yw {
                         auto line = stoi(matches[1]);
                         auto column = stoi(matches[2]);
                         auto token = matches[3];
-                        throw yw::parse::UnexpectedTokenException{ line, column, token };
+                        throw yw::parse::UnexpectedTokenException{ token, column, line };
                     }
                 }
-                //throw yw::parse::YWParsingException{ currentLine, text };
+                //throw yw::parse::ParsingException{ currentLine, text };
             }
         }
 

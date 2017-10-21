@@ -1,6 +1,6 @@
 
 #include "yw_graph_tests.h"
-#include "yw_parsing_exception.h"
+#include "parsing_exception.h"
 
 using namespace yw;
 using namespace yw::cli;
@@ -29,9 +29,7 @@ YW_TEST_SET
         )"), "sample.cpp");
 
         Assert::AreEqual(
-            "ERROR: There was a problem parsing the YW annotations in the source files."    EOL
-            "WHERE: The problem occurred while parsing file 'sample.cpp'."                  EOL
-            "CAUSE: An unexpected token '@in' was encountered on line 1 at column 3."       EOL,
+            "ERROR: An unexpected token '@in' was encountered at column 3 of line 1 in source file 'sample.cpp'."   EOL,
             stderrRecorder.str()
         );
     }
@@ -45,9 +43,7 @@ YW_TEST_SET
         )"), "sample.sh");
 
         Assert::AreEqual(
-            "ERROR: There was a problem parsing the YW annotations in the source files."    EOL
-            "WHERE: The problem occurred while parsing file 'sample.sh'."                   EOL
-            "CAUSE: An unexpected token '@desc' was encountered on line 1 at column 2."     EOL,
+            "ERROR: An unexpected token '@desc' was encountered at column 2 of line 1 in source file 'sample.sh'."  EOL,
             stderrRecorder.str()
         );
     }
@@ -61,9 +57,7 @@ YW_TEST_SET
         )"), "sample.c");
 
         Assert::AreEqual(
-            "ERROR: There was a problem parsing the YW annotations in the source files."    EOL
-            "WHERE: The problem occurred while parsing file 'sample.c'."                    EOL
-            "CAUSE: An unexpected token '@end' was encountered on line 1 at column 3."      EOL,
+            "ERROR: An unexpected token '@end' was encountered at column 3 of line 1 in source file 'sample.c'."    EOL,
             stderrRecorder.str()
         );
     }
@@ -81,27 +75,24 @@ YW_TEST_SET
         )"), "sample.py");
 
         Assert::AreEqual(
-            "ERROR: There was a problem parsing the YW annotations in the source files."    EOL
-            "WHERE: The problem occurred while parsing file 'sample.py'."                   EOL
-            "CAUSE: An unexpected token '@out' was encountered on line 4 at column 2."      EOL,
+            "ERROR: An unexpected token '@out' was encountered at column 2 of line 4 in source file 'sample.py'."   EOL,
             stderrRecorder.str()
         );
     }
 
-    //YW_TEST(GraphError, ErrorReportedBeginLacksProgramBlockName)
-    //{
-    //    runGraphCLIOnMalformedInput(trimmargins(R"(
+    YW_TEST(GraphError, ErrorReportedBeginLacksProgramBlockName)
+    {
+        runGraphCLIOnMalformedInput(trimmargins(R"(
 
-    //        # @begin 
-    //        # @end
+            # @begin 
+            # @end
 
-    //    )"));
+        )"));
 
-    //    Assert::AreEqual(
-    //        "ERROR: There was a problem parsing the YW annotations in the source files."    EOL
-    //        "CAUSE: An unexpected token '@out' was encountered on line 4 at column 2."      EOL,
-    //        stderrRecorder.str()
-    //    );
-    //}
+        Assert::AreEqual(
+            "ERROR: An annotation syntax error was encountered at column 2 of line 1 in source file 'sample.yw'."   EOL,
+            stderrRecorder.str()
+        );
+    }
 
 YW_TEST_END

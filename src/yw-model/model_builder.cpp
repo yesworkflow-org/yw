@@ -2,7 +2,7 @@
 #include "model_entity_listener.h"
 #include "source_loader.h"
 #include "yw_parser_builder.h"
-#include "yw_parsing_exception.h"
+#include "parsing_exception.h"
 #include "yw_io.h"
 
 using namespace yw::db;
@@ -62,9 +62,9 @@ namespace yw {
             try {
                 antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser.parse()->script());
             }
-            catch (YWParsingException& e) {
+            catch (ParsingException& e) {
                 if (currentFilePath.hasValue()) {
-                    e.setSource(currentFilePath.getValue());
+                    e.setSource(getFileName(currentFilePath.getValue()));
                 }
                 throw;
             }
