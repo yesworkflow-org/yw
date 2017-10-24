@@ -137,24 +137,6 @@ YW_TEST_SET
             , listener.log());
     }
 
-    YW_TEST(IoListener, Return)
-    {
-        YWParserBuilder parser_builder("@return p");
-        antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser_builder.parse()->io());
-        Expect::EmptyString(stderrRecorder.str());
-
-        Assert::AreEqual(
-            "entered io"					EOL
-            "entered port"                  EOL
-            "entered output port keyword"   EOL
-            "exited output port keyword"    EOL
-            "entered port name"             EOL
-            "exited port name"              EOL
-            "exited port"                   EOL
-            "exited io"						EOL
-            , listener.log());
-    }
-
     YW_TEST(IoListener, In_WithTwoPortsNamed)
     {
         YWParserBuilder parser_builder("@in p q");

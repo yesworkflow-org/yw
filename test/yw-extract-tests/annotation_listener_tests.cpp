@@ -901,35 +901,19 @@ YW_TEST_SET
         Assert::AreEqual(beginAnnotation.id, outAnnotation.qualifiesId);
     }
 
-    YW_TEST(AnnotationListener, WhenReturnWithSingleArgumentFollowsBeginOnSameLineQualifyingIdOfReturnIsIdOfBegin)
-    {
-        this->storeAndParse(
-            "@begin b @return p"
-        );
-
-        auto beginAnnotation = ywdb.selectAnnotationById(1);
-        auto returnAnnotation = ywdb.selectAnnotationById(2);
-        Expect::AreEqual(1, ywdb.getRowCount("line"));
-        Expect::AreEqual(2, ywdb.getRowCount("annotation"));
-        Expect::AreEqual(Annotation{ 1, extractionId, Tag::BEGIN, null_id, 1, 1, 0, 7, "@begin", "b" }, beginAnnotation);
-        Expect::AreEqual(Annotation{ 2, extractionId, Tag::RETURN, 1, 1, 2, 9, 17, "@return", "p" }, returnAnnotation);
-
-        Assert::AreEqual(beginAnnotation.id, returnAnnotation.qualifiesId);
-    }
-
     YW_TEST(AnnotationListener, WhenParamFollowsInAliasFollowingParamHasQualifyingIdOfParam__FOO)
     {
         this->storeAndParse(
-            "@begin b @desc description of block b"	EOL
-            "@in p q"								EOL
-            "@out r s"								EOL
-            "@end b"								EOL
+            "@begin b @desc description of block b" EOL
+            "@in p q"                               EOL
+            "@out r s"                              EOL
+            "@end b"                                EOL
                                                     EOL
-            "@begin c"								EOL
-            "@param t"								EOL
-            "@return u"								EOL
-            "@as name of data param receives"		EOL
-            "@end c"								EOL
+            "@begin c"                              EOL
+            "@param t"                              EOL
+            "@out u"                                EOL
+            "@as name of data param receives"       EOL
+            "@end c"                                EOL
         );
         Expect::EmptyString(stderrRecorder.str());
 
@@ -956,7 +940,7 @@ YW_TEST_SET
         Expect::AreEqual(Annotation{ 7, extractionId, Tag::END, 1, 4, 1, 0, 5, "@end", "b" }, endAnnotation1);
         Expect::AreEqual(Annotation{ 8, extractionId, Tag::BEGIN, null_id, 6, 1, 0, 7, "@begin", "c" }, beginAnnotation2);
         Expect::AreEqual(Annotation{ 9, extractionId, Tag::PARAM, 8, 7, 1, 0, 7, "@param", "t" }, paramAnnotation);
-        Expect::AreEqual(Annotation{ 10, extractionId, Tag::RETURN, 8, 8, 1, 0, 8, "@return", "u" }, returnAnnotation);
+        Expect::AreEqual(Annotation{ 10, extractionId, Tag::OUT, 8, 8, 1, 0, 5, "@out", "u" }, returnAnnotation);
         Expect::AreEqual(Annotation{ 11, extractionId, Tag::AS, 10, 9, 1, 0, 30, "@as", "name of data param receives" }, aliasAnnotation);
         Expect::AreEqual(Annotation{ 12, extractionId, Tag::END, 8, 10, 1, 0, 5, "@end", "c" }, endAnnotation2);
 

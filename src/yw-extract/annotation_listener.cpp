@@ -166,7 +166,6 @@ namespace yw {
             }
             else if (port->outputKeyword() != NULL) {
                 if (port->outputKeyword()->OutKeyword() != NULL) return Tag::OUT;
-                if (port->outputKeyword()->ReturnKeyword() != NULL) return Tag::RETURN;
             }
 
             throw std::runtime_error("unrecognized port type");

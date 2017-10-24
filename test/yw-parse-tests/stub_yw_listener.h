@@ -31,8 +31,6 @@ namespace yw {
             void exitPort(YWParser::PortContext *context) override { _log << "exited port" << std::endl; }
             void enterAlias(YWParser::AliasContext *context) override { _log << "entered alias" << std::endl; }
             void exitAlias(YWParser::AliasContext *context) override { _log << "exited alias" << std::endl; }
-            void enterCall(YWParser::CallContext *context) override { _log << "entered call" << std::endl; }
-            void exitCall(YWParser::CallContext *context) override { _log << "exited call" << std::endl; }
             void enterUri(YWParser::UriContext *context) override { _log << "entered uri" << std::endl; }
             void exitUri(YWParser::UriContext *context) override { _log << "exited uri" << std::endl; }
             void enterFile(YWParser::FileContext *context) override { _log << "entered file" << std::endl; }

@@ -13,22 +13,22 @@ namespace yw {
 class  YWParser : public antlr4::Parser {
 public:
   enum {
-    AsKeyword = 1, BeginKeyword = 2, CallKeyword = 3, DescKeyword = 4, EndKeyword = 5, 
-    FileKeyword = 6, InKeyword = 7, OutKeyword = 8, ParamKeyword = 9, ReturnKeyword = 10, 
-    UriKeyword = 11, DQ = 12, SQ = 13, SPACE = 14, SLASH = 15, LEFTBRACE = 16, 
-    RIGHTBRACE = 17, NEWLINE = 18, COLON = 19, WORD = 20, OTHER = 21
+    AsKeyword = 1, BeginKeyword = 2, DescKeyword = 3, EndKeyword = 4, FileKeyword = 5, 
+    InKeyword = 6, OutKeyword = 7, ParamKeyword = 8, UriKeyword = 9, DQ = 10, 
+    SQ = 11, SPACE = 12, SLASH = 13, LEFTBRACE = 14, RIGHTBRACE = 15, NEWLINE = 16, 
+    COLON = 17, WORD = 18, OTHER = 19
   };
 
   enum {
     RuleScript = 0, RuleBlock = 1, RuleNestedBlocks = 2, RuleBlockAttribute = 3, 
     RuleIo = 4, RulePort = 5, RulePortAttribute = 6, RuleAlias = 7, RuleBegin = 8, 
-    RuleCall = 9, RuleDesc = 10, RuleEnd = 11, RuleFile = 12, RuleUri = 13, 
-    RuleMisplacedBeginChild = 14, RuleMisplacedPortChild = 15, RuleResource = 16, 
-    RuleInputKeyword = 17, RuleOutputKeyword = 18, RuleBlockName = 19, RulePortName = 20, 
-    RuleDataName = 21, RuleDescription = 22, RulePathTemplate = 23, RulePathVariable = 24, 
-    RulePathConstant = 25, RuleVariableName = 26, RuleUriTemplate = 27, 
-    RuleScheme = 28, RulePhrase = 29, RuleUnquotedPhrase = 30, RuleWord = 31, 
-    RuleUnquotedWord = 32, RuleNa = 33
+    RuleDesc = 9, RuleEnd = 10, RuleFile = 11, RuleUri = 12, RuleMisplacedBeginChild = 13, 
+    RuleMisplacedPortChild = 14, RuleResource = 15, RuleInputKeyword = 16, 
+    RuleOutputKeyword = 17, RuleBlockName = 18, RulePortName = 19, RuleDataName = 20, 
+    RuleDescription = 21, RulePathTemplate = 22, RulePathVariable = 23, 
+    RulePathConstant = 24, RuleVariableName = 25, RuleUriTemplate = 26, 
+    RuleScheme = 27, RulePhrase = 28, RuleUnquotedPhrase = 29, RuleWord = 30, 
+    RuleUnquotedWord = 31, RuleNa = 32
   };
 
   YWParser(antlr4::TokenStream *input);
@@ -50,7 +50,6 @@ public:
   class PortAttributeContext;
   class AliasContext;
   class BeginContext;
-  class CallContext;
   class DescContext;
   class EndContext;
   class FileContext;
@@ -135,7 +134,6 @@ public:
     virtual size_t getRuleIndex() const override;
     IoContext *io();
     DescContext *desc();
-    CallContext *call();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -226,23 +224,6 @@ public:
 
   BeginContext* begin();
 
-  class  CallContext : public antlr4::ParserRuleContext {
-  public:
-    CallContext(antlr4::ParserRuleContext *parent, size_t invokingState);
-    virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *CallKeyword();
-    std::vector<antlr4::tree::TerminalNode *> SPACE();
-    antlr4::tree::TerminalNode* SPACE(size_t i);
-    std::vector<BlockNameContext *> blockName();
-    BlockNameContext* blockName(size_t i);
-
-    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
-    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
-   
-  };
-
-  CallContext* call();
-
   class  DescContext : public antlr4::ParserRuleContext {
   public:
     DescContext(antlr4::ParserRuleContext *parent, size_t invokingState);
@@ -311,7 +292,6 @@ public:
   public:
     MisplacedBeginChildContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    antlr4::tree::TerminalNode *CallKeyword();
     antlr4::tree::TerminalNode *DescKeyword();
     antlr4::tree::TerminalNode *EndKeyword();
     InputKeywordContext *inputKeyword();
@@ -374,7 +354,6 @@ public:
     OutputKeywordContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *OutKeyword();
-    antlr4::tree::TerminalNode *ReturnKeyword();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;

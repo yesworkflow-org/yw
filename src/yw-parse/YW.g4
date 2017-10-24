@@ -4,7 +4,7 @@ grammar YW ;
 script          : (na | misplacedBeginChild)* (na? block)* (na | misplacedBeginChild)*;
 block           : begin (na? blockAttribute)* nestedBlocks na? end ;
 nestedBlocks	: (na? block)* ;
-blockAttribute  : io | desc | call ;
+blockAttribute  : io | desc ;
 io				: port (na? portAttribute)* ;
 port  		    : (inputKeyword | outputKeyword) (SPACE+ portName)+ ;
 portAttribute   : desc | alias | resource ;
@@ -12,19 +12,18 @@ portAttribute   : desc | alias | resource ;
 // YW annotations
 alias			: AsKeyword (SPACE)+ dataName ;
 begin			: BeginKeyword (SPACE)+ blockName ;
-call			: CallKeyword (SPACE)+ (blockName)+ ;
 desc            : DescKeyword (SPACE)+ description ;
 end				: EndKeyword ((SPACE)+ (blockName))? ;
 file            : FileKeyword (SPACE)+ pathTemplate ;
 uri             : UriKeyword (SPACE)+ uriTemplate;
 
-misplacedBeginChild :  CallKeyword | DescKeyword | EndKeyword |  inputKeyword | outputKeyword | misplacedPortChild ;
+misplacedBeginChild :  DescKeyword | EndKeyword |  inputKeyword | outputKeyword | misplacedPortChild ;
 misplacedPortChild  :  AsKeyword | DescKeyword | FileKeyword | UriKeyword ;
 
 resource        : uri | file ;
 
 inputKeyword    : InKeyword | ParamKeyword ;
-outputKeyword   : OutKeyword | ReturnKeyword ;
+outputKeyword   : OutKeyword ;
 
 // YW keyword arguments
 blockName       : phrase ;
@@ -48,14 +47,12 @@ unquotedWord	: WORD ;
 // YW keywords
 AsKeyword       : '@as'    | '@AS' ;
 BeginKeyword    : '@begin' | '@BEGIN' ;
-CallKeyword     : '@call'  | '@CALL' ;
 DescKeyword     : '@desc'  | '@DESC' ;
 EndKeyword      : '@end'   | '@END';  
 FileKeyword     : '@file'  | '@FILE' ;
 InKeyword       : '@in'    | '@IN' ;
 OutKeyword      : '@out'   | '@OUT' ;
 ParamKeyword    : '@param' | '@PARAM' ;
-ReturnKeyword   : '@return'| '@RETURN' ;
 UriKeyword      : '@uri'   | '@URI' ;
 
 na				: (SPACE | NEWLINE | DQ | SQ | WORD | COLON | SLASH | LEFTBRACE| RIGHTBRACE | OTHER )+ ;

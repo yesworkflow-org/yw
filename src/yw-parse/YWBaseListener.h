@@ -45,9 +45,6 @@ public:
   virtual void enterBegin(YWParser::BeginContext * /*ctx*/) override { }
   virtual void exitBegin(YWParser::BeginContext * /*ctx*/) override { }
 
-  virtual void enterCall(YWParser::CallContext * /*ctx*/) override { }
-  virtual void exitCall(YWParser::CallContext * /*ctx*/) override { }
-
   virtual void enterDesc(YWParser::DescContext * /*ctx*/) override { }
   virtual void exitDesc(YWParser::DescContext * /*ctx*/) override { }
 

@@ -291,7 +291,7 @@ YW_TEST_SET
     YW_TEST(OutlineExporter, WhenBeginEndAndFourPortAnnotationsOnSameLineOutlineSpansSixLines)
     {
         this->storeAndParse(
-            "@begin b @in p @param q @out r @return s @end b"
+            "@begin b @in p @param q @out r @out s @end b"
         );
         OutlineExporter exporter{ ywdb };
 
@@ -300,7 +300,7 @@ YW_TEST_SET
             "@in p"     EOL
             "@param q"  EOL
             "@out r"    EOL
-            "@return s" EOL
+            "@out s"    EOL
             "@end b"    EOL
             , exporter.getOutline());
     }

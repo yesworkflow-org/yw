@@ -43,9 +43,6 @@ public:
   virtual void enterBegin(YWParser::BeginContext *ctx) = 0;
   virtual void exitBegin(YWParser::BeginContext *ctx) = 0;
 
-  virtual void enterCall(YWParser::CallContext *ctx) = 0;
-  virtual void exitCall(YWParser::CallContext *ctx) = 0;
-
   virtual void enterDesc(YWParser::DescContext *ctx) = 0;
   virtual void exitDesc(YWParser::DescContext *ctx) = 0;
 
