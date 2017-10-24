@@ -167,6 +167,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\test\yw-graph-tests\dot_builder_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-graph-tests\misplaced_begin_child_tests.cpp" />
     <ClCompile Include="..\..\test\yw-graph-tests\yw_graph_error_tests.cpp" />
     <ClCompile Include="..\..\test\yw-graph-tests\yw_graph_tests.cpp" />
     <ClCompile Include="..\..\test\yw-graph-tests\yw_graph_cli_tests.cpp" />

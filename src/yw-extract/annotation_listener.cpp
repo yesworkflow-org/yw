@@ -3,6 +3,7 @@
 #include "annotation_syntax_exception.h"
 #include "unexpected_token_exception.h"
 #include "missing_argument_exception.h"
+#include "misplaced_begin_child_exception.h"
 
 #include <istream>
 #include <regex>
@@ -92,12 +93,16 @@ namespace yw {
             currentPrimaryAnnotation = beginAnnotation;
         }
 
+        bool AnnotationListener::inProgramBlock() {
+            return currentPrimaryAnnotation != nullptr;
+        }
+
         void AnnotationListener::throwParsingException(antlr4::ParserRuleContext* context) {
             auto text = context->getText();
             try {
                 std::rethrow_exception(context->exception);
             }
-            catch (const std::exception& e) {
+            catch (const antlr4::RuntimeException& e) {
                 const std::regex pattern{ "line (\\d{1,9}):(\\d{1,9}) mismatched input '(.+)'.*" };
                 std::match_results<std::string::const_iterator> matches;
                 std::istringstream errorMessage { stderrRecorder.str() };
@@ -110,8 +115,16 @@ namespace yw {
                         throw yw::parse::UnexpectedTokenException{ token, column, line };
                     }
                 }
-                //throw yw::parse::ParsingException{ currentLine, text };
+                throw yw::parse::ParsingException{};
             }
+        }
+
+        void AnnotationListener::enterMisplacedBeginChild(YWParser::MisplacedBeginChildContext * context) {
+            if (context->exception) throwParsingException(context);
+            auto lineId = getLineId(context);
+            auto rangeInLine = getRangeInLine(context);
+            auto misplacedKeywordText = context->getText();
+            throw  yw::parse::MisplacedBeginChildException(misplacedKeywordText, rangeInLine.start + 1, currentLineNumber);
         }
 
         void AnnotationListener::enterEnd(YWParser::EndContext *end)
@@ -120,12 +133,15 @@ namespace yw {
 
             auto lineId = getLineId(end);
             auto rangeInLine = getRangeInLine(end);
+
+            auto endKeywordText = end->EndKeyword()->getText();
+
             auto optionalBlockName = (end->blockName() != nullptr) ? 
                 nullable_string(end->blockName()->phrase()->unquotedPhrase()->getText()) : null_string;
             ywdb.insert(Annotation{
                 auto_id, extractionId, Tag::END, currentPrimaryAnnotation->id, lineId,
                 currentRankOnLine++, rangeInLine.start, rangeInLine.end,
-                end->EndKeyword()->getText(), optionalBlockName });
+                endKeywordText, optionalBlockName });
             currentPrimaryAnnotation = primaryAnnotationStack.top();
             primaryAnnotationStack.pop();
         }

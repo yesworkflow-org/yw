@@ -57,8 +57,10 @@ namespace yw {
             void enterAlias(YWParser::AliasContext *context) override;
             void enterIo(YWParser::IoContext *context) override;
             void exitIo(YWParser::IoContext *context) override;
+            void enterMisplacedBeginChild(YWParser::MisplacedBeginChildContext * context) override;
 
         private:
+            bool AnnotationListener::inProgramBlock();
             auto getLineId(antlr4::ParserRuleContext* context);
             auto getRangeInLine(antlr4::ParserRuleContext* context);
         };

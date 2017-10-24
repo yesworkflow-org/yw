@@ -55,6 +55,9 @@
     <ClCompile Include="..\..\src\yw-parse\missing_argument_exception.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\yw-parse\misplaced_begin_child_exception.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-parse\YWBaseListener.h">
@@ -82,6 +85,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\yw-parse\missing_argument_exception.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-parse\misplaced_begin_child_exception.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

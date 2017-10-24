@@ -37,26 +37,32 @@ public:
   virtual void enterPortAttribute(YWParser::PortAttributeContext *ctx) = 0;
   virtual void exitPortAttribute(YWParser::PortAttributeContext *ctx) = 0;
 
-  virtual void enterBegin(YWParser::BeginContext *ctx) = 0;
-  virtual void exitBegin(YWParser::BeginContext *ctx) = 0;
-
-  virtual void enterEnd(YWParser::EndContext *ctx) = 0;
-  virtual void exitEnd(YWParser::EndContext *ctx) = 0;
-
-  virtual void enterDesc(YWParser::DescContext *ctx) = 0;
-  virtual void exitDesc(YWParser::DescContext *ctx) = 0;
-
   virtual void enterAlias(YWParser::AliasContext *ctx) = 0;
   virtual void exitAlias(YWParser::AliasContext *ctx) = 0;
+
+  virtual void enterBegin(YWParser::BeginContext *ctx) = 0;
+  virtual void exitBegin(YWParser::BeginContext *ctx) = 0;
 
   virtual void enterCall(YWParser::CallContext *ctx) = 0;
   virtual void exitCall(YWParser::CallContext *ctx) = 0;
 
-  virtual void enterUri(YWParser::UriContext *ctx) = 0;
-  virtual void exitUri(YWParser::UriContext *ctx) = 0;
+  virtual void enterDesc(YWParser::DescContext *ctx) = 0;
+  virtual void exitDesc(YWParser::DescContext *ctx) = 0;
+
+  virtual void enterEnd(YWParser::EndContext *ctx) = 0;
+  virtual void exitEnd(YWParser::EndContext *ctx) = 0;
 
   virtual void enterFile(YWParser::FileContext *ctx) = 0;
   virtual void exitFile(YWParser::FileContext *ctx) = 0;
+
+  virtual void enterUri(YWParser::UriContext *ctx) = 0;
+  virtual void exitUri(YWParser::UriContext *ctx) = 0;
+
+  virtual void enterMisplacedBeginChild(YWParser::MisplacedBeginChildContext *ctx) = 0;
+  virtual void exitMisplacedBeginChild(YWParser::MisplacedBeginChildContext *ctx) = 0;
+
+  virtual void enterMisplacedPortChild(YWParser::MisplacedPortChildContext *ctx) = 0;
+  virtual void exitMisplacedPortChild(YWParser::MisplacedPortChildContext *ctx) = 0;
 
   virtual void enterResource(YWParser::ResourceContext *ctx) = 0;
   virtual void exitResource(YWParser::ResourceContext *ctx) = 0;

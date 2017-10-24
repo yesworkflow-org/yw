@@ -43,7 +43,7 @@ YW_TEST_SET
     {
         this->storeAndParse(R"(
 
-            @begin b
+            @begin b @end b
 
         )");
 

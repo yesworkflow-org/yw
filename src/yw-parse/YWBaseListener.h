@@ -39,26 +39,32 @@ public:
   virtual void enterPortAttribute(YWParser::PortAttributeContext * /*ctx*/) override { }
   virtual void exitPortAttribute(YWParser::PortAttributeContext * /*ctx*/) override { }
 
-  virtual void enterBegin(YWParser::BeginContext * /*ctx*/) override { }
-  virtual void exitBegin(YWParser::BeginContext * /*ctx*/) override { }
-
-  virtual void enterEnd(YWParser::EndContext * /*ctx*/) override { }
-  virtual void exitEnd(YWParser::EndContext * /*ctx*/) override { }
-
-  virtual void enterDesc(YWParser::DescContext * /*ctx*/) override { }
-  virtual void exitDesc(YWParser::DescContext * /*ctx*/) override { }
-
   virtual void enterAlias(YWParser::AliasContext * /*ctx*/) override { }
   virtual void exitAlias(YWParser::AliasContext * /*ctx*/) override { }
+
+  virtual void enterBegin(YWParser::BeginContext * /*ctx*/) override { }
+  virtual void exitBegin(YWParser::BeginContext * /*ctx*/) override { }
 
   virtual void enterCall(YWParser::CallContext * /*ctx*/) override { }
   virtual void exitCall(YWParser::CallContext * /*ctx*/) override { }
 
-  virtual void enterUri(YWParser::UriContext * /*ctx*/) override { }
-  virtual void exitUri(YWParser::UriContext * /*ctx*/) override { }
+  virtual void enterDesc(YWParser::DescContext * /*ctx*/) override { }
+  virtual void exitDesc(YWParser::DescContext * /*ctx*/) override { }
+
+  virtual void enterEnd(YWParser::EndContext * /*ctx*/) override { }
+  virtual void exitEnd(YWParser::EndContext * /*ctx*/) override { }
 
   virtual void enterFile(YWParser::FileContext * /*ctx*/) override { }
   virtual void exitFile(YWParser::FileContext * /*ctx*/) override { }
+
+  virtual void enterUri(YWParser::UriContext * /*ctx*/) override { }
+  virtual void exitUri(YWParser::UriContext * /*ctx*/) override { }
+
+  virtual void enterMisplacedBeginChild(YWParser::MisplacedBeginChildContext * /*ctx*/) override { }
+  virtual void exitMisplacedBeginChild(YWParser::MisplacedBeginChildContext * /*ctx*/) override { }
+
+  virtual void enterMisplacedPortChild(YWParser::MisplacedPortChildContext * /*ctx*/) override { }
+  virtual void exitMisplacedPortChild(YWParser::MisplacedPortChildContext * /*ctx*/) override { }
 
   virtual void enterResource(YWParser::ResourceContext * /*ctx*/) override { }
   virtual void exitResource(YWParser::ResourceContext * /*ctx*/) override { }

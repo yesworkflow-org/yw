@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\test\yw-test\random_testing.h" />
     <ClInclude Include="..\..\test\yw-test\yw_test.h" />
     <ClInclude Include="..\..\test\yw-test\yw_test_cpputest.h" />
     <ClInclude Include="..\..\test\yw-test\yw_test_msvc.h" />
