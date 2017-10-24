@@ -57,5 +57,8 @@
     <ClCompile Include="..\..\test\yw-parse-tests\missing_argument_exception_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\test\yw-parse-tests\misplaced_begin_child_exception_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
