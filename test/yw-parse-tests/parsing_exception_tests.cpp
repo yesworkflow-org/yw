@@ -120,4 +120,32 @@ YW_TEST_SET
         Assert::Fail(L"Expected exception not caught.");
     }
 
+    YW_TEST(ParsingException, CallingGetDetailsOnParsingExceptionWithUnsetDetailsYieldsNullString)
+    {
+        try {
+            throw ParsingException("sample.sh");
+        }
+        catch (const ParsingException& e) {
+            Assert::IsFalse(e.getDetails().hasValue());
+            return;
+        }
+        Assert::Fail(L"Expected exception not caught.");
+    }
+
+
+    YW_TEST(ParsingException, CallingGetDetailsOnParsingExceptionWithSetDetailsYieldsDetails)
+    {
+        try {
+            auto exception = ParsingException("sample.sh");
+            exception.setDetails("Details about the exception.");
+            throw exception;
+        }
+        catch (const ParsingException& e) {
+            Assert::IsTrue(e.getDetails().hasValue());
+            Assert::AreEqual("Details about the exception.", e.getDetails().getValue());
+            return;
+        }
+        Assert::Fail(L"Expected exception not caught.");
+    }
+
 YW_TEST_END

@@ -20,9 +20,17 @@ namespace yw {
             return messageBacking;
         }
 
+        nullable_string ParsingException::getDetails() const {
+            return details;
+        }
+
         void ParsingException::setSource(std::string annotationSource) {
             source = annotationSource;
             updateMessage();
+        }
+
+        void ParsingException::setDetails(std::string detailsText) {
+            details = detailsText;
         }
 
         nullable_string ParsingException::getSource() const {

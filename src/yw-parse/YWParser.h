@@ -22,13 +22,13 @@ public:
   enum {
     RuleScript = 0, RuleBlock = 1, RuleNestedBlocks = 2, RuleBlockAttribute = 3, 
     RuleIo = 4, RulePort = 5, RulePortAttribute = 6, RuleAlias = 7, RuleBegin = 8, 
-    RuleDesc = 9, RuleEnd = 10, RuleFile = 11, RuleUri = 12, RuleMisplacedBeginChild = 13, 
-    RuleMisplacedPortChild = 14, RuleResource = 15, RuleInputKeyword = 16, 
-    RuleOutputKeyword = 17, RuleBlockName = 18, RulePortName = 19, RuleDataName = 20, 
-    RuleDescription = 21, RulePathTemplate = 22, RulePathVariable = 23, 
-    RulePathConstant = 24, RuleVariableName = 25, RuleUriTemplate = 26, 
-    RuleScheme = 27, RulePhrase = 28, RuleUnquotedPhrase = 29, RuleWord = 30, 
-    RuleUnquotedWord = 31, RuleNa = 32
+    RuleDesc = 9, RuleEnd = 10, RuleFile = 11, RuleUri = 12, RuleMisplacedEnd = 13, 
+    RuleMisplacedBeginChild = 14, RuleMisplacedPortChild = 15, RuleMisplacedKeyword = 16, 
+    RuleResource = 17, RuleInputKeyword = 18, RuleOutputKeyword = 19, RuleBlockName = 20, 
+    RulePortName = 21, RuleDataName = 22, RuleDescription = 23, RulePathTemplate = 24, 
+    RulePathVariable = 25, RulePathConstant = 26, RuleVariableName = 27, 
+    RuleUriTemplate = 28, RuleScheme = 29, RulePhrase = 30, RuleUnquotedPhrase = 31, 
+    RuleWord = 32, RuleUnquotedWord = 33, RuleNa = 34
   };
 
   YWParser(antlr4::TokenStream *input);
@@ -54,8 +54,10 @@ public:
   class EndContext;
   class FileContext;
   class UriContext;
+  class MisplacedEndContext;
   class MisplacedBeginChildContext;
   class MisplacedPortChildContext;
+  class MisplacedKeywordContext;
   class ResourceContext;
   class InputKeywordContext;
   class OutputKeywordContext;
@@ -81,8 +83,8 @@ public:
     virtual size_t getRuleIndex() const override;
     std::vector<NaContext *> na();
     NaContext* na(size_t i);
-    std::vector<MisplacedBeginChildContext *> misplacedBeginChild();
-    MisplacedBeginChildContext* misplacedBeginChild(size_t i);
+    std::vector<MisplacedKeywordContext *> misplacedKeyword();
+    MisplacedKeywordContext* misplacedKeyword(size_t i);
     std::vector<BlockContext *> block();
     BlockContext* block(size_t i);
 
@@ -288,15 +290,27 @@ public:
 
   UriContext* uri();
 
+  class  MisplacedEndContext : public antlr4::ParserRuleContext {
+  public:
+    MisplacedEndContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *EndKeyword();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  MisplacedEndContext* misplacedEnd();
+
   class  MisplacedBeginChildContext : public antlr4::ParserRuleContext {
   public:
     MisplacedBeginChildContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *DescKeyword();
-    antlr4::tree::TerminalNode *EndKeyword();
-    InputKeywordContext *inputKeyword();
-    OutputKeywordContext *outputKeyword();
-    MisplacedPortChildContext *misplacedPortChild();
+    antlr4::tree::TerminalNode *InKeyword();
+    antlr4::tree::TerminalNode *OutKeyword();
+    antlr4::tree::TerminalNode *ParamKeyword();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -320,6 +334,21 @@ public:
   };
 
   MisplacedPortChildContext* misplacedPortChild();
+
+  class  MisplacedKeywordContext : public antlr4::ParserRuleContext {
+  public:
+    MisplacedKeywordContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    MisplacedEndContext *misplacedEnd();
+    MisplacedBeginChildContext *misplacedBeginChild();
+    MisplacedPortChildContext *misplacedPortChild();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  MisplacedKeywordContext* misplacedKeyword();
 
   class  ResourceContext : public antlr4::ParserRuleContext {
   public:

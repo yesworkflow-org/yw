@@ -43,9 +43,6 @@
     <ClCompile Include="..\..\src\yw-parse\yw_parser_builder.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\yw-parse\unexpected_token_exception.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\yw-parse\annotation_syntax_exception.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -56,6 +53,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\yw-parse\misplaced_begin_child_exception.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\yw-parse\misplaced_port_child_exception.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\yw-parse\misplaced_end_exception.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\yw-parse\unexpected_annotation_exception.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -75,9 +81,6 @@
     <ClInclude Include="..\..\src\yw-parse\yw_parser_builder.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\yw-parse\unexpected_token_exception.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\yw-parse\annotation_syntax_exception.h">
       <Filter>Source Files</Filter>
     </ClInclude>
@@ -88,6 +91,15 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\yw-parse\misplaced_begin_child_exception.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-parse\misplaced_port_child_exception.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-parse\misplaced_end_exception.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-parse\unexpected_annotation_exception.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

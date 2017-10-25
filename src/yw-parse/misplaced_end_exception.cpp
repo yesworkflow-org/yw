@@ -1,10 +1,10 @@
-#include "misplaced_begin_child_exception.h"
+#include "misplaced_end_exception.h"
 #include <sstream>
 
 namespace yw {
     namespace parse {
 
-        MisplacedBeginChildException::MisplacedBeginChildException(
+        MisplacedEndException::MisplacedEndException(
             const std::string& token,
             int column,
             int line,
@@ -13,10 +13,10 @@ namespace yw {
         ) : UnexpectedAnnotationException(token, column, line, source, what)
         {
             updateMessage();
-            setDetails("The " + std::string(token) + " annotation must be used within a program block and before any nested blocks.");
+            setDetails("Each " + std::string(token) + " annotation is paired with the closest preceding @begin annotation to delimit a program block.");
         }
 
-        void MisplacedBeginChildException::updateMessage() {
+        void MisplacedEndException::updateMessage() {
             auto source = getSource();
             std::stringstream ss;
             ss << "The '" << token << "' annotation";

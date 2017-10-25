@@ -44,5 +44,11 @@
     <ClCompile Include="..\..\test\yw-graph-tests\misplaced_begin_child_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\test\yw-graph-tests\misplaced_end_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\yw-graph-tests\misplaced_port_child_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

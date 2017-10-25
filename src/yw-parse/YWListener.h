@@ -55,11 +55,17 @@ public:
   virtual void enterUri(YWParser::UriContext *ctx) = 0;
   virtual void exitUri(YWParser::UriContext *ctx) = 0;
 
+  virtual void enterMisplacedEnd(YWParser::MisplacedEndContext *ctx) = 0;
+  virtual void exitMisplacedEnd(YWParser::MisplacedEndContext *ctx) = 0;
+
   virtual void enterMisplacedBeginChild(YWParser::MisplacedBeginChildContext *ctx) = 0;
   virtual void exitMisplacedBeginChild(YWParser::MisplacedBeginChildContext *ctx) = 0;
 
   virtual void enterMisplacedPortChild(YWParser::MisplacedPortChildContext *ctx) = 0;
   virtual void exitMisplacedPortChild(YWParser::MisplacedPortChildContext *ctx) = 0;
+
+  virtual void enterMisplacedKeyword(YWParser::MisplacedKeywordContext *ctx) = 0;
+  virtual void exitMisplacedKeyword(YWParser::MisplacedKeywordContext *ctx) = 0;
 
   virtual void enterResource(YWParser::ResourceContext *ctx) = 0;
   virtual void exitResource(YWParser::ResourceContext *ctx) = 0;

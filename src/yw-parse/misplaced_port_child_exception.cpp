@@ -1,10 +1,10 @@
-#include "misplaced_begin_child_exception.h"
+#include "misplaced_port_child_exception.h"
 #include <sstream>
 
 namespace yw {
     namespace parse {
 
-        MisplacedBeginChildException::MisplacedBeginChildException(
+        MisplacedPortChildException::MisplacedPortChildException(
             const std::string& token,
             int column,
             int line,
@@ -13,10 +13,10 @@ namespace yw {
         ) : UnexpectedAnnotationException(token, column, line, source, what)
         {
             updateMessage();
-            setDetails("The " + std::string(token) + " annotation must be used within a program block and before any nested blocks.");
+            setDetails("Each " + std::string(token) + " annotation must follow and qualify a port (@in, @out or @param) annotation.");
         }
 
-        void MisplacedBeginChildException::updateMessage() {
+        void MisplacedPortChildException::updateMessage() {
             auto source = getSource();
             std::stringstream ss;
             ss << "The '" << token << "' annotation";

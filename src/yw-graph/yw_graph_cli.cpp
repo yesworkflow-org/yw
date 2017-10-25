@@ -83,6 +83,10 @@ namespace yw {
             }
             catch (yw::parse::ParsingException& e) {
                 std::cerr << "ERROR: " << e.getMessage() << std::endl;
+                auto details = e.getDetails();
+                if (details.hasValue()) {
+                    std::cerr << "NOTE:  " << e.getDetails().getValue() << std::endl;
+                }
                 return 0;
             }
 

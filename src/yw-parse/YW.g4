@@ -1,7 +1,7 @@
 grammar YW ;
 
 // YW annotation compositions
-script          : (na | misplacedBeginChild)* (na? block)* (na | misplacedBeginChild)*;
+script          : (na | misplacedKeyword)* (na? block)* (na | misplacedKeyword)*;
 block           : begin (na? blockAttribute)* nestedBlocks na? end ;
 nestedBlocks	: (na? block)* ;
 blockAttribute  : io | desc ;
@@ -17,8 +17,10 @@ end				: EndKeyword ((SPACE)+ (blockName))? ;
 file            : FileKeyword (SPACE)+ pathTemplate ;
 uri             : UriKeyword (SPACE)+ uriTemplate;
 
-misplacedBeginChild :  DescKeyword | EndKeyword |  inputKeyword | outputKeyword | misplacedPortChild ;
-misplacedPortChild  :  AsKeyword | DescKeyword | FileKeyword | UriKeyword ;
+misplacedEnd		: EndKeyword ;
+misplacedBeginChild : DescKeyword | InKeyword | OutKeyword | ParamKeyword;
+misplacedPortChild  : AsKeyword | DescKeyword | FileKeyword | UriKeyword ;
+misplacedKeyword    : misplacedEnd | misplacedBeginChild | misplacedPortChild ;
 
 resource        : uri | file ;
 

@@ -1,9 +1,11 @@
 #include "annotation_listener.h"
 #include "annotation.h"
 #include "annotation_syntax_exception.h"
-#include "unexpected_token_exception.h"
+#include "unexpected_annotation_exception.h"
 #include "missing_argument_exception.h"
 #include "misplaced_begin_child_exception.h"
+#include "misplaced_port_child_exception.h"
+#include "misplaced_end_exception.h"
 
 #include <istream>
 #include <regex>
@@ -102,7 +104,7 @@ namespace yw {
             try {
                 std::rethrow_exception(context->exception);
             }
-            catch (const antlr4::RuntimeException& e) {
+            catch (const antlr4::RuntimeException&) {
                 const std::regex pattern{ "line (\\d{1,9}):(\\d{1,9}) mismatched input '(.+)'.*" };
                 std::match_results<std::string::const_iterator> matches;
                 std::istringstream errorMessage { stderrRecorder.str() };
@@ -112,7 +114,7 @@ namespace yw {
                         auto line = stoi(matches[1]);
                         auto column = stoi(matches[2]) + 1;
                         auto token = matches[3];
-                        throw yw::parse::UnexpectedTokenException{ token, column, line };
+                        throw yw::parse::UnexpectedAnnotationException{ token, column, line };
                     }
                 }
                 throw yw::parse::ParsingException{};
@@ -123,8 +125,24 @@ namespace yw {
             if (context->exception) throwParsingException(context);
             auto lineId = getLineId(context);
             auto rangeInLine = getRangeInLine(context);
-            auto misplacedKeywordText = context->getText();
-            throw  yw::parse::MisplacedBeginChildException(misplacedKeywordText, rangeInLine.start + 1, currentLineNumber);
+            auto misplacedKeyword = context->getText();
+            throw yw::parse::MisplacedBeginChildException(misplacedKeyword, rangeInLine.start + 1, currentLineNumber);
+        }
+
+        void AnnotationListener::enterMisplacedPortChild(YWParser::MisplacedPortChildContext* context) {
+            if (context->exception) throwParsingException(context);
+            auto lineId = getLineId(context);
+            auto rangeInLine = getRangeInLine(context);
+            auto misplacedKeyword = context->getText();
+            throw yw::parse::MisplacedPortChildException(misplacedKeyword, rangeInLine.start + 1, currentLineNumber);
+        }
+
+        void AnnotationListener::enterMisplacedEnd(YWParser::MisplacedEndContext * context) {
+            if (context->exception) throwParsingException(context);
+            auto lineId = getLineId(context);
+            auto rangeInLine = getRangeInLine(context);
+            auto misplacedKeyword = context->getText();
+            throw yw::parse::MisplacedEndException(misplacedKeyword, rangeInLine.start + 1, currentLineNumber);
         }
 
         void AnnotationListener::enterEnd(YWParser::EndContext *end)

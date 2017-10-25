@@ -17,8 +17,10 @@ namespace yw {
             );
             
             virtual const char* what() const override;
+            virtual nullable_string getDetails() const;
             virtual const std::string& getMessage() const;
             virtual nullable_string getSource() const;
+            virtual void setDetails(std::string details);
             virtual void setSource(std::string annotationSource);
 
         protected:
@@ -29,6 +31,7 @@ namespace yw {
 
         private:
 
+            nullable_string details;
             nullable_string source;
         };
     }

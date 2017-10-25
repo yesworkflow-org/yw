@@ -7,16 +7,16 @@
 namespace yw {
     namespace parse {
 
-        class MisplacedBeginChildException : public UnexpectedAnnotationException {
+        class MisplacedEndException : public UnexpectedAnnotationException {
 
         public:
             
-            MisplacedBeginChildException(
+            MisplacedEndException(
                 const std::string& token,
                 int column,
                 int line,
                 const nullable_string& source = null_string,
-                const std::string& what = "<sliced instance of yw::parse::MisplacedBeginChildException>"
+                const std::string& what = "<sliced instance of yw::parse::MisplacedEndException>"
             );
 
         protected:

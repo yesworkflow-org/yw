@@ -7,13 +7,13 @@
 namespace yw {
     namespace parse {
 
-        class UnexpectedTokenException : public AnnotationSyntaxException {
+        class UnexpectedAnnotationException : public AnnotationSyntaxException {
 
         public:
             
             const std::string token;
 
-            UnexpectedTokenException(
+            UnexpectedAnnotationException(
                 const std::string& token,
                 int column,
                 int line,

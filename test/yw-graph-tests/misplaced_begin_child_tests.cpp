@@ -20,72 +20,7 @@ YW_TEST_FIXTURE(MisplacedBeginChild)
 
 YW_TEST_SET
 
-    YW_TEST(MisplacedBeginChild, ErrorReportedWhenAsIsOnlyAnnotation)
-    {
-        runGraphCLIOnMalformedInput(trimmargins(R"(
-            
-                    // @as alias
-
-                )"), "sample.cpp");
-
-        Assert::AreEqual(
-            "ERROR: An unexpected token '@as' was encountered at column 4 of line 1 in source file 'sample.cpp'."   EOL,
-            stderrRecorder.str()
-        );
-    }
-
-    YW_TEST(MisplacedBeginChild, ErrorReportedWhenAsPrecedesFirstBlock)
-    {
-        runGraphCLIOnMalformedInput(trimmargins(R"(
-            
-                        // @as alias
-                        // @begin b
-                        // @end b
-
-                    )"), "sample.cpp");
-
-        Assert::AreEqual(
-            "ERROR: An unexpected token '@as' was encountered at column 4 of line 1 in source file 'sample.cpp'."   EOL,
-            stderrRecorder.str()
-        );
-    }
-
-    YW_TEST(MisplacedBeginChild, ErrorReportedWhenAsFollowsAllBlocks)
-    {
-        runGraphCLIOnMalformedInput(trimmargins(R"(
-            
-                        // @begin b 
-                        // @begin c 
-                        // @end c 
-                        // @end b 
-                        // @as alias
-
-                    )"), "sample.cpp");
-
-        Assert::AreEqual(
-            "ERROR: An unexpected token '@as' was encountered at column 4 of line 5 in source file 'sample.cpp'."   EOL,
-            stderrRecorder.str()
-        );
-    }
-
-    YW_TEST(MisplacedBeginChild, ErrorReportedWhenAsFollowsNestedBlock)
-    {
-        runGraphCLIOnMalformedInput(trimmargins(R"(
-            
-                        // @begin b 
-                        // @begin c 
-                        // @end c 
-                        // @as alias
-                        // @end b 
-
-                    )"), "sample.cpp");
-
-        Assert::AreEqual(
-            "ERROR: An unexpected token '@as' was encountered at column 4 of line 4 in source file 'sample.cpp'."   EOL,
-            stderrRecorder.str()
-        );
-    }
-
+  
     YW_TEST(MisplacedBeginChild, ErrorReportedWhenDescIsOnlyAnnotation)
     {
         runGraphCLIOnMalformedInput(trimmargins(R"(
@@ -95,7 +30,8 @@ YW_TEST_SET
             )"), "sample.cpp");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@desc' was encountered at column 4 of line 1 in source file 'sample.cpp'."   EOL,
+            "ERROR: The '@desc' annotation was unexpected at column 4 of line 1 in source file 'sample.cpp'."   EOL
+            "NOTE:  The @desc annotation must be used within a program block and before any nested blocks."   EOL,
             stderrRecorder.str()
         );
     }
@@ -111,7 +47,8 @@ YW_TEST_SET
                 )"), "sample.cpp");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@desc' was encountered at column 4 of line 1 in source file 'sample.cpp'."   EOL,
+            "ERROR: The '@desc' annotation was unexpected at column 4 of line 1 in source file 'sample.cpp'."   EOL
+            "NOTE:  The @desc annotation must be used within a program block and before any nested blocks."   EOL,
             stderrRecorder.str()
         );
     }
@@ -129,7 +66,8 @@ YW_TEST_SET
                 )"), "sample.cpp");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@desc' was encountered at column 4 of line 5 in source file 'sample.cpp'."   EOL,
+            "ERROR: The '@desc' annotation was unexpected at column 4 of line 5 in source file 'sample.cpp'."   EOL
+            "NOTE:  The @desc annotation must be used within a program block and before any nested blocks."   EOL,
             stderrRecorder.str()
         );
     }
@@ -147,124 +85,13 @@ YW_TEST_SET
                 )"), "sample.cpp");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@desc' was encountered at column 4 of line 4 in source file 'sample.cpp'."   EOL,
+            "ERROR: The '@desc' annotation was unexpected at column 4 of line 4 in source file 'sample.cpp'."   EOL
+            "NOTE:  The @desc annotation must be used within a program block and before any nested blocks."   EOL,
             stderrRecorder.str()
         );
     }
 
-    YW_TEST(MisplacedBeginChild, ErrorReportedWhenEndIsOnlyAnnotation)
-    {
-        runGraphCLIOnMalformedInput(trimmargins(R"(
-            
-                // @end
-
-            )"), "sample.cpp");
-
-        Assert::AreEqual(
-            "ERROR: An unexpected token '@end' was encountered at column 4 of line 1 in source file 'sample.cpp'."   EOL,
-            stderrRecorder.str()
-        );
-    }
-
-    YW_TEST(MisplacedBeginChild, ErrorReportedWhenEndPrecedesFirstBlock)
-    {
-        runGraphCLIOnMalformedInput(trimmargins(R"(
-            
-                    // @end
-                    // @begin b
-                    // @end b
-
-                )"), "sample.cpp");
-
-        Assert::AreEqual(
-            "ERROR: An unexpected token '@end' was encountered at column 4 of line 1 in source file 'sample.cpp'."   EOL,
-            stderrRecorder.str()
-        );
-    }
-
-    YW_TEST(MisplacedBeginChild, ErrorReportedWhenEndFollowsAllBlocks)
-    {
-        runGraphCLIOnMalformedInput(trimmargins(R"(
-            
-                    // @begin b 
-                    // @begin c 
-                    // @end c 
-                    // @end b 
-                    // @end
-
-                )"), "sample.cpp");
-
-        Assert::AreEqual(
-            "ERROR: An unexpected token '@end' was encountered at column 4 of line 5 in source file 'sample.cpp'."   EOL,
-            stderrRecorder.str()
-        );
-    }
-
-    YW_TEST(MisplacedBeginChild, ErrorReportedWhenFileIsOnlyAnnotation)
-    {
-        runGraphCLIOnMalformedInput(trimmargins(R"(
-            
-                // @file path
-
-            )"), "sample.cpp");
-
-        Assert::AreEqual(
-            "ERROR: An unexpected token '@file' was encountered at column 4 of line 1 in source file 'sample.cpp'."   EOL,
-            stderrRecorder.str()
-        );
-    }
-
-    YW_TEST(MisplacedBeginChild, ErrorReportedWhenFilePrecedesFirstBlock)
-    {
-        runGraphCLIOnMalformedInput(trimmargins(R"(
-            
-                    // @file path
-                    // @begin b
-                    // @end b
-
-                )"), "sample.cpp");
-
-        Assert::AreEqual(
-            "ERROR: An unexpected token '@file' was encountered at column 4 of line 1 in source file 'sample.cpp'."   EOL,
-            stderrRecorder.str()
-        );
-    }
-
-    YW_TEST(MisplacedBeginChild, ErrorReportedWhenFileFollowsAllBlocks)
-    {
-        runGraphCLIOnMalformedInput(trimmargins(R"(
-            
-                    // @begin b 
-                    // @begin c 
-                    // @end c 
-                    // @end b 
-                    // @file path
-
-                )"), "sample.cpp");
-
-        Assert::AreEqual(
-            "ERROR: An unexpected token '@file' was encountered at column 4 of line 5 in source file 'sample.cpp'."   EOL,
-            stderrRecorder.str()
-        );
-    }
-
-    YW_TEST(MisplacedBeginChild, ErrorReportedWhenFileFollowsNestedBlock)
-    {
-        runGraphCLIOnMalformedInput(trimmargins(R"(
-            
-                    // @begin b 
-                    // @begin c 
-                    // @end c 
-                    // @file path
-                    // @end b 
-
-                )"), "sample.cpp");
-
-        Assert::AreEqual(
-            "ERROR: An unexpected token '@file' was encountered at column 4 of line 4 in source file 'sample.cpp'."   EOL,
-            stderrRecorder.str()
-        );
-    }
+  
 
     YW_TEST(MisplacedBeginChild, ErrorReportedWhenInIsOnlyAnnotation)
     {
@@ -275,7 +102,8 @@ YW_TEST_SET
         )"), "sample.cpp");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@in' was encountered at column 4 of line 1 in source file 'sample.cpp'."   EOL,
+            "ERROR: The '@in' annotation was unexpected at column 4 of line 1 in source file 'sample.cpp'." EOL
+            "NOTE:  The @in annotation must be used within a program block and before any nested blocks."   EOL,
             stderrRecorder.str()
         );
     }
@@ -291,7 +119,8 @@ YW_TEST_SET
             )"), "sample.cpp");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@in' was encountered at column 4 of line 1 in source file 'sample.cpp'."   EOL,
+            "ERROR: The '@in' annotation was unexpected at column 4 of line 1 in source file 'sample.cpp'." EOL
+            "NOTE:  The @in annotation must be used within a program block and before any nested blocks."   EOL,
             stderrRecorder.str()
         );
     }
@@ -309,7 +138,8 @@ YW_TEST_SET
             )"), "sample.cpp");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@in' was encountered at column 4 of line 5 in source file 'sample.cpp'."   EOL,
+            "ERROR: The '@in' annotation was unexpected at column 4 of line 5 in source file 'sample.cpp'." EOL
+            "NOTE:  The @in annotation must be used within a program block and before any nested blocks."   EOL,
             stderrRecorder.str()
         );
     }
@@ -327,7 +157,8 @@ YW_TEST_SET
             )"), "sample.cpp");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@in' was encountered at column 4 of line 4 in source file 'sample.cpp'."   EOL,
+            "ERROR: The '@in' annotation was unexpected at column 4 of line 4 in source file 'sample.cpp'." EOL
+            "NOTE:  The @in annotation must be used within a program block and before any nested blocks."   EOL,
             stderrRecorder.str()
         );
     }
@@ -341,7 +172,8 @@ YW_TEST_SET
         )"), "sample.cpp");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@out' was encountered at column 4 of line 1 in source file 'sample.cpp'."   EOL,
+            "ERROR: The '@out' annotation was unexpected at column 4 of line 1 in source file 'sample.cpp'."    EOL
+            "NOTE:  The @out annotation must be used within a program block and before any nested blocks."      EOL,
             stderrRecorder.str()
         );
     }
@@ -357,7 +189,8 @@ YW_TEST_SET
             )"), "sample.cpp");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@out' was encountered at column 4 of line 1 in source file 'sample.cpp'."   EOL,
+            "ERROR: The '@out' annotation was unexpected at column 4 of line 1 in source file 'sample.cpp'."    EOL
+            "NOTE:  The @out annotation must be used within a program block and before any nested blocks."      EOL,
             stderrRecorder.str()
         );
     }
@@ -375,7 +208,8 @@ YW_TEST_SET
             )"), "sample.cpp");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@out' was encountered at column 4 of line 5 in source file 'sample.cpp'."   EOL,
+            "ERROR: The '@out' annotation was unexpected at column 4 of line 5 in source file 'sample.cpp'."    EOL
+            "NOTE:  The @out annotation must be used within a program block and before any nested blocks."      EOL,
             stderrRecorder.str()
         );
     }
@@ -393,7 +227,8 @@ YW_TEST_SET
             )"), "sample.cpp");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@out' was encountered at column 4 of line 4 in source file 'sample.cpp'."   EOL,
+            "ERROR: The '@out' annotation was unexpected at column 4 of line 4 in source file 'sample.cpp'."    EOL
+            "NOTE:  The @out annotation must be used within a program block and before any nested blocks."      EOL,
             stderrRecorder.str()
         );
     }
@@ -407,7 +242,8 @@ YW_TEST_SET
         )"), "sample.cpp");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@param' was encountered at column 4 of line 1 in source file 'sample.cpp'."   EOL,
+            "ERROR: The '@param' annotation was unexpected at column 4 of line 1 in source file 'sample.cpp'."  EOL
+            "NOTE:  The @param annotation must be used within a program block and before any nested blocks."    EOL,
             stderrRecorder.str()
         );
     }
@@ -423,7 +259,8 @@ YW_TEST_SET
             )"), "sample.cpp");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@param' was encountered at column 4 of line 1 in source file 'sample.cpp'."   EOL,
+            "ERROR: The '@param' annotation was unexpected at column 4 of line 1 in source file 'sample.cpp'."  EOL
+            "NOTE:  The @param annotation must be used within a program block and before any nested blocks."    EOL,
             stderrRecorder.str()
         );
     }
@@ -441,7 +278,8 @@ YW_TEST_SET
             )"), "sample.cpp");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@param' was encountered at column 4 of line 5 in source file 'sample.cpp'."   EOL,
+            "ERROR: The '@param' annotation was unexpected at column 4 of line 5 in source file 'sample.cpp'."  EOL
+            "NOTE:  The @param annotation must be used within a program block and before any nested blocks."    EOL,
             stderrRecorder.str()
         );
     }
@@ -459,73 +297,8 @@ YW_TEST_SET
             )"), "sample.cpp");
 
         Assert::AreEqual(
-            "ERROR: An unexpected token '@param' was encountered at column 4 of line 4 in source file 'sample.cpp'."   EOL,
-            stderrRecorder.str()
-        );
-    }
-
-    YW_TEST(MisplacedBeginChild, ErrorReportedWhenUriIsOnlyAnnotation)
-    {
-        runGraphCLIOnMalformedInput(trimmargins(R"(
-            
-                // @uri path
-
-            )"), "sample.cpp");
-
-        Assert::AreEqual(
-            "ERROR: An unexpected token '@uri' was encountered at column 4 of line 1 in source file 'sample.cpp'."   EOL,
-            stderrRecorder.str()
-        );
-    }
-
-    YW_TEST(MisplacedBeginChild, ErrorReportedWhenUriPrecedesFirstBlock)
-    {
-        runGraphCLIOnMalformedInput(trimmargins(R"(
-            
-                    // @uri path
-                    // @begin b
-                    // @end b
-
-                )"), "sample.cpp");
-
-        Assert::AreEqual(
-            "ERROR: An unexpected token '@uri' was encountered at column 4 of line 1 in source file 'sample.cpp'."   EOL,
-            stderrRecorder.str()
-        );
-    }
-
-    YW_TEST(MisplacedBeginChild, ErrorReportedWhenUriFollowsAllBlocks)
-    {
-        runGraphCLIOnMalformedInput(trimmargins(R"(
-            
-                    // @begin b 
-                    // @begin c 
-                    // @end c 
-                    // @end b 
-                    // @uri path
-
-                )"), "sample.cpp");
-
-        Assert::AreEqual(
-            "ERROR: An unexpected token '@uri' was encountered at column 4 of line 5 in source file 'sample.cpp'."   EOL,
-            stderrRecorder.str()
-        );
-    }
-
-    YW_TEST(MisplacedBeginChild, ErrorReportedWhenUriFollowsNestedBlock)
-    {
-        runGraphCLIOnMalformedInput(trimmargins(R"(
-            
-                    // @begin b 
-                    // @begin c 
-                    // @end c 
-                    // @uri path
-                    // @end b 
-
-                )"), "sample.cpp");
-
-        Assert::AreEqual(
-            "ERROR: An unexpected token '@uri' was encountered at column 4 of line 4 in source file 'sample.cpp'."   EOL,
+            "ERROR: The '@param' annotation was unexpected at column 4 of line 4 in source file 'sample.cpp'."  EOL
+            "NOTE:  The @param annotation must be used within a program block and before any nested blocks."    EOL,
             stderrRecorder.str()
         );
     }

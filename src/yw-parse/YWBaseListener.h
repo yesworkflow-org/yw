@@ -57,11 +57,17 @@ public:
   virtual void enterUri(YWParser::UriContext * /*ctx*/) override { }
   virtual void exitUri(YWParser::UriContext * /*ctx*/) override { }
 
+  virtual void enterMisplacedEnd(YWParser::MisplacedEndContext * /*ctx*/) override { }
+  virtual void exitMisplacedEnd(YWParser::MisplacedEndContext * /*ctx*/) override { }
+
   virtual void enterMisplacedBeginChild(YWParser::MisplacedBeginChildContext * /*ctx*/) override { }
   virtual void exitMisplacedBeginChild(YWParser::MisplacedBeginChildContext * /*ctx*/) override { }
 
   virtual void enterMisplacedPortChild(YWParser::MisplacedPortChildContext * /*ctx*/) override { }
   virtual void exitMisplacedPortChild(YWParser::MisplacedPortChildContext * /*ctx*/) override { }
+
+  virtual void enterMisplacedKeyword(YWParser::MisplacedKeywordContext * /*ctx*/) override { }
+  virtual void exitMisplacedKeyword(YWParser::MisplacedKeywordContext * /*ctx*/) override { }
 
   virtual void enterResource(YWParser::ResourceContext * /*ctx*/) override { }
   virtual void exitResource(YWParser::ResourceContext * /*ctx*/) override { }

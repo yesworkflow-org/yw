@@ -1,10 +1,10 @@
-#include "unexpected_token_exception.h"
+#include "unexpected_annotation_exception.h"
 #include <sstream>
 
 namespace yw {
     namespace parse {
 
-        UnexpectedTokenException::UnexpectedTokenException(
+        UnexpectedAnnotationException::UnexpectedAnnotationException(
             const std::string& token,
             int column,
             int line,
@@ -15,11 +15,11 @@ namespace yw {
             updateMessage();
         }
 
-        void UnexpectedTokenException::updateMessage() {
+        void UnexpectedAnnotationException::updateMessage() {
             auto source = getSource();
             std::stringstream ss;
-            ss << "An unexpected token '" << token;
-            ss << "' was encountered at column " << column;
+            ss << "The '" << token << "' annotation";
+            ss << " was unexpected at column " << column;
             ss << " of line " << line;
             if (source.hasValue()) {
                 ss << " in source file '" << source.getValue() << "'";
