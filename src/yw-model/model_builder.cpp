@@ -57,10 +57,11 @@ namespace yw {
             const row_id& sourceId,
             const string& sourceText
         ) {
-            YWParserBuilder parser(sourceText);
+            YWParserBuilder parserBuilder(sourceText, true);
+            auto parser = parserBuilder.parse();
             ModelEntityListener listener{ ywdb, modelId, extractionId, sourceId };
             try {
-                antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser.parse()->script());
+                antlr4::tree::ParseTreeWalker::DEFAULT.walk(&listener, parser->script());
             }
             catch (ParsingException& e) {
                 if (currentFilePath.hasValue()) {

@@ -121,30 +121,6 @@ namespace yw {
             }
         }
 
-        void AnnotationListener::enterMisplacedBeginChild(YWParser::MisplacedBeginChildContext * context) {
-            if (context->exception) throwParsingException(context);
-            auto lineId = getLineId(context);
-            auto rangeInLine = getRangeInLine(context);
-            auto misplacedKeyword = context->getText();
-            throw yw::parse::MisplacedBeginChildException(misplacedKeyword, rangeInLine.start + 1, currentLineNumber);
-        }
-
-        void AnnotationListener::enterMisplacedPortChild(YWParser::MisplacedPortChildContext* context) {
-            if (context->exception) throwParsingException(context);
-            auto lineId = getLineId(context);
-            auto rangeInLine = getRangeInLine(context);
-            auto misplacedKeyword = context->getText();
-            throw yw::parse::MisplacedPortChildException(misplacedKeyword, rangeInLine.start + 1, currentLineNumber);
-        }
-
-        void AnnotationListener::enterMisplacedEnd(YWParser::MisplacedEndContext * context) {
-            if (context->exception) throwParsingException(context);
-            auto lineId = getLineId(context);
-            auto rangeInLine = getRangeInLine(context);
-            auto misplacedKeyword = context->getText();
-            throw yw::parse::MisplacedEndException(misplacedKeyword, rangeInLine.start + 1, currentLineNumber);
-        }
-
         void AnnotationListener::enterEnd(YWParser::EndContext *end)
         {
             if (end->exception) throwParsingException(end);

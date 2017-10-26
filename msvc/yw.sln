@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2002
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-extract", "yw-extract\yw-extract.vcxproj", "{158B1288-0CC1-426B-8967-800EDBD8C278}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -301,6 +301,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-common", "yw-common\yw-common.vcxproj", "{53F368BF-5AE1-4D98-BF66-E2D100E90E8C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-common-tests", "yw-common-tests\yw-common-tests.vcxproj", "{3A4D1390-CA9B-4CBE-88DC-E75131E1AAAC}"
+	ProjectSection(ProjectDependencies) = postProject
+		{53F368BF-5AE1-4D98-BF66-E2D100E90E8C} = {53F368BF-5AE1-4D98-BF66-E2D100E90E8C}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

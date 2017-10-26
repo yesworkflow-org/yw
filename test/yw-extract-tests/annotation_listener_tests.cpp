@@ -1,5 +1,6 @@
 #include "yw_extract_tests.h"
 #include "random_testing.h"
+#include "parsing_exception.h"
 
 using namespace yw;
 using namespace yw::extract;
@@ -38,13 +39,17 @@ YW_TEST_FIXTURE(AnnotationListener)
 
 YW_TEST_SET
 
-    YW_TEST(AnnotationListener, AnnotationListenerCanParseRandomASCIITextWithoutErrors)
+    YW_TEST(AnnotationListener, AnnotationListenerCanParseRandomASCIITextWithoutNullPointerErrors)
     {
         RandomTextGenerator r;
         r.setSeed(42);
-        for (int i = 0; i < 10; ++i) {
-            auto text = r.getRandomASCIIText(10000);
-            this->storeAndParse(text);
+        try {
+            for (int i = 0; i < 10; ++i) {
+                auto text = r.getRandomASCIIText(10000);
+                this->storeAndParse(text);
+            }
+        }
+        catch (yw::parse::ParsingException e) {
         }
     }
 

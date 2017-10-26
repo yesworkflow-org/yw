@@ -81,12 +81,11 @@ public:
   public:
     ScriptContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<NaContext *> na();
-    NaContext* na(size_t i);
-    std::vector<MisplacedKeywordContext *> misplacedKeyword();
-    MisplacedKeywordContext* misplacedKeyword(size_t i);
     std::vector<BlockContext *> block();
     BlockContext* block(size_t i);
+    antlr4::tree::TerminalNode *EOF();
+    std::vector<NaContext *> na();
+    NaContext* na(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;

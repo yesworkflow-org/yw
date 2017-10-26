@@ -1,7 +1,7 @@
 grammar YW ;
 
 // YW annotation compositions
-script          : (na | misplacedKeyword)* (na? block)* (na | misplacedKeyword)*;
+script          : na? block (na? block)* na? EOF ;
 block           : begin (na? blockAttribute)* nestedBlocks na? end ;
 nestedBlocks	: (na? block)* ;
 blockAttribute  : io | desc ;
@@ -69,4 +69,3 @@ NEWLINE         : '\r'? '\n' ;
 COLON			: ':' ;
 WORD            : [a-zA-Z0-9\\_]+ ;
 OTHER			: .+? ;
-

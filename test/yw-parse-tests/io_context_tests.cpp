@@ -13,8 +13,14 @@ YW_TEST_SET
     YW_TEST(IoContext, In)
     {
         YWParserBuilder parser_builder("@in");
-        YWParser::IoContext* io = parser_builder.parse()->io();
-        Expect::AreEqual("line 1:3 mismatched input '<EOF>' expecting SPACE" EOL, stderrRecorder.str());
+        YWParser::IoContext* io;
+        try {
+            io = parser_builder.parse()->io();
+        }
+        catch (yw::parse::ParsingException e) {
+            Expect::AreEqual("A problem occurred parsing YW annotations.", e.getMessage());
+        }
+        
         Assert::AreEqual("@in", io->port()->inputKeyword()->getText());
         Assert::IsNull(io->port()->outputKeyword());
         Assert::AreEqual(0, io->port()->portName().size());

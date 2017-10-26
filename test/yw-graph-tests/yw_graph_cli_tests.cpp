@@ -239,4 +239,28 @@ YW_TEST_SET
             )"), stdoutRecorder.str());
     }
 
+    //YW_TEST(WorkflowGraphCLI, SimulateDataCollection)
+    //{
+    //    yw::graph::cli(CommandLine(
+    //        "yw graph C:/Users/tmcphill/GitRepos/yw-prototypes/examples/simulate_data_collection/simulate_data_collection.py"
+    //    ));
+
+    //    Assert::EmptyString(stderrRecorder.str());
+    //    Assert::AreEqual(trimmargins(R"(
+
+    //        digraph w {
+    //        subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+    //        subgraph cluster_workflow_box_inner { label=""; penwidth=0
+    //        node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+    //        b1
+    //        b2
+    //        node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+    //        d1
+    //        d1 -> b2
+    //        b1 -> d1
+    //        }}
+    //        }
+
+    //        )"), stdoutRecorder.str());
+    //}
 YW_TEST_END

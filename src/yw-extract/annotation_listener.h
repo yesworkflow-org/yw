@@ -57,9 +57,9 @@ namespace yw {
             void enterAlias(YWParser::AliasContext *context) override;
             void enterIo(YWParser::IoContext *context) override;
             void exitIo(YWParser::IoContext *context) override;
-            void enterMisplacedBeginChild(YWParser::MisplacedBeginChildContext * context) override;
-            void enterMisplacedPortChild(YWParser::MisplacedPortChildContext* context) override;
-            void enterMisplacedEnd(YWParser::MisplacedEndContext * context) override;
+            //void enterMisplacedBeginChild(YWParser::MisplacedBeginChildContext * context) override;
+            //void enterMisplacedPortChild(YWParser::MisplacedPortChildContext* context) override;
+            //void enterMisplacedEnd(YWParser::MisplacedEndContext * context) override;
 
         private:
             bool AnnotationListener::inProgramBlock();
