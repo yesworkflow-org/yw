@@ -1,5 +1,6 @@
 
 #include "yw_graph_tests.h"
+#include "random_testing.h"
 
 using namespace yw;
 using namespace yw::cli;
@@ -238,6 +239,31 @@ YW_TEST_SET
 
             )"), stdoutRecorder.str());
     }
+
+    YW_TEST(WorkflowGraphCLI, AnnotationListenerReportsParsingErrorFoundWhenParsingEmptyString)
+    {
+        auto sourceFilePath = writeTempFile("sample.yw", "");
+
+        yw::graph::cli(CommandLine(
+            "yw graph " + sourceFilePath + " graph.comments=OFF"
+        ));
+        Assert::AreEqual(
+            "ERROR: The end of the file was reached unexpectedly while parsing annotations in source file 'sample.yw'." EOL, 
+            stderrRecorder.str()
+        );
+    }
+
+    YW_TEST(WorkflowGraphCLI, AnnotationListenerCanParseRandomASCIITextWithoutNullPointerErrors)
+    {
+        RandomTextGenerator r;
+        r.setSeed(42);
+        for (int i = 0; i < 100; ++i) {
+            auto text = r.getRandomASCIIText(10000);
+            auto sourceFilePath = writeTempFile("sample.yw", text);
+            yw::graph::cli(CommandLine( "yw graph " + sourceFilePath ));
+        }
+    }
+
 
     //YW_TEST(WorkflowGraphCLI, SimulateDataCollection)
     //{

@@ -156,6 +156,7 @@
     <ClCompile Include="..\..\src\yw-parse\misplaced_port_child_exception.cpp" />
     <ClCompile Include="..\..\src\yw-parse\missing_argument_exception.cpp" />
     <ClCompile Include="..\..\src\yw-parse\unexpected_annotation_exception.cpp" />
+    <ClCompile Include="..\..\src\yw-parse\unexpected_eof_exception.cpp" />
     <ClCompile Include="..\..\src\yw-parse\YWBaseListener.cpp" />
     <ClCompile Include="..\..\src\yw-parse\YWLexer.cpp" />
     <ClCompile Include="..\..\src\yw-parse\YWListener.cpp" />
@@ -171,6 +172,7 @@
     <ClInclude Include="..\..\src\yw-parse\misplaced_port_child_exception.h" />
     <ClInclude Include="..\..\src\yw-parse\missing_argument_exception.h" />
     <ClInclude Include="..\..\src\yw-parse\unexpected_annotation_exception.h" />
+    <ClInclude Include="..\..\src\yw-parse\unexpected_eof_exception.h" />
     <ClInclude Include="..\..\src\yw-parse\YWBaseListener.h" />
     <ClInclude Include="..\..\src\yw-parse\YWLexer.h" />
     <ClInclude Include="..\..\src\yw-parse\YWListener.h" />

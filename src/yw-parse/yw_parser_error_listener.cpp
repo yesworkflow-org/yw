@@ -2,6 +2,7 @@
 #include "misplaced_begin_child_exception.h"
 #include "misplaced_port_child_exception.h"
 #include "misplaced_end_exception.h"
+#include "unexpected_eof_exception.h"
 
 namespace yw {
     namespace parse {
@@ -27,9 +28,14 @@ namespace yw {
                 throw yw::parse::MisplacedEndException(offendingSymbolText, charPositionInLine + 1, line);
             }
 
-            //if (offendingSymbolText == "<EOF>" ) {
-            //    throw yw::parse::ParsingException();
-            //}
+            if (offendingSymbolText == "<EOF>") {
+                throw yw::parse::UnexpectedEndOfFileException();
+            }
+
+            //auto exception = yw::parse::ParsingException();
+            //exception.setDetails(msg);
+            //throw exception;
+
 
             //if (e_ptr) {
             //    try {
@@ -38,24 +44,6 @@ namespace yw {
             //    catch (antlr4::InputMismatchException e) {
             //    }
             //}
-        }
-
-        void YWParserErrorListener::reportAmbiguity(antlr4::Parser *recognizer, const  antlr4::dfa::DFA &dfa, size_t startIndex, size_t stopIndex, bool exact,
-            const antlrcpp::BitSet &ambigAlts, antlr4::atn::ATNConfigSet *configs) 
-        {
-            std::cerr << "report ambiguity" << std::endl;
-        }
-
-        void YWParserErrorListener::reportAttemptingFullContext(antlr4::Parser *recognizer, const  antlr4::dfa::DFA &dfa, size_t startIndex, size_t stopIndex,
-            const antlrcpp::BitSet &conflictingAlts, antlr4::atn::ATNConfigSet *configs)
-        {
-            std::cerr << "report attempting full context" << std::endl;
-        }
-
-        void YWParserErrorListener::reportContextSensitivity(antlr4::Parser *recognizer, const  antlr4::dfa::DFA &dfa, size_t startIndex, size_t stopIndex,
-            size_t prediction, antlr4::atn::ATNConfigSet *configs) 
-        {
-            std::cerr << "report context sensitivity" << std::endl;
         }
     }
 }

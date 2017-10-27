@@ -96,7 +96,7 @@ namespace yw {
                 dotText = grapher.graph(modelId);
             }
             catch (std::exception e) {
-                std::cerr << "Error graphing model. " << e.what() << std::endl;
+                std::cerr << "ERROR: " << e.what() << std::endl;
                 return 0;
             }
 

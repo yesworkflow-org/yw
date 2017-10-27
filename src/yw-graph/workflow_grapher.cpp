@@ -72,7 +72,7 @@ namespace yw {
                     workflowName = topLevelProgramBlocks[0].name;
                 }
                 else {
-                    throw std::runtime_error("No top-level workflow found in model.");
+                    throw std::runtime_error("No program blocks found to graph.");
                 }
             }
             auto workflow = ywdb.selectProgramBlockByModelIdAndBlockName(modelId, workflowName);

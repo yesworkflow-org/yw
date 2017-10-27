@@ -105,7 +105,7 @@ namespace yw {
                 std::rethrow_exception(context->exception);
             }
             catch (const antlr4::RuntimeException&) {
-                const std::regex pattern{ "line (\\d{1,9}):(\\d{1,9}) mismatched input '(.+)'.*" };
+                const std::regex pattern{ "line (\\d{1,9}):(\\d{1,9}) mismatched input '(.+)' (.*)" };
                 std::match_results<std::string::const_iterator> matches;
                 std::istringstream errorMessage { stderrRecorder.str() };
                 std::string currentLine;
@@ -114,10 +114,13 @@ namespace yw {
                         auto line = stoi(matches[1]);
                         auto column = stoi(matches[2]) + 1;
                         auto token = matches[3];
+                        auto details = matches[4];
                         throw yw::parse::UnexpectedAnnotationException{ token, column, line };
                     }
                 }
-                throw yw::parse::ParsingException{};
+                auto exception = yw::parse::ParsingException();
+                exception.setDetails(errorMessage.str());
+                throw exception;
             }
         }
 

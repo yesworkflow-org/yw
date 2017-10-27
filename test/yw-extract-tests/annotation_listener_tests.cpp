@@ -39,20 +39,6 @@ YW_TEST_FIXTURE(AnnotationListener)
 
 YW_TEST_SET
 
-    YW_TEST(AnnotationListener, AnnotationListenerCanParseRandomASCIITextWithoutNullPointerErrors)
-    {
-        RandomTextGenerator r;
-        r.setSeed(42);
-        try {
-            for (int i = 0; i < 10; ++i) {
-                auto text = r.getRandomASCIIText(10000);
-                this->storeAndParse(text);
-            }
-        }
-        catch (yw::parse::ParsingException e) {
-        }
-    }
-
     YW_TEST(AnnotationListener, WhenBeginAnnotationAtStartOfOnlyLineInsertOneLineAndOneAnnotation)
     {
         this->storeAndParse(
