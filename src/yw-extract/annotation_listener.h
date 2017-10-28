@@ -26,11 +26,8 @@ namespace yw {
             std::shared_ptr<yw::db::Annotation> lastPortAnnotation;
             AnnotationRange portRangeInLine;
             StderrRecorder stderrRecorder;
-
-        private:
             long currentLineNumber = 0;
             long currentRankOnLine = 0;
-            //yw::StderrRecorder stderrRecorder;
 
         public:
             AnnotationListener(
@@ -59,10 +56,11 @@ namespace yw {
             //void enterMisplacedPortChild(YWParser::MisplacedPortChildContext* context) override;
             //void enterMisplacedEnd(YWParser::MisplacedEndContext * context) override;
 
-        private:
+        protected:
             bool AnnotationListener::inProgramBlock();
-            auto getLineId(antlr4::ParserRuleContext* context);
-            auto getRangeInLine(antlr4::ParserRuleContext* context);
+            row_id getLineId(antlr4::ParserRuleContext* context);
+            AnnotationRange getRangeInLine(antlr4::ParserRuleContext* context);
+            std::string AnnotationListener::safelyDescriptionTextFromDescContext(YWParser::DescContext *desc);
         };
     }
 }

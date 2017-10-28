@@ -1,5 +1,5 @@
 #include "model_entity_listener.h"
-
+#include "missing_argument_exception.h"
 using namespace yw::sqlite;
 using namespace yw::db;
 
@@ -9,10 +9,25 @@ namespace yw {
     namespace model {
 
         void ModelEntityListener::enterBlock(YWParser::BlockContext *block) {
+            auto rangeInLine = getRangeInLine(block);
             blockDescription = null_string;
             for (auto attribute : block->blockAttribute()) {
-                if (attribute->desc() != nullptr) {
-                    blockDescription = attribute->desc()->description()->getText();
+                auto desc = attribute->desc();
+                if (desc != nullptr) {
+                    auto descText = desc->DescKeyword()->getText();
+                    std::string blockDescriptionText;
+                    try {
+                        blockDescriptionText = safelyDescriptionTextFromDescContext(desc);
+                    }
+                    catch (std::exception) {
+                        throw yw::parse::MissingArgumentException(
+                            descText,
+                            "block description",
+                            rangeInLine.start + 1,
+                            currentLineNumber
+                        );
+                    }
+                    blockDescription = blockDescriptionText;
                     break;
                 }
             }

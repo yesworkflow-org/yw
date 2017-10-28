@@ -7,7 +7,7 @@ using namespace yw::cli;
 using namespace yw::parse;
 using namespace yw::test;
 
-YW_TEST_FIXTURE(MissingArgument)
+YW_TEST_FIXTURE(MissingBeginArgument)
 
     StderrRecorder stderrRecorder;
     StdoutRecorder stdoutRecorder;
@@ -20,7 +20,7 @@ YW_TEST_FIXTURE(MissingArgument)
 
 YW_TEST_SET
 
-    YW_TEST(MissingArgument, WhenBeginIsOnlyAnnotationAndItHasNoArgumentReportMissingArgument)
+    YW_TEST(MissingBeginArgument, WhenBeginIsOnlyAnnotationAndItHasNoArgumentReportMissingArgument)
     {
         runGraphCLIOnMalformedInput(trimmargins(R"(
 
@@ -34,7 +34,7 @@ YW_TEST_SET
         );
     }
 
-    YW_TEST(MissingArgument, WhenBeginOfASingleBeginEndPairHasNoArgumentReportMissingArgument)
+    YW_TEST(MissingBeginArgument, WhenBeginOfASingleBeginEndPairHasNoArgumentReportMissingArgument)
     {
         runGraphCLIOnMalformedInput(trimmargins(R"(
 
@@ -49,7 +49,7 @@ YW_TEST_SET
         );
     }
 
-    YW_TEST(MissingArgument, WhenBeginIsImmediatelyFollowedByOtherAnnotationReportMissingArgument)
+    YW_TEST(MissingBeginArgument, WhenBeginIsImmediatelyFollowedByOtherAnnotationReportMissingArgument)
     {
         runGraphCLIOnMalformedInput(trimmargins(R"(
 
@@ -64,7 +64,7 @@ YW_TEST_SET
         );
     }
 
-    YW_TEST(MissingArgument, WhenBeginIsImmediatelyFollowedByEmptyPairOfSingleQuotesReportMissingArgument)
+    YW_TEST(MissingBeginArgument, WhenBeginIsImmediatelyFollowedByEmptyPairOfSingleQuotesReportMissingArgument)
     {
         runGraphCLIOnMalformedInput(trimmargins(R"(
 
@@ -79,7 +79,7 @@ YW_TEST_SET
         );
     }
 
-    YW_TEST(MissingArgument, WhenBeginIsImmediatelyFollowedByEmptyPairOfDoubleQuotesReportMissingArgument)
+    YW_TEST(MissingBeginArgument, WhenBeginIsImmediatelyFollowedByEmptyPairOfDoubleQuotesReportMissingArgument)
     {
         runGraphCLIOnMalformedInput(trimmargins(R"(
 
@@ -94,7 +94,7 @@ YW_TEST_SET
         );
     }
 
-    YW_TEST(MissingArgument, WhenBeginIsImmediatelyFollowedByDoubleQuotedSingleSpaceReportMissingArgument)
+    YW_TEST(MissingBeginArgument, WhenBeginIsImmediatelyFollowedByDoubleQuotedSingleSpaceReportMissingArgument)
     {
         runGraphCLIOnMalformedInput(trimmargins(R"(
 

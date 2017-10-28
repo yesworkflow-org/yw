@@ -18,7 +18,7 @@ using Tag = yw::db::Annotation::Tag;
 namespace yw {
     namespace extract {
 
-        auto AnnotationListener::getRangeInLine(antlr4::ParserRuleContext* context) {
+        AnnotationListener::AnnotationRange AnnotationListener::getRangeInLine(antlr4::ParserRuleContext* context) {
             auto startInSource = static_cast<long>(context->getStart()->getStartIndex());
             auto endInSource = static_cast<long>(context->getStop()->getStopIndex());
             auto startInLine = static_cast<long>(context->getStart()->getCharPositionInLine());
@@ -26,7 +26,7 @@ namespace yw {
             return AnnotationRange{ startInLine, endInLine };
         }
 
-        auto AnnotationListener::getLineId(antlr4::ParserRuleContext* context) {
+        row_id AnnotationListener::getLineId(antlr4::ParserRuleContext* context) {
             auto lineNumber = static_cast<long>(context->getStart()->getLine());
             if (lineNumber != currentLineNumber) {
                 currentLineNumber = lineNumber;
@@ -55,7 +55,8 @@ namespace yw {
             if ( ((blockName = begin->blockName()) == nullptr) ||
                  ((phrase = blockName->phrase()) == nullptr) ||
                  ((unquotedPhrase = phrase->unquotedPhrase()) == nullptr ||
-                 ((blockNameText = unquotedPhrase->getText())) == "<missing WORD>")
+                 ((blockNameText = unquotedPhrase->getText())) == "<missing WORD>") ||
+                 (blockNameText.empty()) 
             ) {
                 throw std::exception();
             }
@@ -114,14 +115,46 @@ namespace yw {
             primaryAnnotationStack.pop();
         }
 
+        std::string AnnotationListener::safelyDescriptionTextFromDescContext(YWParser::DescContext *desc) {
+
+            YWParser::DescriptionContext* description;
+            YWParser::PhraseContext* phrase;
+            YWParser::UnquotedPhraseContext* unquotedPhrase;
+            std::string descriptionText;
+
+            if ((description = desc->description()) == nullptr ||
+                (phrase = description->phrase()) == nullptr ||
+                (unquotedPhrase = phrase->unquotedPhrase()) == nullptr ||
+                (descriptionText = unquotedPhrase->getText()) == "<missing WORD>" ||
+                descriptionText.empty()
+                ) {
+                throw std::exception();
+            }
+            return descriptionText;
+        }
+
         void AnnotationListener::enterDesc(YWParser::DescContext *desc)
         {
             auto lineId = getLineId(desc);
             auto rangeInLine = getRangeInLine(desc);
+            auto descText = desc->DescKeyword()->getText();
+
+            std::string blockDescriptionText;
+            try {
+                blockDescriptionText = safelyDescriptionTextFromDescContext(desc);
+            }
+            catch (std::exception) {
+                throw yw::parse::MissingArgumentException(
+                    descText,
+                    "block description",
+                    rangeInLine.start + 1,
+                    currentLineNumber
+                );
+            }
+
             ywdb.insert(Annotation{ auto_id, extractionId, Tag::DESC, currentPrimaryAnnotation->id, lineId,
                                        currentRankOnLine++, rangeInLine.start, rangeInLine.end,
-                                       desc->DescKeyword()->getText(),
-                                       nullable_string(desc->description()->phrase()->unquotedPhrase()->getText()) });
+                                       descText, nullable_string(blockDescriptionText) });
         }
 
         Annotation::Tag getPortTag(YWParser::PortContext *port)
