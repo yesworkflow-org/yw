@@ -37,8 +37,6 @@ namespace yw {
 
         void AnnotationListener::enterAlias(YWParser::AliasContext *alias)
         {
-            if (alias->exception) throwParsingException(alias);
-
             auto lineId = getLineId(alias);
             auto rangeInLine = getRangeInLine(alias);
             ywdb.insert(Annotation{ auto_id, extractionId, Tag::AS, currentPrimaryAnnotation->id, lineId,
@@ -52,21 +50,21 @@ namespace yw {
             YWParser::BlockNameContext* blockName;
             YWParser::PhraseContext* phrase;
             YWParser::UnquotedPhraseContext* unquotedPhrase;
+            std::string blockNameText;
 
             if ( ((blockName = begin->blockName()) == nullptr) ||
                  ((phrase = blockName->phrase()) == nullptr) ||
-                 ((unquotedPhrase = phrase->unquotedPhrase()) == nullptr)
+                 ((unquotedPhrase = phrase->unquotedPhrase()) == nullptr ||
+                 ((blockNameText = unquotedPhrase->getText())) == "<missing WORD>")
             ) {
                 throw std::exception();
             }
 
-            return unquotedPhrase->getText();
+            return blockNameText;
         }
 
         void AnnotationListener::enterBegin(YWParser::BeginContext *begin)
         {
-            if (begin->exception) throwParsingException(begin);
-
             auto lineId = getLineId(begin);
             auto rangeInLine = getRangeInLine(begin);
             auto beginText = begin->BeginKeyword()->getText();
@@ -99,35 +97,8 @@ namespace yw {
             return currentPrimaryAnnotation != nullptr;
         }
 
-        void AnnotationListener::throwParsingException(antlr4::ParserRuleContext* context) {
-            auto text = context->getText();
-            try {
-                std::rethrow_exception(context->exception);
-            }
-            catch (const antlr4::RuntimeException&) {
-                const std::regex pattern{ "line (\\d{1,9}):(\\d{1,9}) mismatched input '(.+)' (.*)" };
-                std::match_results<std::string::const_iterator> matches;
-                std::istringstream errorMessage { stderrRecorder.str() };
-                std::string currentLine;
-                while (std::getline(errorMessage, currentLine)) {
-                    if (std::regex_match(currentLine, matches, pattern)) {
-                        auto line = stoi(matches[1]);
-                        auto column = stoi(matches[2]) + 1;
-                        auto token = matches[3];
-                        auto details = matches[4];
-                        throw yw::parse::UnexpectedAnnotationException{ token, column, line };
-                    }
-                }
-                auto exception = yw::parse::ParsingException();
-                exception.setDetails(errorMessage.str());
-                throw exception;
-            }
-        }
-
         void AnnotationListener::enterEnd(YWParser::EndContext *end)
         {
-            if (end->exception) throwParsingException(end);
-
             auto lineId = getLineId(end);
             auto rangeInLine = getRangeInLine(end);
 
@@ -145,8 +116,6 @@ namespace yw {
 
         void AnnotationListener::enterDesc(YWParser::DescContext *desc)
         {
-            if (desc->exception) throwParsingException(desc);
-
             auto lineId = getLineId(desc);
             auto rangeInLine = getRangeInLine(desc);
             ywdb.insert(Annotation{ auto_id, extractionId, Tag::DESC, currentPrimaryAnnotation->id, lineId,
@@ -170,8 +139,6 @@ namespace yw {
 
         void AnnotationListener::enterPort(YWParser::PortContext *port) {
 
-            if (port->exception) throwParsingException(port);
-
             portTag = getPortTag(port);
             portLineId = getLineId(port);
             if (port->inputKeyword() != NULL) {
@@ -186,8 +153,6 @@ namespace yw {
         }
 
         void AnnotationListener::enterPortName(YWParser::PortNameContext *context) {
-
-            if (context->exception) throwParsingException(context);
 
             portName = nullable_string(context->word()->unquotedWord()->getText());
             lastPortAnnotation = std::make_shared<Annotation>(
@@ -204,11 +169,9 @@ namespace yw {
 
         void AnnotationListener::enterIo(YWParser::IoContext *io) 
         {
-            if (io->exception) throwParsingException(io);
         }
 
         void AnnotationListener::exitIo(YWParser::IoContext *io) {
-            if (io->exception) throwParsingException(io);
             currentPrimaryAnnotation = primaryAnnotationStack.top();
             primaryAnnotationStack.pop();
         }

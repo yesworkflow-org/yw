@@ -16,11 +16,11 @@ namespace yw {
             antlr_input_stream = make_unique<ANTLRInputStream>(*text_stream);
             yw_lexer = make_unique<YWLexer>(antlr_input_stream.get());
             antlr_token_stream = make_unique<CommonTokenStream>(yw_lexer.get());
-            yw_cli_parser = make_shared<YWParser>(antlr_token_stream.get());
+            ywParser = make_shared<YWParser>(antlr_token_stream.get());
             if (useCustomErrorListener) {
-                yw_cli_parser->removeErrorListeners();
+                ywParser->removeErrorListeners();
                 errorListener = make_shared<YWParserErrorListener>();
-                yw_cli_parser->addErrorListener(errorListener.get());
+                ywParser->addErrorListener(errorListener.get());
             }
         }
     }

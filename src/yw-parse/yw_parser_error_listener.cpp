@@ -14,36 +14,31 @@ namespace yw {
         void YWParserErrorListener::syntaxError(antlr4::Recognizer *recognizer, antlr4::Token * offendingSymbol, size_t line, size_t charPositionInLine,
             const std::string &msg, std::exception_ptr e_ptr)
         {
-            auto offendingSymbolText = offendingSymbol->getText();
+            if (e_ptr) {
+                try {
+                    std::rethrow_exception(e_ptr);
+                }
+                catch (antlr4::RecognitionException e) {
 
-            if (beginChildrenTokens.find(offendingSymbolText) != beginChildrenTokens.end()) {
-                throw yw::parse::MisplacedBeginChildException(offendingSymbolText, charPositionInLine + 1, line);
+                    auto offendingSymbolText = offendingSymbol->getText();
+
+                    if (beginChildrenTokens.find(offendingSymbolText) != beginChildrenTokens.end()) {
+                    throw yw::parse::MisplacedBeginChildException(offendingSymbolText, charPositionInLine + 1, line);
+                    }
+
+                    if (portChildrenTokens.find(offendingSymbolText) != portChildrenTokens.end()) {
+                    throw yw::parse::MisplacedPortChildException(offendingSymbolText, charPositionInLine + 1, line);
+                    }
+
+                    if (endTokens.find(offendingSymbolText) != endTokens.end()) {
+                    throw yw::parse::MisplacedEndException(offendingSymbolText, charPositionInLine + 1, line);
+                    }
+
+                    if (offendingSymbolText == "<EOF>") {
+                    throw yw::parse::UnexpectedEndOfFileException();
+                    }
+                }
             }
-
-            if (portChildrenTokens.find(offendingSymbolText) != portChildrenTokens.end()) {
-                throw yw::parse::MisplacedPortChildException(offendingSymbolText, charPositionInLine + 1, line);
-            }
-
-            if (endTokens.find(offendingSymbolText) != endTokens.end()) {
-                throw yw::parse::MisplacedEndException(offendingSymbolText, charPositionInLine + 1, line);
-            }
-
-            if (offendingSymbolText == "<EOF>") {
-                throw yw::parse::UnexpectedEndOfFileException();
-            }
-
-            //auto exception = yw::parse::ParsingException();
-            //exception.setDetails(msg);
-            //throw exception;
-
-
-            //if (e_ptr) {
-            //    try {
-            //        std::rethrow_exception(e_ptr);
-            //    }
-            //    catch (antlr4::InputMismatchException e) {
-            //    }
-            //}
         }
     }
 }

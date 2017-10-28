@@ -9,7 +9,6 @@ namespace yw {
     namespace model {
 
         void ModelEntityListener::enterBlock(YWParser::BlockContext *block) {
-            if (block->exception) throwParsingException(block);
             blockDescription = null_string;
             for (auto attribute : block->blockAttribute()) {
                 if (attribute->desc() != nullptr) {
@@ -33,17 +32,11 @@ namespace yw {
         }
 
         void ModelEntityListener::enterNestedBlocks(YWParser::NestedBlocksContext *nestedBlocks) {
-
-            if (nestedBlocks->exception) throwParsingException(nestedBlocks);
-
             dataIdsStack.push(currentDataIds);
             currentDataIds = std::make_shared<std::map<std::string, row_id>>();
         }
 
         void ModelEntityListener::exitNestedBlocks(YWParser::NestedBlocksContext *nestedBlocks) {
-
-            if (nestedBlocks->exception) throwParsingException(nestedBlocks);
-
             currentDataIds = dataIdsStack.top();
             dataIdsStack.pop();
         }
@@ -72,7 +65,6 @@ namespace yw {
         }
 
         void ModelEntityListener::enterPort(YWParser::PortContext *context) {
-            if (context->exception) throwParsingException(context);
             AnnotationListener::enterPort(context);
             portNameIndex = 0;
         }
@@ -95,7 +87,6 @@ namespace yw {
         }
 
         void ModelEntityListener::enterResource(YWParser::ResourceContext *context) {
-            if (context->exception) throwParsingException(context);
             if (context->file() != nullptr) {
                 flowTemplateScheme = null_string;
                 flowTemplatePath = context->file()->pathTemplate()->getText();
@@ -127,8 +118,6 @@ namespace yw {
         }
 
         void ModelEntityListener::exitIo(YWParser::IoContext *context) {
-            if (context->exception) throwParsingException(context);
-
             if (flowTemplatePath.hasValue()) {
                 auto flowTemplate = FlowTemplate{ auto_id, lastFlowId, flowTemplateScheme, flowTemplatePath.getValue() };
                 ywdb.insert(flowTemplate);
