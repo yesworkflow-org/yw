@@ -56,5 +56,8 @@
     <ClCompile Include="..\..\test\yw-graph-tests\missing_port_desc_argument_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\test\yw-graph-tests\missing_port_argument_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

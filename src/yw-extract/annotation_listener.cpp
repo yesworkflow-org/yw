@@ -226,6 +226,15 @@ namespace yw {
                 portDirection = Flow::Direction::OUT;
             }
             portRangeInLine = getRangeInLine(port);
+
+            if (port->portName().size() == 0) {
+                throw yw::parse::MissingArgumentException(
+                    portKeyword,
+                    "port name",
+                    portRangeInLine.start + 1,
+                    currentLineNumber
+                );
+            }
         }
 
 
