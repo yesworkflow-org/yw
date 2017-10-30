@@ -43,8 +43,11 @@ public:
   virtual void enterBegin(YWParser::BeginContext *ctx) = 0;
   virtual void exitBegin(YWParser::BeginContext *ctx) = 0;
 
-  virtual void enterDesc(YWParser::DescContext *ctx) = 0;
-  virtual void exitDesc(YWParser::DescContext *ctx) = 0;
+  virtual void enterBlockDesc(YWParser::BlockDescContext *ctx) = 0;
+  virtual void exitBlockDesc(YWParser::BlockDescContext *ctx) = 0;
+
+  virtual void enterPortDesc(YWParser::PortDescContext *ctx) = 0;
+  virtual void exitPortDesc(YWParser::PortDescContext *ctx) = 0;
 
   virtual void enterEnd(YWParser::EndContext *ctx) = 0;
   virtual void exitEnd(YWParser::EndContext *ctx) = 0;

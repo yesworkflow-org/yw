@@ -23,12 +23,14 @@ namespace yw {
             void exitBegin(YWParser::BeginContext *context) override { _log << "exited begin" << std::endl; }
             void enterEnd(YWParser::EndContext *context) override { _log << "entered end" << std::endl; }
             void exitEnd(YWParser::EndContext *context) override { _log << "exited end" << std::endl; }
-            void enterDesc(YWParser::DescContext *context) override { _log << "entered desc" << std::endl; }
-            void exitDesc(YWParser::DescContext *context) override { _log << "exited desc" << std::endl; }
+            void enterBlockDesc(YWParser::BlockDescContext *context) override { _log << "entered block desc" << std::endl; }
+            void exitBlockDesc(YWParser::BlockDescContext *context) override { _log << "exited block desc" << std::endl; }
             void enterIo(YWParser::IoContext *context) override { _log << "entered io" << std::endl; }
             void exitIo(YWParser::IoContext *context) override { _log << "exited io" << std::endl; }
             void enterPort(YWParser::PortContext *context) override { _log << "entered port" << std::endl; }
             void exitPort(YWParser::PortContext *context) override { _log << "exited port" << std::endl; }
+            void enterPortDesc(YWParser::PortDescContext *context) override { _log << "entered port desc" << std::endl; }
+            void exitPortDesc(YWParser::PortDescContext *context) override { _log << "exited port desc" << std::endl; }
             void enterAlias(YWParser::AliasContext *context) override { _log << "entered alias" << std::endl; }
             void exitAlias(YWParser::AliasContext *context) override { _log << "exited alias" << std::endl; }
             void enterUri(YWParser::UriContext *context) override { _log << "entered uri" << std::endl; }

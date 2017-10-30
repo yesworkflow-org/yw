@@ -45,7 +45,8 @@ namespace yw {
 
             void enterBegin(YWParser::BeginContext *context) override;
             void enterEnd(YWParser::EndContext *context) override;
-            void enterDesc(YWParser::DescContext *context) override;
+            void enterBlockDesc(YWParser::BlockDescContext *context) override;
+            void enterPortDesc(YWParser::PortDescContext *context) override;
             void enterPort(YWParser::PortContext *context) override;
             void exitPort(YWParser::PortContext *port) override;
             void enterPortName(YWParser::PortNameContext *context) override;
@@ -60,7 +61,10 @@ namespace yw {
             bool AnnotationListener::inProgramBlock();
             row_id getLineId(antlr4::ParserRuleContext* context);
             AnnotationRange getRangeInLine(antlr4::ParserRuleContext* context);
-            std::string AnnotationListener::safelyDescriptionTextFromDescContext(YWParser::DescContext *desc);
+            std::string safelyDescriptionTextFromBlockDescContext(YWParser::BlockDescContext *desc);
+            std::string safelyDescriptionTextFromPortDescContext(YWParser::PortDescContext *desc);
+            std::string safelyGetPortNameFromPortNameContext(YWParser::PortNameContext *portName);
+
         };
     }
 }

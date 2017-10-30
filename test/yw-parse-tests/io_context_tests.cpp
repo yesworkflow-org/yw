@@ -51,7 +51,7 @@ YW_TEST_SET
         Assert::AreEqual("p", io->port()->portName()[0]->getText());
         Assert::AreEqual(1, io->portAttribute().size());
         Assert::AreEqual("data name", io->portAttribute()[0]->alias()->dataName()->getText());
-        Assert::IsNull(io->portAttribute()[0]->desc());
+        Assert::IsNull(io->portAttribute()[0]->portDesc());
         Assert::IsNull(io->portAttribute()[0]->resource());
     }
 
@@ -65,7 +65,7 @@ YW_TEST_SET
         Assert::AreEqual(1, io->port()->portName().size());
         Assert::AreEqual("p", io->port()->portName()[0]->getText());
         Assert::AreEqual(1, io->portAttribute().size());
-        Assert::AreEqual("with this description", io->portAttribute()[0]->desc()->description()->getText());
+        Assert::AreEqual("with this description", io->portAttribute()[0]->portDesc()->description()->getText());
     }
 
     YW_TEST(IoContext, In_OnePortWithDescriptionThenAlias)
@@ -78,7 +78,7 @@ YW_TEST_SET
         Assert::AreEqual(1, io->port()->portName().size());
         Assert::AreEqual("p", io->port()->portName()[0]->getText());
         Assert::AreEqual(2, io->portAttribute().size());
-        Assert::AreEqual("with this description", io->portAttribute()[0]->desc()->description()->getText());
+        Assert::AreEqual("with this description", io->portAttribute()[0]->portDesc()->description()->getText());
         Assert::AreEqual("data name", io->portAttribute()[1]->alias()->dataName()->getText());
     }
 
@@ -95,7 +95,7 @@ YW_TEST_SET
         Assert::AreEqual("r", io->port()->portName()[2]->getText());
         Assert::AreEqual(2, io->portAttribute().size());
         Assert::AreEqual("data name", io->portAttribute()[0]->alias()->dataName()->getText());
-        Assert::AreEqual("with this description", io->portAttribute()[1]->desc()->description()->getText());
+        Assert::AreEqual("with this description", io->portAttribute()[1]->portDesc()->description()->getText());
     }
 
     YW_TEST(IoContext, In_ThreePortsWithAliasThenDescriptionOnNextLine)
@@ -113,7 +113,7 @@ YW_TEST_SET
         Assert::AreEqual("r", io->port()->portName()[2]->getText());
         Assert::AreEqual(2, io->portAttribute().size());
         Assert::AreEqual("data name", io->portAttribute()[0]->alias()->dataName()->getText());
-        Assert::AreEqual("with this description", io->portAttribute()[1]->desc()->description()->getText());
+        Assert::AreEqual("with this description", io->portAttribute()[1]->portDesc()->description()->getText());
     }
 
     YW_TEST(IoContext, In_ThreePortsWithAliasThenDescriptionOnNextTwoLines)
@@ -132,7 +132,7 @@ YW_TEST_SET
         Assert::AreEqual("r", io->port()->portName()[2]->getText());
         Assert::AreEqual(2, io->portAttribute().size());
         Assert::AreEqual("data name", io->portAttribute()[0]->alias()->dataName()->getText());
-        Assert::AreEqual("with this description", io->portAttribute()[1]->desc()->description()->getText());
+        Assert::AreEqual("with this description", io->portAttribute()[1]->portDesc()->description()->getText());
     }
 
 YW_TEST_END

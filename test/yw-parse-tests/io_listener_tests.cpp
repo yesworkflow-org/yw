@@ -44,10 +44,10 @@ YW_TEST_SET
             "exited port name"              EOL
             "exited port"                   EOL
             "entered port attribute"        EOL
-            "entered desc"                  EOL
+            "entered port desc"             EOL
             "entered description"           EOL
             "exited description"            EOL
-            "exited desc"                   EOL
+            "exited port desc"              EOL
             "exited port attribute"         EOL
             "exited io"						EOL
             , listener.log());

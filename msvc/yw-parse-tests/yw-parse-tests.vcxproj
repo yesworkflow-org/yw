@@ -168,14 +168,15 @@
     <ClCompile Include="..\..\test\yw-parse-tests\annotation_syntax_exception_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\begin_context_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\block_context_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-parse-tests\block_desc_context_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\block_listener_tests.cpp" />
-    <ClCompile Include="..\..\test\yw-parse-tests\desc_context_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\io_context_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\io_listener_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\misplaced_begin_child_exception_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\misplaced_end_exception_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\misplaced_port_child_exception_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\missing_argument_exception_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-parse-tests\port_desc_context_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\script_listener_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\parsing_exception_tests.cpp" />
     <ClCompile Include="..\..\test\yw-parse-tests\unexpected_annotation_exception_tests.cpp" />

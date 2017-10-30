@@ -23,7 +23,6 @@ YW_TEST_SET
             "entered block name"            EOL
             "exited block name"             EOL
             "exited begin"					EOL
-            "entered block attribute"       EOL
             "entered io"					EOL
             "entered port"					EOL
             "entered input port keyword"    EOL
@@ -32,7 +31,6 @@ YW_TEST_SET
             "exited port name"              EOL
             "exited port"					EOL
             "exited io"						EOL
-            "exited block attribute"        EOL
             "entered end"					EOL
             "exited end"					EOL
             "exited block"                  EOL
@@ -51,7 +49,6 @@ YW_TEST_SET
             "entered block name"            EOL
             "exited block name"             EOL
             "exited begin"					EOL
-            "entered block attribute"       EOL
             "entered io"					EOL
             "entered port"					EOL
             "entered output port keyword"   EOL
@@ -60,7 +57,6 @@ YW_TEST_SET
             "exited port name"              EOL
             "exited port"					EOL
             "exited io"						EOL
-            "exited block attribute"        EOL
             "entered end"					EOL
             "exited end"					EOL
             "exited block"                  EOL

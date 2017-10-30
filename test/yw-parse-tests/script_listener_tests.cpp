@@ -69,10 +69,10 @@ YW_TEST_SET
             "exited block name"         EOL
             "exited begin"              EOL
             "entered block attribute"   EOL
-            "entered desc"              EOL
+            "entered block desc"        EOL
             "entered description"       EOL
             "exited description"        EOL
-            "exited desc"               EOL
+            "exited block desc"         EOL
             "exited block attribute"    EOL
             "entered end"               EOL
             "exited end"                EOL

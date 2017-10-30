@@ -70,6 +70,9 @@
     <ClCompile Include="..\..\src\yw-parse\unexpected_eof_exception.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\yw-parse\invalid_argument_exception.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-parse\YWBaseListener.h">
@@ -112,6 +115,9 @@
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\yw-parse\unexpected_eof_exception.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-parse\invalid_argument_exception.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -45,8 +45,11 @@ public:
   virtual void enterBegin(YWParser::BeginContext * /*ctx*/) override { }
   virtual void exitBegin(YWParser::BeginContext * /*ctx*/) override { }
 
-  virtual void enterDesc(YWParser::DescContext * /*ctx*/) override { }
-  virtual void exitDesc(YWParser::DescContext * /*ctx*/) override { }
+  virtual void enterBlockDesc(YWParser::BlockDescContext * /*ctx*/) override { }
+  virtual void exitBlockDesc(YWParser::BlockDescContext * /*ctx*/) override { }
+
+  virtual void enterPortDesc(YWParser::PortDescContext * /*ctx*/) override { }
+  virtual void exitPortDesc(YWParser::PortDescContext * /*ctx*/) override { }
 
   virtual void enterEnd(YWParser::EndContext * /*ctx*/) override { }
   virtual void exitEnd(YWParser::EndContext * /*ctx*/) override { }

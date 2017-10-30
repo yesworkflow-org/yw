@@ -12,12 +12,12 @@ namespace yw {
             auto rangeInLine = getRangeInLine(block);
             blockDescription = null_string;
             for (auto attribute : block->blockAttribute()) {
-                auto desc = attribute->desc();
+                auto desc = attribute->blockDesc();
                 if (desc != nullptr) {
                     auto descText = desc->DescKeyword()->getText();
                     std::string blockDescriptionText;
                     try {
-                        blockDescriptionText = safelyDescriptionTextFromDescContext(desc);
+                        blockDescriptionText = safelyDescriptionTextFromBlockDescContext(desc);
                     }
                     catch (std::exception) {
                         throw yw::parse::MissingArgumentException(

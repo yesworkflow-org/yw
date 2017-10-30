@@ -36,9 +36,6 @@
     <ClCompile Include="..\..\test\yw-parse-tests\begin_context_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\test\yw-parse-tests\desc_context_tests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\test\yw-parse-tests\io_listener_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -64,6 +61,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\test\yw-parse-tests\misplaced_port_child_exception_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\yw-parse-tests\block_desc_context_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\yw-parse-tests\port_desc_context_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

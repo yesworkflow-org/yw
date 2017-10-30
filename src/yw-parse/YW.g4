@@ -2,17 +2,18 @@ grammar YW ;
 
 // YW annotation compositions
 script          : na? block (na? block)* na? EOF ;
-block           : begin (na? blockAttribute)* nestedBlocks na? end ;
+block           : begin (na? blockAttribute)* (na? io)* nestedBlocks na? end ;
 nestedBlocks	: (na? block)* ;
-blockAttribute  : io | desc ;
+blockAttribute  : blockDesc ;
 io				: port (na? portAttribute)* ;
 port  		    : (inputKeyword | outputKeyword) (SPACE+ portName)+ ;
-portAttribute   : desc | alias | resource ;
+portAttribute   : portDesc | alias | resource ;
 
 // YW annotations
 alias			: AsKeyword (SPACE)+ dataName ;
 begin			: BeginKeyword (SPACE)+ blockName ;
-desc            : DescKeyword (SPACE)+ description ;
+blockDesc       : DescKeyword (SPACE)+ description ;
+portDesc        : DescKeyword (SPACE)+ description ;
 end				: EndKeyword ((SPACE)+ (blockName))? ;
 file            : FileKeyword (SPACE)+ pathTemplate ;
 uri             : UriKeyword (SPACE)+ uriTemplate;

@@ -22,13 +22,14 @@ public:
   enum {
     RuleScript = 0, RuleBlock = 1, RuleNestedBlocks = 2, RuleBlockAttribute = 3, 
     RuleIo = 4, RulePort = 5, RulePortAttribute = 6, RuleAlias = 7, RuleBegin = 8, 
-    RuleDesc = 9, RuleEnd = 10, RuleFile = 11, RuleUri = 12, RuleMisplacedEnd = 13, 
-    RuleMisplacedBeginChild = 14, RuleMisplacedPortChild = 15, RuleMisplacedKeyword = 16, 
-    RuleResource = 17, RuleInputKeyword = 18, RuleOutputKeyword = 19, RuleBlockName = 20, 
-    RulePortName = 21, RuleDataName = 22, RuleDescription = 23, RulePathTemplate = 24, 
-    RulePathVariable = 25, RulePathConstant = 26, RuleVariableName = 27, 
-    RuleUriTemplate = 28, RuleScheme = 29, RulePhrase = 30, RuleUnquotedPhrase = 31, 
-    RuleWord = 32, RuleUnquotedWord = 33, RuleNa = 34
+    RuleBlockDesc = 9, RulePortDesc = 10, RuleEnd = 11, RuleFile = 12, RuleUri = 13, 
+    RuleMisplacedEnd = 14, RuleMisplacedBeginChild = 15, RuleMisplacedPortChild = 16, 
+    RuleMisplacedKeyword = 17, RuleResource = 18, RuleInputKeyword = 19, 
+    RuleOutputKeyword = 20, RuleBlockName = 21, RulePortName = 22, RuleDataName = 23, 
+    RuleDescription = 24, RulePathTemplate = 25, RulePathVariable = 26, 
+    RulePathConstant = 27, RuleVariableName = 28, RuleUriTemplate = 29, 
+    RuleScheme = 30, RulePhrase = 31, RuleUnquotedPhrase = 32, RuleWord = 33, 
+    RuleUnquotedWord = 34, RuleNa = 35
   };
 
   YWParser(antlr4::TokenStream *input);
@@ -50,7 +51,8 @@ public:
   class PortAttributeContext;
   class AliasContext;
   class BeginContext;
-  class DescContext;
+  class BlockDescContext;
+  class PortDescContext;
   class EndContext;
   class FileContext;
   class UriContext;
@@ -103,6 +105,8 @@ public:
     EndContext *end();
     std::vector<BlockAttributeContext *> blockAttribute();
     BlockAttributeContext* blockAttribute(size_t i);
+    std::vector<IoContext *> io();
+    IoContext* io(size_t i);
     std::vector<NaContext *> na();
     NaContext* na(size_t i);
 
@@ -133,8 +137,7 @@ public:
   public:
     BlockAttributeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    IoContext *io();
-    DescContext *desc();
+    BlockDescContext *blockDesc();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -182,7 +185,7 @@ public:
   public:
     PortAttributeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    DescContext *desc();
+    PortDescContext *portDesc();
     AliasContext *alias();
     ResourceContext *resource();
 
@@ -225,9 +228,9 @@ public:
 
   BeginContext* begin();
 
-  class  DescContext : public antlr4::ParserRuleContext {
+  class  BlockDescContext : public antlr4::ParserRuleContext {
   public:
-    DescContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    BlockDescContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     antlr4::tree::TerminalNode *DescKeyword();
     DescriptionContext *description();
@@ -239,7 +242,23 @@ public:
    
   };
 
-  DescContext* desc();
+  BlockDescContext* blockDesc();
+
+  class  PortDescContext : public antlr4::ParserRuleContext {
+  public:
+    PortDescContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    antlr4::tree::TerminalNode *DescKeyword();
+    DescriptionContext *description();
+    std::vector<antlr4::tree::TerminalNode *> SPACE();
+    antlr4::tree::TerminalNode* SPACE(size_t i);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  PortDescContext* portDesc();
 
   class  EndContext : public antlr4::ParserRuleContext {
   public:

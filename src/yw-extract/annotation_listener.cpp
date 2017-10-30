@@ -2,6 +2,7 @@
 #include "annotation.h"
 #include "annotation_syntax_exception.h"
 #include "unexpected_annotation_exception.h"
+#include "invalid_argument_exception.h"
 #include "missing_argument_exception.h"
 #include "misplaced_begin_child_exception.h"
 #include "misplaced_port_child_exception.h"
@@ -115,7 +116,7 @@ namespace yw {
             primaryAnnotationStack.pop();
         }
 
-        std::string AnnotationListener::safelyDescriptionTextFromDescContext(YWParser::DescContext *desc) {
+        std::string AnnotationListener::safelyDescriptionTextFromBlockDescContext(YWParser::BlockDescContext *desc) {
 
             YWParser::DescriptionContext* description;
             YWParser::PhraseContext* phrase;
@@ -133,7 +134,25 @@ namespace yw {
             return descriptionText;
         }
 
-        void AnnotationListener::enterDesc(YWParser::DescContext *desc)
+        std::string AnnotationListener::safelyDescriptionTextFromPortDescContext(YWParser::PortDescContext *desc) {
+
+            YWParser::DescriptionContext* description;
+            YWParser::PhraseContext* phrase;
+            YWParser::UnquotedPhraseContext* unquotedPhrase;
+            std::string descriptionText;
+
+            if ((description = desc->description()) == nullptr ||
+                (phrase = description->phrase()) == nullptr ||
+                (unquotedPhrase = phrase->unquotedPhrase()) == nullptr ||
+                (descriptionText = unquotedPhrase->getText()) == "<missing WORD>" ||
+                descriptionText.empty()
+                ) {
+                throw std::exception();
+            }
+            return descriptionText;
+        }
+
+        void AnnotationListener::enterBlockDesc(YWParser::BlockDescContext *desc)
         {
             auto lineId = getLineId(desc);
             auto rangeInLine = getRangeInLine(desc);
@@ -141,7 +160,7 @@ namespace yw {
 
             std::string blockDescriptionText;
             try {
-                blockDescriptionText = safelyDescriptionTextFromDescContext(desc);
+                blockDescriptionText = safelyDescriptionTextFromBlockDescContext(desc);
             }
             catch (std::exception) {
                 throw yw::parse::MissingArgumentException(
@@ -155,6 +174,30 @@ namespace yw {
             ywdb.insert(Annotation{ auto_id, extractionId, Tag::DESC, currentPrimaryAnnotation->id, lineId,
                                        currentRankOnLine++, rangeInLine.start, rangeInLine.end,
                                        descText, nullable_string(blockDescriptionText) });
+        }
+
+        void AnnotationListener::enterPortDesc(YWParser::PortDescContext *desc)
+        {
+            auto lineId = getLineId(desc);
+            auto rangeInLine = getRangeInLine(desc);
+            auto descText = desc->DescKeyword()->getText();
+
+            std::string portDescriptionText;
+            try {
+                portDescriptionText = safelyDescriptionTextFromPortDescContext(desc);
+            }
+            catch (std::exception) {
+                throw yw::parse::MissingArgumentException(
+                    descText,
+                    "port description",
+                    rangeInLine.start + 1,
+                    currentLineNumber
+                );
+            }
+
+            ywdb.insert(Annotation{ auto_id, extractionId, Tag::DESC, currentPrimaryAnnotation->id, lineId,
+                currentRankOnLine++, rangeInLine.start, rangeInLine.end,
+                descText, nullable_string(portDescriptionText) });
         }
 
         Annotation::Tag getPortTag(YWParser::PortContext *port)
@@ -185,13 +228,43 @@ namespace yw {
             portRangeInLine = getRangeInLine(port);
         }
 
+
+        std::string AnnotationListener::safelyGetPortNameFromPortNameContext(YWParser::PortNameContext *portName) {
+
+            YWParser::WordContext* word;
+            YWParser::UnquotedWordContext* unquotedWord;
+            std::string portNameText;
+
+            if ((word = portName->word()) == nullptr ||
+                (unquotedWord = word->unquotedWord()) == nullptr ||
+                (portNameText = unquotedWord->getText()) == "<missing WORD>" ||
+                portNameText.empty()
+                ) {
+                throw std::exception();
+            }
+
+            return portNameText;
+        }
+
         void AnnotationListener::enterPortName(YWParser::PortNameContext *context) {
 
-            portName = nullable_string(context->word()->unquotedWord()->getText());
+            try {
+                portName = nullable_string{ safelyGetPortNameFromPortNameContext(context) };
+            }
+            catch (std::exception) {
+                throw yw::parse::MissingArgumentException(
+                    portKeyword,
+                    "port name",
+                    portRangeInLine.start + 1,
+                    currentLineNumber
+                );
+            }
+
             lastPortAnnotation = std::make_shared<Annotation>(
                 auto_id, extractionId, portTag, currentPrimaryAnnotation->id, portLineId,
                 currentRankOnLine++, portRangeInLine.start, portRangeInLine.end,
-                portKeyword, portName);
+                portKeyword, nullable_string{ portName });
+            
             ywdb.insert(*lastPortAnnotation);
         }
 
