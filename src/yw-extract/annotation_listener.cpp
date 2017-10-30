@@ -40,13 +40,16 @@ namespace yw {
         {
             auto lineId = getLineId(alias);
             auto rangeInLine = getRangeInLine(alias);
+
+            auto aliasName = safelyGetAliasNameFromAliasContext(alias);
+
             ywdb.insert(Annotation{ auto_id, extractionId, Tag::AS, currentPrimaryAnnotation->id, lineId,
                 currentRankOnLine++, rangeInLine.start, rangeInLine.end,
                 alias->AsKeyword()->getText(),
-                nullable_string(alias->dataName()->phrase()->unquotedPhrase()->getText()) });
+                nullable_string(aliasName) });
         }
 
-        std::string safelyGetBlockNameFromBeginContext(YWParser::BeginContext *begin) {
+        std::string AnnotationListener::safelyGetBlockNameFromBeginContext(YWParser::BeginContext *begin) {
 
             YWParser::BlockNameContext* blockName;
             YWParser::PhraseContext* phrase;
@@ -237,6 +240,24 @@ namespace yw {
             }
         }
 
+        std::string AnnotationListener::safelyGetAliasNameFromAliasContext(YWParser::AliasContext *alias) {
+
+            YWParser::DataNameContext* dataName;
+            YWParser::PhraseContext* phrase;
+            YWParser::UnquotedPhraseContext* unquotedPhrase;
+            std::string aliasText;
+
+            if ((dataName = alias->dataName()) == nullptr ||
+                (phrase = dataName->phrase()) == nullptr ||
+                (unquotedPhrase = phrase->unquotedPhrase()) == nullptr ||
+                (aliasText = unquotedPhrase->getText()) == "<missing WORD>" ||
+                aliasText.empty()
+                ) {
+                throw std::exception();
+            }
+
+            return aliasText;
+        }
 
         std::string AnnotationListener::safelyGetPortNameFromPortNameContext(YWParser::PortNameContext *portName) {
 

@@ -173,6 +173,7 @@
     <ClCompile Include="..\..\test\yw-graph-tests\missing_begin_argument_tests.cpp" />
     <ClCompile Include="..\..\test\yw-graph-tests\missing_block_desc_argument_tests.cpp" />
     <ClCompile Include="..\..\test\yw-graph-tests\missing_port_argument_tests.cpp" />
+    <ClCompile Include="..\..\test\yw-graph-tests\missing_port_as_argument_tests.cpp" />
     <ClCompile Include="..\..\test\yw-graph-tests\missing_port_desc_argument_tests.cpp" />
     <ClCompile Include="..\..\test\yw-graph-tests\yw_graph_tests.cpp" />
     <ClCompile Include="..\..\test\yw-graph-tests\yw_graph_cli_tests.cpp" />

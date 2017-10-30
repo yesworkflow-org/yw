@@ -68,8 +68,20 @@ namespace yw {
             portAlias = "";
             aliasedPortIndex = -1;
             for (auto attribute : io->portAttribute()) {
-                if (attribute->alias() != nullptr) {
-                    portAlias = attribute->alias()->dataName()->getText();
+                auto alias = attribute->alias();
+                if (alias != nullptr) {
+                    try {
+                        portAlias = safelyGetAliasNameFromAliasContext(attribute->alias());
+                    }
+                    catch (std::exception) {
+                        auto rangeInLine = getRangeInLine(alias);
+                        throw yw::parse::MissingArgumentException(
+                            alias->AsKeyword()->getText(),
+                            "data name",
+                            rangeInLine.start + 1,
+                            currentLineNumber + 1
+                        );
+                    }
                     aliasedPortIndex = static_cast<int>(io->port()->portName().size()) - 1;
                     break;
                 }

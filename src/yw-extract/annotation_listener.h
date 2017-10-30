@@ -61,10 +61,11 @@ namespace yw {
             bool AnnotationListener::inProgramBlock();
             row_id getLineId(antlr4::ParserRuleContext* context);
             AnnotationRange getRangeInLine(antlr4::ParserRuleContext* context);
+            std::string safelyGetBlockNameFromBeginContext(YWParser::BeginContext *begin);
             std::string safelyDescriptionTextFromBlockDescContext(YWParser::BlockDescContext *desc);
             std::string safelyDescriptionTextFromPortDescContext(YWParser::PortDescContext *desc);
             std::string safelyGetPortNameFromPortNameContext(YWParser::PortNameContext *portName);
-
+            std::string safelyGetAliasNameFromAliasContext(YWParser::AliasContext *alias);
         };
     }
 }
