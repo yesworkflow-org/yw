@@ -41,6 +41,15 @@ namespace yw {
             return keyword->getText();
         }
 
+        std::string safelyGetEndKeywordText(YWParser::EndContext *end) noexcept {
+            antlr4::tree::TerminalNode* keyword;
+            if (end == nullptr || (keyword = end->EndKeyword()) == nullptr) {
+                std::cerr << "yw::extract::safelyGetEndKeywordText() encountered null pointer" << std::endl;
+                return 0;
+            }
+            return keyword->getText();
+        }
+
         std::string safelyGetBlockDescKeywordText(YWParser::BlockDescContext *desc) noexcept {
             antlr4::tree::TerminalNode* keyword;
             if (desc == nullptr || (keyword = desc->DescKeyword()) == nullptr) {
@@ -96,6 +105,34 @@ namespace yw {
                     "block name",
                     safelyGetStartColumnNumber(begin),
                     safelyGetStartLineNumber(begin)
+                );
+            }
+
+            return blockNameText;
+        }
+
+        nullable_string safelyGetOptionalBlockNameFromEndContext(YWParser::EndContext *end) {
+
+            YWParser::BlockNameContext* blockName;
+            YWParser::PhraseContext* phrase;
+            YWParser::UnquotedPhraseContext* unquotedPhrase;
+            std::string blockNameText;
+
+            if (end != nullptr && (blockName = end->blockName()) == nullptr) {
+                return null_string;
+            }
+
+            if (end == nullptr ||
+                ((phrase = blockName->phrase()) == nullptr) ||
+                ((unquotedPhrase = phrase->unquotedPhrase()) == nullptr ||
+                ((blockNameText = unquotedPhrase->getText())) == "<missing WORD>") ||
+                    (blockNameText.empty())
+                ) {
+                throw yw::parse::MissingArgumentException(
+                    safelyGetEndKeywordText(end),
+                    "block name",
+                    safelyGetStartColumnNumber(end),
+                    safelyGetStartLineNumber(end)
                 );
             }
 

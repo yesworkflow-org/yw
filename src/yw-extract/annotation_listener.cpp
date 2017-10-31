@@ -77,11 +77,9 @@ namespace yw {
         {
             auto lineId = getLineId(end);
             auto rangeInLine = getRangeInLine(end);
+            auto endKeywordText = safelyGetEndKeywordText(end);
+            auto optionalBlockName = safelyGetOptionalBlockNameFromEndContext(end);
 
-            auto endKeywordText = end->EndKeyword()->getText();
-
-            auto optionalBlockName = (end->blockName() != nullptr) ? 
-                nullable_string(end->blockName()->phrase()->unquotedPhrase()->getText()) : null_string;
             ywdb.insert(Annotation{
                 auto_id, extractionId, Tag::END, currentPrimaryAnnotation->id, lineId,
                 currentRankOnLine++, rangeInLine.start, rangeInLine.end,

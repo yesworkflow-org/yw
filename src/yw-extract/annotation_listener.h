@@ -63,13 +63,16 @@ namespace yw {
         size_t safelyGetStartLineNumber(antlr4::ParserRuleContext* context) noexcept;
         size_t safelyGetStartColumnNumber(antlr4::ParserRuleContext* context) noexcept;
         
+        std::string safelyGetAsKeywordText(YWParser::AliasContext *as) noexcept;
         std::string safelyGetBeginKeywordText(YWParser::BeginContext *begin) noexcept;
         std::string safelyGetBlockDescKeywordText(YWParser::BlockDescContext *desc) noexcept;
+        std::string safelyGetEndKeywordText(YWParser::EndContext *end) noexcept;
         std::string safelyGetPortDescKeywordText(YWParser::PortDescContext *desc) noexcept;
-        std::string safelyGetAsKeywordText(YWParser::AliasContext *as) noexcept;
         std::string safelyGetPortKeywordText(YWParser::PortContext* port) noexcept;
 
+
         std::string safelyGetBlockNameFromBeginContext(YWParser::BeginContext *begin);
+        nullable_string safelyGetOptionalBlockNameFromEndContext(YWParser::EndContext *end);
         std::string safelyDescriptionTextFromBlockDescContext(YWParser::BlockDescContext *desc);
         std::string safelyDescriptionTextFromPortDescContext(YWParser::PortDescContext *desc);
         std::string safelyGetPortNameFromPortNameContext(YWParser::PortNameContext *portName);
