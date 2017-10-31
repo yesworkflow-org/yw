@@ -31,7 +31,7 @@ YW_TEST_SET
         )"));
 
         Assert::AreEqual(
-            "ERROR: The annotation '@desc' at column 3 of line 0 in source file 'sample.yw' is missing the required block description argument."  EOL,
+            "ERROR: The annotation '@desc' at column 3 of line 2 in source file 'sample.yw' is missing the required block description argument."  EOL,
             stderrRecorder.str()
         );
     }
@@ -47,7 +47,7 @@ YW_TEST_SET
             )"));
 
         Assert::AreEqual(
-            "ERROR: The annotation '@desc' at column 3 of line 0 in source file 'sample.yw' is missing the required block description argument."  EOL,
+            "ERROR: The annotation '@desc' at column 3 of line 2 in source file 'sample.yw' is missing the required block description argument."  EOL,
             stderrRecorder.str()
         );
     }
@@ -63,7 +63,7 @@ YW_TEST_SET
             )"));
 
         Assert::AreEqual(
-            "ERROR: The annotation '@desc' at column 3 of line 0 in source file 'sample.yw' is missing the required block description argument."  EOL,
+            "ERROR: The annotation '@desc' at column 3 of line 2 in source file 'sample.yw' is missing the required block description argument."  EOL,
             stderrRecorder.str()
         );
     }
@@ -79,7 +79,7 @@ YW_TEST_SET
             )"));
 
         Assert::AreEqual(
-            "ERROR: The annotation '@desc' at column 3 of line 0 in source file 'sample.yw' is missing the required block description argument."  EOL,
+            "ERROR: The annotation '@desc' at column 3 of line 2 in source file 'sample.yw' is missing the required block description argument."  EOL,
             stderrRecorder.str()
         );
     }
@@ -96,7 +96,7 @@ YW_TEST_SET
             )"));
 
         Assert::AreEqual(
-            "ERROR: The annotation '@desc' at column 3 of line 0 in source file 'sample.yw' is missing the required block description argument."  EOL,
+            "ERROR: The annotation '@desc' at column 3 of line 2 in source file 'sample.yw' is missing the required block description argument."  EOL,
             stderrRecorder.str()
         );
     }

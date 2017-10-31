@@ -6,7 +6,7 @@ block           : begin (na? blockAttribute)* (na? io)* nestedBlocks na? end ;
 nestedBlocks	: (na? block)* ;
 blockAttribute  : blockDesc ;
 io				: port (na? portAttribute)* ;
-port  		    : (inputKeyword | outputKeyword) (SPACE+ portName)+ ;
+port  		    : portKeyword (SPACE+ portName)+ ;
 portAttribute   : portDesc | alias | resource ;
 
 // YW annotations
@@ -25,6 +25,7 @@ misplacedKeyword    : misplacedEnd | misplacedBeginChild | misplacedPortChild ;
 
 resource        : uri | file ;
 
+portKeyword		: inputKeyword | outputKeyword;
 inputKeyword    : InKeyword | ParamKeyword ;
 outputKeyword   : OutKeyword ;
 

@@ -75,6 +75,9 @@ public:
   virtual void enterResource(YWParser::ResourceContext * /*ctx*/) override { }
   virtual void exitResource(YWParser::ResourceContext * /*ctx*/) override { }
 
+  virtual void enterPortKeyword(YWParser::PortKeywordContext * /*ctx*/) override { }
+  virtual void exitPortKeyword(YWParser::PortKeywordContext * /*ctx*/) override { }
+
   virtual void enterInputKeyword(YWParser::InputKeywordContext * /*ctx*/) override { }
   virtual void exitInputKeyword(YWParser::InputKeywordContext * /*ctx*/) override { }
 

@@ -21,8 +21,8 @@ YW_TEST_SET
             Expect::AreEqual("A problem occurred parsing YW annotations.", e.getMessage());
         }
         
-        Assert::AreEqual("@in", io->port()->inputKeyword()->getText());
-        Assert::IsNull(io->port()->outputKeyword());
+        Assert::AreEqual("@in", io->port()->portKeyword()->inputKeyword()->getText());
+        Assert::IsNull(io->port()->portKeyword()->outputKeyword());
         Assert::AreEqual(0, io->port()->portName().size());
     }
 
@@ -31,8 +31,8 @@ YW_TEST_SET
         YWParserBuilder parser_builder("@in p q @as data_name");
         YWParser::IoContext* io = parser_builder.parse()->io();
         Expect::EmptyString(stderrRecorder.str());
-        Assert::AreEqual("@in", io->port()->inputKeyword()->getText());
-        Assert::IsNull(io->port()->outputKeyword());
+        Assert::AreEqual("@in", io->port()->portKeyword()->inputKeyword()->getText());
+        Assert::IsNull(io->port()->portKeyword()->outputKeyword());
         Assert::AreEqual(2, io->port()->portName().size());
         Assert::AreEqual("p", io->port()->portName()[0]->getText());
         Assert::AreEqual("q", io->port()->portName()[1]->getText());
@@ -45,8 +45,8 @@ YW_TEST_SET
         YWParserBuilder parser_builder("@in p @as data name");
         YWParser::IoContext* io = parser_builder.parse()->io();
         Expect::EmptyString(stderrRecorder.str());
-        Assert::AreEqual("@in", io->port()->inputKeyword()->getText());
-        Assert::IsNull(io->port()->outputKeyword());
+        Assert::AreEqual("@in", io->port()->portKeyword()->inputKeyword()->getText());
+        Assert::IsNull(io->port()->portKeyword()->outputKeyword());
         Assert::AreEqual(1, io->port()->portName().size());
         Assert::AreEqual("p", io->port()->portName()[0]->getText());
         Assert::AreEqual(1, io->portAttribute().size());
@@ -60,8 +60,8 @@ YW_TEST_SET
         YWParserBuilder parser_builder("@in p @desc with this description");
         YWParser::IoContext* io = parser_builder.parse()->io();
         Expect::EmptyString(stderrRecorder.str());
-        Assert::AreEqual("@in", io->port()->inputKeyword()->getText());
-        Assert::IsNull(io->port()->outputKeyword());
+        Assert::AreEqual("@in", io->port()->portKeyword()->inputKeyword()->getText());
+        Assert::IsNull(io->port()->portKeyword()->outputKeyword());
         Assert::AreEqual(1, io->port()->portName().size());
         Assert::AreEqual("p", io->port()->portName()[0]->getText());
         Assert::AreEqual(1, io->portAttribute().size());
@@ -73,8 +73,8 @@ YW_TEST_SET
         YWParserBuilder parser_builder("@in p @desc with this description @as data name");
         YWParser::IoContext* io = parser_builder.parse()->io();
         Expect::EmptyString(stderrRecorder.str());
-        Assert::AreEqual("@in", io->port()->inputKeyword()->getText());
-        Assert::IsNull(io->port()->outputKeyword());
+        Assert::AreEqual("@in", io->port()->portKeyword()->inputKeyword()->getText());
+        Assert::IsNull(io->port()->portKeyword()->outputKeyword());
         Assert::AreEqual(1, io->port()->portName().size());
         Assert::AreEqual("p", io->port()->portName()[0]->getText());
         Assert::AreEqual(2, io->portAttribute().size());
@@ -87,8 +87,8 @@ YW_TEST_SET
         YWParserBuilder parser_builder("@in p q r @as data name @desc with this description");
         YWParser::IoContext* io = parser_builder.parse()->io();
         Expect::EmptyString(stderrRecorder.str());
-        Assert::AreEqual("@in", io->port()->inputKeyword()->getText());
-        Assert::IsNull(io->port()->outputKeyword());
+        Assert::AreEqual("@in", io->port()->portKeyword()->inputKeyword()->getText());
+        Assert::IsNull(io->port()->portKeyword()->outputKeyword());
         Assert::AreEqual(3, io->port()->portName().size());
         Assert::AreEqual("p", io->port()->portName()[0]->getText());
         Assert::AreEqual("q", io->port()->portName()[1]->getText());
@@ -105,8 +105,8 @@ YW_TEST_SET
             "          @desc with this description" EOL);
         YWParser::IoContext* io = parser_builder.parse()->io();
         Expect::EmptyString(stderrRecorder.str());
-        Assert::AreEqual("@in", io->port()->inputKeyword()->getText());
-        Assert::IsNull(io->port()->outputKeyword());
+        Assert::AreEqual("@in", io->port()->portKeyword()->inputKeyword()->getText());
+        Assert::IsNull(io->port()->portKeyword()->outputKeyword());
         Assert::AreEqual(3, io->port()->portName().size());
         Assert::AreEqual("p", io->port()->portName()[0]->getText());
         Assert::AreEqual("q", io->port()->portName()[1]->getText());
@@ -124,8 +124,8 @@ YW_TEST_SET
             "    @desc with this description" EOL);
         YWParser::IoContext* io = parser_builder.parse()->io();
         Expect::EmptyString(stderrRecorder.str());
-        Assert::AreEqual("@in", io->port()->inputKeyword()->getText());
-        Assert::IsNull(io->port()->outputKeyword());
+        Assert::AreEqual("@in", io->port()->portKeyword()->inputKeyword()->getText());
+        Assert::IsNull(io->port()->portKeyword()->outputKeyword());
         Assert::AreEqual(3, io->port()->portName().size());
         Assert::AreEqual("p", io->port()->portName()[0]->getText());
         Assert::AreEqual("q", io->port()->portName()[1]->getText());

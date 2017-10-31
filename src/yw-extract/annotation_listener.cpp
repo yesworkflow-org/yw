@@ -45,49 +45,19 @@ namespace yw {
 
             ywdb.insert(Annotation{ auto_id, extractionId, Tag::AS, currentPrimaryAnnotation->id, lineId,
                 currentRankOnLine++, rangeInLine.start, rangeInLine.end,
-                alias->AsKeyword()->getText(),
+                safelyGetAsKeywordText(alias),
                 nullable_string(aliasName) });
-        }
-
-        std::string AnnotationListener::safelyGetBlockNameFromBeginContext(YWParser::BeginContext *begin) {
-
-            YWParser::BlockNameContext* blockName;
-            YWParser::PhraseContext* phrase;
-            YWParser::UnquotedPhraseContext* unquotedPhrase;
-            std::string blockNameText;
-
-            if ( ((blockName = begin->blockName()) == nullptr) ||
-                 ((phrase = blockName->phrase()) == nullptr) ||
-                 ((unquotedPhrase = phrase->unquotedPhrase()) == nullptr ||
-                 ((blockNameText = unquotedPhrase->getText())) == "<missing WORD>") ||
-                 (blockNameText.empty()) 
-            ) {
-                throw std::exception();
-            }
-
-            return blockNameText;
         }
 
         void AnnotationListener::enterBegin(YWParser::BeginContext *begin)
         {
             auto lineId = getLineId(begin);
             auto rangeInLine = getRangeInLine(begin);
-            auto beginText = begin->BeginKeyword()->getText();
-
-            std::string blockNameText;
-            try {
-                blockNameText = safelyGetBlockNameFromBeginContext(begin);
-            }
-            catch (std::exception) {
-                throw yw::parse::MissingArgumentException(
-                    beginText,
-                    "block name",
-                    rangeInLine.start + 1,
-                    currentLineNumber
-                );
-            }
+            auto beginText = safelyGetBeginKeywordText(begin);
+            auto blockNameText = safelyGetBlockNameFromBeginContext(begin);
 
             primaryAnnotationStack.push(currentPrimaryAnnotation);
+            
             auto beginAnnotation = std::make_shared<Annotation>(
                 auto_id, extractionId, Tag::BEGIN, 
                 (currentPrimaryAnnotation == nullptr ? null_id: currentPrimaryAnnotation->id), 
@@ -95,6 +65,7 @@ namespace yw {
                 rangeInLine.start, rangeInLine.end, beginText,
                 nullable_string(blockNameText));
             ywdb.insert(*beginAnnotation);
+            
             currentPrimaryAnnotation = beginAnnotation;
         }
 
@@ -119,84 +90,25 @@ namespace yw {
             primaryAnnotationStack.pop();
         }
 
-        std::string AnnotationListener::safelyDescriptionTextFromBlockDescContext(YWParser::BlockDescContext *desc) {
-
-            YWParser::DescriptionContext* description;
-            YWParser::PhraseContext* phrase;
-            YWParser::UnquotedPhraseContext* unquotedPhrase;
-            std::string descriptionText;
-
-            if ((description = desc->description()) == nullptr ||
-                (phrase = description->phrase()) == nullptr ||
-                (unquotedPhrase = phrase->unquotedPhrase()) == nullptr ||
-                (descriptionText = unquotedPhrase->getText()) == "<missing WORD>" ||
-                descriptionText.empty()
-                ) {
-                throw std::exception();
-            }
-            return descriptionText;
-        }
-
-        std::string AnnotationListener::safelyDescriptionTextFromPortDescContext(YWParser::PortDescContext *desc) {
-
-            YWParser::DescriptionContext* description;
-            YWParser::PhraseContext* phrase;
-            YWParser::UnquotedPhraseContext* unquotedPhrase;
-            std::string descriptionText;
-
-            if ((description = desc->description()) == nullptr ||
-                (phrase = description->phrase()) == nullptr ||
-                (unquotedPhrase = phrase->unquotedPhrase()) == nullptr ||
-                (descriptionText = unquotedPhrase->getText()) == "<missing WORD>" ||
-                descriptionText.empty()
-                ) {
-                throw std::exception();
-            }
-            return descriptionText;
-        }
-
         void AnnotationListener::enterBlockDesc(YWParser::BlockDescContext *desc)
         {
             auto lineId = getLineId(desc);
             auto rangeInLine = getRangeInLine(desc);
-            auto descText = desc->DescKeyword()->getText();
-
-            std::string blockDescriptionText;
-            try {
-                blockDescriptionText = safelyDescriptionTextFromBlockDescContext(desc);
-            }
-            catch (std::exception) {
-                throw yw::parse::MissingArgumentException(
-                    descText,
-                    "block description",
-                    rangeInLine.start + 1,
-                    currentLineNumber
-                );
-            }
+            auto descText = safelyGetBlockDescKeywordText(desc);
+            auto blockDescriptionText = safelyDescriptionTextFromBlockDescContext(desc);
 
             ywdb.insert(Annotation{ auto_id, extractionId, Tag::DESC, currentPrimaryAnnotation->id, lineId,
-                                       currentRankOnLine++, rangeInLine.start, rangeInLine.end,
-                                       descText, nullable_string(blockDescriptionText) });
+                                    currentRankOnLine++, rangeInLine.start, rangeInLine.end,
+                                    descText, nullable_string(blockDescriptionText) }
+            );
         }
 
         void AnnotationListener::enterPortDesc(YWParser::PortDescContext *desc)
         {
             auto lineId = getLineId(desc);
             auto rangeInLine = getRangeInLine(desc);
-            auto descText = desc->DescKeyword()->getText();
-
-            std::string portDescriptionText;
-            try {
-                portDescriptionText = safelyDescriptionTextFromPortDescContext(desc);
-            }
-            catch (std::exception) {
-                throw yw::parse::MissingArgumentException(
-                    descText,
-                    "port description",
-                    rangeInLine.start + 1,
-                    currentLineNumber
-                );
-            }
+            auto descText = safelyGetPortDescKeywordText(desc);
+            auto portDescriptionText = safelyDescriptionTextFromPortDescContext(desc);
 
             ywdb.insert(Annotation{ auto_id, extractionId, Tag::DESC, currentPrimaryAnnotation->id, lineId,
                 currentRankOnLine++, rangeInLine.start, rangeInLine.end,
@@ -205,12 +117,12 @@ namespace yw {
 
         Annotation::Tag getPortTag(YWParser::PortContext *port)
         {
-            if (port->inputKeyword() != NULL) {
-                if (port->inputKeyword()->InKeyword() != NULL) return Tag::IN;
-                if (port->inputKeyword()->ParamKeyword() != NULL) return Tag::PARAM;
+            if (port->portKeyword()->inputKeyword() != NULL) {
+                if (port->portKeyword()->inputKeyword()->InKeyword() != NULL) return Tag::IN;
+                if (port->portKeyword()->inputKeyword()->ParamKeyword() != NULL) return Tag::PARAM;
             }
-            else if (port->outputKeyword() != NULL) {
-                if (port->outputKeyword()->OutKeyword() != NULL) return Tag::OUT;
+            else if (port->portKeyword()->outputKeyword() != NULL) {
+                if (port->portKeyword()->outputKeyword()->OutKeyword() != NULL) return Tag::OUT;
             }
 
             throw std::runtime_error("unrecognized port type");
@@ -220,12 +132,12 @@ namespace yw {
 
             portTag = getPortTag(port);
             portLineId = getLineId(port);
-            if (port->inputKeyword() != NULL) {
-                portKeyword = port->inputKeyword()->getText();
+            if (port->portKeyword()->inputKeyword() != NULL) {
+                portKeyword = safelyGetPortKeywordText(port);
                 portDirection = Flow::Direction::IN;
             }
             else {
-                portKeyword = port->outputKeyword()->getText();
+                portKeyword = safelyGetPortKeywordText(port);
                 portDirection = Flow::Direction::OUT;
             }
             portRangeInLine = getRangeInLine(port);
@@ -240,55 +152,9 @@ namespace yw {
             }
         }
 
-        std::string AnnotationListener::safelyGetAliasNameFromAliasContext(YWParser::AliasContext *alias) {
-
-            YWParser::DataNameContext* dataName;
-            YWParser::PhraseContext* phrase;
-            YWParser::UnquotedPhraseContext* unquotedPhrase;
-            std::string aliasText;
-
-            if ((dataName = alias->dataName()) == nullptr ||
-                (phrase = dataName->phrase()) == nullptr ||
-                (unquotedPhrase = phrase->unquotedPhrase()) == nullptr ||
-                (aliasText = unquotedPhrase->getText()) == "<missing WORD>" ||
-                aliasText.empty()
-                ) {
-                throw std::exception();
-            }
-
-            return aliasText;
-        }
-
-        std::string AnnotationListener::safelyGetPortNameFromPortNameContext(YWParser::PortNameContext *portName) {
-
-            YWParser::WordContext* word;
-            YWParser::UnquotedWordContext* unquotedWord;
-            std::string portNameText;
-
-            if ((word = portName->word()) == nullptr ||
-                (unquotedWord = word->unquotedWord()) == nullptr ||
-                (portNameText = unquotedWord->getText()) == "<missing WORD>" ||
-                portNameText.empty()
-                ) {
-                throw std::exception();
-            }
-
-            return portNameText;
-        }
-
         void AnnotationListener::enterPortName(YWParser::PortNameContext *context) {
 
-            try {
-                portName = nullable_string{ safelyGetPortNameFromPortNameContext(context) };
-            }
-            catch (std::exception) {
-                throw yw::parse::MissingArgumentException(
-                    portKeyword,
-                    "port name",
-                    portRangeInLine.start + 1,
-                    currentLineNumber
-                );
-            }
+            portName = nullable_string{ safelyGetPortNameFromPortNameContext(context) };
 
             lastPortAnnotation = std::make_shared<Annotation>(
                 auto_id, extractionId, portTag, currentPrimaryAnnotation->id, portLineId,

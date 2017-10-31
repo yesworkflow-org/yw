@@ -1,7 +1,9 @@
+#include "annotation_listener.h"
 #include "model_entity_listener.h"
 #include "missing_argument_exception.h"
 using namespace yw::sqlite;
 using namespace yw::db;
+using namespace yw::extract;
 
 using Direction = yw::db::Flow::Direction;
 
@@ -14,20 +16,7 @@ namespace yw {
             for (auto attribute : block->blockAttribute()) {
                 auto desc = attribute->blockDesc();
                 if (desc != nullptr) {
-                    auto descText = desc->DescKeyword()->getText();
-                    std::string blockDescriptionText;
-                    try {
-                        blockDescriptionText = safelyDescriptionTextFromBlockDescContext(desc);
-                    }
-                    catch (std::exception) {
-                        throw yw::parse::MissingArgumentException(
-                            descText,
-                            "block description",
-                            rangeInLine.start + 1,
-                            currentLineNumber
-                        );
-                    }
-                    blockDescription = blockDescriptionText;
+                    blockDescription = safelyDescriptionTextFromBlockDescContext(desc);
                     break;
                 }
             }
@@ -70,18 +59,7 @@ namespace yw {
             for (auto attribute : io->portAttribute()) {
                 auto alias = attribute->alias();
                 if (alias != nullptr) {
-                    try {
-                        portAlias = safelyGetAliasNameFromAliasContext(attribute->alias());
-                    }
-                    catch (std::exception) {
-                        auto rangeInLine = getRangeInLine(alias);
-                        throw yw::parse::MissingArgumentException(
-                            alias->AsKeyword()->getText(),
-                            "data name",
-                            rangeInLine.start + 1,
-                            currentLineNumber + 1
-                        );
-                    }
+                    portAlias = safelyGetAliasNameFromAliasContext(attribute->alias());
                     aliasedPortIndex = static_cast<int>(io->port()->portName().size()) - 1;
                     break;
                 }

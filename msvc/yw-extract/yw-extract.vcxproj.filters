@@ -19,6 +19,9 @@
     <ClCompile Include="..\..\src\yw-extract\annotation_extractor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\yw-extract\annotation_accessors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-extract\annotation_listener.h">

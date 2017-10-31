@@ -73,6 +73,9 @@ public:
   virtual void enterResource(YWParser::ResourceContext *ctx) = 0;
   virtual void exitResource(YWParser::ResourceContext *ctx) = 0;
 
+  virtual void enterPortKeyword(YWParser::PortKeywordContext *ctx) = 0;
+  virtual void exitPortKeyword(YWParser::PortKeywordContext *ctx) = 0;
+
   virtual void enterInputKeyword(YWParser::InputKeywordContext *ctx) = 0;
   virtual void exitInputKeyword(YWParser::InputKeywordContext *ctx) = 0;
 

@@ -53,20 +53,27 @@ namespace yw {
             void enterAlias(YWParser::AliasContext *context) override;
             void enterIo(YWParser::IoContext *context) override;
             void exitIo(YWParser::IoContext *context) override;
-            //void enterMisplacedBeginChild(YWParser::MisplacedBeginChildContext * context) override;
-            //void enterMisplacedPortChild(YWParser::MisplacedPortChildContext* context) override;
-            //void enterMisplacedEnd(YWParser::MisplacedEndContext * context) override;
 
         protected:
             bool AnnotationListener::inProgramBlock();
             row_id getLineId(antlr4::ParserRuleContext* context);
             AnnotationRange getRangeInLine(antlr4::ParserRuleContext* context);
-            std::string safelyGetBlockNameFromBeginContext(YWParser::BeginContext *begin);
-            std::string safelyDescriptionTextFromBlockDescContext(YWParser::BlockDescContext *desc);
-            std::string safelyDescriptionTextFromPortDescContext(YWParser::PortDescContext *desc);
-            std::string safelyGetPortNameFromPortNameContext(YWParser::PortNameContext *portName);
-            std::string safelyGetAliasNameFromAliasContext(YWParser::AliasContext *alias);
         };
+
+        size_t safelyGetStartLineNumber(antlr4::ParserRuleContext* context) noexcept;
+        size_t safelyGetStartColumnNumber(antlr4::ParserRuleContext* context) noexcept;
+        
+        std::string safelyGetBeginKeywordText(YWParser::BeginContext *begin) noexcept;
+        std::string safelyGetBlockDescKeywordText(YWParser::BlockDescContext *desc) noexcept;
+        std::string safelyGetPortDescKeywordText(YWParser::PortDescContext *desc) noexcept;
+        std::string safelyGetAsKeywordText(YWParser::AliasContext *as) noexcept;
+        std::string safelyGetPortKeywordText(YWParser::PortContext* port) noexcept;
+
+        std::string safelyGetBlockNameFromBeginContext(YWParser::BeginContext *begin);
+        std::string safelyDescriptionTextFromBlockDescContext(YWParser::BlockDescContext *desc);
+        std::string safelyDescriptionTextFromPortDescContext(YWParser::PortDescContext *desc);
+        std::string safelyGetPortNameFromPortNameContext(YWParser::PortNameContext *portName);
+        std::string safelyGetAliasNameFromAliasContext(YWParser::AliasContext *alias);
     }
 }
 

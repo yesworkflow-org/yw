@@ -24,12 +24,12 @@ public:
     RuleIo = 4, RulePort = 5, RulePortAttribute = 6, RuleAlias = 7, RuleBegin = 8, 
     RuleBlockDesc = 9, RulePortDesc = 10, RuleEnd = 11, RuleFile = 12, RuleUri = 13, 
     RuleMisplacedEnd = 14, RuleMisplacedBeginChild = 15, RuleMisplacedPortChild = 16, 
-    RuleMisplacedKeyword = 17, RuleResource = 18, RuleInputKeyword = 19, 
-    RuleOutputKeyword = 20, RuleBlockName = 21, RulePortName = 22, RuleDataName = 23, 
-    RuleDescription = 24, RulePathTemplate = 25, RulePathVariable = 26, 
-    RulePathConstant = 27, RuleVariableName = 28, RuleUriTemplate = 29, 
-    RuleScheme = 30, RulePhrase = 31, RuleUnquotedPhrase = 32, RuleWord = 33, 
-    RuleUnquotedWord = 34, RuleNa = 35
+    RuleMisplacedKeyword = 17, RuleResource = 18, RulePortKeyword = 19, 
+    RuleInputKeyword = 20, RuleOutputKeyword = 21, RuleBlockName = 22, RulePortName = 23, 
+    RuleDataName = 24, RuleDescription = 25, RulePathTemplate = 26, RulePathVariable = 27, 
+    RulePathConstant = 28, RuleVariableName = 29, RuleUriTemplate = 30, 
+    RuleScheme = 31, RulePhrase = 32, RuleUnquotedPhrase = 33, RuleWord = 34, 
+    RuleUnquotedWord = 35, RuleNa = 36
   };
 
   YWParser(antlr4::TokenStream *input);
@@ -61,6 +61,7 @@ public:
   class MisplacedPortChildContext;
   class MisplacedKeywordContext;
   class ResourceContext;
+  class PortKeywordContext;
   class InputKeywordContext;
   class OutputKeywordContext;
   class BlockNameContext;
@@ -167,8 +168,7 @@ public:
   public:
     PortContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    InputKeywordContext *inputKeyword();
-    OutputKeywordContext *outputKeyword();
+    PortKeywordContext *portKeyword();
     std::vector<PortNameContext *> portName();
     PortNameContext* portName(size_t i);
     std::vector<antlr4::tree::TerminalNode *> SPACE();
@@ -381,6 +381,20 @@ public:
   };
 
   ResourceContext* resource();
+
+  class  PortKeywordContext : public antlr4::ParserRuleContext {
+  public:
+    PortKeywordContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    InputKeywordContext *inputKeyword();
+    OutputKeywordContext *outputKeyword();
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  PortKeywordContext* portKeyword();
 
   class  InputKeywordContext : public antlr4::ParserRuleContext {
   public:
