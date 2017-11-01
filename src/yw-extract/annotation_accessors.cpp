@@ -90,6 +90,15 @@ namespace yw {
             return portKeyword->getText();
         }
 
+        std::string safelyGetFileKeywordText(YWParser::FileContext* file) noexcept {
+            antlr4::tree::TerminalNode* keyword;
+            if (file == nullptr || (keyword = file->FileKeyword()) == nullptr) {
+                std::cerr << "yw::extract::safelyGetFileKeywordText() encountered null pointer" << std::endl;
+                return "NULL FILE KEYWORD";
+            }
+            return keyword->getText();
+        }
+
         Annotation::Tag safelyGetPortTagFromPortContext(YWParser::PortContext *port)
         {
             YWParser::PortKeywordContext* portKeyword;
@@ -246,6 +255,27 @@ namespace yw {
                 );
             }
             return descriptionText;
+        }
+
+
+        std::string safelyGetPathTemplateFromFileResourceContext(YWParser::FileContext *file) {
+
+            YWParser::PathTemplateContext* pathTemplate;
+            std::string pathTemplateText;
+
+            if (file == nullptr ||
+                (pathTemplate = file->pathTemplate()) == nullptr ||
+                (pathTemplateText = pathTemplate->getText()) == "<missing WORD>" ||
+                pathTemplateText.empty()
+                ) {
+                throw yw::parse::MissingArgumentException(
+                    safelyGetFileKeywordText(file),
+                    "path template",
+                    safelyGetStartColumnNumber(file),
+                    safelyGetStartLineNumber(file)
+                );
+            }
+            return pathTemplateText;
         }
 
         std::string safelyGetAliasNameFromAliasContext(YWParser::AliasContext *alias) {

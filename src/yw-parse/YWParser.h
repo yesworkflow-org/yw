@@ -512,7 +512,7 @@ public:
   public:
     PathConstantContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    WordContext *word();
+    antlr4::tree::TerminalNode *WORD();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -525,7 +525,7 @@ public:
   public:
     VariableNameContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    WordContext *word();
+    antlr4::tree::TerminalNode *WORD();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;

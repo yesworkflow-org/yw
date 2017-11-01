@@ -2083,8 +2083,6 @@ YWParser::PathTemplateContext* YWParser::pathTemplate() {
               setState(250);
               _errHandler->sync(this);
               switch (_input->LA(1)) {
-                case YWParser::DQ:
-                case YWParser::SQ:
                 case YWParser::WORD: {
                   setState(248);
                   pathConstant();
@@ -2126,8 +2124,6 @@ YWParser::PathTemplateContext* YWParser::pathTemplate() {
                   setState(257);
                   _errHandler->sync(this);
                   switch (_input->LA(1)) {
-                    case YWParser::DQ:
-                    case YWParser::SQ:
                     case YWParser::WORD: {
                       setState(255);
                       pathConstant();
@@ -2247,8 +2243,8 @@ YWParser::PathConstantContext::PathConstantContext(ParserRuleContext *parent, si
   : ParserRuleContext(parent, invokingState) {
 }
 
-YWParser::WordContext* YWParser::PathConstantContext::word() {
-  return getRuleContext<YWParser::WordContext>(0);
+tree::TerminalNode* YWParser::PathConstantContext::WORD() {
+  return getToken(YWParser::WORD, 0);
 }
 
 
@@ -2278,7 +2274,7 @@ YWParser::PathConstantContext* YWParser::pathConstant() {
   try {
     enterOuterAlt(_localctx, 1);
     setState(273);
-    word();
+    match(YWParser::WORD);
    
   }
   catch (RecognitionException &e) {
@@ -2296,8 +2292,8 @@ YWParser::VariableNameContext::VariableNameContext(ParserRuleContext *parent, si
   : ParserRuleContext(parent, invokingState) {
 }
 
-YWParser::WordContext* YWParser::VariableNameContext::word() {
-  return getRuleContext<YWParser::WordContext>(0);
+tree::TerminalNode* YWParser::VariableNameContext::WORD() {
+  return getToken(YWParser::WORD, 0);
 }
 
 
@@ -2327,7 +2323,7 @@ YWParser::VariableNameContext* YWParser::variableName() {
   try {
     enterOuterAlt(_localctx, 1);
     setState(275);
-    word();
+    match(YWParser::WORD);
    
   }
   catch (RecognitionException &e) {
@@ -3178,8 +3174,8 @@ YWParser::Initializer::Initializer() {
     0x2, 0x10d, 0x10e, 0x3, 0x2, 0x2, 0x2, 0x10e, 0x37, 0x3, 0x2, 0x2, 0x2, 
     0x10f, 0x110, 0x7, 0x10, 0x2, 0x2, 0x110, 0x111, 0x5, 0x3c, 0x1f, 0x2, 
     0x111, 0x112, 0x7, 0x11, 0x2, 0x2, 0x112, 0x39, 0x3, 0x2, 0x2, 0x2, 
-    0x113, 0x114, 0x5, 0x46, 0x24, 0x2, 0x114, 0x3b, 0x3, 0x2, 0x2, 0x2, 
-    0x115, 0x116, 0x5, 0x46, 0x24, 0x2, 0x116, 0x3d, 0x3, 0x2, 0x2, 0x2, 
+    0x113, 0x114, 0x7, 0x14, 0x2, 0x2, 0x114, 0x3b, 0x3, 0x2, 0x2, 0x2, 
+    0x115, 0x116, 0x7, 0x14, 0x2, 0x2, 0x116, 0x3d, 0x3, 0x2, 0x2, 0x2, 
     0x117, 0x118, 0x5, 0x40, 0x21, 0x2, 0x118, 0x119, 0x7, 0x13, 0x2, 0x2, 
     0x119, 0x11b, 0x3, 0x2, 0x2, 0x2, 0x11a, 0x117, 0x3, 0x2, 0x2, 0x2, 
     0x11a, 0x11b, 0x3, 0x2, 0x2, 0x2, 0x11b, 0x11c, 0x3, 0x2, 0x2, 0x2, 

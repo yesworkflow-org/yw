@@ -36,8 +36,8 @@ dataName        : phrase ;
 description     : phrase;
 pathTemplate    : SLASH? SLASH? (pathConstant | pathVariable)+ ( SLASH (pathConstant | pathVariable)+ )* SLASH? ;
 pathVariable	: LEFTBRACE variableName RIGHTBRACE ;
-pathConstant	: word ;
-variableName	: word ;
+pathConstant	: WORD ;
+variableName	: WORD ;
 
 uriTemplate     : ((scheme) ':')? pathTemplate ;
 scheme          : word ; 

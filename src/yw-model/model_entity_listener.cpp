@@ -63,9 +63,6 @@ namespace yw {
                     aliasedPortIndex = static_cast<int>(io->port()->portName().size()) - 1;
                     break;
                 }
-                else if (attribute->resource() != nullptr) {
-
-                }
             }
         }
 
@@ -73,7 +70,6 @@ namespace yw {
             AnnotationListener::enterPort(context);
             portNameIndex = 0;
         }
-
 
         nullable_row_id ModelEntityListener::currentWorkflowId() {
             return programBlockStack.size() > 1 ? programBlockStack.top()->id : null_id;
@@ -94,7 +90,7 @@ namespace yw {
         void ModelEntityListener::enterResource(YWParser::ResourceContext *context) {
             if (context->file() != nullptr) {
                 flowTemplateScheme = null_string;
-                flowTemplatePath = context->file()->pathTemplate()->getText();
+                flowTemplatePath = safelyGetPathTemplateFromFileResourceContext(context->file());
             }
             else if (context->uri() != nullptr) {
                 flowTemplateScheme = context->uri()->uriTemplate()->scheme()->getText();

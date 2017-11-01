@@ -69,7 +69,7 @@ namespace yw {
         std::string safelyGetEndKeywordText(YWParser::EndContext *end) noexcept;
         std::string safelyGetPortDescKeywordText(YWParser::PortDescContext *desc) noexcept;
         std::string safelyGetPortKeywordText(YWParser::PortContext* port) noexcept;
-
+        std::string safelyGetFileKeywordText(YWParser::FileContext* file) noexcept;
 
         std::string safelyGetBlockNameFromBeginContext(YWParser::BeginContext *begin);
         nullable_string safelyGetOptionalBlockNameFromEndContext(YWParser::EndContext *end);
@@ -77,9 +77,10 @@ namespace yw {
         std::string safelyDescriptionTextFromPortDescContext(YWParser::PortDescContext *desc);
         std::string safelyGetPortNameFromPortNameContext(YWParser::PortNameContext *portName);
         std::string safelyGetAliasNameFromAliasContext(YWParser::AliasContext *alias);
+        std::string safelyGetPathTemplateFromFileResourceContext(YWParser::FileContext *file);
+
         yw::db::Annotation::Tag safelyGetPortTagFromPortContext(YWParser::PortContext *port);
         yw::db::Flow::Direction safelyGetPortDirection(YWParser::PortContext *port);
-
     }
 }
 
