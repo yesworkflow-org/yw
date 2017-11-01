@@ -117,14 +117,8 @@ namespace yw {
 
             portTag = safelyGetPortTagFromPortContext(port);
             portLineId = getLineId(port);
-            if (port->portKeyword()->inputKeyword() != NULL) {
-                portKeyword = safelyGetPortKeywordText(port);
-                portDirection = Flow::Direction::IN;
-            }
-            else {
-                portKeyword = safelyGetPortKeywordText(port);
-                portDirection = Flow::Direction::OUT;
-            }
+            portKeyword = safelyGetPortKeywordText(port);
+            portDirection = safelyGetPortDirection(port);
             portRangeInLine = getRangeInLine(port);
 
             if (port->portName().size() == 0) {

@@ -78,6 +78,8 @@ namespace yw {
         std::string safelyGetPortNameFromPortNameContext(YWParser::PortNameContext *portName);
         std::string safelyGetAliasNameFromAliasContext(YWParser::AliasContext *alias);
         yw::db::Annotation::Tag safelyGetPortTagFromPortContext(YWParser::PortContext *port);
+        yw::db::Flow::Direction safelyGetPortDirection(YWParser::PortContext *port);
+
     }
 }
 

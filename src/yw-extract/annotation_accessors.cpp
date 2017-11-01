@@ -120,6 +120,33 @@ namespace yw {
             );
         }
 
+        Flow::Direction safelyGetPortDirection(YWParser::PortContext *port) {
+
+            YWParser::PortKeywordContext* portKeyword;
+
+            if (port == nullptr) {
+                throw yw::parse::ParsingException(
+                    null_string,
+                    "yw::extract::safelyGetPortDirection encountered a null pointer"
+                );
+            }
+
+            if ((portKeyword = port->portKeyword()) != nullptr) {
+                if (portKeyword->inputKeyword() != nullptr) {
+                    return Flow::Direction::IN;
+                }
+                else if (portKeyword->outputKeyword() != nullptr) {
+                    return Flow::Direction::OUT;
+                }
+            }
+
+            throw yw::parse::UnexpectedAnnotationException(
+                port->getText(),
+                safelyGetStartColumnNumber(port),
+                safelyGetStartLineNumber(port)
+            );
+        }
+
         std::string safelyGetBlockNameFromBeginContext(YWParser::BeginContext *begin) {
 
             YWParser::BlockNameContext* blockName;
