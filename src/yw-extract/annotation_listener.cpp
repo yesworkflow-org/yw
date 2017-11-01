@@ -113,22 +113,9 @@ namespace yw {
                 descText, nullable_string(portDescriptionText) });
         }
 
-        Annotation::Tag getPortTag(YWParser::PortContext *port)
-        {
-            if (port->portKeyword()->inputKeyword() != NULL) {
-                if (port->portKeyword()->inputKeyword()->InKeyword() != NULL) return Tag::IN;
-                if (port->portKeyword()->inputKeyword()->ParamKeyword() != NULL) return Tag::PARAM;
-            }
-            else if (port->portKeyword()->outputKeyword() != NULL) {
-                if (port->portKeyword()->outputKeyword()->OutKeyword() != NULL) return Tag::OUT;
-            }
-
-            throw std::runtime_error("unrecognized port type");
-        }
-
         void AnnotationListener::enterPort(YWParser::PortContext *port) {
 
-            portTag = getPortTag(port);
+            portTag = safelyGetPortTagFromPortContext(port);
             portLineId = getLineId(port);
             if (port->portKeyword()->inputKeyword() != NULL) {
                 portKeyword = safelyGetPortKeywordText(port);

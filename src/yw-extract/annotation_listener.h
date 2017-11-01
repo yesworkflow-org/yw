@@ -77,6 +77,7 @@ namespace yw {
         std::string safelyDescriptionTextFromPortDescContext(YWParser::PortDescContext *desc);
         std::string safelyGetPortNameFromPortNameContext(YWParser::PortNameContext *portName);
         std::string safelyGetAliasNameFromAliasContext(YWParser::AliasContext *alias);
+        yw::db::Annotation::Tag safelyGetPortTagFromPortContext(YWParser::PortContext *port);
     }
 }
 

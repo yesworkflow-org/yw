@@ -11,6 +11,10 @@
 #include <iostream>
 #include <istream>
 
+using namespace yw::db;
+
+using Tag = yw::db::Annotation::Tag;
+
 namespace yw {
     namespace extract {
 
@@ -36,7 +40,7 @@ namespace yw {
             antlr4::tree::TerminalNode* keyword;
             if (begin == nullptr || (keyword = begin->BeginKeyword()) == nullptr) {
                 std::cerr << "yw::extract::safelyGetBeginKeywordText() encountered null pointer" << std::endl;
-                return 0;
+                return "NULL BEGIN KEYWORD";
             }
             return keyword->getText();
         }
@@ -45,7 +49,7 @@ namespace yw {
             antlr4::tree::TerminalNode* keyword;
             if (end == nullptr || (keyword = end->EndKeyword()) == nullptr) {
                 std::cerr << "yw::extract::safelyGetEndKeywordText() encountered null pointer" << std::endl;
-                return 0;
+                return "NULL END KEYWORD";
             }
             return keyword->getText();
         }
@@ -54,7 +58,7 @@ namespace yw {
             antlr4::tree::TerminalNode* keyword;
             if (desc == nullptr || (keyword = desc->DescKeyword()) == nullptr) {
                 std::cerr << "yw::extract::safelyGetBlockDescKeywordText() encountered null pointer" << std::endl;
-                return 0;
+                return "NULL BLOCK DESC KEYWORD";
             }
             return keyword->getText();
         }
@@ -63,7 +67,7 @@ namespace yw {
             antlr4::tree::TerminalNode* keyword;
             if (desc == nullptr || (keyword = desc->DescKeyword()) == nullptr) {
                 std::cerr << "yw::extract::safelyGetPortDescKeywordText() encountered null pointer" << std::endl;
-                return 0;
+                return "NULL PORT DESC KEYWORD";
             }
             return keyword->getText();
         }
@@ -72,7 +76,7 @@ namespace yw {
             antlr4::tree::TerminalNode* keyword;
             if (as == nullptr || (keyword = as->AsKeyword()) == nullptr) {
                 std::cerr << "yw::extract::safelyGetAsKeywordText() encountered null pointer" << std::endl;
-                return 0;
+                return "NULL AS KEYWORD";
             }
             return keyword->getText();
         }
@@ -81,9 +85,39 @@ namespace yw {
             YWParser::PortKeywordContext* portKeyword;
             if (port == nullptr || (portKeyword = port->portKeyword()) == nullptr) {
                 std::cerr << "yw::extract::safelyGetPortKeywordText() encountered null pointer" << std::endl;
-                return 0;
+                return "NULL PORT KEYWORD";
             }
             return portKeyword->getText();
+        }
+
+        Annotation::Tag safelyGetPortTagFromPortContext(YWParser::PortContext *port)
+        {
+            YWParser::PortKeywordContext* portKeyword;
+            YWParser::InputKeywordContext* inputKeyword;
+            YWParser::OutputKeywordContext* outputKeyword;
+
+            if (port == nullptr) {
+                throw yw::parse::ParsingException(
+                    null_string, 
+                    "yw::extract::safelyGetPortTagFromPortContext encountered a null pointer"
+                );
+            }
+
+            if (port != nullptr && (portKeyword = port->portKeyword()) != nullptr) {
+                if ((inputKeyword = portKeyword->inputKeyword()) != nullptr) {
+                    if (inputKeyword->InKeyword() != nullptr) return Tag::IN;
+                    if (inputKeyword->ParamKeyword() != nullptr) return Tag::PARAM;
+                }
+                else if ((outputKeyword = portKeyword->outputKeyword()) != nullptr) {
+                    if (outputKeyword->OutKeyword() != nullptr) return Tag::OUT;
+                }
+            }
+
+            throw yw::parse::UnexpectedAnnotationException(
+                port->getText(),
+                safelyGetStartColumnNumber(port),
+                safelyGetStartLineNumber(port)
+            );
         }
 
         std::string safelyGetBlockNameFromBeginContext(YWParser::BeginContext *begin) {
