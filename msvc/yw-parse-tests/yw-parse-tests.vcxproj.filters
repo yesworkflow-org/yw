@@ -69,5 +69,11 @@
     <ClCompile Include="..\..\test\yw-parse-tests\port_desc_context_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\test\yw-parse-tests\uri_context_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\test\yw-parse-tests\file_context_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

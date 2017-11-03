@@ -20,7 +20,9 @@ namespace yw {
                 OUT = 5,
                 PARAM = 6,
                 RETURN = 7,
-                AS = 8
+                AS = 8, 
+                FILE = 9,
+                URI = 10
             };
 
             nullable_row_id id;
@@ -67,7 +69,7 @@ namespace yw {
 
             static std::string to_string(Tag tag) {
                 static const std::vector<std::string> names{
-                    "NONE", "BEGIN", "END", "DESC", "IN", "OUT", "PARAM", "RETURN", "AS"
+                    "NONE", "BEGIN", "END", "DESC", "IN", "OUT", "PARAM", "RETURN", "AS", "FILE", "URI"
                 };
                 return names[static_cast<int>(tag)];
             }

@@ -34,13 +34,15 @@ blockName       : phrase ;
 portName        : word ;
 dataName        : phrase ;
 description     : phrase;
-pathTemplate    : SLASH? SLASH? (pathConstant | pathVariable)+ ( SLASH (pathConstant | pathVariable)+ )* SLASH? ;
+
+pathElement     : (pathConstant | pathVariable)+ ;
 pathVariable	: LEFTBRACE variableName RIGHTBRACE ;
 pathConstant	: WORD ;
 variableName	: WORD ;
 
-uriTemplate     : ((scheme) ':')? pathTemplate ;
-scheme          : word ; 
+pathTemplate    : SLASH? pathElement? (SLASH pathElement)* SLASH? ;
+uriTemplate     : (scheme ':')? SLASH*? pathTemplate ;
+scheme          : WORD ; 
 
 phrase			: unquotedPhrase | (SQ unquotedPhrase SQ) | (DQ unquotedPhrase DQ) ;
 unquotedPhrase  : WORD (SPACE+ WORD)* ;
@@ -69,5 +71,5 @@ LEFTBRACE		: '{' ;
 RIGHTBRACE		: '}' ;
 NEWLINE         : '\r'? '\n' ;
 COLON			: ':' ;
-WORD            : [a-zA-Z0-9\\_]+ ;
+WORD            : [a-zA-Z0-9\\_.]+ ;
 OTHER			: .+? ;

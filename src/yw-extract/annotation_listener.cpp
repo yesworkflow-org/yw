@@ -157,5 +157,34 @@ namespace yw {
             primaryAnnotationStack.pop();
         }
 
+        void AnnotationListener::enterResource(YWParser::ResourceContext *context) {
+            auto lineId = getLineId(context);
+            auto rangeInLine = getRangeInLine(context);
+
+            if (context->file() != nullptr) {
+                auto uri = safelyGetComponentsFromFileResourceContext(context->file());
+                flowTemplateScheme = null_string;
+                flowTemplatePath = std::get<0>(uri);
+                auto flowTemplateText = std::get<1>(uri);
+                auto fileKeywordText = safelyGetFileKeywordText(context->file());
+                ywdb.insert(Annotation{ auto_id, extractionId, Tag::FILE, currentPrimaryAnnotation->id, lineId,
+                    currentRankOnLine++, rangeInLine.start, rangeInLine.end,
+                    fileKeywordText, nullable_string(flowTemplateText) });
+            }
+            else if (context->uri() != nullptr) {
+                auto uri = safelyGetComponentsFromUriResourceContext(context->uri());
+                flowTemplateScheme = std::get<0>(uri);
+                flowTemplatePath = std::get<1>(uri);
+                auto uriTemplateText = std::get<2>(uri);
+                auto uriKeywordText = safelyGetUriKeywordText(context->uri());
+                ywdb.insert(Annotation{ auto_id, extractionId, Tag::URI, currentPrimaryAnnotation->id, lineId,
+                    currentRankOnLine++, rangeInLine.start, rangeInLine.end,
+                    uriKeywordText, nullable_string(uriTemplateText) });
+            }
+            else {
+                flowTemplateScheme = null_string;
+                flowTemplatePath = null_string;
+            }
+        }
     }
 }

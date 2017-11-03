@@ -96,8 +96,8 @@ public:
   virtual void enterDescription(YWParser::DescriptionContext * /*ctx*/) override { }
   virtual void exitDescription(YWParser::DescriptionContext * /*ctx*/) override { }
 
-  virtual void enterPathTemplate(YWParser::PathTemplateContext * /*ctx*/) override { }
-  virtual void exitPathTemplate(YWParser::PathTemplateContext * /*ctx*/) override { }
+  virtual void enterPathElement(YWParser::PathElementContext * /*ctx*/) override { }
+  virtual void exitPathElement(YWParser::PathElementContext * /*ctx*/) override { }
 
   virtual void enterPathVariable(YWParser::PathVariableContext * /*ctx*/) override { }
   virtual void exitPathVariable(YWParser::PathVariableContext * /*ctx*/) override { }
@@ -107,6 +107,9 @@ public:
 
   virtual void enterVariableName(YWParser::VariableNameContext * /*ctx*/) override { }
   virtual void exitVariableName(YWParser::VariableNameContext * /*ctx*/) override { }
+
+  virtual void enterPathTemplate(YWParser::PathTemplateContext * /*ctx*/) override { }
+  virtual void exitPathTemplate(YWParser::PathTemplateContext * /*ctx*/) override { }
 
   virtual void enterUriTemplate(YWParser::UriTemplateContext * /*ctx*/) override { }
   virtual void exitUriTemplate(YWParser::UriTemplateContext * /*ctx*/) override { }

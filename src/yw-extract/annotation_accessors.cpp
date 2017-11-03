@@ -99,6 +99,15 @@ namespace yw {
             return keyword->getText();
         }
 
+        std::string safelyGetUriKeywordText(YWParser::UriContext* uri) noexcept {
+            antlr4::tree::TerminalNode* keyword;
+            if (uri == nullptr || (keyword = uri->UriKeyword()) == nullptr) {
+                std::cerr << "yw::extract::safelyGetUriKeywordText() encountered null pointer" << std::endl;
+                return "NULL URI KEYWORD";
+            }
+            return keyword->getText();
+        }
+
         Annotation::Tag safelyGetPortTagFromPortContext(YWParser::PortContext *port)
         {
             YWParser::PortKeywordContext* portKeyword;
@@ -258,7 +267,7 @@ namespace yw {
         }
 
 
-        std::string safelyGetPathTemplateFromFileResourceContext(YWParser::FileContext *file) {
+        std::tuple<std::string, std::string> safelyGetComponentsFromFileResourceContext(YWParser::FileContext *file) {
 
             YWParser::PathTemplateContext* pathTemplate;
             std::string pathTemplateText;
@@ -275,8 +284,43 @@ namespace yw {
                     safelyGetStartLineNumber(file)
                 );
             }
-            return pathTemplateText;
+            return std::tuple<std::string, std::string>{ pathTemplateText, pathTemplate->getText() };
         }
+
+        std::tuple<std::string, std::string, std::string> safelyGetComponentsFromUriResourceContext(YWParser::UriContext *uri) {
+
+            YWParser::PathTemplateContext* pathTemplate;
+            YWParser::UriTemplateContext* uriTemplate;
+            YWParser::SchemeContext* scheme;
+            std::string schemeText;
+            std::string pathTemplateText;
+            std::string uriTemplateText;
+
+            if (uri == nullptr ||
+                (uriTemplate = uri->uriTemplate()) == nullptr ||
+                (uriTemplateText = uriTemplate->getText()).empty() ||
+                (pathTemplate = uriTemplate->pathTemplate()) == nullptr ||
+                (pathTemplateText = pathTemplate->getText()) == "<missing WORD>" ||
+                pathTemplateText.empty()
+                ) {
+                throw yw::parse::MissingArgumentException(
+                    safelyGetUriKeywordText(uri),
+                    "path template",
+                    safelyGetStartColumnNumber(uri),
+                    safelyGetStartLineNumber(uri)
+                );
+            }
+
+            if ((scheme = uriTemplate->scheme()) != nullptr) {
+                schemeText = scheme->getText();
+            }
+
+            return std::tuple<std::string, std::string, std::string> { schemeText, pathTemplateText, uriTemplateText };
+        }
+
+        //flowTemplateScheme = context->uri()->uriTemplate()->scheme()->getText();
+        //flowTemplatePath = context->uri()->uriTemplate()->pathTemplate()->getText();
+
 
         std::string safelyGetAliasNameFromAliasContext(YWParser::AliasContext *alias) {
 

@@ -94,8 +94,8 @@ public:
   virtual void enterDescription(YWParser::DescriptionContext *ctx) = 0;
   virtual void exitDescription(YWParser::DescriptionContext *ctx) = 0;
 
-  virtual void enterPathTemplate(YWParser::PathTemplateContext *ctx) = 0;
-  virtual void exitPathTemplate(YWParser::PathTemplateContext *ctx) = 0;
+  virtual void enterPathElement(YWParser::PathElementContext *ctx) = 0;
+  virtual void exitPathElement(YWParser::PathElementContext *ctx) = 0;
 
   virtual void enterPathVariable(YWParser::PathVariableContext *ctx) = 0;
   virtual void exitPathVariable(YWParser::PathVariableContext *ctx) = 0;
@@ -105,6 +105,9 @@ public:
 
   virtual void enterVariableName(YWParser::VariableNameContext *ctx) = 0;
   virtual void exitVariableName(YWParser::VariableNameContext *ctx) = 0;
+
+  virtual void enterPathTemplate(YWParser::PathTemplateContext *ctx) = 0;
+  virtual void exitPathTemplate(YWParser::PathTemplateContext *ctx) = 0;
 
   virtual void enterUriTemplate(YWParser::UriTemplateContext *ctx) = 0;
   virtual void exitUriTemplate(YWParser::UriTemplateContext *ctx) = 0;

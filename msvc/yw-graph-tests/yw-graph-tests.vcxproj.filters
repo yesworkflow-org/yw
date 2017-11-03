@@ -65,5 +65,8 @@
     <ClCompile Include="..\..\test\yw-graph-tests\missing_file_argument_tests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\test\yw-graph-tests\missing_uri_argument_tests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

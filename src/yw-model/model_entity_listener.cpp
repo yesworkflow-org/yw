@@ -87,21 +87,6 @@ namespace yw {
             return dataId;
         }
 
-        void ModelEntityListener::enterResource(YWParser::ResourceContext *context) {
-            if (context->file() != nullptr) {
-                flowTemplateScheme = null_string;
-                flowTemplatePath = safelyGetPathTemplateFromFileResourceContext(context->file());
-            }
-            else if (context->uri() != nullptr) {
-                flowTemplateScheme = context->uri()->uriTemplate()->scheme()->getText();
-                flowTemplatePath = context->uri()->uriTemplate()->pathTemplate()->getText();
-            }
-            else {
-                flowTemplateScheme = null_string;
-                flowTemplatePath = null_string;
-            }
-        }
-
         void ModelEntityListener::enterPortName(YWParser::PortNameContext *context) 
         {
             AnnotationListener::enterPortName(context);

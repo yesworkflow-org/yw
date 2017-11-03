@@ -26,10 +26,10 @@ public:
     RuleMisplacedEnd = 14, RuleMisplacedBeginChild = 15, RuleMisplacedPortChild = 16, 
     RuleMisplacedKeyword = 17, RuleResource = 18, RulePortKeyword = 19, 
     RuleInputKeyword = 20, RuleOutputKeyword = 21, RuleBlockName = 22, RulePortName = 23, 
-    RuleDataName = 24, RuleDescription = 25, RulePathTemplate = 26, RulePathVariable = 27, 
-    RulePathConstant = 28, RuleVariableName = 29, RuleUriTemplate = 30, 
-    RuleScheme = 31, RulePhrase = 32, RuleUnquotedPhrase = 33, RuleWord = 34, 
-    RuleUnquotedWord = 35, RuleNa = 36
+    RuleDataName = 24, RuleDescription = 25, RulePathElement = 26, RulePathVariable = 27, 
+    RulePathConstant = 28, RuleVariableName = 29, RulePathTemplate = 30, 
+    RuleUriTemplate = 31, RuleScheme = 32, RulePhrase = 33, RuleUnquotedPhrase = 34, 
+    RuleWord = 35, RuleUnquotedWord = 36, RuleNa = 37
   };
 
   YWParser(antlr4::TokenStream *input);
@@ -68,10 +68,11 @@ public:
   class PortNameContext;
   class DataNameContext;
   class DescriptionContext;
-  class PathTemplateContext;
+  class PathElementContext;
   class PathVariableContext;
   class PathConstantContext;
   class VariableNameContext;
+  class PathTemplateContext;
   class UriTemplateContext;
   class SchemeContext;
   class PhraseContext;
@@ -475,12 +476,10 @@ public:
 
   DescriptionContext* description();
 
-  class  PathTemplateContext : public antlr4::ParserRuleContext {
+  class  PathElementContext : public antlr4::ParserRuleContext {
   public:
-    PathTemplateContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    PathElementContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    std::vector<antlr4::tree::TerminalNode *> SLASH();
-    antlr4::tree::TerminalNode* SLASH(size_t i);
     std::vector<PathConstantContext *> pathConstant();
     PathConstantContext* pathConstant(size_t i);
     std::vector<PathVariableContext *> pathVariable();
@@ -491,7 +490,7 @@ public:
    
   };
 
-  PathTemplateContext* pathTemplate();
+  PathElementContext* pathElement();
 
   class  PathVariableContext : public antlr4::ParserRuleContext {
   public:
@@ -534,12 +533,30 @@ public:
 
   VariableNameContext* variableName();
 
+  class  PathTemplateContext : public antlr4::ParserRuleContext {
+  public:
+    PathTemplateContext(antlr4::ParserRuleContext *parent, size_t invokingState);
+    virtual size_t getRuleIndex() const override;
+    std::vector<antlr4::tree::TerminalNode *> SLASH();
+    antlr4::tree::TerminalNode* SLASH(size_t i);
+    std::vector<PathElementContext *> pathElement();
+    PathElementContext* pathElement(size_t i);
+
+    virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
+    virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
+   
+  };
+
+  PathTemplateContext* pathTemplate();
+
   class  UriTemplateContext : public antlr4::ParserRuleContext {
   public:
     UriTemplateContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     PathTemplateContext *pathTemplate();
     SchemeContext *scheme();
+    std::vector<antlr4::tree::TerminalNode *> SLASH();
+    antlr4::tree::TerminalNode* SLASH(size_t i);
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;
@@ -552,7 +569,7 @@ public:
   public:
     SchemeContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
-    WordContext *word();
+    antlr4::tree::TerminalNode *WORD();
 
     virtual void enterRule(antlr4::tree::ParseTreeListener *listener) override;
     virtual void exitRule(antlr4::tree::ParseTreeListener *listener) override;

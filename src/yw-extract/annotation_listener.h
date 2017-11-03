@@ -28,6 +28,8 @@ namespace yw {
             StderrRecorder stderrRecorder;
             long currentLineNumber = 0;
             long currentRankOnLine = 0;
+            nullable_string flowTemplateScheme;
+            nullable_string flowTemplatePath;
 
         public:
             AnnotationListener(
@@ -53,6 +55,7 @@ namespace yw {
             void enterAlias(YWParser::AliasContext *context) override;
             void enterIo(YWParser::IoContext *context) override;
             void exitIo(YWParser::IoContext *context) override;
+            void enterResource(YWParser::ResourceContext *context);
 
         protected:
             bool AnnotationListener::inProgramBlock();
@@ -70,6 +73,7 @@ namespace yw {
         std::string safelyGetPortDescKeywordText(YWParser::PortDescContext *desc) noexcept;
         std::string safelyGetPortKeywordText(YWParser::PortContext* port) noexcept;
         std::string safelyGetFileKeywordText(YWParser::FileContext* file) noexcept;
+        std::string safelyGetUriKeywordText(YWParser::UriContext* uri) noexcept;
 
         std::string safelyGetBlockNameFromBeginContext(YWParser::BeginContext *begin);
         nullable_string safelyGetOptionalBlockNameFromEndContext(YWParser::EndContext *end);
@@ -77,7 +81,8 @@ namespace yw {
         std::string safelyDescriptionTextFromPortDescContext(YWParser::PortDescContext *desc);
         std::string safelyGetPortNameFromPortNameContext(YWParser::PortNameContext *portName);
         std::string safelyGetAliasNameFromAliasContext(YWParser::AliasContext *alias);
-        std::string safelyGetPathTemplateFromFileResourceContext(YWParser::FileContext *file);
+        std::tuple<std::string, std::string> safelyGetComponentsFromFileResourceContext(YWParser::FileContext *file);
+        std::tuple<std::string, std::string, std::string> safelyGetComponentsFromUriResourceContext(YWParser::UriContext *uri);
 
         yw::db::Annotation::Tag safelyGetPortTagFromPortContext(YWParser::PortContext *port);
         yw::db::Flow::Direction safelyGetPortDirection(YWParser::PortContext *port);
