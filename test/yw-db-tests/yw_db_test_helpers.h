@@ -10,6 +10,7 @@ inline SimpleString StringFrom(const yw::db::DataBlock& row) { return StringFrom
 inline SimpleString StringFrom(const yw::db::Extraction& row) { return StringFrom(row.str()); }
 inline SimpleString StringFrom(const yw::db::File& row) { return StringFrom(row.str()); }
 inline SimpleString StringFrom(const yw::db::Flow& row) { return StringFrom(row.str()); }
+inline SimpleString StringFrom(const yw::db::FlowTemplate& row) { return StringFrom(row.str()); }
 inline SimpleString StringFrom(const yw::db::Line& row) { return StringFrom(row.str()); }
 inline SimpleString StringFrom(const yw::db::Port& row) { return StringFrom(row.str()); }
 inline SimpleString StringFrom(const yw::db::ProgramBlock& row) { return StringFrom(row.str()); }
@@ -29,6 +30,7 @@ namespace Microsoft {
             static std::wstring ToString(const yw::db::Extraction& row) { RETURN_WIDE_STRING(row); }
             static std::wstring ToString(const yw::db::File& row) { RETURN_WIDE_STRING(row); }
             static std::wstring ToString(const yw::db::Flow& row) { RETURN_WIDE_STRING(row); }
+            static std::wstring ToString(const yw::db::FlowTemplate& row) { RETURN_WIDE_STRING(row); }
             static std::wstring ToString(const yw::db::Line& row) { RETURN_WIDE_STRING(row); }
             static std::wstring ToString(const yw::db::Port& row) { RETURN_WIDE_STRING(row); }
             static std::wstring ToString(const yw::db::ProgramBlock& row) { RETURN_WIDE_STRING(row); }

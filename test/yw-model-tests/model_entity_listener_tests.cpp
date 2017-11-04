@@ -689,4 +689,113 @@ YW_TEST_SET
         Assert::AreEqual(dataBlock1.id, flow4.dataBlockId);
     }
 
+    YW_TEST(ModelEntityListener, WhenOutPortHasFileAnnotationWithSimpleFileNameArgumentFlowTemplateAnnotationContainsFileNameAsPath)
+    {
+        this->storeAndParse(R"(
+
+            @begin b
+            @out d @file foo.txt
+            @end b
+
+            @begin c
+            @in d
+            @end c
+
+        )");
+        Expect::EmptyString(stderrRecorder.str());
+
+        Expect::AreEqual(2, ywdb.getRowCount("flow"));
+        Expect::AreEqual(1, ywdb.getRowCount("flow_template"));
+
+        auto flow = ywdb.selectFlowById(1);
+        auto flowTemplate = ywdb.selectFlowTemplateById(1);
+
+        Expect::AreEqual(Flow{ 1, 1, 1, Direction::OUT, 1, 1 }, flow);
+        Expect::AreEqual(FlowTemplate{ 1, 1, null_string, "foo.txt" }, flowTemplate);
+
+        Assert::AreEqual(flow.id, flowTemplate.flow);
+    }
+
+    YW_TEST(ModelEntityListener, WhenOutPortHasUriAnnotationWithSimpleFileNameArgumentFlowTemplateAnnotationContainsFileNameAsPath)
+    {
+        this->storeAndParse(R"(
+
+            @begin b
+            @out d @uri foo.txt
+            @end b
+
+            @begin c
+            @in d
+            @end c
+
+        )");
+        Expect::EmptyString(stderrRecorder.str());
+
+        Expect::AreEqual(2, ywdb.getRowCount("flow"));
+        Expect::AreEqual(1, ywdb.getRowCount("flow_template"));
+
+        auto flow = ywdb.selectFlowById(1);
+        auto flowTemplate = ywdb.selectFlowTemplateById(1);
+
+        Expect::AreEqual(Flow{ 1, 1, 1, Direction::OUT, 1, 1 }, flow);
+        Expect::AreEqual(FlowTemplate{ 1, 1, null_string, "foo.txt" }, flowTemplate);
+
+        Assert::AreEqual(flow.id, flowTemplate.flow);
+    }
+
+    YW_TEST(ModelEntityListener, WhenOutPortHasUriAnnotationWithSchemAndSimpleFileNameArgumentFlowTemplateAnnotationContainsSchemeAndFileNameAsPath)
+    {
+        this->storeAndParse(R"(
+
+            @begin b
+            @out d @uri file:foo.txt
+            @end b
+
+            @begin c
+            @in d
+            @end c
+
+        )");
+        Expect::EmptyString(stderrRecorder.str());
+
+        Expect::AreEqual(2, ywdb.getRowCount("flow"));
+        Expect::AreEqual(1, ywdb.getRowCount("flow_template"));
+
+        auto flow = ywdb.selectFlowById(1);
+        auto flowTemplate = ywdb.selectFlowTemplateById(1);
+
+        Expect::AreEqual(Flow{ 1, 1, 1, Direction::OUT, 1, 1 }, flow);
+        Expect::AreEqual(FlowTemplate{ 1, 1, "file", "foo.txt" }, flowTemplate);
+
+        Assert::AreEqual(flow.id, flowTemplate.flow);
+    }
+
+    YW_TEST(ModelEntityListener, WhenOutPortHasUriAnnotationWithGeneralUrlArgumentFlowTemplateAnnotationContainsSchemeAndPath)
+    {
+        this->storeAndParse(R"(
+
+            @begin b
+            @out d @uri http://foo.org/a.dir/general.dir/url/bar.txt
+            @end b
+
+            @begin c
+            @in d
+            @end c
+
+        )");
+        Expect::EmptyString(stderrRecorder.str());
+
+        Expect::AreEqual(2, ywdb.getRowCount("flow"));
+        Expect::AreEqual(1, ywdb.getRowCount("flow_template"));
+
+        auto flow = ywdb.selectFlowById(1);
+        auto flowTemplate = ywdb.selectFlowTemplateById(1);
+
+        Expect::AreEqual(Flow{ 1, 1, 1, Direction::OUT, 1, 1 }, flow);
+        Expect::AreEqual(FlowTemplate{ 1, 1, "http", "//foo.org/a.dir/general.dir/url/bar.txt" }, flowTemplate);
+
+        Assert::AreEqual(flow.id, flowTemplate.flow);
+    }
+
+
 YW_TEST_END

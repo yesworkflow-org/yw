@@ -287,12 +287,12 @@ namespace yw {
             return std::tuple<std::string, std::string>{ pathTemplateText, pathTemplate->getText() };
         }
 
-        std::tuple<std::string, std::string, std::string> safelyGetComponentsFromUriResourceContext(YWParser::UriContext *uri) {
+        std::tuple<nullable_string, std::string, std::string> safelyGetComponentsFromUriResourceContext(YWParser::UriContext *uri) {
 
             YWParser::PathTemplateContext* pathTemplate;
             YWParser::UriTemplateContext* uriTemplate;
             YWParser::SchemeContext* scheme;
-            std::string schemeText;
+            nullable_string schemeText;
             std::string pathTemplateText;
             std::string uriTemplateText;
 
@@ -315,12 +315,8 @@ namespace yw {
                 schemeText = scheme->getText();
             }
 
-            return std::tuple<std::string, std::string, std::string> { schemeText, pathTemplateText, uriTemplateText };
+            return std::tuple<nullable_string, std::string, std::string> { schemeText, pathTemplateText, uriTemplateText };
         }
-
-        //flowTemplateScheme = context->uri()->uriTemplate()->scheme()->getText();
-        //flowTemplatePath = context->uri()->uriTemplate()->pathTemplate()->getText();
-
 
         std::string safelyGetAliasNameFromAliasContext(YWParser::AliasContext *alias) {
 

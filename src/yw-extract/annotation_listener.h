@@ -82,7 +82,7 @@ namespace yw {
         std::string safelyGetPortNameFromPortNameContext(YWParser::PortNameContext *portName);
         std::string safelyGetAliasNameFromAliasContext(YWParser::AliasContext *alias);
         std::tuple<std::string, std::string> safelyGetComponentsFromFileResourceContext(YWParser::FileContext *file);
-        std::tuple<std::string, std::string, std::string> safelyGetComponentsFromUriResourceContext(YWParser::UriContext *uri);
+        std::tuple<nullable_string, std::string, std::string> safelyGetComponentsFromUriResourceContext(YWParser::UriContext *uri);
 
         yw::db::Annotation::Tag safelyGetPortTagFromPortContext(YWParser::PortContext *port);
         yw::db::Flow::Direction safelyGetPortDirection(YWParser::PortContext *port);
