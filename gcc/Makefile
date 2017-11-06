@@ -3,7 +3,8 @@ DEP_LIBS = antlr4-runtime \
            sqlite3 \
 		   graphviz-lib
 
-YW_LIBS  = sqlite-db \
+YW_LIBS  = yw-common \
+           sqlite-db \
            yw-config \
            yw-cli \
            yw-db  \
