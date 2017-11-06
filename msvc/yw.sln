@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2005
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-extract", "yw-extract\yw-extract.vcxproj", "{158B1288-0CC1-426B-8967-800EDBD8C278}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -306,6 +306,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-common-tests", "yw-commo
 		{53F368BF-5AE1-4D98-BF66-E2D100E90E8C} = {53F368BF-5AE1-4D98-BF66-E2D100E90E8C}
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-common", "yw-common", "{549611AB-FBB2-4168-BCBB-99335AF54FDC}"
+	ProjectSection(SolutionItems) = preProject
+		..\gcc\yw-common\Makefile = ..\gcc\yw-common\Makefile
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -575,6 +580,7 @@ Global
 		{4FFEE26C-A586-4DEC-A7B7-E61F3DE416D4} = {BFFDE3BA-F86B-4FCA-A0B1-D4D035806F75}
 		{4520D083-3914-444C-9B11-590BDD272DC5} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 		{FE656FA7-CC96-49A7-928B-F4C05547E52E} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{549611AB-FBB2-4168-BCBB-99335AF54FDC} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9AEF8164-5EBC-432F-98B9-C7C5704935A3}

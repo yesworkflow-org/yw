@@ -4,6 +4,7 @@ YW_DIR = ../..
 YW_SRC_DIR  = $(YW_DIR)/src
 YW_GCC_DIR  = $(YW_DIR)/gcc
 
+YW_INCLUDES += -I$(YW_SRC_DIR)/yw-common
 YW_INCLUDES += -I$(YW_SRC_DIR)/yw-cli
 YW_INCLUDES += -I$(YW_SRC_DIR)/yw-graph
 YW_INCLUDES += -I$(YW_SRC_DIR)/yw-model
@@ -24,6 +25,7 @@ YW_LIBS   += -lywdb      -L$(YW_GCC_DIR)/yw-db
 YW_LIBS   += -lsqlitedb  -L$(YW_GCC_DIR)/sqlite-db
 YW_LIBS   += -lywconfig  -L$(YW_GCC_DIR)/yw-config
 YW_LIBS   += -lsqlite3   -L$(YW_GCC_DIR)/sqlite3
+YW_LIBS   += -lywcommon  -L$(YW_GCC_DIR)/yw-common
 
 ANTLR_LIB  += -lantlr4 -L$(YW_GCC_DIR)/antlr4-runtime
 ANTLR_INCLUDES += -I$(ANTLR4_RUNTIME_SRC)

@@ -1,3 +1,5 @@
+#pragma once
+
 #include <string>
 
 namespace yw {
@@ -6,15 +8,15 @@ namespace yw {
         class RandomTextGenerator {
 
         public:
-            void RandomTextGenerator::setSeed(unsigned int seed) {
+            void setSeed(unsigned int seed) {
                 srand(seed);
             }
 
-            char RandomTextGenerator::getRandomASCIICharacter() {
+            char getRandomASCIICharacter() {
                 return rand() % 128;
             }
 
-            std::string RandomTextGenerator::getRandomASCIIText(size_t size) {
+            std::string getRandomASCIIText(size_t size) {
                 std::stringstream ss;
                 for (size_t i = 0; i < size; ++i) {
                     ss << getRandomASCIICharacter();

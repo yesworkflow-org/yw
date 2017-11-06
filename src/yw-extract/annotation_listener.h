@@ -58,7 +58,7 @@ namespace yw {
             void enterResource(YWParser::ResourceContext *context);
 
         protected:
-            bool AnnotationListener::inProgramBlock();
+            bool inProgramBlock();
             row_id getLineId(antlr4::ParserRuleContext* context);
             AnnotationRange getRangeInLine(antlr4::ParserRuleContext* context);
         };

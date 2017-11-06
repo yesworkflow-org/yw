@@ -16,7 +16,7 @@ namespace yw {
                 const std::string& what = "<sliced instance of yw::parse::ParsingException>"
             );
             
-            virtual const char* what() const override;
+            virtual const char* what() const noexcept override;
             virtual nullable_string getDetails() const;
             virtual const std::string& getMessage() const;
             virtual nullable_string getSource() const;

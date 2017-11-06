@@ -12,9 +12,9 @@ namespace yw {
             updateMessage();
         }
 
-        const char* ParsingException::what() const {
+        const char* ParsingException::what() const noexcept {
             return getMessage().c_str();
-        };
+        }
 
         const std::string& ParsingException::getMessage() const {
             return messageBacking;
