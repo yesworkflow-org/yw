@@ -12,4 +12,4 @@ lib : $(LIB_TARGET)
 	rm -f *.o
 
 clean:
-	rm -f $(LIB_TARGET) *.o 
+	rm -f $(LIB_TARGET) $(GENERATED_SRC) *.o 
