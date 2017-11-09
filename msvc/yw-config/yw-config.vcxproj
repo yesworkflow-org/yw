@@ -37,7 +37,7 @@
     <ClCompile Include="..\..\src\yw-config\YW_CONFIG_Parser.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\src\yw-config\build.bat" />
+    <None Include="..\..\src\yw-config\build.ps1" />
     <None Include="..\..\src\yw-config\YW_CONFIG_.g4" />
     <None Include="..\..\src\yw-config\YW_CONFIG_.tokens" />
     <None Include="..\..\src\yw-config\YW_CONFIG_Lexer.tokens" />
@@ -120,7 +120,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)\..\src\yw-config\build.bat</Command>
+      <Command>pwsh $(SolutionDir)\..\src\yw-config\build.ps1</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -137,7 +137,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)\..\src\yw-config\build.bat</Command>
+      <Command>pwsh $(SolutionDir)\..\src\yw-config\build.ps1</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -158,7 +158,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)\..\src\yw-config\build.bat</Command>
+      <Command>pwsh $(SolutionDir)\..\src\yw-config\build.ps1</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -179,7 +179,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <PreBuildEvent>
-      <Command>$(SolutionDir)\..\src\yw-config\build.bat</Command>
+      <Command>pwsh $(SolutionDir)\..\src\yw-config\build.ps1</Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -62,14 +62,14 @@
     <None Include="..\..\src\yw-config\YW_CONFIG_.g4">
       <Filter>Grammar Definitions</Filter>
     </None>
-    <None Include="..\..\src\yw-config\build.bat">
-      <Filter>Grammar Definitions</Filter>
-    </None>
     <None Include="..\..\src\yw-config\YW_CONFIG_Lexer.tokens">
       <Filter>Generated Source Files</Filter>
     </None>
     <None Include="..\..\src\yw-config\YW_CONFIG_.tokens">
       <Filter>Generated Source Files</Filter>
+    </None>
+    <None Include="..\..\src\yw-config\build.ps1">
+      <Filter>Grammar Definitions</Filter>
     </None>
   </ItemGroup>
 </Project>

@@ -14,9 +14,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\src\yw-cli\.gitignore" />
-    <None Include="..\..\src\yw-cli\build.bat">
-      <Filter>Grammar Definitions</Filter>
-    </None>
     <None Include="..\..\src\yw-cli\gtest.sh">
       <Filter>Grammar Definitions</Filter>
     </None>
@@ -27,6 +24,9 @@
       <Filter>Generated Source Files</Filter>
     </None>
     <None Include="..\..\src\yw-cli\YW_CLI_.g4">
+      <Filter>Grammar Definitions</Filter>
+    </None>
+    <None Include="..\..\src\yw-cli\build.ps1">
       <Filter>Grammar Definitions</Filter>
     </None>
   </ItemGroup>

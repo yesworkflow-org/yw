@@ -12,7 +12,7 @@ endif
 
 LIB_SRC=../../src/sqlite-3.19.3/sqlite3.c
 
-LIB_TARGET = sqlite3.a
+LIB_TARGET = libsqlite3.a
 
 all: $(LIB_TARGET)
 
