@@ -3,7 +3,7 @@ include ../graphviz.setup.makefile
 include ../cpp.setup.makefile
 include ../app.setup.makefile
 
-APP     = yw_graph
+APP     = yw-graph-app
 APP_SRC = $(wildcard $(YW_SRC_DIR)/yw-graph-app/*.cpp)
 
 include ../app.targets.makefile

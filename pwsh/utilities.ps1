@@ -1,5 +1,33 @@
 
 
+function Get-YesWorkflowPlatform {
+    if ($IsWindows) { 'Windows' } 
+    elseif ($IsMacOS) { 'MacOS' }
+    elseif ($IsLinux) { 'Linux' }
+    else { 'Unknown' }
+}
+
+function Get-YesWorkflowPath {
+
+	[cmdletbinding()]
+	Param(
+        [string]$os,
+		[string]$platform='x64',
+        [string]$build='Release',
+        [string]$repoRoot='../..'
+	)
+
+    if ($os -eq "Windows") {
+        if ($platform -eq 'x64') {
+            "${repoRoot}/msvc/x64/${build}/yw-graph-app.exe"
+        } else {
+            "${repoRoot}/msvc/${build}/yw-graph-app.exe"
+        }
+    } else {
+        "${repoRoot}/gcc/yw-graph-app/yw-graph-app"
+    }
+}
+
 function Out-FileDiff {
 
 	[cmdletbinding()]
