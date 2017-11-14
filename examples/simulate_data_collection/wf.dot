@@ -1,0 +1,141 @@
+digraph simulate_data_collection {
+
+/* Start of box around nodes in workflow */
+subgraph cluster_workflow_box_outer { label=""; color=black; penwidth=2
+subgraph cluster_workflow_box_inner { label=""; penwidth=0
+
+/* Style for nodes representing program blocks in workflow */
+node[shape=box style=filled fillcolor="#CCFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing program blocks in workflow */
+calculate_strategy
+collect_data_set
+initialize_run
+load_screening_results
+log_average_image_intensity
+log_rejected_sample
+transform_images
+
+/* Style for nodes representing data blocks in workflow */
+node[shape=box style="rounded,filled" fillcolor="#FFFFCC" peripheries=1 fontname=Helvetica]
+
+/* Nodes representing data blocks in workflow */
+accepted_sample [label=accepted_sample fillcolor="#FFFFFF"]
+calibration_image
+cassette_id [label=cassette_id fillcolor="#FFFFFF"]
+collection_log
+corrected_image
+data_redundancy [label=data_redundancy fillcolor="#FFFFFF"]
+energies [label=energies fillcolor="#FFFFFF"]
+energy [label=energy fillcolor="#FFFFFF"]
+frame_number [label=frame_number fillcolor="#FFFFFF"]
+num_images [label=num_images fillcolor="#FFFFFF"]
+pixel_count [label=pixel_count fillcolor="#FFFFFF"]
+raw_image
+rejected_sample [label=rejected_sample fillcolor="#FFFFFF"]
+rejection_log
+run_log
+sample_id [label=sample_id fillcolor="#FFFFFF"]
+sample_name [label=sample_name fillcolor="#FFFFFF"]
+sample_quality [label=sample_quality fillcolor="#FFFFFF"]
+sample_score_cutoff [label=sample_score_cutoff fillcolor="#FFFFFF"]
+sample_spreadsheet
+total_intensity [label=total_intensity fillcolor="#FFFFFF"]
+
+/* Edges representing flow of data into and out of code blocks */
+accepted_sample -> collect_data_set
+calibration_image -> transform_images
+cassette_id -> initialize_run
+cassette_id -> load_screening_results
+cassette_id -> log_rejected_sample
+cassette_id -> collect_data_set
+cassette_id -> log_average_image_intensity
+corrected_image -> log_average_image_intensity
+data_redundancy -> calculate_strategy
+energies -> collect_data_set
+energy -> transform_images
+frame_number -> transform_images
+frame_number -> log_average_image_intensity
+num_images -> collect_data_set
+pixel_count -> log_average_image_intensity
+raw_image -> transform_images
+rejected_sample -> log_rejected_sample
+sample_id -> transform_images
+sample_id -> log_average_image_intensity
+sample_name -> calculate_strategy
+sample_quality -> calculate_strategy
+sample_score_cutoff -> initialize_run
+sample_score_cutoff -> calculate_strategy
+sample_spreadsheet -> load_screening_results
+total_intensity -> log_average_image_intensity
+calculate_strategy -> accepted_sample
+log_average_image_intensity -> collection_log
+transform_images -> corrected_image
+calculate_strategy -> energies
+collect_data_set -> energy
+collect_data_set -> frame_number
+calculate_strategy -> num_images
+transform_images -> pixel_count
+collect_data_set -> raw_image
+calculate_strategy -> rejected_sample
+log_rejected_sample -> rejection_log
+initialize_run -> run_log
+load_screening_results -> run_log
+collect_data_set -> run_log
+transform_images -> run_log
+collect_data_set -> sample_id
+load_screening_results -> sample_name
+load_screening_results -> sample_quality
+transform_images -> total_intensity
+
+/* End of box around nodes in workflow */
+}}
+
+/* Start of hidden box around workflow inputs */
+subgraph cluster_workflow_inputs_box_outer { label=""; penwidth=0
+subgraph cluster_workflow_inputs_box_inner { label=""; penwidth=0
+
+/* Style for nodes representing workflow ports */
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+
+/* Nodes representing workflow input ports */
+"workflow input calibration_image" [label=""]
+"workflow input cassette_id" [label=""]
+"workflow input corrected_image" [label=""]
+"workflow input data_redundancy" [label=""]
+"workflow input sample_score_cutoff" [label=""]
+"workflow input sample_spreadsheet" [label=""]
+
+/* End of hidden box around workflow inputs */
+}}
+
+/* Start of hidden box around workflow outputs */
+subgraph cluster_workflow_outputs_box_outer { label=""; penwidth=0
+subgraph cluster_workflow_outputs_box_inner { label=""; penwidth=0
+
+/* Style for nodes representing workflow ports */
+node[shape=circle style="rounded,filled" fillcolor="#FFFFFF" peripheries=1 fontname=Helvetica width=0.2]
+
+/* Nodes representing workflow output ports */
+"workflow output collection_log" [label=""]
+"workflow output corrected_image" [label=""]
+"workflow output rejection_log" [label=""]
+"workflow output run_log" [label=""]
+
+/* End of hidden box around workflow outputs */
+}}
+
+/* Edges representing flow of workflow input data */
+"workflow input calibration_image" -> calibration_image
+"workflow input cassette_id" -> cassette_id
+"workflow input corrected_image" -> corrected_image
+"workflow input data_redundancy" -> data_redundancy
+"workflow input sample_score_cutoff" -> sample_score_cutoff
+"workflow input sample_spreadsheet" -> sample_spreadsheet
+
+/* Edges representing flow of workflow output data */
+collection_log -> "workflow output collection_log"
+corrected_image -> "workflow output corrected_image"
+rejection_log -> "workflow output rejection_log"
+run_log -> "workflow output run_log"
+}
