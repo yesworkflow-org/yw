@@ -1,3 +1,19 @@
+
+
+function Out-FileDiff {
+
+	[cmdletbinding()]
+	Param(
+        [int]$line,
+		[string]$expected,
+		[string]$actual
+	)
+    
+    "Difference found at line ${line}:"
+    "Actual   : $actual"
+    "Expected : $expected"
+}
+
 function Find-FirstDiff {
 
 	[cmdletbinding()]
@@ -14,25 +30,16 @@ function Find-FirstDiff {
         $commonLength = [System.Math]::Min($actualContent.Length, $expectedContent.Length)
 		for ($i = 0; $i -lt $commonLength; ++$i) {
 			if ($actualContent[$i] -ne $expectedContent[$i]) {
-				"Difference found at line $($i + 1):"
-				"Actual   : $($actualContent[$i])"
-				"Expected : $($expectedContent[$i])"
-				return
+				return Out-FileDiff ($i + 1) $actualContent[$i] $expectedContent[$i]
 			}
 		}
 
-		if ($actualContent.Length -gt $expectedContent.Length) {
-			"Difference found at line $($commonLength + 1)"
-			"Actual   : $($actualContent[$i])"
-			"Expected : <End of file>"
-			return
-		}
-
-		if ($actualContent.Length -lt $expectedContent.Length) {
-			"Difference found at line $($commonLength + 1)"
-			"Actual   : <End of file>"
-			"Expected : $($expectedContent[$i])"
-			return
+		if ($actualContent.Length -ne $expectedContent.Length) {
+            if ($actualContent.Length -gt $expectedContent.Length) {
+                return Out-FileDiff ($commonLength + 1) "<End of file>" $actualContent[$i]
+            } else {
+                return Out-FileDiff ($commonLength + 1)  $expectedContent[$i] "<End of file>"
+            }
 		}
 	}
 }
