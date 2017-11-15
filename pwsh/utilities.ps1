@@ -17,23 +17,26 @@ function Get-YesWorkflowExe {
         [ValidateSet('Windows','MacOS','Linux')] [string] $os,
         [ValidateSet('x86','x64')]               [string] $platform = 'x64',
         [ValidateSet('Debug','Release')]         [string] $build    = 'Release',
-                                                 [string]$repoRoot='../..'
+                                                 [string] $repoRoot = '../..',
+                                                 [string] $exe      = $null
 	)
 
-    if ($os -eq "Windows") {
-        if ($platform -eq 'x64') {
-            $exe = "${repoRoot}/msvc/x64/${build}/yw-graph-app.exe"
+    if (!$exe) {
+        if ($os -eq "Windows") {
+            if ($platform -eq 'x64') {
+                $exe = "${repoRoot}/msvc/x64/${build}/yw-graph-app.exe"
+            } else {
+                $exe = "${repoRoot}/msvc/${build}/yw-graph-app.exe"
+            }
         } else {
-            $exe = "${repoRoot}/msvc/${build}/yw-graph-app.exe"
+            $exe = "${repoRoot}/gcc/yw-graph-app/yw-graph-app"
         }
-    } else {
-        $exe = "${repoRoot}/gcc/yw-graph-app/yw-graph-app"
     }
-    
+
     try {
         return Get-Item $exe -ErrorAction Stop | Select-Object -ExpandProperty FullName
     } Catch {
-        throw "YW executable not found at $exe"
+        throw "YW executable not found at '$exe'"
     }
 }
 

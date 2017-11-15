@@ -18,15 +18,11 @@ $repoRoot = Get-YWRepositoryRoot
 
 if (!$os) { $os = Get-RuntimePlatform }
 
-if ($exe) {
-	$yw = $exe
-} else {
-	try {
-		$yw = Get-YesWorkflowExe -repoRoot $repoRoot -os $os `
-		                          -platform $platform -build $build
-	} catch {
-		Write-Host -ForegroundColor red $("ERROR: $_.Exception.Message"); exit
-	}
+try {
+	$yw = Get-YesWorkflowExe -repoRoot $repoRoot -os $os -platform $platform `
+								-build $build -exe $exe
+} catch {
+	Write-Host -ForegroundColor red $("ERROR: $_"); exit
 }
 
 "YW platform  : $os"
