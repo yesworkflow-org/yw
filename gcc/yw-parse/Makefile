@@ -26,6 +26,6 @@ all: grammar lib
 grammar: ${GENERATED_H} ${GENERATED_CPP}
 
 ${GENERATED_SRC}:
-	 $(YW_SRC_DIR)/yw-parse/build.ps1
+	 pwsh $(YW_SRC_DIR)/yw-parse/build.ps1
 
 include ../lib.targets.makefile
