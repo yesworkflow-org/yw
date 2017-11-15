@@ -17,15 +17,19 @@ $MyInvocation.MyCommand.Path | Split-Path -Parent | Set-Location
 $repoRoot = Get-YWRepositoryRoot
 
 if (!$os) { $os = Get-RuntimePlatform }
-"YW platform  : ${os}"
 
 if ($exe) {
 	$yw = $exe
 } else {
-	$yw = Get-YesWorkflowExe -repoRoot $repoRoot -os $os `
-							-platform $platform -build $build
+	try {
+		$yw = Get-YesWorkflowExe -repoRoot $repoRoot -os $os `
+		                          -platform $platform -build $build
+	} catch {
+		Write-Host -ForegroundColor red $("ERROR: $_.Exception.Message"); exit
+	}
 }
 
+"YW platform  : $os"
 "YW executable: $yw"
 
 & $yw graph simulate_data_collection.py graph.format=DOT graph.file=wf.dot

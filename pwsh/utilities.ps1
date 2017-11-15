@@ -29,8 +29,12 @@ function Get-YesWorkflowExe {
     } else {
         $exe = "${repoRoot}/gcc/yw-graph-app/yw-graph-app"
     }
-
-    return Get-Item $exe | Select-Object -ExpandProperty FullName
+    
+    try {
+        return Get-Item $exe -ErrorAction Stop | Select-Object -ExpandProperty FullName
+    } Catch {
+        throw "YW executable not found at $exe"
+    }
 }
 
 function Out-FileDiff {
