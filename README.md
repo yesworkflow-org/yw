@@ -1,6 +1,6 @@
 # YesWorkflow - native executable edition
 
-The software in this repository represents a production-quality compiled C++ implementation of YesWorkflow.  Development is in progress.  An initial 1.0 release is expected by the end of September 2017.
+The software in this repository represents a production-quality compiled C++ implementation of YesWorkflow.  Development is in progress.  The first 1.0 beta release is expected by the end of November 2017.
 
 General features initially will match those of the YesWorkflow research prototype
 available in the [yw-prototypes](https://github.com/yesworkflow-org/yw-prototypes) repository.
