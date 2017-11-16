@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2006
+VisualStudioVersion = 15.0.27004.2008
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-extract", "yw-extract\yw-extract.vcxproj", "{158B1288-0CC1-426B-8967-800EDBD8C278}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -311,6 +311,24 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "yw-common", "yw-common", "{
 		..\gcc\yw-common\Makefile = ..\gcc\yw-common\Makefile
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "examples", "examples", "{2B291CD5-71E9-4F47-9F31-DDEFA7652315}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "simulate_data_collection", "simulate_data_collection", "{B0CB767D-2460-4592-8D83-CE3F5FF6F8CA}"
+	ProjectSection(SolutionItems) = preProject
+		..\examples\simulate_data_collection\simulate_data_collection.py = ..\examples\simulate_data_collection\simulate_data_collection.py
+		..\examples\simulate_data_collection\tests.ps1 = ..\examples\simulate_data_collection\tests.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "expected", "expected", "{B525FE8B-E277-4C6A-842C-E4AB242CC979}"
+	ProjectSection(SolutionItems) = preProject
+		..\examples\simulate_data_collection\expected\wf.svg = ..\examples\simulate_data_collection\expected\wf.svg
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pwsh", "pwsh", "{1DBF4D39-99F4-47EA-9308-4CEB9AEDDF13}"
+	ProjectSection(SolutionItems) = preProject
+		..\pwsh\utilities.ps1 = ..\pwsh\utilities.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -581,6 +599,8 @@ Global
 		{4520D083-3914-444C-9B11-590BDD272DC5} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 		{FE656FA7-CC96-49A7-928B-F4C05547E52E} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
 		{549611AB-FBB2-4168-BCBB-99335AF54FDC} = {67337B64-473B-4676-AF06-D1EDCE123B6D}
+		{B0CB767D-2460-4592-8D83-CE3F5FF6F8CA} = {2B291CD5-71E9-4F47-9F31-DDEFA7652315}
+		{B525FE8B-E277-4C6A-842C-E4AB242CC979} = {B0CB767D-2460-4592-8D83-CE3F5FF6F8CA}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9AEF8164-5EBC-432F-98B9-C7C5704935A3}
