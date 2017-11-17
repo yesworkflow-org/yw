@@ -327,6 +327,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pwsh", "pwsh", "{1DBF4D39-99F4-47EA-9308-4CEB9AEDDF13}"
 	ProjectSection(SolutionItems) = preProject
 		..\pwsh\utilities.ps1 = ..\pwsh\utilities.ps1
+		..\pwsh\yw.ps1 = ..\pwsh\yw.ps1
 	EndProjectSection
 EndProject
 Global
