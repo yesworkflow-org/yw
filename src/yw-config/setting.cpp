@@ -1,4 +1,5 @@
 #include "setting.h"
+#include "yw_text.h"
 #include <iomanip>
 
 namespace yw {
@@ -12,7 +13,7 @@ namespace yw {
             const nullable_string& valueText,
             const SettingSource source,
             const std::string& resource
-        ) :key(key),
+        ) :key(yw::tolower(key)),
             valueText(valueText),
             source(source), resource(resource),
             description(""), allowedValues({}), visibility(Visibility::BASIC)
@@ -28,7 +29,7 @@ namespace yw {
             const std::vector<std::string> valueVector,
             const SettingSource source,
             const std::string& resource
-        ) : key(key), 
+        ) : key(yw::tolower(key)),
             valueText(valueText),
             source(source), resource(resource),
             description(""), allowedValues({}), visibility(Visibility::BASIC),
@@ -41,7 +42,7 @@ namespace yw {
             const std::string& description,
             const std::vector<std::string> allowedValues,
             Visibility visibility
-        ) : key(key), valueText(defaultValue), source(SettingSource::YW_DEFAULTS),
+        ) : key(yw::tolower(key)), valueText(defaultValue), source(SettingSource::YW_DEFAULTS),
             resource(NO_RESOURCE), description(description),
             allowedValues(allowedValues), visibility(visibility)
         {

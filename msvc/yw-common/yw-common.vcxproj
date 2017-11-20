@@ -22,11 +22,13 @@
     <ClInclude Include="..\..\src\yw-common\nullable.h" />
     <ClInclude Include="..\..\src\yw-common\stdio_recorders.h" />
     <ClInclude Include="..\..\src\yw-common\yw_io.h" />
+    <ClInclude Include="..\..\src\yw-common\yw_text.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\yw-common\nullable.cpp" />
     <ClCompile Include="..\..\src\yw-common\stdio_recorders.cpp" />
     <ClCompile Include="..\..\src\yw-common\yw_io.cpp" />
+    <ClCompile Include="..\..\src\yw-common\yw_text.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

@@ -37,10 +37,23 @@ YW_TEST_SET
         Assert::AreEqual(1, configuration.size());
     }
 
-    YW_TEST(Configuration, AfterInsertingOneSettingGetReturnsSettingWIthInsertedKeyAndValue)
+    YW_TEST(Configuration, AfterInsertingTwoSettingsWithSameKeyButDifferentCaseConfigurationSizeIsOne)
+    {
+        configuration.insert(Setting{ "key1", "value1" });
+        configuration.insert(Setting{ "KEY1", "value2" });
+        Assert::AreEqual(1, configuration.size());
+    }
+
+    YW_TEST(Configuration, AfterInsertingOneSettingGetReturnsSettingWithInsertedKeyAndValue)
     {
         configuration.insert(Setting{ "key", "value" });
         Assert::AreEqual("value", configuration.getValueText("key"));
+    }
+
+    YW_TEST(Configuration, AfterInsertingOneSettingGetUsingDifferentlyCasedKeyReturnsSettingWithInsertedKeyAndValue)
+    {
+        configuration.insert(Setting{ "key", "value" });
+        Assert::AreEqual("value", configuration.getValueText("KEY"));
     }
 
     YW_TEST(Configuration, AfterInsertingTwoSettingsWithDifferentKeysGetOnSecondKeyReturnsSettingWithSecondInsertedKeyAndValue)
@@ -124,6 +137,21 @@ YW_TEST_SET
         configuration.insert(Setting{ "key2", "value2", SettingSource::YW_DEFAULTS });
         Configuration otherConfiguration;
         otherConfiguration.insert(Setting{ "key2", "other2", SettingSource::COMMAND_LINE });
+        otherConfiguration.insert(Setting{ "key3", "value3", SettingSource::COMMAND_LINE });
+        configuration.insertAll(otherConfiguration);
+
+        Assert::AreEqual(3, configuration.size());
+        Assert::AreEqual("value1", configuration.getValueText("key1"));
+        Assert::AreEqual("other2", configuration.getValueText("key2"));
+        Assert::AreEqual("value3", configuration.getValueText("key3"));
+    }
+
+    YW_TEST(Configuration, InsertingOneConfigurationIntoAnotherWithOneHigherPrioritySettingWithCommonButDifferentlyCasedKeyYieldsMergedSettingsWithOverriddenSetting) {
+
+        configuration.insert(Setting{ "key1", "value1", SettingSource::YW_DEFAULTS });
+        configuration.insert(Setting{ "key2", "value2", SettingSource::YW_DEFAULTS });
+        Configuration otherConfiguration;
+        otherConfiguration.insert(Setting{ "KEY2", "other2", SettingSource::COMMAND_LINE });
         otherConfiguration.insert(Setting{ "key3", "value3", SettingSource::COMMAND_LINE });
         configuration.insertAll(otherConfiguration);
 

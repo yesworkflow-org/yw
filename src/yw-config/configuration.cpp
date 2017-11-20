@@ -1,5 +1,6 @@
 #include "configuration.h"
 #include "yw_config_parser_builder.h"
+#include "yw_text.h"
 #include <iomanip>
 #include <string>
 
@@ -74,11 +75,11 @@ namespace yw {
         }
 
         bool Configuration::contains(const std::string& key) {
-            return settings.find(key) != settings.end();
+            return settings.find(yw::tolower(key)) != settings.end();
         }
 
         const Setting& Configuration::getSetting(const std::string& key) {
-            auto it = settings.find(key);
+            auto it = settings.find(yw::tolower(key));
             if (it != settings.end()) {
                 return it->second;
             }

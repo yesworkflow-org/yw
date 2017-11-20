@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2008
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "yw-extract", "yw-extract\yw-extract.vcxproj", "{158B1288-0CC1-426B-8967-800EDBD8C278}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -324,7 +324,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "expected", "expected", "{B5
 		..\examples\simulate_data_collection\expected\wf.svg = ..\examples\simulate_data_collection\expected\wf.svg
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pwsh", "pwsh", "{1DBF4D39-99F4-47EA-9308-4CEB9AEDDF13}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "pwsh", "pwsh", "{7B8B3223-BBA7-4D1C-BDC7-CD7804614D7B}"
 	ProjectSection(SolutionItems) = preProject
 		..\pwsh\utilities.ps1 = ..\pwsh\utilities.ps1
 		..\pwsh\yw.ps1 = ..\pwsh\yw.ps1
