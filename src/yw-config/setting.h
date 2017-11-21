@@ -35,12 +35,11 @@ namespace yw {
             const SettingSource source;
             const std::string resource;
             const std::string description;
-            const std::vector<std::string> allowedValues;
             const Visibility visibility;
 
             Setting(
                 const std::string& key,
-                const nullable_string& valueText,
+                const nullable_string& valueText = null_string,
                 const SettingSource source = SettingSource::UNSPECIFIED,
                 const std::string& resource = NO_RESOURCE
             );
@@ -64,13 +63,14 @@ namespace yw {
             const std::vector<std::string> getValueVector() const { return valueVector; }
             std::string allowedValueStr(size_t index) const;
             std::string allowedValuesStr() const;
-            std::string str() const;
+            std::string str(size_t nameColumnWidth = 27) const;
 
             static const Setting NO_SETTING;
             static const std::string NO_RESOURCE;
 
         private:
 
+            std::vector<std::string> allowedValues;
             std::vector<std::string> valueVector;
             size_t defaultIndex{ std::numeric_limits<size_t>::max() };
         };

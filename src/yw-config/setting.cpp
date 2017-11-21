@@ -40,15 +40,20 @@ namespace yw {
             const std::string& key,
             const nullable_string& defaultValue,
             const std::string& description,
-            const std::vector<std::string> allowedValues,
+            const std::vector<std::string> allowed,
             Visibility visibility
         ) : key(yw::tolower(key)), valueText(defaultValue), source(SettingSource::YW_DEFAULTS),
             resource(NO_RESOURCE), description(description),
-            allowedValues(allowedValues), visibility(visibility)
+            visibility(visibility)
         {
+            for (auto value : allowed) {
+                allowedValues.push_back(yw::toupper(value));
+            }
+
             if (defaultValue.hasValue()) {
+                auto assignedDefault = yw::toupper(defaultValue.getValue());
                 for (size_t i = 0; i < allowedValues.size(); ++i) {
-                    if (allowedValues[i] == defaultValue.getValue()) {
+                    if (allowedValues[i] == assignedDefault) {
                         defaultIndex = i;
                         break;
                     }
@@ -93,12 +98,17 @@ namespace yw {
             return ss.str();
         }
 
-        std::string Setting::str() const {
+        std::string Setting::str(size_t nameColumnWidth) const {
             std::stringstream ss;
-            ss << std::left << std::setw(27) << key << std::setw(0) << description;
-            auto avs = allowedValuesStr();
-            if (avs.length() > 0) {
-                ss << " (" << allowedValuesStr() << ")";
+            if (description.length() == 0 && allowedValues.size() == 0) {
+                ss << key;
+            }
+            else {
+                ss << std::left << std::setw(nameColumnWidth) << key << std::setw(0) << description;
+                auto avs = allowedValuesStr();
+                if (avs.length() > 0) {
+                    ss << " (" << allowedValuesStr() << ")";
+                }
             }
             return ss.str();
         }

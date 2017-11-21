@@ -40,7 +40,7 @@ namespace yw {
                     -------------              ----------------------------
                 )");
         
-                std::cerr << configuration.str(Setting::Visibility::BASIC);
+                std::cerr << configuration.help(Setting::Visibility::BASIC);
 				return 0;
 			}
 

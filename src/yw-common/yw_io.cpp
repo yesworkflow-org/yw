@@ -1,7 +1,11 @@
 #include "yw_io.h"
 
-#include <iostream>
+#include <algorithm>
+#include <cctype>
 #include <fstream>
+#include <functional> 
+#include <iostream>
+#include <locale>
 #include <sstream>
 
 #ifdef USING_STD_FILESYSTEM
@@ -55,6 +59,15 @@ namespace yw {
         #endif
     }
 
+    void trimright(std::string& s) {
+        s.erase(std::find_if(s.rbegin(), s.rend(), std::not1(std::ptr_fun<int, int>(std::isspace))).base(), s.end());
+    }
+
+    std::string ctrimright(std::string s) {
+        trimright(s);
+        return s;
+    }
+
     std::string trimmargins(const std::string& untrimmedText) {
 
         std::stringstream trimmed;
@@ -68,12 +81,12 @@ namespace yw {
                 auto firstNonSpace = untrimmedLine.find_first_not_of(" ");
                 if (firstNonSpace != std::string::npos) {
                     leftMargin = firstNonSpace;
-                    trimmed << untrimmedLine.substr(leftMargin) << std::endl;
+                    trimmed << ctrimright(untrimmedLine.substr(leftMargin)) << std::endl;
                 }
             }
             else {
                 if (untrimmedLine.size() < leftMargin) break;
-                trimmed << untrimmedLine.substr(leftMargin) << std::endl;
+                trimmed << ctrimright(untrimmedLine.substr(leftMargin)) << std::endl;
             }
         }
 

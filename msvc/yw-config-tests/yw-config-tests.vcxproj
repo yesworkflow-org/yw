@@ -172,6 +172,7 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\test\yw-config-tests\case_insensitive_settings_tests.cpp" />
     <ClCompile Include="..\..\test\yw-config-tests\configuration_file_tests.cpp" />
     <ClCompile Include="..\..\test\yw-config-tests\configuration_tests.cpp" />
     <ClCompile Include="..\..\test\yw-config-tests\configuration_text_tests.cpp" />

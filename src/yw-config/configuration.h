@@ -39,7 +39,7 @@ namespace yw {
             void insert(const Setting& setting);
             void insertAll(const Configuration& settings);
             size_t size() { return settings.size(); }
-            std::string str(Setting::Visibility minimumVisibility = Setting::Visibility::BASIC);
+            std::string help(Setting::Visibility minimumVisibility = Setting::Visibility::BASIC);
         };
     }
 }

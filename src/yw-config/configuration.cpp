@@ -148,7 +148,7 @@ namespace yw {
             return static_cast<size_t>(intValue);
         }
 
-        std::string Configuration::str(Setting::Visibility settingVisibility) {
+        std::string Configuration::help(Setting::Visibility settingVisibility) {
 
             std::stringstream help;
 
