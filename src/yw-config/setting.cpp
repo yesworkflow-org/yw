@@ -50,13 +50,18 @@ namespace yw {
                 allowedValues.push_back(yw::toupper(value));
             }
 
-            if (defaultValue.hasValue()) {
+            if (allowedValues.size() > 0 && defaultValue.hasValue()) {
                 auto assignedDefault = yw::toupper(defaultValue.getValue());
                 for (size_t i = 0; i < allowedValues.size(); ++i) {
                     if (allowedValues[i] == assignedDefault) {
                         defaultIndex = i;
                         break;
                     }
+                }
+                if (defaultIndex == std::numeric_limits<size_t>::max()) {
+                    throw std::runtime_error(
+                        "Default value of " + assignedDefault + " " +
+                        "is not of the allowed values: " + allowedValuesStr() + ".");
                 }
             }
         }

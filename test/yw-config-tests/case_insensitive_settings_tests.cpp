@@ -30,17 +30,27 @@ YW_TEST_SET
         Assert::AreEqual("value", configuration.getValueText("KEY"));
     }
 
+    YW_TEST(CaseInsensitiveSettings, SettingHelpForMixedCaseAllosedValuesShowsAllUppercaseValues)
+    {
+        auto setting = Setting{ "setting1" , "two", "First setting",{ "ONE", "Two", "three" } };
+        Assert::AreEqual("setting1    First setting (ONE, TWO*, or THREE)", setting.str(12));
+    }
+
+    YW_TEST(CaseInsensitiveSettings, SettingConstructorThrowsExceptionIfDefaultValueNotInAllowedValues)
+    {
+        try {
+            auto setting = Setting{ "setting1" , "zero", "First setting",{ "ONE", "Two", "three" } };
+        }
+        catch (std::runtime_error e) {
+            Assert::AreEqual("Default value of ZERO is not of the allowed values: ONE, TWO, or THREE.", e.what());
+        }
+    }
+
     YW_TEST(CaseInsensitiveSettings, AfterInsertingTwoSettingsWithSameKeyButDifferentCaseConfigurationSizeIsOne)
     {
         configuration.insert(Setting{ "key1", "value1" });
         configuration.insert(Setting{ "KEY1", "value2" });
         Assert::AreEqual(1, configuration.size());
-    }
-
-    YW_TEST(CaseInsensitiveSettings, SettingHelpForMixedCaseAllosedValuesShowsAllUppercaseValues)
-    {
-        auto setting = Setting{ "setting1" , "two", "First setting",{ "ONE", "Two", "three" } };
-        Assert::AreEqual("setting1    First setting (ONE, TWO*, or THREE)", setting.str(12));
     }
 
     YW_TEST(CaseInsensitiveSettings, ValueTextForSettingCanBeRetrievedWithDifferentCaseThanOriginalSettingKey)
