@@ -97,8 +97,8 @@ namespace yw {
             }
 
             std::string dotText;
-            WorkflowGrapher grapher{ ywdb, configuration };
             try {
+                WorkflowGrapher grapher{ ywdb, configuration };
                 dotText = grapher.graph(modelId);
             }
             catch (std::exception e) {

@@ -321,7 +321,7 @@ YW_TEST_SET
         );
     }
 
-    YW_TEST(WorkflowGraphCLI, AnnotationListenerReportsErrorWhenCommandLineOptionValueIsNotValid)
+    YW_TEST(WorkflowGraphCLI, AnnotationListenerReportsErrorWhenCommandProgramSpecificOptionValueIsNotValid)
     {
         yw::graph::cli(CommandLine(
             "yw graph graph.format=FOO"
@@ -331,6 +331,38 @@ YW_TEST_SET
             stderrRecorder.str()
         );
     }
+
+    YW_TEST(WorkflowGraphCLI, AnnotationListenerReportsErrorWhenGraphOptionValueIsNotValid)
+    {
+        auto sourceFilePath = writeTempFile("sample.yw", R"(
+
+            @begin workflow
+            @end workflow
+
+        )");
+
+        yw::graph::cli(CommandLine(
+            "yw graph graph.view=FOO " + sourceFilePath
+        ));
+
+        Assert::AreEqual(
+            "ERROR: Setting value FOO is not one of the allowed values (PROCESS, DATA, or COMBINED*) for setting 'graph.view'." EOL,
+            stderrRecorder.str()
+        );
+    }
+
+    YW_TEST(WorkflowGraphCLI, AnnotationListenerReportsErrorWhenCommandLineOptionValueIsNotValid)
+    {
+        yw::graph::cli(CommandLine(
+            "yw graph graph.format=FOO"
+        ));
+
+        Assert::AreEqual(
+            "ERROR: Setting value FOO is not one of the allowed values (DOT* or SVG) for setting 'graph.format'." EOL,
+            stderrRecorder.str()
+        );
+    }
+
 
     YW_TEST(WorkflowGraphCLI, AnnotationListenerCanParseRandomASCIITextWithoutNullPointerErrors)
     {
