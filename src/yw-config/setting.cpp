@@ -15,34 +15,23 @@ namespace yw {
             const std::string& resource,
             const std::vector<std::string> values,
             const std::string& description,
-            const std::vector<std::string> allowedValues,
+            const std::vector<std::string> allowed,
             Visibility visibility
         ) : key(yw::tolower(key)),
-            valueText((allowedValues.size() > 0 && valueText.hasValue())? yw::toupper(valueText.getValue()) : valueText),
+            valueText((allowed.size() > 0 && valueText.hasValue())? yw::toupper(valueText.getValue()) : valueText),
             source(source), resource(resource), valueVector(values),
             description(description), allowedValues(allowedValues), visibility(visibility)
         {
             if (valueText.hasValue() && values.size() == 0) {
                 valueVector = std::vector<std::string>{ valueText.getValue() };
             }
-        }
-
-        Setting::Setting(
-            const std::string& key,
-            const nullable_string& defaultValue,
-            const std::string& description,
-            const std::vector<std::string> allowed,
-            Visibility visibility
-        ) : key(yw::tolower(key)), valueText(defaultValue), source(SettingSource::YW_DEFAULTS),
-            resource(NO_RESOURCE), description(description),
-            visibility(visibility)
-        {
+ 
             for (auto value : allowed) {
                 allowedValues.push_back(yw::toupper(value));
             }
 
-            if (allowedValues.size() > 0 && defaultValue.hasValue()) {
-                auto assignedDefault = yw::toupper(defaultValue.getValue());
+            if (allowedValues.size() > 0 && valueText.hasValue()) {
+                auto assignedDefault = yw::toupper(valueText.getValue());
                 for (size_t i = 0; i < allowedValues.size(); ++i) {
                     if (allowedValues[i] == assignedDefault) {
                         defaultIndex = i;
@@ -57,6 +46,16 @@ namespace yw {
                     );
                 }
             }
+        }
+
+        Setting::Setting(
+            const std::string& key,
+            const nullable_string& defaultValue,
+            const std::string& description,
+            const std::vector<std::string> allowed,
+            Visibility visibility
+        ) : Setting(key, defaultValue, SettingSource::YW_DEFAULTS, NO_RESOURCE, {}, description, allowed, visibility)
+        {
         }
 
         Setting Setting::getUpdatedSetting(const Setting& newSetting) {
