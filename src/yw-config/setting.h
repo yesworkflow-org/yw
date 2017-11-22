@@ -41,7 +41,11 @@ namespace yw {
                 const std::string& key,
                 const nullable_string& valueText = null_string,
                 const SettingSource source = SettingSource::UNSPECIFIED,
-                const std::string& resource = NO_RESOURCE
+                const std::string& resource = NO_RESOURCE,
+                const std::vector<std::string> valueVector = {},
+                const std::string& description = "",
+                const std::vector<std::string> allowedValues = {},
+                Visibility visibility = Visibility::BASIC
             );
 
             Setting(
@@ -60,10 +64,14 @@ namespace yw {
                 Visibility visibility = Visibility::BASIC
             );
 
+            Setting getUpdatedSetting(const Setting& newSetting);
+
             const std::vector<std::string> getValueVector() const { return valueVector; }
             std::string allowedValueStr(size_t index) const;
             std::string allowedValuesStr() const;
             std::string str(size_t nameColumnWidth = 27) const;
+            size_t allowedValuesCount() { return allowedValues.size(); }
+            bool isAllowedValue(std::string value);
 
             static const Setting NO_SETTING;
             static const std::string NO_RESOURCE;

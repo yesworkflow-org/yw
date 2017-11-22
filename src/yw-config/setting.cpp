@@ -12,13 +12,17 @@ namespace yw {
             const std::string& key,
             const nullable_string& valueText,
             const SettingSource source,
-            const std::string& resource
-        ) :key(yw::tolower(key)),
-            valueText(valueText),
-            source(source), resource(resource),
-            description(""), allowedValues({}), visibility(Visibility::BASIC)
+            const std::string& resource,
+            const std::vector<std::string> values,
+            const std::string& description,
+            const std::vector<std::string> allowedValues,
+            Visibility visibility
+        ) : key(yw::tolower(key)),
+            valueText((allowedValues.size() > 0 && valueText.hasValue())? yw::toupper(valueText.getValue()) : valueText),
+            source(source), resource(resource), valueVector(values),
+            description(description), allowedValues(allowedValues), visibility(visibility)
         {
-            if (valueText.hasValue()) {
+            if (valueText.hasValue() && values.size() == 0) {
                 valueVector = std::vector<std::string>{ valueText.getValue() };
             }
         }
@@ -59,11 +63,32 @@ namespace yw {
                     }
                 }
                 if (defaultIndex == std::numeric_limits<size_t>::max()) {
-                    throw std::runtime_error(
+                    throw std::domain_error(
                         "Default value of " + assignedDefault + " " +
-                        "is not of the allowed values: " + allowedValuesStr() + ".");
+                        "is not one of the allowed values (" + allowedValuesStr() + ") "
+                        "for setting '" + key + "'."
+                    );
                 }
             }
+        }
+
+        Setting Setting::getUpdatedSetting(const Setting& newSetting) {
+
+            return Setting{
+                key,
+                newSetting.valueText,
+                newSetting.source,
+                newSetting.resource,
+                newSetting.valueVector,
+                description,
+                allowedValues,
+                visibility
+            };
+        }
+
+        bool Setting::isAllowedValue(std::string value) {
+            return allowedValues.size() == 0 ||
+                   std::find(allowedValues.begin(), allowedValues.end(), yw::toupper(value)) != allowedValues.end();
         }
 
         std::string Setting::allowedValueStr(size_t index) const {

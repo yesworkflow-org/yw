@@ -41,8 +41,10 @@ YW_TEST_SET
         try {
             auto setting = Setting{ "setting1" , "zero", "First setting",{ "ONE", "Two", "three" } };
         }
-        catch (std::runtime_error e) {
-            Assert::AreEqual("Default value of ZERO is not of the allowed values: ONE, TWO, or THREE.", e.what());
+        catch (std::domain_error e) {
+            Assert::AreEqual(
+                "Default value of ZERO is not one of the allowed values (ONE, TWO, or THREE) for setting 'setting1'.", 
+                e.what());
         }
     }
 
@@ -118,4 +120,17 @@ YW_TEST_SET
         );
     }
 
+    YW_TEST(CaseInsensitiveSettings, C)
+    {
+        configuration.insert(Setting{ "setting1" , "two", "First setting",{ "ONE", "Two", "three" } });
+        try {
+            configuration.insert(Setting{ "setting1", "four", Setting::SettingSource::COMMAND_LINE });
+        }
+        catch (std::domain_error e) {
+            Assert::AreEqual(
+                "Setting value FOUR is not one of the allowed values (ONE, TWO*, or THREE) for setting 'setting1'.",
+                e.what());
+        }
+
+    }
 YW_TEST_END

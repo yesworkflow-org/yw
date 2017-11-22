@@ -53,17 +53,27 @@ namespace yw {
             insertSettingsFromText(configurationText.str(), source);
         }
 
-        void Configuration::insert(const Setting& setting) {
-            auto it = settings.find(setting.key);
-            if (it == settings.end()) {
-                settings.emplace(setting.key, setting);
+        void Configuration::insert(const Setting& newSetting) {
+            auto oldSettingEntry = settings.find(newSetting.key);
+            if (oldSettingEntry == settings.end()) {
+                settings.emplace(newSetting.key, newSetting);
             }
             else {
-                auto priorityOfCurrentSetting = it->second.source;
-                auto priorityOfNewSetting = setting.source;
-                if (priorityOfNewSetting >= priorityOfCurrentSetting) {
-                    settings.erase(setting.key);
-                    settings.emplace(setting.key, setting);
+                Setting& oldSetting = oldSettingEntry->second;
+                if (newSetting.source >= oldSetting.source) {
+                    auto newSettingValue = yw::toupper(newSetting.valueText.getValue());
+                    if (oldSetting.isAllowedValue(newSettingValue)) {
+                        auto updatedSetting = oldSetting.getUpdatedSetting(newSetting);
+                        settings.erase(oldSetting.key);
+                        settings.emplace(newSetting.key, updatedSetting);
+                    }
+                    else {
+                        throw std::domain_error(
+                            "Setting value " + newSettingValue + " " + 
+                            "is not one of the allowed values (" + oldSetting.allowedValuesStr() + ") " +
+                            "for setting '" + newSetting.key + "'."
+                        );
+                    }
                 }
             }
         }

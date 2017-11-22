@@ -43,8 +43,14 @@ namespace yw {
                 std::cerr << configuration.help(Setting::Visibility::BASIC);
 				return 0;
 			}
-
-            configuration.insertAll(commandLine.getSettings());
+            
+            try {
+                configuration.insertAll(commandLine.getSettings());
+            }
+            catch (std::domain_error e) {
+                std::cerr << "ERROR: " << e.what() << std::endl;
+                return 0;
+            }
 
             auto localConfigFile = configuration.getValueText("yw.config");
             configuration.insertSettingsFromFile(localConfigFile, Setting::SettingSource::LOCAL_FILE, false);
