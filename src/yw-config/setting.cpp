@@ -29,19 +29,6 @@ namespace yw {
 
         Setting::Setting(
             const std::string& key,
-            const nullable_string& valueText,
-            const std::vector<std::string> valueVector,
-            const SettingSource source,
-            const std::string& resource
-        ) : key(yw::tolower(key)),
-            valueText(valueText),
-            source(source), resource(resource),
-            description(""), allowedValues({}), visibility(Visibility::BASIC),
-            valueVector{ valueVector }
-        {   }
-
-        Setting::Setting(
-            const std::string& key,
             const nullable_string& defaultValue,
             const std::string& description,
             const std::vector<std::string> allowed,

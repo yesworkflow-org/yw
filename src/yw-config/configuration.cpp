@@ -25,7 +25,7 @@ namespace yw {
                     valueVector.push_back(wordContext->getText());
                 }
 
-                auto s = Setting{ key, valueText, valueVector, source };
+                auto s = Setting{ key, valueText, source, Setting::NO_RESOURCE, valueVector };
                 insert(s);
 
             }
