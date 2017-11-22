@@ -1,5 +1,6 @@
 #include "setting.h"
 #include "yw_text.h"
+#include <algorithm>
 #include <iomanip>
 
 namespace yw {
@@ -19,8 +20,11 @@ namespace yw {
             Visibility visibility
         ) : key(yw::tolower(key)),
             valueText((allowed.size() > 0 && valueText.hasValue())? yw::toupper(valueText.getValue()) : valueText),
-            source(source), resource(resource), valueVector(values),
-            description(description), allowedValues(allowedValues), visibility(visibility)
+            source(source), 
+            resource(resource), 
+            valueVector(values),
+            description(description), 
+            visibility(visibility)
         {
             if (valueText.hasValue() && values.size() == 0) {
                 valueVector = std::vector<std::string>{ valueText.getValue() };

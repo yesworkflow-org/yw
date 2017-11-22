@@ -34,6 +34,7 @@ namespace yw {
             const nullable_string valueText;
             const SettingSource source;
             const std::string resource;
+            std::vector<std::string> valueVector;
             const std::string description;
             const Visibility visibility;
 
@@ -71,7 +72,6 @@ namespace yw {
         private:
 
             std::vector<std::string> allowedValues;
-            std::vector<std::string> valueVector;
             size_t defaultIndex{ std::numeric_limits<size_t>::max() };
         };
     }

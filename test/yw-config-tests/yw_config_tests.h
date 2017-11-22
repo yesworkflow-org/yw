@@ -6,6 +6,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <algorithm>
 
 #include "configuration.h"
 #include "yw_io.h"
