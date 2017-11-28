@@ -6,6 +6,7 @@
 #include "configuration.h"
 #include "graphviz_renderer.h"
 #include "yw_io.h"
+#include "yw_cli_parsing_exception.h"
 
 #include <iostream>
 
@@ -23,11 +24,11 @@ namespace yw {
             try {
                 return cli(CommandLine(argc, argv));
             }
-            catch (std::runtime_error e) {
+            catch (yw::cli::YW_CLI_ParsingException e) {
                 std::cerr << "ERROR: " << e.what() << std::endl;
             }
             catch (...) {
-                std::cerr << "ERROR: An unexpected and unrecogized exception occurred." << std::endl;
+                std::cerr << "ERROR: An unexpected exception occurred." << std::endl;
             }
         }
 

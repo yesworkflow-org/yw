@@ -75,5 +75,8 @@
     <ClInclude Include="..\..\src\yw-cli\yw_cli_parser_error_listener.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\yw-cli\yw_cli_parsing_exception.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

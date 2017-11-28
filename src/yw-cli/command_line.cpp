@@ -1,4 +1,5 @@
 #include "command_line.h"
+#include "yw_cli_parsing_exception.h"
 
 using namespace yw::config;
 using SettingSource = yw::config::Setting::SettingSource;
@@ -16,7 +17,7 @@ namespace yw {
                  (configNameText = configName->getText()) == "<missing WORD>" ||
                  configNameText.empty()
                 ) {
-                throw std::runtime_error("Configuration name missing following -c flag on command line.");
+                throw YW_CLI_ParsingException{ "Configuration name missing following -c flag on command line." };
             }
 
             return configNameText;

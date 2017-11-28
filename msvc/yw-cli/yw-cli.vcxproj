@@ -43,6 +43,7 @@
     <ClInclude Include="..\..\src\yw-cli\YW_CLI_Parser.h" />
     <ClInclude Include="..\..\src\yw-cli\yw_cli_parser_builder.h" />
     <ClInclude Include="..\..\src\yw-cli\yw_cli_parser_error_listener.h" />
+    <ClInclude Include="..\..\src\yw-cli\yw_cli_parsing_exception.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
