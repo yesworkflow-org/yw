@@ -364,6 +364,18 @@ YW_TEST_SET
     }
 
 
+    YW_TEST(WorkflowGraphCLI, CommandLineReportsErrorWhenCommandLineIncludesCFlagWithNoArguments)
+    {
+        char* argv[] = {"yw", "graph", "sample.py", "-c"};
+
+        yw::graph::cli(4, argv);
+
+        Assert::AreEqual(
+            "ERROR: Configuration name missing following -c flag on command line." EOL,
+            stderrRecorder.str()
+        );
+    }
+
     YW_TEST(WorkflowGraphCLI, AnnotationListenerCanParseRandomASCIITextWithoutNullPointerErrors)
     {
         RandomTextGenerator r;

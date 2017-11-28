@@ -49,6 +49,9 @@
     <ClCompile Include="..\..\src\yw-cli\command_line.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\yw-cli\yw_cli_parser_error_listener.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\yw-cli\yw_cli_parser_builder.h">
@@ -67,6 +70,9 @@
       <Filter>Generated Source Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\yw-cli\command_line.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-cli\yw_cli_parser_error_listener.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

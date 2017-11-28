@@ -145,6 +145,16 @@ YW_TEST_SET
         Assert::AreEqual("true", commandLine.getSettings().getSetting("extract.volatile").valueText.getValue());
     }
 
+    YW_TEST(CommandLine, WhenCommandLineIncludesCFlagWithNoArgumentsRuntimeErrorIsThrown)
+    {
+        try {
+            CommandLine commandLine{ "yw graph myscript.py -c" };
+        }
+        catch (std::runtime_error e) {
+            Assert::AreEqual("Configuration name missing following -c flag on command line.", e.what());
+        }
+    }
+
     YW_TEST(CommandLine, WhenCommandLineIncludesOneConfigWithoutCFlagButWithValueConfigNameAndConfigValueAreBothSet)
     {
         CommandLine commandLine{ "yw graph myscript.py extract.volatile=true" };

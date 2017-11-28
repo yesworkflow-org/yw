@@ -19,6 +19,18 @@ using namespace yw::model;
 namespace yw {
     namespace graph {
 
+        int cli(int argc, char** argv) {
+            try {
+                return cli(CommandLine(argc, argv));
+            }
+            catch (std::runtime_error e) {
+                std::cerr << "ERROR: " << e.what() << std::endl;
+            }
+            catch (...) {
+                std::cerr << "ERROR: An unexpected and unrecogized exception occurred." << std::endl;
+            }
+        }
+
         int cli(const CommandLine& commandLine)
         {
             YesWorkflowDB ywdb;

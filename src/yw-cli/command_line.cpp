@@ -6,12 +6,28 @@ using SettingSource = yw::config::Setting::SettingSource;
 namespace yw {
     namespace cli {
 
+        std::string safelyGetBlockNameFromBeginContext(YW_CLI_Parser::ConfigContext *config) {
+
+            YW_CLI_Parser::ConfigNameContext* configName;
+            std::string configNameText;
+
+            if ( config == nullptr ||
+                 (configName = config->configName()) == nullptr ||
+                 (configNameText = configName->getText()) == "<missing WORD>" ||
+                 configNameText.empty()
+                ) {
+                throw std::runtime_error("Configuration name missing following -c flag on command line.");
+            }
+
+            return configNameText;
+        }
+
         CommandLine::CommandLine(int argc, char** argv) :
             CommandLine(concatenate(argc, argv)) {}
 
         CommandLine::CommandLine(std::string line) : line(line) {
 
-            YW_CLI_ParserBuilder parser_builder(line);
+            YW_CLI_ParserBuilder parser_builder(line, true);
             YW_CLI_Parser::CommandLineContext* context = parser_builder.parse()->commandLine();
 
             program = context->program()->getText();
@@ -29,7 +45,7 @@ namespace yw {
             }
 
             for (auto config : context->config()) {
-                auto key = config->configName()->getText();
+                auto key = safelyGetBlockNameFromBeginContext(config);
                 nullable_string valueText = (config->configValue() == nullptr) ?
                     null_string : config->configValue()->unquotedValue()->getText();
                 settings.insert(Setting{ key, valueText, SettingSource::COMMAND_LINE });
