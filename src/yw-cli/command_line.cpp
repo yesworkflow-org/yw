@@ -21,7 +21,7 @@ namespace yw {
             return programText;
         }
 
-        std::string safelyGetBlockNameFromConfigContext(YW_CLI_Parser::ConfigContext *config) {
+        std::string safelyGetConfigNameFromConfigContext(YW_CLI_Parser::ConfigContext *config) {
             YW_CLI_Parser::ConfigNameContext* configName;
             std::string configNameText;
             if ( config == nullptr ||
@@ -32,6 +32,22 @@ namespace yw {
                 throw YW_CLI_ParsingException{ "Configuration name missing following -c flag on command line." };
             }
             return configNameText;
+        }
+
+        nullable_string safelyGetConfigValueFromConfigContext(YW_CLI_Parser::ConfigContext *config) {
+            YW_CLI_Parser::ConfigValueContext* configValue;
+            YW_CLI_Parser::UnquotedValueContext* unquotedValue;
+            nullable_string unquotedConfigValueText;
+            if (config == nullptr ||
+                (configValue = config->configValue()) == nullptr ||
+                (unquotedValue = configValue->unquotedValue()) == nullptr ||
+                (unquotedConfigValueText = unquotedValue->getText()) == null_string ||
+                unquotedConfigValueText.getValue() == "<missing WORD>" ||
+                unquotedConfigValueText.getValue().empty()
+                ) {
+                unquotedConfigValueText = null_string;
+            }
+            return unquotedConfigValueText;
         }
 
         CommandLine::CommandLine(int argc, char** argv) :
@@ -57,10 +73,9 @@ namespace yw {
             }
 
             for (auto config : context->config()) {
-                auto key = safelyGetBlockNameFromConfigContext(config);
-                nullable_string valueText = (config->configValue() == nullptr) ?
-                    null_string : config->configValue()->unquotedValue()->getText();
-                settings.insert(Setting{ key, valueText, SettingSource::COMMAND_LINE });
+                auto name = safelyGetConfigNameFromConfigContext(config);
+                auto value = safelyGetConfigValueFromConfigContext(config);
+                settings.insert(Setting{ name, value, SettingSource::COMMAND_LINE });
             }
         }
 

@@ -161,10 +161,35 @@ YW_TEST_SET
     {
         try {
             CommandLine commandLine{ "yw graph myscript.py -c" };
+            Assert::Fail(L"Expected exception not thrown");
         }
         catch (YW_CLI_ParsingException e) {
             Assert::AreEqual("Configuration name missing following -c flag on command line.", e.what());
         }
+    }
+
+    YW_TEST(CommandLine, WhenCommandLineIncludesCFlagAndOptionNameAndEqualsSignButNoConfigValueIsNullString)
+    {
+        CommandLine commandLine{ "yw graph myscript.py -c graph.format=" };
+        Expect::AreEqual("yw", commandLine.getProgram().getValue());
+        Expect::AreEqual("graph", commandLine.getCommand().getValue());
+        Expect::AreEqual(0, commandLine.getFlags().size());
+        Assert::AreEqual(1, commandLine.getArguments().size());
+        Assert::AreEqual("myscript.py", commandLine.getArguments()[0]);
+        Assert::AreEqual(1, commandLine.getSettings().size());
+        Assert::IsNull(commandLine.getSettings().getSetting("graph.format").valueText);
+    }
+
+    YW_TEST(CommandLine, WhenCommandLineIncludesOptionNameAndEqualsSignButNoConfigValueIsNullString)
+    {
+        CommandLine commandLine{ "yw graph myscript.py graph.format=" };
+        Expect::AreEqual("yw", commandLine.getProgram().getValue());
+        Expect::AreEqual("graph", commandLine.getCommand().getValue());
+        Expect::AreEqual(0, commandLine.getFlags().size());
+        Assert::AreEqual(1, commandLine.getArguments().size());
+        Assert::AreEqual("myscript.py", commandLine.getArguments()[0]);
+        Assert::AreEqual(1, commandLine.getSettings().size());
+        Assert::IsNull(commandLine.getSettings().getSetting("graph.format").valueText);
     }
 
     YW_TEST(CommandLine, WhenCommandLineIncludesOneConfigWithoutCFlagButWithValueConfigNameAndConfigValueAreBothSet)
