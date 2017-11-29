@@ -7,11 +7,23 @@ using SettingSource = yw::config::Setting::SettingSource;
 namespace yw {
     namespace cli {
 
-        std::string safelyGetBlockNameFromBeginContext(YW_CLI_Parser::ConfigContext *config) {
+        nullable_string safelyGetProgramNameFromCommandLineContext(YW_CLI_Parser::CommandLineContext *commandLine) {
+            YW_CLI_Parser::ProgramContext* program;
+            nullable_string programText;
+            if (commandLine == nullptr ||
+                (program = commandLine->program()) == nullptr ||
+                (programText = program->getText()) == null_string ||
+                programText.getValue() == "<missing WORD>" ||
+                programText.getValue().empty()
+                ) {
+                programText = null_string;
+            }
+            return programText;
+        }
 
+        std::string safelyGetBlockNameFromConfigContext(YW_CLI_Parser::ConfigContext *config) {
             YW_CLI_Parser::ConfigNameContext* configName;
             std::string configNameText;
-
             if ( config == nullptr ||
                  (configName = config->configName()) == nullptr ||
                  (configNameText = configName->getText()) == "<missing WORD>" ||
@@ -19,7 +31,6 @@ namespace yw {
                 ) {
                 throw YW_CLI_ParsingException{ "Configuration name missing following -c flag on command line." };
             }
-
             return configNameText;
         }
 
@@ -31,7 +42,7 @@ namespace yw {
             YW_CLI_ParserBuilder parser_builder(line, true);
             YW_CLI_Parser::CommandLineContext* context = parser_builder.parse()->commandLine();
 
-            program = context->program()->getText();
+            program = safelyGetProgramNameFromCommandLineContext(context);
 
             for (auto flag : context->pflag()) {
                 flags.insert(flag->getText());
@@ -46,7 +57,7 @@ namespace yw {
             }
 
             for (auto config : context->config()) {
-                auto key = safelyGetBlockNameFromBeginContext(config);
+                auto key = safelyGetBlockNameFromConfigContext(config);
                 nullable_string valueText = (config->configValue() == nullptr) ?
                     null_string : config->configValue()->unquotedValue()->getText();
                 settings.insert(Setting{ key, valueText, SettingSource::COMMAND_LINE });

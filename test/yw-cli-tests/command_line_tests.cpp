@@ -1,5 +1,6 @@
 #include "yw_cli_tests.h"
 
+
 using namespace yw;
 using namespace yw::cli;
 using namespace yw::test;
@@ -18,13 +19,13 @@ YW_TEST_SET
         Expect::AreEqual(0, commandLine.getArguments().size());
         Expect::AreEqual(0, commandLine.getSettings().size());
 
-        Assert::AreEqual("yw", commandLine.getProgram());
+        Assert::AreEqual("yw", commandLine.getProgram().getValue());
     }
 
    YW_TEST(CommandLine, WhenCommandLineIsProgramNameAndShortHelpFlagFlagFieldIsSet)
     {
        CommandLine commandLine{ "yw -h" };
-       Expect::AreEqual("yw", commandLine.getProgram());
+       Expect::AreEqual("yw", commandLine.getProgram().getValue());
        Expect::IsNull(commandLine.getCommand());
        Expect::AreEqual(0, commandLine.getArguments().size());
        Expect::AreEqual(0, commandLine.getSettings().size());
@@ -36,7 +37,7 @@ YW_TEST_SET
     YW_TEST(CommandLine, WhenCommandLineIsProgramNameAndLongHelpFlagPFlagFieldISSet)
     {
         CommandLine commandLine{ "yw --help" };
-        Expect::AreEqual("yw", commandLine.getProgram());
+        Expect::AreEqual("yw", commandLine.getProgram().getValue());
         Expect::IsNull(commandLine.getCommand());
         Expect::AreEqual(0, commandLine.getArguments().size());
         Expect::AreEqual(0, commandLine.getSettings().size());
@@ -48,7 +49,7 @@ YW_TEST_SET
     YW_TEST(CommandLine, WhenCommandLineIsProgramNameAndShortVersionFlagFlagFieldIsSet)
     {
         CommandLine commandLine{ "yw -v" };
-        Expect::AreEqual("yw", commandLine.getProgram());
+        Expect::AreEqual("yw", commandLine.getProgram().getValue());
         Expect::IsNull(commandLine.getCommand());
         Expect::AreEqual(0, commandLine.getArguments().size());
         Expect::AreEqual(0, commandLine.getSettings().size());
@@ -60,7 +61,7 @@ YW_TEST_SET
     YW_TEST(CommandLine, WhenCommandLineIsProgramNameAndLongVersionFlagProgramAndPFlagFieldsAreSet)
     {
         CommandLine commandLine{ "yw --version" };
-        Expect::AreEqual("yw", commandLine.getProgram());
+        Expect::AreEqual("yw", commandLine.getProgram().getValue());
         Expect::IsNull(commandLine.getCommand());
         Expect::AreEqual(0, commandLine.getArguments().size());
         Expect::AreEqual(0, commandLine.getSettings().size());
@@ -69,10 +70,21 @@ YW_TEST_SET
 		Assert::IsTrue(commandLine.hasFlag("--version"));
 	}
 
+    YW_TEST(CommandLine, WhenCommandLineIsEmptyProgramIsNullString)
+    {
+        CommandLine commandLine{ "" };
+        Expect::AreEqual(0, commandLine.getArguments().size());
+        Expect::AreEqual(0, commandLine.getSettings().size());
+        Expect::AreEqual(0, commandLine.getFlags().size());
+        Assert::IsNull(commandLine.getCommand());
+
+        Assert::IsNull(commandLine.getProgram());
+    }
+
     YW_TEST(CommandLine, WhenCommandLineIncludesProgramNameTheProgramFieldIsSet)
     {
         CommandLine commandLine{ "yw graph" };
-        Expect::AreEqual("yw", commandLine.getProgram());
+        Expect::AreEqual("yw", commandLine.getProgram().getValue());
         Expect::AreEqual(0, commandLine.getFlags().size());
         Expect::AreEqual(0, commandLine.getArguments().size());
         Expect::AreEqual(0, commandLine.getSettings().size());
@@ -83,7 +95,7 @@ YW_TEST_SET
     YW_TEST(CommandLine, WhenCommandLineIncludesOneArgumentTheArgumentsFieldContainsThatArgument)
     {
         CommandLine commandLine{ "yw graph myscript.py" };
-        Expect::AreEqual("yw", commandLine.getProgram());
+        Expect::AreEqual("yw", commandLine.getProgram().getValue());
         Expect::AreEqual("graph", commandLine.getCommand().getValue());
         Expect::AreEqual(0, commandLine.getFlags().size());
         Expect::AreEqual(0, commandLine.getSettings().size());
@@ -95,7 +107,7 @@ YW_TEST_SET
     YW_TEST(CommandLine, WhenCommandLineIncludesTwoArgumentsTheArgumentsFieldContainsBothArgument)
     {
         CommandLine commandLine{ "yw graph myscript.py another.py" };
-        Expect::AreEqual("yw", commandLine.getProgram());
+        Expect::AreEqual("yw", commandLine.getProgram().getValue());
         Expect::AreEqual("graph", commandLine.getCommand().getValue());
         Expect::AreEqual(0, commandLine.getFlags().size());
         Expect::AreEqual(0, commandLine.getSettings().size());
@@ -108,7 +120,7 @@ YW_TEST_SET
     YW_TEST(CommandLine, WhenCommandLineIncludesOneConfigOptionButNoCflagOptionIsInterpretedAsArgument)
     {
         CommandLine commandLine{ "yw graph myscript.py extract.volatile" };
-        Expect::AreEqual("yw", commandLine.getProgram());
+        Expect::AreEqual("yw", commandLine.getProgram().getValue());
         Expect::AreEqual("graph", commandLine.getCommand().getValue());
         Expect::AreEqual(0, commandLine.getFlags().size());
         Expect::AreEqual(0, commandLine.getSettings().size());
@@ -121,7 +133,7 @@ YW_TEST_SET
     YW_TEST(CommandLine, WhenCommandLineIncludesOneConfigOptionFollowingCFlagConfigNameIsSetButConfigValueIsNull)
     {
         CommandLine commandLine{ "yw graph myscript.py -c extract.volatile" };
-        Expect::AreEqual("yw", commandLine.getProgram());
+        Expect::AreEqual("yw", commandLine.getProgram().getValue());
         Expect::AreEqual("graph", commandLine.getCommand().getValue());
         Expect::AreEqual(0, commandLine.getFlags().size());
 
@@ -135,7 +147,7 @@ YW_TEST_SET
     YW_TEST(CommandLine, WhenCommandLineIncludesOneConfigWithCFlagAndWithValueConfigNameAndConfigValueAreBothSet)
     {
         CommandLine commandLine{ "yw graph myscript.py -c extract.volatile=true" };
-        Expect::AreEqual("yw", commandLine.getProgram());
+        Expect::AreEqual("yw", commandLine.getProgram().getValue());
         Expect::AreEqual("graph", commandLine.getCommand().getValue());
         Expect::AreEqual(0, commandLine.getFlags().size());
 
@@ -145,12 +157,12 @@ YW_TEST_SET
         Assert::AreEqual("true", commandLine.getSettings().getSetting("extract.volatile").valueText.getValue());
     }
 
-    YW_TEST(CommandLine, WhenCommandLineIncludesCFlagWithNoArgumentsRuntimeErrorIsThrown)
+    YW_TEST(CommandLine, WhenCommandLineIncludesCFlagWithNoArgumentsThrowParsingException)
     {
         try {
             CommandLine commandLine{ "yw graph myscript.py -c" };
         }
-        catch (std::runtime_error e) {
+        catch (YW_CLI_ParsingException e) {
             Assert::AreEqual("Configuration name missing following -c flag on command line.", e.what());
         }
     }
@@ -158,7 +170,7 @@ YW_TEST_SET
     YW_TEST(CommandLine, WhenCommandLineIncludesOneConfigWithoutCFlagButWithValueConfigNameAndConfigValueAreBothSet)
     {
         CommandLine commandLine{ "yw graph myscript.py extract.volatile=true" };
-        Expect::AreEqual("yw", commandLine.getProgram());
+        Expect::AreEqual("yw", commandLine.getProgram().getValue());
         Expect::AreEqual("graph", commandLine.getCommand().getValue());
         Expect::AreEqual(0, commandLine.getFlags().size());
 
@@ -171,7 +183,7 @@ YW_TEST_SET
     YW_TEST(CommandLine, CommandLineCanAccomodateMultipleConfigOptionsWithAndWithoutValues)
     {
         CommandLine commandLine{ "yw graph myscript.py extract.volatile=true -c model.workflow=top graph.title='My workflow' --config graph.workflowbox" };
-        Expect::AreEqual("yw", commandLine.getProgram());
+        Expect::AreEqual("yw", commandLine.getProgram().getValue());
         Expect::AreEqual("graph", commandLine.getCommand().getValue());
         Expect::AreEqual(0, commandLine.getFlags().size());
         Expect::AreEqual(1, commandLine.getArguments().size());
@@ -188,7 +200,7 @@ YW_TEST_SET
     YW_TEST(CommandLine, CommandLineCanDistinguishInterleavedArgumentsAndConfigOptions)
     {
         CommandLine commandLine{ "yw graph arg1 extract.volatile=true arg2 -c model.workflow=top arg3 graph.title='My workflow' arg4 --config graph.workflowbox arg5" };
-        Expect::AreEqual("yw", commandLine.getProgram());
+        Expect::AreEqual("yw", commandLine.getProgram().getValue());
         Expect::AreEqual("graph", commandLine.getCommand().getValue());
         Expect::AreEqual(0, commandLine.getFlags().size());
 

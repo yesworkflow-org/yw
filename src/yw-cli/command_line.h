@@ -9,7 +9,7 @@ namespace yw {
         class CommandLine
         {
             std::string line;
-            std::string program;
+            nullable_string program;
             std::set<std::string> flags;
             nullable_string command;
             std::vector<std::string> arguments;
@@ -20,7 +20,7 @@ namespace yw {
             CommandLine(int argc, char** argv);
 
             std::string getLine() const { return line; }
-            std::string getProgram() const { return program; }
+            nullable_string getProgram() const { return program; }
             std::set<std::string> getFlags() const { return flags; }
 			bool hasFlag(std::string flag) const;
             nullable_string getCommand() const { return command; };
