@@ -4,4 +4,4 @@
 $MyInvocation.MyCommand.Path | Split-Path -Parent | Set-Location
 
 # Generate the C++ parser classes for the grammar in YW.g4
-java -jar $Env:ANTLR_4_7_JAR -Dlanguage=Cpp -package yw YW.g4
+java -jar $Env:ANTLR4_JAR -Dlanguage=Cpp -package yw YW.g4
