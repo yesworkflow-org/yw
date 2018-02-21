@@ -91,7 +91,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>$(GRAPHVIZ_SRC)\lib\gvc;$(GRAPHVIZ_SRC)\lib\common;$(GRAPHVIZ_SRC)\lib\pathplan;$(GRAPHVIZ_SRC)\lib\cgraph;$(GRAPHVIZ_SRC)\lib\xdot;$(GRAPHVIZ_SRC)\lib\cdt;$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\src\yw-graphviz;$(SolutionDir)\yw-graphviz-tests;$(SolutionDir)\..\test\yw-graphviz-tests;$(SolutionDir)\..\test\yw-test;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\graphviz\lib\gvc;$(SolutionDir)\..\graphviz\lib\common;$(SolutionDir)\..\graphviz\lib\pathplan;$(SolutionDir)\..\graphviz\lib\cgraph;$(SolutionDir)\..\graphviz\lib\xdot;$(SolutionDir)\..\graphviz\lib\cdt;$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\src\yw-graphviz;$(SolutionDir)\yw-graphviz-tests;$(SolutionDir)\..\test\yw-graphviz-tests;$(SolutionDir)\..\test\yw-test;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>yw_graphviz_tests.h</PrecompiledHeaderFile>
@@ -99,7 +99,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
-      <AdditionalLibraryDirectories>$(OutDir);$(GRAPHVIZ_SRC)/x64/StaticDebug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)\..\graphviz\x64\StaticDebug</AdditionalLibraryDirectories>
       <AdditionalDependencies>yw-common.lib;yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -107,7 +107,7 @@
     <ClCompile>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <AdditionalIncludeDirectories>$(GRAPHVIZ_SRC)\lib\gvc;$(GRAPHVIZ_SRC)\lib\common;$(GRAPHVIZ_SRC)\lib\pathplan;$(GRAPHVIZ_SRC)\lib\cgraph;$(GRAPHVIZ_SRC)\lib\xdot;$(GRAPHVIZ_SRC)\lib\cdt;$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\src\yw-graphviz;$(SolutionDir)\yw-graphviz-tests;$(SolutionDir)\..\test\yw-graphviz-tests;$(SolutionDir)\..\test\yw-test;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\graphviz\lib\gvc;$(SolutionDir)\..\graphviz\lib\common;$(SolutionDir)\..\graphviz\lib\pathplan;$(SolutionDir)\..\graphviz\lib\cgraph;$(SolutionDir)\..\graphviz\lib\xdot;$(SolutionDir)\..\graphviz\lib\cdt;$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\src\yw-graphviz;$(SolutionDir)\yw-graphviz-tests;$(SolutionDir)\..\test\yw-graphviz-tests;$(SolutionDir)\..\test\yw-test;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>yw_graphviz_tests.h</PrecompiledHeaderFile>
@@ -116,7 +116,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <AdditionalDependencies>yw-common.lib;yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(GRAPHVIZ_SRC)/Win32/StaticDebug</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)\..\graphviz\Win32\StaticDebug</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -125,7 +125,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(GRAPHVIZ_SRC)\lib\gvc;$(GRAPHVIZ_SRC)\lib\common;$(GRAPHVIZ_SRC)\lib\pathplan;$(GRAPHVIZ_SRC)\lib\cgraph;$(GRAPHVIZ_SRC)\lib\xdot;$(GRAPHVIZ_SRC)\lib\cdt;$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\src\yw-graphviz;$(SolutionDir)\yw-graphviz-tests;$(SolutionDir)\..\test\yw-graphviz-tests;$(SolutionDir)\..\test\yw-test;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\graphviz\lib\gvc;$(SolutionDir)\..\graphviz\lib\common;$(SolutionDir)\..\graphviz\lib\pathplan;$(SolutionDir)\..\graphviz\lib\cgraph;$(SolutionDir)\..\graphviz\lib\xdot;$(SolutionDir)\..\graphviz\lib\cdt;$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\src\yw-graphviz;$(SolutionDir)\yw-graphviz-tests;$(SolutionDir)\..\test\yw-graphviz-tests;$(SolutionDir)\..\test\yw-test;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>yw_graphviz_tests.h</PrecompiledHeaderFile>
@@ -136,7 +136,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <AdditionalDependencies>yw-common.lib;yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(GRAPHVIZ_SRC)/Win32/StaticRelease</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)\..\graphviz\Win32\StaticRelease</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -145,7 +145,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>$(GRAPHVIZ_SRC)\lib\gvc;$(GRAPHVIZ_SRC)\lib\common;$(GRAPHVIZ_SRC)\lib\pathplan;$(GRAPHVIZ_SRC)\lib\cgraph;$(GRAPHVIZ_SRC)\lib\xdot;$(GRAPHVIZ_SRC)\lib\cdt;$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\src\yw-graphviz;$(SolutionDir)\yw-graphviz-tests;$(SolutionDir)\..\test\yw-graphviz-tests;$(SolutionDir)\..\test\yw-test;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\..\graphviz\lib\gvc;$(SolutionDir)\..\graphviz\lib\common;$(SolutionDir)\..\graphviz\lib\pathplan;$(SolutionDir)\..\graphviz\lib\cgraph;$(SolutionDir)\..\graphviz\lib\xdot;$(SolutionDir)\..\graphviz\lib\cdt;$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\src\yw-graphviz;$(SolutionDir)\yw-graphviz-tests;$(SolutionDir)\..\test\yw-graphviz-tests;$(SolutionDir)\..\test\yw-test;$(VCInstallDir)UnitTest\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <UseFullPaths>true</UseFullPaths>
       <PrecompiledHeaderFile>yw_graphviz_tests.h</PrecompiledHeaderFile>
@@ -155,7 +155,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalLibraryDirectories>$(OutDir);$(GRAPHVIZ_SRC)/x64/StaticRelease</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(SolutionDir)\..\graphviz\x64\StaticRelease</AdditionalLibraryDirectories>
       <AdditionalDependencies>yw-common.lib;yw-graphviz.lib;cdt.lib;cgraph.lib;gvc.lib;gvplugin_core.lib;pathplan.lib;gvplugin_dot_layout.lib;dotgen.lib;xdot.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
