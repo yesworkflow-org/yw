@@ -1,0 +1,3 @@
+[submodule "submodules/graphviz"]
+	path = submodules/graphviz
+	url = https://github.com/tmcphillips/graphviz.git
