@@ -78,9 +78,6 @@
     <ClInclude Include="..\..\src\yw-parse\YWBaseListener.h">
       <Filter>Generated Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\yw-parse\YWLexer.h">
-      <Filter>Generated Source Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\yw-parse\YWListener.h">
       <Filter>Generated Source Files</Filter>
     </ClInclude>
@@ -119,6 +116,9 @@
     </ClInclude>
     <ClInclude Include="..\..\src\yw-parse\invalid_argument_exception.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\yw-parse\YWLexer.h">
+      <Filter>Generated Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

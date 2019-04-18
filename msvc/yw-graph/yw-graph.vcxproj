@@ -33,32 +33,32 @@
     <ProjectGuid>{EA928567-D2AB-4353-B0CB-43461B488643}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ywgraph</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v141</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -98,7 +98,7 @@
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>USE_GRAPHVIZ_LIB;ANTLR4CPP_STATIC;_CRT_SECURE_NO_WARNINGS;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-graphviz;$(SolutionDir)..\src\yw-parse;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\src\sqlite-db;$(SolutionDir)\..\graphviz\lib\gvc;$(SolutionDir)\..\src\sqlite-3.19.3;$(SolutionDir)\..\graphviz\lib\common;$(SolutionDir)\..\graphviz\lib\pathplan;$(SolutionDir)\..\graphviz\lib\cgraph;$(SolutionDir)\..\graphviz\lib\xdot;$(SolutionDir)\..\graphviz\lib\cdt</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ANTLR4_RUNTIME_SRC);$(SolutionDir)\..\src\yw-db;$(SolutionDir)\..\src\yw-graphviz;$(SolutionDir)..\src\yw-parse;$(SolutionDir)\..\src\yw-cli;$(SolutionDir)\..\src\yw-config;$(SolutionDir)\..\src\yw-model;$(SolutionDir)\..\src\yw-common;$(SolutionDir)\..\src\sqlite-db;$(GRAPHVIZ_SRC)\lib\gvc;$(SolutionDir)\..\src\sqlite-3.19.3;$(GRAPHVIZ_SRC)\lib\common;$(GRAPHVIZ_SRC)\lib\pathplan;$(GRAPHVIZ_SRC)\lib\cgraph;$(GRAPHVIZ_SRC)\lib\xdot;$(GRAPHVIZ_SRC)\lib\cdt</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
